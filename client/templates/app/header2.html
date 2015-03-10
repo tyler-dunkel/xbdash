@@ -1,0 +1,39 @@
+<template name="header2">
+  <!-- header -->
+  <header id="header" class="navbar navbar-fixed-top bg-primary padder-v"  data-spy="affix" data-offset-top="1">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="btn btn-link visible-xs pull-right m-r" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a href="#" class="navbar-brand m-r-lg"><img src="img/xboxdash_whiteicon.png" class="m-r-sm hide"><span class="h3 font-bold"><img src="img/xboxdash_white.png" class=""></span></a>
+      </div>
+      <div class="collapse navbar-collapse">
+      	{{> nav}}
+      </div>
+    </div>
+  </header>
+  <!-- / header -->
+</template>
+
+<template name="nav">
+        <ul class="nav navbar-nav font-bold">
+          <li>
+            <a href="#what" data-ride="scroll">What is XboxDash</a>
+          </li>
+          <li>
+            <a href="#features" data-ride="scroll">Features</a>
+          </li>
+          <li>
+            <a href="#getready">Get Ready</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <div class="m-t-sm">
+              <a href="/signin" class="btn btn-link btn-sm">Log in</a>
+              <a href="/signup" class="btn btn-sm btn-default btn-rounded m-l"><strong>Sign up</strong></a>
+            </div>
+          </li>
+        </ul>
+</template>
