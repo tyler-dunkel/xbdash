@@ -10,3 +10,6 @@ insecure
 iron:router
 accounts-base
 accounts-facebook
+twbs:bootstrap
+natestrauser:font-awesome
+nahue:simple-line-icons
