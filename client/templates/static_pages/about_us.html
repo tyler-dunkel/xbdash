@@ -13,94 +13,167 @@
 <template name="aboutUsBody">
   {{> headerLandingPage}}
   {{> carousel}}
-  {{> homeWhatSection}}
   {{> homeFeaturesSection}}
   {{> footerLandingPage}}
 </template>
 
 <template name="carousel">
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="img/slide_1.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Get Your Personalized Gaming Dashboard</h3>
-          <p class="text-white m-t-xl l-h-1x">See How Your Activity Stacks Up Against Your Friends</p>
-          <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
-        </div>
-      </div>
-      <div class="item">
-        <img src="img/slide_1.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Be Great with Achievements</h3>
-          <p class="text-white m-t-xl l-h-1x">Find The Achievement You're Looking For And Unlock Higher Gamerscores Together</p>
-          <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
-        </div>
-      </div>
-      <div class="item">
-        <img src="img/slide_1.jpg" alt="...">
-        <div class="carousel-caption">
-          <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Decide on Your Next Adventure</h3>
-          <p class="text-white m-t-xl l-h-1x">Search the Game Library and Decide on Your Next Game</p>
-          <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</template>
-
-<template name="homeWhatSection">
-  <div id="what" class="bg-light">
-    <div class="container">
-      <div class="row m-t-xl m-b-md text-center">
-        <div class="col-sm-4 to-animate home-what-icons">
-          <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
-            <img src="img/xbox12.png" width="75" height="75" />
-          </p>
-          <div class="m-b-xl">
-            <h4 class="m-t-none">Manage Your Game Progress</h4>
-            <p class="text-muted m-t-lg">Keep tabs on your game history and scope out games you want to add to your gamerscore.</p>
+  <div class="">
+    <div id="carousel1" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="img/slide_1a.jpg" alt="...">
+          <div class="carousel-caption">
+            <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Get Your Personalized Gaming Dashboard</h3>
+            <p class="text-white m-t-xl l-h-1x">See How Your Activity Stacks Up Against Your Friends</p>
+            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
           </div>
         </div>
-        <div class="col-sm-4 to-animate home-what-icons">
-          <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
-            <i class="fa w-1x fa-trophy fa-3x text-black"></i>
-          </p>
-          <div class="m-b-xl">
-            <h4 class="m-t-none">Track Achievements</h4>
-            <p class="text-muted m-t-lg">Keep track of your achievements and work together with more gamers to unlock them.</p>
+        <div class="item">
+          <img src="img/slide_1a.jpg" alt="...">
+          <div class="carousel-caption">
+            <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Be Great with Achievements</h3>
+            <p class="text-white m-t-xl l-h-1x">Find The Achievement You're Looking For And Unlock Higher Gamerscores Together</p>
+            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
           </div>
         </div>
-        <div class="col-sm-4 to-animate home-what-icons">
-          <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
-            <i class="fa w-1x fa-area-chart fa-3x text-black"></i>
-          </p>
-          <div class="m-b-xl">
-            <h4 class="m-t-none">See Your Personalized Dashboard</h4>
-            <p class="text-muted m-t-lg">Your dashboard is the key to tracking your gamerscore and your rank against the XboxDash community.</p>
+        <div class="item">
+          <img src="img/slide_1a.jpg" alt="...">
+          <div class="carousel-caption">
+            <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Decide on Your Next Adventure</h3>
+            <p class="text-white m-t-xl l-h-1x">Search the Game Library and Decide on Your Next Game</p>
+            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="what" class="bg-light">
+        <div class="container">
+          <div class="row text-center nav carousel-nav nav-pills">
+            <div class="col-sm-4 to-animate home-what-icons active" data-target="#carousel1" data-slide-to="0">
+              <a href="#" class="p-t-xl">
+                <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
+                  <img src="img/xbox12.png" width="50" height="50" />
+                </p>
+                <div class="m-b-lg">
+                  <h4 class="m-t-none">Manage Your Game Progress</h4>
+                  <p class="text-muted m-t-lg">Keep tabs on your game history and scope out games you want to add to your gamerscore.</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-4 to-animate home-what-icons" data-target="#carousel1" data-slide-to="1">
+              <a href="#" class="p-t-xl">
+                <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
+                  <i class="fa w-1x fa-trophy fa-2x text-black"></i>
+                </p>
+                <div class="m-b-lg">
+                  <h4 class="m-t-none">Track Achievements</h4>
+                  <p class="text-muted m-t-lg">Keep track of your achievements and work together with more gamers to unlock them.</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-4 to-animate home-what-icons" data-target="#carousel1" data-slide-to="2">
+              <a href="#" class="p-t-xl">
+                <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
+                  <i class="fa w-1x fa-area-chart fa-2x text-black"></i>
+                </p>
+                <div class="m-b-lg">
+                  <h4 class="m-t-none">See Your Personalized Dashboard</h4>
+                  <p class="text-muted m-t-lg">Your dashboard is the key to tracking your gamerscore and your rank against the XboxDash community.</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <style>
+  #carousel1 #what .nav a {
+      display: block;
+  }
+  #carousel1 #what .nav {
+      background: transparent;
+  }
+  .nav-justified > li > a {
+      border-radius: 0px;
+  }
+  .nav-pills > div[data-slide-to="0"].active {
+  }
+  .nav-pills > div[data-slide-to="1"].active {
+  }
+  .nav-pills > div[data-slide-to="2"].active {
+  }
+.nav-pills > div.active {
+  position: relative;
+  background: transparent;
+}
+.active:before {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  top: 0;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(213, 213, 213, 0);
+  border-top-color: #138013;
+  border-width: 20px;
+  margin-left: -20px;
+}
+  </style>
+
+  <script type="text/javascript">
+      jQuery(function ($) {
+          $('#carousel1').carousel({
+              interval: false
+          });
+
+          var clickEvent = false;
+
+          $('#carousel1').on('mouseover', '.nav-pills a', function () {
+              clickEvent = true;
+              $('.nav-pills div').removeClass('active');
+              $(this).parent().addClass('active');
+          }).on('slid.bs.carousel', function (e) {
+            if (!clickEvent) {
+                var count = $('.nav-pills').children().length - 1;
+                var current = $('.nav-pills div.active');
+                current.removeClass('active').next().addClass('active');
+                var id = parseInt(current.data('slide-to'));
+                if (count == id) {
+                    $('.nav-pills div').first().addClass('active');
+                }
+            }
+            clickEvent = false;
+          });
+
+          var clickEvent2 = false;
+
+          $('.nav-pills a').mouseover(function() {
+              var ctrl = $(this);
+              var interval = 100;
+
+              clickEvent2 = setInterval(function(){
+                   ctrl.trigger("click");
+              }, interval);
+          });
+
+          $('.nav-pills a').mouseout(function(){
+              clearInterval(clickEvent2);
+              clickEvent2 = false;
+          });
+
+      });
+  </script>
+
 </template>
 
 <template name="homeFeaturesSection">
@@ -135,24 +208,4 @@
       </div>
     </div>
   </div>
-  <!--
-  <div class="bg-light">
-    <div class="container">
-      <div class="row m-t-xl m-b-xxl" style="margin-bottom:0;">
-        <h2 class="text-center">Features</h2>
-      </div>
-      <div class="row m-t-xl m-b-xxl">
-        <div class="col-sm-6 wrapper-xl">
-          <h3 class="text-black font-bold m-b-lg">Responsive on all screen</h3>
-          <p class="h4 l-h-1x">Angulr responsive CSS layout is built on Bootstrap Grid System, includes a responsive, mobile first fluid grid system to target a wide range of devices like desktop, tablets, smart phones etc</p>
-        </div>
-        <div class="col-sm-6" data-ride="animated" data-animation="fadeInLeft" data-delay="300">
-          <div class="m-t-xxl text-center">
-            <img src="img/macbook-dashboard.png" width="600" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
 </template>

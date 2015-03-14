@@ -4517,6 +4517,10 @@ a.text-#000000:hover {
   margin-top: 40px;
 }
 
+.p-t-xl {
+  padding-top: 30px;
+}
+
 .m-t-xxl {
   margin-top: 50px;
 }
@@ -4643,6 +4647,10 @@ a.text-#000000:hover {
 
 .m-b-md {
   margin-bottom: 20px;
+}
+
+.p-b-md {
+  padding-bottom: 5px;
 }
 
 .m-b-lg {
