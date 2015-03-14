@@ -1755,6 +1755,10 @@ html {
   color: #58666e;
 }
 
+.navbar-header .btn-link {
+  color: #fff;
+}
+
 .btn-link.active {
   box-shadow: none;
   webkit-box-shadow: none;
@@ -1853,8 +1857,8 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-success {
   color: #ffffff !important;
-  background-color: #27c24c;
-  border-color: #27c24c;
+  background-color: #138013;
+  border-color: #138013;
 }
 
 .btn-success:hover,
@@ -3233,9 +3237,17 @@ fieldset[disabled] .i-checks input + i:before {
   color: #f2f2f2;
 }
 
+/*
 .bg-primary .nav > li > a:hover,
 .bg-primary .nav > li > a:focus {
   background-color: #6658b8;
+}
+*/
+
+.bg-primary .nav > li > a:hover,
+.bg-primary .nav > li > a:focus {
+  background-color: #fff;
+  color: #138013;
 }
 
 .bg-primary .nav .open > a {
@@ -4211,6 +4223,11 @@ a.text-#000000:hover {
   padding-left: 15px;
 }
 
+.padder-t {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .padder-v {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -4983,6 +5000,9 @@ a.text-#000000:hover {
 /*phone*/
 
 @media (max-width: 767px) {
+  .padder-t {
+    padding: 0;
+  }
   .w-auto-xs {
     width: auto;
   }
@@ -5194,5 +5214,13 @@ a.text-#000000:hover {
   }
   99.9% {
     background-color: #138013;
+  }
+}
+
+.carousel-caption h3 {font-size: 48px;}
+.carousel-caption p {font-size: 36px;}
+@media (max-width: 767px) {
+  .carousel-caption .m-b-lg {
+    margin-bottom: -30px;
   }
 }

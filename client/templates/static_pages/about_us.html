@@ -24,25 +24,25 @@
         <div class="item active">
           <img src="img/slide_1a.jpg" alt="...">
           <div class="carousel-caption">
-            <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Get Your Personalized Gaming Dashboard</h3>
-            <p class="text-white m-t-xl l-h-1x">See How Your Activity Stacks Up Against Your Friends</p>
-            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
+            <h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Get Your Personalized Gaming Dashboard</h3>
+            <p class="text-white l-h-1x m-b-md">See Your Activity Stack Up Against Your Friends</p>
+            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
           </div>
         </div>
         <div class="item">
           <img src="img/slide_1a.jpg" alt="...">
           <div class="carousel-caption">
-            <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Be Great with Achievements</h3>
-            <p class="text-white m-t-xl l-h-1x">Find The Achievement You're Looking For And Unlock Higher Gamerscores Together</p>
-            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
+            <h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Be Great with Achievements</h3>
+            <p class="text-white l-h-1x m-b-md">Find Achievements And Unlock Higher Gamerscores</p>
+            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
           </div>
         </div>
         <div class="item">
           <img src="img/slide_1a.jpg" alt="...">
           <div class="carousel-caption">
-            <h3 class="font-bold l-h-1x m-t-xxl text-white padder-v animated fadeInDown">Decide on Your Next Adventure</h3>
-            <p class="text-white m-t-xl l-h-1x">Search the Game Library and Decide on Your Next Game</p>
-            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-default btn-rounded text-lg font-bold m-b-xxl animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
+            <h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Decide on Your Next Adventure</h3>
+            <p class="text-white l-h-1x m-b-md">Search the Game Library and Decide on Your Next Game</p>
+            <a href="#" target="_blank" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> Sign Up Free</a>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
                 </p>
                 <div class="m-b-lg">
                   <h4 class="m-t-none">Manage Your Game Progress</h4>
-                  <p class="text-muted m-t-lg">Keep tabs on your game history and scope out games you want to add to your gamerscore.</p>
+                  <p class="m-t-lg">Keep tabs on your game history and scope out games you want to add to your gamerscore.</p>
                 </div>
               </a>
             </div>
@@ -68,7 +68,7 @@
                 </p>
                 <div class="m-b-lg">
                   <h4 class="m-t-none">Track Achievements</h4>
-                  <p class="text-muted m-t-lg">Keep track of your achievements and work together with more gamers to unlock them.</p>
+                  <p class="m-t-lg">Keep track of your achievements and work together with more gamers to unlock them.</p>
                 </div>
               </a>
             </div>
@@ -79,7 +79,7 @@
                 </p>
                 <div class="m-b-lg">
                   <h4 class="m-t-none">See Your Personalized Dashboard</h4>
-                  <p class="text-muted m-t-lg">Your dashboard is the key to tracking your gamerscore and your rank against the XboxDash community.</p>
+                  <p class="m-t-lg">Your dashboard is the key to tracking your gamerscore and your rank against the XboxDash community.</p>
                 </div>
               </a>
             </div>
@@ -98,36 +98,48 @@
   .nav-justified > li > a {
       border-radius: 0px;
   }
-  .nav-pills > div[data-slide-to="0"].active {
+  .nav-pills > div[data-slide-to="0"].active h4 {
+    color: #138013;
+    font-weight: bold;
   }
-  .nav-pills > div[data-slide-to="1"].active {
+  .nav-pills > div[data-slide-to="1"].active h4 {
+    color: #138013;
+    font-weight: bold;
   }
-  .nav-pills > div[data-slide-to="2"].active {
+  .nav-pills > div[data-slide-to="2"].active h4 {
+    color: #138013;
+    font-weight: bold;
   }
-.nav-pills > div.active {
-  position: relative;
-  background: transparent;
-}
-.active:before {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  top: 0;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(213, 213, 213, 0);
-  border-top-color: #138013;
-  border-width: 20px;
-  margin-left: -20px;
-}
+  .nav-pills > div.active p.b-dark {
+    border-color: #138013;
+  }
+  .nav-pills > div.active {
+    position: relative;
+    background: transparent;
+  }
+  .active:before {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    top: 0;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(213, 213, 213, 0);
+    border-top-color: #138013;
+    border-width: 20px;
+    margin-left: -20px;
+  }
+  @media (max-width: 767px) {
+    .active:before {display: none;}
+  }
   </style>
 
   <script type="text/javascript">

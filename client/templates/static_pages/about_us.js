@@ -33,7 +33,7 @@ Template.carousel.rendered = function() {
 	    	}
 	    },
 	    {
-	    	offset: '50%',
+	    	offset: '80%',
 	    	triggerOnce: true
 	    });
 	});
