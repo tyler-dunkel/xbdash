@@ -1,8 +1,14 @@
 /* 
 
 */
-.invisible {
-  display: none;
+.to-animate {
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -animation-duration: 2s;
+  opacity: 0;
+}
+#dash-image.animated {
+  opacity: 1;
 }
 html {
   background-color: #f0f3f4;
