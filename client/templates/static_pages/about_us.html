@@ -2,9 +2,8 @@
   <head>  
     <meta charset="utf-8" />
     <title>XboxDash | Manage your game progress, track achievements, see your rankings and read the latest in Xbox gaming news.</title>
-    <meta name="description" content="Angularjs, Html5, Music, Landing, 4 in 1 ui kits package" />
-    <meta name="keywords" content="AngularJS, angular, bootstrap, admin, dashboard, panel, app, charts, components,flat, responsive, layout, kit, ui, route, web, app, widgets" />
-    
+    <meta name="description" content="The #1 Xbox community that offers achievement guides, leaderboards, game reviews, and everything Xbox with your personalized dashboard." />
+    <meta name="keywords" content="xbox, xbox achievements, xbox 360, xbox one, xbox games, achievements, xbox leaderboards, xbox news, xbox game reviews" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
   </head>
   {{> aboutUsBody}}
@@ -14,6 +13,7 @@
   {{> headerLandingPage}}
   {{> carousel}}
   {{> homeFeaturesSection}}
+  {{> homeFaqs}}
   {{> footerLandingPage}}
 </template>
 
@@ -88,113 +88,15 @@
       </div>
     </div>
   </div>
-  <style>
-  #carousel1 #what .nav a {
-      display: block;
-  }
-  #carousel1 #what .nav {
-      background: transparent;
-  }
-  .nav-justified > li > a {
-      border-radius: 0px;
-  }
-  .nav-pills > div[data-slide-to="0"].active h4 {
-    color: #138013;
-    font-weight: bold;
-  }
-  .nav-pills > div[data-slide-to="1"].active h4 {
-    color: #138013;
-    font-weight: bold;
-  }
-  .nav-pills > div[data-slide-to="2"].active h4 {
-    color: #138013;
-    font-weight: bold;
-  }
-  .nav-pills > div.active p.b-dark {
-    border-color: #138013;
-  }
-  .nav-pills > div.active {
-    position: relative;
-    background: transparent;
-  }
-  .active:before {
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    top: 0;
-    left: 50%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: rgba(213, 213, 213, 0);
-    border-top-color: #138013;
-    border-width: 20px;
-    margin-left: -20px;
-  }
-  @media (max-width: 767px) {
-    .active:before {display: none;}
-  }
-  </style>
-
-  <script type="text/javascript">
-      jQuery(function ($) {
-          $('#carousel1').carousel({
-              interval: false
-          });
-
-          var clickEvent = false;
-
-          $('#carousel1').on('mouseover', '.nav-pills a', function () {
-              clickEvent = true;
-              $('.nav-pills div').removeClass('active');
-              $(this).parent().addClass('active');
-          }).on('slid.bs.carousel', function (e) {
-            if (!clickEvent) {
-                var count = $('.nav-pills').children().length - 1;
-                var current = $('.nav-pills div.active');
-                current.removeClass('active').next().addClass('active');
-                var id = parseInt(current.data('slide-to'));
-                if (count == id) {
-                    $('.nav-pills div').first().addClass('active');
-                }
-            }
-            clickEvent = false;
-          });
-
-          var clickEvent2 = false;
-
-          $('.nav-pills a').mouseover(function() {
-              var ctrl = $(this);
-              var interval = 100;
-
-              clickEvent2 = setInterval(function(){
-                   ctrl.trigger("click");
-              }, interval);
-          });
-
-          $('.nav-pills a').mouseout(function(){
-              clearInterval(clickEvent2);
-              clickEvent2 = false;
-          });
-
-      });
-  </script>
-
 </template>
 
 <template name="homeFeaturesSection">
   <div id="features" class="bg-white-only">
     <div class="container">
-      <div class="row m-t-xl m-b-xxl" style="margin-bottom:0;">
+      <div class="row m-t-xl m-b-md">
         <h2 class="text-center">Features</h2>
       </div>
-      <div class="row m-t-xl m-b-xxl" style="margin-bottom:0;">
+      <div class="row m-t-md">
         <div class="col-sm-6 to-animate" id="dash-image">
           <div class="m-t-xxl text-center">
             <img src="img/iphone6-dashboard.png" width="400" />
@@ -216,6 +118,36 @@
               <p class="clear m-b-lg notify"><strong>Bower Package</strong>, fetching and installing packages from all over, finding, downloading, and saving the stuff you’re looking for.</p>
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="homeFaqs">
+  <div id="homeFaqs" class="bg-light">
+    <div class="container">
+      <div class="row m-t-xl m-b-md">
+        <h2 class="text-center">Frequently Asked Questions</h2>
+      </div>
+      <div class="row m-t-md wrapper-md">
+        <div class="col-sm-6 to-animate faqs-1">
+          <h4 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r"></i> How does XboxDash make achievement tracking easier?</h4>
+          <p class="clear">XboxDash helps make achievement tracking easier by helping gamers easily search for the achievement they're looking for and with the help of other gamers in the community who submit possible solutions.</p>
+        </div>
+        <div class="col-sm-6 to-animate faqs-2">
+          <h4 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r"></i> Can this help me on achievements I'm struggling with?</h4>
+          <p class="clear">Yes, with the help of the community's user-submitted solutions, you can work together to unlock the achievements you've been having a hard time with.</p>
+        </div>
+      </div>
+      <div class="row m-b-md wrapper-md">
+        <div class="col-sm-6 to-animate faqs-1">
+          <h4 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r"></i> Can I win anything by being towards the top of the daily/overall score?</h4>
+          <p class="clear">Currently, you win recognition and badges for being at the top of the leaderboards. In the future, we will have partnerships that will make it more enjoyable to get more achievements.</p>
+        </div>
+        <div class="col-sm-6 to-animate faqs-2">
+          <h4 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r"></i> Will this help me find new games to play?</h4>
+          <p class="clear">XboxDash includes an easy-search system that helps gamers find particular games. Each game's page includes feedback area from gamers who have the game and this will help you decide </p>
         </div>
       </div>
     </div>

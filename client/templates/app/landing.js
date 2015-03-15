@@ -61,7 +61,7 @@ jQuery.extend(jQuery.easing,
         e.preventDefault();
         var $target = this.hash;
         $('html, body').stop().animate({
-            'scrollTop': $($target).offset().top - 80
+            'scrollTop': $($target).offset().top - 70
         }, 1000, 'easeInOutExpo', function () {
             window.location.hash = $target;
         });

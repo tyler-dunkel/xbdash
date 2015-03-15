@@ -5217,9 +5217,58 @@ a.text-#000000:hover {
   }
 }
 
-.carousel-caption h3 {font-size: 48px;}
-.carousel-caption p {font-size: 36px;}
+#carousel1 #what .nav a {
+    display: block;
+}
+#carousel1 #what .nav {
+    background: transparent;
+}
+.nav-justified > li > a {
+    border-radius: 0px;
+}
+.nav-pills > div[data-slide-to="0"].active h4 {
+  color: #138013;
+  font-weight: bold;
+}
+.nav-pills > div[data-slide-to="1"].active h4 {
+  color: #138013;
+  font-weight: bold;
+}
+.nav-pills > div[data-slide-to="2"].active h4 {
+  color: #138013;
+  font-weight: bold;
+}
+.nav-pills > div.active p.b-dark {
+  border-color: #138013;
+}
+.nav-pills > div.active {
+  position: relative;
+  background: transparent;
+}
+.active:before {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  top: 0;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(213, 213, 213, 0);
+  border-top-color: #138013;
+  border-width: 20px;
+  margin-left: -20px;
+}
+.carousel-caption h3 {font-size: 42px;}
+.carousel-caption p {font-size: 33px;}
 @media (max-width: 767px) {
+  .active:before {display: none;}
   .carousel-caption .m-b-lg {
     margin-bottom: -30px;
   }
