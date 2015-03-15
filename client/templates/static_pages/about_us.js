@@ -1,3 +1,51 @@
+Template.aboutUs.events({
+	'click #contactBox': function() {
+		bootbox.dialog({
+			title: "Contact Us",
+			message: "<div class='row'>" +
+					"<div class='col-sm-12 contact-form'>" + 
+					"<form id='contact' method='post' class='form' role='form'>" + 
+					"<div class='row'>" + 
+						"<div class='col-xs-6 col-md-4 form-group'>" + 
+							"<input class='form-control' id='name' name='name' placeholder='Name*' type='text' required autofocus />" + 
+						"</div>" + 
+						"<div class='col-xs-6 col-md-4 form-group'>" + 
+							"<input class='form-control' id='email' name='email' placeholder='Email*' type='email' required />" + 
+						"</div>" + 
+						"<div class='col-xs-6 col-md-4 form-group'>" + 
+							"<select class='form-control selectpicker' data-style='btn-inverse' required>" +
+								"<option>General Inquiry</option>" +
+								"<option>Feature Request</option>" +
+								"<option>Report a Bug</option>" +
+							"</select>" +
+						"</div>" + 
+					"</div>" + 
+					"<textarea class='form-control' id='message' name='message' placeholder='Message' rows='5'></textarea>" + 
+					"</form>" + 
+				"</div>" +
+				"</div>",
+			buttons: {
+				success: {
+					label: "Send Message",
+					className: "btn-success",
+					callback: function () {
+						var name = $('#name').val();
+						//Example.show("Thank you " + name + ". Your message has been sent!");
+						console.log(name);
+					}
+				}
+			},
+			onEscape: function() {
+				bootbox.hideAll();
+			},
+			backdrop: true
+		});
+	},
+	'click .modal-backdrop': function() {
+		$('.bootbox-close-button').click();
+	}
+});
+
 Template.carousel.rendered = function() {
 	$('#carousel1').carousel({
 		interval: false

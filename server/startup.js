@@ -1,1 +1,4 @@
-// code for server
+//server
+Meteor.methods({
+	sendEmail: function() {}
+});

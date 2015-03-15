@@ -638,6 +638,8 @@ pre {
   padding-left: 10px;
 }
 
+.modal-dialog {z-index: 500;}
+
 .modal-backdrop {
   background-color: #3a3f51;
 }
