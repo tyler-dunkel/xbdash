@@ -66,12 +66,18 @@ Template.aboutUs.events({
 			backdrop: true
 		});
 	},
+	/*
 	'click .modal-backdrop': function() {
-		$('.bootbox-close-button').click();
+		bootbox.hideAll();
 	}
+	*/
 });
 
 Template.carousel.rendered = function() {
+	$(document).on('click', '.modal-backdrop', function (event) {
+	    bootbox.hideAll()
+	});
+
 	$('#carousel1').carousel({
 		interval: false
 	});
