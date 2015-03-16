@@ -30,8 +30,10 @@ Template.aboutUs.events({
 					className: "btn-success",
 					callback: function () {
 						var name = $('#name').val();
+						var email = $('#email').val();
+						var text = $('#message').val();
 						//Example.show("Thank you " + name + ". Your message has been sent!");
-						console.log(name);
+						Meteor.call('contactUsEmail', name, email, text);
 					}
 				}
 			},
