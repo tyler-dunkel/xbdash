@@ -13,10 +13,10 @@ Template.aboutUs.events({
 							"<input class='form-control' id='email' name='email' placeholder='Email*' type='email' required />" + 
 						"</div>" + 
 						"<div class='col-xs-6 col-md-4 form-group'>" + 
-							"<select class='form-control selectpicker' data-style='btn-inverse' required>" +
-								"<option>General Inquiry</option>" +
-								"<option>Feature Request</option>" +
-								"<option>Report a Bug</option>" +
+							"<select class='form-control selectpicker' id='subject' data-style='btn-inverse' required>" +
+								"<option value='General Inquiry'>General Inquiry</option>" +
+								"<option value='Feature Request'>Feature Request</option>" +
+								"<option value='Report a Bug'>Report a Bug</option>" +
 							"</select>" +
 						"</div>" + 
 					"</div>" + 
@@ -31,9 +31,32 @@ Template.aboutUs.events({
 					callback: function () {
 						var name = $('#name').val();
 						var email = $('#email').val();
+						var subject = $("#subject").val();
 						var text = $('#message').val();
 						//Example.show("Thank you " + name + ". Your message has been sent!");
-						Meteor.call('contactUsEmail', name, email, text);
+						Meteor.call(
+							'contactUsEmail',
+							name,
+							email,
+							subject,
+							text,
+							function (error, result) {
+								if (error) {
+									// error
+								} else {
+									bootbox.dialog({
+										title: "Thank You",
+										message: "Thank you for contacting us " + name + ". We'll get back to you as soon as we can.",
+										buttons: {
+											danger: {
+												label: "Close",
+												className: "btn-danger"
+											}
+										}
+									});
+								}
+							}
+						);
 					}
 				}
 			},
