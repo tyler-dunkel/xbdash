@@ -5269,6 +5269,7 @@ a.text-#000000:hover {
 }
 .carousel-caption h3 {font-size: 42px;}
 .carousel-caption p {font-size: 33px;}
+.toast-top-right {top: 85px;}
 @media (max-width: 767px) {
   .active:before {display: none;}
   .carousel-caption .m-b-lg {

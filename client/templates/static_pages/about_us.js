@@ -44,6 +44,8 @@ Template.aboutUs.events({
 								if (error) {
 									// error
 								} else {
+									toastr.success("Thank you for contacting us " + name + ". We'll get back to you as soon as we can.", "Thank You");
+									/*
 									bootbox.dialog({
 										title: "Thank You",
 										message: "Thank you for contacting us " + name + ". We'll get back to you as soon as we can.",
@@ -54,6 +56,7 @@ Template.aboutUs.events({
 											}
 										}
 									});
+									*/
 								}
 							}
 						);
@@ -74,10 +77,6 @@ Template.aboutUs.events({
 });
 
 Template.carousel.rendered = function() {
-	$(document).on('click', '.modal-backdrop', function (event) {
-	    bootbox.hideAll()
-	});
-
 	$('#carousel1').carousel({
 		interval: false
 	});
@@ -167,4 +166,26 @@ Template.carousel.rendered = function() {
 	    	triggerOnce: true
 	    });
 	});
+
+	$(document).on('click', '.modal-backdrop', function (event) {
+	    bootbox.hideAll()
+	});
+
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": true,
+		"progressBar": true,
+		"positionClass": "toast-top-right",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "6000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
 }
