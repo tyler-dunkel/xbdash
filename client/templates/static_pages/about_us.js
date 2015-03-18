@@ -69,11 +69,23 @@ Template.aboutUs.events({
 			backdrop: true
 		});
 	},
-	/*
-	'click .modal-backdrop': function() {
-		bootbox.hideAll();
+	'click .sign-up': function(e) {
+		e.preventDefault();
+		console.log("it fired");
+		var user = {
+			email: "tyler.dunkel@gmail.com",
+			password: "google",
+			profile: {}
+		};
+		Meteor.call('testMethod');
+		Accounts.createUser(user, function(error) {
+			if (error) {
+				console.log("your a bitch");
+			}
+			else { console.log("your good"); }
+		});
+
 	}
-	*/
 });
 
 Template.carousel.rendered = function() {
