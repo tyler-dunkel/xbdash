@@ -5,8 +5,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 iron:router
 accounts-base
 accounts-facebook
@@ -18,5 +16,4 @@ jquery-waypoints
 email
 mizzao:bootboxjs
 chrismbeckett:toastr
-aldeed:collection2
 accounts-password
