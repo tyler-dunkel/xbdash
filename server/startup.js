@@ -9,7 +9,7 @@ Meteor.startup(function() {
 			pollInterval: 1000
 		},
 		function (job, callback) {
-			Meteor._debug('started worker');
+			Meteor._debug(job.data.message);
 			job.done();
 			callback();
 		}
