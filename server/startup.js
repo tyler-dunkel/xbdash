@@ -2,12 +2,11 @@
 Meteor.startup(function() {
 	Meteor._debug('started debug');
 	jc = JobCollection('xbdJobCollection');
-	xbdqueue = jc.processJobs(
-		'checkGamertag', {
-			concurrency: 1,
-			payload: 1,
-			pollInterval: 1000,
-			perfetch: 1
+	jc.startJobServer();
+	//jc.setLogStream(process.stdout);
+	var xbdqueue = jc.processJobs(
+		'testJob', {
+			pollInterval: 1000
 		},
 		function (job, callback) {
 			Meteor._debug('started worker');
@@ -15,15 +14,31 @@ Meteor.startup(function() {
 			callback();
 		}
 	);
+	//xbdqueue.resume();
+	jc.startJobServer();
 
 	var job = new Job(
 		jc,
-		'checkGamertag', {
+		'testJob', {
 			message: 'checked it again'
 		}
 	);
 
-	job.save();
+	job.save({}, function(error, result) {
+		if (error) Meteor._debug(error);
+		else {
+			//Meteor._debug(result);
+			//var qll = xbdqueue.length();
+			//Meteor._debug(qll);
+		}
+	});
+	//xbdqueue.trigger();
+	//Meteor._debug(job);
+	//var jobFromServer = jc.getJob(job);
+	//Meteor._debug(jobFromServer);
+	//Meteor._debug(job);
+	//var ql = xbdqueue.length();
+	//Meteor._debug(ql);
 
 	//jc.getJob();
 });
