@@ -15,7 +15,7 @@ Meteor.startup(function() {
 		}
 	);
 	//xbdqueue.resume();
-	jc.startJobServer();
+	//jc.startJobServer();
 
 	var job = new Job(
 		jc,
@@ -32,13 +32,6 @@ Meteor.startup(function() {
 			//Meteor._debug(qll);
 		}
 	});
-	//xbdqueue.trigger();
-	//Meteor._debug(job);
-	//var jobFromServer = jc.getJob(job);
-	//Meteor._debug(jobFromServer);
-	//Meteor._debug(job);
-	//var ql = xbdqueue.length();
-	//Meteor._debug(ql);
 
 	//jc.getJob();
 });
