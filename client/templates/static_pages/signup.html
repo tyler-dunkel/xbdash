@@ -1,0 +1,86 @@
+<template name="signUp">
+  <head>  
+    <meta charset="utf-8" />
+    <title>XboxDash | Manage your game progress, track achievements, see your rankings and read the latest in Xbox gaming news.</title>
+    <meta name="description" content="The #1 Xbox community that offers achievement guides, leaderboards, game reviews, and everything Xbox with your personalized dashboard." />
+    <meta name="keywords" content="xbox, xbox achievements, xbox 360, xbox one, xbox games, achievements, xbox leaderboards, xbox news, xbox game reviews" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+  </head>
+  {{> signUpBody}}
+</template>
+
+<template name="signUpBody">
+  {{> headerLandingPage}}
+  {{> signUpForm}}
+  {{> footerSignUp}}
+</template>
+
+<template name="signUpForm">
+  <div class="container w-xxl w-auto-xs" ng-controller="SignupFormController" ng-init="app.settings.container = false;" style="padding: 5% 0;">
+    <div class="m-b-lg">
+      <div class="wrapper text-center">
+        <strong>Sign up for XBOXDASH</strong>
+      </div>
+      <form name="form" class="form-validation" id="signupform">
+        <div class="text-danger wrapper text-center" ng-show="authError">
+
+        </div>
+        <div class="list-group list-group-sm">
+          <div class="list-group-item">
+            <input placeholder="Gamertag" class="form-control no-border" ng-model="user.gamertag" required>
+          </div>
+          <div class="list-group-item">
+            <input type="email" placeholder="Email" class="form-control no-border" ng-model="user.email" required>
+          </div>
+          <div class="list-group-item">
+            <input type="password" placeholder="Password" class="form-control no-border" ng-model="user.password" required>
+          </div>
+          <div class="list-group-item">
+            <input type="password" placeholder="Confirm Password" class="form-control no-border" ng-model="user.password2" required>
+          </div>
+        </div>
+        <div class="checkbox m-b-md m-t-none">
+          <label class="i-checks">
+            <input type="checkbox" ng-model="agree" required><i></i> Agree the <a href>terms and policy</a>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-lg btn-success btn-block" ng-click="signup()" disabled ng-disabled='form.$invalid'>Sign up</button>
+        <div class="line line-dashed"></div>
+        <p class="text-center"><small>Already have an account?</small></p>
+        <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">Sign in</a>
+      </form>
+    </div>
+    <div class="text-center" ng-include="'tpl/blocks/page_footer.html'">
+      <p>
+        <small class="text-muted">Web app framework base on Bootstrap and AngularJS<br>&copy; 2014</small>
+      </p>
+    </div>
+  </div>
+</template>
+
+<template name="footerSignUp">
+  <!-- footer -->
+  <footer id="footer">
+    <div class="bg-primary dk">
+      <div class="container">
+        <div class="row padder-v">
+          <div class="col-lg-5 col-md-5 visible-md visible-lg m-t-sm">
+            <ul class="list-inline">
+              <li><a href="#what" data-ride="scroll">What is XboxDash</a></li>
+              <li><a href="#features" data-ride="scroll">Features</a></li>
+              <li><a href="#faqs" data-ride="scroll">FAQs</a></li>
+              <li><a href="#contactBox" id="contactBox">Contact Us</a></li>
+            </ul> 
+          </div>
+          <div class="col-lg-4 col-md-2 col-sm-6 col-xs-5 m-t-xs">
+            XboxDash &copy; 2015. All Rights Reserved.
+          </div>
+          <div class="col-lg-3 col-md-5 col-sm-6 col-xs-7 text-right-xs text-right">
+            <a href="#" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>

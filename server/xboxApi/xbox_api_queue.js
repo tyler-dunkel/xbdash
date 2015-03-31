@@ -14,4 +14,4 @@ Meteor.methods({
 		Meteor._debug("this fired");
 		//Meteor._debug(xboxApiQueue[0]);
 	}
-})
+});

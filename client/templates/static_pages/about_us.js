@@ -70,6 +70,7 @@ Template.aboutUs.events({
 		});
 	},
 	'click .sign-up': function(e) {
+		/*
 		e.preventDefault();
 		console.log("it fired");
 		var user = {
@@ -84,7 +85,7 @@ Template.aboutUs.events({
 			}
 			else { console.log("your good"); }
 		});
-
+		*/
 	}
 });
 
