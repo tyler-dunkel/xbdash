@@ -1,7 +1,7 @@
 Meteor.startup(function() {
 	ValidateForm.config({
-	  debug: false,
-	  rootLayout: 'signUp'
+	  debug: true,
+	  rootLayout: 'layout'
 	});
 });
 
@@ -29,6 +29,13 @@ Template.signUp.events({
 			console.log(value);
 			//ckbox.set(true);
 		}
+	},
+	'blur .form-control': function(e) {
+		var input = e.target;
+		ValidateForm.validateInput(input);
+	},
+	'focus .form-control': function(e) {
+		ValidateForm.clearInputStatus(e.target);
 	}
 });
 

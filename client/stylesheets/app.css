@@ -1,6 +1,20 @@
 /* 
 
 */
+.err-msg {
+  color: red;
+}
+
+.is-valid {
+  border-style: ridge;
+  border-color: green;
+}
+
+.is-invalid {
+  border-style: ridge;
+  border-color: red;
+}
+
 .to-animate {
   -webkit-animation-duration: 2s;
   -moz-animation-duration: 2s;
