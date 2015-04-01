@@ -1,7 +1,7 @@
 <template name="signUp">
   <head>  
     <meta charset="utf-8" />
-    <title>XboxDash | Manage your game progress, track achievements, see your rankings and read the latest in Xbox gaming news.</title>
+    <title>XboxDash | Sign Up to start managing your game progress and tracking achievements</title>
     <meta name="description" content="The #1 Xbox community that offers achievement guides, leaderboards, game reviews, and everything Xbox with your personalized dashboard." />
     <meta name="keywords" content="xbox, xbox achievements, xbox 360, xbox one, xbox games, achievements, xbox leaderboards, xbox news, xbox game reviews" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
@@ -10,50 +10,73 @@
 </template>
 
 <template name="signUpBody">
-  {{> headerLandingPage}}
+  {{> headerSignUpPage}}
   {{> signUpForm}}
   {{> footerSignUp}}
 </template>
 
+<template name="headerSignUpPage">
+  <!-- header -->
+  <header id="header" class="navbar navbar-fixed-top bg-primary padder-t"  data-spy="affix" data-offset-top="1">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="btn btn-link visible-xs pull-right m-r" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="{{pathFor 'home'}}" class="navbar-brand m-r-lg"><img src="img/xboxdash_whiteicon.png" class="m-r-sm hide"><span class="h3 font-bold"><img src="img/xboxdash_white.png" class=""></span></a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="m-t-sm">
+            <a href="" class="btn btn-link btn-sm"><i class="fa fa-lock"></i> Log in</a>
+            <a href="{{pathFor 'signUp'}}" class="btn btn-sm btn-default btn-rounded m-l sign-up"><i class="fa fa-lock"></i> <strong>Sign up</strong></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </header>
+  <!-- / header -->
+</template>
+
 <template name="signUpForm">
-  <div class="container w-xxl w-auto-xs" ng-controller="SignupFormController" ng-init="app.settings.container = false;" style="padding: 5% 0;">
+  <div class="container w-xxl w-auto-xs" style="padding: 5% 0;">
     <div class="m-b-lg">
       <div class="wrapper text-center">
         <strong>Sign up for XBOXDASH</strong>
       </div>
-      <form name="form" class="form-validation" id="signupform">
-        <div class="text-danger wrapper text-center" ng-show="authError">
-
-        </div>
+      <form name="form" class="validate" id="signupform">
         <div class="list-group list-group-sm">
-          <div class="list-group-item">
-            <input placeholder="Gamertag" class="form-control no-border" ng-model="user.gamertag" required>
+          <div class="list-group-item form-group">
+            <input placeholder="Gamertag" name="gamertag" class="form-control no-border" data-max="15" data-alphanumeric data-onblur data-required>
+            <span for='gamertag' class='err-msg'></span>
           </div>
-          <div class="list-group-item">
-            <input type="email" placeholder="Email" class="form-control no-border" ng-model="user.email" required>
+          <div class="list-group-item form-group">
+            <input type="email" placeholder="Email" name="email" class="form-control no-border" data-email data-onblur data-required>
+            <span for='email' class='err-msg'></span>
           </div>
-          <div class="list-group-item">
-            <input type="password" placeholder="Password" class="form-control no-border" ng-model="user.password" required>
+          <div class="list-group-item form-group">
+            <input type="password" placeholder="Password" name="password" class="form-control no-border" data-min="6" data-onblur data-required>
+            <span for='password' class='err-msg'></span>
           </div>
-          <div class="list-group-item">
-            <input type="password" placeholder="Confirm Password" class="form-control no-border" ng-model="user.password2" required>
+          <div class="list-group-item form-group">
+            <input type="password" placeholder="Confirm Password" name="password2" class="form-control no-border" data-min="6" data-onblur data-required>
+            <span for='password2' class='err-msg'></span>
           </div>
         </div>
         <div class="checkbox m-b-md m-t-none">
           <label class="i-checks">
-            <input type="checkbox" ng-model="agree" required><i></i> Agree the <a href>terms and policy</a>
+            <input type="checkbox" class="ckbox" name="terms" data-onblur data-required><i></i> I agree to the <a href>terms and policy</a>
           </label>
+          <span for='terms' class='err-msg'></span>
+          {{acceptedTerms}}
         </div>
-        <button type="submit" class="btn btn-lg btn-success btn-block" ng-click="signup()" disabled ng-disabled='form.$invalid'>Sign up</button>
+        <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
         <div class="line line-dashed"></div>
         <p class="text-center"><small>Already have an account?</small></p>
         <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">Sign in</a>
       </form>
-    </div>
-    <div class="text-center" ng-include="'tpl/blocks/page_footer.html'">
-      <p>
-        <small class="text-muted">Web app framework base on Bootstrap and AngularJS<br>&copy; 2014</small>
-      </p>
     </div>
   </div>
 </template>
