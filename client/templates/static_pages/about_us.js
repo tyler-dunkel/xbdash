@@ -129,7 +129,7 @@ Template.carousel.rendered = function() {
 		clickEvent2 = false;
 	});
 
-	$(window).load(function() {
+	$('#carousel-image').load(function() {
 		$('.notify').waypoint(function(direction) {
 				if (direction === "down") {
 		            //console.log("waypoint fire");
@@ -139,7 +139,7 @@ Template.carousel.rendered = function() {
 		        }
 	        },
 	        {
-	            offset: '80%',
+	            offset: '85%',
 	            triggerOnce: true
 	    });
 
@@ -180,9 +180,9 @@ Template.carousel.rendered = function() {
 	    });
 	});
 
-	$(document).on('click', '.modal-backdrop', function (event) {
-	    bootbox.hideAll()
-	});
+	// $(document).on('click', '.modal-backdrop', function (event) {
+	//     bootbox.hideAll()
+	// });
 
 	toastr.options = {
 		"closeButton": false,
