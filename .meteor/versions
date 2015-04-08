@@ -5,7 +5,7 @@ accounts-password@1.1.1
 autoupdate@1.2.1
 base64@1.0.3
 binary-heap@1.0.3
-blaze@2.1.1
+blaze@2.1.2
 blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
@@ -45,6 +45,7 @@ minimongo@1.0.8
 mizzao:bootboxjs@4.4.0
 mobile-status-bar@1.0.3
 mongo@1.1.0
+mrt:later@1.6.1
 nahue:simple-line-icons@1.0.0
 natestrauser:animate-css@3.2.6
 natestrauser:font-awesome@4.3.0
@@ -62,7 +63,7 @@ routepolicy@1.0.5
 service-configuration@1.0.4
 session@1.1.0
 sha@1.0.3
-skinnygeek1010:validate-form@0.2.0
+skinnygeek1010:validate-form@0.3.0
 spacebars@1.0.6
 spacebars-compiler@1.0.6
 srp@1.0.3
@@ -72,6 +73,6 @@ twbs:bootstrap@3.3.4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
-vsivsi:job-collection@1.0.0
+vsivsi:job-collection@1.1.0
 webapp@1.2.0
 webapp-hashing@1.0.3
