@@ -20,16 +20,21 @@ Template.signUp.events({
 		var gamertag = $("#gamertag").val();
 		var email = $("#email").val();
 		var password = $("#password").val();
-		var password2 = $("#password2").val();
+		var passwordConfirm = $("#password2").val();
+
+		if (password !== passwordConfirm) return;
 
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
-			if (result) {
-				var user = {username: gamertag, email: email, password: password, profile: {xuid: result}};
+			if (result) { 
+				var user = {username: gamertag, email: email, password: password, profile: {xuid: result.content}};
 				Accounts.createUser(user, function(error) {
 					if (error) {
 						console.log(error);
 					} else {
-						console.log('creating profile');
+						console.log(user);
+						Meteor.call('retrieveData', user, function(error, result) {
+							console.log(result);
+						});
 					}
 				});
 			}
