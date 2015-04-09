@@ -68,24 +68,6 @@ Template.aboutUs.events({
 			},
 			backdrop: true
 		});
-	},
-	'click .sign-up': function(e) {
-		/*
-		e.preventDefault();
-		console.log("it fired");
-		var user = {
-			email: "tyler.dunkel@gmail.com",
-			password: "google",
-			profile: {}
-		};
-		Meteor.call('testMethod');
-		Accounts.createUser(user, function(error) {
-			if (error) {
-				console.log("your a bitch");
-			}
-			else { console.log("your good"); }
-		});
-		*/
 	}
 });
 
@@ -179,26 +161,4 @@ Template.carousel.rendered = function() {
 	    	triggerOnce: true
 	    });
 	});
-
-	// $(document).on('click', '.modal-backdrop', function (event) {
-	//     bootbox.hideAll()
-	// });
-
-	toastr.options = {
-		"closeButton": false,
-		"debug": false,
-		"newestOnTop": true,
-		"progressBar": true,
-		"positionClass": "toast-top-right",
-		"preventDuplicates": false,
-		"onclick": null,
-		"showDuration": "300",
-		"hideDuration": "1000",
-		"timeOut": "6000",
-		"extendedTimeOut": "1000",
-		"showEasing": "swing",
-		"hideEasing": "linear",
-		"showMethod": "fadeIn",
-		"hideMethod": "fadeOut"
-	}
 }
