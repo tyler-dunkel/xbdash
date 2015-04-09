@@ -1,6 +1,6 @@
 Meteor.startup(function() {
 	ValidateForm.config({
-	  debug: true,
+	  debug: false,
 	  rootLayout: 'layout'
 	});
 });
@@ -16,6 +16,24 @@ Template.signUp.events({
 
 		var isValid = ValidateForm.validate('#signupform');
 		if (!isValid) return;
+
+		var gamertag = $("#gamertag").val();
+		var email = $("#email").val();
+		var password = $("#password").val();
+		var password2 = $("#password2").val();
+
+		Meteor.call('chkGamertag', gamertag, function(error, result) {
+			if (result) {
+				var user = {username: gamertag, email: email, password: password, profile: {xuid: result}};
+				Accounts.createUser(user, function(error) {
+					if (error) {
+						console.log(error);
+					} else {
+						console.log('creating profile');
+					}
+				});
+			}
+		});
 	},
 	'change .ckbox': function() {
 		//var value = ckbox.get();
