@@ -31,9 +31,10 @@ Template.signUp.events({
 					if (error) {
 						console.log(error);
 					} else {
-						console.log(user);
+						Router.go('loading');
 						Meteor.call('retrieveData', user, function(error, result) {
 							console.log(result);
+							Router.go('home');
 						});
 					}
 				});

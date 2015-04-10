@@ -23,16 +23,31 @@ Meteor.methods({
 	retrieveData: function(user) {
 		//Meteor._debug(user);
 		[
-		'gamercard'
+		'gamercard',
+		'xboxonegames'
 		].forEach(function(i) {
 			var url = user.profile.xuid + '/' + i;
 			var result = syncApiCaller(url);
 			var userId = Meteor.userId();
-			var setProfile = { $set: {} };
+			var setObject = { $set: {} };
 
-			setProfile.$set['profile.' + i] = result.data;
+			if (i === 'gamercard') {
 
-			Meteor.users.upsert(userId, setProfile);
+				setObject.$set['profile.' + i] = result.data;
+
+				Meteor.users.upsert(userId, setObject);
+				Meteor._debug(result.data);
+
+			}
+
+			if (i === 'xboxonegames') {
+				Meteor._debug("this is xboxonegames");
+				result.data.titles.forEach(function(i) {
+					var url = user.profile.xuid + '/achievements/' + i.titleId;
+					var result = syncApiCaller(url);
+					Meteor._debug(result);
+				});
+			}
 
 			//Meteor._debug(result.data.gamertag);
 			/*Meteor.users.upsert(userId, {
