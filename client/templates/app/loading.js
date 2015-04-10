@@ -1,6 +1,9 @@
 
-var message = "Please wait while we retrieve your data!";
-var spinner = '<div class="sk-spinner sk-spinner-rotating-plane"></div>';
+var message = "<h3>Please wait while we retrieve your data!</h3>";
+var spinner = "<div class='spinner'>" +
+ 					"<div class='double-bounce1'></div> " + 
+ 					"<div class='double-bounce2'></div> " +
+					"</div>";
 
 Template.loading.rendered = function() {
 	if (! Session.get('loadingScreen')) {
