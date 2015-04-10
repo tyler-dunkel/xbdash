@@ -17,28 +17,44 @@ Meteor.methods({
 		var url = 'xuid/' + gamertag;
 		var response = syncApiCaller(url);
 
-		Meteor._debug(response);
+		//Meteor._debug(response);
 		return {content: response.content, statusCode: response.statusCode};
 	},
 	retrieveData: function(user) {
-		Meteor._debug(user);
+		//Meteor._debug(user);
 		[
 		'gamercard'
 		].forEach(function(i) {
 			var url = user.profile.xuid + '/' + i;
-			//Meteor._debug(url);
 			var result = syncApiCaller(url);
+			var userId = Meteor.userId();
+			var setProfile = { $set: {} };
+
+			setProfile.$set['profile.' + i] = result.data;
+
+			Meteor.users.upsert(userId, setProfile);
+
+			//Meteor._debug(result.data.gamertag);
+			/*Meteor.users.upsert(userId, {
+				$set: {
+					profile: {
+						gamertag: result.data.gamertag,
+						name: result.data.name,
+						location: result.data.location,
+						bio: result.data.bio,
+						gamerscore: result.data.gamerscore
+					}
+				}
+			});
+			*/
+
+			//Meteor._debug(url);
 			//Meteor._debug(result);
+
 		});
 		return "hello world";
 	}
 });
-
-
-
-
-
-
 
 // https://xboxapi.com/v2/xuid/djekl
 // https://xboxapi.com/v2/gamertag/2533274805933072
