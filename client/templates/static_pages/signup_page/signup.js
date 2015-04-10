@@ -23,7 +23,7 @@ Template.signUp.events({
 		var passwordConfirm = $("#password2").val();
 
 		if (password !== passwordConfirm) return;
-
+		Router.go('loading');
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
 			if (result) { 
 				var user = {username: gamertag, email: email, password: password, profile: {xuid: result.content}};
@@ -31,7 +31,6 @@ Template.signUp.events({
 					if (error) {
 						console.log(error);
 					} else {
-						Router.go('loading');
 						Meteor.call('retrieveData', user, function(error, result) {
 							console.log(result);
 							Router.go('home');
