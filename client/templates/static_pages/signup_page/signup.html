@@ -10,11 +10,9 @@
 </template>
 
 <template name="signUpBody">
-  <div id="stripebody">
-    {{> headerSignUpPage}}
-    {{> signUpForm}}
-    {{> footerSignUpPage}}
-  </div>
+  {{> headerSignUpPage}}
+  {{> signUpForm}}
+  {{> footerSignUpPage}}
 </template>
 
 <template name="headerSignUpPage">
@@ -69,8 +67,10 @@
               </div>
               <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
               <div class="line line-dashed"></div>
-              <a class="btn btn-lg btn-block btn-facebook">Facebook</a>
-              <a class="btn btn-lg btn-block btn-twitter">Twitter</a>
+              <ul class="list-inline social-logins">
+                <li><a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a></li>
+                <li><a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a></li>
+              </ul>
             </form>
           </div>
           <div class="tab-pane fade" id="login">
@@ -89,8 +89,10 @@
               <button type="submit" class="btn btn-lg btn-success btn-block">Log in</button>
               <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd">Forgot password?</a></div>
               <div class="line line-dashed"></div>
-              <a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a>
-              <a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a>
+              <ul class="list-inline social-logins">
+                <li><a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a></li>
+                <li><a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a></li>
+              </ul>
             </form>
           </div>
         </div>
@@ -101,24 +103,21 @@
 
 <template name="footerSignUpPage">
   <footer id="footer">
-    <div class="bg-primary dk">
-      <div class="container">
-        <div class="row padder-v">
-          <div class="col-lg-5 col-md-5 visible-md visible-lg m-t-sm">
-            <ul class="list-inline">
-              <li><a href="#what" data-ride="scroll">What is XboxDash</a></li>
-              <li><a href="#features" data-ride="scroll">Features</a></li>
-              <li><a href="#faqs" data-ride="scroll">FAQs</a></li>
-              <li><a href="#contactBox" id="contactBox">Contact Us</a></li>
-            </ul> 
-          </div>
-          <div class="col-lg-4 col-md-2 col-sm-6 col-xs-5 m-t-xs">
-            XboxDash &copy; 2015. All Rights Reserved.
-          </div>
-          <div class="col-lg-3 col-md-5 col-sm-6 col-xs-7 text-right-xs text-right">
-            <a href="#" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-twitter"></i></a>
-          </div>
+    <div class="container signinfooter">
+      <div class="row text-center">
+        <div class="col-lg-12 padder-t">
+          <ul class="list-inline">
+            <li><a href="{{pathFor 'support'}}">Support</a></li>
+            <li><a href="{{pathFor 'privacy'}}">Privacy Policy</a></li>
+            <li><a href="{{pathFor 'terms'}}">Terms of Use</a></li>
+          </ul> 
+        </div>
+        <div class="col-lg-12 padder-t">
+          <a href="#" class="btn btn-icon text-success"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="btn btn-icon text-success"><i class="fa fa-twitter"></i></a>
+        </div>
+        <div class="col-lg-12 padder-t">
+          XboxDash &copy; 2015. All Rights Reserved.
         </div>
       </div>
     </div>

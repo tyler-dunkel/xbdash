@@ -96,19 +96,19 @@
   background-image: none;
 }
 .btn-success {
-  background-image: -webkit-linear-gradient(top, #5cb85c 0%, #419641 100%);
-  background-image:      -o-linear-gradient(top, #5cb85c 0%, #419641 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#5cb85c), to(#419641));
-  background-image:         linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
+  background-image: -webkit-linear-gradient(top, #138013 0%, #0f620f 100%);
+  background-image:      -o-linear-gradient(top, #138013 0%, #0f620f 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#138013), to(#0f620f));
+  background-image:         linear-gradient(to bottom, #138013 0%, #0f620f 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff138013', endColorstr='#ff0f620f', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
-  border-color: #3e8f3e;
+  border-color: #138013;
 }
 .btn-success:hover,
 .btn-success:focus {
   background-color: #419641;
-  background-position: 0 -15px;
+  background-position: 0 -45px;
 }
 .btn-success:active,
 .btn-success.active {
@@ -200,6 +200,7 @@
   background-image: none;
 }
 .btn-facebook {
+  background-color: #3b5998;
   color: #fff;
   background-image: -webkit-linear-gradient(top, #3b5998 0%, #324b80 100%);
   background-image:      -o-linear-gradient(top, #3b5998 0%, #324b80 100%);
