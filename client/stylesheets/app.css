@@ -1,18 +1,19 @@
 /* 
 
 */
+.form-group {margin-bottom: 8px;}
+
 .err-msg {
   color: red;
+  font-size: 12px;
 }
 
 .is-valid {
-  border-style: ridge;
-  border-color: green;
+  border: 1px ridge #138013;
 }
 
 .is-invalid {
-  border-style: ridge;
-  border-color: red;
+  border: 1px solid #990000;
 }
 
 .to-animate {
@@ -21,9 +22,11 @@
   -animation-duration: 2s;
   opacity: 0;
 }
+
 #dash-image.animated {
   opacity: 1;
 }
+
 html {
   background-color: #f0f3f4;
 }
@@ -4314,6 +4317,11 @@ ul.signin > li.active {
   padding-left: 15px;
 }
 
+.padder-d {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .padder-t {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -4326,7 +4334,7 @@ ul.signin > li.active {
 
 .padder-x {
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 25px;
 }
 
 .no-padder {
@@ -5388,6 +5396,3 @@ ul.signin > li.active {
   background: linear-gradient(45deg,  #0e0e0e 0%,#efefef 50%,#efefef 50%,#efefef 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e0e0e', endColorstr='#efefef',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 }
-
-.is-valid {border: 1px solid #138013;}
-.is-invalid {border: 1px solid #990000;}
