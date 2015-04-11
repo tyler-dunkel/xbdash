@@ -1,5 +1,4 @@
-jQuery.extend(jQuery.easing,
-{
+jQuery.extend(jQuery.easing, {
     def: 'easeOutQuad',
     easeInOutExpo: function (x, t, b, c, d) {
         if (t==0) return b;
@@ -8,18 +7,17 @@ jQuery.extend(jQuery.easing,
         return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
     }
 });
-!function ($) {
 
-     $(function(){
-    $(document).on('click.app','[data-ride="scroll"]',function (e) {
-        e.preventDefault();
-        var $target = this.hash;
-        $('html, body').stop().animate({
-            'scrollTop': $($target).offset().top - 70
-        }, 1000, 'easeInOutExpo', function () {
-            window.location.hash = $target;
+!function ($) {
+    $(function(){
+        $(document).on('click.app','[data-ride="scroll"]',function (e) {
+            e.preventDefault();
+            var $target = this.hash;
+            $('html, body').stop().animate({
+                'scrollTop': $($target).offset().top - 70
+            }, 1000, 'easeInOutExpo', function () {
+                window.location.hash = $target;
+            });
         });
     });
-    
-  });
 }(window.jQuery);

@@ -40,7 +40,7 @@ Template.signUp.events({
 			}
 		});
 	},
-	'click .ckbox': function() {
+	'click .ckbox': function(event) {
 		var value = $(event.target).is(':checked');
 		Session.set("signUpCb", value);
 	},

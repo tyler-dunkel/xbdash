@@ -12,77 +12,90 @@
 <template name="signUpBody">
   {{> headerSignUpPage}}
   {{> signUpForm}}
-  {{> footerSignUp}}
 </template>
 
 <template name="headerSignUpPage">
   <!-- header -->
-  <header id="header" class="navbar navbar-fixed-top bg-primary padder-t"  data-spy="affix" data-offset-top="1">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="btn btn-link visible-xs pull-right m-r" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-        <i class="fa fa-bars"></i>
-      </button>
-      <a href="{{pathFor 'home'}}" class="navbar-brand m-r-lg"><img src="img/xboxdash_whiteicon.png" class="m-r-sm hide"><span class="h3 font-bold"><img src="img/xboxdash_white.png" class=""></span></a>
+  <header id="header signin" class="navbar padder-v text-center">
+    <div class="container">
+      <div class="">
+        <a href="{{pathFor 'home'}}" class="navbar-brand m-r-lg"><img src="img/xboxdash_green.png" class="m-r-sm hide"><span class="h3 font-bold"><img src="img/xboxdash_green.png" class=""></span></a>
+        <ul class="nav nav-tabs no-borders">
+          <li class="active"><a href="#create" data-toggle="tab">Create Account</a></li>
+          <li><a href="#login" data-toggle="tab">Login</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <div class="m-t-sm">
-            <a href="" class="btn btn-link btn-sm"><i class="fa fa-lock"></i> Log in</a>
-            <a href="{{pathFor 'signUp'}}" class="btn btn-sm btn-default btn-rounded m-l sign-up"><i class="fa fa-lock"></i> <strong>Sign up</strong></a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
   </header>
   <!-- / header -->
 </template>
 
 <template name="signUpForm">
-  <div class="container w-xxl w-auto-xs" style="padding: 5% 0;">
-    <div class="m-b-lg">
-      <div class="wrapper text-center">
-        <strong>Sign up for XBOXDASH</strong>
+  <div class="signup">
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-lg">
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane active in" id="create">
+            <form name="form" class="validate" id="signupform">
+              <h2 class="text-danger wrapper text-center">Create a Free Account</h2>
+              <div class="list-group">
+                <div class="form-group">
+                  <input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control" data-onblur data-max="15" data-alphanumeric data-required data-msg="gamertag can not be longer than 15 characters and must be a valid xbox live gamertag">
+                  <span for='gamertag' class='err-msg'></span>
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
+                  <span for='email' class='err-msg'></span>
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="password must be at least 6 characters">
+                  <span for='password' class='err-msg'></span>
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="Confirm Password" id="password2" name="password2" class="form-control" data-onblur data-min="6" data-required data-msg="The passwords do not match">
+                  <span for='password2' class='err-msg'></span>
+                </div>
+              </div>
+              <div class="checkbox m-b-md m-t-none">
+                <label class="i-checks">
+                  <input type="checkbox" class="ckbox" name="terms" data-onblur data-required><i></i> I agree to the <a href>terms and policy</a>
+                </label>
+                <span for='terms' class='err-msg'></span>
+                {{acceptedTerms}}
+              </div>
+              <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
+              <div class="line line-dashed"></div>
+              <a ng-click="loginWithFacebook()" class="btn btn-lg btn-default btn-block">Facebook</a>
+              <a ng-click="loginWithTwitter()" class="btn btn-lg btn-default btn-block">Twitter</a>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="login">
+            <h2 class="text-danger wrapper text-center">Sign into Your Account</h2>
+            <form name="form" class="form-validation">
+              <div class="list-group">
+                <div class="form-group">
+                  <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
+                  <span for='email' class='err-msg'></span>
+                </div>
+                <div class="form-group">
+                   <input type="password" placeholder="Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="password must be at least 6 characters">
+                  <span for='password' class='err-msg'></span>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-lg btn-success btn-block">Log in</button>
+              <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd">Forgot password?</a></div>
+              <div class="line line-dashed"></div>
+              <a href="#" class="btn btn-lg btn-default btn-block">Facebook</a>
+              <a href="#" class="btn btn-lg btn-default btn-block">Twitter</a>
+            </form>
+          </div>
+        </div>
       </div>
-      <form name="form" class="validate" id="signupform">
-        <div class="list-group list-group-sm">
-          <div class="list-group-item form-group">
-            <input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control no-border" data-onblur data-max="15" data-alphanumeric data-required data-msg="gamertag can not be longer than 15 characters and must be a valid xbox live gamertag">
-            <span for='gamertag' class='err-msg'></span>
-          </div>
-          <div class="list-group-item form-group">
-            <input type="email" placeholder="Email" id="email" name="email" class="form-control no-border" data-onblur data-email data-required>
-            <span for='email' class='err-msg'></span>
-          </div>
-          <div class="list-group-item form-group">
-            <input type="password" placeholder="Password" id="password" name="password" class="form-control no-border" data-onblur data-min="6" data-required data-msg="password must be at least 6 characters">
-            <span for='password' class='err-msg'></span>
-          </div>
-          <div class="list-group-item form-group">
-            <input type="password" placeholder="Confirm Password" id="password2" name="password2" class="form-control no-border" data-onblur data-min="6" data-required data-msg="The passwords do not match">
-            <span for='password2' class='err-msg'></span>
-          </div>
-        </div>
-        <div class="checkbox m-b-md m-t-none">
-          <label class="i-checks">
-            <input type="checkbox" class="ckbox" name="terms" data-onblur data-required><i></i> I agree to the <a href>terms and policy</a>
-          </label>
-          <span for='terms' class='err-msg'></span>
-          {{acceptedTerms}}
-        </div>
-        <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
-        <div class="line line-dashed"></div>
-        <p class="text-center"><small>Already have an account?</small></p>
-        <a ui-sref="access.signin" class="btn btn-lg btn-default btn-block">Sign in</a>
-      </form>
     </div>
   </div>
 </template>
 
 <template name="footerSignUp">
-  <!-- footer -->
   <footer id="footer">
     <div class="bg-primary dk">
       <div class="container">

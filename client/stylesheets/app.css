@@ -209,11 +209,13 @@ a:hover .caret-white {
   border-radius: 2px;
 }
 
+/*
 .form-control,
 .form-control:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
+*/
 
 .form-control:focus {
   border-color: #23b7e5;
@@ -383,6 +385,12 @@ a.list-group-item.hover {
 
 .nav-tabs {
   border-color: #dee5e7;
+}
+
+.nav-tabs > li {
+  display: inline-block;
+  float: none;
+  margin-left: -15px;
 }
 
 .nav-tabs > li > a {
@@ -4028,9 +4036,16 @@ a.text-#000000:hover {
 }
 
 .no-border,
-.no-borders {
+.no-borders,
+.signin .no-borders > li > a,
+.signin .no-borders > li.active > a,
+.signin .no-borders > li.hover > a,
+.signin .no-borders > li.active > a:hover,
+.signin .nav > li > a:hover,
+.signin .nav > li > a:focus {
   border-color: transparent;
   border-width: 0;
+  border: none;
 }
 
 .no-radius {
@@ -4845,6 +4860,10 @@ a.text-#000000:hover {
   width: 360px;
 }
 
+.w-xxxl {
+  width: 480px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -5261,7 +5280,7 @@ a.text-#000000:hover {
   position: relative;
   background: transparent;
 }
-.active:before {
+.home .active:before {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
   -webkit-animation-duration: 1s;
@@ -5290,3 +5309,4 @@ a.text-#000000:hover {
     margin-bottom: -30px;
   }
 }
+.well {background-image: none; background-color: #fff;}

@@ -32,12 +32,9 @@ Meteor.methods({
 			var setObject = { $set: {} };
 
 			if (i === 'gamercard') {
-
 				setObject.$set['profile.' + i] = result.data;
-
 				Meteor.users.upsert(userId, setObject);
 				Meteor._debug(result.data);
-
 			}
 
 			if (i === 'xboxonegames') {
