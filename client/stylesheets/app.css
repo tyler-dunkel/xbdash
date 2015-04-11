@@ -5396,3 +5396,7 @@ ul.signin > li.active {
   background: linear-gradient(45deg,  #0e0e0e 0%,#efefef 50%,#efefef 50%,#efefef 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e0e0e', endColorstr='#efefef',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 }
+
+.pg-loading h3 {
+  color: #fff;
+}
