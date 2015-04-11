@@ -2,7 +2,7 @@ function xboxApiCaller (url, callback) {
 	HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result){
 		rateLimitRemaining = result.headers['x-ratelimit-remaining'];
 		if (rateLimitRemaining) {
-			Meteor._debug('Getting ' + rateLimitRemaining);
+			Meteor._debug('Calls Left: ' + rateLimitRemaining);
 		}
 		callback(null, result);
 	});
@@ -14,11 +14,25 @@ Meteor.methods({
 	chkGamertag: function(gamertag) {
 		//Meteor._debug(gamertag);
 
-		var url = 'xuid/' + gamertag;
+		var url = 'xuid/s' + gamertag;
 		var response = syncApiCaller(url);
 
-		//Meteor._debug(response);
-		return {content: response.content, statusCode: response.statusCode};
+		Meteor._debug(response.statusCode);
+		//return {content: response.content, statusCode: response.statusCode};
+
+		switch(response.statusCode) {
+			case 200:
+				return {content: response.content};
+				break;
+			case 201:
+				return {content: response.content};
+				break;
+			default:
+				throw new Meteor.Error("ServerError", "The server cannot be reached.");
+				return;
+		}
+
+
 	},
 	retrieveData: function(user) {
 		//Meteor._debug(user);

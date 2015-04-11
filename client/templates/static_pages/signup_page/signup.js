@@ -25,7 +25,21 @@ Template.signUp.events({
 		if (password !== passwordConfirm) return;
 		Router.go('loading');
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
-			if (result) { 
+			console.log(error);
+			if (error.error === "ServerError") {
+				sweetAlert({
+					title: "Server Error",
+					text: "The requested resource could not be found. Please try again later.",
+					type: "error",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "OK",
+					closeOnConfirm: false,
+					html: false
+				});
+				Router.go('signUp');
+			}
+			if (result) {
+				console.log("got it");
 				var user = {username: gamertag, email: email, password: password, profile: {xuid: result.content}};
 				Accounts.createUser(user, function(error) {
 					if (error) {
