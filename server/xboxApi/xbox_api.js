@@ -14,7 +14,7 @@ Meteor.methods({
 	chkGamertag: function(gamertag) {
 		//Meteor._debug(gamertag);
 
-		var url = 'xuid/s' + gamertag;
+		var url = 'xuid/' + gamertag;
 		var response = syncApiCaller(url);
 
 		Meteor._debug(response.statusCode);
