@@ -25,19 +25,6 @@ Template.signUp.events({
 		if (password !== passwordConfirm) return;
 		Router.go('loading');
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
-			console.log(error);
-			if (error.error === "ServerError") {
-				sweetAlert({
-					title: "Server Error",
-					text: "The requested resource could not be found. Please try again later.",
-					type: "error",
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "OK",
-					closeOnConfirm: false,
-					html: false
-				});
-				Router.go('signUp');
-			}
 			if (result) {
 				console.log("got it");
 				var user = {username: gamertag, email: email, password: password, profile: {xuid: result.content}};
@@ -51,7 +38,18 @@ Template.signUp.events({
 						});
 					}
 				});
-			}
+			} /*else if (typeof var != 'undefined') {
+				sweetAlert({
+					title: "Server Error",
+					text: "The requested resource could not be found. Please try again later.",
+					type: "error",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "OK",
+					closeOnConfirm: false,
+					html: false
+				});
+				Router.go('signUp');
+			}*/
 		});
 	},
 	'click .ckbox': function(event) {
@@ -69,10 +67,10 @@ Template.signUp.events({
 
 Tracker.autorun(function() {
 	var value = Session.get("signUpCb");
-		if (value === true) {
-			$(".sign-up-submit").removeClass('disabled');
-		} else {
-			$(".sign-up-submit").addClass('disabled');
-		}
+	if (value === true) {
+		$(".sign-up-submit").removeClass('disabled');
+	} else {
+		$(".sign-up-submit").addClass('disabled');
+	}
 });
 

@@ -14,24 +14,24 @@ Meteor.methods({
 	chkGamertag: function(gamertag) {
 		//Meteor._debug(gamertag);
 
-		var url = 'xuid/' + gamertag;
+		var url = 'xuid/xx' + gamertag;
 		var response = syncApiCaller(url);
 
-		Meteor._debug(response.statusCode);
-		//return {content: response.content, statusCode: response.statusCode};
+		Meteor._debug(response);
 
 		switch(response.statusCode) {
 			case 200:
-				return {content: response.content};
-				break;
+				//Meteor._debug(response.content);
+				return {content: response.content, statusCode: response.statusCode};
 			case 201:
-				return {content: response.content};
-				break;
+				//Meteor._debug(response.content);
+				return {content: response.content, statusCode: response.statusCode};
 			default:
 				throw new Meteor.Error("ServerError", "The server cannot be reached.");
 				return;
 		}
 
+		//var xuid = response.data.gamertag;
 
 	},
 	retrieveData: function(user) {
