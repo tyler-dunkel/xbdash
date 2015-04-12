@@ -14,7 +14,7 @@ Meteor.methods({
 	chkGamertag: function(gamertag) {
 		//Meteor._debug(gamertag);
 
-		var url = 'xuid/xx' + gamertag;
+		var url = 'xuid/ssij3rj' + gamertag;
 		var response = syncApiCaller(url);
 
 		Meteor._debug(response);
@@ -28,7 +28,6 @@ Meteor.methods({
 				return {content: response.content, statusCode: response.statusCode};
 			default:
 				throw new Meteor.Error("ServerError", "The server cannot be reached.");
-				return;
 		}
 
 		//var xuid = response.data.gamertag;
