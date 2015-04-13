@@ -12,30 +12,32 @@ var syncApiCaller = Async.wrap(xboxApiCaller);
 
 Meteor.methods({
 	chkGamertag: function(gamertag) {
-		//Meteor._debug(gamertag);
 
 		var url = 'xuid/' + gamertag;
 		var response = syncApiCaller(url);
 
-		Meteor._debug(response);
-
 		var xuid = response.content;
+		var userExists = Meteor.users.findOne({"profile.xuid": xuid});
 
 		switch(response.statusCode) {
 			case 200:
-				if (Meteor.users.findOne({ 'profile.xuid': xuid }).fetch().count() !== 0) {
-					throw new Meteor.Error("GamerTagExists", "Gamertag is already registered.");
+				if (userExists) {
+					throw new Meteor.Error("gamertagExists", "Gamertag is already registered", 
+						"This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
 				} else {
+					Meteor._debug("200 fired and returned content");
 					return {content: response.content, statusCode: response.statusCode};
 				}
 			case 201:
-				if (Meteor.users.findOne({ 'profile.xuid': xuid }).fetch().count() !== 0) {
-					throw new Meteor.Error("GamerTagExists", "Gamertag is already registered.");
+				if (userExists) {
+					throw new Meteor.Error("gamertagExists", "Gamertag is already registered",
+						"This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
 				} else {
 					return {content: response.content, statusCode: response.statusCode};
 				}
 			default:
-				throw new Meteor.Error("ServerError", "The server cannot be reached.");
+				throw new Meteor.Error("gamertagNotFound", "Gamertag Not Found",
+					"If you are sure you entered the correct gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
 		}
 	},
 	retrieveData: function(user) {
@@ -63,23 +65,6 @@ Meteor.methods({
 					//Meteor._debug(result);
 				});
 			}
-
-			//Meteor._debug(result.data.gamertag);
-			/*Meteor.users.upsert(userId, {
-				$set: {
-					profile: {
-						gamertag: result.data.gamertag,
-						name: result.data.name,
-						location: result.data.location,
-						bio: result.data.bio,
-						gamerscore: result.data.gamerscore
-					}
-				}
-			});
-			*/
-
-			//Meteor._debug(url);
-			//Meteor._debug(result);
 		});
 		return "hello world";
 	}
