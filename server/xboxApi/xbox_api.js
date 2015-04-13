@@ -19,19 +19,24 @@ Meteor.methods({
 
 		Meteor._debug(response);
 
+		var xuid = response.content;
+
 		switch(response.statusCode) {
 			case 200:
-				//Meteor._debug(response.content);
-				return {content: response.content, statusCode: response.statusCode};
+				if (Meteor.users.findOne({ 'profile.xuid': xuid }).fetch().count() !== 0) {
+					throw new Meteor.Error("GamerTagExists", "Gamertag is already registered.");
+				} else {
+					return {content: response.content, statusCode: response.statusCode};
+				}
 			case 201:
-				//Meteor._debug(response.content);
-				return {content: response.content, statusCode: response.statusCode};
+				if (Meteor.users.findOne({ 'profile.xuid': xuid }).fetch().count() !== 0) {
+					throw new Meteor.Error("GamerTagExists", "Gamertag is already registered.");
+				} else {
+					return {content: response.content, statusCode: response.statusCode};
+				}
 			default:
 				throw new Meteor.Error("ServerError", "The server cannot be reached.");
 		}
-
-		//var xuid = response.data.gamertag;
-
 	},
 	retrieveData: function(user) {
 		//Meteor._debug(user);

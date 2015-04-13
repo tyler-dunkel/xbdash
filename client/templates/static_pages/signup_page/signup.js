@@ -42,22 +42,39 @@ Template.signUp.events({
 		}
 
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
-			
-			if (typeof error != 'undefined') {
+			console.log(error);
+			if (error = 'GamerTagExists') {
 				console.log(error);
 				if (loading) {
 					loading.finish();
 					Session.set('loadingScreen', false);
 				}
-				console.log("got here at least..");
+				console.log("got here at last!");
 				sweetAlert({
-					title: "Gamertag not found",
-					text: "If you are sure you entered the correct gamertag, please contact us!",
+					title: "Gamertag Already Registered",
+					text: "This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!",
 					type: "error",
 					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "OK",
 					closeOnConfirm: false,
-					html: false
+					html: true
+				});
+				//Router.go('signUp');
+				return;
+			}
+			if (typeof error != 'undefined') {
+				if (loading) {
+					loading.finish();
+					Session.set('loadingScreen', false);
+				}
+				sweetAlert({
+					title: "Gamertag Not Found",
+					text: "If you are sure you entered the correct gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!",
+					type: "error",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "OK",
+					closeOnConfirm: false,
+					html: true
 				});
 				//Router.go('signUp');
 				return;
