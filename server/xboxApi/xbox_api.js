@@ -47,7 +47,7 @@ Meteor.methods({
 			if (i === 'gamercard') {
 				setObject.$set['profile.' + i] = result.data;
 				Meteor.users.upsert(userId, setObject);
-				Meteor._debug(result.data);
+				//Meteor._debug(result.data);
 			}
 
 			if (i === 'xboxonegames') {
@@ -55,7 +55,7 @@ Meteor.methods({
 				result.data.titles.forEach(function(i) {
 					var url = user.profile.xuid + '/achievements/' + i.titleId;
 					var result = syncApiCaller(url);
-					Meteor._debug(result);
+					//Meteor._debug(result);
 				});
 			}
 
@@ -75,7 +75,6 @@ Meteor.methods({
 
 			//Meteor._debug(url);
 			//Meteor._debug(result);
-
 		});
 		return "hello world";
 	}

@@ -14,20 +14,42 @@ Template.signUp.events({
 	'submit #signupform': function(e) {
 		e.preventDefault();
 
+		//validate the form
 		var isValid = ValidateForm.validate('#signupform');
 		if (!isValid) return;
 
+		//grab values needed to create a user
 		var gamertag = $("#gamertag").val();
 		var email = $("#email").val();
 		var password = $("#password").val();
 		var passwordConfirm = $("#password2").val();
 
 		if (password !== passwordConfirm) return;
-		Router.go('loading');
+
+		//set up the loading screen
+		var message = "<h3>Please wait while we retrieve your data!</h3>";
+		var spinner = "<div class='spinner'>" +
+				"<div class='double-bounce1'></div> " + 
+ 				"<div class='double-bounce2'></div> " +
+				"</div>";
+		if (! Session.get('loadingScreen')) {
+			loading = window.pleaseWait({
+				logo: 'img/xboxdash_whiteicon.png',
+				backgroundColor: '#138013',
+				loadingHtml: message + spinner
+			});
+			Session.set('loadingScreen', true);
+		}
+
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
 			
 			if (typeof error != 'undefined') {
 				console.log(error);
+				if (loading) {
+					loading.finish();
+					Session.set('loadingScreen', false);
+				}
+				console.log("got here at least..");
 				sweetAlert({
 					title: "Gamertag not found",
 					text: "If you are sure you entered the correct gamertag, please contact us!",
@@ -37,7 +59,7 @@ Template.signUp.events({
 					closeOnConfirm: false,
 					html: false
 				});
-				Router.go('signUp');
+				//Router.go('signUp');
 				return;
 			}
 			if (result.content) {
@@ -49,6 +71,10 @@ Template.signUp.events({
 					} else {
 						Meteor.call('retrieveData', user, function(error, result) {
 							console.log(result);
+							if (loading) {
+								loading.finish();
+								Session.set('loadingScreen', false);
+							}
 							Router.go('home');
 						});
 					}
