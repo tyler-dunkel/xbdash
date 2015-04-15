@@ -819,6 +819,8 @@ body {
   position: fixed;
 }
 
+#signup ul.list-inline {margin-left: 0;}
+
 #footer .signinfooter {
   background: transparent;
 }
@@ -5386,7 +5388,6 @@ ul.signin > li.active {
   }
 }
 .well {background-image: none; background-color: #fff; padding: 10px 40px;}
-
 .pg-loading h3 {
   color: #fff;
 }

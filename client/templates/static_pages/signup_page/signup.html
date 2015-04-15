@@ -1,125 +1,59 @@
-<template name="signUp">
+<template name="signUpHeader">
   <head>  
     <meta charset="utf-8" />
-    <title>XboxDash | Sign Up to start managing your game progress and tracking achievements</title>
+    <title>XboxDash | Sign up to start managing your game progress and tracking achievements.</title>
     <meta name="description" content="The #1 Xbox community that offers achievement guides, leaderboards, game reviews, and everything Xbox with your personalized dashboard." />
     <meta name="keywords" content="xbox, xbox achievements, xbox 360, xbox one, xbox games, achievements, xbox leaderboards, xbox news, xbox game reviews" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
   </head>
-  {{> signUpBody}}
 </template>
 
-<template name="signUpBody">
+<template name="signUp">
   {{> headerSignUpPage}}
   {{> signUpForm}}
-  {{> footerSignUpPage}}
-</template>
-
-<template name="headerSignUpPage">
-  <!-- header -->
-  <header id="header" class="navbar padder-x text-center signup">
-    <div class="container">
-      <div class="">
-        <a href="{{pathFor 'home'}}" class="logo text-center"><img src="img/xboxdash_green.png" class="m-r-sm hide"><span class="h3 font-bold"><img src="img/xboxdash_green.png" class=""></span></a>
-        <ul class="nav nav-tabs signin">
-          <li class="active"><a href="#create" data-toggle="tab">Signup</a></li>
-          <li><a href="#login" data-toggle="tab">Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-  <!-- / header -->
+  {{> staticFooter}}
 </template>
 
 <template name="signUpForm">
-  <div class="signup">
+  <div id="signup" class="signup">
     <div class="container well w-xxxl w-auto-xs" >
       <div class="m-b-md">
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane active in" id="create">
-            <form name="form" class="validate" id="signupform">
-              <h2 class="text-dark text-center">Create a Free Account</h2>
-              <p class="text-center">Start tracking achievements in minutes.</p>
-              <div class="list-group">
-                <div class="form-group">
-                  <input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control" data-onblur data-max="15" data-alphanumeric data-required data-msg="Valid Xbox Live gamertag required.">
-                  <span for='gamertag' class='err-msg'></span>
-                </div>
-                <div class="form-group">
-                  <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
-                  <span for='email' class='err-msg'></span>
-                </div>
-                <div class="form-group">
-                  <input type="password" placeholder="Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
-                  <span for='password' class='err-msg'></span>
-                </div>
-                <div class="form-group">
-                  <input type="password" placeholder="Confirm Password" id="password2" name="password2" class="form-control" data-onblur data-min="6" data-required data-msg="The passwords do not match.">
-                  <span for='password2' class='err-msg'></span>
-                </div>
-              </div>
-              <div class="checkbox m-b-md m-t-none">
-                <label class="i-checks">
-                  <input type="checkbox" class="ckbox" name="terms" data-onblur data-required><i></i> By clicking sign up, I agree to the <a href>Terms of Use</a> and <a href>Privacy Policy</a>
-                </label>
-                <span for='terms' class='err-msg'></span>
-                {{acceptedTerms}}
-              </div>
-              <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
-              <div class="line line-dashed"></div>
-              <ul class="list-inline social-logins">
-                <li><a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a></li>
-                <li><a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a></li>
-              </ul>
-            </form>
+        <form name="form" class="validate" id="signupform">
+          <h2 class="text-dark text-center">Create a Free Account</h2>
+          <p class="text-center">Start tracking achievements in seconds</p>
+          <div class="list-group">
+            <div class="form-group">
+              <input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control" data-onblur data-max="15" data-alphanumeric data-required data-msg="Valid Xbox Live gamertag required.">
+              <span for='gamertag' class='err-msg'></span>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
+              <span for='email' class='err-msg'></span>
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
+              <span for='password' class='err-msg'></span>
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Confirm Password" id="password2" name="password2" class="form-control" data-onblur data-min="6" data-required data-msg="The passwords do not match.">
+              <span for='password2' class='err-msg'></span>
+            </div>
           </div>
-          <div class="tab-pane fade" id="login">
-            <h2 class="text-dark wrapper text-center">Sign into Your Account</h2>
-            <form name="form" class="form-validation">
-              <div class="list-group">
-                <div class="form-group">
-                  <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
-                  <span for='email' class='err-msg'></span>
-                </div>
-                <div class="form-group">
-                   <input type="password" placeholder="Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
-                  <span for='password' class='err-msg'></span>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-lg btn-success btn-block">Log in</button>
-              <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd">Forgot password?</a></div>
-              <div class="line line-dashed"></div>
-              <ul class="list-inline social-logins">
-                <li><a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a></li>
-                <li><a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a></li>
-              </ul>
-            </form>
+          <div class="checkbox m-b-md m-t-none">
+            <label class="i-checks">
+              <input type="checkbox" class="ckbox" name="terms" data-onblur data-required><i></i> By clicking sign up, I agree to the <a href>Terms of Use</a> and <a href>Privacy Policy</a>
+            </label>
+            <span for='terms' class='err-msg'></span>
+            {{acceptedTerms}}
           </div>
-        </div>
+          <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
+          <div class="line line-dashed"></div>
+          <ul class="list-inline social-logins">
+            <li><a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a></li>
+            <li><a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a></li>
+          </ul>
+        </form>
       </div>
     </div>
   </div>
-</template>
-
-<template name="footerSignUpPage">
-  <footer id="footer">
-    <div class="container signinfooter">
-      <div class="row text-center">
-        <div class="col-lg-12 padder-t">
-          <ul class="list-inline">
-            <li><a href="{{pathFor 'support'}}">Support</a></li>
-            <li><a href="{{pathFor 'privacy'}}">Privacy Policy</a></li>
-            <li><a href="{{pathFor 'terms'}}">Terms of Use</a></li>
-          </ul> 
-        </div>
-        <div class="col-lg-12 padder-d">
-          <a href="#" class="btn btn-icon text-success"><i class="fa fa-facebook"></i></a>
-          <a href="#" class="btn btn-icon text-success"><i class="fa fa-twitter"></i></a>
-        </div>
-        <div class="col-lg-12 padder-t">
-          <p class="text-dark">XboxDash &copy; 2015. All Rights Reserved.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
 </template>

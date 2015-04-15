@@ -19,25 +19,15 @@ Meteor.methods({
 		var xuid = response.content;
 		var userExists = Meteor.users.findOne({"profile.xuid": xuid});
 
-		switch(response.statusCode) {
-			case 200:
-				if (userExists) {
-					throw new Meteor.Error("gamertagExists", "Gamertag is already registered", 
-						"This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
-				} else {
-					Meteor._debug("200 fired and returned content");
-					return {content: response.content, statusCode: response.statusCode};
-				}
-			case 201:
-				if (userExists) {
-					throw new Meteor.Error("gamertagExists", "Gamertag is already registered",
-						"This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
-				} else {
-					return {content: response.content, statusCode: response.statusCode};
-				}
-			default:
-				throw new Meteor.Error("gamertagNotFound", "Gamertag Not Found",
-					"If you are sure you entered the correct gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
+		if ( response.statusCode === 200 || response.statusCode === 201 ) {
+			if (userExists) {
+				throw new Meteor.Error("gamertagExists", "Gamertag is already registered", "This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
+			} else {
+				Meteor._debug("200 fired and returned content");
+				return {content: response.content, statusCode: response.statusCode};
+			}
+		} else {
+			throw new Meteor.Error("gamertagNotFound", "Gamertag Not Found", "If you are sure you entered the correct gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
 		}
 	},
 	retrieveData: function(user) {
@@ -46,24 +36,52 @@ Meteor.methods({
 		'gamercard',
 		'xboxonegames'
 		].forEach(function(i) {
-			var url = user.profile.xuid + '/' + i;
-			var result = syncApiCaller(url);
 			var userId = Meteor.userId();
 			var setObject = { $set: {} };
 
 			if (i === 'gamercard') {
+				var url = user.profile.xuid + '/' + i;
+				var result = syncApiCaller(url);
 				setObject.$set['profile.' + i] = result.data;
 				Meteor.users.upsert(userId, setObject);
 				//Meteor._debug(result.data);
 			}
 
 			if (i === 'xboxonegames') {
-				Meteor._debug("this is xboxonegames");
-				result.data.titles.forEach(function(i) {
-					var url = user.profile.xuid + '/achievements/' + i.titleId;
-					var result = syncApiCaller(url);
-					//Meteor._debug(result);
-				});
+				//Meteor._debug("this is xboxonegames");
+				var url2 = user.profile.xuid + '/achievements/' + i.titleId;
+				var result2 = syncApiCaller(url2);
+				setObject.$set[i] = result2.data;
+				Meteor._debug(result2.data);
+				
+				//result2.data.forEach(function(j) {
+					//j.titleName = i.name;
+					//Meteor._debug("logging achievement " + result2.data.titleName);
+					/*
+					xbdAchievements.upsert({
+						id: i.id,
+						//xuid: xuid, 
+						titleId: i.name
+					}, setObject);
+				//});
+
+				/*
+
+                    res.data.forEach(function (j) {
+                        var id = j.id;
+                        delete j.id;
+                        j.titleName = i.name;
+                        xbdAchievements.upsert({ id: id, xuid: xuid, titleId: i.titleId }, { $set: j });
+                    });
+
+                var gameId = i.titleId.toString(16);
+                if (!XBDCGames.findOne({ gameId: gameId })) {
+                    xbdcParseQueue.push(['/v2/game-details-hex/' + gameId, function (err, res) { // 19 > titleId from 16 converted to HEX (.toString(16))
+                        XBDCGames.upsert({ gameId: gameId }, { $set: res.data.Items[0] });
+                    }]);
+                }
+                */
+
 			}
 		});
 		return "hello world";
