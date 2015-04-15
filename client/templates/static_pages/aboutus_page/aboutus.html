@@ -17,49 +17,6 @@
   {{> footerLandingPage}}
 </template>
 
-<template name="headerLandingPage">
-  <!-- header -->
-  <header id="header" class="navbar navbar-fixed-top bg-primary padder-t"  data-spy="affix" data-offset-top="1">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="btn btn-link visible-xs pull-right m-r" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-        <i class="fa fa-bars"></i>
-      </button>
-      <a href="{{pathFor 'home'}}" class="navbar-brand m-r-lg"><img src="img/xboxdash_whiteicon.png" class="m-r-sm hide"><span class="h3 font-bold"><img src="img/xboxdash_white.png" class=""></span></a>
-    </div>
-    <div class="collapse navbar-collapse">
-      {{> navLandingPage}}
-    </div>
-  </div>
-  </header>
-  <!-- / header -->
-</template>
-
-<template name="navLandingPage">
-  <ul class="nav navbar-nav font-bold">
-    <li>
-      <a href="#what" data-ride="scroll">What is XboxDash</a>
-    </li>
-    <li>
-      <a href="#features" data-ride="scroll">Features</a>
-    </li>
-    <li>
-      <a href="#homeFaqs" data-ride="scroll">FAQs</a>
-    </li>
-    <li>
-      <a href="#contactBox" id="contactBox">Contact Us</a>
-    </li>
-  </ul>
-  <ul class="nav navbar-nav navbar-right">
-    <li>
-      <div class="m-t-sm">
-        <a href="" class="btn btn-link btn-sm"><i class="fa fa-lock"></i> Log in</a>
-        <a href="{{pathFor 'signUp'}}" class="btn btn-sm btn-default btn-rounded m-l sign-up"><i class="fa fa-lock"></i> <strong>Sign up</strong></a>
-      </div>
-    </li>
-  </ul>
-</template>
-
 <template name="carousel">
   <div class="home">
     <div id="carousel1" class="carousel slide" data-ride="carousel">
@@ -195,43 +152,4 @@
       </div>
     </div>
   </div>
-</template>
-
-<template name="footerLandingPage">
-  <!-- footer -->
-  <footer id="footer">
-    <div id="getReady" class="bg-primary">
-      <div class="container">
-        <div class="row m-t-xl m-b-xl">
-          <div class="col-md-6 col-sm-12 text-center">
-            <h4 class="m-b">XBOXDASH is your personal gaming dashboard.</h4>
-          </div>
-          <div class="col-md-6 col-sm-12 text-center">
-            <a href="http://themeforest.net/item/angulr-bootstrap-admin-web-app-with-angularjs/8437259" class="btn btn-lg btn-default btn-rounded">Get Dashboard Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bg-primary dk">
-      <div class="container">
-        <div class="row padder-v">
-          <div class="col-lg-5 col-md-5 visible-md visible-lg m-t-sm">
-            <ul class="list-inline">
-              <li><a href="#what" data-ride="scroll">What is XboxDash</a></li>
-              <li><a href="#features" data-ride="scroll">Features</a></li>
-              <li><a href="#faqs" data-ride="scroll">FAQs</a></li>
-              <li><a href="#contactBox" id="contactBox">Contact Us</a></li>
-            </ul> 
-          </div>
-          <div class="col-lg-4 col-md-2 col-sm-6 col-xs-5 m-t-xs">
-            XboxDash &copy; 2015. All Rights Reserved.
-          </div>
-          <div class="col-lg-3 col-md-5 col-sm-6 col-xs-7 text-right-xs text-right">
-            <a href="#" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="btn btn-icon btn-rounded btn-dark"><i class="fa fa-twitter"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
 </template>
