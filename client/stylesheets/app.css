@@ -829,9 +829,12 @@ body {
   padding: 0 10px;
 }
 
-#footer ul.list-inline > li:nth-child(1),
-#footer ul.list-inline > li:nth-child(2) {
+#footer ul.list-inline > li {
   border-right: 1px solid #ccc;
+}
+
+#footer ul.list-inline > li:last-child {
+  border-right: none;
 }
 
 .hbox {

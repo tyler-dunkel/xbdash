@@ -36,52 +36,41 @@ Meteor.methods({
 		'gamercard',
 		'xboxonegames'
 		].forEach(function(i) {
+			var url = user.profile.xuid + '/' + i;
+			var result = syncApiCaller(url);
 			var userId = Meteor.userId();
 			var setObject = { $set: {} };
 
 			if (i === 'gamercard') {
-				var url = user.profile.xuid + '/' + i;
-				var result = syncApiCaller(url);
 				setObject.$set['profile.' + i] = result.data;
 				Meteor.users.upsert(userId, setObject);
-				//Meteor._debug(result.data);
 			}
 
 			if (i === 'xboxonegames') {
-				//Meteor._debug("this is xboxonegames");
-				var url2 = user.profile.xuid + '/achievements/' + i.titleId;
-				var result2 = syncApiCaller(url2);
-				setObject.$set[i] = result2.data;
-				Meteor._debug(result2.data);
-				
-				//result2.data.forEach(function(j) {
-					//j.titleName = i.name;
-					//Meteor._debug("logging achievement " + result2.data.titleName);
-					/*
-					xbdAchievements.upsert({
-						id: i.id,
-						//xuid: xuid, 
-						titleId: i.name
-					}, setObject);
-				//});
+				//Meteor._debug('xboxone games is here');
+				result.data.titles.forEach(function (j) {
+					var url = user.profile.xuid + '/achievements/' + j.titleId;
+					var result = syncApiCaller(url);
+					Meteor._debug(result.data);
 
-				/*
-
-                    res.data.forEach(function (j) {
-                        var id = j.id;
-                        delete j.id;
-                        j.titleName = i.name;
-                        xbdAchievements.upsert({ id: id, xuid: xuid, titleId: i.titleId }, { $set: j });
+					result.data.forEach(function (k) {
+                        k.titleName = j.name;
+                        setObject.$set['achievements'] = result.data;
+                        xbdAchievements.upsert({ titleId: j.titleId }, setObject); // creates new id for every title with a subdocument for every achievement associated with that title
                     });
 
-                var gameId = i.titleId.toString(16);
-                if (!XBDCGames.findOne({ gameId: gameId })) {
-                    xbdcParseQueue.push(['/v2/game-details-hex/' + gameId, function (err, res) { // 19 > titleId from 16 converted to HEX (.toString(16))
-                        XBDCGames.upsert({ gameId: gameId }, { $set: res.data.Items[0] });
-                    }]);
-                }
-                */
+                    /* keith - working on game insertion here, we need to convert the titleIds to Hex's because that is how the API takes it
+                    var gameHex = j.titleId.toString(16); // converts titleId to Hex
+                    var url2 = 'game-details-hex/' + j.titleId;
+					var result2 = syncApiCaller(url2);
 
+                    if (!xbdGames.findOne({ gameHex: gameHex })) {
+                    	result2.data.forEach(function (l) {
+	                    	xbdGames.upsert({ gameHex: gameHex }, { $set: result2.data.Items[0] });
+	                    });
+                    }
+                    */
+				});
 			}
 		});
 		return "hello world";
