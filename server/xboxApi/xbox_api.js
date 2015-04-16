@@ -51,12 +51,43 @@ Meteor.methods({
 				result.data.titles.forEach(function (j) {
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
-					Meteor._debug(result.data);
+					//Meteor._debug(result.data);
 
 					result.data.forEach(function (k) {
-                        k.titleName = j.name;
-                        setObject.$set['achievements'] = result.data;
-                        xbdAchievements.upsert({ titleId: j.titleId }, setObject); // creates new id for every title with a subdocument for every achievement associated with that title
+						var achievementCheck = xbdAchievements.findOne({ gameId: k.titleAssociations[0].id, name: k.name });
+
+						if (typeof achievementCheck === 'undefined') {
+							Meteor._debug(achievementCheck);
+							// add single achievemnt
+	                        var singleAchievement = {
+	                        	gameId: k.titleAssociations[0].id,
+	                        	name: k.name,
+	                        	mediaAssets: k.mediaAssets,
+	                        	isSecret: k.isSecret,
+	                        	description: k.description,
+	                        	lockedDescription: k.lockedDescription,
+	                        	achievementType: k.achievementType,
+	                        	rewards: k.rewards
+	                        };
+	                        var achievementId = xbdAchievements.insert( singleAchievement );
+
+	                        // update/insert user achievement
+	                        setObject.$set = {
+		                    	achievementId: achievementId,
+	                    		userId: userId,
+	                    		progressState: k.progressState
+	                    	};
+	                        userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
+	                    } else {
+	                    	var achievementId = achievementCheck._id;
+
+	                    	setObject.$set = {
+		                    	achievementId: achievementId,
+	                    		userId: userId,
+	                    		progressState: k.progressState
+	                    	};
+	                    	userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
+	                    }
                     });
 
                     /* keith - working on game insertion here, we need to convert the titleIds to Hex's because that is how the API takes it
