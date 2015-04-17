@@ -49,15 +49,15 @@ Meteor.methods({
 			if (i === 'xboxonegames') {
 				//Meteor._debug('xboxone games is here');
 				result.data.titles.forEach(function (j) {
+					if (j.maxGamerscore === 0) return;
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
-					//Meteor._debug(result.data);
+					//Meteor._debug(j);
 
 					result.data.forEach(function (k) {
 						var achievementCheck = xbdAchievements.findOne({ gameId: k.titleAssociations[0].id, name: k.name });
 
 						if (typeof achievementCheck === 'undefined') {
-							Meteor._debug(achievementCheck);
 							// add single achievemnt
 	                        var singleAchievement = {
 	                        	gameId: k.titleAssociations[0].id,
@@ -89,6 +89,42 @@ Meteor.methods({
 	                    	userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
 	                    }
                     });
+
+					//insert single game into database if not there
+					var gameCheck = xbdGames.findOne({_id: j.titleId});
+					var _id = j.titleId.toString();
+					if (typeof gameCheck === 'undefined') {
+						var singleGame = {
+							_id: _id,
+							platform: j.platform,
+							name: j.name,
+							titleType: j.titleType,
+							maxGamerscore: j.maxGamerscore
+						};
+						Meteor._debug(singleGame);
+						var gameId = xbdGames.insert(singleGame);
+
+						//upsert for userGames table update or insert
+						setObject.$set = {
+							_id: _id,
+							userId: userId,
+							currentGamerscore: j.currentGamerscore,
+							earnedAchievements: j.earnedAchievements
+						};
+						userGames.upsert({_id: _id, userId: userId}, setObject);
+
+					} else {
+						var gameId = gameCheck._id;
+
+						//upsert for userGames table update or insert
+						setObject.$set = {
+							_id: _id,
+							userId: userId,
+							currentGamerscore: j.currentGamerscore,
+							earnedAchievements: j.earnedAchievements
+						};
+						userGames.upsert({_id: _id, userId: userId}, setObject);
+					}
 
                     /* keith - working on game insertion here, we need to convert the titleIds to Hex's because that is how the API takes it
                     var gameHex = j.titleId.toString(16); // converts titleId to Hex
