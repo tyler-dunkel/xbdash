@@ -93,6 +93,7 @@ Meteor.methods({
 					//insert single game into database if not there
 					var gameCheck = xbdGames.findOne({_id: j.titleId});
 					var _id = j.titleId.toString();
+
 					if (typeof gameCheck === 'undefined') {
 						var singleGame = {
 							_id: _id,
@@ -101,7 +102,7 @@ Meteor.methods({
 							titleType: j.titleType,
 							maxGamerscore: j.maxGamerscore
 						};
-						Meteor._debug(singleGame);
+						//Meteor._debug(singleGame);
 						var gameId = xbdGames.insert(singleGame);
 
 						//upsert for userGames table update or insert
@@ -113,6 +114,11 @@ Meteor.methods({
 						};
 						userGames.upsert({_id: _id, userId: userId}, setObject);
 
+						var hexId = j.titleId.toString(16);
+						var url = 'game-details-hex/' + hexId;
+						Meteor._debug(url);
+						var result = syncApiCaller(url);
+						Meteor._debug(result);
 					} else {
 						var gameId = gameCheck._id;
 
