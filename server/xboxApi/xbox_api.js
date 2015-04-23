@@ -52,15 +52,17 @@ Meteor.methods({
 					if (j.maxGamerscore === 0) return;
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
+					var gameId = j.titleId.toString();
 					//Meteor._debug(j);
 
 					result.data.forEach(function (k) {
-						var achievementCheck = xbdAchievements.findOne({ gameId: k.titleAssociations[0].id, name: k.name });
+						var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
 
 						if (typeof achievementCheck === 'undefined') {
 							// add single achievemnt
 	                        var singleAchievement = {
-	                        	gameId: k.titleAssociations[0].id,
+	                        	//gameId: k.titleAssociations[0].id,
+	                        	gameId: gameId,
 	                        	name: k.name,
 	                        	mediaAssets: k.mediaAssets,
 	                        	isSecret: k.isSecret,
@@ -92,12 +94,12 @@ Meteor.methods({
                     });
 
 					//insert single game into database if not there
-					var gameCheck = xbdGames.findOne({ _id: j.titleId });
-					var _id = j.titleId.toString();
+					var gameCheck = xbdGames.findOne({ _id: gameId });
+					//var _id = j.titleId.toString();
 
 					if (typeof gameCheck === 'undefined') {
 						var singleGame = {
-							_id: _id,
+							_id: gameId,
 							platform: j.platform,
 							name: j.name,
 							titleType: j.titleType,
@@ -107,13 +109,13 @@ Meteor.methods({
 						var gameId = xbdGames.insert(singleGame);
 						//upsert for userGames table update or insert
 						setObject.$set = {
-							_id: _id,
+							gameId: gameId,
 							userId: userId,
 							currentGamerscore: j.currentGamerscore,
 							earnedAchievements: j.earnedAchievements
 						};
 
-						userGames.upsert({ _id: _id, userId: userId }, setObject);
+						userGames.upsert({ gameId: gameId, userId: userId }, setObject);
 
 						var hexId = j.titleId.toString(16);
 						var url = 'game-details-hex/' + hexId;
@@ -127,7 +129,7 @@ Meteor.methods({
 							gameReducedDesc: gameDetailsResult.data.Items[0].ReducedDescription,
 							gameReducedName: gameDetailsResult.data.Items[0].ReducedName,
 							gameReleaseDate: gameDetailsResult.data.Items[0].ReleaseDate,
-							gameId: gameDetailsResult.data.Items[0].TitleId,
+							gameId: gameId,
 							gameGenre: gameDetailsResult.data.Items[0].Genres,
 							gameArt: gameDetailsResult.data.Items[0].Images,
 							gamePublisherName: gameDetailsResult.data.Items[0].PublisherName,
@@ -138,7 +140,7 @@ Meteor.methods({
 							gameAllTimeRatingCount: gameDetailsResult.data.Items[0].AllTimeRatingCount,
 							gameAllTimeAverageRating: gameDetailsResult.data.Items[0].AllTimeAverageRating
 						};
-						gameDetails.upsert({ _id: gameId }, setObject );
+						gameDetails.upsert({ gameId: gameId }, setObject );
 					} else {
 						// gameid is a number
 						var gameId = gameCheck._id;
