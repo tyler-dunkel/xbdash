@@ -69,7 +69,8 @@ Meteor.methods({
 	                        	achievementType: k.achievementType,
 	                        	rewards: k.rewards
 	                        };
-	                        var achievementId = xbdAchievements.insert( singleAchievement );
+	                        // achievement id is a string
+	                        var achievementId = xbdAchievements.insert(singleAchievement);
 
 	                        // update/insert user achievement
 	                        setObject.$set = {
@@ -91,7 +92,7 @@ Meteor.methods({
                     });
 
 					//insert single game into database if not there
-					var gameCheck = xbdGames.findOne({_id: j.titleId});
+					var gameCheck = xbdGames.findOne({ _id: j.titleId });
 					var _id = j.titleId.toString();
 
 					if (typeof gameCheck === 'undefined') {
@@ -104,7 +105,6 @@ Meteor.methods({
 						};
 						//Meteor._debug(singleGame);
 						var gameId = xbdGames.insert(singleGame);
-
 						//upsert for userGames table update or insert
 						setObject.$set = {
 							_id: _id,
@@ -112,24 +112,44 @@ Meteor.methods({
 							currentGamerscore: j.currentGamerscore,
 							earnedAchievements: j.earnedAchievements
 						};
-						userGames.upsert({_id: _id, userId: userId}, setObject);
+
+						userGames.upsert({ _id: _id, userId: userId }, setObject);
 
 						var hexId = j.titleId.toString(16);
 						var url = 'game-details-hex/' + hexId;
-						Meteor._debug(url);
-						var result = syncApiCaller(url);
-						Meteor._debug(result);
+						//Meteor._debug(url);
+						var gameDetailsResult = syncApiCaller(url);
+						//Meteor._debug(gameDetailsResult.data.Items[0].Images);
+
+						setObject.$set = {
+							gameName: j.name,
+							gameDescription: gameDetailsResult.data.Items[0].Description,
+							gameReducedDesc: gameDetailsResult.data.Items[0].ReducedDescription,
+							gameReducedName: gameDetailsResult.data.Items[0].ReducedName,
+							gameReleaseDate: gameDetailsResult.data.Items[0].ReleaseDate,
+							gameId: gameDetailsResult.data.Items[0].TitleId,
+							gameGenre: gameDetailsResult.data.Items[0].Genres,
+							gameArt: gameDetailsResult.data.Items[0].Images,
+							gamePublisherName: gameDetailsResult.data.Items[0].PublisherName,
+							gameParentalRating: gameDetailsResult.data.Items[0].ParentalRating,
+							gameAllTimePlayCount: gameDetailsResult.data.Items[0].AllTimePlayCount,
+							gameSevenDaysPlayCount: gameDetailsResult.data.Items[0].SevenDaysPlayCount,
+							gameThirtyDaysPlayCount: gameDetailsResult.data.Items[0].ThirtyDaysPlayCount,
+							gameAllTimeRatingCount: gameDetailsResult.data.Items[0].AllTimeRatingCount,
+							gameAllTimeAverageRating: gameDetailsResult.data.Items[0].AllTimeAverageRating
+						};
+						gameDetails.upsert({ _id: gameId }, setObject );
 					} else {
+						// gameid is a number
 						var gameId = gameCheck._id;
 
 						//upsert for userGames table update or insert
 						setObject.$set = {
-							_id: _id,
 							userId: userId,
 							currentGamerscore: j.currentGamerscore,
 							earnedAchievements: j.earnedAchievements
 						};
-						userGames.upsert({_id: _id, userId: userId}, setObject);
+						userGames.upsert({ _id: gameId, userId: userId }, setObject);
 					}
 
                     /* keith - working on game insertion here, we need to convert the titleIds to Hex's because that is how the API takes it
