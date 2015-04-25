@@ -33,7 +33,6 @@ Template.signUp.events({
 			});
 			Session.set('loadingScreen', true);
 		}
-
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
 			if (typeof error != 'undefined') {
 				if (loading) {
@@ -53,12 +52,12 @@ Template.signUp.events({
 				return;
 			}
 			if (result.content) {
-				console.log("got it");
 				var user = {username: gamertag, email: email, password: password, profile: {xuid: result.content}};
 				Accounts.createUser(user, function(error) {
 					if (error) {
-						console.log(error);
+						return;
 					} else {
+						//console.log(user);
 						Meteor.call('retrieveData', user, function(error, result) {
 							//console.log(result);
 							if (loading) {
@@ -71,7 +70,6 @@ Template.signUp.events({
 					}
 				});
 			}
-			Meteor._debug("howd it get here?"); 
 		});
 	},
 	'click .ckbox': function(event) {

@@ -1,10 +1,23 @@
 function xboxApiCaller (url, callback) {
 	HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result){
-		rateLimitRemaining = result.headers['x-ratelimit-remaining'];
-		if (rateLimitRemaining) {
-			Meteor._debug('Calls Left: ' + rateLimitRemaining);
+		Meteor._debug(error);
+		if (!error) {
+			Meteor._debug("undefined");
+			var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
+			if (rateLimitRemaining > 0) {
+				Meteor._debug("rate limit is more than 0");
+				Meteor._debug("Calls Left: " + rateLimitRemaining);
+				callback(null, result);
+			} else {
+				Meteor._debug("else no");
+				var error = new Meteor.Error("rateLimitExpired", "Rate limit has expired.");
+				callback(error, null);
+			}
+		} else {
+			Meteor._debug("defined");
+			var error = new Meteor.Error("serverError", "The server isn't reachable.");
+			callback(error, null);
 		}
-		callback(null, result);
 	});
 };
 
@@ -12,14 +25,14 @@ var syncApiCaller = Async.wrap(xboxApiCaller);
 
 Meteor.methods({
 	chkGamertag: function(gamertag) {
-
+		check(gamertag, String);
 		var url = 'xuid/' + gamertag;
 		var response = syncApiCaller(url);
 
 		var xuid = response.content;
 		var userExists = Meteor.users.findOne({"profile.xuid": xuid});
 
-		if ( response.statusCode === 200 || response.statusCode === 201 ) {
+		if (response.statusCode === 200 || response.statusCode === 201) {
 			if (userExists) {
 				throw new Meteor.Error("gamertagExists", "Gamertag is already registered", "This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
 			} else {
@@ -31,7 +44,7 @@ Meteor.methods({
 		}
 	},
 	retrieveData: function(user) {
-		//Meteor._debug(user);
+		check(user.profile.xuid, String);
 		[
 		'gamercard',
 		'xboxonegames',
@@ -165,20 +178,8 @@ Meteor.methods({
 							currentGamerscore: j.currentGamerscore,
 							earnedAchievements: earnedAchievements
 						};
-						userGames.upsert({ _id: gameId, userId: userId }, setObject);
+						userGames.upsert({ gameId: gameId, userId: userId }, setObject);
 					}
-
-                    /* keith - working on game insertion here, we need to convert the titleIds to Hex's because that is how the API takes it
-                    var gameHex = j.titleId.toString(16); // converts titleId to Hex
-                    var url2 = 'game-details-hex/' + j.titleId;
-					var result2 = syncApiCaller(url2);
-
-                    if (!xbdGames.findOne({ gameHex: gameHex })) {
-                    	result2.data.forEach(function (l) {
-	                    	xbdGames.upsert({ gameHex: gameHex }, { $set: result2.data.Items[0] });
-	                    });
-                    }
-                    */
 				});
 			}
 		});
