@@ -4,13 +4,27 @@
   {{> staticFooter}}
 </template>
 
+<template name="logInSocial">
+    {{#if currentUser}}
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}} - 
+        {{currentUser.services.facebook.email}}
+        <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+    {{else}}
+        <ul class="list-inline social-logins">
+          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook">Log In with Facebook</a></li>
+          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter">Log In with Twitter</a></li>
+        </ul>
+    {{/if}}
+</template>
+
 <template name="logInForm">
   <div id="signup" class="signup">
     <div class="container well w-xxxl w-auto-xs" >
       <div class="m-b-md">
         <form name="form" class="validate" id="loginform">
-          <h2 class="text-dark text-center">Sign In</h2>
-          <p class="text-center">Sign in to view your dashboard</p>
+          <h2 class="text-dark text-center">Log In</h2>
+          <p class="text-center">Log in to view your dashboard</p>
           <div class="list-group">
             <div class="form-group">
               <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
@@ -24,10 +38,7 @@
           <button type="submit" class="btn btn-lg btn-success btn-block">Log in</button>
           <div class="text-center m-t m-b"><a href>Forgot password?</a></div>
           <div class="line line-dashed"></div>
-          <ul class="list-inline social-logins">
-            <li><a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a></li>
-            <li><a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a></li>
-          </ul>
+          {{> logInSocial}}
         </form>
       </div>
     </div>

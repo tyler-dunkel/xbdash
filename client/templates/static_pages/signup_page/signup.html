@@ -4,6 +4,20 @@
   {{> staticFooter}}
 </template>
 
+<template name="signUpSocial">
+    {{#if currentUser}}
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}} - 
+        {{currentUser.services.facebook.email}}
+        <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+    {{else}}
+        <ul class="list-inline social-logins">
+          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook">Log In with Facebook</a></li>
+          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter">Log In with Twitter</a></li>
+        </ul>
+    {{/if}}
+</template>
+
 <template name="signUpForm">
   <div id="signup" class="signup">
     <div class="container well w-xxxl w-auto-xs" >
@@ -38,10 +52,7 @@
           </div>
           <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
           <div class="line line-dashed"></div>
-          <ul class="list-inline social-logins">
-            <li><a href="#" class="btn btn-lg btn-block btn-facebook">Facebook</a></li>
-            <li><a href="#" class="btn btn-lg btn-block btn-twitter">Twitter</a></li>
-          </ul>
+          {{> signUpSocial}}
         </form>
       </div>
     </div>

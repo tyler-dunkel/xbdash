@@ -48,7 +48,6 @@ Template.signUp.events({
 					closeOnConfirm: false,
 					html: true
 				});
-				//Router.go('signUp');
 				return;
 			}
 			if (result.content) {
@@ -57,9 +56,7 @@ Template.signUp.events({
 					if (error) {
 						return;
 					} else {
-						//console.log(user);
 						Meteor.call('retrieveData', user, function(error, result) {
-							//console.log(result);
 							if (loading) {
 								loading.finish();
 								Session.set('loadingScreen', false);
@@ -82,7 +79,24 @@ Template.signUp.events({
 	},
 	'focus .form-control': function(e) {
 		ValidateForm.clearInputStatus(e.target);
-	}
+	},
+	'click #facebook-login': function(event) {
+        Meteor.loginWithFacebook({}, function(error){
+            if (error) {
+                throw new Meteor.Error("Facebook login failed");
+            } else {
+            	Router.go('home');
+				return;
+            }
+        });
+    },
+    'click #logout': function(event) {
+        Meteor.logout(function(error){
+            if (error) {
+                throw new Meteor.Error("Logout failed");
+            }
+        })
+    }
 });
 
 Tracker.autorun(function() {
