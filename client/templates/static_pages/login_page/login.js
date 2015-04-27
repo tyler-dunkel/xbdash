@@ -1,3 +1,10 @@
+function updateUserData(email) {
+	Meteor.setInterval(function() {
+		Meteor.call('testMethod', function(error, result) {
+		});
+	}, 1000);
+}
+
 Template.logIn.rendered = function() {
 }
 
@@ -13,9 +20,23 @@ Template.logIn.events({
 		var email = $("#email").val();
 		var password = $("#password").val();
 
-		Meteor.call('chkEmail', function(error, result) {
-			// check email code
-		});
+		Meteor.loginWithPassword(email, password, function(error) {
+			if (error) {
+				sweetAlert({
+					title: error.reason,
+					text: error.details,
+					type: "error",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "OK",
+					closeOnConfirm: false,
+					html: true
+				});
+			}
+			else {
+				updateUserData(email);
+				router.go('home');
+			}
+		})
 	},
 	'blur .form-control': function(e) {
 		var input = e.target;
@@ -41,7 +62,4 @@ Template.logIn.events({
             }
         })
     }
-});
-
-Tracker.autorun(function() {
 });

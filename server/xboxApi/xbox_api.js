@@ -1,20 +1,16 @@
 function xboxApiCaller (url, callback) {
 	HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result){
-		Meteor._debug(error);
 		if (!error) {
-			Meteor._debug("undefined");
 			var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
 			if (rateLimitRemaining > 0) {
 				Meteor._debug("rate limit is more than 0");
 				Meteor._debug("Calls Left: " + rateLimitRemaining);
 				callback(null, result);
 			} else {
-				Meteor._debug("else no");
 				var error = new Meteor.Error("rateLimitExpired", "Rate limit has expired.");
 				callback(error, null);
 			}
 		} else {
-			Meteor._debug("defined");
 			var error = new Meteor.Error("serverError", "The server isn't reachable.");
 			callback(error, null);
 		}
@@ -36,7 +32,6 @@ Meteor.methods({
 			if (userExists) {
 				throw new Meteor.Error("gamertagExists", "Gamertag is already registered", "This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
 			} else {
-				Meteor._debug("200 fired and returned content");
 				return {content: response.content, statusCode: response.statusCode};
 			}
 		} else {
@@ -61,7 +56,9 @@ Meteor.methods({
 			}
 
 			if (i === 'xboxonegames' || i === 'xbox360games') {
-				//Meteor._debug('xboxone games is here');
+				if (result.data.titles.length < 1) {
+					return;
+				}
 				result.data.titles.forEach(function (j) {
 					if (j.maxGamerscore === 0 || j.totalGamerscore === 0) return;
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
