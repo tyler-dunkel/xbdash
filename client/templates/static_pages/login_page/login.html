@@ -12,8 +12,8 @@
         <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
     {{else}}
         <ul class="list-inline social-logins">
-          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook">Log In with Facebook</a></li>
-          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter">Log In with Twitter</a></li>
+          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook"><i class="fa fa-facebook"></i> Log In with Facebook</a></li>
+          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter"><i class="fa fa-twitter"></i> Log In with Twitter</a></li>
         </ul>
     {{/if}}
 </template>
@@ -35,7 +35,7 @@
               <span for='password' class='err-msg'></span>
             </div>
           </div>
-          <button type="submit" class="btn btn-lg btn-success btn-block">Log in</button>
+          <button type="submit" class="btn btn-lg btn-success btn-block">Log In</button>
           <div class="text-center m-t m-b"><a href>Forgot password?</a></div>
           <div class="line line-dashed"></div>
           {{> logInSocial}}

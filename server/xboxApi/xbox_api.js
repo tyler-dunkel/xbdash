@@ -40,6 +40,14 @@ Meteor.methods({
 	},
 	retrieveData: function(user) {
 		check(user.profile.xuid, String);
+		check(user.username, String);
+		var userId = Meteor.userId();
+		var setGamertag = Meteor.users.find({_id: userId}, {username: {$exists: true}});
+
+		if (typeof setGamertag !== 'undefined') {
+			Meteor.users.upsert({_id: userId}, {$set: {username: user.username, "profile.xuid": user.profile.xuid}});
+		}
+
 		[
 		'gamercard',
 		'xboxonegames',
@@ -47,7 +55,6 @@ Meteor.methods({
 		].forEach(function(i) {
 			var url = user.profile.xuid + '/' + i;
 			var result = syncApiCaller(url);
-			var userId = Meteor.userId();
 			var setObject = { $set: {} };
 
 			if (i === 'gamercard') {
@@ -56,9 +63,9 @@ Meteor.methods({
 			}
 
 			if (i === 'xboxonegames' || i === 'xbox360games') {
-				if (result.data.titles.length < 1) {
-					return;
-				}
+				//if (result.data.titles.length < 1) {
+				//	return;
+				//}
 				result.data.titles.forEach(function (j) {
 					if (j.maxGamerscore === 0 || j.totalGamerscore === 0) return;
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
@@ -68,12 +75,14 @@ Meteor.methods({
 
 					result.data.forEach(function (k) {
 						var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
+
+						if (typeof k.progressState !== 'undefined') { var progressState = (k.progressState !== 'NotStarted') ? true : false; } else { var progressState = (k.unlocked !== false) ? true : false; }
+
+						var progression = (typeof k.progression !== 'undefined') ? k.progression.timeUnlocked : k.timeUnlocked;
+
 						var mediaAssets = (typeof k.mediaAssets !== 'undefined') ? k.mediaAssets[0].url : k.imageUnlocked;
 						
-						if (typeof k.progressState !== 'undefined') { var progressState = (k.progressState !== 'NotStarted') ? true : false; } else { var progressState = (k.unlocked !== false) ? true : false; }
-						
 						var gsValue = k.rewards && k.rewards.length ? k.rewards[0].value : k.value;
-						
 						if (typeof gsValue === 'undefined') { gsValue = k.gamerscore; }
 
 						if (typeof achievementCheck === 'undefined') {
@@ -95,7 +104,8 @@ Meteor.methods({
 	                        setObject.$set = {
 		                    	achievementId: achievementId,
 	                    		userId: userId,
-	                    		progressState: progressState
+	                    		progressState: progressState,
+	                    		progression: progression
 	                    	};
 	                        userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
 	                    } else {
@@ -104,7 +114,8 @@ Meteor.methods({
 	                    	setObject.$set = {
 		                    	achievementId: achievementId,
 	                    		userId: userId,
-	                    		progressState: progressState
+	                    		progressState: progressState,
+	                    		progression: progression
 	                    	};
 	                    	userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
 	                    }

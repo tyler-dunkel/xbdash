@@ -12,8 +12,8 @@
         <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
     {{else}}
         <ul class="list-inline social-logins">
-          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook">Log In with Facebook</a></li>
-          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter">Log In with Twitter</a></li>
+          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook"><i class="fa fa-facebook"></i> Sign Up with Facebook</a></li>
+          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter"><i class="fa fa-twitter"></i> Sign Up with Twitter</a></li>
         </ul>
     {{/if}}
 </template>
@@ -45,12 +45,10 @@
           </div>
           <div class="checkbox m-b-md m-t-none">
             <label class="i-checks">
-              <input type="checkbox" class="ckbox" name="terms" data-onblur data-required><i></i> By clicking sign up, I agree to the <a href>Terms of Use</a> and <a href>Privacy Policy</a>
+              By clicking "Sign Up", I agree to the <a href="{{pathFor 'termsOfUse'}}">Terms of Use</a> and <a href="{{pathFor 'privacyPolicy'}}">Privacy Policy</a>.
             </label>
-            <span for='terms' class='err-msg'></span>
-            {{acceptedTerms}}
           </div>
-          <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit disabled">Sign up</button>
+          <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Sign Up</button>
           <div class="line line-dashed"></div>
           {{> signUpSocial}}
         </form>

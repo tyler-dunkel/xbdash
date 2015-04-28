@@ -1,0 +1,35 @@
+<template name="gtConfirm">
+  {{> headerGtConfirmPage}}
+  {{> gtConfirmForm}}
+  {{> staticFooter}}
+</template>
+
+<template name="gtConfirmForm">
+  <div id="signup" class="signup">
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-md">
+        <form name="form" class="validate" id="gametagform">
+          <h2 class="text-dark text-center">Confirm Your Gamertag</h2>
+          <div class="list-group">
+            <div class="form-group">
+              <input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control" data-onblur data-max="15" data-alphanumeric data-required data-msg="Valid Xbox Live gamertag required.">
+              <span for='gamertag' class='err-msg'></span>
+            </div>
+            {{#if currentUser.services.twitter.name}}
+            <div class="form-group">
+              <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
+              <span for='email' class='err-msg'></span>
+            </div>
+            {{/if}}
+          </div>
+          <div class="checkbox m-b-md m-t-none">
+            <label class="i-checks">
+              By clicking "Sign Up", I agree to the <a href="{{pathFor 'termsOfUse'}}">Terms of Use</a> and <a href="{{pathFor 'privacyPolicy'}}">Privacy Policy</a>.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

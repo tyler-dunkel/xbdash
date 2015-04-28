@@ -1,6 +1,5 @@
 Template.signUp.rendered = function() {
 	//var ckbox = new ReactiveVar(false);
-	Session.setDefault("signUpCb", false);
 }
 
 Template.signUp.events({
@@ -69,10 +68,6 @@ Template.signUp.events({
 			}
 		});
 	},
-	'click .ckbox': function(event) {
-		var value = $(event.target).is(':checked');
-		Session.set("signUpCb", value);
-	},
 	'blur .form-control': function(e) {
 		var input = e.target;
 		ValidateForm.validateInput(input);
@@ -85,7 +80,17 @@ Template.signUp.events({
             if (error) {
                 throw new Meteor.Error("Facebook login failed");
             } else {
-            	Router.go('home');
+            	Router.go('gtConfirm');
+				return;
+            }
+        });
+    },
+    'click #twitter-login': function(event) {
+        Meteor.loginWithTwitter({}, function(error){
+            if (error) {
+                throw new Meteor.Error("Twitter login failed.");
+            } else {
+            	Router.go('gtConfirm');
 				return;
             }
         });
@@ -100,10 +105,4 @@ Template.signUp.events({
 });
 
 Tracker.autorun(function() {
-	var value = Session.get("signUpCb");
-	if (value === true) {
-		$(".sign-up-submit").removeClass('disabled');
-	} else {
-		$(".sign-up-submit").addClass('disabled');
-	}
 });
