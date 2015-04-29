@@ -6,28 +6,11 @@
 
 <template name="gtConfirmForm">
   <div id="signup" class="signup">
-    {{#if currentUser}}{{#if chkSocial}}
-    <div class="container well w-xxxl w-auto-xs" >
-      <div class="m-b-md">
-        <form name="form" class="validate" id="socialform">
-          <h2 class="text-dark text-center">Currently Logged in as</h2>
-          <div class="list-group">
-            <div class="form-group text-center">
-              {{#if chkTwitter}}
-                <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
-              {{/if}}
-              <div style="vertical-align: middle;">{{currentUser.services.facebook.name}}{{currentUser.services.twitter.screenName}}</div>
-            </div>
-          </div>
-          <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
-        </form>
-      </div>
-    </div>
-    {{/if}}{{/if}}
     <div class="container well w-xxxl w-auto-xs" >
       <div class="m-b-md">
         <form name="form" class="validate" id="gamertagform">
           <h2 class="text-dark text-center">Confirm Your Gamertag</h2>
+          <p class="text-center">You're 1 step away from seeing your new dashboard!</p>
           <div class="list-group">
             <div class="form-group">
               <input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control" data-onblur data-max="15" data-alphanumeric data-required data-msg="Valid Xbox Live gamertag required.">
@@ -49,5 +32,23 @@
         </form>
       </div>
     </div>
+    {{#if currentUser}}{{#if chkSocial}}
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-md">
+        <form name="form" class="validate" id="socialform">
+          <h2 class="text-dark text-center">Currently Logged in as</h2>
+          <div class="list-group">
+            <div class="form-group text-center">
+              {{#if chkTwitter}}
+                <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+              {{/if}}
+              <div style="vertical-align: middle;">{{currentUser.services.facebook.name}}{{currentUser.services.twitter.screenName}}</div>
+            </div>
+          </div>
+          <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+        </form>
+      </div>
+    </div>
+    {{/if}}{{/if}}
   </div>
 </template>
