@@ -2,7 +2,7 @@
 	<div> hello this is dashboard </div>
 	<div>
     {{#if currentUser}}
-        {{currentUser.profile.name}} - {{currentUser.services.facebook.email}}
+        {{currentUser.profile.name}} - {{currentUser.services.facebook.email}} - {{currentUser.services.twitter.screenName}} 
         <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
     {{/if}}
 	</div>
