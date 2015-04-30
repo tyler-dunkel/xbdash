@@ -4,22 +4,28 @@
   {{> staticFooter}}
 </template>
 
-<template name="signUpSocial">
-    {{#if currentUser}}
-        {{currentUser.services.facebook.name}} -
-        {{currentUser.services.facebook.gender}} - 
-        {{currentUser.services.facebook.email}}
-        <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
-    {{else}}
-        <ul class="list-inline social-logins">
-          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook"><i class="fa fa-facebook"></i> Sign Up with Facebook</a></li>
-          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter"><i class="fa fa-twitter"></i> Sign Up with Twitter</a></li>
-        </ul>
-    {{/if}}
-</template>
-
 <template name="signUpForm">
   <div id="signup" class="signup">
+    {{#if currentUser}}
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-md">
+        <form name="form" class="validate" id="socialform">
+          <h2 class="text-dark text-center">Currently Logged in as</h2>
+          <div class="list-group">
+            <div class="form-group text-center">
+              {{#if chkTwitter}}
+                <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+              {{/if}}
+              <div style="vertical-align: middle;">
+                {{currentUser.profile.name}}
+              </div>
+            </div>
+          </div>
+          <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+        </form>
+      </div>
+    </div>
+    {{else}}
     <div class="container well w-xxxl w-auto-xs" >
       <div class="m-b-md">
         <form name="form" class="validate" id="signupform">
@@ -50,9 +56,13 @@
           </div>
           <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Sign Up</button>
           <div class="line line-dashed"></div>
-          {{> signUpSocial}}
+          <ul class="list-inline social-logins">
+            <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook"><i class="fa fa-facebook"></i> Sign Up with Facebook</a></li>
+            <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter"><i class="fa fa-twitter"></i> Sign Up with Twitter</a></li>
+          </ul>
         </form>
       </div>
     </div>
+    {{/if}}
   </div>
 </template>

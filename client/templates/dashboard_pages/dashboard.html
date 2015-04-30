@@ -1,8 +1,11 @@
 <template name="dashboard">
 	<div> hello this is dashboard </div>
-	<div>
+	<div class="text-center">
     {{#if currentUser}}
-        {{currentUser.profile.name}} - {{currentUser.services.facebook.email}} - {{currentUser.services.twitter.screenName}} 
+    	{{#if chkTwitter}}
+    		<img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+    	{{/if}}
+        <div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
         <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
     {{/if}}
 	</div>

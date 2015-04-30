@@ -32,7 +32,7 @@
         </form>
       </div>
     </div>
-    {{#if currentUser}}{{#if chkSocial}}
+    {{#if currentUser}}
     <div class="container well w-xxxl w-auto-xs" >
       <div class="m-b-md">
         <form name="form" class="validate" id="socialform">
@@ -42,13 +42,13 @@
               {{#if chkTwitter}}
                 <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
               {{/if}}
-              <div style="vertical-align: middle;">{{currentUser.services.facebook.name}}{{currentUser.services.twitter.screenName}}</div>
+              <div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
             </div>
           </div>
           <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
         </form>
       </div>
     </div>
-    {{/if}}{{/if}}
+    {{/if}}
   </div>
 </template>

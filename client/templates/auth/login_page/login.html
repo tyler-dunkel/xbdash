@@ -4,22 +4,28 @@
   {{> staticFooter}}
 </template>
 
-<template name="logInSocial">
-    {{#if currentUser}}
-        {{currentUser.services.facebook.name}} -
-        {{currentUser.services.facebook.gender}} - 
-        {{currentUser.services.facebook.email}}
-        <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
-    {{else}}
-        <ul class="list-inline social-logins">
-          <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook"><i class="fa fa-facebook"></i> Log In with Facebook</a></li>
-          <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter"><i class="fa fa-twitter"></i> Log In with Twitter</a></li>
-        </ul>
-    {{/if}}
-</template>
-
 <template name="logInForm">
   <div id="signup" class="signup">
+    {{#if currentUser}}
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-md">
+        <form name="form" class="validate" id="socialform">
+          <h2 class="text-dark text-center">Currently Logged in as</h2>
+          <div class="list-group">
+            <div class="form-group text-center">
+              {{#if chkTwitter}}
+                <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+              {{/if}}
+              <div style="vertical-align: middle;">
+                {{currentUser.profile.name}}
+              </div>
+            </div>
+          </div>
+          <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+        </form>
+      </div>
+    </div>
+    {{else}}
     <div class="container well w-xxxl w-auto-xs" >
       <div class="m-b-md">
         <form name="form" class="validate" id="loginform">
@@ -38,9 +44,13 @@
           <button type="submit" class="btn btn-lg btn-success btn-block">Log In</button>
           <div class="text-center m-t m-b"><a href>Forgot password?</a></div>
           <div class="line line-dashed"></div>
-          {{> logInSocial}}
+          <ul class="list-inline social-logins">
+            <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook"><i class="fa fa-facebook"></i> Log In with Facebook</a></li>
+            <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter"><i class="fa fa-twitter"></i> Log In with Twitter</a></li>
+          </ul>
         </form>
       </div>
     </div>
+    {{/if}}
   </div>
 </template>

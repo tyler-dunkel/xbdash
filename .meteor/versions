@@ -53,6 +53,8 @@ meteortoys:toykit@0.3.5
 minifiers@1.1.5
 minimongo@1.0.8
 mizzao:bootboxjs@4.4.0
+mizzao:timesync@0.3.1
+mizzao:user-status@0.6.4
 mobile-status-bar@1.0.3
 mongo@1.1.0
 msavin:jetsetter@1.0.12
