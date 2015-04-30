@@ -1,5 +1,4 @@
 Template.gtConfirm.rendered = function() {
-	//var ckbox = new ReactiveVar(false);
 }
 
 Template.gtConfirmForm.helpers({
@@ -17,6 +16,12 @@ Template.gtConfirmForm.helpers({
 	chkSocial: function () {
 		if (!Meteor.user().services.twitter || 
 			!Meteor.user().services.facebook) {
+			return true;
+		}
+		return false;
+	},
+	chkFacebook: function () {
+		if (Meteor.user().services.facebook) {
 			return true;
 		}
 		return false;

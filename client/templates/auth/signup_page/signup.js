@@ -1,5 +1,4 @@
 Template.signUp.rendered = function() {
-	//var ckbox = new ReactiveVar(false);
 }
 
 Template.signUpForm.helpers({
