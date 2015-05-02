@@ -56,7 +56,9 @@ Template.gtConfirm.events({
 		var gamertag = $("#gamertag").val();
 		var email = $("#twitter-email").val();
 
-		if (email !== null) {
+		console.log(email);
+
+		if (email !== undefined) {
 			Meteor.call('setTwitterEmail', email, function(error, result) {
 				if (typeof error !== 'undefined') {
 					sweetAlert({

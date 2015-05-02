@@ -17,7 +17,7 @@ function xboxApiCaller (url, callback) {
 	});
 };
 
-var syncApiCaller = Async.wrap(xboxApiCaller);
+syncApiCaller = Async.wrap(xboxApiCaller);
 
 Meteor.methods({
 	chkGamertag: function(gamertag) {
@@ -71,7 +71,7 @@ Meteor.methods({
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
 					var gameId = j.titleId.toString();
-					Meteor._debug(result.data);
+					//Meteor._debug(result.data);
 
 					result.data.forEach(function (k) {
 						var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
