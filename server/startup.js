@@ -15,20 +15,22 @@ function userUpdater(userId) {
 		var setObject = { $set: {} };
 		//Meteor._debug(result);
 
-		if (i === 'xboxonegames' || i === 'xbox360games') {
-			if (user.profile.gamercard.gamerscore < result.data.titles.currentGamerscore) {
+		if (user.profile.gamercard.gamerscore < result.data.titles.currentGamerscore) {
+			if (i === 'xboxonegames' || i === 'xbox360games') {
 				result.data.titles.forEach(function (j) {
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
 					var gameId = j.titleId.toString();
 					//Meteor._debug(result.data);
 					//Meteor.users.upsert({ _id: user._id }, { $set: { 'profile.gamercard': result.data } });
-					
-					result.data.forEach(function (k) {
-						var achievementId = xbdAchievements.findOne(gameId)._id;
-						if (typeof k.progressState !== 'undefined') { var progressState = (k.progressState !== 'NotStarted') ? true : false; } else { var progressState = (k.unlocked !== false) ? true : false; }
 
-						if (userAchievements.progressState !== result.data.progressState) {
+					Meteor._debug(userAchievements.progressState);
+
+					if (userAchievements.progressState !== result.data.progressState) {
+						result.data.forEach(function (k) {
+							var achievementId = xbdAchievements.findOne(gameId)._id;
+							if (typeof k.progressState !== 'undefined') { var progressState = (k.progressState !== 'NotStarted') ? true : false; } else { var progressState = (k.unlocked !== false) ? true : false; }
+
 							var progression = (typeof k.progression !== 'undefined') ? k.progression.timeUnlocked : k.timeUnlocked;
 							var mediaAssets = (typeof k.mediaAssets !== 'undefined') ? k.mediaAssets[0].url : k.imageUnlocked;
 							var gsValue = k.rewards && k.rewards.length ? k.rewards[0].value : k.value;
@@ -40,12 +42,12 @@ function userUpdater(userId) {
 		                		progression: progression
 		                	};
 		                	userAchievements.upsert({ userId: user._id }, setObject);
-		                }
-					});
+						});
+					}
 
 					var earnedAchievements = (typeof j.earnedAchievements !== 'undefined') ? j.earnedAchievements : j.currentAchievements;
 
-					if (userGames.earnedAchievements !== earnedAchievements) {
+					if (userGames.earnedAchievements < earnedAchievements) {
 						setObject.$set = {
 							userId: userId,
 							currentGamerscore: j.currentGamerscore,
@@ -68,7 +70,7 @@ function updateUserData(userId) {
 
 		var url = user.profile.xuid + '/gamercard';
 		var result = syncApiCaller(url);
-		Meteor._debug(result);
+		//Meteor._debug(result);
 
 		if (user.profile.gamercard.gamerscore < result.data.gamerscore) {
 			Meteor._debug("gamerscore");
@@ -82,7 +84,7 @@ UserStatus.events.on("connectionLogin", function(fields) {
 	Meteor._debug("this is the connectionActive function");
 	var updateUserDataTimer = Meteor.setInterval(function() {
 		updateUserData(fields.userId);
-	}, 500000);
+	}, 50000);
 });
 
 process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
