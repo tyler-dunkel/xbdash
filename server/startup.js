@@ -3,8 +3,8 @@ Meteor.startup(function() {
 
 });
 
-function userUpdater(userId) {
-	var user = Meteor.users.findOne(userId);
+function userUpdater(user) {
+	//Meteor._debug(user);
 
 	[
 	'xboxonegames',
@@ -13,12 +13,16 @@ function userUpdater(userId) {
 		var url = user.profile.xuid + '/' + i;
 		var result = syncApiCaller(url);
 		var setObject = { $set: {} };
-		//Meteor._debug(result);
 
-		if (user.profile.gamercard.gamerscore < result.data.titles.currentGamerscore) {
-			if (i === 'xboxonegames' || i === 'xbox360games') {
-				result.data.titles.forEach(function (j) {
-					var url = user.profile.xuid + '/achievements/' + j.titleId;
+		if (i === 'xboxonegames' || i === 'xbox360games') {
+			result.data.titles.forEach(function (j) {
+				var currentTitle = userGames.find({userId: user._id, gameId: j.titleId}).fetch();
+				Meteor._debug(currentTitle);
+				//Meteor._debug(j.titleId);
+				//Meteor._debug(j.currentGamerscore);
+				//if (currentTitle.currentGamerscore < j.currentGamerscore) {
+					//Meteor._debug(j.currentGamerscore);
+					/*var url = user.profile.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
 					var gameId = j.titleId.toString();
 					//Meteor._debug(result.data);
@@ -55,8 +59,8 @@ function userUpdater(userId) {
 						};
 						userGames.upsert({ userId: user._id }, setObject);
 					}
-				});
-			}
+				}*/
+			});
 		}
 	});
 }
@@ -74,8 +78,8 @@ function updateUserData(userId) {
 
 		if (user.profile.gamercard.gamerscore < result.data.gamerscore) {
 			Meteor._debug("gamerscore");
-			Meteor.users.upsert({ _id: user._id }, { $set: { 'profile.gamercard': result.data } });
-			userUpdater(user._id);
+			//Meteor.users.upsert({ _id: user._id }, { $set: { 'profile.gamercard': result.data } });
+			userUpdater(user);
 		}
 	} else { return; }
 }
@@ -84,7 +88,7 @@ UserStatus.events.on("connectionLogin", function(fields) {
 	Meteor._debug("this is the connectionActive function");
 	var updateUserDataTimer = Meteor.setInterval(function() {
 		updateUserData(fields.userId);
-	}, 50000);
+	}, 500000);
 });
 
 process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
