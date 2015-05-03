@@ -16,7 +16,11 @@ function userUpdater(user) {
 
 		if (i === 'xboxonegames' || i === 'xbox360games') {
 			result.data.titles.forEach(function (j) {
-				var currentTitle = userGames.find({userId: user._id, gameId: j.titleId}).fetch();
+				if (j.maxGamerscore === 0 || j.totalGamerscore === 0) return;
+				Meteor._debug(user._id);
+				Meteor._debug(j.titleId);
+				var titleId = j.titleId.toString();
+				var currentTitle = userGames.findOne({gameId: titleId, userId: user._id});
 				Meteor._debug(currentTitle);
 				//Meteor._debug(j.titleId);
 				//Meteor._debug(j.currentGamerscore);
@@ -88,7 +92,7 @@ UserStatus.events.on("connectionLogin", function(fields) {
 	Meteor._debug("this is the connectionActive function");
 	var updateUserDataTimer = Meteor.setInterval(function() {
 		updateUserData(fields.userId);
-	}, 500000);
+	}, 5000);
 });
 
 process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
