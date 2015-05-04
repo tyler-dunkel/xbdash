@@ -1,6 +1,6 @@
 //server
 Meteor.startup(function() {
-
+	userUpdateTimerArray = [];
 });
 
 function userUpdater(user) {
@@ -226,6 +226,25 @@ UserStatus.events.on("connectionLogin", function(fields) {
 	var updateUserDataTimer = Meteor.setInterval(function() {
 		updateUserData(fields.userId);
 	}, 50000);
+
+	var userTimerNumber = userUpdateTimerArray.push(updateUserDataTimer);
+
+	Meteor.users.upsert({_id: fields.userId}, {$set: {userTimerNumber: userTimerNumber}});
+
+	var user = Meteor.users.findOne({_id: fields.userId});
+	//Meteor._debug(user.userTimerNumber);
+
+	//Meteor._debug(userTimerNumber);
+});
+
+UserStatus.events.on("connectionLogout", function(fields) {
+	var user = Meteor.users.findOne(fields.userId);
+	var userTimerNumber = user.userTimerNumber - 1;
+	//Meteor._debug(user);
+	Meteor._debug(userTimerNumber);
+	var userTimer = userUpdateTimerArray[userTimerNumber];
+	Meteor.clearInterval(userTimer);
+	userUpdateTimerArray.splice(userTimerNumber, 1);
 });
 
 process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
