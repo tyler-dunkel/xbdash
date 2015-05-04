@@ -20,11 +20,15 @@ function userUpdater(user) {
 
 		result.data.titles.forEach(function (j) {
 			if (j.maxGamerscore === 0 || j.totalGamerscore === 0) return;
-			var url = user.profile.xuid + '/achievements/' + j.titleId;
-			var result = syncApiCaller(url);
 			var gameId = j.titleId.toString();
+			var earnedAchievements = (typeof j.earnedAchievements !== 'undefined') ? j.earnedAchievements : j.currentAchievements;
 			var userGameCheck = userGames.findOne({ gameId: gameId, userId: user._id });
-			var xbdGameCheck = xbdGames.findOne({ _id: gameId, userId: user._id });
+			var xbdGameCheck = xbdGames.findOne({ _id: gameId});
+			var url = user.profile.xuid + '/achievements/' + j.titleId;
+			//var result = syncApiCaller(url);
+
+			Meteor._debug(xbdGameCheck);
+			Meteor._debug(userGameCheck);
 
 			if (typeof userGameCheck === 'undefined') {
 				if (typeof xbdGameCheck === 'undefined') {
@@ -41,7 +45,6 @@ function userUpdater(user) {
 					//Meteor._debug(singleGame);
 					var gameId = xbdGames.insert(singleGame);
 
-					var earnedAchievements = (typeof j.earnedAchievements !== 'undefined') ? j.earnedAchievements : j.currentAchievements;
 					//upsert for userGames table update or insert
 					setObject.$set = {
 						gameId: gameId,
@@ -80,7 +83,6 @@ function userUpdater(user) {
 					// gameid is a number
 					var gameId = xbdGameCheck._id;
 
-					var earnedAchievements = (typeof j.earnedAchievements !== 'undefined') ? j.earnedAchievements : j.currentAchievements;
 
 					//upsert for userGames table update or insert
 					setObject.$set = {
@@ -91,6 +93,7 @@ function userUpdater(user) {
 					userGames.upsert({ gameId: gameId, userId: userId }, setObject);
 				}
 
+				var result = syncApiCaller(url);
 				result.data.forEach(function (k) {
 					var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
 
@@ -138,7 +141,63 @@ function userUpdater(user) {
 	                	userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
 	                }
 	            });
+			} else {
+				if (userGameCheck.currentGamerscore < j.currentGamerscore) {
+					setObject.$set = {
+						userId: userId,
+						currentGamerscore: j.currentGamerscore,
+						earnedAchievements: earnedAchievements
+					}
+					userGames.upsert({ gameId: gameId, userId: userId }, setObject);
+					var result = syncApiCaller(url);
+					result.data.forEach(function (k) {
+					var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
+
+					if (typeof k.progressState !== 'undefined') { var progressState = (k.progressState !== 'NotStarted') ? true : false; } else { var progressState = (k.unlocked !== false) ? true : false; }
+
+					var progression = (typeof k.progression !== 'undefined') ? k.progression.timeUnlocked : k.timeUnlocked;
+
+					var mediaAssets = (typeof k.mediaAssets !== 'undefined') ? k.mediaAssets[0].url : k.imageUnlocked;
+					
+					var gsValue = k.rewards && k.rewards.length ? k.rewards[0].value : k.value;
+					if (typeof gsValue === 'undefined') { gsValue = k.gamerscore; }
+
+					if (typeof achievementCheck === 'undefined') {
+						// add single achievemnt
+	                    var singleAchievement = {
+	                    	//gameId: k.titleAssociations[0].id,
+	                    	gameId: gameId,
+	                    	name: k.name,
+	                    	mediaAssets: mediaAssets,
+	                    	isSecret: k.isSecret,
+	                    	description: k.description,
+	                    	lockedDescription: k.lockedDescription,
+	                    	value: gsValue
+	                    };
+	                    // achievement id is a string
+	                    var achievementId = xbdAchievements.insert(singleAchievement);
+
+	                    // update/insert user achievement
+	                    setObject.$set = {
+	                    	achievementId: achievementId,
+	                		userId: userId,
+	                		progressState: progressState,
+	                		progression: progression
+	                	};
+	                    userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
+	                } else {
+	                	var achievementId = achievementCheck._id;
+
+	                	setObject.$set = {
+	                		progressState: progressState,
+	                		progression: progression
+	                	};
+	                	userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
+	                }
+	            });
+				}
 			}
+
 		});
 	});
 }
