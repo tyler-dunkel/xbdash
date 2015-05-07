@@ -49,7 +49,7 @@ manuelschoebel:ms-seo@0.4.1
 meteor@1.1.6
 meteor-platform@1.2.2
 meteorhacks:async@1.0.0
-meteortoys:toykit@0.3.5
+meteortoys:toykit@0.5.0
 minifiers@1.1.5
 minimongo@1.0.8
 mizzao:bootboxjs@4.4.0
@@ -57,8 +57,8 @@ mizzao:timesync@0.3.1
 mizzao:user-status@0.6.4
 mobile-status-bar@1.0.3
 mongo@1.1.0
-msavin:jetsetter@1.0.12
-msavin:mongol@1.0.29
+msavin:jetsetter@1.0.13
+msavin:mongol@1.0.30
 nahue:simple-line-icons@1.0.0
 natestrauser:animate-css@3.2.6
 natestrauser:font-awesome@4.3.0

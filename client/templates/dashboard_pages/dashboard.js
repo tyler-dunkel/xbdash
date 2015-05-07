@@ -1,39 +1,6 @@
 Template.dashboard.rendered = function() {
 }
 
-Template.logInForm.helpers({
-    chkEmail: function () {
-        //var userId = Meteor.userId();
-        console.log(Meteor.user().services);
-        //console.log(Meteor.user().services.facebook.email);
-        if (!Meteor.user().emails) {
-            if (Meteor.user().services.twitter.screenName) {
-                return true;
-            }
-        }
-        return false;
-    },
-    chkSocial: function () {
-        if (!Meteor.user().services.twitter || 
-            !Meteor.user().services.facebook) {
-            return true;
-        }
-        return false;
-    },
-    chkFacebook: function () {
-        if (Meteor.user().services.facebook) {
-            return true;
-        }
-        return false;
-    },
-    chkTwitter: function () {
-        if (Meteor.user().services.twitter) {
-            return true;
-        }
-        return false;
-    }
-});
-
 Template.dashboard.events({
     'click #logout': function(event) {
         Meteor.logout(function(error){
@@ -49,6 +16,9 @@ Template.dashboard.events({
         event.preventDefault();
         var $this = $(event.target);
         $this.attr('ui-toggle') || ($this = $this.closest('[ui-toggle]'));
+        
+        $this.toggleClass('active'); // toggles active class on dedent/indent
+        
         var $target = $($this.attr('target')) || $this;
         $target.toggleClass($this.attr('ui-toggle'));
     },
