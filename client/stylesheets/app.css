@@ -942,11 +942,11 @@ body {
 .navbar-brand {
   display: inline-block;
   float: none;
-  height: auto;
-  padding: 0 20px;
   font-size: 20px;
   font-weight: 700;
+  height: auto;
   line-height: 50px;
+  padding: 0 20px;
   text-align: center;
 }
 
@@ -959,6 +959,7 @@ body {
   max-height: 20px;
   margin-top: -4px;
   vertical-align: middle;
+  max-width: 130px;
 }
 
 .signup p {
@@ -1310,6 +1311,16 @@ html {
   padding: 2px 5px;
   margin-top: 2px;
   font-size: 11px;
+}
+
+.navi ul.nav li a > img {
+  float: left;
+  line-height: 40px;
+  margin: 3px 17px 3px 2px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 15px;
 }
 
 .navi ul.nav li a > i {
@@ -3376,7 +3387,7 @@ fieldset[disabled] .i-checks input + i:before {
 
 .bg-success {
   color: #c6efd0;
-  background-color: #27c24c;
+  background-color: #138013;
 }
 
 .bg-success.lt,

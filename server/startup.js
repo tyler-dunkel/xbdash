@@ -1,6 +1,17 @@
 //server
 Meteor.startup(function() {
-	userUpdateTimerArray = [];
+	Meteor.setInterval(function() {
+		var users = Meteor.users.find({ "status.online": true });
+		Meteor._debug("user function firing");
+		if (!users.count()) {
+			Meteor._debug("there are no users online currently");
+			return;
+		}
+		users.forEach(function(user) {
+			//Meteor._debug("these ids are online: " + user._id);
+			updateUserData(user._id);
+		});
+	}, 50000);
 });
 
 function userUpdater(user) {
@@ -27,8 +38,8 @@ function userUpdater(user) {
 			var url = user.profile.xuid + '/achievements/' + j.titleId;
 			//var result = syncApiCaller(url);
 
-			Meteor._debug(xbdGameCheck);
-			Meteor._debug(userGameCheck);
+			//Meteor._debug(xbdGameCheck);
+			//Meteor._debug(userGameCheck);
 
 			if (typeof userGameCheck === 'undefined') {
 				if (typeof xbdGameCheck === 'undefined') {
@@ -197,7 +208,6 @@ function userUpdater(user) {
 	            });
 				}
 			}
-
 		});
 	});
 }
@@ -215,36 +225,18 @@ function updateUserData(userId) {
 
 		if (user.profile.gamercard.gamerscore < result.data.gamerscore) {
 			Meteor._debug("gamerscore");
-			//Meteor.users.upsert({ _id: user._id }, { $set: { 'profile.gamercard': result.data } });
+			Meteor.users.upsert({ _id: user._id }, { $set: { 'profile.gamercard': result.data } });
 			userUpdater(user);
 		}
 	} else { return; }
 }
 
 UserStatus.events.on("connectionLogin", function(fields) {
-	Meteor._debug("this is the connectionActive function");
-	var updateUserDataTimer = Meteor.setInterval(function() {
-		updateUserData(fields.userId);
-	}, 50000);
-
-	var userTimerNumber = userUpdateTimerArray.push(updateUserDataTimer);
-
-	Meteor.users.upsert({_id: fields.userId}, {$set: {userTimerNumber: userTimerNumber}});
-
-	var user = Meteor.users.findOne({_id: fields.userId});
-	//Meteor._debug(user.userTimerNumber);
-
-	//Meteor._debug(userTimerNumber);
+	
 });
 
 UserStatus.events.on("connectionLogout", function(fields) {
-	var user = Meteor.users.findOne(fields.userId);
-	var userTimerNumber = user.userTimerNumber - 1;
-	//Meteor._debug(user);
-	Meteor._debug(userTimerNumber);
-	var userTimer = userUpdateTimerArray[userTimerNumber];
-	Meteor.clearInterval(userTimer);
-	userUpdateTimerArray.splice(userTimerNumber, 1);
+	
 });
 
 process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
