@@ -1357,7 +1357,7 @@ html {
     text-align: center;
     border: none;
   }
-  .app-aside-folded .navi > ul > li > a span {
+  .app-aside-folded .navi > ul > li > a span, .app-aside-folded .xbdwrap {
     display: none;
   }
   .app-aside-folded .navi > ul > li > a span.pull-right {
@@ -5411,3 +5411,8 @@ ul.signin > li.active {
 }
 #socialform h2, #gamertagform h2 {margin-bottom: 25px;}
 .progress {margin: 5px 0;}
+.app-aside-folded .navi ul.nav li a > img.xbd {margin: 17px 22px;}
+.affix {width: 200px;}
+@media (max-width: 767px) {
+  .affix {width: 100%;}
+}

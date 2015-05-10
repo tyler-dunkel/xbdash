@@ -1,7 +1,7 @@
 Template.dashboard.rendered = function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-    })
+    });
 }
 
 Template.dashboard.events({
