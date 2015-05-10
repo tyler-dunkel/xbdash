@@ -39,11 +39,29 @@
               <div class="col-md-12">
                 <div class="row row-sm text-center">
                   <div class="col-md-3">
+                    <div class="panel padder-v item">
+                      <div class="font-thin h1">129</div>
+                      <span class="text-muted text-xs">Achievements Completed</span>
+                      <div class="top text-right w-full">
+                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of achievements completed to date."></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <a href class="block panel padder-v bg-success item">
+                      <span class="text-white font-thin h1 block">600</span>
+                      <span class="text-muted text-xs">Total Achievements Available</span>
+                      <div class="top text-right w-full">
+                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of achievemnts you can get based on your game history."></i>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-md-3">
                     <a href class="block panel padder-v item">
                       <div class="h1 text-info font-thin h1">25</div>
                       <span class="text-muted text-xs">Games Completed</span>
                       <div class="top text-right w-full">
-                        <i class="fa fa-info-circle text-warning m-r-sm"></i>
+                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of games completed to date."></i>
                       </div>
                     </a>
                   </div>
@@ -52,34 +70,16 @@
                       <span class="text-white font-thin h1 block">400</span>
                       <span class="text-muted text-xs">Total Games Played</span>
                       <div class="top text-right w-full">
-                        <i class="fa fa-info-circle text-warning m-r-sm"></i>
+                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of games you have played to date."></i>
                       </div>
                     </a>
-                  </div>
-                  <div class="col-md-3">
-                    <a href class="block panel padder-v bg-info item">
-                      <span class="text-white font-thin h1 block">600</span>
-                      <span class="text-muted text-xs">Achievements in Progress</span>
-                      <div class="top text-right w-full">
-                        <i class="fa fa-info-circle text-warning m-r-sm"></i>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="panel padder-v item">
-                      <div class="font-thin h1">129</div>
-                      <span class="text-muted text-xs">Achievements Completed</span>
-                      <div class="top text-right w-full">
-                        <i class="fa fa-info-circle text-warning m-r-sm"></i>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <div class="row row-sm text-center">
                   <div class="col-xs-12 m-b-md">
                     <div class="r bg-light dker item hbox no-border">
                       <div class="col w-xs v-middle hidden-md">
-                        <div ui-jq="sparkline" ui-options="{{data1}}, {type:'pie', height:40, sliceColors:['{{app.color.warning}}','#fff']}" class="sparkline inline"></div>
+                        <i class="fa fa-trophy icon fa-3x"></i>
                       </div>
                       <div class="col dk padder-v r-r">
                         <div class="text-primary-dk font-thin h1">
@@ -87,7 +87,7 @@
                         </div>
                         <span class="text-muted text-xs">Current Gamerscore / Max Gamerscore</span>
                         <div class="top text-right w-full">
-                          <i class="fa fa-info-circle text-warning m-r-sm"></i>
+                          <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="Your current Gamerscore based on your history over the maximum Gamerscore you can get if all games in your history have been completed."></i>
                         </div>
                       </div>
                     </div>
@@ -95,102 +95,92 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="panel wrapper">
-                  <label class="i-switch bg-warning pull-right"></label>
-                  <input type="checkbox" /> spline 1
-                  <label class="i-switch bg-warning pull-right"></label>
-                  <input type="checkbox" /> spline 2
-                  <label class="i-switch bg-warning pull-right"></label>
-                  <input type="checkbox" /> spline 3
-                  <h4 class="font-thin m-t-none m-b text-muted">Progress</h4>
-                  <div style="height:246px">spline plot</div>
-                </div>
+            
+            <!-- service -->
+            <div class="panel hbox hbox-auto-xs no-border">
+              <div class="col wrapper">
+                <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
+                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Achievements Data</h4>
+                <span class="m-b block text-sm text-muted">Line graph (updated 1 hour ago)</span>
+                <div ui-jq="plot" ui-options="
+                  [
+                    { data: [ [1,6.5],[2,6.5],[3,7],[4,8],[5,7.5],[6,7],[7,6.8],[8,7],[9,7.2],[10,7],[11,6.8],[12,7] ], points: { show: true, radius: 6}, splines: { show: true, tension: 0.45, lineWidth: 5, fill: 0 } }
+                  ], 
+                  {
+                    colors: ['#23b7e5'],
+                    series: { shadowSize: 3 },
+                    xaxis:{ 
+                      font: { color: '#ccc' },
+                      position: 'bottom',
+                      ticks: [
+                        [ 1, 'Jan' ], [ 2, 'Feb' ], [ 3, 'Mar' ], [ 4, 'Apr' ], [ 5, 'May' ], [ 6, 'Jun' ], [ 7, 'Jul' ], [ 8, 'Aug' ], [ 9, 'Sep' ], [ 10, 'Oct' ], [ 11, 'Nov' ], [ 12, 'Dec' ]
+                      ]
+                    },
+                    yaxis:{ font: { color: '#ccc' } },
+                    grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+                    tooltip: true,
+                    tooltipOpts: { content: '%x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+                  }
+                " style="height:240px" ></div>
               </div>
             </div>
-            <!-- / stats -->
+            <!-- / service -->
 
             <!-- service -->
             <div class="panel hbox hbox-auto-xs no-border">
               <div class="col wrapper">
                 <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
-                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Managed Services</h4>
-                <span class="m-b block text-sm text-muted">Service report of this year (updated 1 hour ago)</span>
-                <div ui-jq="plot" ui-options="" style="height:240px" ></div>
-              </div>
-              <div class="col wrapper-lg w-lg bg-light dk r-r">
-                <h4 class="font-thin m-t-none m-b">Reports</h4>
-                <div class="">
-                  <div class="">
-                    <span class="pull-right text-primary">60%</span>
-                    <span>Consulting</span>
-                  </div>
-                  <progressbar value="60" class="progress-xs m-t-sm bg-white" animate="true" type="primary"></progressbar>
-                  <div class="">
-                    <span class="pull-right text-info">35%</span>
-                    <span>Online tutorials</span>
-                  </div>
-                  <progressbar value="35" class="progress-xs m-t-sm bg-white" animate="true" type="info"></progressbar>
-                  <div class="">
-                    <span class="pull-right text-warning">25%</span>
-                    <span>EDU management</span>
-                  </div>
-                  <progressbar value="25" class="progress-xs m-t-sm bg-white" animate="true" type="warning"></progressbar>
-                </div>
-                <p class="text-muted">Dales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
+                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Games Data</h4>
+                <span class="m-b block text-sm text-muted">Pie graph (updated 1 hour ago)</span>
+                <div ui-jq="plot" ui-options="
+                  [ [10, 80],  [20, 40], [30, 30],  [40, 20] ],
+                  {
+                    series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                    colors: ['#7266ba','#23b7e5','#27c24c','#fad733','#f05050'],
+                    grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                    tooltip: true,
+                    tooltipOpts: { content: '%s: %p.0%' }
+                  }
+                " style="height:240px"></div>
               </div>
             </div>
             <!-- / service -->
 
-            <!-- tasks -->
-            <div class="panel wrapper">
-              <div class="row">
-                <div class="col-md-6 b-r b-light no-border-xs">
-                  <a href class="text-muted pull-right text-lg"><i class="icon-arrow-right"></i></a>
-                  <h4 class="font-thin m-t-none m-b-md text-muted">My Tasks</h4>
-                  <div class=" m-b">
-                    <div class="m-b">
-                      <span class="label text-base bg-warning pos-rlt m-r"><i class="arrow right arrow-warning"></i> 19:30</span>
-                      <a href>Feed cat</a>
-                    </div>
-                    <div class="m-b">
-                      <span class="label text-base bg-info pos-rlt m-r"><i class="arrow right arrow-info"></i> 12:30</span>
-                      <a href>Fishing Time</a>
-                    </div>
-                    <div class="m-b">
-                      <span class="label text-base bg-primary pos-rlt m-r"><i class="arrow right arrow-primary"></i> 10:30</span>
-                      <a href>Kick-off meeting</a>
-                    </div>
-                    <div class="m-b">
-                      <span class="label text-base bg-light pos-rlt m-r"><i class="arrow right arrow-light"></i> 07:30</span>
-                      <a href>Morning running</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">            
-                  <div class="row row-sm">
-                    <div class="col-xs-6 text-center">
-                      <div ui-jq="easyPieChart" class="inline m-t">
-                        <div>
-                          <span class="text-primary h4">75%</span>
-                        </div>
-                      </div>
-                      <div class="text-muted font-bold text-xs m-t m-b">Work Done</div>
-                    </div>
-                    <div class="col-xs-6 text-center">
-                      <div ui-jq="easyPieChart" class="inline m-t">
-                        <div>
-                          <span class="text-info h4">50%</span>
-                        </div>
-                      </div>
-                      <div class="text-muted font-bold text-xs m-t m-b">Started</div>
-                    </div>
-                  </div>            
-                </div>
+            <!-- service -->
+            <div class="panel hbox hbox-auto-xs no-border">
+              <div class="col wrapper">
+                <label class="i-switch bg-warning pull-right">
+                  <input type="checkbox" value="past 7 days">
+                  <i></i>
+                </label>
+                <label class="i-switch bg-warning pull-right">
+                  <input type="checkbox" value="past 3 months">
+                  <i></i>
+                </label>
+                <label class="i-switch bg-warning pull-right">
+                  <input type="checkbox" value="past 3 years">
+                  <i></i>
+                </label>
+                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Gamerscore Data</h4>
+                <span class="m-b block text-sm text-muted">Area chart (updated 1 hour ago)</span>
+                <div ui-jq="plot" ui-options="
+                  [
+                    { data: [ [0,7],[1,6.5],[2,12.5],[3,7],[4,9],[5,6],[6,11],[7,6.5],[8,8],[9,7] ], label: 'A', points: { show: true }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } }, 
+                    { data: [ [0,4],[1,4.5],[2,7],[3,4.5],[4,3],[5,3.5],[6,6],[7,3],[8,4],[9,3] ], label: 'B', points: { show: true, radius: 4 } }
+                  ],
+                  {
+                    colors: [ '#23b7e5','#fad733' ],
+                    series: { shadowSize: 2 },
+                    xaxis:{ font: { color: '#ccc' } },
+                    yaxis:{ font: { color: '#ccc' } },
+                    grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+                    tooltip: true,
+                    tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+                  }
+                " style="height:240px"></div>
               </div>
             </div>
-            <!-- / tasks -->
+            <!-- / service -->
           </div>
         </div>
         <!-- / main -->
@@ -201,36 +191,100 @@
             <div class="m-b text-md">Recent Activity</div>
             <ul class="list-group no-bg no-borders pull-in">
               <li class="list-group-item">
-                <a href class="thumb-lg m-r">
-                  <img src="img/a1.jpg" class="r r-2x">
-                </a>
-                <span class="pull-right label bg-primary inline m-t-sm">80%</span>
-                <span>
-                  <a href="3">Destiny</a>
-                  <small class="text-muted clear text-ellipsis">30 achievements done</small>
-                  <small class="text-muted clear text-ellipsis">5 achievements left</small>
-                </span>
-              </li>
-              <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a2.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-info inline m-t-sm">90%</span>
-                <a href>Call of Duty</a>
+                <a href>Destiny</a>
+                <span class="pull-right label bg-success inline m-t-sm">90%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
+                    17 achievements completed
+                  </div>
+                </div>
               </li>
               <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a3.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-warning inline m-t-sm">75%</span>
                 <a href>Far Cry 4</a>
+                <span class="pull-right label bg-success inline m-t-sm">75%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
+                    15 achievements completed
+                  </div>
+                </div>
               </li>
               <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a4.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-warning inline m-t-sm">90%</span>
                 <a href>Grand Theft Auto V</a>
+                <span class="pull-right label bg-success inline m-t-sm">90%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
+                    17 achievements completed
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="thumb-sm m-r">
+                  <img src="img/a2.jpg" class="r r-2x">
+                </a>
+                <a href>Call of Duty</a>
+                <span class="pull-right label bg-success inline m-t-sm">90%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
+                    15 achievements completed
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="thumb-sm m-r">
+                  <img src="img/a3.jpg" class="r r-2x">
+                </a>
+                <a href>Far Cry 4</a>
+                <span class="pull-right label bg-success inline m-t-sm">75%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
+                    17 achievements completed
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="thumb-sm m-r">
+                  <img src="img/a4.jpg" class="r r-2x">
+                </a>
+                <a href>Grand Theft Auto V</a>
+                <span class="pull-right label bg-success inline m-t-sm">90%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
+                    15 achievements completed
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="thumb-sm m-r">
+                  <img src="img/a2.jpg" class="r r-2x">
+                </a>
+                <a href>Call of Duty</a>
+                <span class="pull-right label bg-success inline m-t-sm">90%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
+                    17 achievements completed
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="thumb-sm m-r">
+                  <img src="img/a3.jpg" class="r r-2x">
+                </a>
+                <a href>Far Cry 4</a>
+                <span class="pull-right label bg-success inline m-t-sm">75%</span>
+                <div class="progress progress-md">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
+                    15 achievements completed
+                  </div>
+                </div>
               </li>
             </ul>
             <!-- / activity -->
@@ -310,6 +364,36 @@
                 <div class="clear">
                   <div><a href>Mogen Polish</a></div>
                   <small class="text-muted">Writter, Mag Editor</small>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="pull-left thumb-sm avatar m-r">
+                  <img src="img/a6.jpg" alt="..." class="img-circle">
+                  <i class="busy b-white bottom"></i>
+                </a>
+                <div class="clear">
+                  <div><a href>Joge Lucky</a></div>
+                  <small class="text-muted">Art director, Movie Cut</small>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="pull-left thumb-sm avatar m-r">
+                  <img src="img/a7.jpg" alt="..." class="img-circle">
+                  <i class="away b-white bottom"></i>
+                </a>
+                <div class="clear">
+                  <div><a href>Folisise Chosielie</a></div>
+                  <small class="text-muted">Musician, Player</small>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <a href class="pull-left thumb-sm avatar m-r">
+                  <img src="img/a8.jpg" alt="..." class="img-circle">
+                  <i class="away b-white bottom"></i>
+                </a>
+                <div class="clear">
+                  <div><a href>Aron Gonzalez</a></div>
+                  <small class="text-muted">Designer</small>
                 </div>
               </li>
               <li class="list-group-item">

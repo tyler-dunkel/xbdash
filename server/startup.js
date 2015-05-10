@@ -1,6 +1,7 @@
 //server
 Meteor.startup(function() {
 
+	/*
 	//function to update user data if they are currently active on the site
 	Meteor.setInterval(function() {
 		var users = Meteor.users.find({ "status.online": true });
@@ -63,6 +64,7 @@ Meteor.startup(function() {
 			userDailyRank++;
 		});
 	}, 5000);
+	*/
 });
 
 function userUpdater(user) {

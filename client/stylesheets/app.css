@@ -268,6 +268,10 @@ a:hover .caret-white {
   background-color: transparent;
 }
 
+.list-group.no-bg .b-b {
+  border-bottom: 1px solid #ddd;
+}
+
 .list-group-item {
   padding-right: 15px;
   border-color: #e7ecee;
@@ -5406,3 +5410,4 @@ ul.signin > li.active {
   color: #fff;
 }
 #socialform h2, #gamertagform h2 {margin-bottom: 25px;}
+.progress {margin: 5px 0;}

@@ -30,3 +30,4 @@ accounts-twitter
 service-configuration
 mizzao:user-status
 momentjs:moment
+d3js:d3
