@@ -6,50 +6,44 @@
         <span>Navigation</span>
       </li>
       <li>
-        <a href="#">
-          <i class="glyphicon glyphicon-home icon"></i>
-          <span class="font-bold">Home</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
+        <a href="{{pathFor 'home'}}">
           <img src="img/xboxdash_whiteicon.png" alt="{{appName}}" title="{{appName}}" class="glyphicon-list xbd" style="" /> 
           <span class="font-bold">Dashboard</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{pathFor 'leaderboardsPage'}}">
           <i class="fa fa-bar-chart-o icon"></i>
           <span class="font-bold">Leaderboards</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{pathFor 'achievementsPage'}}">
           <i class="fa fa-trophy icon"></i>
           <span class="font-bold">Achievements</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{pathFor 'gamesPage'}}">
           <i class="icon icon-target icon"></i>
           <span class="font-bold">Games</span>
         </a>
       </li>
       <li class="line dk"></li>
       <li>
-        <a href="#">
+        <a href="{{pathFor 'newsPage'}}">
           <i class="glyphicon glyphicon-fire icon"></i>
           <span class="font-bold">News</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{pathFor 'aboutUs'}}">
           <i class="fa fa-info-circle"></i>
           <span class="font-bold">About XBOXDASH</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="{{pathFor 'helpPage'}}">
           <i class="icon-question icon"></i>
           <span class="font-bold">Help</span>
         </a>
@@ -57,8 +51,12 @@
       <li class="line dk"></li>
       <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
         <div class="text-center-folded">
-          <span class="hidden-folded">Privacy Policy</span>
-          <span class="pull-right pull-none-folded">Terms of Use</span>
+          <a class="legal" href="{{pathFor 'privacyPolicy'}}">
+            Privacy Policy
+          </a>
+          <a class="legal pull-right pull-none-folded" href="{{pathFor 'termsOfUse'}}">
+            Terms of Use
+          </a>
         </div>
       </li>
     </ul>

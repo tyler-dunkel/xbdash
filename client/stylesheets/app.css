@@ -5416,3 +5416,14 @@ ul.signin > li.active {
 @media (max-width: 767px) {
   .affix {width: 100%;}
 }
+.leaderboards .h3,
+.achievements .h3,
+.games .h3,
+.news .h3,
+.help .h3 {
+  line-height: 45px;
+}
+.navi ul.nav li a.legal {
+    display: inline;
+    padding: 0;
+}
