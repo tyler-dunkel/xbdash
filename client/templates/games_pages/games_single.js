@@ -1,7 +1,7 @@
-Template.games_single.rendered = function() {
+Template.gamesSinglePage.rendered = function() {
 }
 
-Template.games_single.events({
+Template.gamesSinglePage.events({
 });
 
 Tracker.autorun(function() {

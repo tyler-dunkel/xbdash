@@ -1,7 +1,7 @@
-Template.help.rendered = function() {
+Template.helpPage.rendered = function() {
 }
 
-Template.help.events({
+Template.helpPage.events({
 });
 
 Tracker.autorun(function() {

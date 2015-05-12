@@ -1,7 +1,7 @@
-Template.comparison.rendered = function() {
+Template.comparisonPage.rendered = function() {
 }
 
-Template.comparison.events({
+Template.comparisonPage.events({
 });
 
 Tracker.autorun(function() {
