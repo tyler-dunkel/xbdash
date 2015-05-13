@@ -1,20 +1,35 @@
 function xboxApiCaller (url, callback) {
-	HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result){
-		if (!error) {
-			var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
-			if (rateLimitRemaining > 0) {
-				Meteor._debug("rate limit is more than 0");
-				Meteor._debug("Calls Left: " + rateLimitRemaining);
-				callback(null, result);
+	try {
+		HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result){
+			if (!error) {
+				var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
+				if (rateLimitRemaining > 0) {
+					Meteor._debug("rate limit is more than 0");
+					Meteor._debug("Calls Left: " + rateLimitRemaining);
+					callback(null, result);
+				} else {
+					var error = new Meteor.Error("rateLimitExpired", "Rate limit has expired.");
+					callback(error, null);
+				}
 			} else {
-				var error = new Meteor.Error("rateLimitExpired", "Rate limit has expired.");
+				var error = new Meteor.Error("serverError", "The server isn't reachable.");
 				callback(error, null);
 			}
-		} else {
-			var error = new Meteor.Error("serverError", "The server isn't reachable.");
-			callback(error, null);
-		}
-	});
+		});
+	} catch (error) {
+		// If the API responded with an error message and a payload 
+	    if (error.response) {
+	      var errorCode = error.response.data.code;
+	      var errorMessage = error.response.data.message;
+	    // Otherwise use a generic error message
+	    } else {
+	      var errorCode = 500;
+	      var errorMessage = 'Cannot access the API';
+	    }
+	    // Create an Error object and return it via callback
+	    var myError = new Meteor.Error(errorCode, errorMessage);
+	    callback(myError, null);
+	}
 };
 
 syncApiCaller = Async.wrap(xboxApiCaller);
@@ -63,15 +78,17 @@ Meteor.methods({
 			}
 
 			if (i === 'xboxonegames' || i === 'xbox360games') {
-				//if (result.data.titles.length < 1) {
-				//	return;
-				//}
+				
+				if (!result.data.titles) { return; }
+
 				result.data.titles.forEach(function (j) {
 					if (j.maxGamerscore === 0 || j.totalGamerscore === 0) return;
 					var url = user.profile.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
 					var gameId = j.titleId.toString();
 					//Meteor._debug(result.data);
+
+					if (!Object.prototype.toString.call(result.data) === '[object Array]') { return; }
 
 					result.data.forEach(function (k) {
 						var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });

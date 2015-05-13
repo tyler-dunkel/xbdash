@@ -3,6 +3,7 @@ Template.signUp.rendered = function() {
 
 Template.signUp.events({
 	'submit #signupform': function(e) {
+		subMana.clear();
 		e.preventDefault();
 
 		//validate the form
@@ -75,6 +76,7 @@ Template.signUp.events({
 		ValidateForm.clearInputStatus(e.target);
 	},
 	'click #facebook-login': function(event) {
+		subMana.clear();
         Meteor.loginWithFacebook({}, function(error){
             if (error) {
                 throw new Meteor.Error("Facebook login failed");
@@ -85,6 +87,7 @@ Template.signUp.events({
         });
     },
     'click #twitter-login': function(event) {
+    	subMana.clear();
         Meteor.loginWithTwitter({}, function(error){
             if (error) {
                 throw new Meteor.Error("Twitter login failed.");

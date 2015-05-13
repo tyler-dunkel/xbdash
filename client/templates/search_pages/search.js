@@ -1,7 +1,7 @@
-Template.searchbar.rendered = function() {
+Template.searchBar.rendered = function() {
 }
 
-Template.searchbar.events({
+Template.searchBar.events({
 });
 
 Tracker.autorun(function() {

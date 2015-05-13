@@ -13,6 +13,7 @@ Template.gtConfirm.events({
         })
     },
 	'submit #gamertagform': function(e) {
+		subMana.clear();
 		e.preventDefault();
 
 		//validate the form

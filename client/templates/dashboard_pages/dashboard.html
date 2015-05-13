@@ -40,7 +40,7 @@
                 <div class="row row-sm text-center">
                   <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="panel padder-v item">
-                      <div class="font-thin h1">129</div>
+                      <div class="font-thin h1">{{achievementsCompleted}}</div>
                       <span class="text-muted text-xs">Achievements Completed</span>
                       <div class="top text-right w-full">
                         <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of achievements completed to date."></i>
@@ -49,7 +49,7 @@
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6">
                     <a href class="block panel padder-v bg-success item">
-                      <span class="text-white font-thin h1 block">600</span>
+                      <span class="text-white font-thin h1 block">{{totalAchievements}}</span>
                       <span class="text-muted text-xs">Total Achievements Available</span>
                       <div class="top text-right w-full">
                         <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of achievemnts you can get based on your game history."></i>
@@ -58,7 +58,7 @@
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6">
                     <a href class="block panel padder-v item">
-                      <div class="h1 text-info font-thin h1">25</div>
+                      <div class="font-thin h1">{{gamesCompleted}}</div>
                       <span class="text-muted text-xs">Games Completed</span>
                       <div class="top text-right w-full">
                         <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of games completed to date."></i>
@@ -67,7 +67,7 @@
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6">
                     <a href class="block panel padder-v bg-success item">
-                      <span class="text-white font-thin h1 block">400</span>
+                      <span class="text-white font-thin h1 block">{{totalGames}}</span>
                       <span class="text-muted text-xs">Total Games Played</span>
                       <div class="top text-right w-full">
                         <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of games you have played to date."></i>
@@ -83,7 +83,7 @@
                       </div>
                       <div class="col dk padder-v r-r">
                         <div class="text-primary-dk font-thin h1">
-                          <span>18,000</span><span class="font-thin h5">/ 30,000</span>
+                          <span>{{currentUser.profile.gamercard.gamerscore}}</span><span class="font-thin h5"> / {{maxGamerscore}}</span>
                         </div>
                         <span class="text-muted text-xs">Current Gamerscore / Max Gamerscore</span>
                         <div class="top text-right w-full">

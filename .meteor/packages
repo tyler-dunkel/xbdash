@@ -31,3 +31,5 @@ service-configuration
 mizzao:user-status
 momentjs:moment
 d3js:d3
+reywood:publish-composite
+meteorhacks:subs-manager

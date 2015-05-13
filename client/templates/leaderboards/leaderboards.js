@@ -1,7 +1,7 @@
-Template.leaderboards.rendered = function() {
+Template.leaderboardsPage.rendered = function() {
 }
 
-Template.leaderboards.events({
+Template.leaderboardsPage.events({
 });
 
 Tracker.autorun(function() {

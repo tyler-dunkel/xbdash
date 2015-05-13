@@ -1,7 +1,7 @@
-Template.achievements.rendered = function() {
+Template.achievementsPage.rendered = function() {
 }
 
-Template.achievements.events({
+Template.achievementsPage.events({
 });
 
 Tracker.autorun(function() {

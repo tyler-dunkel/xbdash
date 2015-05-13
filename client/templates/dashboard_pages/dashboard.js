@@ -39,5 +39,57 @@ Template.dashboard.events({
     }
 });
 
+Template.dashboardApp.helpers({
+    achievementsCompleted: function () {
+        var achievementsCount = userAchievements.find({ progressState: true }).count();
+        return achievementsCount;
+    },
+    totalAchievements: function () {
+        var totalAchievements = userAchievements.find({}).count();
+        return totalAchievements;
+    },
+    gamesCompleted: function () {
+        var gameCount = 0;
+        var userId = Meteor.userId();
+        var userGamesFind = userGames.find({ userId: userId });
+        userGamesFind.forEach(function(g) {
+            var gameId = g.gameId;
+            var currentGamerscore = g.currentGamerscore;
+            var getGame = xbdGames.findOne({ _id: gameId });
+            if (typeof getGame !== 'undefined') {
+                var maxGamerscore = getGame.maxGamerscore;
+            }
+            //console.log(maxGamerscore);
+            if ( currentGamerscore === maxGamerscore ) gameCount += 1;
+        });
+        return gameCount;
+        //console.log(userGame);
+        //return userGame;
+
+        /*
+        get userGames by userId,
+        get gameId of user userGames,
+        find user's currentGamerscore of userGame by gameId in userGames,
+        var gamesCount = 0,
+        if (currentGamerscore / maxGamerscore == 1) += gamesCount;
+        */
+    },
+    totalGames: function () {
+        var totalGames = userGames.find({}).count();
+        return totalGames;
+    },
+    maxGamerscore: function () {
+        var userId = Meteor.userId();
+        var userGamesFind = userGames.find({ userId: userId });
+        var maxGamerscore = 0;
+        userGamesFind.forEach(function(userGame) {
+            var gameId = userGame.gameId;
+            var getGame = xbdGames.findOne({ _id: gameId });
+            maxGamerscore += getGame.maxGamerscore;
+        });
+        return maxGamerscore;
+    }
+});
+
 Tracker.autorun(function() {
 });

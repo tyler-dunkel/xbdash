@@ -1,7 +1,6 @@
 //server
 Meteor.startup(function() {
 
-	/*
 	//function to update user data if they are currently active on the site
 	Meteor.setInterval(function() {
 		var users = Meteor.users.find({ "status.online": true });
@@ -34,8 +33,9 @@ Meteor.startup(function() {
 
 	//function to count a users gamerscore gains for the day and creating a daily rank according to gamerscore
 	Meteor.setInterval(function() {
+		var count = 0;
 		var users = Meteor.users.find({"profile.gamercard.gamerscore": {$gt: 1}});
-		var oneDay = moment().subtract(1, 'd').toDate();
+		var oneDay = moment().startOf('day').toDate();
 
 		//find each users gamerscore for the past 24 hours and put it into a field called userDailyGamerscore
 		users.forEach(function(user){
@@ -46,6 +46,7 @@ Meteor.startup(function() {
 			}
 			var userDailyGamerscore = 0;
 			userDailyAchievements.forEach(function(achievement) {
+				count++;
 				Meteor._debug("achievement is here: " + achievement.achievementId);
 				var singleAchievement = xbdAchievements.findOne(achievement.achievementId);
 				//Meteor._debug(singleAchievement);
@@ -54,6 +55,7 @@ Meteor.startup(function() {
 				//Meteor._debug(userDailyGamerscore);
 			});
 			Meteor.users.upsert({_id: user._id}, {$set: {"profile.userDailyGamerscore": userDailyGamerscore}});
+			Meteor._debug(count);
 		});
 
 		//find each user and assign them a daily rank based upon the above computed userDailyGamerscore
@@ -64,7 +66,7 @@ Meteor.startup(function() {
 			userDailyRank++;
 		});
 	}, 5000);
-	*/
+
 });
 
 function userUpdater(user) {
@@ -81,6 +83,8 @@ function userUpdater(user) {
 		var url = user.profile.xuid + '/' + i;
 		var result = syncApiCaller(url);
 		var setObject = { $set: {} };
+
+		if (!result.data.titles) { return; }
 
 		result.data.titles.forEach(function (j) {
 			if (j.maxGamerscore === 0 || j.totalGamerscore === 0) return;
@@ -158,6 +162,9 @@ function userUpdater(user) {
 				}
 
 				var result = syncApiCaller(url);
+
+				if (!Object.prototype.toString.call(result.data) === '[object Array]') { return; }
+
 				result.data.forEach(function (k) {
 					var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
 
@@ -215,52 +222,55 @@ function userUpdater(user) {
 					}
 					userGames.upsert({ gameId: gameId, userId: userId }, setObject);
 					var result = syncApiCaller(url);
+
+					if (!Object.prototype.toString.call(result.data) === '[object Array]') { return; }
+
 					result.data.forEach(function (k) {
-					var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
+						var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
 
-					if (typeof k.progressState !== 'undefined') { var progressState = (k.progressState !== 'NotStarted') ? true : false; } else { var progressState = (k.unlocked !== false) ? true : false; }
+						if (typeof k.progressState !== 'undefined') { var progressState = (k.progressState !== 'NotStarted') ? true : false; } else { var progressState = (k.unlocked !== false) ? true : false; }
 
-					var progression = (typeof k.progression !== 'undefined') ? k.progression.timeUnlocked : k.timeUnlocked;
-					progression = new Date(progression);
+						var progression = (typeof k.progression !== 'undefined') ? k.progression.timeUnlocked : k.timeUnlocked;
+						progression = new Date(progression);
 
-					var mediaAssets = (typeof k.mediaAssets !== 'undefined') ? k.mediaAssets[0].url : k.imageUnlocked;
+						var mediaAssets = (typeof k.mediaAssets !== 'undefined') ? k.mediaAssets[0].url : k.imageUnlocked;
 					
-					var gsValue = k.rewards && k.rewards.length ? k.rewards[0].value : k.value;
-					if (typeof gsValue === 'undefined') { gsValue = k.gamerscore; }
+						var gsValue = k.rewards && k.rewards.length ? k.rewards[0].value : k.value;
+						if (typeof gsValue === 'undefined') { gsValue = k.gamerscore; }
 
-					if (typeof achievementCheck === 'undefined') {
-						// add single achievemnt
-	                    var singleAchievement = {
-	                    	//gameId: k.titleAssociations[0].id,
-	                    	gameId: gameId,
-	                    	name: k.name,
-	                    	mediaAssets: mediaAssets,
-	                    	isSecret: k.isSecret,
-	                    	description: k.description,
-	                    	lockedDescription: k.lockedDescription,
-	                    	value: gsValue
-	                    };
-	                    // achievement id is a string
-	                    var achievementId = xbdAchievements.insert(singleAchievement);
+						if (typeof achievementCheck === 'undefined') {
+							// add single achievemnt
+		                    var singleAchievement = {
+		                    	//gameId: k.titleAssociations[0].id,
+		                    	gameId: gameId,
+		                    	name: k.name,
+		                    	mediaAssets: mediaAssets,
+		                    	isSecret: k.isSecret,
+		                    	description: k.description,
+		                    	lockedDescription: k.lockedDescription,
+		                    	value: gsValue
+		                    };
+		                    // achievement id is a string
+		                    var achievementId = xbdAchievements.insert(singleAchievement);
 
-	                    // update/insert user achievement
-	                    setObject.$set = {
-	                    	achievementId: achievementId,
-	                		userId: userId,
-	                		progressState: progressState,
-	                		progression: progression
-	                	};
-	                    userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
-	                } else {
-	                	var achievementId = achievementCheck._id;
+		                    // update/insert user achievement
+		                    setObject.$set = {
+		                    	achievementId: achievementId,
+		                		userId: userId,
+		                		progressState: progressState,
+		                		progression: progression
+		                	};
+		                    userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
+		                } else {
+		                	var achievementId = achievementCheck._id;
 
-	                	setObject.$set = {
-	                		progressState: progressState,
-	                		progression: progression
-	                	};
-	                	userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
-	                }
-	            });
+		                	setObject.$set = {
+		                		progressState: progressState,
+		                		progression: progression
+		                	};
+		                	userAchievements.upsert({ achievementId: achievementId, userId: userId }, setObject);
+		                }
+		            });
 				}
 			}
 		});

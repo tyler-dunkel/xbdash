@@ -1,7 +1,7 @@
-Template.acievements_single.rendered = function() {
+Template.acievementsSinglePage.rendered = function() {
 }
 
-Template.acievements_single.events({
+Template.acievementsSinglePage.events({
 });
 
 Tracker.autorun(function() {
