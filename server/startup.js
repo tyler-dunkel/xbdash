@@ -110,11 +110,16 @@ function userUpdater(user) {
 						titleType: j.titleType,
 						maxGamerscore: maxGamerscore
 					};
+
+					var lastUnlock = (typeof j.lastUnlock !== 'undefined') ? j.lastUnlock : j.lastPlayed;
+					lastUnlock = new Date(lastUnlock);
+
 					//Meteor._debug(singleGame);
 					var gameId = xbdGames.insert(singleGame);
 
 					//upsert for userGames table update or insert
 					setObject.$set = {
+						lastUnlock: lastUnlock,
 						gameId: gameId,
 						userId: userId,
 						currentGamerscore: j.currentGamerscore,
@@ -148,12 +153,15 @@ function userUpdater(user) {
 					};
 					gameDetails.upsert({ gameId: gameId }, setObject );
 				} else {
+					var lastUnlock = (typeof j.lastUnlock !== 'undefined') ? j.lastUnlock : j.lastPlayed;
+					lastUnlock = new Date(lastUnlock);
+
 					// gameid is a number
 					var gameId = xbdGameCheck._id;
 
-
 					//upsert for userGames table update or insert
 					setObject.$set = {
+						lastUnlock: lastUnlock,
 						userId: userId,
 						currentGamerscore: j.currentGamerscore,
 						earnedAchievements: earnedAchievements
@@ -215,12 +223,17 @@ function userUpdater(user) {
 	            });
 			} else {
 				if (userGameCheck.currentGamerscore < j.currentGamerscore) {
+					var lastUnlock = (typeof j.lastUnlock !== 'undefined') ? j.lastUnlock : j.lastPlayed;
+					lastUnlock = new Date(lastUnlock);
+
 					setObject.$set = {
+						lastUnlock: lastUnlock,
 						userId: userId,
 						currentGamerscore: j.currentGamerscore,
 						earnedAchievements: earnedAchievements
 					}
 					userGames.upsert({ gameId: gameId, userId: userId }, setObject);
+					
 					var result = syncApiCaller(url);
 
 					if (!Object.prototype.toString.call(result.data) === '[object Array]') { return; }

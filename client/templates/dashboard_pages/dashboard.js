@@ -85,7 +85,22 @@ Template.dashboardApp.helpers({
     },
     gamesList: function () {
         var user = Meteor.user();
-        return userGames.find({ userId: user._id, currentGamerscore: {$gt: 1}}, { $sort: { currentGamerscore: -1 } });
+        return userGames.find({ userId: user._id, currentGamerscore: { $gt: 1 }}, { sort: { lastUnlock: -1 }, limit: 10 });
+    },
+    gameName: function (userGameId) {
+        var game = xbdGames.findOne({ _id: userGameId });
+        return game.name;
+    },
+    percentageComplete: function (gameId, earnedAchievements) {
+        var achievementCount = xbdAchievements.find({ gameId: gameId }).count();
+        return Math.round(earnedAchievements / achievementCount * 100);
+    },
+    remainingAchievements: function (gameId) {
+        var achievementCount = xbdAchievements.find({ gameId: gameId }).count();
+        return achievementCount - this.earnedAchievements;
+    },
+    debugger: function () {
+        console.log(this);
     }
 });
 

@@ -154,12 +154,18 @@ Meteor.methods({
 							titleType: j.titleType,
 							maxGamerscore: maxGamerscore
 						};
+
+						var lastUnlock = (typeof j.lastUnlock !== 'undefined') ? j.lastUnlock : j.lastPlayed;
+						lastUnlock = new Date(lastUnlock);
+						
 						//Meteor._debug(singleGame);
 						var gameId = xbdGames.insert(singleGame);
 
 						var earnedAchievements = (typeof j.earnedAchievements !== 'undefined') ? j.earnedAchievements : j.currentAchievements;
+						
 						//upsert for userGames table update or insert
 						setObject.$set = {
+							lastUnlock: lastUnlock,
 							gameId: gameId,
 							userId: userId,
 							currentGamerscore: j.currentGamerscore,
@@ -193,6 +199,9 @@ Meteor.methods({
 						};
 						gameDetails.upsert({ gameId: gameId }, setObject );
 					} else {
+						var lastUnlock = (typeof j.lastUnlock !== 'undefined') ? j.lastUnlock : j.lastPlayed;
+						lastUnlock = new Date(lastUnlock);
+						
 						// gameid is a number
 						var gameId = gameCheck._id;
 
@@ -200,6 +209,7 @@ Meteor.methods({
 
 						//upsert for userGames table update or insert
 						setObject.$set = {
+							lastUnlock: lastUnlock,
 							userId: userId,
 							currentGamerscore: j.currentGamerscore,
 							earnedAchievements: earnedAchievements

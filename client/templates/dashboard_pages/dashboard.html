@@ -23,11 +23,11 @@
               <div class="col-sm-6 text-right hidden-xs">
                 <div class="inline m-r text-left">
                   <div class="m-b-xs">Daily Rank</div>
-                  <div class="h4 text-success font-bold">1</div>
+                  <div class="h4 text-success font-bold">{{currentUser.profile.userDailyRank}}</div>
                 </div>
                 <div class="inline text-left">
                   <div class="m-b-xs">Overall Rank</div>
-                  <div class="h4 text-success font-bold">521</div>
+                  <div class="h4 text-success font-bold">{{currentUser.profile.userOverallRank}}</div>
                 </div>
               </div>
             </div>
@@ -195,12 +195,15 @@
                 <a href class="thumb-sm m-r">
                   <img src="img/a2.jpg" class="r r-2x">
                 </a>
-                <a href>{{this.name}}</a>
-                <span class="pull-right label bg-success inline m-t-sm">90%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
-                    {{this.earnedAchievements}}
+                <a href>{{gameName this.gameId}}</a>
+                <span class="pull-right label bg-success inline m-t-sm">
+                  {{percentageComplete this.gameId this.earnedAchievements}}%
+                </span>
+                <div class="progress progress-md text-center">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="{{remainingAchievements this.gameId}} achievements left" style="width: {{percentageComplete this.gameId this.earnedAchievements}}%">
+                    {{this.earnedAchievements}} done
                   </div>
+                  {{remainingAchievements this.gameId}} left
                 </div>
               </li>
               {{/each}}
