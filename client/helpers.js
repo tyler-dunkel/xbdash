@@ -1,3 +1,7 @@
+numberFormatter = function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 Template.registerHelper({
     appName: function () {
         return "XboxDash";

@@ -42,11 +42,11 @@ Template.dashboard.events({
 Template.dashboardApp.helpers({
     achievementsCompleted: function () {
         var achievementsCount = userAchievements.find({ progressState: true }).count();
-        return achievementsCount;
+        return numberFormatter(achievementsCount);
     },
     totalAchievements: function () {
         var totalAchievements = userAchievements.find({}).count();
-        return totalAchievements;
+        return numberFormatter(totalAchievements);
     },
     gamesCompleted: function () {
         var gameCount = 0;
@@ -62,21 +62,15 @@ Template.dashboardApp.helpers({
             //console.log(maxGamerscore);
             if ( currentGamerscore === maxGamerscore ) gameCount += 1;
         });
-        return gameCount;
-        //console.log(userGame);
-        //return userGame;
-
-        /*
-        get userGames by userId,
-        get gameId of user userGames,
-        find user's currentGamerscore of userGame by gameId in userGames,
-        var gamesCount = 0,
-        if (currentGamerscore / maxGamerscore == 1) += gamesCount;
-        */
+        return numberFormatter(gameCount);
     },
     totalGames: function () {
         var totalGames = userGames.find({}).count();
-        return totalGames;
+        return numberFormatter(totalGames);
+    },
+    currentGamerscore: function () {
+        var user = Meteor.user();
+        return numberFormatter(user.profile.gamercard.gamerscore);
     },
     maxGamerscore: function () {
         var userId = Meteor.userId();
@@ -87,7 +81,11 @@ Template.dashboardApp.helpers({
             var getGame = xbdGames.findOne({ _id: gameId });
             maxGamerscore += getGame.maxGamerscore;
         });
-        return maxGamerscore;
+        return numberFormatter(maxGamerscore);
+    },
+    gamesList: function () {
+        var user = Meteor.user();
+        return userGames.find({ userId: user._id, currentGamerscore: {$gt: 1}}, { $sort: { currentGamerscore: -1 } });
     }
 });
 

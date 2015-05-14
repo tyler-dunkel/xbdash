@@ -83,7 +83,7 @@
                       </div>
                       <div class="col dk padder-v r-r">
                         <div class="text-primary-dk font-thin h1">
-                          <span>{{currentUser.profile.gamercard.gamerscore}}</span><span class="font-thin h5"> / {{maxGamerscore}}</span>
+                          <span>{{currentGamerscore}}</span><span class="font-thin h5"> / {{maxGamerscore}}</span>
                         </div>
                         <span class="text-muted text-xs">Current Gamerscore / Max Gamerscore</span>
                         <div class="top text-right w-full">
@@ -184,113 +184,31 @@
           </div>
         </div>
         <!-- / main -->
-        <!-- right col -->
+        <!-- game list -->
         <div class="col w-xxl bg-white-only b-l bg-auto no-border-xs">
           <div class="wrapper-md">
             <!-- activity -->
             <div class="m-b text-md">Recent Activity</div>
             <ul class="list-group no-bg no-borders pull-in">
+              {{#each gamesList}}
               <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a2.jpg" class="r r-2x">
                 </a>
-                <a href>Destiny</a>
+                <a href>{{this.name}}</a>
                 <span class="pull-right label bg-success inline m-t-sm">90%</span>
                 <div class="progress progress-md">
                   <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
-                    17 achievements completed
+                    {{this.earnedAchievements}}
                   </div>
                 </div>
               </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a3.jpg" class="r r-2x">
-                </a>
-                <a href>Far Cry 4</a>
-                <span class="pull-right label bg-success inline m-t-sm">75%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
-                    15 achievements completed
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a4.jpg" class="r r-2x">
-                </a>
-                <a href>Grand Theft Auto V</a>
-                <span class="pull-right label bg-success inline m-t-sm">90%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
-                    17 achievements completed
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a2.jpg" class="r r-2x">
-                </a>
-                <a href>Call of Duty</a>
-                <span class="pull-right label bg-success inline m-t-sm">90%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
-                    15 achievements completed
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a3.jpg" class="r r-2x">
-                </a>
-                <a href>Far Cry 4</a>
-                <span class="pull-right label bg-success inline m-t-sm">75%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
-                    17 achievements completed
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a4.jpg" class="r r-2x">
-                </a>
-                <a href>Grand Theft Auto V</a>
-                <span class="pull-right label bg-success inline m-t-sm">90%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
-                    15 achievements completed
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a2.jpg" class="r r-2x">
-                </a>
-                <a href>Call of Duty</a>
-                <span class="pull-right label bg-success inline m-t-sm">90%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="3 achievements left" style="width: 90%">
-                    17 achievements completed
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a3.jpg" class="r r-2x">
-                </a>
-                <a href>Far Cry 4</a>
-                <span class="pull-right label bg-success inline m-t-sm">75%</span>
-                <div class="progress progress-md">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="5 achievements left" style="width: 75%">
-                    15 achievements completed
-                  </div>
-                </div>
-              </li>
+              {{/each}}
             </ul>
             <!-- / activity -->
           </div>
         </div>
-        <!-- / right col -->
+        <!-- / game list -->
         <!-- right col -->
         <div class="col w-md bg-white-only b-l bg-auto no-border-xs">
           <div class="wrapper-md">
