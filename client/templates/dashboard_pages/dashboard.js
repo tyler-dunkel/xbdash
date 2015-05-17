@@ -48,6 +48,12 @@ Template.dashboardApp.helpers({
         var totalAchievements = userAchievements.find({}).count();
         return numberFormatter(totalAchievements);
     },
+    achievementsPercentage: function () {
+        var achievementsCount = userAchievements.find({ progressState: true }).count();
+        var totalAchievements = userAchievements.find({}).count();
+        var achievementsPercentage = Math.round(achievementsCount / totalAchievements * 100);
+        return numberFormatter(achievementsPercentage);
+    },
     gamesCompleted: function () {
         var gameCount = 0;
         var userId = Meteor.userId();
@@ -68,6 +74,23 @@ Template.dashboardApp.helpers({
         var totalGames = userGames.find({}).count();
         return numberFormatter(totalGames);
     },
+    gamesPercentage: function () {
+        var gameCount = 0;
+        var userId = Meteor.userId();
+        var userGamesFind = userGames.find({ userId: userId });
+        userGamesFind.forEach(function(g) {
+            var gameId = g.gameId;
+            var currentGamerscore = g.currentGamerscore;
+            var getGame = xbdGames.findOne({ _id: gameId });
+            if (typeof getGame !== 'undefined') {
+                var maxGamerscore = getGame.maxGamerscore;
+            }
+            if ( currentGamerscore === maxGamerscore ) gameCount += 1;
+        });
+        var totalGames = userGames.find({}).count();
+        var gamesPercentage = Math.round(gameCount / totalGames * 100);
+        return numberFormatter(gamesPercentage);
+    },
     currentGamerscore: function () {
         var user = Meteor.user();
         return numberFormatter(user.profile.gamercard.gamerscore);
@@ -82,6 +105,19 @@ Template.dashboardApp.helpers({
             maxGamerscore += getGame.maxGamerscore;
         });
         return numberFormatter(maxGamerscore);
+    },
+    gamerscorePercentage: function () {
+        var user = Meteor.user();
+        var currentGamerscore = user.profile.gamercard.gamerscore;
+        var userGamesFind = userGames.find({ userId: user._id });
+        var maxGamerscore = 0;
+        userGamesFind.forEach(function(userGame) {
+            var gameId = userGame.gameId;
+            var getGame = xbdGames.findOne({ _id: gameId });
+            maxGamerscore += getGame.maxGamerscore;
+        });
+        var gamerscorePercentage = Math.round(currentGamerscore / maxGamerscore * 100);
+        return numberFormatter(gamerscorePercentage);
     },
     gamesList: function () {
         var user = Meteor.user();

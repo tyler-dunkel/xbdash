@@ -40,7 +40,16 @@
                 <div class="row row-sm text-center">
                   <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="panel padder-v item">
-                      <div class="font-thin h1">{{achievementsCompleted}}</div>
+                      <div class="text-dark font-thin h1 p-container">
+                        <div class="p-flipper">
+                          <div class="p-front">
+                            <div class="font-thin h1">{{achievementsCompleted}}</div>
+                          </div>
+                          <span class="p-back">
+                            <span class="text-success">{{achievementsPercentage}}%</span>
+                          </span>
+                        </div>
+                      </div>
                       <span class="text-muted text-xs">Achievements Completed</span>
                       <div class="top text-right w-full">
                         <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of achievements completed to date."></i>
@@ -58,7 +67,16 @@
                   </div>
                   <div class="col-lg-3 col-md-6 col-sm-6">
                     <a href class="block panel padder-v item">
-                      <div class="font-thin h1">{{gamesCompleted}}</div>
+                      <div class="text-dark font-thin h1 p-container">
+                        <div class="p-flipper">
+                          <div class="p-front">
+                            <div class="font-thin h1">{{gamesCompleted}}</div>
+                          </div>
+                          <span class="p-back">
+                            <span class="text-success">{{gamesPercentage}}%</span>
+                          </span>
+                        </div>
+                      </div>
                       <span class="text-muted text-xs">Games Completed</span>
                       <div class="top text-right w-full">
                         <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of games completed to date."></i>
@@ -82,17 +100,14 @@
                         <i class="fa fa-trophy icon fa-3x"></i>
                       </div>
                       <div class="col dk padder-v r-r">
-                        <div class="text-primary-dk font-thin h1 p-container">
-                          <div class="p-front">
-                            <span>{{currentGamerscore}}</span><span class="font-thin h5"> / {{maxGamerscore}}</span>
-                          </div>
-                          <span class="p-back">
-                          </span>
-                        </div>
-                        <div class="container">
-                          <div class="carddiv">
-                            <img class="frontofcard" src="img" alt="img">
-                            <p class="backofcard">Text</p>
+                        <div class="text-dark font-thin h1 p-container">
+                          <div class="p-flipper">
+                            <div class="p-front">
+                              <span>{{currentGamerscore}}</span><span class="font-thin h5"> / {{maxGamerscore}}</span>
+                            </div>
+                            <span class="p-back">
+                              <span class="text-success">{{gamerscorePercentage}}%</span>
+                            </span>
                           </div>
                         </div>
                         <span class="text-muted text-xs">Current Gamerscore / Max Gamerscore</span>
@@ -215,7 +230,7 @@
                     </div>
                 </div>
                 <div class="progress progress-md text-center">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="{{remainingAchievements this.gameId}} achievements left" style="width: {{percentageComplete this.gameId this.earnedAchievements}}%">
+                  <div class="progress-bar progress-bar-success" style="width: {{percentageComplete this.gameId this.earnedAchievements}}%">
                     {{this.earnedAchievements}} done
                   </div>
                   {{remainingAchievements this.gameId}} left
