@@ -192,13 +192,19 @@
             <ul class="list-group no-bg no-borders pull-in">
               {{#each gamesList}}
               <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a2.jpg" class="r r-2x">
+                <a href class="thumb-sm m-r games-thumb">
+                  <img src="{{gamesListImage}}" class="">
                 </a>
-                <a href>{{gameName this.gameId}}</a>
-                <span class="pull-right label bg-success inline m-t-sm">
-                  {{percentageComplete this.gameId this.earnedAchievements}}%
-                </span>
+                <div class="game-div">
+                  <a class="game-name" href>{{gameName this.gameId}}</a>
+                </div>
+                <div class="pull-right bg-black inline m-t-mdx c100 p{{percentageComplete this.gameId this.earnedAchievements}} small">
+                    <span>{{percentageComplete this.gameId this.earnedAchievements}}%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
                 <div class="progress progress-md text-center">
                   <div class="progress-bar progress-bar-success" data-toggle="tooltip" data-placement="top" title="{{remainingAchievements this.gameId}} achievements left" style="width: {{percentageComplete this.gameId this.earnedAchievements}}%">
                     {{this.earnedAchievements}} done

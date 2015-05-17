@@ -48,8 +48,12 @@ Meteor.publishComposite('userGames', {
 	children: [
 		{
 			find: function(userGame) {
-				var gameId = userGames.find({ gameId: 1 });
 				return xbdGames.find({ _id: userGame.gameId })
+			}
+		},
+		{
+			find: function(userGame) {
+				return gameDetails.find({ gameId: userGame.gameId });
 			}
 		}
 	]

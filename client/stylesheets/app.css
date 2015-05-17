@@ -4653,6 +4653,10 @@ ul.signin > li.active {
   margin-top: 20px;
 }
 
+.m-t-mdx {
+  margin-top: 25px;
+}
+
 .m-t-lg {
   margin-top: 30px;
 }
@@ -5427,3 +5431,6 @@ ul.signin > li.active {
     display: inline;
     padding: 0;
 }
+.games-thumb {width: 80px;}
+.game-div {display: inline-block; width: 140px; vertical-align: middle}
+.game-name {font-size: 105%; font-weight: bold;}
