@@ -1,0 +1,23 @@
+<template name="gamerscoreChart">
+	<div class="panel hbox hbox-auto-xs no-border">
+		<div class="col wrapper">
+			<label class="i-switch bg-warning pull-right">
+				<input type="checkbox" value="past 7 days">
+				<i></i>
+			</label>
+			<label class="i-switch bg-warning pull-right">
+				<input type="checkbox" value="past 3 months">
+				<i></i>
+			</label>
+			<label class="i-switch bg-warning pull-right">
+				<input type="checkbox" value="past 3 years">
+				<i></i>
+			</label>
+			<h4 class="font-thin m-t-none m-b-none text-primary-lt">Gamerscore Data</h4>
+			<span class="m-b block text-sm text-muted">Area chart (updated 1 hour ago)</span>
+			<div style="height:240px">
+				<svg id="gamerscoreChart"></svg>
+			</div>
+		</div>
+	</div>
+</template>
