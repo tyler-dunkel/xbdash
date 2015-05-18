@@ -1,17 +1,13 @@
 Template.achievementsChart.rendered = function() {
-	var margin = {top: 0, right: 0, bottom: 0, left: 0},
+	var margin = {top: 10, right: 25, bottom: 10, left: 25},
 		width = $(".chart-wrapper").width(),
 		height = 240;
 
 	var x = d3.time.scale()
 			.range([0, width]);
 
-			console.log(x);
-
 	var y = d3.scale.linear()
 			.range([height, 0]);
-
-			console.log(y);
 
 	var xAxis = d3.svg.axis()
 				.scale(x)
@@ -23,12 +19,12 @@ Template.achievementsChart.rendered = function() {
 
 	var line = d3.svg.line()
 				.x(function(d) {
-					console.log(d);
 					return x(d.progression);
 				})
 				.y(function(d) {
-					console.log(d);
-					return x(d.value);
+					var achievement = xbdAchievements.findOne({ _id: d.achievementId });
+					console.log(achievement.value);
+					return y(achievement.value);
 				});
 
 	var svg = d3.select("#achievementsChart")
@@ -39,7 +35,7 @@ Template.achievementsChart.rendered = function() {
 
 	svg.append("g")
 		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")");
+		.attr("transform", "translate(0," + 200 + ")");
 
 	svg.append("g")
 		.attr("class", "y axis")
@@ -62,15 +58,14 @@ Template.achievementsChart.rendered = function() {
 			return d.progression;
 		}));
 		
-		//console.log("x domain: " + x.domain());
+		console.log("x domain: " + x.domain());
 
-		y.domain(d3.max(userAchievementsDataSet.map(function(d) { 
-			//console.log(d);
+		y.domain([0, d3.max(userAchievementsDataSet, function(d) { 
 			var achievement = xbdAchievements.findOne({ _id: d.achievementId });
 			return achievement.value;
-		})));
+		})]);
 
-		//console.log("y domain: " + y.domain());
+		console.log("y domain: " + y.domain());
 
 		//updates x axis
 		svg.select(".x.axis")
@@ -88,7 +83,7 @@ Template.achievementsChart.rendered = function() {
 					.enter()
 					.append("path")
 					.attr("class", "line")
-					.attr('d', line(userAchievementsDataSet));
+					.attr('d', line);
 
 		paths
 					.exit()
