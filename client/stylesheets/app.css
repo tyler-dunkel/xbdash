@@ -5441,7 +5441,7 @@ ul.signin > li.active {
 }
 .p-container, .p-front, .p-back {
   width: 100%;
-  height: 50px;
+  min-height: 39px;
 }
 /* flip speed goes here */
 .p-flipper {
@@ -5471,3 +5471,4 @@ ul.signin > li.active {
 .games-thumb {width: 80px;}
 .game-div {display: inline-block; width: 140px; vertical-align: middle}
 .game-name {font-size: 105%; font-weight: bold;}
+#achievementsChart { width: 100%; height: 100%; position: absolute; }
