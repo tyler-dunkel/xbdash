@@ -4,10 +4,10 @@ Template.achievementsChart.rendered = function() {
 		height = 240;
 
 	var x = d3.time.scale()
-			.range([0, width]);
+			.range([0, width - 25]);
 
 	var y = d3.scale.linear()
-			.range([height, 0]);
+			.range([height - 30, 0]);
 
 	var xAxis = d3.svg.axis()
 				.scale(x)
@@ -25,7 +25,7 @@ Template.achievementsChart.rendered = function() {
 					var achievement = xbdAchievements.findOne({ _id: d.achievementId });
 					console.log(achievement.value);
 					return y(achievement.value);
-				});
+				}).interpolate("basis");
 
 	var svg = d3.select("#achievementsChart")
 		.attr("width", width)
@@ -48,11 +48,11 @@ Template.achievementsChart.rendered = function() {
 
 	this.autorun(function() {
 		var userId = Meteor.userId();
-		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 7 }).fetch();
+		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 50 }).fetch();
 		//var dataset = Points.find({}, { sort: { date: -1 } }).fetch();
 
-		var paths = svg.selectAll("path.line")
-					.data([userAchievementsDataSet]);
+		 var paths = svg.selectAll('path')
+		 			.data([userAchievementsDataSet]);
 
 		x.domain(d3.extent(userAchievementsDataSet, function(d) {
 			return d.progression;
@@ -81,9 +81,12 @@ Template.achievementsChart.rendered = function() {
 
 		paths
 					.enter()
-					.append("path")
+					.append("svg:path")
 					.attr("class", "line")
-					.attr('d', line);
+					.attr('d', line)
+					.attr("stroke", "green")
+                    .attr("stroke-width", 3)
+                    .attr("fill", "none");
 
 		paths
 					.exit()
