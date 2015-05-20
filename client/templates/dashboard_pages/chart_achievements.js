@@ -3,6 +3,37 @@ Template.achievementsChart.rendered = function() {
 		width = $(".chart-wrapper").width(),
 		height = 300;
 
+	resize = function resize() {
+		/* Find the new window dimensions */
+		console.log("resize function has fired");
+		var margin = {top: 0, right: 0, bottom: 15, left: 25},
+		width = parseInt(d3.select(".chart-wrapper").style("width")) - margin.left,
+		//height = parseInt(d3.select(".chart-wrapper").style("height")) - margin.bottom;
+		height = 300;
+
+		x.range([0, width - margin.left - margin.right]);
+		y.range([height - margin.bottom, 0]);
+
+		svg
+			.attr("width", width)
+			.attr("height", height)
+
+		svg
+			.select(".x.axis")
+			.transition()
+			.duration(500)
+			.call(xAxis);
+
+		svg
+			.select(".y.axis")
+			.transition()
+			.duration(500)
+			.call(yAxis);
+
+		svg.selectAll('path')
+			.attr("d", line);
+	}
+
 	// defines x as time scale
 	var x = d3.time.scale()
 			.range([0, width - margin.left - margin.right]);
@@ -51,6 +82,10 @@ Template.achievementsChart.rendered = function() {
 		.style("text-anchor", "end")
 		.text("Achievements");
 
+	d3.select(window).on('resize.one', resize);
+
+	//d3.select('.chart-wrapper').on('resize.two', resize);
+
 	this.autorun(function() {
 		var userId = Meteor.userId();
 		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 50 }).fetch();
@@ -98,38 +133,14 @@ Template.achievementsChart.rendered = function() {
 					.remove();
 	});
 
-	function resize() {
-		/* Find the new window dimensions */
-		var margin = {top: 0, right: 0, bottom: 15, left: 25},
-		width = parseInt(d3.select("#achievementsChart").style("width")) - margin.left,
-		height = parseInt(d3.select("#achievementsChart").style("height")) - margin.bottom;
-
-		x.range([0, width - margin.left]);
-		y.range([height - margin.bottom, 0]);
-
-		svg
-			.attr("width", width + margin*2)
-			.attr("height", height + margin*2)
-
-		svg
-			.select(".x.axis")
-			.transition()
-			.duration(500)
-			.call(xAxis);
-
-		svg
-			.select(".y.axis")
-			.transition()
-			.duration(500)
-			.call(yAxis);
-
-		svg.selectAll('path')
-		 	.data([userAchievementsDataSet])
-			.attr("d", line);
-	}
-	d3.select(window).on('resize', resize);
 }
 
+// Template.achievementsChart.events({
+// 	"click [ui-toggle]": function() {
+// 		console.log("this was the clicking happening");
+// 		resize();
+// 	}
+// });
+
 Tracker.autorun(function() {
-	resize();
 });
