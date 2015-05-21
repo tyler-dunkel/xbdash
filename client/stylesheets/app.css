@@ -4654,7 +4654,7 @@ ul.signin > li.active {
 }
 
 .m-t-mdx {
-  margin-top: 22px;
+  margin-top: 25px;
 }
 
 .m-t-lg {
@@ -5414,7 +5414,7 @@ ul.signin > li.active {
   color: #fff;
 }
 #socialform h2, #gamertagform h2 {margin-bottom: 25px;}
-.progress {margin: 5px 0;}
+.progress {margin: 10px 0 0;}
 .app-aside-folded .navi ul.nav li a > img.xbd {margin: 17px 22px;}
 .affix {width: 200px;}
 @media (max-width: 767px) {

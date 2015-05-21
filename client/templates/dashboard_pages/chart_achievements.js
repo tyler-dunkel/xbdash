@@ -1,12 +1,12 @@
 Template.achievementsChart.rendered = function() {
-	var margin = {top: 0, right: 0, bottom: 15, left: 25},
+	var margin = {top: 0, right: 0, bottom: 15, left: 40},
 		width = $(".chart-wrapper").width(),
 		height = 300;
 
 	resize = function resize() {
 		/* Find the new window dimensions */
 		console.log("resize function has fired");
-		var margin = {top: 0, right: 0, bottom: 15, left: 25},
+		var margin = {top: 0, right: 0, bottom: 15, left: 40},
 		width = parseInt(d3.select(".chart-wrapper").style("width")) - margin.left,
 		//height = parseInt(d3.select(".chart-wrapper").style("height")) - margin.bottom;
 		height = 300;
@@ -58,9 +58,10 @@ Template.achievementsChart.rendered = function() {
 					return x(d.progression);
 				})
 				.y(function(d) {
-					var achievement = xbdAchievements.findOne({ _id: d.achievementId });
-					console.log(achievement.value);
-					return y(achievement.value);
+					//var achievement = userAchievements.find({ progressState: true });
+					var achievement = xbdAchievements.find({ _id: d.achievementId }).count();
+					console.log(achievement);
+					return y(achievement);
 				}).interpolate("basis");
 
 	var svg = d3.select("#achievementsChart")
@@ -88,21 +89,22 @@ Template.achievementsChart.rendered = function() {
 
 	this.autorun(function() {
 		var userId = Meteor.userId();
-		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 50 }).fetch();
+		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 10 }).fetch();
 		//var dataset = Points.find({}, { sort: { date: -1 } }).fetch();
 
 		var paths = svg.selectAll('path')
 		 			.data([userAchievementsDataSet]);
 
 		x.domain(d3.extent(userAchievementsDataSet, function(d) {
+			//var monthDayFormat = d3.time.format("%b %d");
 			return d.progression;
 		}));
 		
 		console.log("x domain: " + x.domain());
 
-		y.domain([0, d3.max(userAchievementsDataSet, function(d) { 
-			var achievement = xbdAchievements.findOne({ _id: d.achievementId });
-			return achievement.value;
+		y.domain([0, d3.max(userAchievementsDataSet, function(d) {
+			var achievement = xbdAchievements.find({ _id: d.achievementId }).count();
+			return achievement.toFixed() + 1;
 		})]);
 
 		console.log("y domain: " + y.domain());
