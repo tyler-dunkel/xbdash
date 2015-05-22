@@ -55,14 +55,11 @@ Template.achievementsChart.rendered = function() {
 	// defines tick values
 	var line = d3.svg.line()
 				.x(function(d) {
-					return x(d.progression);
+					return x(d.date);
 				})
 				.y(function(d) {
-					//var achievement = userAchievements.find({ progressState: true });
-					var achievement = xbdAchievements.find({ _id: d.achievementId }).count();
-					//console.log(achievement);
-					return y(achievement);
-				}).interpolate("basis");
+					return y(d.total);
+				}).interpolate("cardinal");
 
 	var svg = d3.select("#achievementsChart")
 		.attr("width", width)
@@ -90,33 +87,34 @@ Template.achievementsChart.rendered = function() {
 	this.autorun(function() {
 		var userId = Meteor.userId();
 		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 50 }).fetch();
-		//var progression = moment('progression').format("MMM Do"); // May 22nd
 
-		var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression')); // date is formatted as Sat "Feb 07 2015 13:55:40 GMT-0500 (EST)"" then groups the achievements by the exact time
-		
-		//var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(dates) {
-		//	return moment('progression').format("MMM D"); // May 22
-		//});
+		var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {
+			return moment(date).format("MMM D"); // May 22
+		});
+
+		var achievementData = new Array();
 
 		_.each(_.values(groupedDates), function(dates) {
 			console.log({Date: dates[0], Total: dates.length});
+			achievementData.push({
+				date: dates[0],
+				total: dates.length
+			});
 		});
 
-		//var dataset = Points.find({}, { sort: { date: -1 } }).fetch();
+		console.log(achievementData);
 
 		var paths = svg.selectAll('path')
-		 			.data([userAchievementsDataSet]);
+		 			.data([achievementData]);
 
-		x.domain(d3.extent(userAchievementsDataSet, function(d) {
-			//var monthDayFormat = d3.time.format("%b %d");
-			return d.progression;
+		x.domain(d3.extent(achievementData, function(d) {
+			return d.date;
 		}));
 		
 		//console.log("x domain: " + x.domain());
 
-		y.domain([0, d3.max(userAchievementsDataSet, function(d) {
-			var achievement = xbdAchievements.find({ _id: d.achievementId }).count();
-			return achievement.toFixed();
+		y.domain([0, d3.max(achievementData, function(d) {
+			return d.total + 1;
 		})]);
 
 		//console.log("y domain: " + y.domain());
