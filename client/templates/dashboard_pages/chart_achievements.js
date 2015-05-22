@@ -1,12 +1,12 @@
 Template.achievementsChart.rendered = function() {
-	var margin = {top: 0, right: 0, bottom: 15, left: 40},
+	var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = $(".chart-wrapper").width(),
 		height = 300;
 
 	resize = function resize() {
 		/* Find the new window dimensions */
-		console.log("resize function has fired");
-		var margin = {top: 0, right: 0, bottom: 15, left: 40},
+		//console.log("resize function has fired");
+		var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = parseInt(d3.select(".chart-wrapper").style("width")) - margin.left,
 		//height = parseInt(d3.select(".chart-wrapper").style("height")) - margin.bottom;
 		height = 300;
@@ -60,7 +60,7 @@ Template.achievementsChart.rendered = function() {
 				.y(function(d) {
 					//var achievement = userAchievements.find({ progressState: true });
 					var achievement = xbdAchievements.find({ _id: d.achievementId }).count();
-					console.log(achievement);
+					//console.log(achievement);
 					return y(achievement);
 				}).interpolate("basis");
 
@@ -89,7 +89,19 @@ Template.achievementsChart.rendered = function() {
 
 	this.autorun(function() {
 		var userId = Meteor.userId();
-		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 10 }).fetch();
+		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 50 }).fetch();
+		//var progression = moment('progression').format("MMM Do"); // May 22nd
+
+		var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression')); // date is formatted as Sat "Feb 07 2015 13:55:40 GMT-0500 (EST)"" then groups the achievements by the exact time
+		
+		//var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(dates) {
+		//	return moment('progression').format("MMM D"); // May 22
+		//});
+
+		_.each(_.values(groupedDates), function(dates) {
+			console.log({Date: dates[0], Total: dates.length});
+		});
+
 		//var dataset = Points.find({}, { sort: { date: -1 } }).fetch();
 
 		var paths = svg.selectAll('path')
@@ -100,14 +112,14 @@ Template.achievementsChart.rendered = function() {
 			return d.progression;
 		}));
 		
-		console.log("x domain: " + x.domain());
+		//console.log("x domain: " + x.domain());
 
 		y.domain([0, d3.max(userAchievementsDataSet, function(d) {
 			var achievement = xbdAchievements.find({ _id: d.achievementId }).count();
-			return achievement.toFixed() + 1;
+			return achievement.toFixed();
 		})]);
 
-		console.log("y domain: " + y.domain());
+		//console.log("y domain: " + y.domain());
 
 		//updates x axis
 		svg.select(".x.axis")

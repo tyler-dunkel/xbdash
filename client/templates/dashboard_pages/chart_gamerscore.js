@@ -1,12 +1,12 @@
 Template.gamerscoreChart.rendered = function() {
-	var margin = {top: 0, right: 0, bottom: 15, left: 40},
+	var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = $(".chart-wrapper").width(),
 		height = 300;
 
 	resize = function resize() {
 		/* Find the new window dimensions */
 		//console.log("resize function has fired");
-		var margin = {top: 0, right: 0, bottom: 15, left: 40},
+		var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = parseInt(d3.select(".chart-wrapper").style("width")) - margin.left,
 		//height = parseInt(d3.select(".chart-wrapper").style("height")) - margin.bottom;
 		height = 300;
