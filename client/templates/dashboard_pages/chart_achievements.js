@@ -95,14 +95,13 @@ Template.achievementsChart.rendered = function() {
 		var achievementData = new Array();
 
 		_.each(_.values(groupedDates), function(dates) {
-			console.log({Date: dates[0], Total: dates.length});
 			achievementData.push({
 				date: dates[0],
 				total: dates.length
 			});
 		});
 
-		console.log(achievementData);
+		//console.log(achievementData);
 
 		var paths = svg.selectAll('path')
 		 			.data([achievementData]);
