@@ -1,11 +1,15 @@
 var timeRangeToggle = new ReactiveVar();
 Template.gamerscoreChart.rendered = function() {
+	var userId = Meteor.userId();
 	var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = $(".chart-wrapper").width(),
 		height = 300;
 
 	var oneMonth = moment().subtract(1, 'month').toDate();
     timeRangeToggle.set(oneMonth);
+
+    var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true }, 
+			{ sort: { progression: -1 }, limit: 50 }).fetch();
 
 	resize = function resize() {
 		/* Find the new window dimensions */
@@ -36,10 +40,6 @@ Template.gamerscoreChart.rendered = function() {
 
 		svg.selectAll('path')
 			.attr("d", line);
-	}
-
-	dataToggleChange = function() {
-
 	}
 
 	// defines x as time scale
@@ -90,12 +90,58 @@ Template.gamerscoreChart.rendered = function() {
 		.style("text-anchor", "end")
 		.text("Gamerscore");
 
-	d3.select(window).on('resize.one', resize);
+	var paths = svg.selectAll('path')
+		 			.data([userGamerscoreDataSet]);
+
+	x.domain(d3.extent(userGamerscoreDataSet, function(d) {
+			return d.progression;
+		}));
+
+
+	y.domain([0, d3.max(userGamerscoreDataSet, function(d) { 
+			var gamerscore = xbdAchievements.findOne({ _id: d.achievementId });
+			return gamerscore.value;
+		})]);
+
+	svg.select(".x.axis")
+					.transition()
+					.duration(500)
+					.call(xAxis);
+
+	svg.select(".y.axis")
+					.transition()
+					.duration(500)
+					.call(yAxis);
+
+	paths
+				.enter()
+				.append("svg:path")
+				.attr("class", "line")
+				.attr("id", "gamerscore-line")
+				.attr('d', line)
+				.attr("stroke", "green")
+                .attr("stroke-width", 3)
+                .attr("fill", "none");
+
+    // paths
+				// .transition().duration(1500)
+				// .attr('d', line)
+				// .attr("stroke", "green")
+				// .attr("stroke-width", 3)
+    //             .attr("fill", "none");
+
+	paths
+				.exit()
+				.remove();
+
+	//d3.select(window).on('resize.one', resize);
 
 	//d3.select('.chart-wrapper').on('resize.two', resize);
 
-	this.autorun(function() {
-		var userId = Meteor.userId();
+	this.autorun(function(computation) {
+		if (!computation.firstRun) {
+			d3.select("#gamerscore-line").remove();
+		}
 		var timeToggle = timeRangeToggle.get();
 		console.log(timeToggle);
 		var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: timeToggle} }, 
@@ -105,7 +151,17 @@ Template.gamerscoreChart.rendered = function() {
 		//var dataset = Points.find({}, { sort: { date: -1 } }).fetch();
 
 		var paths = svg.selectAll('path')
-		 			.data([userGamerscoreDataSet]);
+		 			.data([userGamerscoreDataSet]).attr("class", "line");
+
+		var line = d3.svg.line()
+				.x(function(d) {
+					return x(d.progression);
+				})
+				.y(function(d) {
+					var gamerscore = xbdAchievements.findOne({ _id: d.achievementId });
+					console.log(gamerscore.value);
+					return y(gamerscore.value);
+				}).interpolate("basis");
 
 		x.domain(d3.extent(userGamerscoreDataSet, function(d) {
 			return d.progression;
@@ -144,6 +200,36 @@ Template.gamerscoreChart.rendered = function() {
 					.call(yAxis);
 
 		console.log("got here too");
+		if (!computation.firstRun) {
+			console.log(paths);
+			d3.select('#gamerscoreChart g')
+			.append("svg:path")
+			.attr("class", "line")
+			.attr("id", "gamerscore-line")
+			.attr("d", line(userGamerscoreDataSet))
+			.attr("stroke", "green")
+            .attr("stroke-width", 3)
+            .attr("fill", "none")
+            .duration(1500);
+			//d3.select('#gamerscoreChart path').attr("d", line(userGamerscoreDataSet));
+	    }
+
+
+		// paths
+		// 		.transition().duration(1500)
+		// 		.attr('d', line)
+		// 		.attr("stroke", "green")
+		// 		.attr("stroke-width", 3)
+  //               .attr("fill", "none");
+
+
+
+    //     paths
+				// .exit()
+				// .remove();
+
+
+
 
 
 		// paths
@@ -153,25 +239,22 @@ Template.gamerscoreChart.rendered = function() {
 		// 			.attr("stroke-width", 3)
   //                   .attr("fill", "none");
 
-		paths
-					.enter()
-					.append("svg:path")
-					.attr("class", "line")
-					.attr('d', line)
-					.attr("stroke", "green")
-                    .attr("stroke-width", 3)
-                    .attr("fill", "none");
+		// paths
+		// 			.enter()
+		// 			.append("svg:path")
+		// 			.attr("class", "line")
+		// 			.attr('d', line)
+		// 			.attr("stroke", "green")
+  //                   .attr("stroke-width", 3)
+  //                   .attr("fill", "none");
 
-        paths
-					.transition().duration(1500)
-					.attr('d', line)
-					.attr("stroke", "green")
-					.attr("stroke-width", 3)
-                    .attr("fill", "none");
+        // svg.select("g")   // change the line
+        //     .duration(750)
+        //     .attr("d", line);
 
-		paths
-					.exit()
-					.remove();
+		// paths
+		// 			.exit()
+		// 			.remove();
 	});
 
 }
