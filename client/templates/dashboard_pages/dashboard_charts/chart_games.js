@@ -69,11 +69,7 @@ Template.gamesChart.rendered = function() {
 			.append("path")
 			.attr("d", arc)
 			.style("fill", function(resultArray) {
-				d3.map([{
-					genreName: d.0,
-					genreCount: d.1
-				}]);
-				return color(d.genreName);
+				//return color(resultArray.genreName);
 			});
 
 		paths
