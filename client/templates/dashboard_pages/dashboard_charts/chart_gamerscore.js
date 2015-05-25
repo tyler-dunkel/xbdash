@@ -8,7 +8,7 @@ Template.gamerscoreChart.rendered = function() {
 	var oneMonth = moment().subtract(1, 'month').toDate();
     timeRangeToggle.set(oneMonth);
 
-    var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true }, 
+    var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: oneMonth} }, 
 			{ sort: { progression: -1 }, limit: 50 }).fetch();
 
 	resize = function resize() {
@@ -179,28 +179,26 @@ Template.gamerscoreChart.rendered = function() {
 		//svg.selectAll(".x.axis").remove();
 
 		//updates x axis
-		svg.select(".x.axis")
-					.transition()
-					.duration(500)
-					.call(xAxis);
-		console.log("got here");
-
-// 		if (svg.selectAll(".y.axis")[0].length < 1 ){
-// 			svg.append("g")
-// 			.attr("class","y axis")
-// 			.call(yAxis)
-// // otherwise, update the axis else {
-// 			svg.selectAll(".y.axis").transition().duration(500).call(yAxis)
-// 		}
-
-		//updates y axis
-		svg.select(".y.axis")
-					.transition()
-					.duration(500)
-					.call(yAxis);
-
-		console.log("got here too");
 		if (!computation.firstRun) {
+			svg.select(".x.axis")
+						.transition()
+						.duration(500)
+						.call(xAxis);
+
+	// 		if (svg.selectAll(".y.axis")[0].length < 1 ){
+	// 			svg.append("g")
+	// 			.attr("class","y axis")
+	// 			.call(yAxis)
+	// // otherwise, update the axis else {
+	// 			svg.selectAll(".y.axis").transition().duration(500).call(yAxis)
+	// 		}
+
+			//updates y axis
+			svg.select(".y.axis")
+						.transition()
+						.duration(500)
+						.call(yAxis);
+
 			console.log(paths);
 			d3.select('#gamerscoreChart g')
 			.append("svg:path")
@@ -209,8 +207,7 @@ Template.gamerscoreChart.rendered = function() {
 			.attr("d", line(userGamerscoreDataSet))
 			.attr("stroke", "green")
             .attr("stroke-width", 3)
-            .attr("fill", "none")
-            .duration(1500);
+            .attr("fill", "none");
 			//d3.select('#gamerscoreChart path').attr("d", line(userGamerscoreDataSet));
 	    }
 

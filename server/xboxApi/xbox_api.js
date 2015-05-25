@@ -88,7 +88,7 @@ Meteor.methods({
 					var gameId = j.titleId.toString();
 					//Meteor._debug(result.data);
 
-					if (!Object.prototype.toString.call(result.data) === '[object Array]') { return; }
+					if (!result.data.constructor === Array) { return; }
 
 					result.data.forEach(function (k) {
 						var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });

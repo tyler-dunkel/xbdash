@@ -171,7 +171,7 @@ function userUpdater(user) {
 
 				var result = syncApiCaller(url);
 
-				if (!Object.prototype.toString.call(result.data) === '[object Array]') { return; }
+				if (!result.data.constructor === Array) { return; }
 
 				result.data.forEach(function (k) {
 					var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
