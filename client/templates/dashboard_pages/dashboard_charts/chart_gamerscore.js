@@ -1,3 +1,4 @@
+/*
 var timeRangeToggle = new ReactiveVar();
 Template.gamerscoreChart.rendered = function() {
 	var userId = Meteor.userId();
@@ -12,7 +13,7 @@ Template.gamerscoreChart.rendered = function() {
 			{ sort: { progression: -1 }, limit: 50 }).fetch();
 
 	resize = function resize() {
-		/* Find the new window dimensions */
+		// Find the new window dimensions
 		//console.log("resize function has fired");
 		var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = parseInt(d3.select(".chart-wrapper").style("width")) - margin.left,
@@ -282,3 +283,4 @@ Template.gamerscoreChart.events({
 
 Tracker.autorun(function() {
 });
+*/

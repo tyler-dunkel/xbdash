@@ -5472,3 +5472,5 @@ ul.signin > li.active {
 .game-div {display: inline-block; width: 140px; vertical-align: middle}
 .game-name {font-size: 105%; font-weight: bold;}
 #achievementsChart { width: 100%; height: auto; position: absolute; }
+path.slice{stroke-width:2px;}
+polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
