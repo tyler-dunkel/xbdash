@@ -1,5 +1,5 @@
-/*
 var timeRangeToggle = new ReactiveVar();
+
 Template.gamerscoreChart.rendered = function() {
 	var userId = Meteor.userId();
 	var margin = {top: 0, right: 0, bottom: 15, left: 25},
@@ -280,7 +280,5 @@ Template.gamerscoreChart.events({
     }
 });
 
-
 Tracker.autorun(function() {
 });
-*/
