@@ -25,7 +25,8 @@ Template.dashboard.events({
         var $target = $($this.attr('target')) || $this;
         $target.toggleClass($this.attr('ui-toggle'));
         console.log("this was the clicking happening");
-        resize();
+        resizeGamerscoreChart();
+        resizeAchievementChart();
     },
     'click [ui-nav] a': function(event) {
         var $this = $(event.target), $active;

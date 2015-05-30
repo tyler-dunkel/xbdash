@@ -1,37 +1,58 @@
+var timeRangeToggle = new ReactiveVar();
+
 Template.achievementsChart.rendered = function() {
 	var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = $(".chart-wrapper").width(),
 		height = 300;
 
-	resize = function resize() {
-		/* Find the new window dimensions */
-		//console.log("resize function has fired");
+	var oneMonth = moment().subtract(1, 'month').toDate();
+    timeRangeToggle.set(oneMonth);
+
+	//collect the data and arrange it for the first time on render
+	var userId = Meteor.userId();
+	var achievementData = new Array();
+	var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gt: oneMonth} }, 
+															{ sort: { progression: -1 }, limit: 50 }).fetch();
+	var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {
+				return moment(date).format("MMM D"); // May 22
+			});
+
+			//push the correct objects into the achievementData array to pass to d3
+	_.each(_.values(groupedDates), function(dates) {
+		achievementData.push({
+			date: dates[0],
+			total: dates.length
+		});
+	});
+
+	resizeAchievementChart = function resizeAchievementChart() {
+		//Find the new window dimensions
+		console.log("resize achievement function has fired");
 		var margin = {top: 0, right: 0, bottom: 15, left: 25},
-		width = parseInt(d3.select(".chart-wrapper").style("width")) - margin.left,
+		width = $(".chart-wrapper").width(),
 		//height = parseInt(d3.select(".chart-wrapper").style("height")) - margin.bottom;
 		height = 300;
 
 		x.range([0, width - margin.left - margin.right]);
 		y.range([height - margin.bottom, 0]);
 
-		svg
-			.attr("width", width)
-			.attr("height", height)
+		console.log("width is equal to" + width);
+		d3.select("#achievements-chart")
+		.attr("width", width)
+		.attr("height", height);
 
 		svg
 			.select(".x.axis")
 			.transition()
-			.duration(500)
 			.call(xAxis);
 
 		svg
 			.select(".y.axis")
 			.transition()
-			.duration(500)
 			.call(yAxis);
 
 		svg.selectAll('path')
-			.attr("d", line);
+			.attr("d", line(achievementData));
 	}
 
 	// defines x as time scale
@@ -61,7 +82,8 @@ Template.achievementsChart.rendered = function() {
 					return y(d.total);
 				}).interpolate("cardinal");
 
-	var svg = d3.select("#achievementsChart")
+	//create the chart for the first time
+	var svg = d3.select("#achievements-chart")
 		.attr("width", width)
 		.attr("height", height)
 		.append("g")
@@ -80,78 +102,134 @@ Template.achievementsChart.rendered = function() {
 		.style("text-anchor", "end")
 		.text("Achievements");
 
-	d3.select(window).on('resize.one', resize);
+	var paths = svg.selectAll('path')
+			 			.data([achievementData]);
+
+	x.domain(d3.extent(achievementData, function(d) {
+				return d.date;
+			}));
+
+	y.domain([0, d3.max(achievementData, function(d) {
+		return d.total + 1;
+	})]);
+
+	//updates x axis
+	svg.select(".x.axis")
+				.transition()
+				.duration(500)
+				.call(xAxis);
+
+	//updates y axis
+	svg.select(".y.axis")
+				.transition()
+				.duration(500)
+				.call(yAxis);
+
+	paths
+				.enter()
+				.append("svg:path")
+				.attr("class", "line")
+				.attr('d', line)
+				.attr("stroke", "green")
+				.attr("id", "achievement-line")
+                .attr("stroke-width", 3)
+                .attr("fill", "none");
+
+	paths
+				.exit()
+				.remove();
+
+	d3.select(window).on('resize.achievements', resizeAchievementChart);
 
 	//d3.select('.chart-wrapper').on('resize.two', resize);
 
-	this.autorun(function() {
+	this.autorun(function(comp) {
 		var userId = Meteor.userId();
-		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true }, { sort: { progression: -1 }, limit: 50 }).fetch();
-
-		var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {
-			return moment(date).format("MMM D"); // May 22
-		});
-
 		var achievementData = new Array();
+		var timeToggle = timeRangeToggle.get();
 
-		_.each(_.values(groupedDates), function(dates) {
-			achievementData.push({
-				date: dates[0],
-				total: dates.length
+		if (!comp.firstRun) {
+			d3.select('#achievement-line').remove();
+			var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: timeToggle} }, 
+																	{ sort: { progression: -1 }, limit: 50 }).fetch();
+
+			//group the achievements by a month-day date. * time of day is excluded on purpose
+			var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {
+				return moment(date).format("MMM D"); // May 22
 			});
-		});
 
-		//console.log(achievementData);
+			//push the correct objects into the achievementData array to pass to d3
+			_.each(_.values(groupedDates), function(dates) {
+				achievementData.push({
+					date: dates[0],
+					total: dates.length
+				});
+			});
 
-		var paths = svg.selectAll('path')
-		 			.data([achievementData]);
+			//console.log(achievementData);
 
-		x.domain(d3.extent(achievementData, function(d) {
-			return d.date;
-		}));
-		
-		//console.log("x domain: " + x.domain());
+			var paths = svg.selectAll('path')
+			 			.data([achievementData]);
 
-		y.domain([0, d3.max(achievementData, function(d) {
-			return d.total + 1;
-		})]);
+			x.domain(d3.extent(achievementData, function(d) {
+				return d.date;
+			}));
+			
+			//console.log("x domain: " + x.domain());
 
-		//console.log("y domain: " + y.domain());
+			y.domain([0, d3.max(achievementData, function(d) {
+				return d.total + 1;
+			})]);
 
-		//updates x axis
-		svg.select(".x.axis")
-					.transition()
-					.duration(500)
-					.call(xAxis);
+			//console.log("y domain: " + y.domain());
 
-		//updates y axis
-		svg.select(".y.axis")
-					.transition()
-					.duration(500)
-					.call(yAxis);
+			//updates x axis
+			svg.select(".x.axis")
+						.transition()
+						.duration(500)
+						.call(xAxis);
 
-		paths
-					.enter()
-					.append("svg:path")
-					.attr("class", "line")
-					.attr('d', line)
-					.attr("stroke", "green")
-                    .attr("stroke-width", 3)
-                    .attr("fill", "none");
+			//updates y axis
+			svg.select(".y.axis")
+						.transition()
+						.duration(500)
+						.call(yAxis);
 
-		paths
-					.exit()
-					.remove();
+			d3.select('#achievements-chart g')
+			.append("svg:path")
+			.attr("class", "line")
+			.attr("id", "achievement-line")
+			.attr("d", line(achievementData))
+			.attr("stroke", "green")
+            .attr("stroke-width", 3)
+            .attr("fill", "none");
+		}
 	});
 
 }
 
-// Template.achievementsChart.events({
-// 	"click [ui-toggle]": function() {
-// 		console.log("this was the clicking happening");
-// 		resize();
-// 	}
-// });
+Template.achievementsChart.events({
+	"click #achievement-chart-recent-activity-button": function(e) {
+        console.log("fired");
+        if(!$(e.target).hasClass('active')) {
+            console.log("its going to 1 month");
+            $(e.target).addClass('active');
+            $('#achievement-chart-six-month-activity-button').removeClass('active');
+            oneMonth = moment().subtract(1, 'month').toDate();
+            timeRangeToggle.set(oneMonth);
+        }
+    },
+    "click #achievement-chart-six-month-activity-button": function(e) {
+        console.log("also fired");
+        if(!$(e.target).hasClass('active')) {
+            console.log("its going to 6 month");
+            $(e.target).addClass('active');
+            $('#achievement-chart-recent-activity-button').removeClass('active');
+            sixMonths = moment().subtract(6, 'month').toDate();
+            timeRangeToggle.set(sixMonths);
+        }
+    }
+});
 
 Tracker.autorun(function() {
 });
