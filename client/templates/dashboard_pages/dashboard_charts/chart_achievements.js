@@ -31,6 +31,22 @@ Template.achievementsChart.rendered = function() {
 			width = $(".chart-wrapper").width(),
 			height = 300;
 
+		var achievementData = new Array();
+		var timeToggle = timeRangeToggle.get();
+		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gt: timeToggle} }, 
+																{ sort: { progression: -1 }, limit: 50 }).fetch();
+		var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {
+					return moment(date).format("MMM D"); // May 22
+				});
+
+				//push the correct objects into the achievementData array to pass to d3
+		_.each(_.values(groupedDates), function(dates) {
+			achievementData.push({
+				date: dates[0],
+				total: dates.length
+			});
+		});
+
 		x.range([0, width - margin.left - margin.right]);
 		y.range([height - margin.bottom, 0]);
 

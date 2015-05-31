@@ -18,6 +18,10 @@ Template.gamerscoreChart.rendered = function() {
 			width = $(".chart-wrapper").width(),
 			height = 300;
 
+		var timeToggle = timeRangeToggle.get();
+		var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: timeToggle} }, 
+			{ sort: { progression: -1 }, limit: 50 }).fetch();
+
 		x.range([0, width - margin.left - margin.right]);
 		y.range([height - margin.bottom, 0]);
 
