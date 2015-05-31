@@ -5474,3 +5474,6 @@ ul.signin > li.active {
 #achievementsChart { width: 100%; height: auto; position: absolute; }
 path.slice{stroke-width:2px;}
 polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
+.label-circle {fill: #393939;}
+.label-line {stroke: #393939; stroke-width: 1;}
+.label-text {alignment-baseline: middle; font-size: 12px; font-family: arial,helvetica,"sans-serif"; fill: #393939;}

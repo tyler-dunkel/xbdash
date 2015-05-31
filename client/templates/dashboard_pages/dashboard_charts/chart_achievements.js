@@ -27,19 +27,16 @@ Template.achievementsChart.rendered = function() {
 
 	resizeAchievementChart = function resizeAchievementChart() {
 		//Find the new window dimensions
-		console.log("resize achievement function has fired");
 		var margin = {top: 0, right: 0, bottom: 15, left: 25},
-		width = $(".chart-wrapper").width(),
-		//height = parseInt(d3.select(".chart-wrapper").style("height")) - margin.bottom;
-		height = 300;
+			width = $(".chart-wrapper").width(),
+			height = 300;
 
 		x.range([0, width - margin.left - margin.right]);
 		y.range([height - margin.bottom, 0]);
 
-		console.log("width is equal to" + width);
 		d3.select("#achievements-chart")
-		.attr("width", width)
-		.attr("height", height);
+			.attr("width", width)
+			.attr("height", height);
 
 		svg
 			.select(".x.axis")
@@ -51,7 +48,8 @@ Template.achievementsChart.rendered = function() {
 			.transition()
 			.call(yAxis);
 
-		svg.selectAll('path')
+		svg
+			.selectAll('path')
 			.attr("d", line(achievementData));
 	}
 

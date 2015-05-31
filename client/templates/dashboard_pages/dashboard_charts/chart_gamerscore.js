@@ -14,18 +14,16 @@ Template.gamerscoreChart.rendered = function() {
 
 	resizeGamerscoreChart = function resizeGamerscoreChart() {
 		// Find the new window dimensions
-		console.log("resize function has fired");
 		var margin = {top: 0, right: 0, bottom: 15, left: 25},
-		width = $(".chart-wrapper").width(),
-		//height = parseInt(d3.select(".chart-wrapper").style("height")) - margin.bottom;
-		height = 300;
+			width = $(".chart-wrapper").width(),
+			height = 300;
 
 		x.range([0, width - margin.left - margin.right]);
 		y.range([height - margin.bottom, 0]);
 
 		d3.select("#gamerscore-chart")
-		.attr("width", width)
-		.attr("height", height);
+			.attr("width", width)
+			.attr("height", height);
 
 		svg
 			.select(".x.axis")
@@ -37,7 +35,8 @@ Template.gamerscoreChart.rendered = function() {
 			.transition()
 			.call(yAxis);
 
-		svg.selectAll('path')
+		svg
+			.selectAll('path')
 			.attr("d", line(userGamerscoreDataSet));
 	}
 
