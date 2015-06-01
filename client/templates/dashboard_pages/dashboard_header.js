@@ -1,13 +1,14 @@
 Template.dashboardHeader.events({
 	'click #logout': function(event) {
+        event.preventDefault();
         Meteor.logout(function(error){
             if (error) {
                 throw new Meteor.Error("Logout failed");
             } else {
-            	Router.go('home');
-				return;
+            	Router.go('logIn');
             }
-        })
+        });
+        return;
     },
     'click [ui-toggle]': function(event) {
         event.preventDefault();

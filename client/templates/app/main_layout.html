@@ -1,0 +1,12 @@
+<template name="mainLayout">
+	<div class="app app-header-fixed">
+	{{#if currentUser}}
+		{{> dashboardHeader}}
+		{{> dashboardAside}}
+	{{/if}}
+		{{> yield}}
+	{{#if currentUser}}
+		{{> dashboardFooter}}
+	{{/if}}
+	</div>
+</template>
