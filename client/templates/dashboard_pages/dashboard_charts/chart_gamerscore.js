@@ -128,7 +128,7 @@ Template.gamerscoreChart.rendered = function() {
 				.exit()
 				.remove();
 
-	d3.select(window).on('resize', resizeGamerscoreChart);
+	d3.select(window).on('resize.gamerscore', resizeGamerscoreChart);
 
 	//d3.select('.chart-wrapper').on('resize.two', resize);
 
