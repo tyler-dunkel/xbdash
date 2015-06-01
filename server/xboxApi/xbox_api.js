@@ -176,16 +176,25 @@ Meteor.methods({
 
 						var hexId = j.titleId.toString(16);
 						var url = 'game-details-hex/' + hexId;
-						//Meteor._debug(url);
 						var gameDetailsResult = syncApiCaller(url);
-						//Meteor._debug(gameDetailsResult.data.Items[0].Images);
+
+						if (platform == 'Xenon') {
+							Meteor._debug(j.name);
+							var gameReleaseDate = (typeof j.earnedAchievements !== 'undefined') ? gameDetailsResult.data.Items[0].ReleaseDate : gameDetailsResult.data.Items[0].Updated;
+							Meteor._debug(gameReleaseDate);
+							var releaseDate = new Date(parseInt(gameReleaseDate.substr(6)));
+							Meteor._debug(releaseDate);
+						} else {
+							Meteor._debug(j.name);
+							var releaseDate = gameDetailsResult.data.Items[0].ReleaseDate;
+						}
 
 						setObject.$set = {
 							gameName: j.name,
 							gameDescription: gameDetailsResult.data.Items[0].Description,
 							gameReducedDesc: gameDetailsResult.data.Items[0].ReducedDescription,
 							gameReducedName: gameDetailsResult.data.Items[0].ReducedName,
-							gameReleaseDate: gameDetailsResult.data.Items[0].ReleaseDate,
+							gameReleaseDate: releaseDate,
 							gameId: gameId,
 							gameGenre: gameDetailsResult.data.Items[0].Genres,
 							gameArt: gameDetailsResult.data.Items[0].Images,
@@ -199,6 +208,7 @@ Meteor.methods({
 						};
 						gameDetails.upsert({ gameId: gameId }, setObject );
 					} else {
+						var platform = (typeof j.platform !== 'undefined') ? j.platform : 'Xenon';
 						var lastUnlock = (typeof j.lastUnlock !== 'undefined') ? j.lastUnlock : j.lastPlayed;
 						lastUnlock = new Date(lastUnlock);
 						
