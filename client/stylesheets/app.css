@@ -1,6 +1,7 @@
 /* 
 
 */
+
 .form-group {margin-bottom: 8px;}
 
 .err-msg {
@@ -4345,6 +4346,10 @@ ul.signin > li.active {
   padding-bottom: 5px;
 }
 
+.padder-to {
+  padding-top: 3px;
+}
+
 .padder-t {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -5352,6 +5357,38 @@ ul.signin > li.active {
   }
 }
 
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.col-xs-15 {
+  width: 20%;
+  float: left;
+}
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-15 {
+      width: 20%;
+      float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-15 {
+      width: 20%;
+      float: left;
+  }
+}
+
 #carousel1 #what .nav a {
     display: block;
 }
@@ -5468,6 +5505,8 @@ ul.signin > li.active {
 .p-back {
   transform: rotateY(180deg);
 }
+
+.pull-right {float: right;}
 .games-thumb {width: 80px;}
 .game-div {display: inline-block; width: 140px; vertical-align: middle}
 .game-name {font-size: 105%; font-weight: bold;}
