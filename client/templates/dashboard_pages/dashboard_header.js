@@ -4,11 +4,10 @@ Template.dashboardHeader.events({
         Meteor.logout(function(error){
             if (error) {
                 throw new Meteor.Error("Logout failed");
-            } else {
-            	Router.go('logIn');
             }
+            //Router.go('logIn');
         });
-        return;
+        Router.go('logIn');
     },
     'click [ui-toggle]': function(event) {
         event.preventDefault();
