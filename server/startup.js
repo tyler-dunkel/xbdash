@@ -15,6 +15,22 @@ Meteor.startup(function() {
 		});
 	}, 50000);
 
+	//tiering function for achievements
+	//set internval function ->query for every site user and count the query -> query for every xbdAchievement -> loop through each xbdAchievement -> query the userAchievement table with the xbdAchievement _id and count the returned records (can either be unlocked, locked, or both) -> divide this count by the total user number we got earlier and store the resulting value within the xbdAchievement. 
+	Meteor.setInterval(function() {
+		var userCount = Meteor.users.find({xuid: {$exists: true}}).count();
+		Meteor._debug("the user count is: " + userCount);
+		var achievements = xbdAchievements.find({});
+		achievements.forEach(function(achievement) {
+			userAchievementCount = userAchievements.find({achievementId: achievement._id}).count();
+			//Meteor._debug("the uesr achievement count is: " + userAchievementCount);
+			achievementUnlockPercentage = parseFloat((userAchievementCount / userCount), 10).toFixed(2);
+			//Meteor._debug(achievementUnlockPercentage);
+			xbdAchievements.upsert({_id: achievement._id}, {$set: {userPercentage: achievementUnlockPercentage}});
+		});
+		// wait do we have a userPercentage field already?? idk what you mean? no? run this ok got it let me try
+	}, 1000000);
+
 	//function to give users an overall rank according to gamerscore
 	Meteor.setInterval(function() {
 		var users = Meteor.users.find({"profile.gamercard.gamerscore": {$gt: 1}}, {$sort: {"profile.gamercard.gamerscore": -1}});
@@ -29,7 +45,7 @@ Meteor.startup(function() {
 			userOverallRank++;
 		});
 
-	}, 5000);
+	}, 50000);
 
 	//function to count a users gamerscore gains for the day and creating a daily rank according to gamerscore
 	Meteor.setInterval(function() {
@@ -65,7 +81,7 @@ Meteor.startup(function() {
 			Meteor.users.upsert({_id: user._id}, {$set: {"profile.userDailyRank": userDailyRank}});
 			userDailyRank++;
 		});
-	}, 5000);
+	}, 50000);
 
 });
 
