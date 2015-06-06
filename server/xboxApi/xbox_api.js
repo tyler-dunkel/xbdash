@@ -70,14 +70,18 @@ Meteor.methods({
 		].forEach(function(i) {
 			var url = user.profile.xuid + '/' + i;
 			var result = syncApiCaller(url);
-			var setObject = { $set: {} };
+			//var setObject = { $set: {} };
 
 			if (i === 'gamercard') {
-				setObject.$set['profile.' + i] = result.data;
-				Meteor.users.upsert(userId, setObject);
+				updateGamercard(userId, result.data);
 			}
 
-			if (i === 'xboxonegames' || i === 'xbox360games') {
+			if (i === 'xboxonegames') {
+				updateXboxOneData(userId, result.data);
+				updateXboxXenonData(userId, result.data);
+			}
+
+			/*
 				
 				if (!result.data.titles) { return; }
 
@@ -89,6 +93,8 @@ Meteor.methods({
 					//Meteor._debug(result.data);
 
 					if (!result.data.constructor === Array) { return; }
+
+					Meteor._debug(result.data);
 
 					result.data.forEach(function (k) {
 						var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: k.name });
@@ -178,35 +184,84 @@ Meteor.methods({
 						var url = 'game-details-hex/' + hexId;
 						var gameDetailsResult = syncApiCaller(url);
 
-						if (platform == 'Xenon') {
-							Meteor._debug(j.name);
-							var gameReleaseDate = (typeof j.earnedAchievements !== 'undefined') ? gameDetailsResult.data.Items[0].ReleaseDate : gameDetailsResult.data.Items[0].Updated;
-							Meteor._debug(gameReleaseDate);
-							var releaseDate = new Date(parseInt(gameReleaseDate.substr(6)));
-							Meteor._debug(releaseDate);
-						} else {
-							Meteor._debug(j.name);
-							var releaseDate = gameDetailsResult.data.Items[0].ReleaseDate;
-						}
+						if (gameDetailsResult !== 'undefined') {
+							if (platform == 'Xenon') {
+								Meteor._debug(j.name);
+								//if (typeof j.earnedAchievements !== 'undefined') {
+								if (gameDetailsResult.data.Items && gameDetailsResult.data.Items[0]) {
+									var gameNameX = j.name,
+										gameDescriptionX = gameDetailsResult.data.Items[0].Description,
+										gameReducedDescX = gameDetailsResult.data.Items[0].ReducedDescription,
+										gameReducedNameX = gameDetailsResult.data.Items[0].ReducedName,
+										gameReleaseDateX = (typeof j.earnedAchievements !== 'undefined') ? gameDetailsResult.data.Items[0].ReleaseDate : gameDetailsResult.data.Items[0].Updated,
+										gameIdX = gameId,
+										gameGenreX = gameDetailsResult.data.Items[0].Genres,
+										gameArtX = gameDetailsResult.data.Items[0].Images,
+										gamePublisherNameX = gameDetailsResult.data.Items[0].PublisherName,
+										gameParentalRatingX = gameDetailsResult.data.Items[0].ParentalRating,
+										gameAllTimePlayCountX = gameDetailsResult.data.Items[0].AllTimePlayCount,
+										gameSevenDaysPlayCountX = gameDetailsResult.data.Items[0].SevenDaysPlayCount,
+										gameThirtyDaysPlayCountX = gameDetailsResult.data.Items[0].ThirtyDaysPlayCount,
+										gameAllTimeRatingCountX = gameDetailsResult.data.Items[0].AllTimeRatingCount,
+										gameAllTimeAverageRatingX = gameDetailsResult.data.Items[0].AllTimeAverageRating;
+								} else {
+									var gameNameX = j.name,
+										gameDescriptionX = "This is an ordinary old game.",
+										gameReducedDescX = "This is an ordinary old game.",
+										gameReducedNameX = j.name,
+										gameReleaseDateX = "2005-11-22T00:00:00Z",
+										gameIdX = gameId,
+										gameGenreX = "Miscellaneous",
+										gameArtX = "/public\\/images\\/game-default.png",
+										gamePublisherNameX = "Xbox 360",
+										gameParentalRatingX = "Everyone",
+										gameAllTimePlayCountX = 0,
+										gameSevenDaysPlayCountX = 0,
+										gameThirtyDaysPlayCountX = 0,
+										gameAllTimeRatingCountX = 0,
+										gameAllTimeAverageRatingX = 0;
+								} 
+								Meteor._debug(gameReleaseDateX);
+								var releaseDate = new Date(parseInt(gameReleaseDateX.substr(6)));
+								Meteor._debug(releaseDate);
+							} else {
+								//Meteor._debug(j.name);
+								var gameNameX = j.name,
+									gameDescriptionX = gameDetailsResult.data.Items[0].Description,
+									gameReducedDescX = gameDetailsResult.data.Items[0].ReducedDescription,
+									gameReducedNameX = gameDetailsResult.data.Items[0].ReducedName,
+									gameReleaseDateX = gameDetailsResult.data.Items[0].ReleaseDate,
+									gameIdX = gameId,
+									gameGenreX = gameDetailsResult.data.Items[0].Genres,
+									gameArtX = gameDetailsResult.data.Items[0].Images,
+									gamePublisherNameX = gameDetailsResult.data.Items[0].PublisherName,
+									gameParentalRatingX = gameDetailsResult.data.Items[0].ParentalRating,
+									gameAllTimePlayCountX = gameDetailsResult.data.Items[0].AllTimePlayCount,
+									gameSevenDaysPlayCountX = gameDetailsResult.data.Items[0].SevenDaysPlayCount,
+									gameThirtyDaysPlayCountX = gameDetailsResult.data.Items[0].ThirtyDaysPlayCount,
+									gameAllTimeRatingCountX = gameDetailsResult.data.Items[0].AllTimeRatingCount,
+									gameAllTimeAverageRatingX = gameDetailsResult.data.Items[0].AllTimeAverageRating;
+							}
 
-						setObject.$set = {
-							gameName: j.name,
-							gameDescription: gameDetailsResult.data.Items[0].Description,
-							gameReducedDesc: gameDetailsResult.data.Items[0].ReducedDescription,
-							gameReducedName: gameDetailsResult.data.Items[0].ReducedName,
-							gameReleaseDate: releaseDate,
-							gameId: gameId,
-							gameGenre: gameDetailsResult.data.Items[0].Genres,
-							gameArt: gameDetailsResult.data.Items[0].Images,
-							gamePublisherName: gameDetailsResult.data.Items[0].PublisherName,
-							gameParentalRating: gameDetailsResult.data.Items[0].ParentalRating,
-							gameAllTimePlayCount: gameDetailsResult.data.Items[0].AllTimePlayCount,
-							gameSevenDaysPlayCount: gameDetailsResult.data.Items[0].SevenDaysPlayCount,
-							gameThirtyDaysPlayCount: gameDetailsResult.data.Items[0].ThirtyDaysPlayCount,
-							gameAllTimeRatingCount: gameDetailsResult.data.Items[0].AllTimeRatingCount,
-							gameAllTimeAverageRating: gameDetailsResult.data.Items[0].AllTimeAverageRating
-						};
-						gameDetails.upsert({ gameId: gameId }, setObject );
+							setObject.$set = {
+								gameName: gameNameX,
+								gameDescription: gameDescriptionX,
+								gameReducedDesc: gameReducedDescX,
+								gameReducedName: gameReducedNameX,
+								gameReleaseDate: gameReleaseDateX,
+								gameId: gameIdX,
+								gameGenre: gameGenreX,
+								gameArt: gameArtX,
+								gamePublisherName: gamePublisherNameX,
+								gameParentalRating: gameParentalRatingX,
+								gameAllTimePlayCount: gameAllTimePlayCountX,
+								gameSevenDaysPlayCount: gameSevenDaysPlayCountX,
+								gameThirtyDaysPlayCount: gameThirtyDaysPlayCountX,
+								gameAllTimeRatingCount: gameAllTimeRatingCountX,
+								gameAllTimeAverageRating: gameAllTimeAverageRatingX
+							};
+							gameDetails.upsert({ gameId: gameId }, setObject );
+						}
 					} else {
 						var platform = (typeof j.platform !== 'undefined') ? j.platform : 'Xenon';
 						var lastUnlock = (typeof j.lastUnlock !== 'undefined') ? j.lastUnlock : j.lastPlayed;
@@ -228,6 +283,7 @@ Meteor.methods({
 					}
 				});
 			}
+			*/
 		});
 		return "hello world";
 	}
