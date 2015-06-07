@@ -1,6 +1,6 @@
 function xboxApiCaller (url, callback) {
 	try {
-		HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result){
+		HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result) {
 			if (!error) {
 				var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
 				if (rateLimitRemaining > 0) {
@@ -12,19 +12,22 @@ function xboxApiCaller (url, callback) {
 					callback(error, null);
 				}
 			} else {
-				var error = new Meteor.Error("serverError", "The server isn't reachable.");
+				//Meteor._debug(error.response.statusCode);
+				if (error.response.statusCode === 404) {
+					var error = new Meteor.Error("xuidNotFound", "The gamertag you entered does not exist. Please try again.");
+				}
 				callback(error, null);
 			}
 		});
 	} catch (error) {
 		// If the API responded with an error message and a payload 
 	    if (error.response) {
-	      var errorCode = error.response.data.code;
-	      var errorMessage = error.response.data.message;
+	    	var errorCode = error.response.data.code;
+	    	var errorMessage = error.response.data.message;
 	    // Otherwise use a generic error message
 	    } else {
-	      var errorCode = 500;
-	      var errorMessage = 'Cannot access the API';
+	    	var errorCode = 500;
+	    	var errorMessage = 'Cannot access the API';
 	    }
 	    // Create an Error object and return it via callback
 	    var myError = new Meteor.Error(errorCode, errorMessage);
@@ -78,11 +81,15 @@ Meteor.methods({
 
 			if (i === 'xboxonegames') {
 				updateXboxOneData(userId, result.data);
-				updateXboxXenonData(userId, result.data);
+			}
+
+			if (i === 'xbox360games') {
+				updateXbox360Data(userId, result.data);
 			}
 
 			/*
-				
+			if (i === 'xboxonegames' || i === 'xbox360games' ) {
+
 				if (!result.data.titles) { return; }
 
 				result.data.titles.forEach(function (j) {
@@ -170,7 +177,7 @@ Meteor.methods({
 						var earnedAchievements = (typeof j.earnedAchievements !== 'undefined') ? j.earnedAchievements : j.currentAchievements;
 						
 						//upsert for userGames table update or insert
-						setObject.$set = {
+						setObject.$set = {lastPlayed
 							lastUnlock: lastUnlock,
 							gameId: gameId,
 							userId: userId,

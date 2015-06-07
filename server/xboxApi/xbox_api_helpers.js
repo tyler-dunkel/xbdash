@@ -9,7 +9,7 @@ updateGamercard = function (userId, gamercard) {
 
 updateXboxOneData = function (userId, xboxOneGames) {
 	if (!xboxOneGames.titles) {
-		var error = new Meteor.Error("xboxOneGamesScanError", "The Xbox One games can't be scanned at this time.");
+		var error = new Meteor.Error("xboxOneGamesScanError", "Your Xbox One games can't be scanned at this time.");
 		return error;
 	}
 	xboxOneGames.titles.forEach(function (game) {
@@ -119,6 +119,135 @@ function updateXboxOneGameDetails(userId, game, gameId) {
 	}
 }
 
-//updateXboxXenonAchievementsData;
-//updateXboxXenonGameData
-//updateXboxXenonGameDetails
+updateXbox360Data = function (userId, xbox360Games) {
+	if (!xbox360Games.titles) {
+		var error = new Meteor.Error("xbox360GamesScanError", "Your Xbox 360 games can't be scanned at this time.");
+		return error;
+	}
+	xbox360Games.titles.forEach(function (game) {
+		if (game.totalGamerscore ===  0) return;
+		var gameId = game.titleId.toString();
+		updateXbox360AchievementsData(userId, gameId);
+		updateXbox360GameData(userId, game, gameId);
+		updateXbox360GameDetails(userId, game, gameId);
+	});
+}
+
+function updateXbox360AchievementsData(userId, gameId) {
+	var user = Meteor.users.findOne({_id: userId});
+	var url = user.profile.xuid + '/achievements/' + gameId;
+
+	var result = syncApiCaller(url);
+
+	if (!result.data.constructor === Array) { return; }
+
+	result.data.forEach(function (achievement) {
+		var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: achievement.name });
+		var progressState = (achievement.unlocked !== false) ? true : false;
+		var progression = achievement.timeUnlocked;
+		progression = new Date(progression);
+		var achievementInserted = false;
+		var achievementValue = achievement.rewards && achievement.rewards.length ? achievement.rewards[0].value : achievement.value;
+		if (typeof achievementCheck === 'undefined') {
+			var singleAchievement = {
+				gameId: gameId,
+				name: achievement.name,
+				mediaAssets: achievement.imageUnlocked,
+				isSecret: achievement.isSecret,
+				description: achievement.description,
+				lockedDescription: achievement.lockedDescription,
+				value: achievement.gamerscore
+			};
+			achievementCheck = xbdAchievements.insert(singleAchievement);
+			achievementInserted = true;
+		}
+		if (!achievementInserted) {
+			achievementCheck = achievementCheck._id;
+		}
+		var userAchievement = {
+			achievementId: achievementCheck,
+			userId: userId,
+			progressState: progressState,
+			progression: progression
+		};
+		 userAchievements.upsert({ achievementId: achievementCheck, userId: userId },
+		  { $set: userAchievement });
+	});
+}
+
+function updateXbox360GameData(userId, game, gameId) {
+	var gameCheck = xbdGames.findOne({ _id: gameId });
+	var lastPlayed = game.lastPlayed;
+	lastPlayed = new Date(lastPlayed);
+	var gameInserted = false;
+	if (typeof gameCheck === 'undefined') {
+		var singleGame = {
+			_id: gameId,
+			platform: 'Xenon',
+			name: game.name,
+			titleType: game.titleType,
+			maxGamerscore: game.totalGamerscore
+		};
+		gameCheck = xbdGames.insert(singleGame);
+		gameInserted = true;
+	}
+	if (!gameInserted) {
+		gameCheck = gameCheck._id;
+	}
+	var userGame = {
+		lastUnlock: lastPlayed,
+		gameId: gameId,
+		userId: userId,
+		currentGamerscore: game.currentGamerscore,
+		earnedAchievements: game.currentAchievements
+	};
+	userGames.upsert({ gameId: gameId, userId: userId }, { $set: userGame });
+}
+
+function updateXbox360GameDetails(userId, game, gameId) {
+	var hexId = game.titleId.toString(16);
+	var url = 'game-details-hex/' + hexId;
+	var result = syncApiCaller(url);
+
+	if (result !== 'undefined') {
+		Meteor._debug(game.name);
+		if (result.data.Items && result.data.Items[0]) {
+			var gameDetail = {
+				gameName: game.name,
+				gameDescription: result.data.Items[0].Description,
+				gameReducedDescription: result.data.Items[0].ReducedDescription,
+				gameReducedName: result.data.Items[0].ReducedName,
+				gameReleaseDate: (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated,
+				gameId: gameId,
+				gameGenre: result.data.Items[0].Genres,
+				gameArt: result.data.Items[0].Images,
+				gamePublisherName: result.data.Items[0].PublisherName,
+				gameParentalRating: result.data.Items[0].ParentalRating,
+				gameAllTimePlayCount: result.data.Items[0].AllTimePlayCount,
+				gameSevenDaysPlayCount: result.data.Items[0].SevenDaysPlayCount,
+				gameThirtyDaysPlayCount: result.data.Items[0].ThirtyDaysPlayCount,
+				gameAllTimeRatingCount: result.data.Items[0].AllTimeRatingCount,
+				gameAllTimeAverageRating: result.data.Items[0].AllTimeAverageRating
+			};
+		} else {
+			var gameDetail = {
+				gameName: game.name,
+				gameDescription: "This is an ordinary old game.",
+				gameReducedDescription: "This is an ordinary old game.",
+				gameReducedName: game.name,
+				gameReleaseDate: "2005-11-22T00:00:00Z",
+				gameId: gameId,
+				gameGenre: "Miscellaneous",
+				gameArt: "/public/img/game-default.png",
+				gamePublisherName: "Xbox 360",
+				gameParentalRating: "Everyone",
+				gameAllTimePlayCount: 0,
+				gameSevenDaysPlayCount: 0,
+				gameThirtyDaysPlayCount: 0,
+				gameAllTimeRatingCount: 0,
+				gameAllTimeAverageRating: 0
+			};
+		}
+		gameDetails.upsert({ gameId: gameId }, { $set: gameDetail });
+	}
+}

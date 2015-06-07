@@ -33,6 +33,7 @@ Template.signUp.events({
 			Session.set('loadingScreen', true);
 		}
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
+			//console.log(error);
 			if (typeof error != 'undefined') {
 				if (loading) {
 					loading.finish();
