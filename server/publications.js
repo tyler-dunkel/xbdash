@@ -10,6 +10,51 @@ Meteor.publish('userSocialServices', function() {
 	});
 });
 
+Meteor.publishComposite('gamesByReleaseDate', {
+	find: function() {
+		Meteor._debug("fired game by releaese date");
+		return gameDetails.find({}, {sort: {gameReleaseDate: -1}, limit: 50});
+	},
+	children: [
+		{
+			find: function(game) {
+				return xbdGames.find({_id: game.gameId});
+			}
+		},
+		{
+			find: function(game) {
+				if (!this.userId) {
+					return;
+				}
+				return userGames.find({gameId: game.gameId});
+			}
+		}
+	]
+});
+
+Meteor.publishComposite('topGamerscoreGames', {
+	find: function() {
+		var defaultLimit = 10;
+		Meteor._debug("fired publish  game by gamerscore function");
+		return xbdGames.find({}, {sort: {maxGamerscore: -1}, limit: 50});
+	}, 
+	children: [
+		{
+			find: function(game) {
+				return gameDetails.find({gameId: game._id});
+			}
+		},
+		{
+			find: function(game) {
+				if (!this.userId) {
+					return;
+				}
+				return userGames.find({userId: this.userId});
+			}
+		}
+	]
+});
+
 Meteor.publishComposite('userAchievements', {
 	find: function() {
 		if (!this.userId) {

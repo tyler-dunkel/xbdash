@@ -124,6 +124,7 @@ updateXbox360Data = function (userId, xbox360Games) {
 		var error = new Meteor.Error("xbox360GamesScanError", "Your Xbox 360 games can't be scanned at this time.");
 		return error;
 	}
+	Meteor._debug("update 360 data");
 	xbox360Games.titles.forEach(function (game) {
 		if (game.totalGamerscore ===  0) return;
 		var gameId = game.titleId.toString();
