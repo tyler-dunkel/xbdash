@@ -4251,6 +4251,10 @@ ul.signin > li.active {
 }
 
 .text-xxs {
+  font-size: 11px;
+}
+
+.text-xxs {
   text-indent: -9999px;
 }
 
@@ -4576,6 +4580,10 @@ ul.signin > li.active {
 
 .m-l-xs {
   margin-left: 5px;
+}
+
+.m-l-xss {
+  margin: 0 5px;
 }
 
 .m-l-sm {

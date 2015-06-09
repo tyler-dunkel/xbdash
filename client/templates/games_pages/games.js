@@ -9,12 +9,20 @@ Template.gamesPage.events({
 
 Template.gamesApp.helpers({
 	topGamerscoreGames: function() {
-		var games = xbdGames.find({}, {sort: {maxGamerscore: -1}, limit: 20}).fetch();
+		var games = xbdGames.find({}, {sort: {maxGamerscore: -1}, limit: 18}).fetch();
 		//console.log(games);
+		return games;
 	},
 	gamesByReleaseDate: function() {
-		var games = gameDetails.find({}, {sort: {gameReleaseDate: -1}, limit: 20}).fetch();
+		var games = gameDetails.find({}, {sort: {gameReleaseDate: -1}, limit: 18}).fetch();
 		console.log(games);
+		return games;
+	},
+	dateFormat: function() {
+		return moment(this.gameReleaseDate).format('l');
+	},
+	rateFormat: function() {
+		return $('#game-rating').raty({ readOnly: true, score: this.gameAllTimeAverageRating });
 	}
 });
 

@@ -13,7 +13,7 @@ Meteor.publish('userSocialServices', function() {
 Meteor.publishComposite('gamesByReleaseDate', {
 	find: function() {
 		Meteor._debug("fired game by releaese date");
-		return gameDetails.find({}, {sort: {gameReleaseDate: -1}, limit: 50});
+		return gameDetails.find({}, {sort: {gameReleaseDate: -1}, limit: 18});
 	},
 	children: [
 		{

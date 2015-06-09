@@ -60,6 +60,7 @@ mizzao:user-status@0.6.4
 mobile-status-bar@1.0.3
 momentjs:moment@2.10.3
 mongo@1.1.0
+mrt:jquery-raty@2.7.2
 msavin:jetsetter@1.0.13
 msavin:mongol@1.0.60
 nahue:simple-line-icons@1.0.0

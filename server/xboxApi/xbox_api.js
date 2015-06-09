@@ -79,13 +79,17 @@ Meteor.methods({
 				updateGamercard(userId, result.data);
 			}
 
-			if (i === 'xboxonegames') {
-				updateXboxOneData(userId, result.data);
-			}
+			//if (i === 'xboxonegames') {
+			//	updateXboxOneData(userId, result.data);
+			//}
 
 			if (i === 'xbox360games') {
 				updateXbox360Data(userId, result.data);
 			}
+		});
+		return "hello world";
+	}
+});
 
 			/*
 			if (i === 'xboxonegames' || i === 'xbox360games' ) {
@@ -291,10 +295,6 @@ Meteor.methods({
 				});
 			}
 			*/
-		});
-		return "hello world";
-	}
-});
 
 // https://xboxapi.com/v2/xuid/djekl
 // https://xboxapi.com/v2/gamertag/2533274805933072

@@ -12,6 +12,7 @@ updateXboxOneData = function (userId, xboxOneGames) {
 		var error = new Meteor.Error("xboxOneGamesScanError", "Your Xbox One games can't be scanned at this time.");
 		return error;
 	}
+	Meteor._debug("update Xbox One data");
 	xboxOneGames.titles.forEach(function (game) {
 		if (game.maxGamerscore ===  0) return;
 		var gameId = game.titleId.toString();
@@ -98,6 +99,7 @@ function updateXboxOneGameDetails(userId, game, gameId) {
 	var result = syncApiCaller(url);
 
 	if (result !== 'undefined') {
+		Meteor._debug(game.name);
 		var gameDetail = {
 			gameName: game.name,
 			gameDescription: result.data.Items[0].Description,
@@ -213,12 +215,16 @@ function updateXbox360GameDetails(userId, game, gameId) {
 	if (result !== 'undefined') {
 		Meteor._debug(game.name);
 		if (result.data.Items && result.data.Items[0]) {
+			var releaseDate = (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated;
+			releaseDate = new Date(parseInt(releaseDate.substr(6)));
+			releaseDate = releaseDate.toISOString();
+
 			var gameDetail = {
 				gameName: game.name,
 				gameDescription: result.data.Items[0].Description,
 				gameReducedDescription: result.data.Items[0].ReducedDescription,
 				gameReducedName: result.data.Items[0].ReducedName,
-				gameReleaseDate: (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated,
+				gameReleaseDate: releaseDate,
 				gameId: gameId,
 				gameGenre: result.data.Items[0].Genres,
 				gameArt: result.data.Items[0].Images,
