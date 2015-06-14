@@ -4583,7 +4583,7 @@ ul.signin > li.active {
 }
 
 .m-l-xss {
-  margin: 0 5px;
+  margin-right: 5px;
 }
 
 .m-l-sm {
@@ -5524,3 +5524,114 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .label-circle {fill: #393939;}
 .label-line {stroke: #393939; stroke-width: 1;}
 .label-text {alignment-baseline: middle; font-size: 12px; font-family: arial,helvetica,"sans-serif"; fill: #393939;}
+
+/* hover effects */
+
+.ih-item {
+  position: relative;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.ih-item,
+.ih-item * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ih-item p { text-align: left; }
+.ih-item a .panel-heading a {
+  color: #fff;
+}
+.ih-item a .info p, .ih-item a .info a {
+  color: #333;
+}
+.ih-item a:hover {
+  text-decoration: none;
+}
+.ih-item img {
+  width: 100%;
+  height: 100%;
+}
+.ih-item.square .info {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.ih-item.square.effect3 {
+  overflow: hidden;
+}
+.ih-item.square.effect3 .panel-heading {
+  margin: 0;
+  overflow: hidden;
+}
+.ih-item.square.effect3.colored .info {
+  background: #1a4a72;
+}
+.ih-item.square.effect3 .img {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.ih-item.square.effect3 .info {
+  width: 88%;
+  height: 70px;
+  background: #fff;
+  margin: 0 auto;
+  opacity: 0;
+  text-align: left;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.ih-item.square.effect3 a:hover .info {
+  visibility: visible;
+  opacity: 1;
+}
+.ih-item.square.effect3.top_to_bottom .info {
+  bottom: auto;
+}
+.ih-item.square.effect3.top_to_bottom a:hover .img {
+  -webkit-transform: translateY(100px);
+  -moz-transform: translateY(100px);
+  -ms-transform: translateY(100px);
+  -o-transform: translateY(100px);
+  transform: translateY(100px);
+}
+.ih-item.square.effect3.top_to_bottom a:hover .info {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.overlay .game-page-link {  
+  background: rgba(0, 0, 0, .75);
+  text-align: center;
+  opacity: 0;    
+  width: 100%;
+  height: 100%; 
+  position: absolute;
+  z-index: 5;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.overlay .game-page-link a {
+  margin-top: 25%;
+}
+.overlay .game-page-link:hover, .overlay .game-page-link:hover i {
+  opacity: 1;
+}

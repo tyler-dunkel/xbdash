@@ -218,6 +218,11 @@ function updateXbox360GameDetails(userId, game, gameId) {
 			var releaseDate = (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated;
 			releaseDate = new Date(parseInt(releaseDate.substr(6)));
 			releaseDate = releaseDate.toISOString();
+			Meteor._debug(releaseDate);
+
+			var allTimeAverageRating = (typeof result.data.Items[0].AllTimeAverageRating !== 'undefined') ? result.data.Items[0].AllTimeAverageRating : 0;
+
+			Meteor._debug(allTimeAverageRating);
 
 			var gameDetail = {
 				gameName: game.name,
@@ -234,7 +239,7 @@ function updateXbox360GameDetails(userId, game, gameId) {
 				gameSevenDaysPlayCount: result.data.Items[0].SevenDaysPlayCount,
 				gameThirtyDaysPlayCount: result.data.Items[0].ThirtyDaysPlayCount,
 				gameAllTimeRatingCount: result.data.Items[0].AllTimeRatingCount,
-				gameAllTimeAverageRating: result.data.Items[0].AllTimeAverageRating
+				gameAllTimeAverageRating: allTimeAverageRating
 			};
 		} else {
 			var gameDetail = {
