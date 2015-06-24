@@ -483,6 +483,13 @@ a.list-group-item.hover {
   border-radius: 2px 2px 0 0;
 }
 
+@media (max-width: 768px) { 
+  .panel-heading {
+    font-size: 12px;
+    padding: 10px 8px;
+  }
+}
+
 .panel-default .panel-heading {
   background-color: #f6f8f8;
 }
@@ -5634,4 +5641,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 }
 .overlay .game-page-link:hover, .overlay .game-page-link:hover i {
   opacity: 1;
+}
+
+#game-rating img {
+  width: 16px;
+  height: 16px;
 }

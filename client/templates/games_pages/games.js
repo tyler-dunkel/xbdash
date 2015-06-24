@@ -1,3 +1,15 @@
+Template.gamesApp.rendered = function() {
+    $('.game-rating').raty({
+        readOnly: true,
+        numberMax : 5,
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        starOff: 'star-off.png',
+        starOn: 'star-on.png'
+    });
+}
+
 Template.gamesApp.onCreated(function() {
 	var limit = 20;
 	this.subscribe('topGamerscoreGames');
@@ -8,40 +20,21 @@ Template.gamesPage.events({
 });
 
 Template.gamesApp.helpers({
-	topGamerscoreGames: function() {
-		var games = userGames.find({}, {sort: {earnedAchievements: -1}, limit: 12});
-		console.log(games);
-		return games;
+	myTopGames: function() {
+		var games = userGames.find({}, { sort: { currentGamerscore: -1 }, limit: 12 });
+        //console.log(games);
+        var gameDetailArray = [];
+        games.forEach(function(game) {
+            //console.log("this game id: " + game.gameId);
+            var sortedGameDetail = gameDetails.findOne({ gameId: game.gameId });
+            //console.log("gave this game " + sortedGameDetail.gameName);
+            gameDetailArray.push(sortedGameDetail);
+        });
+        return gameDetailArray;
 	},
 	gamesByReleaseDate: function() {
-		return gameDetails.find({}, {sort: {gameReleaseDate: -1}, limit: 12});
+		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 12 }).fetch();
 	},
-	dateFormat: function() {
-		return moment(this.gameReleaseDate).format('l');
-	},
-	rateFormat: function() {
-		return $('#game-rating').raty({ readOnly: true, score: this.gameAllTimeAverageRating });
-	},
-    gamesImage: function () {
-        var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-        var image = "/img/xboxdash_greenicon.png";
-        if (xbdGame.platform === 'Xenon') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BoxArt' && art.Width === 219) {
-                    image =  art.Url;
-                }
-            });
-        }
-        if (xbdGame.platform === 'Durango') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-                    image =  art.Url;
-                }
-            });
-        }
-        return image;
-    },
 });
 
 Tracker.autorun(function() {

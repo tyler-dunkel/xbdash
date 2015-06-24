@@ -34,22 +34,32 @@ Meteor.publishComposite('gamesByReleaseDate', {
 
 Meteor.publishComposite('topGamerscoreGames', {
 	find: function() {
-		var defaultLimit = 10;
-		Meteor._debug("fired publish  game by gamerscore function");
-		return xbdGames.find({}, {sort: {maxGamerscore: -1}, limit: 50});
+		if (!this.userId) {
+			Meteor._debug("fired publish  game by gamerscore function");
+			return xbdGames.find({}, { sort: { maxGamerscore: -1 }, limit: 25 });
+		}
+		return userGames.find({}, { sort: { currentGamerscore: -1 }, limit: 25 });
 	}, 
 	children: [
 		{
 			find: function(game) {
-				return gameDetails.find({gameId: game._id});
+				var id;
+				if (!this.userId) {
+					id = game._id;
+				} else {
+					id = game.gameId;
+				}
+				return gameDetails.find({ gameId: id });
 			}
 		},
 		{
 			find: function(game) {
 				if (!this.userId) {
+					//Meteor._debug("no user id " + game);
 					return;
 				}
-				return userGames.find({userId: this.userId});
+				//Meteor._debug(game);
+				return xbdGames.find({ _id: game.gameid });
 			}
 		}
 	]
