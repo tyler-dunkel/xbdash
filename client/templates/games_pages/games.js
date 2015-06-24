@@ -12,7 +12,7 @@ Template.gamesApp.rendered = function() {
 
 Template.gamesApp.onCreated(function() {
 	var limit = 20;
-	this.subscribe('topGamerscoreGames');
+	this.subscribe('myTopGames');
 	this.subscribe('gamesByReleaseDate');
 });
 

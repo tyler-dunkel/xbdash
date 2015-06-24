@@ -4,8 +4,8 @@ function xboxApiCaller (url, callback) {
 			if (!error) {
 				var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
 				if (rateLimitRemaining > 0) {
-					Meteor._debug("rate limit is more than 0");
-					Meteor._debug("Calls Left: " + rateLimitRemaining);
+					//Meteor._debug("rate limit is more than 0");
+					//Meteor._debug("Calls Left: " + rateLimitRemaining);
 					callback(null, result);
 				} else {
 					var error = new Meteor.Error("rateLimitExpired", "Rate limit has expired.");
@@ -79,9 +79,9 @@ Meteor.methods({
 				updateGamercard(userId, result.data);
 			}
 
-			//if (i === 'xboxonegames') {
-			//	updateXboxOneData(userId, result.data);
-			//}
+			if (i === 'xboxonegames') {
+				updateXboxOneData(userId, result.data);
+			}
 
 			if (i === 'xbox360games') {
 				updateXbox360Data(userId, result.data);

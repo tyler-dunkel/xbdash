@@ -32,7 +32,7 @@ Meteor.publishComposite('gamesByReleaseDate', {
 	]
 });
 
-Meteor.publishComposite('topGamerscoreGames', {
+Meteor.publishComposite('myTopGames', {
 	find: function() {
 		if (!this.userId) {
 			Meteor._debug("fired publish  game by gamerscore function");
@@ -55,7 +55,7 @@ Meteor.publishComposite('topGamerscoreGames', {
 		{
 			find: function(game) {
 				if (!this.userId) {
-					//Meteor._debug("no user id " + game);
+					Meteor._debug("no user id " + game);
 					return;
 				}
 				//Meteor._debug(game);
