@@ -1,6 +1,8 @@
 //server
 Meteor.startup(function() {
 
+
+	//function to find the  achievements
 	//tiering function for achievements
 	//set internval function ->query for every site user and count the query -> query for every xbdAchievement -> loop through each xbdAchievement -> query the userAchievement table with the xbdAchievement _id and count the returned records (can either be unlocked, locked, or both) -> divide this count by the total user number we got earlier and store the resulting value within the xbdAchievement. 
 	Meteor.setInterval(function() {
@@ -14,7 +16,6 @@ Meteor.startup(function() {
 			//Meteor._debug(achievementUnlockPercentage);
 			xbdAchievements.upsert({_id: achievement._id}, {$set: {userPercentage: achievementUnlockPercentage}});
 		});
-		// wait do we have a userPercentage field already?? idk what you mean? no? run this ok got it let me try
 	}, 250000);
 
 	//function to give users an overall rank according to gamerscore
