@@ -1,8 +1,23 @@
+Template.gameRating.rendered = function() {
+    $('.game-rating').raty({
+        readOnly: true,
+        numberMax : 5,
+        path: '/img',
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        starHalf: 'star-half.png',
+        starOff: 'star-off.png',
+        starOn: 'star-on.png'
+    });
+}
+
 Template.gameTemplate.helpers({
     dateFormat: function() {
 		return moment(this.gameReleaseDate).format('l');
 	},
     gamesImage: function () {
+        console.log(this);
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
         var image = "/img/xboxdash_greenicon.png";

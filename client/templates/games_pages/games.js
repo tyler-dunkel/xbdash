@@ -1,13 +1,4 @@
 Template.gamesApp.rendered = function() {
-    $('.game-rating').raty({
-        readOnly: true,
-        numberMax : 5,
-        score: function() {
-            return $(this).attr('data-score');
-        },
-        starOff: 'star-off.png',
-        starOn: 'star-on.png'
-    });
 }
 
 Template.gamesApp.onCreated(function() {
@@ -18,7 +9,7 @@ Template.gamesApp.onCreated(function() {
 
 Template.gamesApp.helpers({
 	myTopGames: function() {
-		var games = userGames.find({}, { sort: { currentGamerscore: -1 }, limit: 12 });
+		var games = userGames.find({}, { sort: { currentGamerscore: -1 }, limit: 10 });
         //console.log(games);
         var gameDetailArray = [];
         games.forEach(function(game) {
@@ -30,7 +21,7 @@ Template.gamesApp.helpers({
         return gameDetailArray;
 	},
 	gamesByReleaseDate: function() {
-		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 12 }).fetch();
+		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 10 }).fetch();
 	},
 });
 

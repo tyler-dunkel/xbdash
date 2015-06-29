@@ -13,7 +13,7 @@ Meteor.publish('userSocialServices', function() {
 Meteor.publishComposite('rarestAchievements', {
 	find: function() {
 		Meteor._debug("rarest achievement function firing");
-		return xbdAchievements.find({}, {sort: {userPercentage: -1}, limit: 18});
+		return xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 50 });
 	},
 	children: [
 		{
@@ -21,11 +21,16 @@ Meteor.publishComposite('rarestAchievements', {
 				if (!this.userId) {
 					return;
 				}
-				var userAchievementCheck = userAchievements.find({userId: this.userId, achievementId: achievement._id});
+				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
 				if (typeof userAchievementCheck !== 'undefined') {
 					return userAchievementCheck;
 				}
 				return;
+			}
+		},
+		{
+			find: function(achievement) {
+				return xbdGames.find({ _id: achievement.gameId });
 			}
 		}
 	]
@@ -34,7 +39,7 @@ Meteor.publishComposite('rarestAchievements', {
 Meteor.publishComposite('mostPopularAchievements', {
 	find: function() {
 		Meteor._debug("most popular achievement function firing");
-		return xbdAchievements.find({}, {sort: {userPercentage: 1}, limit: 18});
+		return xbdAchievements.find({}, { sort: { userPercentage: 1 }, limit: 50 });
 	},
 	children: [
 		{
@@ -42,11 +47,16 @@ Meteor.publishComposite('mostPopularAchievements', {
 				if (!this.userId) {
 					return;
 				}
-				var userAchievementCheck = userAchievements.find({userId: this.userId, achievementId: achievement._id});
+				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
 				if (typeof userAchievementCheck !== 'undefined') {
 					return userAchievementCheck;
 				}
 				return;
+			}
+		},
+		{
+			find: function(achievement) {
+				return xbdGames.find({ _id: game.gameId });
 			}
 		}
 	]
@@ -55,12 +65,12 @@ Meteor.publishComposite('mostPopularAchievements', {
 Meteor.publishComposite('gamesByReleaseDate', {
 	find: function() {
 		Meteor._debug("fired game by releaese date");
-		return gameDetails.find({}, {sort: {gameReleaseDate: -1}, limit: 18});
+		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 18 });
 	},
 	children: [
 		{
 			find: function(game) {
-				return xbdGames.find({_id: game.gameId});
+				return xbdGames.find({ _id: game.gameId });
 			}
 		},
 		{
@@ -68,7 +78,7 @@ Meteor.publishComposite('gamesByReleaseDate', {
 				if (!this.userId) {
 					return;
 				}
-				return userGames.find({gameId: game.gameId});
+				return userGames.find({ gameId: game.gameId });
 			}
 		}
 	]
@@ -100,8 +110,7 @@ Meteor.publishComposite('myTopGames', {
 					Meteor._debug("no user id " + game);
 					return;
 				}
-				//Meteor._debug(game);
-				return xbdGames.find({ _id: game.gameid });
+				return xbdGames.find({ _id: game.gameId });
 			}
 		}
 	]
