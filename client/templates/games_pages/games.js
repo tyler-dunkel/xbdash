@@ -16,9 +16,6 @@ Template.gamesApp.onCreated(function() {
 	this.subscribe('gamesByReleaseDate');
 });
 
-Template.gamesPage.events({
-});
-
 Template.gamesApp.helpers({
 	myTopGames: function() {
 		var games = userGames.find({}, { sort: { currentGamerscore: -1 }, limit: 12 });
@@ -35,6 +32,9 @@ Template.gamesApp.helpers({
 	gamesByReleaseDate: function() {
 		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 12 }).fetch();
 	},
+});
+
+Template.gamesPage.events({
 });
 
 Tracker.autorun(function() {

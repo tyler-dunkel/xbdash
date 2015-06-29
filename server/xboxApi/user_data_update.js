@@ -9,7 +9,7 @@ Meteor.startup(function() {
 		users.forEach(function(user) {
 			checkUserForUpdates(user._id);
 		});
-	}, 5000);
+	}, 1800000);
 });
 
 function checkUserForUpdates(userId) {
