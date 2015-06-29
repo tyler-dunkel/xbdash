@@ -56,7 +56,7 @@ Meteor.publishComposite('mostPopularAchievements', {
 		},
 		{
 			find: function(achievement) {
-				return xbdGames.find({ _id: game.gameId });
+				return xbdGames.find({ _id: achievement.gameId });
 			}
 		}
 	]
