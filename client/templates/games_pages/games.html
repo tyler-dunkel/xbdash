@@ -35,7 +35,7 @@
             <div class="row">
               {{#if Template.subscriptionsReady}}
                 {{#each myTopGames}}
-                  {{> gameTemplate}}
+                  {{> myTopGamesTemplate}}
                 {{/each}}
               {{else}}
                 {{> loadingTemplate}}
@@ -51,7 +51,7 @@
             <div class="row">
               {{#if Template.subscriptionsReady}}
                 {{#each gamesByReleaseDate}}
-                  {{> gameTemplate}}
+                  {{> gamesReleaseDateTemplate}}
                 {{/each}}
               {{else}}
                 {{> loadingTemplate}}
