@@ -5178,6 +5178,9 @@ ul.signin > li.active {
     margin-left: 0;
     clear: left;
   }
+  .text-center {
+    text-align: center;
+  }
   .text-center-xs {
     text-align: center;
   }
@@ -5570,6 +5573,16 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+.ih-item.square .info2 {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 .ih-item.square.effect3 {
   overflow: hidden;
 }
@@ -5615,7 +5628,14 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   -o-transform: translateY(100px);
   transform: translateY(100px);
 }
-.ih-item.square.effect3.top_to_bottom a:hover .info {
+.ih-item.square.effect3.top_to_bottom a:hover .img2 {
+  -webkit-transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -ms-transform: translateY(40px);
+  -o-transform: translateY(40px);
+  transform: translateY(40px);
+}
+.ih-item.square.effect3.top_to_bottom a:hover .info, .ih-item.square.effect3.top_to_bottom a:hover .info2 {
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
@@ -5642,14 +5662,40 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .overlay .game-page-link:hover, .overlay .game-page-link:hover i {
   opacity: 1;
 }
-
-.ih-item .img-X {
+.overlay .achievement-page-link {  
+  background: rgba(0, 0, 0, .75);
+  text-align: center;
+  opacity: 0;    
+  width: 100%;
+  height: 100%; 
+  position: absolute;
+  z-index: 5;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.overlay .achievement-page-link a {
+  margin-top: 25px;
+}
+.overlay .achievement-page-link:hover, .overlay .achievement-page-link:hover i {
+  opacity: 1;
+}
+.overlay.img-Xenon  {
+  background-color: #fff;
+}
+.overlay .img-wrapper {
+  padding: 30px;
+}
+.overlay.img-Xenon span img {
+  margin: 0 auto;
+}
+.ih-item span .img-X {
   width: 64px;
   height: 64px;
   display: block;
-  margin: 50px auto;
 }
-
 .ih-item .game-rating img {
   width: 16px;
   height: 16px;

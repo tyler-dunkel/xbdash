@@ -17,5 +17,13 @@ Template.achievementTemplate.helpers({
             imgClass = "img-X";
         }
         return imgClass;
+    },
+    wrapClass: function () {
+        var xbdGame = xbdGames.findOne({ _id: this.gameId });
+        var imgClass = "";
+        if (xbdGame.platform === 'Xenon') {
+            imgClass = "img-wrapper";
+        }
+        return imgClass;
     }
 });
