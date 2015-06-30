@@ -31,204 +31,29 @@
             <div class="row">
               <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
                 <div class="blog-post">
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
+                  {{#if Template.subscriptionsReady}}
+                    {{#each latestNews}}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="panel b-a">
+                        <a href="#">
+                          <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
+                            <img src="{{getImage}}" class="img-full">
+                          </div>
+                          <div class="panel-heading no-border bg-success post-title-box">
+                            <h3 class="text-lt h4 m-b-sm" style="min-height: 60px;">{{title}}</h3>
+                            <div class="text-lt h5 text-primary-lter">by {{author}}</div>
+                            <div class="text-lt text-primary-lter">{{updatedDate}}</div>
+                          </div>
+                        </a>
+                        <div class="text-center" style="padding:5px;">
+                          <i class="fa fa-square-share-o text-muted"></i> {{shareCount}} shares
                         </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="panel b-a">
-                      <a href="#">
-                        <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                          <img src="http://placehold.it/400x300" class="img-full">
-                        </div>
-                        <div class="panel-heading no-border bg-success post-title-box">
-                          <h3 class="text-lt h4 m-b-sm">Title</h3>
-                          <div class="text-lt h5 m-b-sm text-primary-lter">by Keith Guirao</div>
-                        </div>
-                        <div class="hbox b-b b-light text-sm">
-                          <span class="col padder padder-v b-light">
-                            <p class="post-p-box">Text text text text text text text text text text text text text text text text text text text text text text text text text ... <strong>read more</strong></p>
-                          </span>
-                        </div>
-                      </a>
-                      <div style="padding:5px;text-align: right;">
-                        <a href class="m-l-sm">May 12, 2015</a>
-                        <a href class="m-l-sm"><i class="fa fa-comment-o text-muted"></i> 5 comments</a>
-                      </div>
-                    </div>
-                  </div>
+                    {{/each}}
+                  {{else}}
+                    {{> loadingTemplate}}
+                  {{/if}}
                 </div>
                 <div class="text-center m-t-lg m-b-lg">
                   pagination here

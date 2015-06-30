@@ -165,4 +165,8 @@ Meteor.publishComposite('userGames', {
 	]
 });
 
+Meteor.publish('latestNews', function() {
+	return newsPolygon.find({});
+});
+
 // global publications - general user
