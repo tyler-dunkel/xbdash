@@ -33,23 +33,7 @@
                 <div class="blog-post">
                   {{#if Template.subscriptionsReady}}
                     {{#each latestNews}}
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                      <div class="panel b-a">
-                        <a href="#">
-                          <div class="item m-l-n-xxs m-r-n-xxs post-image-box">
-                            <img src="{{getImage}}" class="img-full">
-                          </div>
-                          <div class="panel-heading no-border bg-success post-title-box">
-                            <h3 class="text-lt h4 m-b-sm" style="min-height: 60px;">{{title}}</h3>
-                            <div class="text-lt h5 text-primary-lter">by {{author}}</div>
-                            <div class="text-lt text-primary-lter">{{updatedDate}}</div>
-                          </div>
-                        </a>
-                        <div class="text-center" style="padding:5px;">
-                          <i class="fa fa-square-share-o text-muted"></i> {{shareCount}} shares
-                        </div>
-                      </div>
-                    </div>
+                      {{> newsTemplate}}
                     {{/each}}
                   {{else}}
                     {{> loadingTemplate}}

@@ -483,6 +483,10 @@ a.list-group-item.hover {
   border-radius: 2px 2px 0 0;
 }
 
+.padder-heading {
+  padding: 10px;
+}
+
 @media (max-width: 768px) { 
   .panel-heading {
     font-size: 12px;
@@ -4371,6 +4375,30 @@ ul.signin > li.active {
   padding-bottom: 15px;
 }
 
+.padder-vv- {
+  padding: 20px;
+}
+
+.padder-vv-a {
+  padding: 20px;
+  background-color: #000;
+}
+
+.padder-vv-b {
+  padding: 20px;
+  background-color: #3498db;
+}
+
+.padder-vv-c {
+  padding: 20px;
+  background-color: #e74c3c;
+}
+
+.padder-vv-d {
+  padding: 20px;
+  background-color: #f39c12;
+}
+
 .padder-x {
   padding-top: 40px;
   padding-bottom: 25px;
@@ -5614,6 +5642,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   -moz-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
+.ih-item.square.effect3 .info2 {
+  top: 61px;
+}
 .ih-item.square.effect3 a:hover .info {
   visibility: visible;
   opacity: 1;
@@ -5682,19 +5713,11 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .overlay .achievement-page-link:hover, .overlay .achievement-page-link:hover i {
   opacity: 1;
 }
-.overlay.img-Xenon  {
-  background-color: #fff;
-}
-.overlay .img-wrapper {
-  padding: 30px;
-}
-.overlay.img-Xenon span img {
-  margin: 0 auto;
-}
 .ih-item span .img-X {
-  width: 64px;
-  height: 64px;
+  width: 100%;
+  height: auto;
   display: block;
+  padding: 20% 42%;
 }
 .ih-item .game-rating img {
   width: 16px;

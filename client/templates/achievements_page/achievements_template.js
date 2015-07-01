@@ -18,12 +18,18 @@ Template.achievementTemplate.helpers({
         }
         return imgClass;
     },
-    wrapClass: function () {
-        var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        var imgClass = "";
-        if (xbdGame.platform === 'Xenon') {
-            imgClass = "img-wrapper";
+    achievementClass: function () {
+        if (this.userPercentage >= 0 && this.userPercentage <= 10) {
+            return "a";
         }
-        return imgClass;
+        if (this.userPercentage >= 11 && this.userPercentage <= 30) {
+            return "b";
+        }
+        if (this.userPercentage >= 31 && this.userPercentage <= 60) {
+            return "c";
+        }
+        if (this.userPercentage >= 61 && this.userPercentage <= 100) {
+            return "d";
+        }
     }
 });

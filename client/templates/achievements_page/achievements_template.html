@@ -1,28 +1,28 @@
 <template name="achievementTemplate">
-	<div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 ih-item square effect3 top_to_bottom">
+	<div class="col-lg-3 col-sm-6 ih-item square effect3 top_to_bottom">
 		<a href="#linkToAchievementPage">
 			<div class="panel b-a">
-				<div class="panel-heading no-border bg-success">
-					<span class="pull-right padder-t"><i class="fa fa-trophy"></i> {{value}}</span>
-					<div class="text-lt">
+				<div class="no-border bg-success">
+					<span class="pull-right padder-vv-{{achievementClass}}"><i class="fa fa-trophy"></i> {{value}}</span>
+					<div class="padder-heading text-lt">
 						{{name}}<br />
 						<span class="text-u-c text-xxs">{{gameName}}</span>
 					</div>
 				</div>
-				<div class="wrapper padder-d text-sm text-center">
-					<span class="text-lt">{{userPercentage}}% have this</span>
+				<div class="wrapper padder-d b-b text-sm text-center">
+					{{userPercentage}}% have this
 				</div>
-				<div class="hbox b-b b-light text-sm info info2">
-					<span class="col wrapper padder-v b-r b-light">
+				<div class="hbox text-sm info info2">
+					<span class="col wrapper padder-v">
 						<p>
 							{{lockedDescription}} <a href="#linkToAchievementPage">more</a>
 						</p>
 					</span>
 				</div>
 				<div class="item m-l-n-xxs m-r-n-xxs img img2">
-					<div class="overlay img-Xenon">
+					<div class="overlay {{xenonClass}}">
 						<span class="achievement-page-link"><a href="#" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
-						<span class="{{wrapClass}}">
+						<span>
 							<img src="{{achievementImage}}" class="{{imageClass}}" />
 						</span>
 					</div>
