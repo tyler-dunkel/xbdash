@@ -13,11 +13,14 @@ Template.newsTemplate.helpers({
 		return moment(this.updated).format('MMMM Do YYYY, h:mm:ss a');
 	},
 	shareCount: function() {
-		var shareCount = numberFormatter(this.shareCount);
-		if (this.shareCount === 1) {
-			return shareCount + ' share';
-		} else {
-			return shareCount + ' shares';
+		if (this.shareCount) {
+			var shareCount = numberFormatter(this.shareCount);
+			if (this.shareCount === 1) {
+				return shareCount + ' share';
+			} else {
+				return shareCount + ' shares';
+			}
 		}
+		return '0 shares';
 	}
 });
