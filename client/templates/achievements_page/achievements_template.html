@@ -1,6 +1,6 @@
 <template name="achievementTemplate">
 	<div class="col-md-4 col-sm-6 col-xs-12 ih-item square effect3 top_to_bottom">
-		<a href="#linkToAchievementPage">
+		<a href="{{pathFor 'achievement'}}">
 			<div class="panel b-a">
 				<div class="no-border bg-success">
 					<span class="pull-right padder-vv-{{achievementClass}}"><i class="fa fa-trophy"></i> {{value}}</span>
@@ -21,7 +21,7 @@
 				</div>
 				<div class="item m-l-n-xxs m-r-n-xxs img img2">
 					<div class="overlay {{xenonClass}}">
-						<span class="achievement-page-link"><a href="#" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
+						<span class="achievement-page-link"><a href="{{pathFor 'achievement'}}" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
 						<span>
 							<img src="{{achievementImage}}" class="{{imageClass}}" />
 						</span>

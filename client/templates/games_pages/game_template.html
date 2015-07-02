@@ -1,6 +1,6 @@
 <template name="myTopGamesTemplate">
 	<div class="col-lg-15 col-md-3 col-sm-6 col-xs-12 ih-item square effect3 top_to_bottom">
-		<a href="#linkToGamePage">
+		<a href="{{pathFor 'game'}}">
 			<div class="panel b-a">
 				<div class="panel-heading no-border bg-success title-wrap-game">
 					<span class="text-u-c text-lt">{{gameName}}</span>
@@ -18,7 +18,7 @@
 				</div>
 				<div class="item img">
 					<div class="overlay">
-						<span class="game-page-link"><a href="#" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
+						<span class="game-page-link"><a href="{{pathFor 'game'}}" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
 						{{> gameRating}}
 						<span>
 							<img src="{{gamesImage}}" class="img-full">
@@ -32,7 +32,7 @@
 
 <template name="gamesReleaseDateTemplate">
 	<div class="col-lg-15 col-md-3 col-sm-6 col-xs-12 ih-item square effect3 top_to_bottom">
-		<a href="#linkToGamePage">
+		<a href="{{pathFor 'game'}}">
 			<div class="panel b-a">
 				<div class="panel-heading no-border bg-success title-wrap-game">
 					<span class="text-u-c text-lt">{{gameName}}</span>
@@ -50,7 +50,7 @@
 				</div>
 				<div class="item img">
 					<div class="overlay">
-						<span class="game-page-link"><a href="#" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
+						<span class="game-page-link"><a href="{{pathFor 'game'}}" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
 						{{> gameRating}}
 						<span>
 							<img src="{{gamesImage}}" class="img-full">
