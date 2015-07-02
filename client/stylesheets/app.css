@@ -5723,6 +5723,31 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   width: 16px;
   height: 16px;
 }
+.title-wrap {
+  display: block;
+  display: -webkit-box;
+  height: 55.1px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.1em;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+}
+.title-wrap-achievement {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30ch;
+}
+.title-wrap-game {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60ch;
+}
 
 
 /* Small devices (tablets, 768px and up) */

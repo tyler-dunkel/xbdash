@@ -7,7 +7,7 @@ Template.newsApp.onCreated(function() {
 
 Template.newsApp.helpers({
 	latestNews: function() {
-		var latestNews = newsPolygon.find({}, { sort: { updated: -1 }, limit: 8 }).fetch();
+		var latestNews = newsPolygon.find({}, { sort: { updated: -1 }, limit: 9 }).fetch();
 		return latestNews;
 	}
 });

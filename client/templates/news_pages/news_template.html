@@ -1,12 +1,12 @@
 <template name="newsTemplate">
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-lg-4 col-md-6 col-xs-12">
 		<div class="panel b-a">
 			<a class="article-url" href="{{pathFor 'article'}}">
 				<div class="item m-l-n-xxs m-r-n-xxs post-image-box">
 					<img src="{{getImage}}" class="img-full">
 				</div>
 				<div class="panel-heading no-border bg-success post-title-box">
-					<h3 class="text-lt h4 m-b-sm" style="min-height: 80px;">{{title}}</h3>
+					<h3 class="text-lt h4 m-b-sm title-wrap" style="min-height: 60px;">{{title}}</h3>
 					<div class="text-lt h5 text-primary-lter">by {{author}}</div>
 					<div class="text-lt text-primary-lter">{{updatedDate}}</div>
 				</div>
