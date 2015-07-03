@@ -1,7 +1,10 @@
-Template.acievementsSinglePage.rendered = function() {
+Template.achievementsSinglePage.created = function() {
+	var slug = Router.current().params.slug;
+	console.log(slug);
+	Meteor.subscribe('singleAchievement', slug);
 }
 
-Template.acievementsSinglePage.events({
+Template.achievementsSinglePage.events({
 });
 
 Tracker.autorun(function() {
