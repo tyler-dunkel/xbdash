@@ -4,6 +4,13 @@ Template.gamesSinglePage.created = function() {
 	this.subscribe('singleGame', id);
 }
 
+Template.gamesSinglePage.helpers({
+	game: function() {
+		var id = Router.current().params._id;
+		return gameDetails.findOne({_id: id});
+	}
+});
+
 Template.gamesSinglePage.events({
 });
 
