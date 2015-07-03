@@ -47,6 +47,7 @@ livedata@1.0.13
 localstorage@1.0.3
 logging@1.0.7
 manuelschoebel:ms-seo@0.4.1
+matb33:collection-hooks@0.7.13
 meteor@1.1.6
 meteor-platform@1.2.2
 meteorhacks:async@1.0.0
@@ -89,6 +90,7 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 srp@1.0.3
 templating@1.1.1
+todda00:friendly-slugs@0.3.2
 tracker@1.0.7
 twbs:bootstrap@3.3.5
 twitter@1.1.4
