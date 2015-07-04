@@ -1,13 +1,12 @@
 Template.gamesSinglePage.created = function() {
-	var id = Router.current().params._id;
-	console.log(id);
-	this.subscribe('singleGame', id);
+	//var slug = Router.current().params.slug;
+	//Meteor.subscribe('singleGame', slug);
 }
 
 Template.gamesSinglePage.helpers({
-	game: function() {
-		var id = Router.current().params._id;
-		return gameDetails.findOne({_id: id});
+	game: function () {
+		var slug = Router.current().params.slug;
+		return xbdGames.findOne({ slug: slug });
 	}
 });
 

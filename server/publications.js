@@ -170,26 +170,26 @@ Meteor.publish('latestNews', function() {
 });
 
 Meteor.publish('singleNews', function(id) {
-	return newsPolygon.find({id: id});
+	return newsPolygon.find({ id: id });
 });
 
 Meteor.publishComposite('singleGame', function(_id) {
 	return {
 		find: function() {
 			Meteor._debug("this is the single game one");
-			return gameDetails.find({_id: _id});
+			return gameDetails.find({ slug: slug });
 		},
 		children: [
 			{
 				find: function(gameDetails) {
 					Meteor._debug(gameDetails);
-					return xbdGames.find({_id: gameDetails.gameId});
+					return xbdGames.find({ _id: gameDetails.gameId });
 				}
 			},
 			{
 				find: function(gameDetails) {
 					if (this.userId) {
-						return userGames.find({gameId: gameDetails.gameId});
+						return userGames.find({ gameId: gameDetails.gameId });
 					}
 				}
 			}
@@ -201,14 +201,14 @@ Meteor.publishComposite('singleAchievement', function(slug) {
 	return {
 		find: function() {
 			Meteor._debug("this is the single achievement one");
-			return xbdAchievements.find({slug: slug});
+			return xbdAchievements.find({ slug: slug });
 		},
 		children: [
 			{
 				find: function(achievement) {
 					if (this.userId) {
 						Meteor._debug(achievement);
-						return userAchievements.find({achievementId: achievement._id, userId: this.userId});
+						return userAchievements.find({ achievementId: achievement._id, userId: this.userId });
 					}
 				}
 			}

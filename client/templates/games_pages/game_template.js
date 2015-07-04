@@ -13,22 +13,31 @@ Template.gameRating.rendered = function() {
 }
 
 Template.myTopGamesTemplate.helpers({
+    gamePublisherName: function () {
+        var gameDetail = gameDetails.findOne({gameId: this._id});
+        return gameDetail.gamePublisherName;
+    },
     dateFormat: function() {
-        return moment(this.gameReleaseDate).format('l');
+        var gameDetail = gameDetails.findOne({gameId: this._id});
+        return moment(gameDetail.gameReleaseDate).format('l');
+    },
+    gameGenre: function () {
+        var gameDetail = gameDetails.findOne({gameId: this._id});
+        return gameDetail.gameGenre;
     },
     gamesImage: function () {
         console.log(this);
-        var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+        //var xbdGame = xbdGames.findOne({ _id: this.gameId });
+        var gameDetail = gameDetails.findOne({ gameId: this._id });
         var image = "/img/xboxdash_greenicon.png";
-        if (xbdGame.platform === 'Xenon') {
+        if (this.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
                     image =  art.Url;
                 }
             });
         }
-        if (xbdGame.platform === 'Durango') {
+        if (this.platform === 'Durango') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
                     image =  art.Url;
@@ -39,22 +48,31 @@ Template.myTopGamesTemplate.helpers({
     }
 });
 Template.gamesReleaseDateTemplate.helpers({
+    gamePublisherName: function () {
+        var gameDetail = gameDetails.findOne({gameId: this._id});
+        return gameDetail.gamePublisherName;
+    },
     dateFormat: function() {
-        return moment(this.gameReleaseDate).format('l');
+        var gameDetail = gameDetails.findOne({gameId: this._id});
+        return moment(gameDetail.gameReleaseDate).format('l');
+    },
+    gameGenre: function () {
+        var gameDetail = gameDetails.findOne({gameId: this._id});
+        return gameDetail.gameGenre;
     },
     gamesImage: function () {
         console.log(this);
-        var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+        //var xbdGame = xbdGames.findOne({ _id: this.gameId });
+        var gameDetail = gameDetails.findOne({ gameId: this._id });
         var image = "/img/xboxdash_greenicon.png";
-        if (xbdGame.platform === 'Xenon') {
+        if (this.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
                     image =  art.Url;
                 }
             });
         }
-        if (xbdGame.platform === 'Durango') {
+        if (this.platform === 'Durango') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
                     image =  art.Url;
@@ -62,5 +80,11 @@ Template.gamesReleaseDateTemplate.helpers({
             });
         }
         return image;
-    },
+    }
+});
+Template.gameRating.helpers({
+    gameAllTimeAverageRating: function () {
+        var gameDetail = gameDetails.findOne({gameId: this._id});
+        return gameDetail.gameAllTimeAverageRating;
+    }
 });

@@ -8,6 +8,9 @@ Template.gamesApp.onCreated(function() {
 });
 
 Template.gamesApp.helpers({
+    xbdGame: function () {
+        return xbdGames.findOne({ _id: this.gameId });
+    },
 	myTopGames: function() {
 		var games = userGames.find({}, { sort: { currentGamerscore: -1 }, limit: 10 });
         //console.log(games);

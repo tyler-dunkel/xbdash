@@ -7,7 +7,7 @@ Template.achievementsSinglePage.created = function() {
 Template.achievementsSinglePage.helpers({
 	achievement: function() {
 		var slug = Router.current().params.slug;
-		return xbdAchievements.findOne({slug: slug});
+		return xbdAchievements.findOne({ slug: slug });
 	}
 });
 

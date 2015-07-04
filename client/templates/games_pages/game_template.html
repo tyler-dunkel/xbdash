@@ -3,7 +3,7 @@
 		<a href="{{pathFor 'game'}}">
 			<div class="panel b-a">
 				<div class="panel-heading no-border bg-success title-wrap-game">
-					<span class="text-u-c text-lt">{{gameName}}</span>
+					<span class="text-u-c text-lt">{{this.name}}</span>
 				</div>
 				<div class="hbox b-b text-sm info">
 					<span class="col wrapper padder-v">
@@ -12,7 +12,7 @@
 							Release Date: {{dateFormat}}
 						</p>
 						{{#each gameGenre}}
-						<a href="#linkToGenreList" class="m-l-xss text-xxs">{{Name}}</a>
+						<a href="#linkToGenreList" class="m-l-xss text-xxs">{{this.Name}}</a>
 						{{/each}}
 					</span>
 				</div>
@@ -35,7 +35,7 @@
 		<a href="{{pathFor 'game'}}">
 			<div class="panel b-a">
 				<div class="panel-heading no-border bg-success title-wrap-game">
-					<span class="text-u-c text-lt">{{gameName}}</span>
+					<span class="text-u-c text-lt">{{this.name}}</span>
 				</div>
 				<div class="hbox b-b b-light text-sm info">
 					<span class="col wrapper padder-v b-r b-light">
@@ -44,7 +44,7 @@
 							Release Date: {{dateFormat}}
 						</p>
 						{{#each gameGenre}}
-						<a href="#linkToGenreList" class="m-l-xss text-xxs">{{Name}}</a>
+						<a href="#linkToGenreList" class="m-l-xss text-xxs">{{this.Name}}</a>
 						{{/each}}
 					</span>
 				</div>
