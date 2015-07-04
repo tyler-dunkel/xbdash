@@ -25,7 +25,7 @@ Template.gamesApp.helpers({
 	},
 	gamesByReleaseDate: function() {
 		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 10 }).fetch();
-	},
+	}
 });
 
 Template.gamesPage.events({

@@ -173,11 +173,11 @@ Meteor.publish('singleNews', function(id) {
 	return newsPolygon.find({ id: id });
 });
 
-Meteor.publishComposite('singleGame', function(_id) {
+Meteor.publishComposite('singleGame', function(slug) {
 	return {
 		find: function() {
 			Meteor._debug("this is the single game one");
-			return gameDetails.find({ slug: slug });
+			return xbdGames.find({ slug: slug });
 		},
 		children: [
 			{
