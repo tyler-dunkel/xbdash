@@ -4,15 +4,16 @@
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<!-- main -->
 				<div class="col">
+					{{#with game}}
 					<!-- main header -->
 					<div class="bg-light lter b-b wrapper-md">
 						<div class="row">
 							<div class="col-md-12 col-xs-12">
-								<h1 class="m-n font-thin h3 text-black">{{game.gameName}}</h1>
+								<h1 class="m-n font-thin h3 text-black">{{this.gameName}}</h1>
 								<div class="line"></div>
 								<div class="text-muted">
-									<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{game.gamePublisherName}}</span>
-									<i class="fa fa-clock-o text-muted"></i> {{game.gameReleaseDate}}
+									<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{this.gamePublisherName}}</span>
+									<i class="fa fa-clock-o text-muted"></i> {{this.gameReleaseDate}}
 								</div>
 							</div>
 						</div>
@@ -64,6 +65,7 @@
 							</div>
 						</div>
 					</div>
+					{{/with}}
 				</div>
 			</div>
 		</div>
