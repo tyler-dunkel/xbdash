@@ -7,56 +7,69 @@
 					{{#with game}}
 					<!-- main header -->
 					<div class="bg-light col-lg-12 col-xs-12 lter b-b wrapper-md">
-						<h1 class="font-thin h3 text-black m-b-xs">{{this.gameName}}</h1>
-						<div class="text-muted">
-							<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{this.gamePublisherName}}</span>
-							<i class="fa fa-clock-o text-muted"></i> {{this.gameReleaseDate}}
+						<div class="row">
+							<div class="col-md-12 col-xs-12">
+								<h1 class="font-thin h3 text-black m-b-xs">{{gameName}}</h1>
+								<div class="text-muted">
+									Publisher: <span class="m-r-sm">{{gamePublisherName}}</span>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="wrapper-md col-lg-5 col-md-8 col-sm-12 col-xs-12">
+					<div class="wrapper-md col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12">
 						<!-- stats -->
-						<div class="blog-post">
-							{{{article.content}}}
-						</div>
-						<div class="text-center m-t-lg m-b-lg">
-							{{> shareit shareData}}
+						<div class="blog-post left">
+							<img src="{{gamesImage}}" class="img-full">
+							<div style="margin-bottom: 15px;">
+								{{> gameRatingSingle}}
+								Publisher: {{gamePublisherName}}<br />
+								Released: {{dateFormat}}<br />
+								Platform: {{gamePlatform}}<br />
+								Genre: {{#each gameGenre}}{{this.Name}}{{/each}}
+							</div>
+							{{{gameDescription}}}
 						</div>
 					</div>
-					<div class="wrapper-md col-lg-3 visible-lg-block">
+					<div class="wrapper-md col-xl-6 col-lg-5 col-md-8 col-sm-8 col-xs-12" style="background-color: #fff;">
 						<h5 class="font-bold">Achievements</h5>
-						<ul class="list-group">
-							<li class="list-group-item">
-								<a href>
-									<span class="badge pull-right">15</span>
-									Photograph
-								</a>
-							</li>
-							<li class="list-group-item">
-								<a href>
-									<span class="badge pull-right">30</span>
-									Life style
-								</a>
-							</li>
-							<li class="list-group-item">
-								<a href>
-									<span class="badge pull-right">9</span>
-									Food
-								</a>
-							</li>
-							<li class="list-group-item">
-								<a href>
-									<span class="badge pull-right">4</span>
-									Travel world
-								</a>
-							</li>
+						<ul class="list-group no-bg no-borders pull-in">
+						{{#each achievementsList}}
+						<li class="list-group-item">
+							<a href class="thumb-md m-r">
+							  <img src="{{this.mediaAssets}}" class="">
+							</a>
+							<div class="game-div title-wrap-game2">
+							  <a class="game-name" href>{{this.name}}</a>
+							</div>
+							<div class="pull-right bg-black inline m-t-mdx c100 p small">
+							    <span>{{userPercentage}}%</span>
+							    <div class="slice">
+							        <div class="bar"></div>
+							        <div class="fill"></div>
+							    </div>
+							</div>
+							<div class="text-left padder-t">
+							  {{this.description}}
+							</div>
+						</li>
+						{{/each}}
 						</ul>
 					</div>
-					<div class="wrapper-md col-lg-4 col-md-4">
-						Ad Banner (300x600) or (160x600)
+					<div class="wrapper-md col-xl-4 col-lg-4 hidden-md hidden-sm hidden-xs">
+						<div style="width: 336px; height: 280px; background-color: #fff; margin: 15px auto;">
+							Ad Banner (336x280) or (160x600)
+						</div>
+						{{> newsRecent}}
 					</div>
 					{{/with}}
 				</div>
 			</div>
 		</div>
+	</div>
+</template>
+
+<template name="gameRatingSingle">
+	<div class="top m-t-xs w-full">
+		<div class="game-rating" data-score="{{gameAllTimeAverageRating}}"></div>
 	</div>
 </template>

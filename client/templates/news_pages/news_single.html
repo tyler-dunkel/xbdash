@@ -19,7 +19,7 @@
 					<div class="wrapper-md">
 						<!-- stats -->
 						<div class="row">
-							<div class="col-lg-5 col-md-8 col-sm-12 col-xs-12">
+							<div class="col-xl-5 col-lg-7 col-md-8 col-sm-12 col-xs-12">
 								<div class="blog-post">
 									{{{article.content}}}
 								</div>
@@ -27,7 +27,7 @@
 									{{> shareit shareData}}
 								</div>
 							</div>
-							<div class="col-lg-3 visible-lg-block">
+							<div class="visible-xl-block col-xl-3 hidden-lg hidden-md hidden-sm hidden-xs">
 								<h5 class="font-bold">Categories</h5>
 								<ul class="list-group">
 									<li class="list-group-item">
@@ -55,15 +55,12 @@
 										</a>
 									</li>
 								</ul>
-								{{> newsRecent}}
 							</div>
-							<div class="col-lg-4 col-md-4">
-								<div style="width:300px;height:600px;background-color:#fff;">
-									Ad Banner (300x600) or (160x600)
+							<div class="col-xl-3 col-lg-5 col-md-4 col-sm-12 col-xs-12">
+								<div style="width: 300px; height: 250px; background-color: #fff; margin: 15px auto;">
+									Ad Banner (300x250) or (160x600)
 								</div>
-								<div class="visible-md-block">
-									{{> newsRecent}}
-								</div>
+								{{> newsRecent}}
 							</div>
 						</div>
 					</div>
