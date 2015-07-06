@@ -181,17 +181,28 @@ Meteor.publishComposite('singleGame', function(slug) {
 		},
 		children: [
 			{
-				find: function(gameDetails) {
-					Meteor._debug(gameDetails);
-					return xbdGames.find({ _id: gameDetails.gameId });
+				find: function(game) {
+					return gameDetails.find({ gameId: game._id });
 				}
 			},
 			{
-				find: function(gameDetails) {
-					if (this.userId) {
-						return userGames.find({ gameId: gameDetails.gameId });
+				find: function(game) {
+					if (this.userId && this.gameId !== 'undefined') {
+						return userGames.find({ gameId: game._id });
 					}
 				}
+			},
+			{
+				find: function(game) {
+					return xbdAchievements.find({ gameId: game._id });
+				},
+				children: [
+					{
+						find: function(achievement) {
+							return userAchievements.find({ achievementId: achievement._id });
+						}
+					}
+				]
 			}
 		]
 	}
@@ -207,7 +218,6 @@ Meteor.publishComposite('singleAchievement', function(slug) {
 			{
 				find: function(achievement) {
 					if (this.userId) {
-						Meteor._debug(achievement);
 						return userAchievements.find({ achievementId: achievement._id, userId: this.userId });
 					}
 				}

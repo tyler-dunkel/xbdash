@@ -7,7 +7,6 @@ Template.gamesSinglePage.helpers({
 	game: function () {
 		var slug = Router.current().params.slug;
 		var game = xbdGames.findOne({ slug: slug });
-		console.log(game._id);
 		return gameDetails.findOne({ gameId: game._id });
 	}
 });
