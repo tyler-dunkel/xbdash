@@ -1,6 +1,27 @@
+var achievementShowCount = new ReactiveVar(5);
 Template.gamesSinglePage.created = function() {
 	var slug = Router.current().params.slug;
 	Meteor.subscribe('singleGame', slug);
+}
+
+Template.gamesSinglePage.rendered = function() {
+	var slug = Router.current().params.slug;
+	var game = xbdGames.findOne({slug: slug});
+	//console.log(game);
+	this.autorun(function() {
+		// var gameId = this.currentData().gameId;
+    	var achievementCount = xbdAchievements.find({ gameId: game._id }).count();
+    	console.log(achievementCount);
+    	var currentCount = achievementShowCount.get();
+    	var check = Template.instance().subscriptionsReady();
+    	console.log(check);
+    	if (achievementCount <= currentCount && check) {
+    		console.log("one is greater");
+    		$('.achievement-show-more').addClass('disabled');
+    		return;
+    	}
+    	$('.achievement-show-more').removeClass('disabled');
+	});
 }
 
 Template.gamesSinglePage.helpers({
@@ -37,7 +58,8 @@ Template.gamesSinglePage.helpers({
     	return game.platform;
     },
     achievementsList: function () {
-        return xbdAchievements.find({ gameId: this.gameId }, { sort: { value: 1, userPercentage: -1 }, limit: 100 });
+    	var limit = achievementShowCount.get();
+        return xbdAchievements.find({ gameId: this.gameId }, { sort: { value: 1, userPercentage: -1 }, limit: limit });
     },
     achievementImage: function () {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
@@ -62,6 +84,15 @@ Template.gamesSinglePage.helpers({
 });
 
 Template.gamesSinglePage.events({
+	"click .achievement-show-more": function(event) {
+		var button = $(event.currentTarget);
+		if (button.hasClass('disabled')) {
+			return;
+		}
+		var currentCount = achievementShowCount.get();
+		achievementShowCount.set(currentCount + 5);
+		console.log(achievementShowCount.get());
+	}
 });
 
 Template.gameRatingSingle.rendered = function() {
@@ -77,6 +108,3 @@ Template.gameRatingSingle.rendered = function() {
         starOn: 'star-on.png'
     });
 }
-
-Tracker.autorun(function() {
-});
