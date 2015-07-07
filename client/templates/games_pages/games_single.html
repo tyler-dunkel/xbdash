@@ -35,11 +35,11 @@
 						<ul class="list-group no-bg no-borders pull-in">
 						{{#each achievementsList}}
 						<li class="list-group-item">
-							<a href class="thumb-md m-r">
+							<a href="{{pathFor 'achievement'}}" class="thumb-md m-r">
 							  <img src="{{this.mediaAssets}}" class="">
 							</a>
 							<div class="game-div title-wrap-game2">
-							  <a class="game-name" href>{{this.name}}</a>
+							  <a href="{{pathFor 'achievement'}}" class="game-name">{{this.name}}</a>
 							</div>
 							<div class="pull-right bg-black inline m-t-mdx c100 p small">
 							    <span>{{userPercentage}}%</span>
