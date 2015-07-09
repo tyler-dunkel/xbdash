@@ -1,4 +1,4 @@
-var achievementShowCount = new ReactiveVar(5);
+var achievementShowNext = new ReactiveVar(0);
 Template.gamesSinglePage.created = function() {
 	var slug = Router.current().params.slug;
 	Meteor.subscribe('singleGame', slug);
@@ -12,7 +12,7 @@ Template.gamesSinglePage.rendered = function() {
 		// var gameId = this.currentData().gameId;
     	var achievementCount = xbdAchievements.find({ gameId: game._id }).count();
     	console.log(achievementCount);
-    	var currentCount = achievementShowCount.get();
+    	var currentCount = achievementShowNext.get();
     	var check = Template.instance().subscriptionsReady();
     	console.log(check);
     	if (achievementCount <= currentCount && check) {
@@ -58,8 +58,8 @@ Template.gamesSinglePage.helpers({
     	return game.platform;
     },
     achievementsList: function () {
-    	var limit = achievementShowCount.get();
-        return xbdAchievements.find({ gameId: this.gameId }, { sort: { value: 1, userPercentage: -1 }, limit: limit });
+    	var skip = achievementShowNext.get();
+        return xbdAchievements.find({ gameId: this.gameId }, { sort: { value: 1, userPercentage: -1 }, limit: 5, skip: skip });
     },
     achievementImage: function () {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
@@ -89,9 +89,9 @@ Template.gamesSinglePage.events({
 		if (button.hasClass('disabled')) {
 			return;
 		}
-		var currentCount = achievementShowCount.get();
-		achievementShowCount.set(currentCount + 5);
-		console.log(achievementShowCount.get());
+		var currentCount = achievementShowNext.get();
+		achievementShowNext.set(currentCount + 5);
+		console.log(achievementShowNext.get());
 	}
 });
 
