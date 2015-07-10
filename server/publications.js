@@ -217,6 +217,16 @@ Meteor.publishComposite('singleAchievement', function(slug) {
 		children: [
 			{
 				find: function(achievement) {
+					return xbdAchievements.find({ gameId: achievement.gameId });
+				}
+			},
+			{
+				find: function(achievement) {
+					return xbdGames.find({ _id: achievement.gameId });
+				}
+			},
+			{
+				find: function(achievement) {
 					if (this.userId) {
 						return userAchievements.find({ achievementId: achievement._id, userId: this.userId });
 					}

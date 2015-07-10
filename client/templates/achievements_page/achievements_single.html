@@ -10,29 +10,39 @@
 						<div class="row">
 			              <div class="col-sm-6 col-xs-12">
 			                <h1 class="font-thin h3 text-black m-b-xs">{{name}}</h1>
-							<div class="text-muted">Game: {{gameName}}</div>
+							<small class="text-muted">Game: {{gameName}}</small>
 			              </div>
 			              <div class="col-sm-6 text-right hidden-xs">
 			                <div class="inline m-r text-left">
 			                	<div class="m-b-xs">Users That Have This</div>
-								<div class="h4 text-success font-bold">{{userPercentage}}</div>
+								<div class="h4 text-success font-bold">{{userPercentage}}%</div>
 			                </div>
 			              </div>
 			            </div>
 					</div>
 					<div class="wrapper-md col-xl-3 col-lg-3 col-md-4 col-sm-5 col-xs-12">
 						<!-- stats -->
-						<div class="blog-post text-center">
+						<div class="blog-post">
 							<img src="{{achievementImage}}" class="img-full {{ifXenon}}">
-							<div style="margin-bottom: 15px;">
-								<div class="clearfix"></div>
-								<h3>Gamerscore: {{value}}</h3>
-							</div>
+							<table class="table" style="margin-bottom: 15px;">
+								<tr>
+									<td width="30%">Gamerscore:</td>
+									<td><strong>{{value}}</strong></td>
+								</tr>
+								<tr>
+									<td>Game:</td>
+									<td><strong>{{gameName}}</strong></td>
+								</tr>
+								<tr>
+									<td>Gamers:</td>
+									<td><strong>{{userPercentage}}% have this</strong></td>
+								</tr>
+							</table>
 							{{description}}
 						</div>
 					</div>
 					<div class="wrapper-md col-xl-5 col-lg-5 col-md-8 col-sm-7 col-xs-12" style="background-color: #fff;">
-						<h2 class="h4 font-bold pull-left padder-t">Comments</h2>
+						<h2 class="h4 font-bold pull-left padder-t">Solutions</h2>
 						<div class="clearfix"></div>
 						<div class="comment-section">
 						    {{> commentsBox id=this.slug customTemplate=""}}

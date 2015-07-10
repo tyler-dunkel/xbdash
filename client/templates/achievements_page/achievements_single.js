@@ -18,7 +18,7 @@ Template.achievementsSinglePage.helpers({
         if (game.platform === 'Durango') {
             return 'img-x360';
         }
-        return;
+        //return;
     },
     achievementImage: function () {
         var image = "/img/xboxdash_greenicon.png";

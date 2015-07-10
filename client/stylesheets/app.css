@@ -5781,6 +5781,8 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .c100.m-t-mdxx {margin: 25px 20%; font-size: 200px;}
 .c100 > span.wrap, .c100:hover > span.wrap {line-height: 1.2em; margin: 40% 18%; font-size: 18px; white-space: normal; width: 7em;}
 
+.table tr {line-height: 25px;vertical-align: top;}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .c100.m-t-mdxx {margin: 25px 18%; font-size: 120px;}
