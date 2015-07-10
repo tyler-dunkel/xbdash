@@ -9,23 +9,21 @@ Template.achievementsSinglePage.helpers({
 		var slug = Router.current().params.slug;
 		return xbdAchievements.findOne({ slug: slug });
 	},
-	achievementImage: function () {
+	gameName: function() {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-        var image = "/img/xboxdash_greenicon.png";
-        if (xbdGame.platform === 'Xenon') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BoxArt') {
-                    image =  art.Url;
-                }
-            });
+        return xbdGame.name;
+    },
+    ifXenon: function () {
+        var game = xbdGames.findOne({ _id: this.gameId });
+        if (game.platform === 'Durango') {
+            return 'img-x360';
         }
-        if (xbdGame.platform === 'Durango') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BrandedKeyArt') {
-                    image =  art.Url;
-                }
-            });
+        return;
+    },
+    achievementImage: function () {
+        var image = "/img/xboxdash_greenicon.png";
+        if (this.mediaAssets) {
+            image = this.mediaAssets;
         }
         return image;
     }

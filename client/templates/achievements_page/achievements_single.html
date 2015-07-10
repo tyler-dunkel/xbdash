@@ -6,31 +6,32 @@
 				<div class="col">
 					{{#with achievement}}
 					<!-- main header -->
-					<div class="bg-light col-lg-12 col-xs-12 lter b-b wrapper-md">
+					<div class="bg-light col-xl-12 col-lg-12 col-xs-12 lter b-b wrapper-md">
 						<div class="row">
-							<div class="col-md-12 col-xs-12">
-								<h1 class="font-thin h3 text-black m-b-xs">{{name}}</h1>
-								<div class="text-muted">
-									Game: <span class="m-r-sm">{{gameName}}</span>
-								</div>
-							</div>
-						</div>
+			              <div class="col-sm-6 col-xs-12">
+			                <h1 class="font-thin h3 text-black m-b-xs">{{name}}</h1>
+							<div class="text-muted">Game: {{gameName}}</div>
+			              </div>
+			              <div class="col-sm-6 text-right hidden-xs">
+			                <div class="inline m-r text-left">
+			                	<div class="m-b-xs">Users That Have This</div>
+								<div class="h4 text-success font-bold">{{userPercentage}}</div>
+			                </div>
+			              </div>
+			            </div>
 					</div>
-					<div class="wrapper-md col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12">
+					<div class="wrapper-md col-xl-3 col-lg-3 col-md-4 col-sm-5 col-xs-12">
 						<!-- stats -->
-						<div class="blog-post left">
-							<img src="{{gamesImage}}" class="img-full">
+						<div class="blog-post text-center">
+							<img src="{{achievementImage}}" class="img-full {{ifXenon}}">
 							<div style="margin-bottom: 15px;">
-								{{> gameRatingSingle}}
-								Publisher: {{gamePublisherName}}<br />
-								Released: {{dateFormat}}<br />
-								Platform: {{gamePlatform}}<br />
-								Genre: {{#each gameGenre}}{{this.Name}}{{/each}}
+								<div class="clearfix"></div>
+								<h3>Gamerscore: {{value}}</h3>
 							</div>
-							{{{gameDescription}}}
+							{{description}}
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-6 col-lg-5 col-md-8 col-sm-8 col-xs-12" style="background-color: #fff;">
+					<div class="wrapper-md col-xl-5 col-lg-5 col-md-8 col-sm-7 col-xs-12" style="background-color: #fff;">
 						<h2 class="h4 font-bold pull-left padder-t">Comments</h2>
 						<div class="clearfix"></div>
 						<div class="comment-section">
@@ -48,5 +49,4 @@
 			</div>
 		</div>
 	</div>
-	<div>hello this is the single achievements page for {{#with achievement}} this guy: {{this}} {{/with}}</div>
 </template>
