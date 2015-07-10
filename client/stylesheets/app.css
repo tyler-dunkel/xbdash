@@ -4379,24 +4379,34 @@ ul.signin > li.active {
   padding: 20px;
 }
 
-.padder-vv-a {
+.padder-vv-legendary {
+  color: #fff;
   padding: 20px;
   background-color: #000;
 }
 
-.padder-vv-b {
+.padder-vv-epic {
+  color: #fff;
   padding: 20px;
   background-color: #3498db;
 }
 
-.padder-vv-c {
+.padder-vv-rare {
+  color: #fff;
   padding: 20px;
   background-color: #e74c3c;
 }
 
-.padder-vv-d {
+.padder-vv-common {
+  color: #fff;
   padding: 20px;
   background-color: #f39c12;
+}
+
+.padder-vv-xbd {
+  color: #fff;
+  padding: 20px;
+  background-color: #138013;
 }
 
 .padder-x {
@@ -5762,6 +5772,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .blog-post .chorus-snippet.wide_image { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 15px;}
 .blog-post .chorus-snippet.wide_image iframe, .blog-post .chorus-snippet.wide_image object, .blog-post .chorus-snippet.wide_image embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
+.thumb-md2 {width: 114px;}
+
+.float-left {float: left;}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

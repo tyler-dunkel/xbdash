@@ -9,11 +9,11 @@ Template.achievementsApp.onCreated(function() {
 
 Template.achievementsApp.helpers({
 	mostPopularAchievements: function() {
-		var achievements = xbdAchievements.find({}, { sort: { userPercentage: 1 }, limit: 12 });
+		var achievements = xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 10 });
 		return achievements;
 	},
 	rarestAchievements: function() {
-		var achievements = xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 12 });
+		var achievements = xbdAchievements.find({}, { sort: { userPercentage: 1 }, limit: 10 });
 		return achievements;
 	}
 });

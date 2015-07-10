@@ -31,18 +31,25 @@
 						</div>
 					</div>
 					<div class="wrapper-md col-xl-6 col-lg-5 col-md-8 col-sm-8 col-xs-12" style="background-color: #fff;">
-						<h5 class="font-bold">Achievements</h5>
+						<h2 class="h4 font-bold pull-left padder-t">Achievements</h2>
+						<div class="btn-toolbar pull-right">
+							<div class="btn-group">
+								<button type="button" class="achievement-previous btn btn-default"><i class="fa fa-arrow-left"></i></button>
+								<button type="button" class="achievement-next btn btn-default"><i class="fa fa-arrow-right"></i></button>
+							</div>
+						</div>
+						<div class="clearfix"></div>
 						<ul class="list-group no-bg no-borders pull-in">
 						{{#momentum plugin='slide-height'}}
 							{{#each achievementsList}}
 							<li class="list-group-item">
-								<a href="{{pathFor 'achievement'}}" class="thumb-md m-r">
+								<a href="{{pathFor 'achievement'}}" class="thumb-md {{ifDurango}} m-r" style="min-height:64px;">
 								  <img src="{{this.mediaAssets}}" class="">
 								</a>
 								<div class="game-div title-wrap-game2">
 								  <a href="{{pathFor 'achievement'}}" class="game-name">{{this.name}}</a>
 								</div>
-								<div class="pull-right bg-black inline m-t-mdx c100 p small">
+								<div class="pull-right bg-black inline m-t-mdx c100 p{{userPercentage}} small">
 								    <span>{{userPercentage}}%</span>
 								    <div class="slice">
 								        <div class="bar"></div>
@@ -55,7 +62,6 @@
 							</li>
 							{{/each}}
 						{{/momentum}}
-						<div class="achievement-show-more btn btn-default">Show More</div>
 						</ul>
 					</div>
 					<div class="wrapper-md col-xl-4 col-lg-4 hidden-md hidden-sm hidden-xs">

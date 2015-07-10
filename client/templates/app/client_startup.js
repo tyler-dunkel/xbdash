@@ -20,5 +20,19 @@ Meteor.startup(function() {
 		"hideEasing": "linear",
 		"showMethod": "fadeIn",
 		"hideMethod": "fadeOut"
-	}
+	};
+
+	Comments.ui.config({
+	    limit: 5,
+	    loadMoreCount: 10,
+	    template: 'bootstrap'
+	});
+
+	Avatar.options = {
+		defaultImageUrl: 'img/a0.jpg'
+		//customImageProperty: 'user.profile.gamercard.gamerpicLargeImagePath'
+	};
+
+	Comments.changeSchema(function (currentSchema) {
+	});
 });

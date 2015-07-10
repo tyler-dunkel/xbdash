@@ -3,10 +3,14 @@ accounts-facebook@1.0.4
 accounts-oauth@1.1.5
 accounts-password@1.1.1
 accounts-twitter@1.0.4
+aldeed:collection2@2.3.3
+aldeed:simple-schema@1.3.3
 aldeed:template-extension@3.4.3
+arkham:comments-ui@0.2.8
 autoupdate@1.2.1
 babrahams:editable-json@0.4.3
 base64@1.0.3
+bengott:avatar@0.7.6
 binary-heap@1.0.3
 blaze@2.1.2
 blaze-tools@1.0.3
@@ -16,6 +20,7 @@ check@1.0.5
 chrismbeckett:toastr@2.1.0
 coffeescript@1.0.6
 d3js:d3@3.5.5
+dburles:collection-helpers@1.0.3
 dburles:mongo-collection-instances@0.3.3
 ddp@1.1.0
 deps@1.0.7
@@ -23,6 +28,7 @@ ejson@1.0.6
 email@1.0.6
 facebook@1.2.0
 fastclick@1.0.3
+flamparski:moment-locales@0.0.3
 geojson-utils@1.0.3
 gwendall:session-json@0.1.7
 html-tools@1.0.4
@@ -38,6 +44,9 @@ iron:middleware-stack@1.0.9
 iron:router@1.0.9
 iron:url@1.0.9
 joshowens:shareit@0.3.1
+jparker:crypto-core@0.1.0
+jparker:crypto-md5@0.1.1
+jparker:gravatar@0.3.1
 jquery@1.11.3_2
 jquery-waypoints@1.0.3
 json@1.0.3
@@ -63,6 +72,7 @@ mizzao:user-status@0.6.4
 mobile-status-bar@1.0.3
 momentjs:moment@2.10.3
 mongo@1.1.0
+mongo-livedata@1.0.8
 mrt:jquery-raty@2.7.2
 mrt:modernizr-meteor@2.6.2
 msavin:jetsetter@1.0.17
@@ -94,6 +104,7 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 spiderable@1.0.7
 srp@1.0.3
+stylus@1.0.7
 templating@1.1.1
 todda00:friendly-slugs@0.3.2
 tracker@1.0.7

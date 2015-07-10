@@ -17,10 +17,10 @@ Template.gamesSinglePage.rendered = function() {
     	console.log(check);
     	if (achievementCount <= currentCount && check) {
     		console.log("one is greater");
-    		$('.achievement-show-more').addClass('disabled');
+    		$('.achievement-next').addClass('disabled');
     		return;
     	}
-    	$('.achievement-show-more').removeClass('disabled');
+    	$('.achievement-next').removeClass('disabled');
 	});
 }
 
@@ -57,6 +57,13 @@ Template.gamesSinglePage.helpers({
     	var game = xbdGames.findOne({ _id: this.gameId });
     	return game.platform;
     },
+    ifDurango: function () {
+        var game = xbdGames.findOne({ _id: this.gameId });
+        if (game.platform === 'Durango') {
+            return 'thumb-md2';
+        }
+        return;
+    },
     achievementsList: function () {
     	var skip = achievementShowNext.get();
         return xbdAchievements.find({ gameId: this.gameId }, { sort: { value: 1, userPercentage: -1 }, limit: 5, skip: skip });
@@ -84,7 +91,7 @@ Template.gamesSinglePage.helpers({
 });
 
 Template.gamesSinglePage.events({
-	"click .achievement-show-more": function(event) {
+	"click .achievement-next": function(event) {
 		var button = $(event.currentTarget);
 		if (button.hasClass('disabled')) {
 			return;
@@ -92,7 +99,16 @@ Template.gamesSinglePage.events({
 		var currentCount = achievementShowNext.get();
 		achievementShowNext.set(currentCount + 5);
 		console.log(achievementShowNext.get());
-	}
+	},
+    "click .achievement-previous": function(event) {
+        var button = $(event.currentTarget);
+        if (button.hasClass('disabled')) {
+            return;
+        }
+        var currentCount = achievementShowNext.get();
+        achievementShowNext.set(currentCount - 5);
+        console.log(achievementShowNext.get());
+    }
 });
 
 Template.gameRatingSingle.rendered = function() {

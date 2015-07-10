@@ -19,17 +19,37 @@ Template.achievementTemplate.helpers({
         return imgClass;
     },
     achievementClass: function () {
-        if (this.userPercentage >= 0 && this.userPercentage <= 10) {
-            return "a";
+        var userPercentage = this.userPercentage;
+        var achievementClass = "xbd";
+        if (userPercentage >= 0 && userPercentage <= 10) {
+            achievementClass = "legendary";
         }
-        if (this.userPercentage >= 11 && this.userPercentage <= 30) {
-            return "b";
+        if (userPercentage >= 11 && userPercentage <= 30) {
+            achievementClass = "epic";
         }
-        if (this.userPercentage >= 31 && this.userPercentage <= 60) {
-            return "c";
+        if (userPercentage >= 31 && userPercentage <= 60) {
+            achievementClass = "rare";
         }
-        if (this.userPercentage >= 61 && this.userPercentage <= 100) {
-            return "d";
+        if (userPercentage >= 61 && userPercentage <= 100) {
+            achievementClass = "common";
         }
+        return achievementClass;
+    },
+    trophyClass: function () {
+        var userPercentage = this.userPercentage;
+        var trophyClass = "xbd";
+        if (userPercentage >= 0 && userPercentage <= 10) {
+            trophyClass = "trophy";
+        }
+        if (userPercentage >= 11 && userPercentage <= 30) {
+            trophyClass = "star";
+        }
+        if (userPercentage >= 31 && userPercentage <= 60) {
+            trophyClass = "bullseye";
+        }
+        if (userPercentage >= 61 && userPercentage <= 100) {
+            trophyClass = "unlock";
+        }
+        return trophyClass;
     }
 });
