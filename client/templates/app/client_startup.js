@@ -28,11 +28,11 @@ Meteor.startup(function() {
 	    template: 'bootstrap'
 	});
 
-	Avatar.options = {
-		defaultImageUrl: 'img/a0.jpg'
-		//customImageProperty: 'user.profile.gamercard.gamerpicLargeImagePath'
-	};
+	// Avatar.options = {
+	// 	defaultImageUrl: 'img/a0.jpg'
+	// 	//customImageProperty: 'user.profile.gamercard.gamerpicLargeImagePath'
+	// };
 
-	Comments.changeSchema(function (currentSchema) {
-	});
+	// Comments.changeSchema(function (currentSchema) {
+	// });
 });

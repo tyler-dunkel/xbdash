@@ -10,6 +10,15 @@ Meteor.publish('userSocialServices', function() {
 	});
 });
 
+Meteor.publish('commentUserImage', function(userId) {
+	Meteor._debug(userId);
+	return Meteor.users.find({_id: userId}, {
+		fields: {
+			"profile.gamercard.gamerpicSmallImagePath": 1
+		}
+	});
+});
+
 Meteor.publishComposite('rarestAchievements', {
 	find: function() {
 		Meteor._debug("rarest achievement function firing");

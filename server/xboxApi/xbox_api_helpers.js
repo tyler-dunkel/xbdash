@@ -27,8 +27,12 @@ function updateXboxOneAchievementsData(userId, gameId) {
 	var url = user.profile.xuid + '/achievements/' + gameId;
 
 	var result = syncApiCaller(url);
+	
+	var isObject = _.isEmpty(result.data);
 
-	if (!result.data.constructor === Array) { return; }
+	if (isObject) {
+		return;
+	}
 
 	result.data.forEach(function (achievement) {
 		var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: achievement.name });
@@ -142,7 +146,11 @@ function updateXbox360AchievementsData(userId, gameId) {
 
 	var result = syncApiCaller(url);
 
-	if (!result.data.constructor === Array) { return; }
+	var isObject = _.isEmpty(result.data);
+
+	if (isObject) {
+		return;
+	}
 
 	result.data.forEach(function (achievement) {
 		var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: achievement.name });
