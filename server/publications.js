@@ -14,35 +14,11 @@ Meteor.publish('commentUserImage', function(userId) {
 	Meteor._debug(userId);
 	return Meteor.users.find({_id: userId}, {
 		fields: {
-			"profile.gamercard.gamerpicSmallImagePath": 1
+			"username": 1,
+			"profile.gamercard.gamerscore": 1,
+			"profile.gamercard.gamerpicLargeImagePath": 1
 		}
 	});
-});
-
-Meteor.publishComposite('rarestAchievements', {
-	find: function() {
-		Meteor._debug("rarest achievement function firing");
-		return xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 50 });
-	},
-	children: [
-		{
-			find: function(achievement) {
-				if (!this.userId) {
-					return;
-				}
-				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
-				if (typeof userAchievementCheck !== 'undefined') {
-					return userAchievementCheck;
-				}
-				return;
-			}
-		},
-		{
-			find: function(achievement) {
-				return xbdGames.find({ _id: achievement.gameId });
-			}
-		}
-	]
 });
 
 Meteor.publishComposite('mostPopularAchievements', {
@@ -71,23 +47,27 @@ Meteor.publishComposite('mostPopularAchievements', {
 	]
 });
 
-Meteor.publishComposite('gamesByReleaseDate', {
+Meteor.publishComposite('rarestAchievements', {
 	find: function() {
-		Meteor._debug("fired game by releaese date");
-		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 18 });
+		Meteor._debug("rarest achievement function firing");
+		return xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 50 });
 	},
 	children: [
 		{
-			find: function(game) {
-				return xbdGames.find({ _id: game.gameId });
-			}
-		},
-		{
-			find: function(game) {
+			find: function(achievement) {
 				if (!this.userId) {
 					return;
 				}
-				return userGames.find({ gameId: game.gameId });
+				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
+				if (typeof userAchievementCheck !== 'undefined') {
+					return userAchievementCheck;
+				}
+				return;
+			}
+		},
+		{
+			find: function(achievement) {
+				return xbdGames.find({ _id: achievement.gameId });
 			}
 		}
 	]
@@ -120,6 +100,28 @@ Meteor.publishComposite('myTopGames', {
 					return;
 				}
 				return xbdGames.find({ _id: game.gameId });
+			}
+		}
+	]
+});
+
+Meteor.publishComposite('gamesByReleaseDate', {
+	find: function() {
+		Meteor._debug("fired game by releaese date");
+		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 18 });
+	},
+	children: [
+		{
+			find: function(game) {
+				return xbdGames.find({ _id: game.gameId });
+			}
+		},
+		{
+			find: function(game) {
+				if (!this.userId) {
+					return;
+				}
+				return userGames.find({ gameId: game.gameId });
 			}
 		}
 	]

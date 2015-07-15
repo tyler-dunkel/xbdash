@@ -37,7 +37,7 @@ Template.logIn.events({
 				//updateUserData(email);
 				Router.go('home');
 			}
-		})
+		});
 	},
 	'blur .form-control': function(e) {
 		var input = e.target;

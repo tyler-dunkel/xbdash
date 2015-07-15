@@ -35,5 +35,18 @@ Template.registerHelper({
             return true;
         }
         return false;
+    },
+    chkVerify: function () {
+        Accounts.verifyEmail(Accounts._verifyEmailToken, function(error) {
+            if (error != null) {
+                if (error.message = 'Verify email link expired [403]') {
+                    console.log('Sorry this verification link has expired.')
+                    return true;
+                }
+            } else {
+                console.log('Thank you! Your email address has been confirmed.')
+                return false;
+            }
+        });
     }
 });

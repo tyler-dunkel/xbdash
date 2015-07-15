@@ -24,7 +24,10 @@
 			<img alt="user" src="{{getUserImage user=user}}">
 		</div>
 		<div class="media-body comment">
-			<h4 class="media-heading">{{user.username}} <small>{{createdAgo}}</small></h4>
+			<h4 class="media-heading">
+                {{getUser}}
+                <small>{{createdAgo}}</small>
+            </h4>
 			<div class="content">
 				<p class="comment-content" data-id="{{commentId}}">{{content}}</p>
 

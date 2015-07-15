@@ -5807,3 +5807,6 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 @media (min-width: 1400px) {
   .c100.m-t-mdxx {margin: 25px 26%;}
 }
+
+.media-left img {margin: 7px 0;}
+.comments {margin: 15px 0;}

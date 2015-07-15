@@ -75,16 +75,21 @@ Template.gtConfirm.events({
 				return;
 			}
 			if (result.content) {
-				//var user = {username: gamertag, email: email, password: password, profile: {xuid: result.content}};
-				var user = {username: gamertag, profile: {xuid: result.content}};
-				Meteor.call('retrieveData', user, function(error, result) {
-					if (loading) {
-						loading.finish();
-						Session.set('loadingScreen', false);
-					}
-					Router.go('home');
-					return;
-				});
+				var userId = Meteor.userId();
+				var setGamertag = Meteor.users.find({_id: userId}, {username: {$exists: true}});
+
+				if (typeof setGamertag !== 'undefined') {
+					Meteor.users.upsert({_id: userId}, {$set: {username: user.username, "profile.xuid": user.profile.xuid}});
+				} else {
+					Meteor.call('retrieveData', user, function(error, result) {
+						if (loading) {
+							loading.finish();
+							Session.set('loadingScreen', false);
+						}
+						Router.go('home');
+						return;
+					});
+				}
 			}
 		});
 	},

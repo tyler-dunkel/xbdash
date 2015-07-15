@@ -1,0 +1,27 @@
+<template name="emailConfirm">
+  {{> headerGtConfirmPage}}
+  {{> emailConfirmForm}}
+  {{> staticFooter}}
+</template>
+
+<template name="emailConfirmForm">
+  <div id="signup" class="signup">
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-md">
+        {{#if chkVerify}}
+        <form name="form" class="validate" id="emailconfirmform">
+          <h2 class="text-dark text-center">Confirm Your Email</h2>
+          <p class="text-center">You're a step away from seeing your new dashboard!</p>
+          <div class="list-group">
+            <div class="form-group">
+              <button type="submit" class="btn btn-lg btn-success btn-block resend-submit">Resend Confirmation</button>
+            </div>
+          </div>
+        </form>
+        {{else}}
+        <button id="continue-dashboard" class="btn btn-lg btn-success btn-block">Continue</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

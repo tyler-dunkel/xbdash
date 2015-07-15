@@ -29,11 +29,7 @@ function checkUserForUpdates(userId) {
 		checkUserGamesListDurango(user._id, user.profile.xuid, false);
 		checkUserGamesListXenon(user._id, user.profile.xuid, false);
 	}
-	
-
-
 	//var userGamesCount = userGames.find({userId: userId}).count();
-
 }
 
 function checkUserGamesListDurango(userId, userXuid, gamerscoreCheck) {

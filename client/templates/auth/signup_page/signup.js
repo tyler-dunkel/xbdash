@@ -1,3 +1,6 @@
+Template.signUp.created = function() {
+};
+
 Template.signUp.rendered = function() {
 }
 
@@ -18,27 +21,10 @@ Template.signUp.events({
 
 		if (password !== passwordConfirm) return;
 
-		//set up the loading screen
-		var message = "<h3>Please wait while we retrieve your data!</h3>";
-		var spinner = "<div class='spinner'>" +
-				"<div class='double-bounce1'></div> " + 
- 				"<div class='double-bounce2'></div> " +
-				"</div>";
-		if (! Session.get('loadingScreen')) {
-			loading = window.pleaseWait({
-				logo: 'img/xboxdash_whiteicon.png',
-				backgroundColor: '#138013',
-				loadingHtml: message + spinner
-			});
-			Session.set('loadingScreen', true);
-		}
-		Meteor.call('chkGamertag', gamertag, function(error, result) {
-			//console.log(error);
-			if (typeof error != 'undefined') {
-				if (loading) {
-					loading.finish();
-					Session.set('loadingScreen', false);
-				}
+		var user = {username: gamertag, email: email, password: password};
+
+		Accounts.createUser(user, function(error, result) {
+			if (error) {
 				sweetAlert({
 					title: error.reason,
 					text: error.details,
@@ -48,22 +34,14 @@ Template.signUp.events({
 					closeOnConfirm: false,
 					html: true
 				});
+				Router.go('signUp');
 				return;
 			}
 			if (result.content) {
-				var user = {username: gamertag, email: email, password: password, profile: {xuid: result.content}};
-				Accounts.createUser(user, function(error) {
-					if (error) {
+				Meteor.call('sendVerify', user, function(error, result) {
+					if (result) {
+						Router.go('emailConfirm');
 						return;
-					} else {
-						Meteor.call('retrieveData', user, function(error, result) {
-							if (loading) {
-								loading.finish();
-								Session.set('loadingScreen', false);
-							}
-							Router.go('home');
-							return;
-						});
 					}
 				});
 			}
