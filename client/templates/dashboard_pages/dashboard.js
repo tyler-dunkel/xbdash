@@ -1,3 +1,23 @@
+Template.dashboard.created = function() {
+    /*
+    if (Accounts._verifyEmailToken) {
+        Accounts.verifyEmail(Accounts._verifyEmailToken, function(err){
+            if (err != null) {
+                var user = Meteor.user();
+                if (typeof user.profile.xuid === 'undefined') {
+                    Router.go('confirmGt');
+                } else {
+                    this.next();
+                }
+            } else {
+                Router.go('confirmGt');
+            }
+
+        });
+    }
+    */
+};
+
 Template.dashboard.rendered = function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()

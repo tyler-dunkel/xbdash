@@ -1,4 +1,10 @@
 //server
+process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
+
+Accounts.config({
+	sendVerificationEmail: true
+});
+
 Meteor.startup(function() {
 	//function to find the  achievements
 	//tiering function for achievements
@@ -72,7 +78,7 @@ Meteor.startup(function() {
 	Accounts.emailTemplates.from = 'XboxDash <xboxdashbugreporter@gmail.com>';
 
 	// The public name of your application. Defaults to the DNS name of the application (eg: awesome.meteor.com).
-	Accounts.emailTemplates.siteName = 'XboxDash';
+	///Accounts.emailTemplates.siteName = 'XboxDash';
 
 	// A Function that takes a user object and returns a String for the subject line of the email.
 	Accounts.emailTemplates.verifyEmail.subject = function(user) {
@@ -85,6 +91,16 @@ Meteor.startup(function() {
 		template += '<p>Click on the following link to verify your email address: ' + url + '</p>';
 		return template;
 	};
+
+	/*
+	Accounts.urls.resetPassword = function (token) {
+        return Meteor.absoluteUrl('reset-password/' + token);
+    };
+    */
+
+    Accounts.urls.verifyEmail = function (token) {
+    	return Meteor.absoluteUrl('confirm-gamertag/' + token);
+    };
 });
 
 UserStatus.events.on("connectionLogin", function(fields) {
@@ -95,24 +111,13 @@ UserStatus.events.on("connectionLogout", function(fields) {
 	
 });
 
-process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
 Meteor.methods({
 	contactUsEmail: function(name, email, subject, text) {
 		Email.send({
-			siteName: "XboxDash",
 			from: "XboxDash <xboxdashbugreporter@gmail.com>",
 			to: "kguirao87@gmail.com",
 			subject: subject,
 			text: text
 		});
-	},
-	sendVerify: function (user) {
-		user.profile = {};
-
-		Meteor.setTimeout(function() {
-			Accounts.sendVerificationEmail(user._id);
-		}, 2 * 1000);
-
-		return user;
 	}
 });

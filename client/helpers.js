@@ -35,18 +35,16 @@ Template.registerHelper({
             return true;
         }
         return false;
-    },
+    }/*,
     chkVerify: function () {
-        Accounts.verifyEmail(Accounts._verifyEmailToken, function(error) {
-            if (error != null) {
-                if (error.message = 'Verify email link expired [403]') {
-                    console.log('Sorry this verification link has expired.')
+        if (Accounts._verifyEmailToken) {
+            Accounts.verifyEmail(Accounts._verifyEmailToken, function(err){
+                if (err != null) {
                     return true;
+                } else {
+                    return false;
                 }
-            } else {
-                console.log('Thank you! Your email address has been confirmed.')
-                return false;
-            }
-        });
-    }
+            });
+        }
+    }*/
 });

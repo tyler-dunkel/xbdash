@@ -21,7 +21,7 @@ Template.signUp.events({
 
 		if (password !== passwordConfirm) return;
 
-		var user = {username: gamertag, email: email, password: password};
+		var user = {username: gamertag, email: email, password: password, profile: {}};
 
 		Accounts.createUser(user, function(error, result) {
 			if (error) {
@@ -37,14 +37,7 @@ Template.signUp.events({
 				Router.go('signUp');
 				return;
 			}
-			if (result.content) {
-				Meteor.call('sendVerify', user, function(error, result) {
-					if (result) {
-						Router.go('emailConfirm');
-						return;
-					}
-				});
-			}
+			Router.go('confirmEmail');
 		});
 	},
 	'blur .form-control': function(e) {
@@ -60,7 +53,7 @@ Template.signUp.events({
             if (error) {
                 throw new Meteor.Error("Facebook login failed");
             } else {
-            	Router.go('gtConfirm');
+            	Router.go('confirmGt');
 				return;
             }
         });
@@ -71,7 +64,7 @@ Template.signUp.events({
             if (error) {
                 throw new Meteor.Error("Twitter login failed.");
             } else {
-            	Router.go('gtConfirm');
+            	Router.go('confirmGt');
 				return;
             }
         });

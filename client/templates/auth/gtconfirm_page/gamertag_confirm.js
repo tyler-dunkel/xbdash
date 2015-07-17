@@ -1,7 +1,21 @@
-Template.gtConfirm.rendered = function() {
+Template.confirmGt.created = function() {
+	if (Accounts._verifyEmailToken) {
+		Accounts.verifyEmail(Accounts._verifyEmailToken, function(err){
+			if (err != null) {
+				// handle the error
+				Router.go('confirmEmail');
+			} else {
+				// do what you want, maybe redirec to some route show verify successful message
+				this.next();
+			}
+		});
+	}
+};
+
+Template.confirmGt.rendered = function() {
 }
 
-Template.gtConfirm.events({
+Template.confirmGt.events({
 	'click #logout': function(event) {
         Meteor.logout(function(error){
             if (error) {
