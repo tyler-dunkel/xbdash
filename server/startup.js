@@ -1,11 +1,31 @@
-//server
-process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
-
-Accounts.config({
-	sendVerificationEmail: true
-});
-
 Meteor.startup(function() {
+
+	//config and Account email verification templates
+
+	process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
+
+	Accounts.config({
+		sendVerificationEmail: true
+	});
+
+	// By default, the email is sent from no-reply@meteor.com. If you wish to receive email from users asking for help with their account, be sure to set this to an email address that you can receive email at.
+	Accounts.emailTemplates.from = 'XboxDash <xboxdashbugreporter@gmail.com>';
+
+	// The public name of your application. Defaults to the DNS name of the application (eg: awesome.meteor.com).
+	///Accounts.emailTemplates.siteName = 'XboxDash';
+
+	// A Function that takes a user object and returns a String for the subject line of the email.
+	Accounts.emailTemplates.verifyEmail.subject = function(user) {
+		return 'Confirm Your Email Address';
+	};
+
+	// A Function that takes a user object and a url, and returns the body text for the email.
+	Accounts.emailTemplates.verifyEmail.html = function(user, url) {
+		var template = '<div style="text-align:center;"><img src="img/xboxdash_green.png" /></div>';
+		template += '<p>Click on the following link to verify your email address: ' + url + '</p>';
+		return template;
+	};
+	
 	//function to find the  achievements
 	//tiering function for achievements
 	//set internval function ->query for every site user and count the query -> query for every xbdAchievement -> loop through each xbdAchievement -> query the userAchievement table with the xbdAchievement _id and count the returned records (can either be unlocked, locked, or both) -> divide this count by the total user number we got earlier and store the resulting value within the xbdAchievement. 
@@ -73,34 +93,6 @@ Meteor.startup(function() {
 			userDailyRank++;
 		});
 	}, 50000);
-
-	// By default, the email is sent from no-reply@meteor.com. If you wish to receive email from users asking for help with their account, be sure to set this to an email address that you can receive email at.
-	Accounts.emailTemplates.from = 'XboxDash <xboxdashbugreporter@gmail.com>';
-
-	// The public name of your application. Defaults to the DNS name of the application (eg: awesome.meteor.com).
-	///Accounts.emailTemplates.siteName = 'XboxDash';
-
-	// A Function that takes a user object and returns a String for the subject line of the email.
-	Accounts.emailTemplates.verifyEmail.subject = function(user) {
-		return 'Confirm Your Email Address';
-	};
-
-	// A Function that takes a user object and a url, and returns the body text for the email.
-	Accounts.emailTemplates.verifyEmail.html = function(user, url) {
-		var template = '<div style="text-align:center;"><img src="img/xboxdash_green.png" /></div>';
-		template += '<p>Click on the following link to verify your email address: ' + url + '</p>';
-		return template;
-	};
-
-	/*
-	Accounts.urls.resetPassword = function (token) {
-        return Meteor.absoluteUrl('reset-password/' + token);
-    };
-    */
-
-    Accounts.urls.verifyEmail = function (token) {
-    	return Meteor.absoluteUrl('confirm-gamertag/' + token);
-    };
 });
 
 UserStatus.events.on("connectionLogin", function(fields) {

@@ -1,15 +1,4 @@
 Template.confirmGt.created = function() {
-	if (Accounts._verifyEmailToken) {
-		Accounts.verifyEmail(Accounts._verifyEmailToken, function(err){
-			if (err != null) {
-				// handle the error
-				Router.go('confirmEmail');
-			} else {
-				// do what you want, maybe redirec to some route show verify successful message
-				this.next();
-			}
-		});
-	}
 };
 
 Template.confirmGt.rendered = function() {
@@ -89,21 +78,15 @@ Template.confirmGt.events({
 				return;
 			}
 			if (result.content) {
-				var userId = Meteor.userId();
-				var setGamertag = Meteor.users.find({_id: userId}, {username: {$exists: true}});
-
-				if (typeof setGamertag !== 'undefined') {
-					Meteor.users.upsert({_id: userId}, {$set: {username: user.username, "profile.xuid": user.profile.xuid}});
-				} else {
-					Meteor.call('retrieveData', user, function(error, result) {
-						if (loading) {
-							loading.finish();
-							Session.set('loadingScreen', false);
-						}
-						Router.go('home');
-						return;
-					});
-				}
+				var user = {username: gamertag, profile: {xuid: result.content}};
+				Meteor.call('retrieveData', user, function(error, result) {
+					if (loading) {
+						loading.finish();
+						Session.set('loadingScreen', false);
+					}
+					Router.go('home');
+					return;
+				});
 			}
 		});
 	},
