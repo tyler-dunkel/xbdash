@@ -17,3 +17,14 @@ Meteor.methods({
 		return;
 	}
 });
+
+Meteor.methods({
+	contactUsEmail: function(name, email, subject, text) {
+		Email.send({
+			from: "XboxDash <xboxdashbugreporter@gmail.com>",
+			to: "kguirao87@gmail.com",
+			subject: subject,
+			text: text
+		});
+	}
+});

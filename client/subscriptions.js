@@ -6,3 +6,8 @@ Tracker.autorun(function() {
 		}
 	}
 });
+Tracker.autorun(function() {
+	if (Meteor.user()) {
+		return subMana.subscribe('userReferralInfo');
+	}
+});

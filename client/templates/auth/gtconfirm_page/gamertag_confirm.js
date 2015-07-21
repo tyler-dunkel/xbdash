@@ -2,6 +2,16 @@ Template.confirmGt.created = function() {
 };
 
 Template.confirmGt.rendered = function() {
+	var user = Meteor.user();
+	if (Session.get('socialLoginReferer')) {
+		Meteor.call('userReferredSocialSignup', user._id, Session.get('socialLoginReferer'), function(error, result) {
+			if (error) {
+				console.log(error);
+				return;
+			}
+			Session.set('socialLoginReferer', "");
+		});
+	}
 }
 
 Template.confirmGt.events({

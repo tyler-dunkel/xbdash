@@ -10,6 +10,15 @@ Meteor.publish('userSocialServices', function() {
 	});
 });
 
+Meteor.publish('userReferralInfo', function() {
+	return Meteor.users.find({_id: this.userId}, {
+		fields: {
+			"userSeenReferralBox": 1,
+			"userReferralCount": 1
+		}
+	});
+});
+
 Meteor.publish('commentUserImage', function(userId) {
 	Meteor._debug(userId);
 	return Meteor.users.find({_id: userId}, {
