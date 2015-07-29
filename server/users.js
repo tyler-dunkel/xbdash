@@ -13,6 +13,7 @@ Accounts.config({
 
 
 // By default, the email is sent from no-reply@meteor.com. If you wish to receive email from users asking for help with their account, be sure to set this to an email address that you can receive email at.
+// Accounts.emailTemplates.from = 'XBdash <bugs@xbdash.com>';
 Accounts.emailTemplates.from = 'XboxDash <xboxdashbugreporter@gmail.com>';
 
 // The public name of your application. Defaults to the DNS name of the application (eg: awesome.meteor.com).
@@ -25,7 +26,7 @@ Accounts.emailTemplates.verifyEmail.subject = function(user) {
 
 // A Function that takes a user object and a url, and returns the body text for the email.
 Accounts.emailTemplates.verifyEmail.html = function(user, url) {
-	var template = '<div style="text-align:center;"><img src="img/xboxdash_green.png" /></div>';
+	var template = '<div style="text-align:center;"><img src="img/xbdash_green.png" /></div>';
 	template += '<p>Click on the following link to verify your email address: ' + url + '</p>';
 	return template;
 };

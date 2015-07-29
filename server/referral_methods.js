@@ -1,4 +1,5 @@
 Meteor.startup(function() {
+	/*
 	var userId = Meteor.users.findOne({})._id;
 	for(var i=0; i < 10; i++) {
 		if (i > 5) {
@@ -8,6 +9,7 @@ Meteor.startup(function() {
 			userReferrals.insert({referrerId: userId, refereeId: userId, verified: true });
 		}
 	}
+	*/
 });
 
 Meteor.methods({
@@ -25,6 +27,7 @@ Meteor.methods({
 	},
 	referralEmail: function(email1, email2, subject, text) {
 		Email.send({
+			//from: "XBdash <contact@xbdash.com>",
 			from: "XboxDash <xboxdashbugreporter@gmail.com>",
 			to: email1 + ", " + email2,
 			subject: subject,

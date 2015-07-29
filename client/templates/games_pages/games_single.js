@@ -33,7 +33,7 @@ Template.gamesSinglePage.helpers({
 	gamesImage: function () {
         //var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var game = xbdGames.findOne({ _id: this.gameId });
-        var image = "/img/xboxdash_greenicon.png";
+        var image = "/img/xbdash_greenicon.png";
         if (game.platform === 'Xenon') {
             this.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
@@ -71,7 +71,7 @@ Template.gamesSinglePage.helpers({
     achievementImage: function () {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-        var image = "/img/xboxdash_greenicon.png";
+        var image = "/img/xbdash_greenicon.png";
         if (xbdGame.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt') {

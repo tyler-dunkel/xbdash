@@ -4,7 +4,7 @@ Template.referralShareButtons.helpers({
 		var token = user._id;
 		var title = "I just joined XboxDash @ http://xboxdash.com";
 		var thumbnail = function() {
-			return "http://xboxdash.com/images/xboxdash_green.png";
+			return "http://xboxdash.com/images/xbdash_green.png";
 		};
 		return data = {
 			title: title,
