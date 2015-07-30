@@ -4375,8 +4375,18 @@ ul.signin > li.active {
   padding-bottom: 15px;
 }
 
+.achievement-key .padder-vv- {
+  padding: 12px 20px;
+}
+
 .padder-vv- {
   padding: 20px;
+}
+
+.achievement-key .padder-vv-legendary {
+  color: #fff;
+  padding: 12px 20px;
+  background-color: #000;
 }
 
 .padder-vv-legendary {
@@ -4385,10 +4395,22 @@ ul.signin > li.active {
   background-color: #000;
 }
 
+.achievement-key .padder-vv-epic {
+  color: #fff;
+  padding: 12px 20px;
+  background-color: #3498db;
+}
+
 .padder-vv-epic {
   color: #fff;
   padding: 20px;
   background-color: #3498db;
+}
+
+.achievement-key .padder-vv-rare {
+  color: #fff;
+  padding: 12px 20px;
+  background-color: #e74c3c;
 }
 
 .padder-vv-rare {
@@ -4397,10 +4419,22 @@ ul.signin > li.active {
   background-color: #e74c3c;
 }
 
+.achievement-key .padder-vv-common {
+  color: #fff;
+  padding: 12px 20px;
+  background-color: #f39c12;
+}
+
 .padder-vv-common {
   color: #fff;
   padding: 20px;
   background-color: #f39c12;
+}
+
+.achievement-key .padder-vv-xbd {
+  color: #fff;
+  padding: 12px 20px;
+  background-color: #138013;
 }
 
 .padder-vv-xbd {
@@ -5810,3 +5844,40 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 
 .media-left img {margin: 7px 0;}
 .comments {margin: 15px 0;}
+
+/* affix css */
+
+.faqs section {
+    border-bottom: 1px solid #c1e1ec;
+    padding: 50px 0 25px;
+    margin: -50px 0 -25px;
+}
+.faqs .affix {
+  top: 65px;
+  width: 209px;
+}
+@media (min-width: 1200px) {
+  .faqs .affix {
+    width: 209px;
+  }         
+}
+.faqs .affix-bottom {
+  position: absolute;
+  width: 209px;
+}
+@media (min-width: 1200px) {
+  .faqs .affix-bottom {
+    width: 209px;
+  }
+}
+.faqs {
+  position: relative;
+}
+.faqs .accordion-toggle:after {
+    font-family: 'FontAwesome';
+    content: "\f054";    
+    float: right;
+}
+.faqs .accordion-opened .accordion-toggle:after {    
+    content: "\f078";    
+}
