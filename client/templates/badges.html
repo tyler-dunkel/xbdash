@@ -1,0 +1,29 @@
+<template name="badgesAreaDashboard">
+	<div class="wrapper-md">
+		<div class="m-b text-md">Badges</div>
+        <ul class="list-group no-bg no-borders pull-in">
+          {{#each badgeList}}
+          <li class="list-group-item">
+            <a href class="thumb-sm m-r games-thumb">
+              <img src="{{gamesListImage}}" class="">
+            </a>
+          </li>
+          {{/each}}
+        </ul>
+	</div>
+</template>
+
+<template name="badgesAreaSummary">
+	<div class="wrapper-md">
+		<div class="m-b text-md">Badges</div>
+        <ul class="list-group no-bg no-borders pull-in">
+	    	{{#each badgeList}}
+	    	<li class="list-group-item">
+	    		<a href class="thumb-sm m-r games-thumb">
+	    			<img src="{{gamesListImage}}" class="">
+	    		</a>
+	    	</li>
+	    	{{/each}}
+        </ul>
+	</div>
+</template>
