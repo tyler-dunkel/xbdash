@@ -8,7 +8,7 @@
 // Template.loading.rendered = function() {
 // 	if (! Session.get('loadingScreen')) {
 // 		this.loading = window.pleaseWait({
-// 			logo: 'img/xboxdash_whiteicon.png',
+// 			logo: 'img/xbdash_whiteicon.png',
 // 			backgroundColor: '#138013',
 // 			loadingHtml: message + spinner
 // 		});

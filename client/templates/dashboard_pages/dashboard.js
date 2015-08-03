@@ -178,7 +178,7 @@ Template.dashboardApp.helpers({
     gamesListImage: function () {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-        var image = "/img/xboxdash_greenicon.png";
+        var image = "/img/xbdash_greenicon.png";
         if (xbdGame.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt') {

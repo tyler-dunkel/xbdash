@@ -4,29 +4,375 @@
 
 <template name="helpApp">
   <div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-      <div class="hbox hbox-auto-xs hbox-auto-sm">
+    <div class="app-content-body">
+      <div class="hbox hbox-auto-xs hbox-auto-sm faqs">
         <!-- main -->
         <div class="col">
           <!-- main header -->
           <div class="bg-light lter b-b wrapper-md">
             <div class="row">
               <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">Help &amp; FAQs</h1>
+                <h1 class="m-n font-thin h3 text-black">Help</h1>
+                <small class="text-muted">Frequently Asked Questions</small>
               </div>
               <div class="col-sm-6 text-right hidden-xs">
                 <div class="inline m-r text-left">
                   <div class="m-b-xs">Daily Rank</div>
-                  <div class="h4 text-success font-bold">1</div>
+                  <div class="h4 text-success font-bold">{{currentUser.profile.userDailyRank}}</div>
                 </div>
                 <div class="inline text-left">
                   <div class="m-b-xs">Overall Rank</div>
-                  <div class="h4 text-success font-bold">521</div>
+                  <div class="h4 text-success font-bold">{{currentUser.profile.userOverallRank}}</div>
                 </div>
               </div>
             </div>
           </div>
-      	</div>
+          <div data-scroll="scroll" data-target=".scrollspy">
+            <div class="col w-md bg-light dk b-r bg-auto scrollspy">
+              <div class="wrapper b-b bg">
+                <ul id="sidebar" class="bg-light lter nav nav-stacked hidden-xs hidden-sm" data-spy="affix">
+                  <li><a href="#top">Top Questions</a></li>
+                  <li><a href="#account">Account Questions</a></li>
+                  <li><a href="#profile">Profile</a></li>
+                  <li><a href="#news">News</a></li>
+                  <li><a href="#achievements-games">Achievements / Games</a></li>
+                  <li><a href="#badges">Badges</a></li>
+                  <li><a href="#more">More Questions</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="wrapper b-b bg">
+                <section id="top">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h3>Top Questions</h3>
+                    </div>
+                  </div>
+                  <div class="panel-group" id="accordion0" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne0" aria-expanded="false" aria-controls="collapseOne0">
+                        <div class="panel-heading" role="tab" id="headingOne0">
+                          <h4 class="panel-title">
+                            Why XboxDash?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseOne0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne0">
+                        <div class="panel-body">
+                          As Xbox gamers, we've always been compelled to connect the gamer to the games they play on another level. XboxDash does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1">
+                        <div class="panel-heading" role="tab" id="headingOne1">
+                          <h4 class="panel-title">
+                            How often will my personalized dashboard update?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne1">
+                        <div class="panel-body">
+                          At this stage of XboxDash, it is set to update your information every 15 minutes.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne2" aria-expanded="false" aria-controls="collapseOne2">
+                        <div class="panel-heading" role="tab" id="headingOne2">
+                          <h4 class="panel-title">
+                            Are we affiliated with Microsoft?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseOne2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne2">
+                        <div class="panel-body">
+                          At this stage of XboxDash, we are not affiliated with Microsoft&reg; or Xbox&reg;. However, we've applied for a Microsoft's Independent Developer license and it's only a matter of time!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne3" aria-expanded="false" aria-controls="collapseOne3">
+                        <div class="panel-heading" role="tab" id="headingOne3">
+                          <h4 class="panel-title">
+                            How does XboxDash make achievement tracking easier?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseOne3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne3">
+                        <div class="panel-body">
+                          XboxDash helps make achievement tracking easier by helping gamers easily search for the achievement they're looking for and with the help of other gamers in the community who submit possible solutions.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne4" aria-expanded="false" aria-controls="collapseOne4">
+                        <div class="panel-heading" role="tab" id="headingOne4">
+                          <h4 class="panel-title">
+                            Can this help me on achievements I'm struggling with?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseOne4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne4">
+                        <div class="panel-body">
+                          Yes, with the help of the community's user-submitted solutions, you can work together to unlock the achievements you've been having a hard time with.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5">
+                        <div class="panel-heading" role="tab" id="headingOne5">
+                          <h4 class="panel-title">
+                            Can I win anything by being towards the top of the daily/overall score?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseOne5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne5">
+                        <div class="panel-body">
+                          Currently, you win recognition and badges for being at the top of the leaderboards. In the future, we will have partnerships that will make it more enjoyable to get more achievements.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne6" aria-expanded="false" aria-controls="collapseOne6">
+                        <div class="panel-heading" role="tab" id="headingOne7">
+                          <h4 class="panel-title">
+                            Will this help me find new games to play?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseOne6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne7">
+                        <div class="panel-body">
+                          XboxDash includes an easy-search system that helps gamers find particular games. Each game's page includes feedback area from gamers who have the game and this will help you decide whether to get the next game to add to your history.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section id="account">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h3>Account Questions</h3>
+                    </div>
+                  </div>
+                  <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo0" aria-expanded="false" aria-controls="collapseTwo0">
+                        <div class="panel-heading" role="tab" id="headingTwo0">
+                          <h4 class="panel-title">
+                            Where is my validation email?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseTwo0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo0">
+                        <div class="panel-body">
+                          In certain cases, our validation email can get filtered into your Spam/Junk folder. Please check here and mark the email as "Not Spam" or add the sender contact@xboxdash.com to your Address Book to ensure delivery in the future.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                        <div class="panel-heading" role="tab" id="headingTwo1">
+                          <h4 class="panel-title">
+                            Can I reset my password?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo1">
+                        <div class="panel-body">
+                          Yes, you can certainly reset your password. Click here to reset your password.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+                        <div class="panel-heading" role="tab" id="headingTwo2">
+                          <h4 class="panel-title">
+                            Can I delete my account?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseTwo2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo2">
+                        <div class="panel-body">
+                          Yes, you can delete your account. Contact us using the Account Change form.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section id="profile">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h3>Profile</h3>
+                    </div>
+                  </div>
+                  <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree0" aria-expanded="false" aria-controls="collapseThree0">
+                        <div class="panel-heading" role="tab" id="headingThree0">
+                          <h4 class="panel-title">
+                            Why is my dashboard not populating?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseThree0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree0">
+                        <div class="panel-body">
+                          Your dashboard is most likely not populating because of your privacy settings on Xbox(R) Live.<br /><br />
+
+                          Follow these steps:
+
+                          <ul type="1">
+                            <li>Log into Xbox Live online or on your console</li>
+                            <li>Go to Privacy / Online Settings
+          https://account.xbox.com/en-GB/Settings</li>
+                            <li>Make sure that your settings are on "Public" or "Everybody".</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree1">
+                        <div class="panel-heading" role="tab" id="headingThree1">
+                          <h4 class="panel-title">
+                            Why is my gamertag coming up as invalid when I sign up?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree1">
+                        <div class="panel-body">
+                          Your gamertag can come up as invalid for any number of reasons.<br /><br />
+
+                          <ul type="a">
+                            <li>Did you type it in incorrectly?</li>
+                            <li>Did you register before?</li>
+                          </ul>
+
+                          If the answer to the above questions are no, please fill out the Account Change form, describe what the issue is, and we'll take care of that as soon as we can!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+                        <div class="panel-heading" role="tab" id="headingThree2">
+                          <h4 class="panel-title">
+                            My gamertag has changed, how do I update my account on XboxDash?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseThree2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree2">
+                        <div class="panel-body">
+                          If your Gamertag is changed, this can directly affect how XboxDash scans your history. You can fill out the Account Change form and we'll take care of that as soon as we can!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section id="news">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h3>News</h3>
+                    </div>
+                  </div>
+                  <div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseFour0" aria-expanded="false" aria-controls="collapseFour0">
+                        <div class="panel-heading" role="tab" id="headingFour0">
+                          <h4 class="panel-title">
+                            What is your news source?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseFour0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour0">
+                        <div class="panel-body">
+                          At the moment, we are pulling in a feed for General News from Polygon.com.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseFour1" aria-expanded="false" aria-controls="collapseFour1">
+                        <div class="panel-heading" role="tab" id="headingFour1">
+                          <h4 class="panel-title">
+                            Are you planning to generate original content?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour1">
+                        <div class="panel-body">
+                          We plan to expand our team in both the writing and video divisions in the near future. If you'd like to work with us, please email us at jobs@xboxdash.com.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section id="achievements-games">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h3>Achievements / Games</h3>
+                    </div>
+                  </div>
+                  <div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion4" href="#collapseFive0" aria-expanded="false" aria-controls="collapseFive0">
+                        <div class="panel-heading" role="tab" id="headingFive0">
+                          <h4 class="panel-title">
+                            My gamerscore, achievement completion percentage, game completion percentage, or other data is not accurate to what I have on Xbox One, Xbox 360, or Xbox Live. What's happening?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseFive0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive0">
+                        <div class="panel-body">
+                          We update our databases on a 15 minute interval. Once we join Microsoft's developer program, we can set this to a more real-time interval.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section id="badges">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h3>Badges</h3>
+                    </div>
+                  </div>
+                  <div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5" href="#collapseSix0" aria-expanded="false" aria-controls="collapseSix0">
+                        <div class="panel-heading" role="tab" id="headingSix0">
+                          <h4 class="panel-title">
+                            Badges are earned at key milestones in your gaming history. What are some milestones?
+                          </h4>
+                        </div>
+                      </a>
+                      <div id="collapseSix0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix0">
+                        <div class="panel-body">
+                          <ul>
+                            <li>Completed Games badges will update on every completed game</li>
+                            <li>Completed Arcade Games badges will update on every completed game</li>
+                            <li>Gamerscore Badges are earned every 5,000 GS for the first 100,000 Gamerscore and every 25,000 GS after 100,000 Gamerscore.</li>
+                            <li>Completion Percent Badges are earned every 5% you go up in completion ratio.</li>
+                            <li>Achievements Completed Badges are earned every 50 achievements unlocked.</li>
+                          </ul>
+
+                          <strong>Note:</strong> All badges are calculated based on whether you set your account to include DLC achievements and gamerscore.<br /><br />
+
+                          For example, if you have 100% status on a game and set "Include DLC Achievements" to no then your DLC achievements are not included in the calculation and you will stay at 100%. However, if you set "Include DLC Achievements" to yes, then your 100% status on a game goes back down relative to how many achievements and gamerscore are left with the DLCs for that game.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section id="more">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h3>More</h3>
+                      <p>If you have more questions about XboxDash, please feel free to <a href="mailto:contact@xbdash.com" target="_blank" class="">contact us</a>.</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -2,7 +2,8 @@ Meteor.startup(function() {
 
 	//config and Account email verification templates
 
-	process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
+	//process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
+	process.env.MAIL_URL="smtp://keith%40xbdash.com:kgZH!1987@smtp.zoho.com:465/";
 
 	//function to find the  achievements
 	//tiering function for achievements
@@ -73,6 +74,7 @@ Meteor.startup(function() {
 	}, 50000);
 
 	//function that will check referral docs to see if the referee's email has been verified
+	/*
 	Meteor.setInterval(function() {
 		var referrals = userReferrals.find({verified: false});
 		if (referrals) {
@@ -88,4 +90,5 @@ Meteor.startup(function() {
 			});
 		}
 	}, 1000);
+	*/
 });

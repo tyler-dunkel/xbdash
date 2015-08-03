@@ -21,7 +21,7 @@ Template.achievementsSinglePage.helpers({
         //return;
     },
     achievementImage: function () {
-        var image = "/img/xboxdash_greenicon.png";
+        var image = "/img/xbdash_greenicon.png";
         if (this.mediaAssets) {
             image = this.mediaAssets;
         }
