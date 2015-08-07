@@ -63,8 +63,7 @@ function updateXboxOneAchievementsData(userId, gameId) {
 			progressState: progressState,
 			progression: progression
 		};
-		 userAchievements.upsert({ achievementId: achievementCheck, userId: userId },
-		  { $set: userAchievement });
+		userAchievements.upsert({ achievementId: achievementCheck, userId: userId }, { $set: userAchievement });
 	});
 }
 
@@ -152,38 +151,42 @@ function updateXbox360AchievementsData(userId, gameId) {
 		return;
 	}
 
-	result.data.forEach(function (achievement) {
-		var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: achievement.name });
-		var progressState = (achievement.unlocked !== false) ? true : false;
-		var progression = achievement.timeUnlocked;
-		progression = new Date(progression);
-		var achievementInserted = false;
-		var achievementValue = achievement.rewards && achievement.rewards.length ? achievement.rewards[0].value : achievement.value;
-		if (typeof achievementCheck === 'undefined') {
-			var singleAchievement = {
-				gameId: gameId,
-				name: achievement.name,
-				mediaAssets: achievement.imageUnlocked,
-				isSecret: achievement.isSecret,
-				description: achievement.description,
-				lockedDescription: achievement.lockedDescription,
-				value: achievement.gamerscore
+	try {
+		result.data.forEach(function (achievement) {
+			var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: achievement.name });
+			var progressState = (achievement.unlocked !== false) ? true : false;
+			var progression = achievement.timeUnlocked;
+			progression = new Date(progression);
+			var achievementInserted = false;
+			var achievementValue = achievement.rewards && achievement.rewards.length ? achievement.rewards[0].value : achievement.value;
+			if (typeof achievementCheck === 'undefined') {
+				var singleAchievement = {
+					gameId: gameId,
+					name: achievement.name,
+					mediaAssets: achievement.imageUnlocked,
+					isSecret: achievement.isSecret,
+					description: achievement.description,
+					lockedDescription: achievement.lockedDescription,
+					value: achievement.gamerscore
+				};
+				achievementCheck = xbdAchievements.insert(singleAchievement);
+				achievementInserted = true;
+			}
+			if (!achievementInserted) {
+				achievementCheck = achievementCheck._id;
+			}
+			var userAchievement = {
+				achievementId: achievementCheck,
+				userId: userId,
+				progressState: progressState,
+				progression: progression
 			};
-			achievementCheck = xbdAchievements.insert(singleAchievement);
-			achievementInserted = true;
-		}
-		if (!achievementInserted) {
-			achievementCheck = achievementCheck._id;
-		}
-		var userAchievement = {
-			achievementId: achievementCheck,
-			userId: userId,
-			progressState: progressState,
-			progression: progression
-		};
-		 userAchievements.upsert({ achievementId: achievementCheck, userId: userId },
-		  { $set: userAchievement });
-	});
+			 userAchievements.upsert({ achievementId: achievementCheck, userId: userId },
+			  { $set: userAchievement });
+		});
+	} catch (error) {
+		Meteor._debug(result.data);
+	}
 }
 
 function updateXbox360GameData(userId, game, gameId) {

@@ -1,0 +1,86 @@
+<template name="userDropdown">
+	{{#if currentUser.gamertagScanned}}
+		{{#if loggingIn}}
+			{{> loadingTemplate}}
+		{{else}}
+		<ul class="nav navbar-nav navbar-right navbar-auth">
+			<!--
+			<li class="dropdown">
+				<a href class="dropdown-toggle">
+					<i class="icon-bell fa-fw"></i>
+					<span class="visible-xs-inline">Notifications</span>
+					<span class="badge badge-sm up bg-danger pull-right-xs">2</span>
+				</a>
+				<div class="dropdown-menu w-xl animated fadeInUp">
+					<div class="panel bg-white">
+						<div class="panel-heading b-light bg-light">
+							<strong>You have <span>2</span> notifications</strong>
+						</div>
+						<div class="list-group">
+							<a href class="media list-group-item">
+								<span class="pull-left thumb-sm">
+									<img src="img/a0.jpg" alt="..." class="img-circle">
+								</span>
+								<span class="media-body block m-b-none">
+									Use awesome animate.css<br>
+									<small class="text-muted">10 minutes ago</small>
+								</span>
+							</a>
+							<a href class="media list-group-item">
+								<span class="media-body block m-b-none">
+									1.0 initial released<br>
+									<small class="text-muted">1 hour ago</small>
+								</span>
+							</a>
+						</div>
+						<div class="panel-footer text-sm">
+							<a href class="pull-right"><i class="fa fa-cog"></i></a>
+							<a href="#notes" data-toggle="show animated">See all the notifications</a>
+						</div>
+					</div>
+				</div>
+			</li>
+			-->
+			<li class="dropdown">
+				<a href class="dropdown-toggle clear" data-toggle="dropdown">
+					<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+						{{#if currentUser.gamertagScanned}}
+						<img src="{{currentUser.profile.gamercard.gamerpicSmallSslImagePath}}" alt="{{currentUser.username}}">
+						{{else}}
+						<img src="img/defaults/gamerpic.png" alt="currentUser.profile.name" />
+						{{/if}}
+						<i class="on md b-white bottom"></i>
+					</span>
+					<span class="hidden-sm hidden-md">{{currentUser.username}}</span> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu animated">
+					<li>
+						<a href="{{pathFor 'settingsPage'}}">
+							<span class="badge bg-danger pull-right">30%</span>
+							<span>Settings</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{pathFor 'referrals'}}">Refer a Friend</a>
+					</li>
+					<li>
+						<a href="{{pathFor 'helpPage'}}">Help</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a id="logout" href="{{pathFor 'logIn'}}">Logout</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		{{/if}}
+	{{else}}
+	<ul class="nav navbar-nav navbar-right navbar-auth">
+		<li>
+			<div class="m-t-sm">
+				<a id="logout" href="{{pathFor 'logIn'}}" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+			</div>
+		</li>
+	</ul>
+	{{/if}}
+</template>

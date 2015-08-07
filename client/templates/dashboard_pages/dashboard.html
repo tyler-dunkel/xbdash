@@ -13,18 +13,15 @@
             <div class="row">
               <div class="col-sm-6 col-xs-12">
                 <h1 class="m-n font-thin h3 text-black">Dashboard</h1>
+                {{#if currentUser}}
                 <small class="text-muted">Welcome back!</small>
+                {{/if}}
               </div>
+              {{#if currentUser}}
               <div class="col-sm-6 text-right hidden-xs">
-                <div class="inline m-r text-left">
-                  <div class="m-b-xs">Daily Rank</div>
-                  <div class="h4 text-success font-bold">{{currentUser.profile.userDailyRank}}</div>
-                </div>
-                <div class="inline text-left">
-                  <div class="m-b-xs">Overall Rank</div>
-                  <div class="h4 text-success font-bold">{{currentUser.profile.userOverallRank}}</div>
-                </div>
+                {{> rankArea}}
               </div>
+              {{/if}}
             </div>
           </div>
           <!-- / main header -->

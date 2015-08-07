@@ -1,6 +1,6 @@
 function xboxApiCaller (url, callback) {
 	try {
-		HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : '552ff8542ffd7c1f984b7fbf06462f10f659ae20' }}, function (error, result) {
+		HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : 'e9b6206816485c97bd0b0844073723988a848b3f' }}, function (error, result) {
 			if (!error) {
 				var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
 				if (rateLimitRemaining > 0) {
@@ -65,6 +65,8 @@ Meteor.methods({
 		if (typeof setGamertag !== 'undefined') {
 			Meteor.users.upsert({_id: userId}, {$set: {username: user.username, "profile.xuid": user.profile.xuid}});
 		}
+
+		Meteor.users.update({ _id: userId }, { $set: { gamertagScanned: true } });
 
 		[
 		'gamercard',

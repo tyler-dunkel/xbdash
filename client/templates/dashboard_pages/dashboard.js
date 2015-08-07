@@ -1,5 +1,4 @@
 Template.dashboard.created = function() {
-
 };
 
 Template.dashboard.rendered = function() {
@@ -11,7 +10,7 @@ Template.dashboard.rendered = function() {
             title: "Invite a Friend",
             message: "<div class='row'>" +
                     "<div class='col-sm-12'>" + 
-                    "<p>Get $5 off the exclusive XboxDash Launch T-Shirt when you invite 2 Xbox&reg; Live friends!</p>" +
+                    "<p>Get $5 off the exclusive XBdash Launch T-Shirt when you invite 2 Xbox&reg; Live friends!</p>" +
                     "<p>Proceeds from this shirt campaign will help fund the hosting and maintenance needed to run this website.</p>" +
                     "</div>" +
                     "</div>" + 
@@ -42,11 +41,11 @@ Template.dashboard.rendered = function() {
                         var email1 = $('#email-one').val();
                         var email2 = $('#email-two').val();
                         var user = Meteor.user();
-                        var subject = user.username + " has invited you to XboxDash";
+                        var subject = user.username + " has invited you to XBdash";
                         var inviteLink = "Link here";
                         var text = "Greetings,<br /><br />" +
-                        "You've been invited by " + user.username + " to join XboxDash, a new platform to help manage your achievements, your games, and become a top Xbox gamer.<br /><br />" + 
-                        "By inviting you, " + user.username + " gets $5 off the exclusive XboxDash launch T-shirt! You can get $5 off as well when you sign up and invite 2 friends from Xbox Live!<br /><br />" +
+                        "You've been invited by " + user.username + " to join XBdash, a new platform to help manage your achievements, your games, and become a top Xbox gamer.<br /><br />" + 
+                        "By inviting you, " + user.username + " gets $5 off the exclusive XBdash launch T-shirt! You can get $5 off as well when you sign up and invite 2 friends from Xbox Live!<br /><br />" +
                         "Click here to get started<br />" + 
                         inviteLink +
                         "<br /><br />Cheers,<br />" +
@@ -85,9 +84,6 @@ Template.dashboard.rendered = function() {
 
 Template.dashboard.events({
 });
-
-
-
 
 
 
@@ -213,4 +209,10 @@ Template.dashboardApp.helpers({
 });
 
 Tracker.autorun(function() {
+    var user = Meteor.user();
+    if (!user.gamertagScanned) {
+        Router.go('confirmGt');
+    } else {
+        this.next();
+    }
 });

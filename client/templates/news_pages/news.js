@@ -2,7 +2,6 @@ Template.newsApp.rendered = function() {
 }
 
 Template.newsApp.onCreated(function() {
-	this.subscribe('latestNews');
 });
 
 Template.newsApp.helpers({

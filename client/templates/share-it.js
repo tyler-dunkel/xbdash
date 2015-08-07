@@ -1,8 +1,8 @@
 Template.shareIt.helpers({
 	xbdData: function() {
 		return {
-			title: this.data,
-			author: Meteor.users.findOne(this.authorId)
+			//title: this.data,
+			//author: Meteor.users.findOne(this.authorId)
 		}
 	}
 });

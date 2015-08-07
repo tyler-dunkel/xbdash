@@ -219,7 +219,6 @@ Template.achievementsChart.rendered = function() {
             .attr("fill", "none");
 		}
 	});
-
 }
 
 Template.achievementsChart.events({

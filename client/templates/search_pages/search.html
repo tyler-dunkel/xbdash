@@ -1,10 +1,10 @@
-<template name="searchBar">
-    <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" target=".navbar-collapse" role="search" ng-controller="TypeaheadDemoCtrl">
-		<div class="form-group">
+<template name="searchBar">	
+	<form class="form-horizontal navbar-search" role="search">
+		<div class="col-sm-8 input-container">
 			<div class="input-group">
-				<input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="search games and achievements">
+				<input type="text" class="form-control input-sm bg-black no-border padder" placeholder="search games and achievements">
 				<span class="input-group-btn">
-					<button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+					<button type="submit" class="btn btn-sm bg-black"><i class="fa fa-search"></i></button>
 				</span>
 			</div>
 		</div>

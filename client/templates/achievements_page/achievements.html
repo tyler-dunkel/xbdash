@@ -29,16 +29,11 @@
                   <i class="fa fa-trophy"></i>&nbsp;&nbsp;legendary
                 </div>
               </div>
+              {{#if currentUser}}
               <div class="col-sm-3 text-right hidden-xs">
-                <div class="inline m-l m-r text-left">
-                  <div class="m-b-xs">Daily Rank</div>
-                  <div class="h4 text-success font-bold">1</div>
-                </div>
-                <div class="inline text-left">
-                  <div class="m-b-xs">Overall Rank</div>
-                  <div class="h4 text-success font-bold">521</div>
-                </div>
+                {{> rankArea}}
               </div>
+              {{/if}}
             </div>
           </div>
           <div class="wrapper-md">
@@ -48,13 +43,13 @@
               </div>
             </div>
             <div class="row">
-              {{#if Template.subscriptionsReady}}
+            {{#if Template.subscriptionsReady}}
               {{#each mostPopularAchievements}}
-              {{> achievementTemplate}}
+                {{> achievementTemplate}}
               {{/each}}
-              {{else}}
+            {{else}}
               {{> loadingTemplate}}
-              {{/if}}
+            {{/if}}
             </div>
           </div>
           <div class="wrapper-md">
@@ -64,13 +59,13 @@
               </div>
             </div>
             <div class="row">
-              {{#if Template.subscriptionsReady}}
+            {{#if Template.subscriptionsReady}}
               {{#each rarestAchievements}}
-              {{> achievementTemplate}}
+                {{> achievementTemplate}}
               {{/each}}
-              {{else}}
+            {{else}}
               {{> loadingTemplate}}
-              {{/if}}
+            {{/if}}
             </div>
           </div>
           <!--end wrapper-->

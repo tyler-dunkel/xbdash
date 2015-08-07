@@ -1,12 +1,34 @@
 <template name="mainLayout">
 	<div class="app app-header-fixed">
-	{{#if currentUser}}
+	{{#if checkHome}}
+		{{#if currentUser}}
+			{{> dashboardHeader}}
+			{{> dashboardAside}}
+		{{/if}}
+	{{else}}
 		{{> dashboardHeader}}
 		{{> dashboardAside}}
 	{{/if}}
 		{{> yield}}
-	{{#if currentUser}}
+	{{#if checkHome}}
+		{{#if currentUser}}
+			{{> dashboardFooter}}
+		{{/if}}
+	{{else}}
 		{{> dashboardFooter}}
 	{{/if}}
 	</div>
+	<!--
+	1 - test as non user
+	2 - test as user, no gamertag
+	3 - test as user with gamertag
+
+
+	1 - user with gamertag scan -> '/' show dash with aside - done
+	2 - non-user ->  '/' show but no aside - done (landing page)
+	3 - user with no gamertag scan -> '/achievements' show achievements with aside
+	4 - non-user -> '/achievements' show achievement with aside with logins buttons, remove user-related items with {{#if currentUser}}
+		- aside dashboard - disabled dashboard button with tooltip to sign up and claim
+		- aside dashboard - Achievements area - show total tracked achievements, show total tracked games
+	-->
 </template>

@@ -190,7 +190,6 @@ Template.gamerscoreChart.rendered = function() {
             .attr("fill", "none");
 	    }
 	});
-
 }
 
 Template.gamerscoreChart.events({

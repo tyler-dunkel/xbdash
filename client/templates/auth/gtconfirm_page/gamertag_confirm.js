@@ -1,8 +1,25 @@
 Template.confirmGt.created = function() {
+	this.autorun(function() {
+		var user = Meteor.user();
+		if (user) {
+			if (_.isEmpty(user.services)) {
+				console.log("not social");
+				if (user.emails && user.emails[0] && !user.emails[0].verified) {
+					console.log("need to confirm email");
+					Router.go('confirmEmail');
+				}
+			} else if (user.gamertagScanned) {
+				Router.go('home');
+			}
+		} else {
+			Router.go('signUp');
+		}
+	});
 };
 
 Template.confirmGt.rendered = function() {
 	var user = Meteor.user();
+
 	if (Session.get('socialLoginReferer')) {
 		Meteor.call('userReferredSocialSignup', user._id, Session.get('socialLoginReferer'), function(error, result) {
 			if (error) {

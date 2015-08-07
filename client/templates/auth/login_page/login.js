@@ -1,10 +1,3 @@
-function updateUserData(email) {
-	Meteor.setInterval(function() {
-		Meteor.call('testMethod', function(error, result) {
-		});
-	}, 1000);
-}
-
 Template.logIn.rendered = function() {
 }
 
@@ -34,7 +27,10 @@ Template.logIn.events({
 				});
 			}
 			else {
-				//updateUserData(email);
+				var user = Meteor.user();
+				//if (user && !user.gamertagScanned) {
+
+				//}
 				Router.go('home');
 			}
 		});

@@ -9,11 +9,10 @@ Meteor.methods({
 		}
 
 		var userId = Meteor.userId();
-
 		var emails = [];
 		emails[0] = {address: email, verified: false};
 
-		Meteor.users.upsert({ _id: userId }, {$set: {emails: emails}});
+		Meteor.users.upsert({ _id: userId }, { $set: { emails: emails } });
 		return;
 	}
 });
@@ -22,7 +21,7 @@ Meteor.methods({
 	contactUsEmail: function(name, email, subject, text) {
 		Email.send({
 			//from: "XBdash <bugs@xbdash.com>",
-			from: "XboxDash <xboxdashbugreporter@gmail.com>",
+			from: "XBdash <xboxdashbugreporter@gmail.com>",
 			to: "kguirao87@gmail.com",
 			subject: subject,
 			text: text

@@ -4,7 +4,7 @@ numberFormatter = function numberWithCommas(x) {
 
 Template.registerHelper({
     appName: function () {
-        return "XboxDash";
+        return "XBdash";
     },
     chkEmail: function () {
         //var userId = Meteor.userId();

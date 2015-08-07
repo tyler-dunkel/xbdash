@@ -42,3 +42,7 @@ percolate:momentum
 arkham:comments-ui
 gliese:pretty-email
 iron:location
+meteorhacks:aggregate
+meteorhacks:collection-utils
+mongo-livedata
+meteorhacks:fast-render

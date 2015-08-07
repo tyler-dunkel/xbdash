@@ -1,7 +1,9 @@
-Meteor.publish('userSocialServices', function() {
+Meteor.publish('globalUserFields', function() {
 	return Meteor.users.find({ _id: this.userId }, {
 		fields: {
+			"gamertagScanned": 1,
 			"emails[0].address": 1,
+			"emails[0].verified": 1,
 			"services.facebook.name": 1,
 			//"services.facebook.email": 1,
 			"services.twitter.screenName": 1,
@@ -11,7 +13,7 @@ Meteor.publish('userSocialServices', function() {
 });
 
 Meteor.publish('userReferralInfo', function() {
-	return Meteor.users.find({_id: this.userId}, {
+	return Meteor.users.find({ _id: this.userId }, {
 		fields: {
 			"userSeenReferralBox": 1,
 			"userReferralCount": 1
@@ -21,7 +23,7 @@ Meteor.publish('userReferralInfo', function() {
 
 Meteor.publish('commentUserImage', function(userId) {
 	Meteor._debug(userId);
-	return Meteor.users.find({_id: userId}, {
+	return Meteor.users.find({ _id: userId }, {
 		fields: {
 			"username": 1,
 			"profile.gamercard.gamerscore": 1,
@@ -29,6 +31,59 @@ Meteor.publish('commentUserImage', function(userId) {
 		}
 	});
 });
+
+// players by achievements completed
+// players by achievement completion ratio
+// players by games completed
+// players by game completion ratio
+
+/*
+
+Meteor.publishComposite('achievementsCompletedLB', {
+	find: function() {
+		Meteor._debug("players by achievements completed");
+		var achievementsLB = [
+            {
+                $group: {
+                    _id: "$userId",
+                    progressState: {
+                        $sum: true
+                    }
+                }
+            }
+        ]
+        return userAchievements.aggregate(achievementsLB);
+		//return userAchievements.find({}, { sort: { progressState: 1 }, limit: 100 }); 
+		return userAchievements.aggregate([
+			{
+		        $group: {
+		        	_id: "$userId",
+		            progressState: {
+		                $sum: true
+		            }
+		        }
+		    },
+		    {
+		    	$sort : {
+		    		progressState: -1
+		    	}
+		    }
+		]);
+	}
+});
+
+Meteor.publishComposite('achievementsRatioLB', {
+});
+
+Meteor.publishComposite('gamesCompletedLB', {
+});
+
+Meteor.publishComposite('gamesRatioLB', {
+});
+
+*/
+
+// achievements page publications
 
 Meteor.publishComposite('mostPopularAchievements', {
 	find: function() {
@@ -82,13 +137,15 @@ Meteor.publishComposite('rarestAchievements', {
 	]
 });
 
+// games page publications
+
 Meteor.publishComposite('myTopGames', {
 	find: function() {
 		if (!this.userId) {
 			Meteor._debug("fired publish  game by gamerscore function");
 			return xbdGames.find({}, { sort: { maxGamerscore: -1 }, limit: 25 });
 		}
-		return userGames.find({}, { sort: { currentGamerscore: -1 }, limit: 25 });
+		return userGames.find({ _id: this.userId }, { sort: { currentGamerscore: -1 }, limit: 25 });
 	}, 
 	children: [
 		{
@@ -135,6 +192,8 @@ Meteor.publishComposite('gamesByReleaseDate', {
 		}
 	]
 });
+
+// router achievements / games publications
 
 Meteor.publishComposite('userAchievements', {
 	find: function() {
@@ -185,12 +244,44 @@ Meteor.publishComposite('userGames', {
 	]
 });
 
+// feed
+
 Meteor.publish('latestNews', function() {
 	return newsPolygon.find({});
 });
 
+// single pages
+
 Meteor.publish('singleNews', function(id) {
 	return newsPolygon.find({ id: id });
+});
+
+Meteor.publishComposite('singleAchievement', function(slug) {
+	return {
+		find: function() {
+			Meteor._debug("this is the single achievement one");
+			return xbdAchievements.find({ slug: slug });
+		},
+		children: [
+			{
+				find: function(achievement) {
+					return xbdAchievements.find({ gameId: achievement.gameId });
+				}
+			},
+			{
+				find: function(achievement) {
+					return xbdGames.find({ _id: achievement.gameId });
+				}
+			},
+			{
+				find: function(achievement) {
+					if (this.userId) {
+						return userAchievements.find({ achievementId: achievement._id, userId: this.userId });
+					}
+				}
+			}
+		]
+	}
 });
 
 Meteor.publishComposite('singleGame', function(slug) {
@@ -223,34 +314,6 @@ Meteor.publishComposite('singleGame', function(slug) {
 						}
 					}
 				]
-			}
-		]
-	}
-});
-
-Meteor.publishComposite('singleAchievement', function(slug) {
-	return {
-		find: function() {
-			Meteor._debug("this is the single achievement one");
-			return xbdAchievements.find({ slug: slug });
-		},
-		children: [
-			{
-				find: function(achievement) {
-					return xbdAchievements.find({ gameId: achievement.gameId });
-				}
-			},
-			{
-				find: function(achievement) {
-					return xbdGames.find({ _id: achievement.gameId });
-				}
-			},
-			{
-				find: function(achievement) {
-					if (this.userId) {
-						return userAchievements.find({ achievementId: achievement._id, userId: this.userId });
-					}
-				}
 			}
 		]
 	}

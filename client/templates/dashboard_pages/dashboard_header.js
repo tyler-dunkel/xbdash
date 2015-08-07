@@ -5,11 +5,12 @@ Template.dashboardHeader.events({
             if (error) {
                 throw new Meteor.Error("Logout failed");
             }
-            //Router.go('logIn');
+            Router.go('logIn');
         });
-        Router.go('logIn');
+        //Router.go('logIn');
     },
     'click [ui-toggle]': function(event) {
+        var user = Meteor.user();
         event.preventDefault();
         var $this = $(event.target);
         $this.attr('ui-toggle') || ($this = $this.closest('[ui-toggle]'));
@@ -20,7 +21,7 @@ Template.dashboardHeader.events({
         $target.toggleClass($this.attr('ui-toggle'));
         var currentRoute = Router.current().route.getName();
         console.log(currentRoute);
-        if (currentRoute === 'home') {
+        if (currentRoute === 'home' && user.gamertagScanned) {
 	        resizeAchievementChart();
 	        resizeGamerscoreChart();
 	        resizeGamesChart();
@@ -37,5 +38,14 @@ Template.dashboardHeader.events({
         $this.parent().toggleClass('active');
         
         $this.next().is('ul') && event.preventDefault();
+    }
+});
+
+Template.dashboardHeader.helpers({
+    isStatsDisabled: function() {
+        var user = Meteor.user();
+        if (!user || !user.gamertagScanned) {
+            return 'hide';
+        }
     }
 });

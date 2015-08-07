@@ -1,0 +1,14 @@
+.navbar-auth {
+	margin: -10px -15px 0 0;
+}
+.navbar-auth2 {
+	margin: -10px 10px 0 0;
+}
+#layout-background .navbar-auth {
+	margin-top: 0;
+}
+@media (max-width: 1117px) {
+	.navbar-auth2 {
+		margin: -10px 0 0 0;
+	}
+}

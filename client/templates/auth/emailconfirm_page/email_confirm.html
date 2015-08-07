@@ -1,6 +1,7 @@
 <template name="confirmEmail">
   {{> headerConfirmGtPage}}
   {{> confirmEmailForm}}
+  {{> logoutBox}}
   {{> staticFooter}}
 </template>
 
@@ -52,6 +53,25 @@
         <h2 class="text-dark">Thank You</h2>
         <p>Thank you for verifying your email!</p>
       </div>
+    </div>
+  </div>
+</template>
+
+<template name="logoutBox">
+  <div class="container well w-xxxl w-auto-xs" >
+    <div class="m-b-md">
+      <form name="form" class="validate" id="socialform">
+        <h2 class="text-dark text-center">Currently Logged in as</h2>
+        <div class="list-group">
+          <div class="form-group text-center">
+            {{#if chkTwitter}}
+              <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+            {{/if}}
+            <div style="vertical-align: middle;">{{currentUser.username}}</div>
+          </div>
+        </div>
+        <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+      </form>
     </div>
   </div>
 </template>

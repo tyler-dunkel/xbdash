@@ -1370,7 +1370,7 @@ html {
     border: none;
   }
   .app-aside-folded .navi > ul > li > a span, .app-aside-folded .xbdwrap {
-    display: none;
+    display: none !important;
   }
   .app-aside-folded .navi > ul > li > a span.pull-right {
     display: none !important;
@@ -5881,3 +5881,4 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .faqs .accordion-opened .accordion-toggle:after {    
     content: "\f078";    
 }
+.popover {width: 200px;}

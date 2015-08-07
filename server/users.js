@@ -2,22 +2,23 @@ Accounts.onCreateUser(function(options, user) {
 	if (options.profile) {
 		user.profile = options.profile;
 	}
+	user.gamertagScanned = false;
 	user.userSeenReferralBox = false;
 	user.userReferralCount = 0;
 	return user;
 });
 
 Accounts.config({
-		sendVerificationEmail: true
+	sendVerificationEmail: true
 });
 
 
 // By default, the email is sent from no-reply@meteor.com. If you wish to receive email from users asking for help with their account, be sure to set this to an email address that you can receive email at.
 // Accounts.emailTemplates.from = 'XBdash <bugs@xbdash.com>';
-Accounts.emailTemplates.from = 'XboxDash <xboxdashbugreporter@gmail.com>';
+Accounts.emailTemplates.from = 'XBdash <xboxdashbugreporter@gmail.com>';
 
 // The public name of your application. Defaults to the DNS name of the application (eg: awesome.meteor.com).
-///Accounts.emailTemplates.siteName = 'XboxDash';
+///Accounts.emailTemplates.siteName = 'XBdash';
 
 // A Function that takes a user object and returns a String for the subject line of the email.
 Accounts.emailTemplates.verifyEmail.subject = function(user) {

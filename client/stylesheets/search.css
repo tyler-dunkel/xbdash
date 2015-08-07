@@ -1,0 +1,26 @@
+.navbar-search-container {
+
+}
+.navbar-search {
+    border: 0 none;
+    box-shadow: none;
+	margin: 10px 0;
+	padding: 0 10px;
+	position: relative;
+    width: 100%;
+}
+.navbar-search .input-container {
+    margin-left: 90px;
+}
+.navbar-search .input-container .input-group {
+}
+@media (max-width: 1072px) {
+	.navbar-search {
+		padding: 0 32px;
+	}
+}
+@media (max-width: 1410px) {
+	.navbar-search .input-container {
+		margin-left: 0;
+	}
+}

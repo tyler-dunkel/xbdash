@@ -15,16 +15,11 @@
                 <h1 class="m-n font-thin h3 text-black">Latest News</h1>
                 <small class="text-muted">Read the latest in Xbox achievements, search solutions</small>
               </div>
+              {{#if currentUser}}
               <div class="col-sm-6 text-right hidden-xs">
-                <div class="inline m-r text-left">
-                  <div class="m-b-xs">Daily Rank</div>
-                  <div class="h4 text-success font-bold">1</div>
-                </div>
-                <div class="inline text-left">
-                  <div class="m-b-xs">Overall Rank</div>
-                  <div class="h4 text-success font-bold">521</div>
-                </div>
+                {{> rankArea}}
               </div>
+              {{/if}}
             </div>
           </div>
           <div class="wrapper-md">
@@ -32,13 +27,13 @@
             <div class="row">
               <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
                 <div class="blog-post">
-                  {{#if Template.subscriptionsReady}}
-                    {{#each latestNews}}
-                      {{> newsTemplate}}
-                    {{/each}}
-                  {{else}}
-                    {{> loadingTemplate}}
-                  {{/if}}
+                {{#if Template.subscriptionsReady}}
+                  {{#each latestNews}}
+                    {{> newsTemplate}}
+                  {{/each}}
+                {{else}}
+                  {{> loadingTemplate}}
+                {{/if}}
                 </div>
                 <div class="text-center m-t-lg m-b-lg">
                   pagination here

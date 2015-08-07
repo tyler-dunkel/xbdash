@@ -109,3 +109,16 @@
     -webkit-transform: scale(1.0);
   }
 }
+
+.user-dropdown-loading {
+  height: 25%;
+  padding-right: 15%;
+  position: absolute;
+  right: 0;
+  width: 25%;
+}
+.user-dropdown-loading .spinner {
+  height: 25px;
+  margin: 10px auto;
+  width: 25px;
+}

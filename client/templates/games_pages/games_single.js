@@ -1,7 +1,5 @@
 var achievementShowNext = new ReactiveVar(0);
 Template.gamesSinglePage.created = function() {
-	var slug = Router.current().params.slug;
-	Meteor.subscribe('singleGame', slug);
 }
 
 Template.gamesSinglePage.rendered = function() {

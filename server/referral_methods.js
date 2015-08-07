@@ -28,7 +28,7 @@ Meteor.methods({
 	referralEmail: function(email1, email2, subject, text) {
 		Email.send({
 			//from: "XBdash <contact@xbdash.com>",
-			from: "XboxDash <xboxdashbugreporter@gmail.com>",
+			from: "XBdash <xboxdashbugreporter@gmail.com>",
 			to: email1 + ", " + email2,
 			subject: subject,
 			text: text

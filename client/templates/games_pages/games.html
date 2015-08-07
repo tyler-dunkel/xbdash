@@ -1,5 +1,5 @@
 <template name="gamesPage">
-	 {{> gamesApp}}
+  {{> gamesApp}}
 </template>
 
 <template name="gamesApp">
@@ -15,18 +15,14 @@
                 <h1 class="m-n font-thin h3 text-black">Games</h1>
                 <small class="text-muted">Search games</small>
               </div>
+              {{#if currentUser}}
               <div class="col-sm-6 text-right hidden-xs">
-                <div class="inline m-r text-left">
-                  <div class="m-b-xs">Daily Rank</div>
-                  <div class="h4 text-success font-bold">1</div>
-                </div>
-                <div class="inline text-left">
-                  <div class="m-b-xs">Overall Rank</div>
-                  <div class="h4 text-success font-bold">521</div>
-                </div>
+                {{> rankArea}}
               </div>
+              {{/if}}
             </div>
           </div>
+          {{#if currentUser.gamertagScanned}}
           <div class="wrapper-md">
             <div class="row">
               <div class="col-lg-12">
@@ -34,17 +30,18 @@
               </div>
             </div>
             <div class="row">
-              {{#if Template.subscriptionsReady}}
-                {{#each myTopGames}}
-                  {{#with xbdGame}}
-                    {{> myTopGamesTemplate}}
-                  {{/with}}
-                {{/each}}
-              {{else}}
-                {{> loadingTemplate}}
-              {{/if}}
+            {{#if Template.subscriptionsReady}}
+              {{#each myTopGames}}
+                {{#with xbdGame}}
+                  {{> myTopGamesTemplate}}
+                {{/with}}
+              {{/each}}
+            {{else}}
+              {{> loadingTemplate}}
+            {{/if}}
             </div>
           </div>
+          {{/if}}
           <div class="wrapper-md">
             <div class="row">
               <div class="col-lg-12">
@@ -52,18 +49,17 @@
               </div>
             </div>
             <div class="row">
-              {{#if Template.subscriptionsReady}}
-                {{#each gamesByReleaseDate}}
-                  {{#with xbdGame}}
-                    {{> gamesReleaseDateTemplate}}
-                  {{/with}}
-                {{/each}}
-              {{else}}
-                {{> loadingTemplate}}
-              {{/if}}
+            {{#if Template.subscriptionsReady}}
+              {{#each gamesByReleaseDate}}
+                {{#with xbdGame}}
+                  {{> gamesReleaseDateTemplate}}
+                {{/with}}
+              {{/each}}
+            {{else}}
+              {{> loadingTemplate}}
+            {{/if}}
             </div>
           </div>
-          <!--end wrapper-->
       	</div>
       </div>
     </div>

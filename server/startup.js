@@ -2,8 +2,8 @@ Meteor.startup(function() {
 
 	//config and Account email verification templates
 
-	//process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
-	process.env.MAIL_URL="smtp://keith%40xbdash.com:kgZH!1987@smtp.zoho.com:465/";
+	process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
+	//process.env.MAIL_URL="smtp://keith%40xbdash.com:kgZH!1987@smtp.zoho.com:465/";
 
 	//function to find the  achievements
 	//tiering function for achievements
@@ -12,6 +12,7 @@ Meteor.startup(function() {
 		var userCount = Meteor.users.find({"profile.xuid": {$exists: true}}).count();
 		Meteor._debug("the user count is: " + userCount);
 		var achievements = xbdAchievements.find({});
+
 		achievements.forEach(function(achievement) {
 			userAchievementCount = userAchievements.find({achievementId: achievement._id, progressState: true}).count();
 			//Meteor._debug("the uesr achievement count is: " + userAchievementCount);
@@ -19,22 +20,23 @@ Meteor.startup(function() {
 			//Meteor._debug(achievementUnlockPercentage);
 			xbdAchievements.upsert({_id: achievement._id}, {$set: {userPercentage: achievementUnlockPercentage}});
 		});
-	}, 250000);
+	}, 300000);
 
 	//function to give users an overall rank according to gamerscore
 	Meteor.setInterval(function() {
 		var users = Meteor.users.find({"profile.gamercard.gamerscore": {$gt: 1}}, {$sort: {"profile.gamercard.gamerscore": -1}});
 		var userOverallRank = 1;
+		
 		if (!users.count()) {
 			Meteor._debug("there is no one signed up");
 			return;
 		}
+
 		users.forEach(function(user) {
 			Meteor._debug("user ID is: " + user._id);
 			Meteor.users.upsert({_id: user._id}, {$set: {"profile.userOverallRank": userOverallRank}});
 			userOverallRank++;
 		});
-
 	}, 50000);
 
 	//function to count a users gamerscore gains for the day and creating a daily rank according to gamerscore
@@ -67,6 +69,7 @@ Meteor.startup(function() {
 		//find each user and assign them a daily rank based upon the above computed userDailyGamerscore
 		var users = Meteor.users.find({"profile.gamercard.gamerscore": {$gt: 1}}, {$sort: {"profile.userDailyGamerscore": -1}});
 		var userDailyRank = 1;
+
 		users.forEach(function(user){
 			Meteor.users.upsert({_id: user._id}, {$set: {"profile.userDailyRank": userDailyRank}});
 			userDailyRank++;
@@ -77,6 +80,7 @@ Meteor.startup(function() {
 	/*
 	Meteor.setInterval(function() {
 		var referrals = userReferrals.find({verified: false});
+		
 		if (referrals) {
 			referrals.forEach(function(referral) {
 				var referee = Meteor.users.findOne({_id: referral.refereeId});

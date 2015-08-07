@@ -1,6 +1,4 @@
 Template.newsSinglePage.rendered = function() {
-	var id = Router.current().params.id;
-	Meteor.subscribe('singleNews', id);
 }
 
 Template.newsSinglePage.helpers({

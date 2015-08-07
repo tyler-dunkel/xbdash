@@ -11,19 +11,9 @@
           <!-- main header -->
           <div class="bg-light lter b-b wrapper-md">
             <div class="row">
-              <div class="col-sm-6 col-xs-12">
+              <div class="col-sm-12 col-xs-12">
                 <h1 class="m-n font-thin h3 text-black">Help</h1>
                 <small class="text-muted">Frequently Asked Questions</small>
-              </div>
-              <div class="col-sm-6 text-right hidden-xs">
-                <div class="inline m-r text-left">
-                  <div class="m-b-xs">Daily Rank</div>
-                  <div class="h4 text-success font-bold">{{currentUser.profile.userDailyRank}}</div>
-                </div>
-                <div class="inline text-left">
-                  <div class="m-b-xs">Overall Rank</div>
-                  <div class="h4 text-success font-bold">{{currentUser.profile.userOverallRank}}</div>
-                </div>
               </div>
             </div>
           </div>
@@ -43,6 +33,7 @@
             </div>
             <div class="col">
               <div class="wrapper b-b bg">
+                {{#if Template.subscriptionsReady}}
                 <section id="top">
                   <div class="row">
                     <div class="col-lg-12">
@@ -54,13 +45,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne0" aria-expanded="false" aria-controls="collapseOne0">
                         <div class="panel-heading" role="tab" id="headingOne0">
                           <h4 class="panel-title">
-                            Why XboxDash?
+                            Why XBdash?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseOne0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne0">
                         <div class="panel-body">
-                          As Xbox gamers, we've always been compelled to connect the gamer to the games they play on another level. XboxDash does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.
+                          As Xbox gamers, we've always been compelled to connect the gamer to the games they play on another level. XBdash does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.
                         </div>
                       </div>
                     </div>
@@ -74,7 +65,7 @@
                       </a>
                       <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne1">
                         <div class="panel-body">
-                          At this stage of XboxDash, it is set to update your information every 15 minutes.
+                          At this stage of XBdash, it is set to update your information every 15 minutes.
                         </div>
                       </div>
                     </div>
@@ -88,7 +79,7 @@
                       </a>
                       <div id="collapseOne2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne2">
                         <div class="panel-body">
-                          At this stage of XboxDash, we are not affiliated with Microsoft&reg; or Xbox&reg;. However, we've applied for a Microsoft's Independent Developer license and it's only a matter of time!
+                          At this stage of XBdash, we are not affiliated with Microsoft&reg; or Xbox&reg;. However, we've applied for a Microsoft's Independent Developer license and it's only a matter of time!
                         </div>
                       </div>
                     </div>
@@ -96,13 +87,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne3" aria-expanded="false" aria-controls="collapseOne3">
                         <div class="panel-heading" role="tab" id="headingOne3">
                           <h4 class="panel-title">
-                            How does XboxDash make achievement tracking easier?
+                            How does XBdash make achievement tracking easier?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseOne3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne3">
                         <div class="panel-body">
-                          XboxDash helps make achievement tracking easier by helping gamers easily search for the achievement they're looking for and with the help of other gamers in the community who submit possible solutions.
+                          XBdash helps make achievement tracking easier by helping gamers easily search for the achievement they're looking for and with the help of other gamers in the community who submit possible solutions.
                         </div>
                       </div>
                     </div>
@@ -110,13 +101,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne4" aria-expanded="false" aria-controls="collapseOne4">
                         <div class="panel-heading" role="tab" id="headingOne4">
                           <h4 class="panel-title">
-                            Can this help me on achievements I'm struggling with?
+                            How can XBdash help me on achievements I'm struggling with?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseOne4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne4">
                         <div class="panel-body">
-                          Yes, with the help of the community's user-submitted solutions, you can work together to unlock the achievements you've been having a hard time with.
+                          XBdash has the power of the community. With our user-submitted solutions, you can work together to unlock the achievements you've been having a hard time with.
                         </div>
                       </div>
                     </div>
@@ -144,7 +135,7 @@
                       </a>
                       <div id="collapseOne6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne7">
                         <div class="panel-body">
-                          XboxDash includes an easy-search system that helps gamers find particular games. Each game's page includes feedback area from gamers who have the game and this will help you decide whether to get the next game to add to your history.
+                          XBdash includes an easy-search system that helps gamers find particular games. Each game's page includes feedback area from gamers who have the game and this will help you decide whether to get the next game to add to your history.
                         </div>
                       </div>
                     </div>
@@ -256,13 +247,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
                         <div class="panel-heading" role="tab" id="headingThree2">
                           <h4 class="panel-title">
-                            My gamertag has changed, how do I update my account on XboxDash?
+                            My gamertag has changed, how do I update my account on XBdash?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseThree2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree2">
                         <div class="panel-body">
-                          If your Gamertag is changed, this can directly affect how XboxDash scans your history. You can fill out the Account Change form and we'll take care of that as soon as we can!
+                          If your Gamertag is changed, this can directly affect how XBdash scans your history. You can fill out the Account Change form and we'll take care of that as soon as we can!
                         </div>
                       </div>
                     </div>
@@ -346,11 +337,12 @@
                       <div id="collapseSix0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix0">
                         <div class="panel-body">
                           <ul>
-                            <li>Completed Games badges will update on every completed game</li>
-                            <li>Completed Arcade Games badges will update on every completed game</li>
-                            <li>Gamerscore Badges are earned every 5,000 GS for the first 100,000 Gamerscore and every 25,000 GS after 100,000 Gamerscore.</li>
-                            <li>Completion Percent Badges are earned every 5% you go up in completion ratio.</li>
-                            <li>Achievements Completed Badges are earned every 50 achievements unlocked.</li>
+                            <li>Being part of XBdash will earn you the anniversary badge every year.</li>
+                            <li>Gamerscore Badges are earned every 5,000 Gamerscore for the first 100,000 Gamerscore and every 25,000 GS after 100,000 Gamerscore.</li>
+                            <li>Completed Games badges will update on every game completed.</li>
+                            <li>Completed Achievement badges will update on every achievement 5 achievements earned.</li>
+                            <li>Game Completion Percentage badges are earned every 5% increased or decreased in ratio.</li>
+                            <li>Achievements Completion Percentage badges are earned every 5% increased or decreased in ratio.</li>
                           </ul>
 
                           <strong>Note:</strong> All badges are calculated based on whether you set your account to include DLC achievements and gamerscore.<br /><br />
@@ -365,10 +357,13 @@
                   <div class="row">
                     <div class="col-lg-12">
                       <h3>More</h3>
-                      <p>If you have more questions about XboxDash, please feel free to <a href="mailto:contact@xbdash.com" target="_blank" class="">contact us</a>.</p>
+                      <p>If you have more questions about XBdash, please feel free to <a href="mailto:contact@xbdash.com" target="_blank" class="">contact us</a>.</p>
                     </div>
                   </div>
                 </section>
+                {{else}}
+                  {{> loadingTemplate}}
+                {{/if}}
               </div>
             </div>
           </div>

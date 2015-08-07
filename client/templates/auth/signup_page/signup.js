@@ -1,4 +1,19 @@
 Template.signUp.created = function() {
+	this.autorun(function() {
+		var user = Meteor.user();
+		console.log(user);
+		if (user) {
+			if (_.isEmpty(user.services)) {
+				console.log("not social");
+				if (user.emails && user.emails[0] && !user.emails[0].verified) {
+					console.log("need to confirm email");
+					Router.go('confirmEmail');
+				}
+			} else if (user.gamertagScanned) {
+				Router.go('home');
+			}
+		}
+	});
 };
 
 Template.signUp.rendered = function() {

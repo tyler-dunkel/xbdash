@@ -1,0 +1,12 @@
+<template name="rankArea">
+	{{#if currentUser.gamertagScanned}}
+	<div class="inline m-l m-r text-left">
+		<div class="m-b-xs">Daily Rank</div>
+		<div class="h4 text-success font-bold">{{currentUser.profile.userDailyRank}}</div>
+	</div>
+	<div class="inline text-left">
+		<div class="m-b-xs">Overall Rank</div>
+		<div class="h4 text-success font-bold">{{currentUser.profile.userOverallRank}}</div>
+	</div>
+	{{/if}}
+</template>
