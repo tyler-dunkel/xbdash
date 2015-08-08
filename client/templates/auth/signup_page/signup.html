@@ -16,9 +16,11 @@
               {{#if chkTwitter}}
                 <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
               {{/if}}
-              <div style="vertical-align: middle;">
-                {{currentUser.profile.name}}
-              </div>
+              {{#if chkFacebook}}
+              <div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
+              {{else}}
+              <div style="vertical-align: middle;">{{currentUser.username}}</div>
+              {{/if}}
             </div>
           </div>
           <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
@@ -37,7 +39,7 @@
               <span for='gamertag' class='err-msg'></span>
             </div>
             <div class="form-group">
-              <input type="email" placeholder="Email" id="email" name="email" class="form-control" data-onblur data-email data-required>
+              <input type="email" placeholder="Email Address" id="email" name="email" class="form-control" data-onblur data-email data-required>
               <span for='email' class='err-msg'></span>
             </div>
             <div class="form-group">

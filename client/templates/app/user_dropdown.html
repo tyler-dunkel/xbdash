@@ -19,7 +19,7 @@
 						<div class="list-group">
 							<a href class="media list-group-item">
 								<span class="pull-left thumb-sm">
-									<img src="img/a0.jpg" alt="..." class="img-circle">
+									<img src="/img/a0.jpg" alt="..." class="img-circle">
 								</span>
 								<span class="media-body block m-b-none">
 									Use awesome animate.css<br>
@@ -47,7 +47,7 @@
 						{{#if currentUser.gamertagScanned}}
 						<img src="{{currentUser.profile.gamercard.gamerpicSmallSslImagePath}}" alt="{{currentUser.username}}">
 						{{else}}
-						<img src="img/defaults/gamerpic.png" alt="currentUser.profile.name" />
+						<img src="/img/defaults/gamerpic.png" alt="currentUser.profile.name" />
 						{{/if}}
 						<i class="on md b-white bottom"></i>
 					</span>
@@ -56,12 +56,12 @@
 				<ul class="dropdown-menu animated">
 					<li>
 						<a href="{{pathFor 'settingsPage'}}">
-							<span class="badge bg-danger pull-right">30%</span>
+							<!--<span class="badge bg-danger pull-right">30%</span>-->
 							<span>Settings</span>
 						</a>
 					</li>
 					<li>
-						<a href="{{pathFor 'referrals'}}">Refer a Friend</a>
+						<a href="{{pathFor 'referralProgram'}}">Refer a Friend</a>
 					</li>
 					<li>
 						<a href="{{pathFor 'helpPage'}}">Help</a>

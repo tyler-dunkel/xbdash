@@ -19,17 +19,17 @@
             </div>
             {{#if chkEmail}}
             <div class="form-group">
-              <input type="email" placeholder="Email" id="twitter-email" name="email" class="form-control" data-onblur data-email data-required>
+              <input type="email" placeholder="Email Address" id="twitter-email" name="email" class="form-control" data-onblur data-email data-required>
               <span for='email' class='err-msg'></span>
             </div>
             {{/if}}
           </div>
           <div class="checkbox m-b-md m-t-none">
             <label class="i-checks">
-              By clicking "Sign Up", I agree to the <a href="{{pathFor 'termsConditions'}}" target="_blank">Terms of Use</a> and <a href="{{pathFor 'privacyPolicy'}}" target="_blank">Privacy Policy</a>.
+              By clicking "Confirm Gamertag", I agree to the <a href="{{pathFor 'termsConditions'}}" target="_blank">Terms of Use</a> and <a href="{{pathFor 'privacyPolicy'}}" target="_blank">Privacy Policy</a>.
             </label>
           </div>
-          <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Sign Up</button>
+          <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Confirm Gamertag</button>
         </form>
       </div>
     </div>
@@ -42,7 +42,11 @@
               {{#if chkTwitter}}
                 <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
               {{/if}}
+              {{#if chkFacebook}}
+              <div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
+              {{else}}
               <div style="vertical-align: middle;">{{currentUser.username}}</div>
+              {{/if}}
             </div>
           </div>
           <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>

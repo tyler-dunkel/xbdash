@@ -27,7 +27,7 @@ Accounts.emailTemplates.verifyEmail.subject = function(user) {
 
 // A Function that takes a user object and a url, and returns the body text for the email.
 Accounts.emailTemplates.verifyEmail.html = function(user, url) {
-	var template = '<div style="text-align:center;"><img src="img/xbdash_green.png" /></div>';
+	var template = '<div style="text-align:center;"><img src="/img/xbdash_green.png" /></div>';
 	template += '<p>Click on the following link to verify your email address: ' + url + '</p>';
 	return template;
 };
@@ -38,4 +38,13 @@ UserStatus.events.on("connectionLogin", function(fields) {
 
 UserStatus.events.on("connectionLogout", function(fields) {
 	
+});
+
+Meteor.methods({
+	deleteUser: function () {
+		var user = Meteor.user();
+		userAchievements.remove({ userId: user._id });
+		userGames.remove({ userId: user._id });
+		Meteor.users.remove({ _id: user._id });
+	}
 });

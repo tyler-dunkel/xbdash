@@ -71,6 +71,12 @@ Template.aboutUs.events({
 	}
 });
 
+Template.aboutUs.helpers({
+	resetPasswordToken: function() {
+		return Session.get('resetPasswordToken');
+	}
+});
+
 Template.carousel.rendered = function() {
 	$('#carousel1').carousel({
 		interval: false
@@ -148,6 +154,7 @@ Template.carousel.rendered = function() {
 	    	offset: '80%',
 	    	triggerOnce: true
 	    });
+
 	    $('.faqs-1, .faqs-2').waypoint(function(direction) {
 	    	if (direction === "down") {
 	    		$('.faqs-1, .faqs-2').addClass('animate');

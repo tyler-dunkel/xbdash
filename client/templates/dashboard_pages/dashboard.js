@@ -1,4 +1,5 @@
 Template.dashboard.created = function() {
+
 };
 
 Template.dashboard.rendered = function() {
@@ -81,11 +82,6 @@ Template.dashboard.rendered = function() {
         Blaze.render(Template.referralShareButtons,$("#share-it")[0]);
     }
 }
-
-Template.dashboard.events({
-});
-
-
 
 Template.dashboardApp.helpers({
     achievementsCompleted: function () {
@@ -209,10 +205,4 @@ Template.dashboardApp.helpers({
 });
 
 Tracker.autorun(function() {
-    var user = Meteor.user();
-    if (!user.gamertagScanned) {
-        Router.go('confirmGt');
-    } else {
-        this.next();
-    }
 });

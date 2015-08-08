@@ -51,8 +51,9 @@ Template.signUp.events({
 				});
 				Router.go('signUp');
 				return;
+			} else {
+				Router.go('confirmEmail');
 			}
-			Router.go('confirmEmail');
 		});
 	},
 	'blur .form-control': function(e) {
