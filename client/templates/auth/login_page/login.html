@@ -16,9 +16,11 @@
               {{#if chkTwitter}}
                 <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
               {{/if}}
-              <div style="vertical-align: middle;">
-                {{currentUser.username}}
-              </div>
+              {{#if chkFacebook}}
+              <div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
+              {{else}}
+              <div style="vertical-align: middle;">{{currentUser.username}}</div>
+              {{/if}}
             </div>
           </div>
           <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>

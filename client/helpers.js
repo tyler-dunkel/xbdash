@@ -2,7 +2,7 @@ numberFormatter = function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-Template.registerHelper({
+var helpers = {
     appName: function () {
         return "XBdash";
     },
@@ -35,16 +35,9 @@ Template.registerHelper({
             return true;
         }
         return false;
-    }/*,
-    chkVerify: function () {
-        if (Accounts._verifyEmailToken) {
-            Accounts.verifyEmail(Accounts._verifyEmailToken, function(err){
-                if (err != null) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        }
-    }*/
+    }
+};
+
+_.each(helpers, function(value, key){
+    Template.registerHelper(key, value);
 });

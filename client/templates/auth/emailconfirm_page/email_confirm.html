@@ -5,6 +5,18 @@
   {{> staticFooter}}
 </template>
 
+<template name="checkEmail">
+  {{> headerConfirmGtPage}}
+  {{> checkEmailBody}}
+  {{> staticFooter}}
+</template>
+
+<template name="verifiedEmail">
+  {{> headerConfirmGtPage}}
+  {{> verifiedEmailBody}}
+  {{> staticFooter}}
+</template>
+
 <template name="confirmEmailForm">
   <div id="signup" class="signup">
     <div class="container well w-xxxl w-auto-xs" >
@@ -23,12 +35,6 @@
   </div>
 </template>
 
-<template name="checkEmail">
-  {{> headerConfirmGtPage}}
-  {{> checkEmailBody}}
-  {{> staticFooter}}
-</template>
-
 <template name="checkEmailBody">
   <div id="signup" class="signup">
     <div class="container well w-xxxl w-auto-xs" >
@@ -38,12 +44,6 @@
       </div>
     </div>
   </div>
-</template>
-
-<template name="verifiedEmail">
-  {{> headerConfirmGtPage}}
-  {{> verifiedEmailBody}}
-  {{> staticFooter}}
 </template>
 
 <template name="verifiedEmailBody">

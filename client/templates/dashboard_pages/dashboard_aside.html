@@ -65,19 +65,19 @@
         {{#if currentUser.gamertagScanned}}
           <div class="wrapper m-t xbdwrap">
             <div class="text-center">
-              <h5>Achievements Unlocked</h5>
+              <h5>User Summary</h5>
             </div>
             <div class="text-center-folded">
-              <span class="pull-right pull-none-folded">10</span>
-              <span class="hidden-folded">Today</span>
+              <span class="pull-right pull-none-folded">{{achievementsCompleted}}</span>
+              <span class="hidden-folded">Achievements</span>
             </div>
             <div class="text-center-folded">
-              <span class="pull-right pull-none-folded">15</span>
-              <span class="hidden-folded">This Week</span>
+              <span class="pull-right pull-none-folded">{{gamesCompleted}}</span>
+              <span class="hidden-folded">Games</span>
             </div>
             <div class="text-center-folded">
-              <span class="pull-right pull-none-folded">30</span>
-              <span class="hidden-folded">This Month</span>
+              <span class="pull-right pull-none-folded">{{currentGamerscore}}</span>
+              <span class="hidden-folded">Gamerscore</span>
             </div>
           </div>
         {{else}}
@@ -86,11 +86,11 @@
             <h5>Tracked Data</h5>
           </div>
           <div class="text-center-folded">
-            <span class="pull-right pull-none-folded">{{countOfAchievements}}</span>
+            <span class="pull-right pull-none-folded">{{totalAchievements}}</span>
             <span class="hidden-folded">Achievements</span>
           </div>
           <div class="text-center-folded">
-            <span class="pull-right pull-none-folded">{{countOfGames}}</span>
+            <span class="pull-right pull-none-folded">{{totalGames}}</span>
             <span class="hidden-folded">Games</span>
           </div>
         </div>
