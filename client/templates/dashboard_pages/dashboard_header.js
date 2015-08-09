@@ -21,7 +21,7 @@ Template.dashboardHeader.events({
         $target.toggleClass($this.attr('ui-toggle'));
         var currentRoute = Router.current().route.getName();
         console.log(currentRoute);
-        if (currentRoute === 'home' && user.gamertagScanned) {
+        if (currentRoute === 'home' && user && user.gamertagScanned) {
 	        resizeAchievementChart();
 	        resizeGamerscoreChart();
 	        resizeGamesChart();
@@ -52,37 +52,37 @@ Template.dashboardHeader.helpers({
         if (Router.current().route.getName() === 'home') {
             return 'disabled hide';
         }
-    },
-    achievementsCompleted: function () {
-        var achievementsCount = userAchievements.find({ progressState: true }).count();
-        return numberFormatter(achievementsCount);
-    },
-    totalAchievements: function () {
-        var totalAchievements = userAchievements.find({}).count();
-        return numberFormatter(totalAchievements);
-    },
-    gamesCompleted: function () {
-        var gameCount = 0;
-        var userId = Meteor.userId();
-        var userGamesFind = userGames.find({ userId: userId });
-        userGamesFind.forEach(function(g) {
-            var gameId = g.gameId;
-            var currentGamerscore = g.currentGamerscore;
-            var getGame = xbdGames.findOne({ _id: gameId });
-            if (typeof getGame !== 'undefined') {
-                var maxGamerscore = getGame.maxGamerscore;
-            }
-            //console.log(maxGamerscore);
-            if ( currentGamerscore === maxGamerscore ) gameCount += 1;
-        });
-        return numberFormatter(gameCount);
-    },
-    totalGames: function () {
-        var totalGames = userGames.find({}).count();
-        return numberFormatter(totalGames);
-    },
-    currentGamerscore: function () {
-        var user = Meteor.user();
-        return numberFormatter(user.profile.gamercard.gamerscore);
     }
+    // achievementsCompleted: function () {
+    //     var achievementsCount = userAchievements.find({ progressState: true }).count();
+    //     return numberFormatter(achievementsCount);
+    // },
+    // totalAchievements: function () {
+    //     var totalAchievements = userAchievements.find({}).count();
+    //     return numberFormatter(totalAchievements);
+    // },
+    // gamesCompleted: function () {
+    //     var gameCount = 0;
+    //     var userId = Meteor.userId();
+    //     var userGamesFind = userGames.find({ userId: userId });
+    //     userGamesFind.forEach(function(g) {
+    //         var gameId = g.gameId;
+    //         var currentGamerscore = g.currentGamerscore;
+    //         var getGame = xbdGames.findOne({ _id: gameId });
+    //         if (typeof getGame !== 'undefined') {
+    //             var maxGamerscore = getGame.maxGamerscore;
+    //         }
+    //         //console.log(maxGamerscore);
+    //         if ( currentGamerscore === maxGamerscore ) gameCount += 1;
+    //     });
+    //     return numberFormatter(gameCount);
+    // },
+    // totalGames: function () {
+    //     var totalGames = userGames.find({}).count();
+    //     return numberFormatter(totalGames);
+    // },
+    // currentGamerscore: function () {
+    //     var user = Meteor.user();
+    //     return numberFormatter(user.profile.gamercard.gamerscore);
+    // }
 });

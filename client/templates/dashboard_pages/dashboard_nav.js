@@ -1,5 +1,5 @@
 Template.dashboardNav.rendered = function() {
-	$('li.disabled a.enabled').popover({
+	$('li.disabled.no-user').popover({
 		animation: true,
 		html: true,
 		placement: 'right',
@@ -7,7 +7,7 @@ Template.dashboardNav.rendered = function() {
 		title: '<center>Dashboard Disabled</center>',
 		content: '<a href="/signup" class="btn btn-link btn-md aside-signup2" style="text-align: center;">Sign up</a> to claim your personalized dashboard.'
 	});
-	$('li.disabled a.disabled').popover({
+	$('li.disabled.no-gamertag').popover({
 		animation: true,
 		html: true,
 		placement: 'right',
@@ -22,10 +22,17 @@ Template.dashboardNav.helpers({
 		var user = Meteor.user();
 		if (user && user.gamertagScanned) {
 			return 'enabled';
-		} else if (user && !user.gamertagScanned) {
-			return 'disabled';
 		} else {
-			return;
+			return 'disabled';
 		}
+	},
+	dashboardPopover: function() {
+			var user = Meteor.user();
+			if (user && !user.gamertagScanned) {
+				return 'no-gamertag';
+			}
+			else {
+				return 'no-user';
+			}
 	}
 });

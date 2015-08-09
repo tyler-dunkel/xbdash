@@ -8,30 +8,28 @@ var helpers = {
     },
     chkEmail: function () {
         //var userId = Meteor.userId();
-        console.log(Meteor.user().services);
         //console.log(Meteor.user().services.facebook.email);
-        if (!Meteor.user().emails) {
-            if (Meteor.user().services.twitter.screenName) {
+        if (Meteor.user() && !Meteor.user().emails) {
+            if (Meteor.user().services && Meteor.user().services.twitter.screenName) {
                 return true;
             }
         }
         return false;
     },
     chkSocial: function () {
-        if (!Meteor.user().services.twitter || 
-            !Meteor.user().services.facebook) {
+        if (Meteor.user() && Meteor.user().services) {
             return true;
         }
         return false;
     },
     chkFacebook: function () {
-        if (Meteor.user().services.facebook) {
+        if (Meteor.user() && Meteor.user().services && Meteor.user().services.facebook) {
             return true;
         }
         return false;
     },
     chkTwitter: function () {
-        if (Meteor.user().services.twitter) {
+        if (Meteor.user() && Meteor.user().services && Meteor.user().services.twitter) {
             return true;
         }
         return false;
