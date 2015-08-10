@@ -35,7 +35,7 @@
     font-size: 18px;
 }
 
-#search-input {
+.search-input {
   position: absolute;
   top: 20%;
   width: 100%;

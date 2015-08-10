@@ -46,3 +46,4 @@ meteorhacks:aggregate
 meteorhacks:collection-utils
 mongo-livedata
 meteorhacks:fast-render
+matteodem:easy-search

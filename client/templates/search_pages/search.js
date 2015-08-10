@@ -23,8 +23,14 @@ Tracker.autorun(function() {
 });
 
 Template.searchOverlayApp.rendered = function() {
-	$("#search-input").focus();
+	$(".search-input").focus();
 }
+
+Template.searchOverlayApp.helpers({
+	searchIndexes: function() {
+		return ['xbdgames', 'xbdachievements', 'newspolygon'];
+	}
+});
 
 Template.searchOverlay.events({
 	"click .overlay-close": function(e) {

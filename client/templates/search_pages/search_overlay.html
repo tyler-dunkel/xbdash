@@ -11,6 +11,57 @@
 <template name="searchOverlayApp">
 	<div class="overlay">
 		<a class="js-overlay-close overlay-close">close X</a>
-		<input autofocus="autofocus" type="search" id="search-input" value="" placeholder="search" />
+		{{> esInput index=searchIndexes class="search-input" placeholder="search"}}
+		<div class="xbdgames-container">
+			{{#ifEsInputIsEmpty index="xbdgames"}}
+				<div> search for games </div>
+			{{/ifEsInputIsEmpty}}
+
+			{{#ifEsIsSearching index="xbdgames"}}
+				<div> Loading.... </div>
+			{{else}}
+				{{#esEach index="xbdgames"}}
+					<p> here they are: {{this}} </p>
+				{{/esEach}}
+			{{/ifEsIsSearching}}
+
+			{{#ifEsHasNoResults index="xbdgames"}}
+				<div> You got nothing for this search </div>
+			{{/ifEsHasNoResults}}
+		</div>
+		<div class="xbdachievements-container">
+			{{#ifEsInputIsEmpty index="xbdachievements"}}
+				<div> search for achievements </div>
+			{{/ifEsInputIsEmpty}}
+
+			{{#ifEsIsSearching index="xbdachievements"}}
+				<div> Loading.... </div>
+			{{else}}
+				{{#esEach index="xbdachievements"}}
+					<p> here they are: {{this}} </p>
+				{{/esEach}}
+			{{/ifEsIsSearching}}
+
+			{{#ifEsHasNoResults index="xbdachievements"}}
+				<div> You got nothing for this search </div>
+			{{/ifEsHasNoResults}}
+		</div>
+		<div class="newspolygon-container">
+			{{#ifEsInputIsEmpty index="newspolygon"}}
+				<div> search for news </div>
+			{{/ifEsInputIsEmpty}}
+
+			{{#ifEsIsSearching index="newspolygon"}}
+				<div> Loading.... </div>
+			{{else}}
+				{{#esEach index="newspolygon"}}
+					<p> here they are: {{this}} </p>
+				{{/esEach}}
+			{{/ifEsIsSearching}}
+
+			{{#ifEsHasNoResults index="newspolygon"}}
+				<div> You got nothing for this search </div>
+			{{/ifEsHasNoResults}}
+		</div>
 	</div>
 </template>
