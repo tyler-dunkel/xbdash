@@ -1,0 +1,16 @@
+<template name="searchOverlay">
+	<div class="container if-container">
+		{{#momentum plugin='slide-height'}}
+			{{#if overlayVisible}}
+				{{> searchOverlayApp}}
+			{{/if}}
+		{{/momentum}}
+	</div>
+</template>
+
+<template name="searchOverlayApp">
+	<div class="overlay">
+		<a class="js-overlay-close overlay-close">close X</a>
+		<input autofocus="autofocus" type="search" id="search-input" value="" placeholder="search" />
+	</div>
+</template>

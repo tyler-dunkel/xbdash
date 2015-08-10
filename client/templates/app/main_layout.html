@@ -1,5 +1,6 @@
 <template name="mainLayout">
 	<div class="app app-header-fixed">
+	{{> searchOverlay}}
 	{{#if checkHome}}
 		{{#if currentUser}}
 			{{> dashboardHeader}}

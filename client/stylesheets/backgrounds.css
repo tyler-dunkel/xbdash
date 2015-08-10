@@ -12,3 +12,42 @@
   min-width: 100%;
   min-height: 100%;
 }
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(19, 16, 16, 0.9);
+    z-index: 9999;
+}
+
+.overlay .overlay-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    z-index: 100;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#search-input {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0);
+  font-size: 50px;
+  font-weight: 300;
+  text-align: center;
+  border: 0px;
+  margin: 0px auto;
+  margin-top: -51px;
+  padding-left: 30px;
+  padding-right: 30px;
+  outline: none;
+}
