@@ -1,9 +1,9 @@
 Template.leaderboardsApp.rendered = function() {
 }
 
-Template.leaderboardsApp.onCreated(function() {
+Template.leaderboardsApp.created = function() {
 	this.subscribe('completedAchievements');
-});
+}
 
 Template.leaderboardsApp.helpers({
 	completedAchievementsLB: function() {

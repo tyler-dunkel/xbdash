@@ -1,0 +1,10 @@
+.media.game, .media.achievement {
+	color: #000000;
+}
+.panel-share-count {
+	padding: 5px;
+	color: #58666e;
+}
+.panel.news {
+	border: none;
+}

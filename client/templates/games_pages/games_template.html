@@ -1,4 +1,18 @@
 <template name="myTopGamesTemplate">
+	{{> singleGame}}
+</template>
+
+<template name="gamesReleaseDateTemplate">
+	{{> singleGame}}
+</template>
+
+<template name="gameRating">
+	<div class="top text-right padder m-t-xs w-full">
+		<div class="game-rating" data-score="{{gameAllTimeAverageRating}}"></div>
+	</div>
+</template>
+
+<template name="singleGame">
 	<div class="col-lg-15 col-md-3 col-sm-6 col-xs-12 ih-item square effect3 top_to_bottom">
 		<a href="{{pathFor 'game'}}">
 			<div class="panel b-a">
@@ -27,43 +41,5 @@
 				</div>
 			</div>
 		</a>
-	</div>
-</template>
-
-<template name="gamesReleaseDateTemplate">
-	<div class="col-lg-15 col-md-3 col-sm-6 col-xs-12 ih-item square effect3 top_to_bottom">
-		<a href="{{pathFor 'game'}}">
-			<div class="panel b-a">
-				<div class="panel-heading no-border bg-success title-wrap-game">
-					<span class="text-u-c text-lt">{{this.name}}</span>
-				</div>
-				<div class="hbox b-b b-light text-sm info">
-					<span class="col wrapper padder-v b-r b-light">
-						<p>
-							<a href="#linkToPublisherGameList">{{gamePublisherName}}</a><br />
-							Release Date: {{dateFormat}}
-						</p>
-						{{#each gameGenre}}
-						<a href="#linkToGenreList" class="m-l-xss text-xxs">{{this.Name}}</a>
-						{{/each}}
-					</span>
-				</div>
-				<div class="item img">
-					<div class="overlay">
-						<span class="game-page-link"><a href="{{pathFor 'game'}}" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
-						{{> gameRating}}
-						<span>
-							<img src="{{gamesImage}}" class="img-full">
-						</span>
-					</div>
-				</div>
-			</div>
-		</a>
-	</div>
-</template>
-
-<template name="gameRating">
-	<div class="top text-right padder m-t-xs w-full">
-		<div class="game-rating" data-score="{{gameAllTimeAverageRating}}"></div>
 	</div>
 </template>

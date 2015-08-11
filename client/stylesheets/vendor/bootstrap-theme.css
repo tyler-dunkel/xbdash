@@ -507,11 +507,11 @@
   background-repeat: repeat-x;
 }
 .panel-black > .panel-heading {
-  background-image: -webkit-linear-gradient(top, #131e26 0%, #131e26 100%);
-  background-image:      -o-linear-gradient(top, #131e26 0%, #131e26 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#131e26), to(#131e26));
-  background-image:         linear-gradient(to bottom, #131e26 0%, #131e26 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff131e26', endColorstr='#ff131e26', GradientType=0);
+  background-image: -webkit-linear-gradient(top, #1c2b36 0%, #1c2b36 100%);
+  background-image:      -o-linear-gradient(top, #1c2b36 0%, #1c2b36 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1c2b36), to(#1c2b36));
+  background-image:         linear-gradient(to bottom, #1c2b36 0%, #1c2b36 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1c2b36', endColorstr='#ff1c2b36', GradientType=0);
   background-repeat: repeat-x;
 }
 .well {

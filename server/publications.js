@@ -247,6 +247,13 @@ Meteor.publish('latestNews', function() {
 	return newsPolygon.find({});
 });
 
+// games details
+
+Meteor.publish('gameDetails', function(id) {
+	Meteor._debug(id);
+	return gameDetails.find({ gameId: id });
+});
+
 // single pages
 
 Meteor.publish('singleNews', function(id) {
