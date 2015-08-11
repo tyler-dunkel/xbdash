@@ -1,3 +1,6 @@
+Template.userDropdown.rendered = function() {
+};
+
 Template.userDropdown.events({
 	'click #logout': function(event) {
         event.preventDefault();

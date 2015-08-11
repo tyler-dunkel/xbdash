@@ -4,11 +4,9 @@
 
 <template name="leaderboardsApp">
   <div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-      <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <!-- main -->
+    <div class="app-content-body">
+      <div class="hbox hbox-auto-xs hbox-auto-sm leaderboards-page">
         <div class="col">
-          <!-- main header -->
           <div class="bg-light lter b-b wrapper-md">
             <div class="row">
               <div class="col-sm-6 col-xs-12">
@@ -23,20 +21,33 @@
             </div>
           </div>
           <div class="wrapper-md">
-            <div class="row">
-              <div class="col-lg-12">
-                <h3 class="m-n font-thin padder-v text-black">Top Players by Completed Achievements</h3>
+            <div class="row row-sm">
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="panel panel-black">
+                {{#if Template.subscriptionsReady}}
+                  <div class="panel-heading text-center">
+                    <h3 class="m-n padder-t text-white h4">Earned Achievements</h3>
+                  </div>
+                  <ul class="list-group alt">
+                    {{#each completedAchievementsLB}}
+                    <li class="list-group-item">
+                      <div class="media">
+                        <span class="pull-left thumb-sm"><img src="{{userPicture}}" alt="{{_id}}"></span>
+                        <div class="pull-right text-success m-t-sm">
+                          {{achievementCount}}
+                        </div>
+                        <div class="media-body">
+                          <div>{{_id}}</div>
+                        </div>
+                      </div>
+                    </li>
+                    {{/each}}
+                  </ul>
+                {{else}}
+                  {{> loadingTemplate}}
+                {{/if}}
+                </div>
               </div>
-            </div>
-            <div class="row">
-            {{#if Template.subscriptionsReady}}
-              {{achievementsCompletedLB}}
-              {{#each achievementsCompletedLB}}
-                {{_id}} - {{progressState}}
-              {{/each}}
-            {{else}}
-              {{> loadingTemplate}}
-            {{/if}}
             </div>
           </div>
       	</div>

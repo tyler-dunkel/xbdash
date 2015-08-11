@@ -12,14 +12,14 @@ a.aside-signup2:hover {
 	text-decoration: none;
 	color: #000 !important;
 }
-.navi ul.nav li .popover-title {
+.navi ul.nav .popover-title {
 	background-color: #ff0000;
 	color: #fff;
 }
-.navi ul.nav li .popover-content {
+.navi ul.nav .popover-content {
 	text-align: center;
 }
-.navi ul.nav li .popover-content a.aside-signup2 {
+.navi ul.nav .popover-content a.aside-signup2 {
 	color: #1C2B36 !important;
 	display: inline-block;
 	font-weight: bold;

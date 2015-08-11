@@ -1,20 +1,21 @@
 Template.dashboardNav.rendered = function() {
-	$('li.disabled a.enabled').popover({
+	$('li.disabled.no-user').popover({
 		animation: true,
 		html: true,
 		placement: 'right',
-		trigger: 'hover',
-		title: '<center>Dashboard Disabled</center>',
+		trigger: 'click',
+		title: '<center><strong>Dashboard Disabled</strong></center>',
 		content: '<a href="/signup" class="btn btn-link btn-md aside-signup2" style="text-align: center;">Sign up</a> to claim your personalized dashboard.'
 	});
-	$('li.disabled a.disabled').popover({
+	$('li.disabled.no-gamertag').popover({
 		animation: true,
 		html: true,
 		placement: 'right',
-		trigger: 'hover',
-		title: '<center>Dashboard Disabled</center>',
+		trigger: 'click',
+		title: '<center><strong>Dashboard Disabled</strong></center>',
 		content: '<a href="/confirm-gamertag" class="btn btn-link btn-md aside-signup2" style="text-align: center;">Confirm your gamertag</a> to finalize your personalized dashboard.'
 	});
+	$('li.disabled.no-user a, li.disabled.no-gamertag a').attr("href", "#");
 }
 
 Template.dashboardNav.helpers({
@@ -22,10 +23,16 @@ Template.dashboardNav.helpers({
 		var user = Meteor.user();
 		if (user && user.gamertagScanned) {
 			return 'enabled';
-		} else if (user && !user.gamertagScanned) {
-			return 'disabled';
 		} else {
-			return;
+			return 'disabled';
+		}
+	},
+	dashboardPopover: function() {
+		var user = Meteor.user();
+		if (user && !user.gamertagScanned) {
+			return 'no-gamertag';
+		} else {
+			return 'no-user';
 		}
 	}
 });

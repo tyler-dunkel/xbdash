@@ -61,14 +61,14 @@
 						</a>
 					</li>
 					<li>
-						<a href="{{pathFor 'referralProgram'}}">Refer a Friend</a>
+						<a href="#" id="referral-button">Refer a Friend</a>
 					</li>
 					<li>
 						<a href="{{pathFor 'helpPage'}}">Help</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a id="logout" href="{{pathFor 'logIn'}}">Logout</a>
+						<a href="{{pathFor 'logIn'}}" id="logout">Logout</a>
 					</li>
 				</ul>
 			</li>
@@ -78,7 +78,7 @@
 	<ul class="nav navbar-nav navbar-right navbar-auth">
 		<li>
 			<div class="m-t-sm">
-				<a id="logout" href="{{pathFor 'logIn'}}" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+				<a href="{{pathFor 'logIn'}}" id="logout" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
 			</div>
 		</li>
 	</ul>

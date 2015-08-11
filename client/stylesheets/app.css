@@ -5847,38 +5847,46 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 
 /* affix css */
 
-.faqs section {
+.faqs section,
+.settings-page section {
     border-bottom: 1px solid #c1e1ec;
     padding: 50px 0 25px;
     margin: -50px 0 -25px;
 }
-.faqs .affix {
+.faqs .affix,
+.settings-page .affix {
   top: 65px;
   width: 209px;
 }
 @media (min-width: 1200px) {
-  .faqs .affix {
+  .faqs .affix,
+  .settings-page .affix {
     width: 209px;
   }         
 }
-.faqs .affix-bottom {
+.faqs .affix-bottom,
+.settings-page .affix-bottom {
   position: absolute;
   width: 209px;
 }
 @media (min-width: 1200px) {
-  .faqs .affix-bottom {
+  .faqs .affix-bottom,
+  .settings-page .affix-bottom {
     width: 209px;
   }
 }
-.faqs {
+.faqs,
+.settings-page {
   position: relative;
 }
-.faqs .accordion-toggle:after {
+.faqs .accordion-toggle:after,
+.settings-page .accordion-toggle:after {
     font-family: 'FontAwesome';
     content: "\f054";    
     float: right;
 }
-.faqs .accordion-opened .accordion-toggle:after {    
+.faqs .accordion-opened .accordion-toggle:after,
+.settings-page .accordion-opened .accordion-toggle:after {    
     content: "\f078";    
 }
 .popover {width: 200px;}

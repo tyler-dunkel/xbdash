@@ -1,5 +1,4 @@
 Template.dashboard.created = function() {
-
 };
 
 Template.dashboard.rendered = function() {
@@ -7,6 +6,9 @@ Template.dashboard.rendered = function() {
         $('[data-toggle="tooltip"]').tooltip()
     });
     if (!Meteor.user().userSeenReferralBox) {
+        inviteDialog();
+    }
+    function inviteDialog() {
         bootbox.dialog({
             title: "Invite a Friend",
             message: "<div class='row'>" +
@@ -45,8 +47,8 @@ Template.dashboard.rendered = function() {
                         var subject = user.username + " has invited you to XBdash";
                         var inviteLink = "Link here";
                         var text = "Greetings,<br /><br />" +
-                        "You've been invited by " + user.username + " to join XBdash, a new platform to help manage your achievements, your games, and become a top Xbox gamer.<br /><br />" + 
-                        "By inviting you, " + user.username + " gets $5 off the exclusive XBdash launch T-shirt! You can get $5 off as well when you sign up and invite 2 friends from Xbox Live!<br /><br />" +
+                        "You've been invited by " + user.username + " to join XBdash, a new platform to help manage your achievements, your games, and become a top Xbox&reg; gamer.<br /><br />" + 
+                        "By inviting you, " + user.username + " gets $5 off the exclusive XBdash launch T-shirt! You can get $5 off as well when you sign up and invite 2 friends from Xbox&reg; Live!<br /><br />" +
                         "Click here to get started<br />" + 
                         inviteLink +
                         "<br /><br />Cheers,<br />" +
@@ -81,7 +83,7 @@ Template.dashboard.rendered = function() {
         });
         Blaze.render(Template.referralShareButtons,$("#share-it")[0]);
     }
-}
+};
 
 Template.dashboardApp.helpers({
     achievementsCompleted: function () {
@@ -202,7 +204,4 @@ Template.dashboardApp.helpers({
     debugger: function () {
         console.log(this);
     }
-});
-
-Tracker.autorun(function() {
 });

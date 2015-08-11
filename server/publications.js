@@ -196,10 +196,10 @@ Meteor.publishComposite('gamesByReleaseDate', {
 
 Meteor.publishComposite('userAchievements', {
 	find: function() {
-		if (!this.userId) {
+		var user = Meteor.users.findOne({ _id: this.userId });
+		if (!this.userId || !user.gamertagScanned) {
 			return;
 		}
-		var user = Meteor.users.findOne({ _id: this.userId });
 		if (!user.profile.xuid) {
 			Meteor._debug("no xuid");
 			return;
@@ -217,10 +217,10 @@ Meteor.publishComposite('userAchievements', {
 
 Meteor.publishComposite('userGames', {
 	find: function() {
-		if (!this.userId) {
+		var user = Meteor.users.findOne({ _id: this.userId });
+		if (!this.userId || !user.gamertagScanned) {
 			return;
 		}
-		var user = Meteor.users.findOne({ _id: this.userId });
 		if (!user.profile.xuid) {
 			Meteor._debug("no xuid");
 			return;
@@ -315,5 +315,53 @@ Meteor.publishComposite('singleGame', function(slug) {
 		]
 	}
 });
+
+Meteor.publish('completedAchievements', function() {
+	self = this;
+	completedAchievements = userAchievements.aggregate([
+		{
+			$match: {
+				progressState: true
+			}
+		},
+		{
+			$group: {
+				_id: "$userId",
+				achievementCount: { $sum: 1 }
+			}
+		}
+	]);
+	Meteor._debug(completedAchievements);
+	_.each(completedAchievements, function(completedAchievement) {
+		var user = Meteor.users.findOne({ _id: completedAchievement._id });
+		var userGamertag = user.profile.gamercard.gamertag;
+		var userPicture = user.profile.gamercard.gamerpicLargeSslImagePath;
+		Meteor._debug(userGamertag);
+		Meteor._debug(userPicture);
+		self.added('completedachievements', userGamertag, {
+			userPicture: userPicture,
+			achievementCount: completedAchievement.achievementCount
+		});
+	});
+	self.ready();
+});
+
+Meteor.publish('completedGames', function() {
+
+});
+
+// {_id: 3245gjrgj435 (this is userId), unlockedAchievements: 3444 (this is the sum of the unlocked acheivements from the aggregate)
+
+// var achievementsCount = userAchievements.find({ progressState: true }).count();
+// numberFormatter(achievementsCount);
+
+// top 100 by total achievements (count) // topPlayersCompletedAchievements
+// top 100 by total games completed // topPlayersCompletedGames
+// top 100 by user gamerscore // topPlayersGamerscore
+// top 100 by achievements unlocked-to-locked ratio // topPlayersAchievementRatio
+
+// all time vs 30 day
+
+// achievement pagination of 20/page by 5 pages
 
 // global publications - general user

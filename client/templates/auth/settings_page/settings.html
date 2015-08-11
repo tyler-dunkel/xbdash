@@ -5,66 +5,81 @@
 <template name="settingsApp">
 	<div id="content" class="app-content" role="main">
 		<div class="app-content-body">
-			<div class="hbox hbox-auto-xs hbox-auto-sm faqs">
+			<div class="hbox hbox-auto-xs hbox-auto-sm settings-page">
 				<!-- main -->
-				<div class="col">
+				<div class="">
 					<!-- main header -->
 					<div class="bg-light lter b-b wrapper-md">
 						<div class="row">
 							<div class="col-sm-12 col-xs-12">
-								<h1 class="m-n font-thin h3 text-black">Help</h1>
-								<small class="text-muted">Frequently Asked Questions</small>
+								<h1 class="m-n font-thin h3 text-black">Settings</h1>
+								<small class="text-muted">Modify your user settings</small>
 							</div>
 						</div>
 					</div>
-					<div data-scroll="scroll" data-target=".scrollspy">
-						<div class="col w-md bg-light dk b-r bg-auto scrollspy">
-							<div class="wrapper b-b bg">
-								<ul id="sidebar" class="bg-light lter nav nav-stacked hidden-xs hidden-sm" data-spy="affix">
-									<li><a href="#top">Change Password</a></li>
-									<li><a href="#account">Delete Account</a></li>
+					<div class="wrapper" data-scroll="scroll" data-target=".scrollspy">
+						<div class="row">
+							<div class="col-lg-2 bg-light b-r bg-auto scrollspy">
+								<ul id="sidebar" class="nav nav-stacked hidden-xs hidden-sm" data-spy="affix">
+									<li><a href="#settings-password">Change Password</a></li>
+									<li><a href="#settings-delete">Delete Account</a></li>
 								</ul>
 							</div>
-						</div>
-						<div class="col">
-							<div class="wrapper b-b bg">
-								<div class="row">
-									<!-- text input, button, boot dialog to cofirm -->
-									<button id="delete" class="btn btn-lg btn-danger btn-block" disabled="{{disabled}}">Delete Account</button>
-									<br />
-									<br />
-								</div>
-								<div class="row">
-									<form id="change-password" class="validate form-horizontal">
-										<div class="form-group">
-											<label class="col-lg-2 control-label">Old Password</label>
-											<div class="col-lg-10">
-												<input type="password" placeholder="Old Password" id="old-password" name="old-password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
-												<span for="old-password" class="err-msg"></span>
-											</div>
+							<div class="col-lg-6">
+								<section id="settings-password">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Change Password</h3>
+											<form id="change-password-form" class="validate form-horizontal">
+												<div class="form-group">
+													<label class="col-lg-2 control-label">Old Password</label>
+													<div class="col-lg-10">
+														<input type="password" placeholder="Old Password" id="old-password" name="old-password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
+														<span for="old-password" class="err-msg"></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-2 control-label">New Password</label>
+													<div class="col-lg-10">
+														<input type="password" placeholder="New Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
+														<span for="password" class="err-msg"></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-2 control-label">Confirm New Password</label>
+													<div class="col-lg-10">
+														<input type="password" placeholder="Confirm New Password" id="password2" name="password2" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
+														<span for="password2" class="err-msg"></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="col-lg-offset-2 col-lg-10">
+														<button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Change Password</button>
+													</div>
+												</div>
+											</form>
 										</div>
-										<div class="form-group">
-											<label class="col-lg-2 control-label">New Password</label>
-											<div class="col-lg-10">
-												<input type="password" placeholder="New Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
-												<span for="password" class="err-msg"></span>
-											</div>
+									</div>
+								</section>
+								<section id="settings-delete">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Delete Account</h3>
+											<form id="delete-account-form" class="validate form-horizontal">
+												<div class="form-group">
+													<div class="col-lg-12">
+														<p>
+															By clicking "Delete Account", I agree to the <a href="{{pathFor 'termsConditions'}}" target="_blank">Terms of Use</a>.
+														</p>
+													</div>
+												</div>
+												<button type="submit" id="delete" class="btn btn-lg btn-danger btn-block" disabled="{{disabled}}">Delete Account</button>
+											</form>
 										</div>
-										<div class="form-group">
-											<label class="col-lg-2 control-label">Confirm New Password</label>
-											<div class="col-lg-10">
-												<input type="password" placeholder="Confirm New Password" id="password2" name="password2" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
-												<span for="password2" class="err-msg"></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Change Password</button>
-											</div>
-										</div>
-									</form>
-								</div>
+									</div>
+								</section>
 							</div>
+							<div class="col-lg-4"></div>
 						</div>
 					</div>
 				</div>

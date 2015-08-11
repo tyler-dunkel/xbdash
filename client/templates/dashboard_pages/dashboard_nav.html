@@ -5,8 +5,8 @@
       <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
         <span>Navigation</span>
       </li>
-      <li class="{{isDashboardEnabled}}">
-        <a href="{{pathFor 'home'}}" class="{{isDashboardEnabled}}">
+      <li class="{{isDashboardEnabled}} {{dashboardPopover}}">
+        <a href="{{pathFor 'home'}}">
           <img src="/img/xbdash_whiteicon.png" alt="{{appName}}" title="{{appName}}" class="glyphicon-list xbd" style="" /> 
           <span class="font-bold">Dashboard</span>
         </a>
@@ -39,7 +39,7 @@
       <li>
         <a href="{{pathFor 'aboutUs'}}" target="_blank">
           <i class="fa fa-info-circle"></i>
-          <span class="font-bold">About XBdash</span>
+          <span class="font-bold">About {{appName}}</span>
         </a>
       </li>
       <li>

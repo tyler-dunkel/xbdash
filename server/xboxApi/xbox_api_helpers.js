@@ -9,7 +9,7 @@ updateGamercard = function (userId, gamercard) {
 
 updateXboxOneData = function (userId, xboxOneGames) {
 	if (!xboxOneGames.titles) {
-		var error = new Meteor.Error("xboxOneGamesScanError", "Your Xbox One games can't be scanned at this time.");
+		var error = new Meteor.Error("xboxOneGamesScanError", "Your Xbox&reg; One games can't be scanned at this time.");
 		return error;
 	}
 	Meteor._debug("update Xbox One data");
@@ -25,9 +25,7 @@ updateXboxOneData = function (userId, xboxOneGames) {
 function updateXboxOneAchievementsData(userId, gameId) {
 	var user = Meteor.users.findOne({ _id: userId });
 	var url = user.profile.xuid + '/achievements/' + gameId;
-
 	var result = syncApiCaller(url);
-	
 	var isObject = _.isEmpty(result.data);
 
 	if (isObject) {
@@ -41,6 +39,7 @@ function updateXboxOneAchievementsData(userId, gameId) {
 		progression = new Date(progression);
 		var achievementInserted = false;
 		var achievementValue = achievement.rewards && achievement.rewards.length ? achievement.rewards[0].value : achievement.value;
+
 		if (typeof achievementCheck === 'undefined') {
 			var singleAchievement = {
 				gameId: gameId,
@@ -57,6 +56,7 @@ function updateXboxOneAchievementsData(userId, gameId) {
 		if (!achievementInserted) {
 			achievementCheck = achievementCheck._id;
 		}
+
 		var userAchievement = {
 			achievementId: achievementCheck,
 			userId: userId,
@@ -72,6 +72,7 @@ function updateXboxOneGameData(userId, game, gameId) {
 	var lastUnlock = game.lastUnlock;
 	lastUnlock = new Date(lastUnlock);
 	var gameInserted = false;
+
 	if (typeof gameCheck === 'undefined') {
 		var singleGame = {
 			_id: gameId,
@@ -86,12 +87,16 @@ function updateXboxOneGameData(userId, game, gameId) {
 	if (!gameInserted) {
 		gameCheck = gameCheck._id;
 	}
+
+	var completed = game.maxGamerscore > game.currentGamerscore ? false : true;
+
 	var userGame = {
 		lastUnlock: lastUnlock,
 		gameId: gameId,
 		userId: userId,
 		currentGamerscore: game.currentGamerscore,
-		earnedAchievements: game.earnedAchievements
+		earnedAchievements: game.earnedAchievements,
+		completed: completed
 	};
 	userGames.upsert({ gameId: gameId, userId: userId }, { $set: userGame });
 }
@@ -126,7 +131,7 @@ function updateXboxOneGameDetails(userId, game, gameId) {
 
 updateXbox360Data = function (userId, xbox360Games) {
 	if (!xbox360Games.titles) {
-		var error = new Meteor.Error("xbox360GamesScanError", "Your Xbox 360 games can't be scanned at this time.");
+		var error = new Meteor.Error("xbox360GamesScanError", "Your Xbox&reg; 360 games can't be scanned at this time.");
 		return error;
 	}
 	Meteor._debug("update 360 data");
@@ -159,6 +164,7 @@ function updateXbox360AchievementsData(userId, gameId) {
 			progression = new Date(progression);
 			var achievementInserted = false;
 			var achievementValue = achievement.rewards && achievement.rewards.length ? achievement.rewards[0].value : achievement.value;
+
 			if (typeof achievementCheck === 'undefined') {
 				var singleAchievement = {
 					gameId: gameId,
@@ -175,6 +181,7 @@ function updateXbox360AchievementsData(userId, gameId) {
 			if (!achievementInserted) {
 				achievementCheck = achievementCheck._id;
 			}
+
 			var userAchievement = {
 				achievementId: achievementCheck,
 				userId: userId,
@@ -193,6 +200,7 @@ function updateXbox360GameData(userId, game, gameId) {
 	var lastPlayed = game.lastPlayed;
 	lastPlayed = new Date(lastPlayed);
 	var gameInserted = false;
+
 	if (typeof gameCheck === 'undefined') {
 		var singleGame = {
 			_id: gameId,
@@ -207,12 +215,16 @@ function updateXbox360GameData(userId, game, gameId) {
 	if (!gameInserted) {
 		gameCheck = gameCheck._id;
 	}
+
+	var completed = game.totalGamerscore > game.currentGamerscore ? false : true;
+
 	var userGame = {
 		lastUnlock: lastPlayed,
 		gameId: gameId,
 		userId: userId,
 		currentGamerscore: game.currentGamerscore,
-		earnedAchievements: game.currentAchievements
+		earnedAchievements: game.currentAchievements,
+		completed: completed
 	};
 	userGames.upsert({ gameId: gameId, userId: userId }, { $set: userGame });
 }
@@ -228,12 +240,10 @@ function updateXbox360GameDetails(userId, game, gameId) {
 			var releaseDate = (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated;
 			releaseDate = new Date(parseInt(releaseDate.substr(6)));
 			releaseDate = releaseDate.toISOString();
+			
 			Meteor._debug(releaseDate);
 
 			var allTimeAverageRating = (typeof result.data.Items[0].AllTimeAverageRating !== 'undefined') ? result.data.Items[0].AllTimeAverageRating : 0;
-
-			Meteor._debug(allTimeAverageRating);
-
 			var gameDetail = {
 				gameName: game.name,
 				gameDescription: result.data.Items[0].Description,
@@ -260,7 +270,7 @@ function updateXbox360GameDetails(userId, game, gameId) {
 				gameReleaseDate: "2005-11-22T00:00:00Z",
 				gameId: gameId,
 				gameGenre: "Miscellaneous",
-				gameArt: "/public/img/game-default.png",
+				gameArt: "/img/game-default.png",
 				gamePublisherName: "Xbox 360",
 				gameParentalRating: "Everyone",
 				gameAllTimePlayCount: 0,

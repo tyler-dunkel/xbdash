@@ -76,6 +76,14 @@ Meteor.startup(function() {
 		});
 	}, 50000);
 
+	// Meteor.setInterval(function() {
+	// 	var gameNotComplete = userGames.find({ completed: false });
+
+	// 	if (gameNotCompleted !== '') {}
+
+	// 	gameNotComplete.forEach(function() {});
+	// });
+
 	//function that will check referral docs to see if the referee's email has been verified
 	/*
 	Meteor.setInterval(function() {

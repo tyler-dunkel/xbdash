@@ -506,6 +506,14 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffebcccc', GradientType=0);
   background-repeat: repeat-x;
 }
+.panel-black > .panel-heading {
+  background-image: -webkit-linear-gradient(top, #131e26 0%, #131e26 100%);
+  background-image:      -o-linear-gradient(top, #131e26 0%, #131e26 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#131e26), to(#131e26));
+  background-image:         linear-gradient(to bottom, #131e26 0%, #131e26 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff131e26', endColorstr='#ff131e26', GradientType=0);
+  background-repeat: repeat-x;
+}
 .well {
   background-image: -webkit-linear-gradient(top, #e8e8e8 0%, #f5f5f5 100%);
   background-image:      -o-linear-gradient(top, #e8e8e8 0%, #f5f5f5 100%);

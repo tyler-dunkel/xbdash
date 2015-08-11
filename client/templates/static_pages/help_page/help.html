@@ -7,7 +7,7 @@
     <div class="app-content-body">
       <div class="hbox hbox-auto-xs hbox-auto-sm faqs">
         <!-- main -->
-        <div class="col">
+        <div class="">
           <!-- main header -->
           <div class="bg-light lter b-b wrapper-md">
             <div class="row">
@@ -17,10 +17,10 @@
               </div>
             </div>
           </div>
-          <div data-scroll="scroll" data-target=".scrollspy">
-            <div class="col w-md bg-light dk b-r bg-auto scrollspy">
-              <div class="wrapper b-b bg">
-                <ul id="sidebar" class="bg-light lter nav nav-stacked hidden-xs hidden-sm" data-spy="affix">
+          <div class="wrapper" data-scroll="scroll" data-target=".scrollspy">
+            <div class="row">
+              <div class="col-lg-2 bg-light b-r bg-auto scrollspy">
+                <ul id="sidebar" class="nav nav-stacked hidden-xs hidden-sm" data-spy="affix">
                   <li><a href="#top">Top Questions</a></li>
                   <li><a href="#account">Account Questions</a></li>
                   <li><a href="#profile">Profile</a></li>
@@ -30,9 +30,7 @@
                   <li><a href="#more">More Questions</a></li>
                 </ul>
               </div>
-            </div>
-            <div class="col">
-              <div class="wrapper b-b bg">
+              <div class="col-lg-6">
                 {{#if Template.subscriptionsReady}}
                 <section id="top">
                   <div class="row">
@@ -45,13 +43,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne0" aria-expanded="false" aria-controls="collapseOne0">
                         <div class="panel-heading" role="tab" id="headingOne0">
                           <h4 class="panel-title">
-                            Why XBdash?
+                            Why {{appName}}?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseOne0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne0">
                         <div class="panel-body">
-                          As Xbox gamers, we've always been compelled to connect the gamer to the games they play on another level. XBdash does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.
+                          As Xbox&reg; gamers, we've always been compelled to connect the gamer to the games they play on another level. {{appName}} does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.
                         </div>
                       </div>
                     </div>
@@ -65,7 +63,7 @@
                       </a>
                       <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne1">
                         <div class="panel-body">
-                          At this stage of XBdash, it is set to update your information every 15 minutes.
+                          At this stage of {{appName}}, it is set to update your information every 15 minutes.
                         </div>
                       </div>
                     </div>
@@ -79,7 +77,7 @@
                       </a>
                       <div id="collapseOne2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne2">
                         <div class="panel-body">
-                          At this stage of XBdash, we are not affiliated with Microsoft&reg; or Xbox&reg;. However, we've applied for a Microsoft's Independent Developer license and it's only a matter of time!
+                          At this stage of {{appName}}, we are not affiliated with Microsoft&reg; or Xbox&reg;. However, we've applied for a Microsoft's Independent Developer license and it's only a matter of time!
                         </div>
                       </div>
                     </div>
@@ -87,13 +85,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne3" aria-expanded="false" aria-controls="collapseOne3">
                         <div class="panel-heading" role="tab" id="headingOne3">
                           <h4 class="panel-title">
-                            How does XBdash make achievement tracking easier?
+                            How does {{appName}} make achievement tracking easier?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseOne3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne3">
                         <div class="panel-body">
-                          XBdash helps make achievement tracking easier by helping gamers easily search for the achievement they're looking for and with the help of other gamers in the community who submit possible solutions.
+                          {{appName}} helps make achievement tracking easier by helping gamers easily search for the achievement they're looking for and with the help of other gamers in the community who submit possible solutions.
                         </div>
                       </div>
                     </div>
@@ -101,13 +99,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion0" href="#collapseOne4" aria-expanded="false" aria-controls="collapseOne4">
                         <div class="panel-heading" role="tab" id="headingOne4">
                           <h4 class="panel-title">
-                            How can XBdash help me on achievements I'm struggling with?
+                            How can {{appName}} help me on achievements I'm struggling with?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseOne4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne4">
                         <div class="panel-body">
-                          XBdash has the power of the community. With our user-submitted solutions, you can work together to unlock the achievements you've been having a hard time with.
+                          {{appName}} has the power of the community. With our user-submitted solutions, you can work together to unlock the achievements you've been having a hard time with.
                         </div>
                       </div>
                     </div>
@@ -135,7 +133,7 @@
                       </a>
                       <div id="collapseOne6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne7">
                         <div class="panel-body">
-                          XBdash includes an easy-search system that helps gamers find particular games. Each game's page includes feedback area from gamers who have the game and this will help you decide whether to get the next game to add to your history.
+                          {{appName}} includes an easy-search system that helps gamers find particular games. Each game's page includes feedback area from gamers who have the game and this will help you decide whether to get the next game to add to your history.
                         </div>
                       </div>
                     </div>
@@ -209,14 +207,14 @@
                       </a>
                       <div id="collapseThree0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree0">
                         <div class="panel-body">
-                          Your dashboard is most likely not populating because of your privacy settings on Xbox(R) Live.<br /><br />
+                          Your dashboard is most likely not populating because of your privacy settings on Xbox&reg;(R) Live.<br /><br />
 
                           Follow these steps:
 
                           <ul type="1">
-                            <li>Log into Xbox Live online or on your console</li>
+                            <li>Log into Xbox&reg; Live online or on your console</li>
                             <li>Go to Privacy / Online Settings
-          https://account.xbox.com/en-GB/Settings</li>
+                              https://account.xbox.com/en-GB/Settings</li>
                             <li>Make sure that your settings are on "Public" or "Everybody".</li>
                           </ul>
                         </div>
@@ -247,13 +245,13 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
                         <div class="panel-heading" role="tab" id="headingThree2">
                           <h4 class="panel-title">
-                            My gamertag has changed, how do I update my account on XBdash?
+                            My gamertag has changed, how do I update my account on {{appName}}?
                           </h4>
                         </div>
                       </a>
                       <div id="collapseThree2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree2">
                         <div class="panel-body">
-                          If your Gamertag is changed, this can directly affect how XBdash scans your history. You can fill out the Account Change form and we'll take care of that as soon as we can!
+                          If your Gamertag is changed, this can directly affect how {{appName}} scans your history. You can fill out the Account Change form and we'll take care of that as soon as we can!
                         </div>
                       </div>
                     </div>
@@ -307,7 +305,7 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion4" href="#collapseFive0" aria-expanded="false" aria-controls="collapseFive0">
                         <div class="panel-heading" role="tab" id="headingFive0">
                           <h4 class="panel-title">
-                            My gamerscore, achievement completion percentage, game completion percentage, or other data is not accurate to what I have on Xbox One, Xbox 360, or Xbox Live. What's happening?
+                            My gamerscore, achievement completion percentage, game completion percentage, or other data is not accurate to what I have on Xbox&reg; One, Xbox&reg; 360, or Xbox&reg; Live. What's happening?
                           </h4>
                         </div>
                       </a>
@@ -337,7 +335,7 @@
                       <div id="collapseSix0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix0">
                         <div class="panel-body">
                           <ul>
-                            <li>Being part of XBdash will earn you the anniversary badge every year.</li>
+                            <li>Being part of {{appName}} will earn you the anniversary badge every year.</li>
                             <li>Gamerscore Badges are earned every 5,000 Gamerscore for the first 100,000 Gamerscore and every 25,000 GS after 100,000 Gamerscore.</li>
                             <li>Completed Games badges will update on every game completed.</li>
                             <li>Completed Achievement badges will update on every achievement 5 achievements earned.</li>
@@ -357,7 +355,7 @@
                   <div class="row">
                     <div class="col-lg-12">
                       <h3>More</h3>
-                      <p>If you have more questions about XBdash, please feel free to <a href="mailto:contact@xbdash.com" target="_blank" class="">contact us</a>.</p>
+                      <p>If you have more questions about {{appName}}, please feel free to <a href="mailto:contact@xbdash.com" target="_blank" class="">contact us</a>.</p>
                     </div>
                   </div>
                 </section>
@@ -365,6 +363,7 @@
                   {{> loadingTemplate}}
                 {{/if}}
               </div>
+              <div class="col-lg-4"></div>
             </div>
           </div>
         </div>
