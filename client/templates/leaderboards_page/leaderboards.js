@@ -3,13 +3,19 @@ Template.leaderboardsApp.rendered = function() {
 
 Template.leaderboardsApp.created = function() {
 	this.subscribe('completedAchievements');
+	this.subscribe('completedGames');
+	this.subscribe('maxGamerscore');
 }
 
 Template.leaderboardsApp.helpers({
 	completedAchievementsLB: function() {
-        //var achievements = xbdAchievements.find({}, { sort: { userPercentage: 1 }, limit: 10 });
 		return completedAchievements.find({}, { sort: { achievementCount: -1 }, limit: 100 });
-        //return userAchievements.find().fetch();
+	},
+	completedGamesLB: function() {
+		return completedGames.find({}, { sort: { gameCount: -1 }, limit: 100 });
+	},
+	maxGamerscoreLB: function() {
+		return Meteor.users.find({}, { sort: { "profile.gamercard.gamerscore": -1 }, limit: 100 });
 	}
 });
 

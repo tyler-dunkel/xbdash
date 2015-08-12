@@ -76,13 +76,21 @@ Meteor.startup(function() {
 		});
 	}, 50000);
 
-	// Meteor.setInterval(function() {
-	// 	var gameNotComplete = userGames.find({ completed: false });
+	Meteor.setInterval(function() {
+		var gamesNotComplete = userGames.find({ completed: false });
 
-	// 	if (gameNotCompleted !== '') {}
+		if (gamesNotComplete.count() < 1) {
+			Meteor._debug("no incomplete games");
+			return;
+		}
 
-	// 	gameNotComplete.forEach(function() {});
-	// });
+		gamesNotComplete.forEach(function(game) {
+			var xbdGame = xbdGames.findOne({ _id: game.gameId });
+			if (game.currentGamerscore === xbdGame.maxGamerscore) {
+				userGames.update({ _id: game._id }, { $set: { completed: true }});
+			}
+		});
+	}, 10000);
 
 	//function that will check referral docs to see if the referee's email has been verified
 	/*

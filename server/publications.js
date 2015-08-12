@@ -324,8 +324,8 @@ Meteor.publishComposite('singleGame', function(slug) {
 });
 
 Meteor.publish('completedAchievements', function() {
-	self = this;
-	completedAchievements = userAchievements.aggregate([
+	var self = this;
+	var completedAchievements = userAchievements.aggregate([
 		{
 			$match: {
 				progressState: true
@@ -342,9 +342,7 @@ Meteor.publish('completedAchievements', function() {
 	_.each(completedAchievements, function(completedAchievement) {
 		var user = Meteor.users.findOne({ _id: completedAchievement._id });
 		var userGamertag = user.profile.gamercard.gamertag;
-		var userPicture = user.profile.gamercard.gamerpicLargeSslImagePath;
-		Meteor._debug(userGamertag);
-		Meteor._debug(userPicture);
+		var userPicture = user.profile.gamercard.gamerpicLargeImagePath;
 		self.added('completedachievements', userGamertag, {
 			userPicture: userPicture,
 			achievementCount: completedAchievement.achievementCount
@@ -354,7 +352,43 @@ Meteor.publish('completedAchievements', function() {
 });
 
 Meteor.publish('completedGames', function() {
+	var self = this;
+	var completedGames = userGames.aggregate([
+		{
+			$match: {
+				completed: true
+			}
+		},
+		{
+			$group: {
+				_id: "$userId",
+				gameCount: { $sum: 1 }
+			}
+		}
+	]);
+	Meteor._debug(completedGames);
+	_.each(completedGames, function(completedGame) {
+		var user = Meteor.users.findOne({ _id: completedGame._id });
+		var userGamertag = user.profile.gamercard.gamertag;
+		var userPicture = user.profile.gamercard.gamerpicLargeImagePath;
+		self.added('completedgames', userGamertag, {
+			userPicture: userPicture,
+			gameCount: completedGame.gameCount
+		});
+	});
+	self.ready();
+});
 
+Meteor.publish('maxGamerscore', function() {
+	return usersByGamerscore = Meteor.users.find({}, {
+		$sort: { "profile.gamercard.gamerscore": -1 },
+		fields: {
+			"profile.gamercard.gamertag": 1,
+			"profile.gamercard.gamerscore": 1,
+			"profile.gamercard.gamerpicLargeImagePath": 1
+		},
+		limit: 100
+	});
 });
 
 // {_id: 3245gjrgj435 (this is userId), unlockedAchievements: 3444 (this is the sum of the unlocked acheivements from the aggregate)

@@ -47,7 +47,7 @@
   width: 100%;
   color: rgb(255, 255, 255);
   background: rgba(0, 0, 0, 0);
-  font-size: 60px;
+  font-size: 46px;
   font-weight: 300;
   text-align: center;
   border: 0px;
@@ -64,4 +64,31 @@
   display: inline-block;
   vertical-align: middle;
   float: none;
+}
+.media.game, .media.achievement {
+  color: #000000;
+}
+.panel-share-count {
+  padding: 5px;
+  color: #58666e;
+}
+.panel.news {
+  border: none;
+}
+body.noscroll {
+  overflow: hidden
+}
+.search-overlay {
+  position: fixed;
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.search-overlay .wrapper-md {
+  padding: 15px 0;
+}
+.search-overlay .search-load {
+  margin: 20% 0;
 }

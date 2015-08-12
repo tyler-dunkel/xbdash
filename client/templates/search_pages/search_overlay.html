@@ -26,14 +26,14 @@
 			</div>
 			<div class="row wrapper-md">
 				<div class="col-md-4">
-					<h3 class="text-center">Games</h3>
 					<div class="xbdgames-container">
 						{{#ifEsInputIsEmpty index="xbdgames"}}
-							<div> search for games </div>
+						{{else}}
+							<h3 class="text-center">Games</h3>
 						{{/ifEsInputIsEmpty}}
 
 						{{#ifEsIsSearching index="xbdgames"}}
-							<div> Loading.... </div>
+							{{> loadingTemplate}}
 						{{else}}
 							{{#ifEsHasNoResults index="xbdgames"}}
 							{{else}}
@@ -51,14 +51,14 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<h3 class="text-center">Achievements</h3>
 					<div class="xbdachievements-container">
 						{{#ifEsInputIsEmpty index="xbdachievements"}}
-							<div> search for achievements </div>
+						{{else}}
+							<h3 class="text-center">Achievements</h3>
 						{{/ifEsInputIsEmpty}}
 
 						{{#ifEsIsSearching index="xbdachievements"}}
-							<div> Loading.... </div>
+							{{> loadingTemplate}}
 						{{else}}
 							{{#ifEsHasNoResults index="xbdachievements"}}
 							{{else}}
@@ -76,18 +76,21 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<h3 class="text-center">News</h3>
 					<div class="newspolygon-container">
 						{{#ifEsInputIsEmpty index="newspolygon"}}
-							<div> search for news </div>
+						{{else}}
+							<h3 class="text-center">News</h3>
 						{{/ifEsInputIsEmpty}}
 
 						{{#ifEsIsSearching index="newspolygon"}}
-							<div> Loading.... </div>
+							{{> loadingTemplate}}
 						{{else}}
+							{{#ifEsHasNoResults index="newspolygon"}}
+							{{else}}
 							{{#esEach index="newspolygon"}}
 								{{> singleNewsSearch}}
 							{{/esEach}}
+							{{/ifEsHasNoResults}}
 						{{/ifEsIsSearching}}
 
 						{{#ifEsHasNoResults index="newspolygon"}}

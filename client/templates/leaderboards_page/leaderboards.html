@@ -22,7 +22,7 @@
           </div>
           <div class="wrapper-md">
             <div class="row row-sm">
-              <div class="col-lg-3 col-md-4 col-sm-6">
+              <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="panel panel-black">
                 {{#if Template.subscriptionsReady}}
                   <div class="panel-heading text-center">
@@ -30,17 +30,39 @@
                   </div>
                   <ul class="list-group alt">
                     {{#each completedAchievementsLB}}
-                    <li class="list-group-item">
-                      <div class="media">
-                        <span class="pull-left thumb-sm"><img src="{{userPicture}}" alt="{{_id}}"></span>
-                        <div class="pull-right text-success m-t-sm">
-                          {{achievementCount}}
-                        </div>
-                        <div class="media-body">
-                          <div>{{_id}}</div>
-                        </div>
-                      </div>
-                    </li>
+                      {{> completedAchievementsLine}}
+                    {{/each}}
+                  </ul>
+                {{else}}
+                  {{> loadingTemplate}}
+                {{/if}}
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="panel panel-black">
+                {{#if Template.subscriptionsReady}}
+                  <div class="panel-heading text-center">
+                    <h3 class="m-n padder-t text-white h4">Completed Games</h3>
+                  </div>
+                  <ul class="list-group alt">
+                    {{#each completedGamesLB}}
+                     {{> completedGamesLine}}
+                    {{/each}}
+                  </ul>
+                {{else}}
+                  {{> loadingTemplate}}
+                {{/if}}
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="panel panel-black">
+                {{#if Template.subscriptionsReady}}
+                  <div class="panel-heading text-center">
+                    <h3 class="m-n padder-t text-white h4">Top Gamerscore</h3>
+                  </div>
+                  <ul class="list-group alt">
+                    {{#each maxGamerscoreLB}}
+                      {{> gamerscoreLine}}
                     {{/each}}
                   </ul>
                 {{else}}
@@ -54,4 +76,46 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="completedAchievementsLine">
+  <li class="list-group-item">
+    <div class="media">
+      <span class="pull-left thumb-sm"><img src="{{userPicture}}" alt="{{_id}}"></span>
+      <div class="pull-right text-success m-t-sm">
+        {{achievementCount}}
+      </div>
+      <div class="media-body">
+        <div>{{_id}}</div>
+      </div>
+    </div>
+  </li>
+</template>
+
+<template name="completedGamesLine">
+  <li class="list-group-item">
+    <div class="media">
+      <span class="pull-left thumb-sm"><img src="{{userPicture}}" alt="{{_id}}"></span>
+      <div class="pull-right text-success m-t-sm">
+        {{gameCount}}
+      </div>
+      <div class="media-body">
+        <div>{{_id}}</div>
+      </div>
+    </div>
+  </li>
+</template>
+
+<template name="gamerscoreLine">
+  <li class="list-group-item">
+    <div class="media">
+      <span class="pull-left thumb-sm"><img src="{{profile.gamercard.gamerpicLargeImagePath}}" alt="{{profile.gamercard.gamertag}}"></span>
+      <div class="pull-right text-success m-t-sm">
+        {{profile.gamercard.gamerscore}}
+      </div>
+      <div class="media-body">
+        <div>{{profile.gamercard.gamertag}}</div>
+      </div>
+    </div>
+  </li>
 </template>

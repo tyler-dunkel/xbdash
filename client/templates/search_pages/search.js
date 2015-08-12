@@ -16,6 +16,7 @@ Template.searchBar.events({
 	"click .navbar-search .form-control": function (e) {
 		console.log("clicked search bar");
 		overlay.show();
+		$('body').addClass('noscroll');
 	}
 });
 
@@ -31,9 +32,16 @@ Template.searchOverlayApp.helpers({
 });
 
 Template.searchOverlay.events({
-	"click .overlay-close": function(e) {
+	"keyup input": function(e) {
+        if (e.keyCode === 27) {
+            overlay.hide();
+			$('body').removeClass('noscroll');
+        }
+    },
+	"click .search-overlay a": function(e) {
 		console.log("clicked close");
 		overlay.hide();
+		$('body').removeClass('noscroll');
 	}
 });
 
