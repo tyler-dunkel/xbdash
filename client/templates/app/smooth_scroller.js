@@ -18,6 +18,7 @@ jQuery.extend(jQuery.easing, {
             }, 1000, 'easeInOutExpo', function () {
                 window.location.hash = $target;
             });
+            return false;
         });
     });
 }(window.jQuery);

@@ -30,60 +30,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="row row-sm text-center">
-                  <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="panel padder-v item">
-                      <div class="text-dark font-thin h1 p-container">
-                        <div class="p-flipper">
-                          <div class="p-front">
-                            <div class="font-thin h1">{{achievementsCompleted}}</div>
-                          </div>
-                          <span class="p-back">
-                            <span class="text-success">{{achievementsPercentage}}%</span>
-                          </span>
-                        </div>
-                      </div>
-                      <span class="text-muted text-xs">Achievements Completed</span>
-                      <div class="top text-right w-full">
-                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of achievements completed to date."></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href class="block panel padder-v bg-success item">
-                      <span class="text-white font-thin h1 block">{{totalAchievements}}</span>
-                      <span class="text-muted text-xs">Total Achievements Available</span>
-                      <div class="top text-right w-full">
-                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of achievemnts you can get based on your game history."></i>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href class="block panel padder-v item">
-                      <div class="text-dark font-thin h1 p-container">
-                        <div class="p-flipper">
-                          <div class="p-front">
-                            <div class="font-thin h1">{{gamesCompleted}}</div>
-                          </div>
-                          <span class="p-back">
-                            <span class="text-success">{{gamesPercentage}}%</span>
-                          </span>
-                        </div>
-                      </div>
-                      <span class="text-muted text-xs">Games Completed</span>
-                      <div class="top text-right w-full">
-                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of games completed to date."></i>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href class="block panel padder-v bg-success item">
-                      <span class="text-white font-thin h1 block">{{totalGames}}</span>
-                      <span class="text-muted text-xs">Total Games Played</span>
-                      <div class="top text-right w-full">
-                        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of games you have played to date."></i>
-                      </div>
-                    </a>
-                  </div>
+                  {{> dashboardStatBoxes}}
                 </div>
                 <div class="row row-sm text-center">
                   <div class="col-xs-12 m-b-md">
@@ -118,40 +65,7 @@
           </div>
         </div>
         <!-- / main -->
-        <!-- game list -->
-        <div class="col w-xxl bg-white-only b-l bg-auto no-border-xs">
-          <div class="wrapper-md">
-            <!-- activity -->
-            <div class="m-b text-md">Recent Activity</div>
-            <ul class="list-group no-bg no-borders pull-in">
-              {{#each gamesList}}
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r games-thumb">
-                  <img src="{{gamesListImage}}" class="">
-                </a>
-                <div class="game-div title-wrap-game2">
-                  <a class="game-name" href>{{gameName this.gameId}}</a>
-                </div>
-                <div class="pull-right bg-black inline m-t-mdx c100 p{{percentageComplete this.gameId this.earnedAchievements}} small">
-                    <span>{{percentageComplete this.gameId this.earnedAchievements}}%</span>
-                    <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </div>
-                <div class="progress progress-md text-center">
-                  <div class="progress-bar progress-bar-success" style="width: {{percentageComplete this.gameId this.earnedAchievements}}%">
-                    {{this.earnedAchievements}} done
-                  </div>
-                  {{remainingAchievements this.gameId}} left
-                </div>
-              </li>
-              {{/each}}
-            </ul>
-            <!-- / activity -->
-          </div>
-        </div>
-        <!-- / game list -->
+        {{> recentActivityColumn}}
       </div>
     </div>
   </div>

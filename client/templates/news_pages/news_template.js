@@ -10,7 +10,7 @@ Template.newsTemplate.helpers({
         return getImage;
 	},
 	updatedDate: function() {
-		return moment(this.updated).format('MMMM Do YYYY, h:mm:ss a');
+		return moment(this.updated).format('MMMM Do YYYY, h:mm a');
 	},
 	shareCount: function() {
 		if (this.shareCount) {

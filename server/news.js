@@ -6,7 +6,7 @@ Meteor.startup(function () {
                     i.id = i.id[0].replace(/.*\//,'');
 
                     //insert articles
-                    var count = newsPolygon.find({ id: i.id }).count(); // http://stackoverflow.com/questions/10167604/how-can-i-add-a-two-column-unique-id-to-the-mongodb-in-a-meteor-app
+                    var count = xbdNews.find({ id: i.id }).count(); // http://stackoverflow.com/questions/10167604/how-can-i-add-a-two-column-unique-id-to-the-mongodb-in-a-meteor-app
                     if (count === 0) {
                         i.link = i.link[0]['$'];
                         i.contentType = i.content[0]['$'];
@@ -16,7 +16,7 @@ Meteor.startup(function () {
                         i.updated = new Date(i.updated[0]);
                         i.published = new Date(i.published[0]);
                         i.shareCount = 0;
-                        newsPolygon.insert(i);
+                        xbdNews.insert(i);
                     } else {
                         var shareCount;
                         var articleUrl = 'http://xboxdash.com/news/'+i.id;
@@ -27,7 +27,7 @@ Meteor.startup(function () {
                                 shareCount = respJson[0].total_count;
                             }
                         });
-                        newsPolygon.upsert({ id: i.id }, { $set: { shareCount: shareCount } });
+                        xbdNews.upsert({ id: i.id }, { $set: { shareCount: shareCount } });
                     }
                 });
             });

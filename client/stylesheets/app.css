@@ -4881,6 +4881,10 @@ ul.signin > li.active {
   margin-bottom: 5px;
 }
 
+.media .m-b-xs {
+  margin: 5px 0;
+}
+
 .m-b-sm {
   margin-bottom: 10px;
 }
@@ -5075,6 +5079,11 @@ ul.signin > li.active {
 
 .h-full {
   height: 100%;
+}
+
+.thumb-xxl {
+  display: inline-block;
+  width: 150px;
 }
 
 .thumb-xl {

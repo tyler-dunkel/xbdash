@@ -244,7 +244,26 @@ Meteor.publishComposite('userGames', {
 // feed
 
 Meteor.publish('latestNews', function() {
-	return newsPolygon.find({});
+	return xbdNews.find({});
+});
+
+Meteor.publish('mostSharedNews', function() {
+	var twoWeeks = moment().subtract(14, 'days').toDate();
+	//Meteor._debug(limit);
+	//limit = parseInt(limit);
+	var trendingNews = xbdNews.find({
+		updated: { $gte: twoWeeks } 
+	}, {
+		$sort: { shareCount: -1 },
+		fields: {
+			updated: 1,
+			title: 1,
+			content: 1,
+			id: 1
+		},
+		limit: 10
+	});
+	return trendingNews;
 });
 
 // games details
@@ -257,7 +276,7 @@ Meteor.publish('gameDetails', function(id) {
 // single pages
 
 Meteor.publish('singleNews', function(id) {
-	return newsPolygon.find({ id: id });
+	return xbdNews.find({ id: id });
 });
 
 Meteor.publishComposite('singleAchievement', function(slug) {

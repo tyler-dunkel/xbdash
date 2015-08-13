@@ -1,0 +1,21 @@
+<template name="mostSharedNews">
+	<h4 class="font-bold">Trending</h4>
+	<div>
+		{{#each sharedNews}}
+			{{> mostSharedNewsLine}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="mostSharedNewsLine">
+	<div class="media">
+		<a href="{{pathFor 'article'}}" class="pull-left thumb-xxl thumb-wrapper m-r-sm">
+			<img src="{{getImage}}" class="thumb-xxl" />
+		</a>
+		<div class="clear">
+			<a href="{{pathFor 'article'}}" class="font-semibold"><h4 class="m-b-xs">{{title}}</h4></a>
+			<div class="text-xs block">{{updatedDate}}</div>
+		</div>
+	</div>
+	<div class="line"></div>
+</template>

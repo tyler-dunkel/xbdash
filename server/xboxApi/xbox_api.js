@@ -5,7 +5,7 @@ function xboxApiCaller (url, callback) {
 				var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
 				if (rateLimitRemaining > 0) {
 					//Meteor._debug("rate limit is more than 0");
-					//Meteor._debug("Calls Left: " + rateLimitRemaining);
+					Meteor._debug("Calls Left: " + rateLimitRemaining);
 					callback(null, result);
 				} else {
 					var error = new Meteor.Error("rateLimitExpired", "Rate limit has expired.");
