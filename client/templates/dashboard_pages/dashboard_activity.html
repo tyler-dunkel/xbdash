@@ -3,16 +3,39 @@
 		<div class="wrapper-md">
 			<div class="m-b text-md">Recent Activity</div>
 			<ul class="list-group no-bg no-borders pull-in">
+			{{#if Template.subscriptionsReady}}
 				{{#each gamesList}}
 					{{> recentActivityLine}}
 				{{/each}}
+			{{/if}}
 			</ul>
 		</div>
 	</div>
 </template>
 
 <template name="recentActivityLine">
+	{{#with xbdGame}}
 	<li class="list-group-item">
+		<a href="{{pathFor 'game' slug=game.slug}}" class="thumb-sm m-r games-thumb">
+			<img src="{{gamesListImage}}" class="">
+		</a>
+		<div class="game-div title-wrap-game2">
+			<a class="game-name" href="{{pathFor 'game' slug=game.slug}}">{{game.name}}</a>
+		</div>
+		<div class="pull-right bg-black inline m-t-mdx c100 p{{percentageComplete}} small">
+			<span>{{percentageComplete}}%</span>
+			<div class="slice">
+				<div class="bar"></div>
+				<div class="fill"></div>
+			</div>
+		</div>
+		<div class="progress progress-md text-center">
+			<div class="progress-bar progress-bar-success" style="width: 100%">
+				100 done
+			</div>
+			1 left
+		</div>
+		<!--
 		<a href class="thumb-sm m-r games-thumb">
 			<img src="{{gamesListImage}}" class="">
 		</a>
@@ -32,5 +55,7 @@
 			</div>
 			{{remainingAchievements this.gameId}} left
 		</div>
+		-->
 	</li>
+	{{/with}}
 </template>

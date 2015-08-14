@@ -90,3 +90,29 @@ Meteor.publish('dashboardStatsTotalGames', function () {
 	});
 	self.ready();
 });
+
+Meteor.publishComposite('dashboardRecentActivity', {
+	find: function() {
+		if (!this.userId) return;
+		return userGames.find({ userId: this.userId, currentGamerscore: { $gt: 1 } }, { sort: { lastUnlock: -1 }, fields: { gameId: 1, lastUnlock: 1, earnedAchievments: 1 }, limit: 10 });
+	},
+	children: [
+		{
+			find: function(game) {
+				return gameDetails.find({ gameId: game.gameId }, { fields: { gameArt: 1 }});
+			}
+		},
+		{
+			find: function(game) {
+				return xbdGames.find({ _id: game.gameId }, { fields: { platform: 1, name: 1, maxGamerscore: 1, slug: 1 }});
+			}
+		}
+	]
+});
+
+Meteor.publishComposite('dashboardRecentActivityAchievements', {
+	find: function(gameId) {
+		if (!this.userId) return;
+		return xbdAchievements.find({ gameId: gameId });
+	}
+});

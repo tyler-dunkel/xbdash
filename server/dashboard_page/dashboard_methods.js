@@ -1,6 +1,7 @@
-// Meteor.methods({
-// 	achievementCompleted: function() {
-// 		var achievementsCount = userAchievements.find({ progressState: true }).count();
-// 		return achievementsCount;
-// 	}
-// });
+Meteor.methods({
+	getGameAchievementCount: function(gameId) {
+		var achievementCount = xbdAchievements.find({ gameId: gameId }).count();
+		Meteor._debug(achievementCount);
+		return achievementCount;
+	}
+});
