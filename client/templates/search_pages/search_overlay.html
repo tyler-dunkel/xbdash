@@ -76,24 +76,24 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="newspolygon-container">
-						{{#ifEsInputIsEmpty index="newspolygon"}}
+					<div class="xbdnews-container">
+						{{#ifEsInputIsEmpty index="xbdnews"}}
 						{{else}}
 							<h3 class="text-center">News</h3>
 						{{/ifEsInputIsEmpty}}
 
-						{{#ifEsIsSearching index="newspolygon"}}
+						{{#ifEsIsSearching index="xbdnews"}}
 							{{> loadingTemplate}}
 						{{else}}
-							{{#ifEsHasNoResults index="newspolygon"}}
+							{{#ifEsHasNoResults index="xbdnews"}}
 							{{else}}
-							{{#esEach index="newspolygon"}}
+							{{#esEach index="xbdnews"}}
 								{{> singleNewsSearch}}
 							{{/esEach}}
 							{{/ifEsHasNoResults}}
 						{{/ifEsIsSearching}}
 
-						{{#ifEsHasNoResults index="newspolygon"}}
+						{{#ifEsHasNoResults index="xbdnews"}}
 							<div> No results were found </div>
 						{{/ifEsHasNoResults}}
 					</div>

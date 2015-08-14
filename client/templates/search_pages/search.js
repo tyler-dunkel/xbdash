@@ -27,7 +27,7 @@ Template.searchOverlayApp.rendered = function() {
 
 Template.searchOverlayApp.helpers({
 	searchIndexes: function() {
-		return ['xbdgames', 'xbdachievements', 'newspolygon'];
+		return ['xbdgames', 'xbdachievements', 'xbdnews'];
 	},
 });
 
