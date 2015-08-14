@@ -19,6 +19,7 @@ Template.recentActivityLine.created = function() {
             console.log(error);
             self.data.totalAchievements = 100;
         }
+        console.log(result);
         self.data.totalAchievements = result;
     });
 }
@@ -51,18 +52,17 @@ Template.recentActivityLine.helpers({
             });
         }
         return image;
-    }
-});
-
-Template.parentData({
+    },
     percentageComplete: function () {
         var parentData = Template.parentData(1);
         console.log(parentData);
         return Math.round(parentData.earnedAchievements / parentData.totalAchievements * 100);
-    }/*,
+    }
+});
+
+/*,
     remainingAchievements: function (gameId) {
         var achievementCount = xbdAchievements.find({ gameId: gameId }).count();
         return achievementCount - this.earnedAchievements;
     }
     */
-});
