@@ -1,3 +1,6 @@
+//tracker dependency for total achievements count
+var totalAchievementDependency = new Tracker.Dependency;
+
 Template.recentActivityColumn.created = function() {
     this.subscribe('dashboardRecentActivity');
 }
@@ -6,7 +9,6 @@ Template.recentActivityColumn.helpers({
     gamesList: function () {
         var userId = Meteor.userId();
         var game = userGames.find({ userId: userId, currentGamerscore: { $gt: 1 }}, { sort: { lastUnlock: -1 }, limit: 10 });
-        console.log(game);
         return game;
     }
 });
@@ -19,7 +21,7 @@ Template.recentActivityLine.created = function() {
             console.log(error);
             self.data.totalAchievements = 100;
         }
-        console.log(result);
+        totalAchievementDependency.changed();
         self.data.totalAchievements = result;
     });
 }
@@ -54,9 +56,18 @@ Template.recentActivityLine.helpers({
         return image;
     },
     percentageComplete: function () {
+        totalAchievementDependency.depend();
         var parentData = Template.parentData(1);
-        console.log(parentData);
-        return Math.round(parentData.earnedAchievements / parentData.totalAchievements * 100);
+        if (parentData && parentData.totalAchievements) {
+            return Math.round(parentData.earnedAchievements / parentData.totalAchievements * 100);
+        }
+    },
+    remainingAchievements: function () {
+        totalAchievementDependency.depend();
+        var parentData = Template.parentData(1);
+        if (parentData && parentData.totalAchievements) {
+            return parentData.totalAchievements - parentData.earnedAchievements;
+        }
     }
 });
 

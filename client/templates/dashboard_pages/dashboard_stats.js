@@ -8,38 +8,50 @@ Template.dashboardStatBoxes.created = function() {
 Template.dashboardStatBoxes.helpers({
     achievementsCompleted: function () {
         var userId = Meteor.userId();
-        var achievementsCount = dashboardStatsCompletedAchievements.findOne({
-            _id: userId
-        }).achievementCount;
-        return numberFormatter(achievementsCount);
+        if (Template.instance().subscriptionsReady()) {
+            var achievementsCount = dashboardStatsCompletedAchievements.findOne({
+                _id: userId
+            }).achievementCount;
+            return numberFormatter(achievementsCount);
+        }
     },
     totalAchievements: function () {
         var userId = Meteor.userId();
-        var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
-        return numberFormatter(totalAchievements);
+        if (Template.instance().subscriptionsReady()) {
+            var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
+            return numberFormatter(totalAchievements);
+        }
     },
     achievementsPercentage: function () {
         var userId = Meteor.userId();
-        var achievementsCount = dashboardStatsCompletedAchievements.findOne({ _id: userId }).achievementCount;
-        var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
-        var achievementsPercentage = Math.round(achievementsCount / totalAchievements * 100);
-        return numberFormatter(achievementsPercentage);
+        if (Template.instance().subscriptionsReady()) {
+            var achievementsCount = dashboardStatsCompletedAchievements.findOne({ _id: userId }).achievementCount;
+            var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
+            var achievementsPercentage = Math.round(achievementsCount / totalAchievements * 100);
+            return numberFormatter(achievementsPercentage);
+        }
     },
     gamesCompleted: function () {
         var userId = Meteor.userId();
-        var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
-        return numberFormatter(gamesCount);
+        if (Template.instance().subscriptionsReady()) {
+            var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(gamesCount);
+        }
     },
     totalGames: function () {
-        var userId = Meteor.userId();
-        var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
-        return numberFormatter(totalGames);
+        if (Template.instance().subscriptionsReady()) {
+            var userId = Meteor.userId();
+            var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(totalGames);
+        }
     },
     gamesPercentage: function () {
-        var userId = Meteor.userId();
-        var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
-        var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
-        var gamesPercentage = Math.round(gamesCount / totalGames * 100);
-        return numberFormatter(gamesPercentage);
+        if (Template.instance().subscriptionsReady()) {
+            var userId = Meteor.userId();
+            var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
+            var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
+            var gamesPercentage = Math.round(gamesCount / totalGames * 100);
+            return numberFormatter(gamesPercentage);
+        }
     }
 });

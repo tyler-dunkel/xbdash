@@ -63,9 +63,15 @@ Meteor.publish('dashboardStatsCompletedGames', function () {
 			}
 		}
 	]);
-	self.added('dashboard_stats_completed_games', gamesCompleted[0]._id, {
-		gameCount: gamesCompleted[0].gameCount
-	});
+	if (gamesCompleted.length === 0) {
+		self.added('dashboard_stats_completed_games', this.userId, {
+			gameCount: 0
+		});
+	} else {
+		self.added('dashboard_stats_completed_games', gamesCompleted[0]._id, {
+			gameCount: gamesCompleted[0].gameCount
+		});
+	}
 	self.ready();
 });
 
