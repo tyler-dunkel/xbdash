@@ -18,7 +18,7 @@ Template.achievementsSinglePage.helpers({
         //return;
     },
     achievementImage: function () {
-        var image = "/img/xbdash_greenicon.png";
+        var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
             image = this.mediaAssets;
         }

@@ -1,38 +1,48 @@
+Template.dashboardAside.created = function() {
+    this.subscribe('dashboardStatsCompletedAchievements');
+    this.subscribe('dashboardStatsTotalAchievements');
+    this.subscribe('dashboardStatsCompletedGames');
+    this.subscribe('dashboardStatsTotalGames');
+}
+
 Template.dashboardAside.rendered = function() {
 }
 
 Template.dashboardAside.helpers({
-	achievementsCompleted: function () {
-		var achievementsCount = 0;
-        var achievementsCount = userAchievements.find({ progressState: true }).count();
-        return numberFormatter(achievementsCount);
+    achievementsCompleted: function () {
+        var userId = Meteor.userId();
+        if (Template.instance().subscriptionsReady()) {
+            var achievementsCount = dashboardStatsCompletedAchievements.findOne({
+                _id: userId
+            }).achievementCount;
+            return numberFormatter(achievementsCount);
+        }
     },
     gamesCompleted: function () {
-        var gameCount = 0;
         var userId = Meteor.userId();
-        var userGamesFind = userGames.find({ userId: userId });
-        userGamesFind.forEach(function(g) {
-            var gameId = g.gameId;
-            var currentGamerscore = g.currentGamerscore;
-            var getGame = xbdGames.findOne({ _id: gameId });
-            if (typeof getGame !== 'undefined') {
-                var maxGamerscore = getGame.maxGamerscore;
-            }
-            //console.log(maxGamerscore);
-            if ( currentGamerscore === maxGamerscore ) gameCount += 1;
-        });
-        return numberFormatter(gameCount);
+        if (Template.instance().subscriptionsReady()) {
+            var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(gamesCount);
+        }
     },
     currentGamerscore: function () {
         var user = Meteor.user();
-        return numberFormatter(user.profile.gamercard.gamerscore);
+        if (Template.instance().subscriptionsReady()) {
+            return numberFormatter(user.profile.gamercard.gamerscore);
+        }
     },
     totalAchievements: function () {
-        var totalAchievements = userAchievements.find({}).count();
-        return numberFormatter(totalAchievements);
+        var userId = Meteor.userId();
+        if (Template.instance().subscriptionsReady()) {
+            var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
+            return numberFormatter(totalAchievements);
+        }
     },
     totalGames: function () {
-        var totalGames = userGames.find({}).count();
-        return numberFormatter(totalGames);
+        if (Template.instance().subscriptionsReady()) {
+            var userId = Meteor.userId();
+            var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(totalGames);
+        }
     }
 });

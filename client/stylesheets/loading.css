@@ -122,3 +122,8 @@
   margin: 10px auto;
   width: 25px;
 }
+.dashboard-stats .spinner {
+  height: 31px;
+  margin: 30px auto;
+  width: 31px;
+}

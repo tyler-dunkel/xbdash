@@ -1,0 +1,19 @@
+@media (min-width: 1401px) {
+	.trending-column .media a h4 {
+		font-size: 16px;
+	}
+}
+@media (max-width: 1400px) {
+	.trending-column .media > .pull-left {
+		padding: 0;
+	}
+	.trending-column .clear {
+		float: left;
+	}
+	.trending-column .media .thumb-xxl {
+		width: 100%;
+	}
+	.trending-column .media a h4 {
+		font-size: 14px;
+	}
+}

@@ -243,14 +243,16 @@ Meteor.publishComposite('userGames', {
 
 // feed
 
-Meteor.publish('latestNews', function() {
-	return xbdNews.find({});
+Meteor.publish('latestNews', function(limit) {
+	var defaultLimit = xbdNews.find().count();
+	if (limit > defaultLimit) {
+		limit = 0;
+	}
+	return xbdNews.find({ }, { limit: limit });
 });
 
-Meteor.publish('mostSharedNews', function() {
+Meteor.publish('mostSharedNews', function(limit) {
 	var twoWeeks = moment().subtract(14, 'days').toDate();
-	//Meteor._debug(limit);
-	//limit = parseInt(limit);
 	var trendingNews = xbdNews.find({
 		updated: { $gte: twoWeeks } 
 	}, {
@@ -261,7 +263,7 @@ Meteor.publish('mostSharedNews', function() {
 			content: 1,
 			id: 1
 		},
-		limit: 10
+		limit: limit
 	});
 	return trendingNews;
 });

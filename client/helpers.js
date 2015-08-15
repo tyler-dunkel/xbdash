@@ -7,7 +7,7 @@ var helpers = {
         return "XBdash";
     },
     copyrightInfo: function() {
-        return "XBdash &copy; 2015. All Rights Reserved.";
+        return "XBdash © 2015. All Rights Reserved.";
     },
     chkEmail: function () {
         //var userId = Meteor.userId();

@@ -38,7 +38,7 @@ Template.recentActivityLine.helpers({
     gamesListImage: function () {
         var xbdGame = this.game;
         var gameDetail = this.gameDetails;
-        var image = "/img/xbdash_greenicon.png";
+        var image = "/img/game-default.jpg";
         if (xbdGame.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt') {

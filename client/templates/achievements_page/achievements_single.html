@@ -48,11 +48,11 @@
 						    {{> commentsBox id=this.slug customTemplate="achievementCommentBox"}}
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-4 col-lg-4 hidden-md hidden-sm hidden-xs">
-						<div style="width: 336px; height: 280px; background-color: #fff; margin: 15px auto;">
+					<div class="wrapper-md col-xl-4 col-lg-4 hidden-md hidden-sm hidden-xs trending-column">
+						<div style="width: 336px; height: 280px; background-color: #fff; margin: 30px auto;">
 							Ad Banner (336x280) or (160x600)
 						</div>
-						{{> mostSharedNews}}
+						{{> mostSharedNews limit=3}}
 					</div>
 					{{/with}}
 				</div>

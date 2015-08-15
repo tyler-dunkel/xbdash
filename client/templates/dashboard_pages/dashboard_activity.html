@@ -1,12 +1,16 @@
 <template name="recentActivityColumn">
 	<div class="col w-xxl bg-white-only b-l bg-auto no-border-xs">
-		<div class="wrapper-md">
+		<div class="wrapper-md activity-column">
 			<div class="m-b text-md">Recent Activity</div>
 			<ul class="list-group no-bg no-borders pull-in">
 			{{#if Template.subscriptionsReady}}
 				{{#each gamesList}}
 					{{> recentActivityLine}}
 				{{/each}}
+			{{else}}
+				<li class="list-group-item">
+				{{> loadingTemplate}}
+				</li>
 			{{/if}}
 			</ul>
 		</div>
@@ -35,27 +39,6 @@
 			</div>
 			{{remainingAchievements}} left
 		</div>
-		<!--
-		<a href class="thumb-sm m-r games-thumb">
-			<img src="{{gamesListImage}}" class="">
-		</a>
-		<div class="game-div title-wrap-game2">
-			<a class="game-name" href>{{gameName this.gameId}}</a>
-		</div>
-		<div class="pull-right bg-black inline m-t-mdx c100 p{{percentageComplete this.gameId this.earnedAchievements}} small">
-			<span>{{percentageComplete this.gameId this.earnedAchievements}}%</span>
-			<div class="slice">
-				<div class="bar"></div>
-				<div class="fill"></div>
-			</div>
-		</div>
-		<div class="progress progress-md text-center">
-			<div class="progress-bar progress-bar-success" style="width: {{percentageComplete this.gameId this.earnedAchievements}}%">
-				{{this.earnedAchievements}} done
-			</div>
-			{{remainingAchievements this.gameId}} left
-		</div>
-		-->
 	</li>
 	{{/with}}
 </template>

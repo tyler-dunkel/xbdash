@@ -4,7 +4,7 @@ Template.achievementTemplate.helpers({
         return xbdGame.name;
     },
     achievementImage: function () {
-        var image = "/img/xbdash_greenicon.png";
+        var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
             image = this.mediaAssets;
         }

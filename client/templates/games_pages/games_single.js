@@ -1,18 +1,15 @@
 var achievementShowNext = new ReactiveVar(0);
 Template.gamesSinglePage.created = function() {
+    this.subscribe('gameDetails');
 }
 
 Template.gamesSinglePage.rendered = function() {
 	var slug = Router.current().params.slug;
 	var game = xbdGames.findOne({slug: slug});
-	//console.log(game);
 	this.autorun(function() {
-		// var gameId = this.currentData().gameId;
     	var achievementCount = xbdAchievements.find({ gameId: game._id }).count();
-    	console.log(achievementCount);
     	var currentCount = achievementShowNext.get();
     	var check = Template.instance().subscriptionsReady();
-    	console.log(check);
     	if (achievementCount <= currentCount && check) {
     		console.log("one is greater");
     		$('.achievement-next').addClass('disabled');
@@ -26,12 +23,11 @@ Template.gamesSinglePage.helpers({
 	game: function () {
 		var slug = Router.current().params.slug;
 		var game = xbdGames.findOne({ slug: slug });
-		return gameDetails.findOne({ gameId: game._id });
+        return gameDetails.findOne({ gameId: game._id });
 	},
 	gamesImage: function () {
-        //var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var game = xbdGames.findOne({ _id: this.gameId });
-        var image = "/img/xbdash_greenicon.png";
+        var image = "/img/game-default.jpg";
         if (game.platform === 'Xenon') {
             this.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
@@ -69,7 +65,7 @@ Template.gamesSinglePage.helpers({
     achievementImage: function () {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-        var image = "/img/xbdash_greenicon.png";
+        var image = "/img/achievement-default.jpg";
         if (xbdGame.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt') {

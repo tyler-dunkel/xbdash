@@ -1,6 +1,5 @@
 Template.achievementSingleComment.created = function() {
-	console.log(this.data.userId);
-	Meteor.subscribe("commentUserImage", this.data.userId);
+	this.subscribe("commentUserImage", this.data.userId);
 }
 
 Template.achievementSingleComment.helpers({

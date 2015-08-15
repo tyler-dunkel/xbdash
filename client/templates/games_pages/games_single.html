@@ -56,6 +56,7 @@
 						</div>
 						<div class="clearfix"></div>
 						<ul class="list-group no-bg no-borders pull-in">
+						{{#if Template.subscriptionsReady}}
 						{{#momentum plugin='slide-height'}}
 							{{#each achievementsList}}
 							<li class="list-group-item">
@@ -78,13 +79,18 @@
 							</li>
 							{{/each}}
 						{{/momentum}}
+						{{else}}
+							<li class="list-group-item">
+							{{> loadingTemplate}}
+							</li>
+						{{/if}}
 						</ul>
 					</div>
-					<div class="wrapper-md col-xl-4 col-lg-4 hidden-md hidden-sm hidden-xs">
-						<div style="width: 336px; height: 280px; background-color: #fff; margin: 15px auto;">
+					<div class="wrapper-md col-xl-4 col-lg-4 hidden-md hidden-sm hidden-xs trending-column">
+						<div style="width: 336px; height: 280px; background-color: #fff; margin: 30px auto;">
 							Ad Banner (336x280) or (160x600)
 						</div>
-						{{> mostSharedNews}}
+						{{> mostSharedNews limit=3}}
 					</div>
 					{{/with}}
 				</div>

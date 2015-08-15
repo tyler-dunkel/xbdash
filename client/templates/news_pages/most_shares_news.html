@@ -1,7 +1,7 @@
 <template name="mostSharedNews">
 	<h4 class="font-bold">Trending</h4>
 	<div>
-		{{#each sharedNews}}
+		{{#each sharedNews limit}}
 			{{> mostSharedNewsLine}}
 		{{/each}}
 	</div>
