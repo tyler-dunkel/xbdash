@@ -10,6 +10,9 @@ Template.gameRating.rendered = function() {
         starOff: 'star-off.png',
         starOn: 'star-on.png'
     });
+    $('.ih-item.square .img .games-thumb .game-image').error(function() {
+        $(this).attr('src', '/img/game-default.jpg');
+    });
 }
 
 Template.singleGame.helpers({
@@ -26,7 +29,6 @@ Template.singleGame.helpers({
         return gameDetail.gameGenre;
     },
     gamesImage: function () {
-        console.log(this);
         //var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this._id });
         var image = "/img/game-default.jpg";

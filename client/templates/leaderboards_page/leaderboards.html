@@ -29,6 +29,21 @@
                     <h3 class="m-n padder-t text-white h4">Earned Achievements</h3>
                   </div>
                   <ul class="list-group alt">
+                    <li class="list-group-item">
+                      <div class="media">
+                        <span class="pull-left" style="display: block; font-size: 16px; margin: 5px 0 0; text-align: center;">Your Rank:<br />1</span>
+                        <span class="pull-left thumb-sm">
+                          <img src="http://image.xboxlive.com/global/t.534307db/tile/0/28005" alt="Mayvn">
+                        </span>
+                        <div class="pull-right text-success m-t-sm">
+                          953
+                        </div>
+                        <div class="media-body">
+                          <div>Mayvn</div>
+                        </div>
+                      </div>
+                    </li>
+                    <div class="line"></div>
                     {{#each completedAchievementsLB}}
                       {{> completedAchievementsLine}}
                     {{/each}}
@@ -45,6 +60,21 @@
                     <h3 class="m-n padder-t text-white h4">Completed Games</h3>
                   </div>
                   <ul class="list-group alt">
+                    <li class="list-group-item">
+                      <div class="media">
+                        <span class="pull-left" style="display: block; font-size: 16px; margin: 5px 0 0; text-align: center;">Your Rank:<br />1</span>
+                        <span class="pull-left thumb-sm">
+                          <img src="http://image.xboxlive.com/global/t.534307db/tile/0/28005" alt="Mayvn">
+                        </span>
+                        <div class="pull-right text-success m-t-sm">
+                          11
+                        </div>
+                        <div class="media-body">
+                          <div>Mayvn</div>
+                        </div>
+                      </div>
+                    </li>
+                    <div class="line"></div>
                     {{#each completedGamesLB}}
                      {{> completedGamesLine}}
                     {{/each}}
@@ -61,6 +91,21 @@
                     <h3 class="m-n padder-t text-white h4">Top Gamerscore</h3>
                   </div>
                   <ul class="list-group alt">
+                    <li class="list-group-item">
+                      <div class="media">
+                        <span class="pull-left" style="display: block; font-size: 16px; margin: 5px 0 0; text-align: center;">Your Rank:<br />1</span>
+                        <span class="pull-left thumb-sm">
+                          <img src="http://image.xboxlive.com/global/t.534307db/tile/0/28005" alt="Mayvn">
+                        </span>
+                        <div class="pull-right text-success m-t-sm">
+                          18825
+                        </div>
+                        <div class="media-body">
+                          <div>Mayvn</div>
+                        </div>
+                      </div>
+                    </li>
+                    <div class="line"></div>
                     {{#each maxGamerscoreLB}}
                       {{> gamerscoreLine}}
                     {{/each}}
@@ -81,7 +126,10 @@
 <template name="completedAchievementsLine">
   <li class="list-group-item">
     <div class="media">
-      <span class="pull-left thumb-sm"><img src="{{userPicture}}" alt="{{_id}}"></span>
+      <span class="pull-left" style="display: block; font-size: 16px; margin: 5px 0 0;">1</span>
+      <span class="pull-left thumb-sm">
+        <img src="{{userPicture}}" alt="{{_id}}">
+      </span>
       <div class="pull-right text-success m-t-sm">
         {{achievementCount}}
       </div>
@@ -95,6 +143,7 @@
 <template name="completedGamesLine">
   <li class="list-group-item">
     <div class="media">
+      <span class="pull-left" style="display: block; font-size: 16px; margin: 5px 0 0;">1</span>
       <span class="pull-left thumb-sm"><img src="{{userPicture}}" alt="{{_id}}"></span>
       <div class="pull-right text-success m-t-sm">
         {{gameCount}}
@@ -109,6 +158,7 @@
 <template name="gamerscoreLine">
   <li class="list-group-item">
     <div class="media">
+      <span class="pull-left" style="display: block; font-size: 16px; margin: 5px 0 0;">1</span>
       <span class="pull-left thumb-sm"><img src="{{profile.gamercard.gamerpicLargeImagePath}}" alt="{{profile.gamercard.gamertag}}"></span>
       <div class="pull-right text-success m-t-sm">
         {{profile.gamercard.gamerscore}}

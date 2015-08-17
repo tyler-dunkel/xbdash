@@ -22,8 +22,12 @@
 				<div class="item m-l-n-xxs m-r-n-xxs img img2">
 					<div class="overlay {{xenonClass}}">
 						<span class="achievement-page-link"><a href="{{pathFor 'achievement'}}" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
-						<span>
-							<img src="{{achievementImage}}" class="{{imageClass}}" />
+						<span class="achievements-thumb">
+							{{#if Template.subscriptionsReady}}
+							<img src="{{achievementImage}}" class="{{imageClass}} achievement-image" />
+							{{else}}
+							<img src="/img/achievement-default.jpg" class="img-full achievement-image">
+							{{/if}}
 						</span>
 					</div>
 				</div>

@@ -1,11 +1,11 @@
-Template.achievementsPage.rendered = function() {
-}
-
-Template.achievementsApp.onCreated(function() {
+Template.achievementsApp.created = function() {
 	var limit = 20;
 	this.subscribe('mostPopularAchievements');
 	this.subscribe('rarestAchievements');
-});
+}
+
+Template.achievementsApp.rendered = function() {
+}
 
 Template.achievementsApp.helpers({
 	mostPopularAchievements: function() {

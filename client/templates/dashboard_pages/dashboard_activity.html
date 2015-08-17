@@ -3,15 +3,9 @@
 		<div class="wrapper-md activity-column">
 			<div class="m-b text-md">Recent Activity</div>
 			<ul class="list-group no-bg no-borders pull-in">
-			{{#if Template.subscriptionsReady}}
-				{{#each gamesList}}
-					{{> recentActivityLine}}
-				{{/each}}
-			{{else}}
-				<li class="list-group-item">
-				{{> loadingTemplate}}
-				</li>
-			{{/if}}
+			{{#each gamesList}}
+				{{> recentActivityLine}}
+			{{/each}}
 			</ul>
 		</div>
 	</div>
@@ -19,13 +13,22 @@
 
 <template name="recentActivityLine">
 	{{#with xbdGame}}
-	<li class="list-group-item">
+	<li class="list-group-item activity-line">
 		<a href="{{pathFor 'game' slug=game.slug}}" class="thumb-sm m-r games-thumb">
-			<img src="{{gamesListImage}}" class="">
+			{{#if Template.subscriptionsReady}}
+			<img src="{{gamesListImage}}" class="game-image" />
+			{{else}}
+			<img src="/img/game-default.jpg" class="game-image">
+			{{/if}}
 		</a>
 		<div class="game-div title-wrap-game2">
+			{{#if Template.subscriptionsReady}}
 			<a class="game-name" href="{{pathFor 'game' slug=game.slug}}">{{game.name}}</a>
+			{{else}}
+			<a class="game-name" href="#">Loading...</a>
+			{{/if}}
 		</div>
+		{{#if Template.subscriptionsReady}}
 		<div class="pull-right bg-black inline m-t-mdx c100 p{{percentageComplete}} small">
 			<span>{{percentageComplete}}%</span>
 			<div class="slice">
@@ -33,11 +36,23 @@
 				<div class="fill"></div>
 			</div>
 		</div>
+		{{else}}
+		<div class="pull-right inline m-t-mdx small">
+		{{> loadingTemplate}}
+		</div>
+		{{/if}}
 		<div class="progress progress-md text-center">
+			{{#if Template.subscriptionsReady}}
 			<div class="progress-bar progress-bar-success" style="width: {{percentageComplete}}%">
 				{{../earnedAchievements}} done 
 			</div>
 			{{remainingAchievements}} left
+			{{else}}
+			<div class="progress-bar progress-bar-success" style="width: 0%">
+				&nbsp;
+			</div>
+			100 left
+			{{/if}}
 		</div>
 	</li>
 	{{/with}}

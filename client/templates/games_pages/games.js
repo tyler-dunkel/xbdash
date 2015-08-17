@@ -1,11 +1,11 @@
 Template.gamesApp.rendered = function() {
 }
 
-Template.gamesApp.onCreated(function() {
+Template.gamesApp.created = function() {
 	var limit = 20;
 	this.subscribe('myTopGames');
 	this.subscribe('gamesByReleaseDate');
-});
+}
 
 Template.gamesApp.helpers({
     xbdGame: function () {
@@ -24,7 +24,7 @@ Template.gamesApp.helpers({
         return gameDetailArray;
 	},
 	gamesByReleaseDate: function() {
-		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 10 }).fetch();
+		return gameDetails.find({}, { sort: { gameReleaseDate: -1 }, limit: 10 });
 	}
 });
 

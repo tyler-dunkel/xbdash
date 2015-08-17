@@ -34,8 +34,12 @@
 					<div class="overlay">
 						<span class="game-page-link"><a href="{{pathFor 'game'}}" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
 						{{> gameRating}}
-						<span>
-							<img src="{{gamesImage}}" class="img-full">
+						<span class="games-thumb">
+							{{#if Template.subscriptionsReady}}
+							<img src="{{gamesImage}}" class="img-full game-image">
+							{{else}}
+							<img src="/img/game-default.jpg" class="img-full game-image">
+							{{/if}}
 						</span>
 					</div>
 				</div>

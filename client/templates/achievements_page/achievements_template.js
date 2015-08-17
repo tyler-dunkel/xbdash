@@ -1,3 +1,9 @@
+Template.achievementTemplate.rendered = function() {
+    $('.ih-item.square .img .achievements-thumb .achievement-image').error(function() {
+        $(this).attr('src', '/img/achievement-default.jpg');
+    });
+}
+
 Template.achievementTemplate.helpers({
     gameName: function() {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });

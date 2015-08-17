@@ -26,6 +26,12 @@ Template.recentActivityLine.created = function() {
     });
 }
 
+Template.recentActivityLine.rendered = function() {
+    $('li.activity-line .games-thumb .game-image').error(function() {
+        $(this).attr('src', '/img/game-default.jpg');
+    });
+}
+
 Template.recentActivityLine.helpers({
     xbdGame: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
