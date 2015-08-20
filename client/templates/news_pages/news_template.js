@@ -1,4 +1,7 @@
 Template.newsTemplate.rendered = function() {
+    $('.post-image-box .img-full').error(function() {
+        $(this).attr('src', '/img/news-default.jpg');
+    });
 }
 
 Template.newsTemplate.helpers({
