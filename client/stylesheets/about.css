@@ -1,0 +1,98 @@
+.home-page .app-header-fixed { padding-top: 0px; }
+
+.home-page #header .navbar-inner { background: transparent; }
+
+.home-page #header .navbar-inner .navbar-nav > li > a { color: #ccc; text-shadow: none; font-weight: bold; }
+.home-page #header .btn-link { color: #fff; }
+.home-page #header .navbar-inner .navbar-nav > li > a:hover { color: #fff; }
+
+.on {
+    background-color: #138013 !important;
+    padding: 0 !important;
+    transition: background-color 0.4s ease-in-out 0s, border-bottom-color 0.4s ease 0s;
+}
+
+.secondary { display: none; }
+
+.on .secondary {
+	display: block;
+    background-color: #fff !important;
+    padding: 0 !important;
+    transition: background-color 0.4s ease-in-out 0s, border-bottom-color 0.4s ease 0s;
+}
+
+.on .secondary .navbar-nav > li > a,
+.home-page #header.on .navbar-inner .secondary .navbar-nav > li > a {
+	color: #000;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.secondary .navbar-nav {
+    width: 100%;
+    text-align: center;
+}
+
+.secondary .navbar-nav > li {
+	float: none;
+	display: inline-block;
+}
+
+.home-page .carousel-caption {
+    top: 30%;
+}
+
+.home-page .navbar-brand img {
+    display: inline;
+    max-height: 30px;
+    margin-top: -4px;
+    vertical-align: middle;
+    max-width: 130px;
+}
+
+.home-page.on .navbar-brand img, .navbar-brand img {
+    max-height: 24px;
+    transition: background-color 0.4s ease-in-out 0s, border-bottom-color 0.4s ease 0s;
+}
+
+@media (max-width: 1400px) {
+    .home-page .carousel-caption {
+        top: 15%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .home-page .carousel-caption {
+        top: auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .home-page .carousel-caption h3 {
+        font-size: 32px;
+    }
+    .home-page .carousel-caption p {
+        font-size: 24px;
+    }
+    .home-page .carousel-caption a.text-lg {
+        font-size: 16px;
+    }
+    .home-page .carousel-caption .b-2x {
+        border-width: 1px;
+    }
+}
+
+@media (max-width: 960px) {
+    .home-page .carousel-caption h3 {
+        font-size: 28px;
+    }
+    .home-page .carousel-caption p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page .carousel-caption {
+        top: 0;
+    }
+}

@@ -364,6 +364,13 @@ a.list-group-item.hover {
   background-color: #f6f8f8;
 }
 
+.home-page .nav > li > a:hover,
+.home-page .nav > li > a:focus {
+  /*background-color: #f6f8f8;*/
+  background-color: transparent;
+  color: #fff;
+}
+
 .nav.nav-lg > li > a {
   padding: 20px 20px;
 }
@@ -5521,7 +5528,7 @@ ul.signin > li.active {
   position: relative;
   background: transparent;
 }
-.home .active:before {
+.home #what .active:before {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
   -webkit-animation-duration: 1s;

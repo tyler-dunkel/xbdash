@@ -77,6 +77,27 @@ Template.aboutUs.helpers({
 	}
 });
 
+Template.aboutUs.rendered = function() {
+	$('body').addClass('home-page');
+
+	$(window).bind('scroll', function() {
+        if ($(window).scrollTop() > 150) {
+            $('.navbar-fixed-top').addClass('on');
+        } else {
+            $('.navbar-fixed-top').removeClass('on');
+        }
+    });
+
+    $('body').scrollspy({ 
+        target: '.navbar-fixed-top',
+        offset: 100
+    });
+}
+
+Template.aboutUs.destroyed = function() {
+	$('body').removeClass('home-page');
+}
+
 Template.carousel.rendered = function() {
 	$('#carousel1').carousel({
 		interval: false
