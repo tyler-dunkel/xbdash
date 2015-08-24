@@ -2,6 +2,29 @@ Template.achievementSingleComment.created = function() {
 	this.subscribe("commentUserImage", this.data.userId);
 }
 
+Template.achievementSingleComment.rendered = function() {
+	this.$('p').contents().each(function() {
+		if (this.nodeType !== 3) {
+        	return true;
+    	}
+    	var matches = this.data.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
+    	console.log(matches[2]);
+    	if (!matches || matches[2].length != 11) {
+    		console.log("no youtube url");
+   			return;
+    	}
+    	var iframe = $('<iframe width="350" height="300" frameborder="0" allowfullscreen />');
+    	iframe.attr('src', function(i, val) {
+    		console.log(i);
+    		console.log(val);
+    		console.log("in attr func");
+    		return '//www.youtube.com/embed/' + matches[2];
+    	})
+    	iframe.insertAfter(this);
+    	$(this).remove();
+	});
+}
+
 Template.achievementSingleComment.helpers({
 	debugger: function () {
 		//console.log(this);
