@@ -7,22 +7,26 @@ Template.achievementSingleComment.rendered = function() {
 		if (this.nodeType !== 3) {
         	return true;
     	}
-    	var matches = this.data.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
-    	console.log(matches[2]);
-    	if (!matches || matches[2].length != 11) {
+    	var matches = this.data.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g);
+    	if (matches) {
+    		matches = matches[0].match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
+    		console.log(matches)
+    	}
+    	else {
+    		console.log("no matches");
+    		return;
+    	}
+    	if (matches[2].length != 11) {
     		console.log("no youtube url");
    			return;
     	}
     	var iframe = $('<iframe width="350" height="300" frameborder="0" allowfullscreen />');
     	iframe.attr('src', function(i, val) {
-    		console.log(i);
-    		console.log(val);
-    		console.log("in attr func");
     		return '//www.youtube.com/embed/' + matches[2];
     	})
     	iframe.insertAfter(this);
-    	$(this).remove();
 	});
+	this.$('p').text().replace(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g, '');
 }
 
 Template.achievementSingleComment.helpers({
@@ -35,7 +39,6 @@ Template.achievementSingleComment.helpers({
 	},
 	getUserImage: function (user) {
 		var user = Meteor.users.findOne({_id: this.userId});
-		console.log(user.profile.gamercard.gamerpicLargeImagePath);
 		return user.profile.gamercard.gamerpicLargeImagePath;
 	},
 	take: function (params) {
