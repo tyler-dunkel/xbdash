@@ -2,9 +2,16 @@
 
 .home-page #header .navbar-inner { background: transparent; }
 
-.home-page #header .navbar-inner .navbar-nav > li > a { color: #ccc; text-shadow: none; font-weight: bold; }
+.home-page #header .navbar-inner .navbar-nav > li > a {
+    color: #ddd;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: none;
+    text-transform: uppercase;
+}
 .home-page #header .btn-link { color: #fff; }
-.home-page #header .navbar-inner .navbar-nav > li > a:hover { color: #fff; }
+.home-page #header .navbar-inner .navbar-nav > li > a:hover { color: #fff; text-shadow: 1px 1px 0 #000; }
 
 .on {
     background-color: #138013 !important;

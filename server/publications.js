@@ -36,52 +36,6 @@ Meteor.publish('commentUserImage', function(userId) {
 // players by games completed
 // players by game completion ratio
 
-/*
-
-Meteor.publishComposite('achievementsCompletedLB', {
-	find: function() {
-		Meteor._debug("players by achievements completed");
-		var achievementsLB = [
-            {
-                $group: {
-                    _id: "$userId",
-                    progressState: {
-                        $sum: true
-                    }
-                }
-            }
-        ]
-        return userAchievements.aggregate(achievementsLB);
-		//return userAchievements.find({}, { sort: { progressState: 1 }, limit: 100 }); 
-		return userAchievements.aggregate([
-			{
-		        $group: {
-		        	_id: "$userId",
-		            progressState: {
-		                $sum: true
-		            }
-		        }
-		    },
-		    {
-		    	$sort : {
-		    		progressState: -1
-		    	}
-		    }
-		]);
-	}
-});
-
-Meteor.publishComposite('achievementsRatioLB', {
-});
-
-Meteor.publishComposite('gamesCompletedLB', {
-});
-
-Meteor.publishComposite('gamesRatioLB', {
-});
-
-*/
-
 // achievements page publications
 
 Meteor.publishComposite('mostPopularAchievements', {
@@ -359,14 +313,17 @@ Meteor.publish('completedAchievements', function() {
 			}
 		}
 	]);
+	var rank = 0;
 	Meteor._debug(completedAchievements);
 	_.each(completedAchievements, function(completedAchievement) {
+		rank++;
 		var user = Meteor.users.findOne({ _id: completedAchievement._id });
 		var userGamertag = user.profile.gamercard.gamertag;
 		var userPicture = user.profile.gamercard.gamerpicLargeImagePath;
 		self.added('completedachievements', userGamertag, {
 			userPicture: userPicture,
-			achievementCount: completedAchievement.achievementCount
+			achievementCount: completedAchievement.achievementCount,
+			rank: rank
 		});
 	});
 	self.ready();
@@ -387,26 +344,31 @@ Meteor.publish('completedGames', function() {
 			}
 		}
 	]);
+	var rank = 0;
 	Meteor._debug(completedGames);
 	_.each(completedGames, function(completedGame) {
+		rank++;
 		var user = Meteor.users.findOne({ _id: completedGame._id });
 		var userGamertag = user.profile.gamercard.gamertag;
 		var userPicture = user.profile.gamercard.gamerpicLargeImagePath;
 		self.added('completedgames', userGamertag, {
 			userPicture: userPicture,
-			gameCount: completedGame.gameCount
+			gameCount: completedGame.gameCount,
+			rank: rank
 		});
 	});
 	self.ready();
 });
 
 Meteor.publish('maxGamerscore', function() {
+	var rank = 0;
 	return usersByGamerscore = Meteor.users.find({}, {
 		$sort: { "profile.gamercard.gamerscore": -1 },
 		fields: {
 			"profile.gamercard.gamertag": 1,
 			"profile.gamercard.gamerscore": 1,
-			"profile.gamercard.gamerpicLargeImagePath": 1
+			"profile.gamercard.gamerpicLargeImagePath": 1,
+			"profile.userOverallRank": 1
 		},
 		limit: 100
 	});

@@ -1,9 +1,14 @@
 Meteor.startup(function() {
 
 	//config and Account email verification templates
-
-	process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
-	//process.env.MAIL_URL="smtp://keith%40xbdash.com:kgZH!1987@smtp.zoho.com:465/";
+	//process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
+	Mandrill.config({
+		username: 'keith@xbdash.com',  // the email address you log into Mandrill with. Only used to set MAIL_URL.
+		key: 'Ex1VrXdHhGPIZE6D3a75BQ',  // get your Mandrill key from https://mandrillapp.com/settings/index
+		port: 587,  // defaults to 465 for SMTP over TLS
+		host: 'smtp.mandrillapp.com',  // the SMTP host
+		baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
+	});
 
 	//function to find the  achievements
 	//tiering function for achievements

@@ -10,13 +10,6 @@
         </div>
         {{> navLandingPage}}
       </div>
-      <div class="container-fluid hidden-sm hidden-xs secondary">
-        <ul class="nav navbar-nav">
-          <li><a href="{{pathFor 'achievementsPage'}}">Achievements</a></li>
-          <li><a href="{{pathFor 'gamesPage'}}">Games</a></li>
-          <li><a href="{{pathFor 'newsPage'}}">News</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
 </template>
@@ -49,8 +42,7 @@
 </template>
 
 <template name="navLandingPageLinks">
-  <li><a href="#what" data-ride="scroll">What is {{appName}}</a></li>
-  <li><a href="#features" data-ride="scroll">Features</a></li>
-  <li><a href="#homeFaqs" data-ride="scroll">FAQs</a></li>
-  <li><a href="#contactBox" id="contactBox">Contact Us</a></li>
+  <li><a href="{{pathFor 'achievementsPage'}}"><i class="fa w-1x fa-trophy text-white"></i> Achievements</a></li>
+  <li><a href="{{pathFor 'gamesPage'}}"><img width="20" height="20" src="/img/xbox12-white-50.png" style="margin-top: -3px"> Games</a></li>
+  <li><a href="{{pathFor 'newsPage'}}"><i class="fa w-1x fa-newspaper-o text-white"></i> News</a></li>
 </template>

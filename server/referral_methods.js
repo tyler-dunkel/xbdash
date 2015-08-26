@@ -15,15 +15,14 @@ Meteor.startup(function() {
 Meteor.methods({
 	userReferred: function(user, referrerId) {
 		var referee = Meteor.users.findOne({"emails.address": user.email});
-		Meteor._debug(referee);
 		check(referrerId, String);
 		var referrer = Meteor.users.findOne({_id: referrerId});
-		userReferrals.insert({referrerId: referrerId, refereeId: referee._id, verified: false});
+		userReferrals.insert({ referrerId: referrerId, refereeId: referee._id, verified: false });
 	},
 	userReferredSocialSignup: function(refereeId, referrerId) {
 		check(referrerId, String);
 		check(refereeId, String);
-		userReferrals.insert({referrerId: referrerId, refereeId: refereeId, verified: true});
+		userReferrals.insert({ referrerId: referrerId, refereeId: refereeId, verified: true });
 	},
 	referralEmail: function(email1, email2, subject, text) {
 		Email.send({
@@ -36,7 +35,6 @@ Meteor.methods({
 	},
 	userHasSeenReferralBox: function() {
 		var user = Meteor.user();
-		Meteor._debug(user);
-		Meteor.users.upsert({_id: user._id}, {$set: {userSeenReferralBox: true}});
+		Meteor.users.upsert({ _id: user._id }, { $set: {userSeenReferralBox: true }});
 	}
 });
