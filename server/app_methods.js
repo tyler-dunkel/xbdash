@@ -1,31 +1,5 @@
 Meteor.methods({
-	setTwitterEmail: function(email) {
-		Meteor._debug("email method firing");
-		check(email, String);
-		
-		if (!email.match(/@/)) {
-			throw new Meteor.Error("twtEmailError", "This email is not valid.");
-		}
-
-		var userId = Meteor.userId();
-		var emails = [];
-		emails[0] = {address: email, verified: false};
-
-		Meteor.users.upsert({ _id: userId }, { $set: { emails: emails } });
-		return;
-	},
-	contactUsEmail: function(name, email, subject, text) {
-		check([name, subject, text], [String]);
-
-		Mandrill.messages.send({
-			from_email: "contact@xbdash.com",
-			from_name: "XBdash",
-			to: "kguirao87@gmail.com",
-			subject: subject,
-			text: text
-		});
-		return;
-	}/*,
+	/*,
     sendWelcomeEmail: function (user, from, subject, text) {
         check([from, subject, text], [String]);
         this.unblock();

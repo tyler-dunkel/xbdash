@@ -10,7 +10,6 @@ Template.achievementSingleComment.rendered = function() {
     	var matches = this.data.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g);
     	if (matches) {
     		matches = matches[0].match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
-    		console.log(matches)
     	}
     	else {
     		console.log("no matches");
@@ -25,8 +24,11 @@ Template.achievementSingleComment.rendered = function() {
     		return '//www.youtube.com/embed/' + matches[2];
     	})
     	iframe.insertAfter(this);
+    	console.log(this.data);
+    	console.log(typeof this.data);
 	});
-	this.$('p').text().replace(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g, '');
+
+	//this.$('p').text().replace(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g, '');
 }
 
 Template.achievementSingleComment.helpers({

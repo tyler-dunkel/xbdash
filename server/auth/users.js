@@ -58,12 +58,3 @@ UserStatus.events.on("connectionLogin", function(fields) {
 UserStatus.events.on("connectionLogout", function(fields) {
 	
 });
-
-Meteor.methods({
-	deleteUser: function () {
-		var user = Meteor.user();
-		userAchievements.remove({ userId: user._id });
-		userGames.remove({ userId: user._id });
-		Meteor.users.remove({ _id: user._id });
-	}
-});

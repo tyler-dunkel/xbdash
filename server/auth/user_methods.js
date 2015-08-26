@@ -1,18 +1,37 @@
-Meteor.startup(function() {
-	/*
-	var userId = Meteor.users.findOne({})._id;
-	for(var i=0; i < 10; i++) {
-		if (i > 5) {
-			userReferrals.insert({referrerId: userId, refereeId: userId, verified: false });
-		}
-		else {
-			userReferrals.insert({referrerId: userId, refereeId: userId, verified: true });
-		}
-	}
-	*/
-});
-
 Meteor.methods({
+	setTwitterEmail: function(email) {
+		Meteor._debug("email method firing");
+		check(email, String);
+		
+		if (!email.match(/@/)) {
+			throw new Meteor.Error("twtEmailError", "This email is not valid.");
+		}
+
+		var userId = Meteor.userId();
+		var emails = [];
+		emails[0] = {address: email, verified: false};
+
+		Meteor.users.upsert({ _id: userId }, { $set: { emails: emails } });
+		return;
+	},
+	contactUsEmail: function(name, email, subject, text) {
+		check([name, subject, text], [String]);
+
+		Mandrill.messages.send({
+			from_email: "contact@xbdash.com",
+			from_name: "XBdash",
+			to: "kguirao87@gmail.com",
+			subject: subject,
+			text: text
+		});
+		return;
+	},
+	deleteUser: function () {
+		var user = Meteor.user();
+		userAchievements.remove({ userId: user._id });
+		userGames.remove({ userId: user._id });
+		Meteor.users.remove({ _id: user._id });
+	},
 	userReferred: function(user, referrerId) {
 		var referee = Meteor.users.findOne({"emails.address": user.email});
 		check(referrerId, String);
