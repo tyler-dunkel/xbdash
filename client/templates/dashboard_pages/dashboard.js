@@ -87,32 +87,4 @@ Template.dashboard.rendered = function() {
 };
 
 Template.dashboardApp.helpers({
-    currentGamerscore: function () {
-        var user = Meteor.user();
-        return numberFormatter(user.profile.gamercard.gamerscore);
-    },
-    maxGamerscore: function () {
-        var userId = Meteor.userId();
-        var userGamesFind = userGames.find({ userId: userId });
-        var maxGamerscore = 0;
-        userGamesFind.forEach(function(userGame) {
-            var gameId = userGame.gameId;
-            var getGame = xbdGames.findOne({ _id: gameId });
-            maxGamerscore += getGame.maxGamerscore;
-        });
-        return numberFormatter(maxGamerscore);
-    },
-    gamerscorePercentage: function () {
-        var user = Meteor.user();
-        var currentGamerscore = user.profile.gamercard.gamerscore;
-        var userGamesFind = userGames.find({ userId: user._id });
-        var maxGamerscore = 0;
-        userGamesFind.forEach(function(userGame) {
-            var gameId = userGame.gameId;
-            var getGame = xbdGames.findOne({ _id: gameId });
-            maxGamerscore += getGame.maxGamerscore;
-        });
-        var gamerscorePercentage = Math.round(currentGamerscore / maxGamerscore * 100);
-        return numberFormatter(gamerscorePercentage);
-    }
 });

@@ -20,6 +20,7 @@ Template.recentActivityLine.created = function() {
         if (error) {
             console.log(error);
             self.data.totalAchievements = 100;
+            return;
         }
         totalAchievementDependency.changed();
         self.data.totalAchievements = result;

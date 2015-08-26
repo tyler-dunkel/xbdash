@@ -12,24 +12,43 @@ Accounts.config({
 	sendVerificationEmail: true
 });
 
+var unsubscribeLink = "http://xboxdash.us11.list-manage1.com/unsubscribe?u=c66cacf1f6aa0c1dc079eeb16&id=1f53442338";
 
-// By default, the email is sent from no-reply@meteor.com. If you wish to receive email from users asking for help with their account, be sure to set this to an email address that you can receive email at.
-// Accounts.emailTemplates.from = 'XBdash <bugs@xbdash.com>';
-Accounts.emailTemplates.from = 'XBdash <xboxdashbugreporter@gmail.com>';
-
-// The public name of your application. Defaults to the DNS name of the application (eg: awesome.meteor.com).
-///Accounts.emailTemplates.siteName = 'XBdash';
-
-// A Function that takes a user object and returns a String for the subject line of the email.
+Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';
+Accounts.emailTemplates.siteName = 'XBdash';
 Accounts.emailTemplates.verifyEmail.subject = function(user) {
-	return 'Confirm Your Email Address';
-};
+    return 'Activate your XBdash account';
+}
+Accounts.emailTemplates.verifyEmail.html = function (user, url) {
+    var result;
+    try {
+        result = Mandrill.templates.render({
+            template_name: 'verify-email',
+            template_content: [
+                {
+                    name: 'CONFIRMURL',
+                    content: url
+                },
+                {
+                    name: 'UNSUB',
+                    content: unsubscribeLink
+                }
+            ],
+            merge_vars: [
+                {
+                    name: 'CONFIRMURL',
+                    content: url
+                }
+            ]
+        });
+    } catch (error) {
+    	console.error('Error while rendering Mandrill template', error);
+    }
+    return result.data.html;
+}
 
-// A Function that takes a user object and a url, and returns the body text for the email.
-Accounts.emailTemplates.verifyEmail.html = function(user, url) {
-	var template = '<div style="text-align:center;"><img src="/img/xbdash_green.png" /></div>';
-	template += '<p>Click on the following link to verify your email address: ' + url + '</p>';
-	return template;
+Accounts.emailTemplates.headers = {
+    'X-MC-AutoText': true
 };
 
 UserStatus.events.on("connectionLogin", function(fields) {

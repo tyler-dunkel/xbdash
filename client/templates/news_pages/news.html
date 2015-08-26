@@ -36,9 +36,7 @@
                   {{/if}}
                 </div>
                 {{#if hasMoreResults}}
-                  <div class="text-center m-t-lg m-b-lg">
-                    <div id="hasMoreResults"><span>loading</span></div>
-                  </div>
+                  <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
                 {{/if}}
               </div>
               <div class="wrapper-md col-lg-4 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">

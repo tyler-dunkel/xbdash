@@ -58,3 +58,29 @@
     {{> loadingTemplate}}
   {{/if}}
 </template>
+
+<template name="dashboardStatGs">
+  <div class="col-xs-12 m-b-md">
+    <div class="r bg-light dker item hbox no-border">
+      <div class="col w-xs v-middle hidden-md">
+        <i class="fa fa-trophy icon fa-3x"></i>
+      </div>
+      <div class="col dk padder-v r-r">
+        <div class="text-dark font-thin h1 p-container">
+          <div class="p-flipper">
+            <div class="p-front">
+              <span>{{currentGamerscore}}</span><span class="font-thin h5"> / {{maxGamerscore}}</span>
+            </div>
+            <span class="p-back">
+              <span class="text-success">{{gamerscorePercentage}}%</span>
+            </span>
+          </div>
+        </div>
+        <span class="text-muted text-xs">Current Gamerscore / Max Gamerscore</span>
+        <div class="top text-right w-full">
+          <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="Your current Gamerscore based on your history over the maximum Gamerscore you can get if all games in your history have been completed."></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
