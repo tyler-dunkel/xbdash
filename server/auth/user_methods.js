@@ -53,6 +53,7 @@ Meteor.methods({
 		});
 	},
 	userHasSeenReferralBox: function() {
+		this.unblock();
 		var user = Meteor.user();
 		Meteor.users.upsert({ _id: user._id }, { $set: {userSeenReferralBox: true }});
 	}

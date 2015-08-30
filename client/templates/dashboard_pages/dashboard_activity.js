@@ -68,6 +68,7 @@ Template.recentActivityLine.helpers({
         if (parentData && parentData.totalAchievements) {
             return Math.round(parentData.earnedAchievements / parentData.totalAchievements * 100);
         }
+        return 0;
     },
     remainingAchievements: function () {
         totalAchievementDependency.depend();
@@ -75,6 +76,7 @@ Template.recentActivityLine.helpers({
         if (parentData && parentData.totalAchievements) {
             return parentData.totalAchievements - parentData.earnedAchievements;
         }
+        return 0;
     }
 });
 
