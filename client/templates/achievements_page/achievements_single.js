@@ -14,7 +14,6 @@ Template.achievementsSinglePage.helpers({
         if (gameD.platform === 'Durango') {
             return 'img-x360';
         }
-        //return;
     },
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";

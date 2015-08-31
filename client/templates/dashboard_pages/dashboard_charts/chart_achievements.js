@@ -3,8 +3,12 @@ var timeRangeToggle = new ReactiveVar();
 Template.achievementsChart.created = function() {
 	var oneMonth = moment().subtract(1, 'month').toDate();
     timeRangeToggle.set(oneMonth);
-
-	this.subscribe('dashboardMainCharts', timeRangeToggle.get());
+    var self = this;
+    this.autorun(function() {
+    	var dateRange = timeRangeToggle.get();
+    	self.subscribe('dashboardMainCharts', dateRange);
+    });
+    //this.subscribe('dashboardMainCharts', dateRange);
 }
 
 Template.achievementsChart.rendered = function() {

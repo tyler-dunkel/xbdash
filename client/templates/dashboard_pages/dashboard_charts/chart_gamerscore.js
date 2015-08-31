@@ -3,8 +3,11 @@ var timeRangeToggle = new ReactiveVar();
 Template.gamerscoreChart.created = function() {
 	var oneMonth = moment().subtract(1, 'month').toDate();
 	timeRangeToggle.set(oneMonth);
-
-	this.subscribe('dashboardMainCharts', timeRangeToggle.get());
+	var self = this;
+	this.autorun(function() {
+		var dateRange = timeRangeToggle.get();
+		self.subscribe('dashboardMainCharts', dateRange);
+	});
 }
 
 Template.gamerscoreChart.rendered = function() {

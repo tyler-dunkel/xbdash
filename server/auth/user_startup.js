@@ -2,7 +2,7 @@ Meteor.startup(function() {
 	//function to give users an overall rank according to gamerscore
 	Meteor.setInterval(function() {
 		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1} }, { $sort: { "profile.gamercard.gamerscore": -1 } });
-		var userOverallRank = 0;
+		var userOverallRank;
 		
 		if (!users.count()) {
 			Meteor._debug("there is no one signed up");
@@ -11,8 +11,8 @@ Meteor.startup(function() {
 
 		users.forEach(function(user) {
 			Meteor._debug("user ID is: " + user._id);
-			Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userOverallRank": userOverallRank } });
 			userOverallRank++;
+			Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userOverallRank": userOverallRank } });
 		});
 	}, 1000 * 1800);
 
@@ -45,11 +45,11 @@ Meteor.startup(function() {
 
 		//find each user and assign them a daily rank based upon the above computed userDailyGamerscore
 		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1 } }, { $sort: { "profile.userDailyGamerscore": -1 } });
-		var userDailyRank = 0;
+		var userDailyRank;
 
 		users.forEach(function(user){
-			Meteor.users.upsert({ _id: user._id }, { $set: {"profile.userDailyRank": userDailyRank } });
 			userDailyRank++;
+			Meteor.users.upsert({ _id: user._id }, { $set: {"profile.userDailyRank": userDailyRank } });
 		});
 	}, 1000 * 86400);
 });

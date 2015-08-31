@@ -1,7 +1,23 @@
-Meteor.publish('dashboardMainCharts', function(dateRange) {
-	if (!this.userId) return;
-	//Meteor._debug(dateRange);
-	return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, { fields: { userId: 1, progressState: 1, progression: 1 }, sort: { progression: -1 }, limit: 50 });
+// Meteor.publish('dashboardMainCharts', function(dateRange) {
+// 	if (!this.userId) return;
+// 	return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, { fields: { achievementId: 1, userId: 1, progressState: 1, progression: 1 }, sort: { progression: -1 }, limit: 50 });
+// });
+
+Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
+	return {
+		find: function() {
+			if (!this.userId) return;
+			Meteor._debug(dateRange);
+			return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, { fields: { achievementId: 1, userId: 1, progressState: 1, progression: 1 }, sort: { progression: -1 }, limit: 50 });
+		},
+		children: [
+			{
+				find: function(achievement) {
+					return xbdAchievements.find({ _id: achievement.achievementId }, { fields: { value: 1 } });
+				}
+			}
+		]
+	}
 });
 
 Meteor.publishComposite('dashboardGameGenreChart', {
