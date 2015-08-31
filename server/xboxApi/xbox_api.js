@@ -89,6 +89,7 @@ Meteor.methods({
 				updateXbox360Data(userId, result.data);
 			}
 		});
+
 		return "hello world";
 	}
 });

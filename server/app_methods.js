@@ -1,51 +1,123 @@
 Meteor.methods({
-	/*,
-    sendWelcomeEmail: function (user, from, subject, text) {
-        check([from, subject, text], [String]);
-        this.unblock();
+    sendWelcomeEmail: function () {
+    	this.unblock();
 
-        var user = Meteor.user();
-        var userAchievements = userAchievement1s.find({ userId: user._id, progressState: false }, { sort: { progression: -1 }, limit: 2 });
-        var userGames = userGames.find({ userId: user._id, completed: false }, { sort: { lastUnlock: -1 }, limit: 2 });
+		var user = Meteor.user();
+        var userAchievementsCount = userAchievements.find({ userId: user._id, progressState: true }).count();
+        var userTotalAchievements = userAchievements.find({ userId: user._id }).count();
+        var userGamesCount = userGames.find({ userId: user._id, completed: true }).count();
+        var userTotalGames = userGames.find({ userId: user._id }).count();
+        var unsubscribeLink = "http://xboxdash.us11.list-manage1.com/unsubscribe?u=c66cacf1f6aa0c1dc079eeb16&id=1f53442338";
+
+		if (user) {
+			if (_.isEmpty(user.services)) {
+				var userEmail = user.emails[0].address;
+			} else {
+				userEmail = user.services.facebook.email;
+			}
+		}
 
         Mandrill.messages.sendTemplate({
-        	template_name: 'verify-email',
+        	template_name: 'welcome-email',
         	template_content: [
-        	{
-        		name: 'body',
-        		content: 'Breaking news! Federal Agents Raid Gun Shop, Find Weapons'
-        	}
+	        	{
+		        	name: 'FNAME',
+		        	content: user.username
+		        },
+		        {
+		        	name: 'ACOUNT',
+		        	content: userAchievementsCount
+		        },
+		        {
+		        	name: 'ATCOUNT',
+		        	content: userTotalAchievements
+		        },
+		        {
+		        	name: 'GCOUNT',
+		        	content: userGamesCount
+		        },
+		        {
+		        	name: 'GTCOUNT',
+		        	content: userTotalGames
+		        },
+		        {
+		        	name: 'UNSUB',
+		        	content: unsubscribeLink
+		        }
         	],
         	message: {
-        		subject:	'Verify Your Email Address',
-        		from_email:	'contact@xbdash.com',
+        		subject: "Welcome to XBdash, " + user.username,
         		to: [
-        		{ email: user.emails[0].address }
+        			{
+	        			email: userEmail,
+	        			name: user.username
+	        		}
         		],
+        		auto_text: true,
+        		inline_css: true,
+        		merge_language: 'mailchimp',
 		        global_merge_vars: [
-		        {
-		        	name: 'NAME',
-		        	content: user.username
-		        }
+			        {
+			        	name: 'FNAME',
+			        	content: user.username
+			        },
+			        {
+			        	name: 'ACOUNT',
+			        	content: userAchievementsCount
+			        },
+			        {
+			        	name: 'ATCOUNT',
+			        	content: userTotalAchievements
+			        },
+			        {
+			        	name: 'GCOUNT',
+			        	content: userGamesCount
+			        },
+			        {
+			        	name: 'GTCOUNT',
+			        	content: userTotalGames
+			        },
+			        {
+			        	name: 'UNSUB',
+			        	content: unsubscribeLink
+			        }
 		        ],
 		        merge_vars: [
-		        {
-		        	rcpt: 'email@example.com',
-		        	vars: [
 		        	{
-		        		name: 'fname',
-		        		content: 'John'
-		        	},
-		        	{
-		        		name: 'lname',
-		        		content: 'Smith'
-		        	}
-		        	]
-		        }
+		        		rcpt: userEmail,
+		        		vars: [
+					        {
+					        	name: 'FNAME',
+					        	content: user.username
+					        },
+					        {
+					        	name: 'ACOUNT',
+					        	content: userAchievementsCount
+					        },
+					        {
+					        	name: 'ATCOUNT',
+					        	content: userTotalAchievements
+					        },
+					        {
+					        	name: 'GCOUNT',
+					        	content: userGamesCount
+					        },
+					        {
+					        	name: 'GTCOUNT',
+					        	content: userTotalGames
+					        },
+					        {
+					        	name: 'UNSUB',
+					        	content: unsubscribeLink
+					        }
+					    ]
+					}
 		        ]
 		    }
 		});
+
+		Meteor.users.upsert({ _id: user._id }, { $set: { userSentWelcomeEmail: true } });
+		Meteor._debug('welcome sent!');
 		return;
     }
-    */
 });

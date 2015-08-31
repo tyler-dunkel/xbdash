@@ -6,13 +6,12 @@ Template.achievementsSinglePage.helpers({
 		var slug = Router.current().params.slug;
 		return xbdAchievements.findOne({ slug: slug });
 	},
-	gameName: function() {
-        var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        return xbdGame.name;
+	game: function() {
+        return xbdGames.findOne({ _id: this.gameId });
     },
     ifXenon: function () {
-        var game = xbdGames.findOne({ _id: this.gameId });
-        if (game.platform === 'Durango') {
+        var gameD = xbdGames.findOne({ _id: this.gameId });
+        if (gameD.platform === 'Durango') {
             return 'img-x360';
         }
         //return;
