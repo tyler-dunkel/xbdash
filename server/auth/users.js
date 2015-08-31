@@ -2,7 +2,10 @@ Accounts.onCreateUser(function(options, user) {
 	if (options.profile) {
 		user.profile = options.profile;
 	}
+    user.profile.userOverallRank = 0;
+    user.profile.userDailyRank = 0;
 	user.gamertagScanned = false;
+    //user.userSentWelcomeEmail = false;
 	user.userSeenReferralBox = false;
 	user.userReferralCount = 0;
 	return user;
@@ -11,8 +14,6 @@ Accounts.onCreateUser(function(options, user) {
 Accounts.config({
 	sendVerificationEmail: true
 });
-
-var unsubscribeLink = "http://xboxdash.us11.list-manage1.com/unsubscribe?u=c66cacf1f6aa0c1dc079eeb16&id=1f53442338";
 
 Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';
 Accounts.emailTemplates.siteName = 'XBdash';
@@ -30,19 +31,57 @@ Accounts.emailTemplates.verifyEmail.html = function (user, url) {
                     content: url
                 },
                 {
-                    name: 'UNSUB',
-                    content: unsubscribeLink
+                    name: 'FNAME',
+                    content: user.username
                 }
             ],
             merge_vars: [
                 {
                     name: 'CONFIRMURL',
                     content: url
+                },
+                {
+                    name: 'FNAME',
+                    content: user.username
                 }
             ]
         });
     } catch (error) {
     	console.error('Error while rendering Mandrill template', error);
+    }
+    return result.data.html;
+}
+Accounts.emailTemplates.resetPassword.subject = function(user) {
+    return 'XBdash Account Password Reset';
+}
+Accounts.emailTemplates.resetPassword.html = function (user, url) {
+    var result;
+    try {
+        result = Mandrill.templates.render({
+            template_name: 'reset-password',
+            template_content: [
+                {
+                    name: 'RESETURL',
+                    content: url
+                },
+                {
+                    name: 'FNAME',
+                    content: user.username
+                }
+            ],
+            merge_vars: [
+                {
+                    name: 'RESETURL',
+                    content: url
+                },
+                {
+                    name: 'FNAME',
+                    content: user.username
+                }
+            ]
+        });
+    } catch (error) {
+        console.error('Error while rendering Mandrill template', error);
     }
     return result.data.html;
 }

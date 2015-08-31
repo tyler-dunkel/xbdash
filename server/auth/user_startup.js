@@ -1,8 +1,8 @@
 Meteor.startup(function() {
 	//function to give users an overall rank according to gamerscore
 	Meteor.setInterval(function() {
-		var users = Meteor.users.find({"profile.gamercard.gamerscore": {$gt: 1}}, {$sort: {"profile.gamercard.gamerscore": -1}});
-		var userOverallRank = 1;
+		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1} }, { $sort: { "profile.gamercard.gamerscore": -1 } });
+		var userOverallRank = 0;
 		
 		if (!users.count()) {
 			Meteor._debug("there is no one signed up");
@@ -11,20 +11,20 @@ Meteor.startup(function() {
 
 		users.forEach(function(user) {
 			Meteor._debug("user ID is: " + user._id);
-			Meteor.users.upsert({_id: user._id}, {$set: {"profile.userOverallRank": userOverallRank}});
+			Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userOverallRank": userOverallRank } });
 			userOverallRank++;
 		});
-	}, 50000);
+	}, 1000 * 1800);
 
 	//function to count a users gamerscore gains for the day and creating a daily rank according to gamerscore
 	Meteor.setInterval(function() {
 		var count = 0;
-		var users = Meteor.users.find({"profile.gamercard.gamerscore": {$gt: 1}});
+		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1 } });
 		var oneDay = moment().startOf('day').toDate();
 
 		//find each users gamerscore for the past 24 hours and put it into a field called userDailyGamerscore
 		users.forEach(function(user){
-			var userDailyAchievements = userAchievements.find({userId: user._id, progressState: true, progression: {$gte: oneDay}});
+			var userDailyAchievements = userAchievements.find({ userId: user._id, progressState: true, progression: { $gte: oneDay } });
 			if (!userDailyAchievements.count()) {
 				Meteor._debug("this guys a fool and hasnt achieved anything today");
 				return;
@@ -39,17 +39,17 @@ Meteor.startup(function() {
 				userDailyGamerscore += singleAchievement.value;
 				//Meteor._debug(userDailyGamerscore);
 			});
-			Meteor.users.upsert({_id: user._id}, {$set: {"profile.userDailyGamerscore": userDailyGamerscore}});
+			Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userDailyGamerscore": userDailyGamerscore } });
 			Meteor._debug(count);
 		});
 
 		//find each user and assign them a daily rank based upon the above computed userDailyGamerscore
-		var users = Meteor.users.find({"profile.gamercard.gamerscore": {$gt: 1}}, {$sort: {"profile.userDailyGamerscore": -1}});
-		var userDailyRank = 1;
+		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1 } }, { $sort: { "profile.userDailyGamerscore": -1 } });
+		var userDailyRank = 0;
 
 		users.forEach(function(user){
-			Meteor.users.upsert({_id: user._id}, {$set: {"profile.userDailyRank": userDailyRank}});
+			Meteor.users.upsert({ _id: user._id }, { $set: {"profile.userDailyRank": userDailyRank } });
 			userDailyRank++;
 		});
-	}, 50000);
+	}, 1000 * 86400);
 });

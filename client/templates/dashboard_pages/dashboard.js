@@ -25,9 +25,6 @@ Template.dashboard.rendered = function() {
                         "<div class='col-xs-12 col-md-12 form-group'>" +
                             "<input id='email-one' name='email1' type='email' placeholder='Email 1' class='form-control input-xlarge'>" +
                         "</div>" + 
-                        "<div class='col-xs-12 col-md-12 form-group'>" +
-                            "<input id='email-two' name='email2' type='email' placeholder='Email 2' class='form-control input-xlarge'>" +
-                        "</div>" +  
                     "</div>" + 
                     "</form>" +
                     "</div>" +
@@ -43,7 +40,6 @@ Template.dashboard.rendered = function() {
                     className: "btn-success",
                     callback: function () {
                         var email1 = $('#email-one').val();
-                        var email2 = $('#email-two').val();
                         var user = Meteor.user();
                         var subject = user.username + " has invited you to XBdash";
                         var inviteLink = "Link here";
@@ -58,7 +54,6 @@ Template.dashboard.rendered = function() {
                         Meteor.call(
                             'referralEmail',
                             email1,
-                            email2,
                             subject,
                             text,
                             function (error, result) {

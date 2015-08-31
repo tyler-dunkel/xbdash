@@ -9,13 +9,11 @@
 
 <template name="mostSharedNewsLine">
 	<div class="media">
-		<a href="{{pathFor 'article'}}" class="pull-left thumb-xxl thumb-wrapper m-r-sm">
-			<img src="{{getImage}}" class="thumb-xxl" />
-		</a>
-		<div class="clear">
-			<a href="{{pathFor 'article'}}" class="font-semibold"><h4 class="m-b-xs">{{title}}</h4></a>
+		<a href="{{pathFor 'article'}}" class="thumb-xxxl m-r-sm">
+			<img src="{{getImage}}" class="thumb-xxxl" />
+			<h4 class="m-b-xs">{{title}}</h4>
 			<div class="text-xs block">{{updatedDate}}</div>
-		</div>
+		</a>
 	</div>
 	<div class="line"></div>
 </template>

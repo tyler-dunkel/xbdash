@@ -8,6 +8,10 @@ function convertToArray(dict) {
 	return results;
 }
 
+Template.gamesChart.created = function() {
+	this.subscribe('dashboardGameGenreChart');
+}
+
 Template.gamesChart.rendered = function() {
 	var margin = {top: 15, right: 0, bottom: 15, left: 0},
 		width = $(".chart-wrapper").width(),

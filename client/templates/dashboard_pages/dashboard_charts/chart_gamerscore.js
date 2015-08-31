@@ -1,5 +1,12 @@
 var timeRangeToggle = new ReactiveVar();
 
+Template.gamerscoreChart.created = function() {
+	var oneMonth = moment().subtract(1, 'month').toDate();
+	timeRangeToggle.set(oneMonth);
+
+	this.subscribe('dashboardMainCharts', timeRangeToggle.get());
+}
+
 Template.gamerscoreChart.rendered = function() {
 	var userId = Meteor.userId();
 	var margin = {top: 0, right: 0, bottom: 15, left: 25},
@@ -9,8 +16,7 @@ Template.gamerscoreChart.rendered = function() {
 	var oneMonth = moment().subtract(1, 'month').toDate();
     timeRangeToggle.set(oneMonth);
 
-    var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: oneMonth} }, 
-			{ sort: { progression: -1 }, limit: 50 }).fetch();
+    var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: oneMonth} }, { sort: { progression: -1 }, limit: 50 }).fetch();
 
 	resizeGamerscoreChart = function resizeGamerscoreChart() {
 		// Find the new window dimensions
@@ -19,8 +25,7 @@ Template.gamerscoreChart.rendered = function() {
 			height = 300;
 
 		var timeToggle = timeRangeToggle.get();
-		var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: timeToggle} }, 
-			{ sort: { progression: -1 }, limit: 50 }).fetch();
+		var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: timeToggle} }, { sort: { progression: -1 }, limit: 50 }).fetch();
 
 		x.range([0, width - margin.left - margin.right]);
 		y.range([height - margin.bottom, 0]);

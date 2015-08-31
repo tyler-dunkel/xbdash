@@ -8,7 +8,7 @@ Template.recentActivityColumn.created = function() {
 Template.recentActivityColumn.helpers({
     gamesList: function () {
         var userId = Meteor.userId();
-        var game = userGames.find({ userId: userId, currentGamerscore: { $gt: 1 }}, { sort: { lastUnlock: -1 }, limit: 10 });
+        var game = userGames.find({ userId: userId }, { sort: { lastUnlock: -1 }, limit: 10 });
         return game;
     }
 });

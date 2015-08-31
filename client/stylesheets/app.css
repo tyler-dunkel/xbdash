@@ -1190,11 +1190,11 @@ body {
   }
 }
 
-html {
+/*html {
   background: url('../img/bg.jpg');
   background-attachment: fixed;
   background-size: cover;
-}
+}*/
 
 .app.container {
   padding-right: 0;
@@ -5088,6 +5088,11 @@ ul.signin > li.active {
   height: 100%;
 }
 
+.thumb-xxxl {
+  display: inline-block;
+  width: 245px;
+}
+
 .thumb-xxl {
   display: inline-block;
   width: 150px;
@@ -5823,6 +5828,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   max-width: 60ch;
 }
 
+.blog-post.news {width: 640px; margin: 0 auto;}
 .blog-post p {font-size: 16px; line-height: 1.5em; padding: 0 10px;}
 .blog-post img {max-width: 640px; width: 100%; height: auto; margin: 0 auto 15px;}
 .blog-post .left {text-align: left;}

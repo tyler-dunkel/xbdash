@@ -43,11 +43,11 @@ Meteor.methods({
 		check(refereeId, String);
 		userReferrals.insert({ referrerId: referrerId, refereeId: refereeId, verified: true });
 	},
-	referralEmail: function(email1, email2, subject, text) {
-		Email.send({
-			//from: "XBdash <contact@xbdash.com>",
-			from: "XBdash <xboxdashbugreporter@gmail.com>",
-			to: email1 + ", " + email2,
+	referralEmail: function(email1, subject, text) {
+		Mandrill.messages.send({
+			from: "XBdash <contact@xbdash.com>",
+			//from: "XBdash <xboxdashbugreporter@gmail.com>",
+			to: email1,
 			subject: subject,
 			text: text
 		});

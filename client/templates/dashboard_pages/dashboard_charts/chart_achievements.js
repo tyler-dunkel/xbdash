@@ -1,5 +1,12 @@
 var timeRangeToggle = new ReactiveVar();
 
+Template.achievementsChart.created = function() {
+	var oneMonth = moment().subtract(1, 'month').toDate();
+    timeRangeToggle.set(oneMonth);
+
+	this.subscribe('dashboardMainCharts', timeRangeToggle.get());
+}
+
 Template.achievementsChart.rendered = function() {
 	var margin = {top: 0, right: 0, bottom: 15, left: 25},
 		width = $(".chart-wrapper").width(),
@@ -11,8 +18,8 @@ Template.achievementsChart.rendered = function() {
 	//collect the data and arrange it for the first time on render
 	var userId = Meteor.userId();
 	var achievementData = new Array();
-	var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gt: oneMonth} }, 
-															{ sort: { progression: -1 }, limit: 50 }).fetch();
+	var userAchievementsDataSet = userAchievements.find({ userId: userId, progression: {$gt: oneMonth} }, { sort: { progression: -1 }, limit: 50 }).fetch();
+	console.log(userAchievementsDataSet);
 	var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {
 				return moment(date).format("MMM D"); // May 22
 			});
@@ -33,8 +40,7 @@ Template.achievementsChart.rendered = function() {
 
 		var achievementData = new Array();
 		var timeToggle = timeRangeToggle.get();
-		var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gt: timeToggle} }, 
-																{ sort: { progression: -1 }, limit: 50 }).fetch();
+		var userAchievementsDataSet = userAchievements.find({ userId: userId, progression: {$gt: timeToggle} }, { sort: { progression: -1 }, limit: 50 }).fetch();
 		var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {
 					return moment(date).format("MMM D"); // May 22
 				});
@@ -164,8 +170,7 @@ Template.achievementsChart.rendered = function() {
 
 		if (!comp.firstRun) {
 			d3.select('#achievement-line').remove();
-			var userAchievementsDataSet = userAchievements.find({ userId: userId, progressState: true, progression: {$gte: timeToggle} }, 
-																	{ sort: { progression: -1 }, limit: 50 }).fetch();
+			var userAchievementsDataSet = userAchievements.find({ userId: userId, progression: {$gte: timeToggle} }, { sort: { progression: -1 }, limit: 50 }).fetch();
 
 			//group the achievements by a month-day date. * time of day is excluded on purpose
 			var groupedDates = _.groupBy(_.pluck(userAchievementsDataSet, 'progression'), function(date) {

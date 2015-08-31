@@ -4,13 +4,14 @@
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<!-- main -->
 				<div class="col">
+					{{#with article}}
 					<!-- main header -->
 					<div class="bg-light lter b-b wrapper-md">
 						<div class="row">
 							<div class="col-md-12 col-xs-12">
-								<h1 class="font-thin h3 text-black m-b-xs">{{article.title}}</h1>
+								<h1 class="font-thin h3 text-black m-b-xs">{{title}}</h1>
 								<div class="text-muted">
-									<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{article.author}}</span>
+									<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}}</span>
 									<i class="fa fa-clock-o text-muted"></i> {{published}}
 								</div>
 							</div>
@@ -19,24 +20,31 @@
 					<div class="wrapper-md">
 						<!-- stats -->
 						<div class="row">
-							<div class="col-xl-5 col-lg-7 col-md-8 col-sm-12 col-xs-12">
-								<div class="blog-post">
-									{{{article.content}}}
-								</div>
-								<div class="text-center m-t-lg m-b-lg">
-									{{> shareit shareData}}
-								</div>
-							</div>
-							<div class="visible-xl-block col-xl-3 hidden-lg hidden-md hidden-sm hidden-xs">
+							<div class="visible-xl-block col-xl-2 hidden-lg hidden-md hidden-sm hidden-xs">
 								{{> mostSharedNews limit=10}}
 							</div>
+							<div class="col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
+								<div style="width: 728px; height: 90px; background-color: #fff; margin: 15px auto;">
+									Ad Banner (728x90) or (336x280)
+								</div>
+								<div class="blog-post news">
+									{{{content}}}
+									<div class="text-center m-t-lg m-b-lg">
+										{{> shareit shareData}}
+									</div>
+									<div class="comment-section">
+									    {{> commentsBox id=this._id customTemplate="newsCommentBox"}}
+									</div>
+								</div>
+							</div>
 							<div class="col-xl-3 col-lg-5 col-md-4 col-sm-12 col-xs-12">
-								<div style="width: 300px; height: 600px; background-color: #fff; margin: 10px auto;">
+								<div style="width: 300px; height: 600px; background-color: #fff; margin: 15px auto;">
 									Ad Banner (300x600) or (160x600)
 								</div>
 							</div>
 						</div>
 					</div>
+					{{/with}}
 				</div>
 			</div>
 		</div>

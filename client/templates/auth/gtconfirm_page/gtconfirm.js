@@ -79,6 +79,7 @@ Template.confirmGt.events({
 				"<div class='double-bounce1'></div> " + 
  				"<div class='double-bounce2'></div> " +
 				"</div>";
+
 		if (! Session.get('loadingScreen')) {
 			loading = window.pleaseWait({
 				logo: 'img/xboxdash_whiteicon.png',
@@ -87,6 +88,7 @@ Template.confirmGt.events({
 			});
 			Session.set('loadingScreen', true);
 		}
+		
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
 			if (typeof error != 'undefined') {
 				if (loading) {
@@ -111,6 +113,7 @@ Template.confirmGt.events({
 						loading.finish();
 						Session.set('loadingScreen', false);
 					}
+					Meteor.call('sendWelcomeEmail');
 					Router.go('home');
 					return;
 				});
