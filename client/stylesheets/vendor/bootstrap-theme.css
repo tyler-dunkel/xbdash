@@ -95,7 +95,8 @@
   background-color: #265a88;
   background-image: none;
 }
-.btn-success {
+.btn-success,
+.comment-section .btn-primary {
   background-image: -webkit-linear-gradient(top, #138013 0%, #0f620f 100%);
   background-image:      -o-linear-gradient(top, #138013 0%, #0f620f 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#138013), to(#0f620f));

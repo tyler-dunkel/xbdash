@@ -40,7 +40,7 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   line-height: 1.42857143;
-  color: #58666e;
+  color: #1C2B36;
   background-color: transparent;
 }
 
@@ -1963,7 +1963,8 @@ fieldset[disabled] .btn-primary.active {
   border-color: #138013;
 }
 
-.btn-success {
+.btn-success,
+.comments-section .btn-primary {
   color: #ffffff !important;
   background-color: #138013;
   border-color: #138013;
@@ -1973,6 +1974,10 @@ fieldset[disabled] .btn-primary.active {
 .btn-success:focus,
 .btn-success:active,
 .btn-success.active,
+.comment-section .btn-primary:hover,
+.comment-section .btn-primary:focus,
+.comment-section .btn-primary:active,
+.comment-section .btn-primary.active,
 .open .dropdown-toggle.btn-success {
   color: #ffffff !important;
   background-color: #23ad44;
@@ -1981,6 +1986,8 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-success:active,
 .btn-success.active,
+.comment-section .btn-primary:active,
+.comment-section .btn-primary.active,
 .open .dropdown-toggle.btn-success {
   background-image: none;
 }
@@ -5089,8 +5096,8 @@ ul.signin > li.active {
 }
 
 .thumb-xxxl {
-  display: inline-block;
-  width: 245px;
+  display: inline;
+  width: 237px;
 }
 
 .thumb-xxl {
@@ -5830,11 +5837,31 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 
 .blog-post.news {width: 640px; margin: 0 auto;}
 .blog-post p {font-size: 16px; line-height: 1.5em; padding: 0 10px;}
+.comments p.comment-content {font-size: 14px; margin: 0 0 10px;}
 .blog-post img {max-width: 640px; width: 100%; height: auto; margin: 0 auto 15px;}
 .blog-post .left {text-align: left;}
 .blog-post .game-rating img {max-width: 16px; height: auto;}
 .blog-post .chorus-snippet.wide_image { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 15px;}
 .blog-post .chorus-snippet.wide_image iframe, .blog-post .chorus-snippet.wide_image object, .blog-post .chorus-snippet.wide_image embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+.post-image-box {
+  width: 100%;
+  position: relative;
+  padding: 56.25% 0px 0px;
+  overflow: hidden;
+  display: inline-block;
+}
+.post-image-box img {
+  position: absolute;
+  max-height: 100%;
+  margin: auto;
+  left: 0px;
+  display: block;
+  bottom: 0px;
+  right: 0px;
+  top: 0px;
+  max-width: 100%;
+}
 
 .thumb-md2 {width: 114px;}
 .img-x360 {max-width:64px;}
@@ -5873,6 +5900,8 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 
 .media-left img {margin: 7px 0;}
 .comments {margin: 15px 0;}
+.comments .content .actions {margin: 0 0 10px;}
+.comments .media-left img {width: 64px; display: block;}
 
 /* affix css */
 

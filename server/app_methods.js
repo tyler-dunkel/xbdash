@@ -116,7 +116,6 @@ Meteor.methods({
 		    }
 		});
 
-		Meteor.users.upsert({ _id: user._id }, { $set: { userSentWelcomeEmail: true } });
 		Meteor._debug('welcome sent!');
 		return;
     }

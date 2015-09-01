@@ -25,7 +25,8 @@ Meteor.startup(function() {
 	Comments.ui.config({
 	    limit: 5,
 	    loadMoreCount: 10,
-	    template: 'bootstrap'
+	    template: 'bootstrap',
+	    defaultAvatar: '/img/user-default.jpg'
 	});
 
 	// Avatar.options = {

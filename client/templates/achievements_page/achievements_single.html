@@ -10,7 +10,7 @@
 						<div class="row">
 			              <div class="col-sm-6 col-xs-12">
 			                <h1 class="font-thin h3 text-black m-b-xs">{{name}}</h1>
-							<small class="text-muted">Game: <a href="/games/{{game.slug}}">{{game.name}}</a></small>
+							<small class="text-muted">Game: <a href="{{pathFor 'game' slug=game.slug}}">{{game.name}}</a></small>
 			              </div>
 			              <div class="col-sm-6 text-right hidden-xs">
 			                <div class="inline m-r text-left">
@@ -42,15 +42,13 @@
 						</div>
 					</div>
 					<div class="wrapper-md col-xl-5 col-lg-5 col-md-8 col-sm-7 col-xs-12" style="background-color: #fff;">
-						<h2 class="h4 font-bold pull-left padder-t">Solutions</h2>
-						<div class="clearfix"></div>
 						<div class="comment-section">
 						    {{> commentsBox id=this.slug customTemplate="achievementCommentBox"}}
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-3 col-lg-4 hidden-md hidden-sm hidden-xs trending-column">
-						<div style="width: 336px; height: 280px; background-color: #fff; margin: 30px auto;">
-							Ad Banner (336x280) or (160x600)
+					<div class="wrapper-md col-xl-3 col-lg-4 hidden-md hidden-sm trending-column">
+						<div class="xbd-right-sidebar-ad">
+							Google Ad Banner
 						</div>
 						{{> mostSharedNews limit=3}}
 					</div>
