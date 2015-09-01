@@ -1,6 +1,8 @@
 <template name="achievementCommentBox">
-	<h3> {{ take key='title' default='Achievement Comments'}} </h3>
-	{{#if loginAction}}
+    <h2 class="h3 pull-left padder-t"> {{ take key='title' default='Achievement Solutions & Discussions'}} </h2>
+    <div class="clearfix"></div>
+	
+    {{#if loginAction}}
 		<div class="alert alert-warning" role="alert"> You need to login to {{loginAction}}</div>
 	{{/if}}
 
@@ -8,7 +10,7 @@
 
 	<div class="media-list comments">
 		{{#each comment}}
-			{{> achievementSingleComment}}
+			{{> singleComment}}
 		{{/each}}
 	</div>
 
@@ -17,7 +19,28 @@
 	{{/if}}
 </template>
 
-<template name="achievementSingleComment">
+<template name="newsCommentBox">
+    <h2 class="h3 pull-left padder-t">{{ take key='title' default='Comments' }}</h2>
+    <div class="clearfix"></div>
+
+    {{#if loginAction}}
+        <div class="alert alert-warning" role="alert"> You need to login to {{loginAction}}</div>
+    {{/if}}
+
+    {{> textarea}}
+
+    <div class="media-list comments">
+        {{#each comment}}
+            {{> singleComment}}
+        {{/each}}
+    </div>
+
+    {{#if hasMoreComments}}
+        <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+    {{/if}}
+</template>
+
+<template name="singleComment">
 	{{debugger}}
 	<div class="media">
 		<div class="media-left">
@@ -65,10 +88,9 @@
 
             {{#if reply}}
             	{{#each reply}}
-            		{{> achievementSingleComment}}
+            		{{> singleComment}}
             	{{/each}}
             {{/if}}
         </div>
     </div>
 </template>
-

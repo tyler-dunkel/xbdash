@@ -9,6 +9,8 @@ Template.newsTemplate.helpers({
         var image = this.content.match(/<img[^>]*>/);
         if (image) {
             var getImage = image[0].match(/src="(.+?)"/)[1];
+        } else {
+        	getImage = '/img/news-default.jpg';
         }
         return getImage;
 	},

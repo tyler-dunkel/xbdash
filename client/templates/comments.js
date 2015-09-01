@@ -1,8 +1,8 @@
-Template.achievementSingleComment.created = function() {
+Template.singleComment.created = function() {
 	this.subscribe("commentUserImage", this.data.userId);
 }
 
-Template.achievementSingleComment.rendered = function() {
+Template.singleComment.rendered = function() {
 	this.$('p').contents().each(function() {
 		if (this.nodeType !== 3) {
         	return true;
@@ -19,7 +19,7 @@ Template.achievementSingleComment.rendered = function() {
     		console.log("no youtube url");
    			return;
     	}
-    	var iframe = $('<iframe width="350" height="300" frameborder="0" allowfullscreen />');
+        var iframe = $('<iframe width="480" height="270" frameborder="0" allowfullscreen />');
     	iframe.attr('src', function(i, val) {
     		return '//www.youtube.com/embed/' + matches[2];
     	})
@@ -31,16 +31,17 @@ Template.achievementSingleComment.rendered = function() {
 	//this.$('p').text().replace(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g, '');
 }
 
-Template.achievementSingleComment.helpers({
+Template.singleComment.helpers({
 	debugger: function () {
-		//console.log(this);
+		console.log(this);
 	},
 	getUser: function (user){
-		var user = Meteor.users.findOne({_id: this.userId});
+        var user = Meteor.users.findOne({ _id: this.userId });
 		return user.username;
 	},
 	getUserImage: function (user) {
-		var user = Meteor.users.findOne({_id: this.userId});
+        var user = Meteor.users.findOne({ _id: this.userId });
+        console.log(user);
 		return user.profile.gamercard.gamerpicLargeImagePath;
 	},
 	take: function (params) {

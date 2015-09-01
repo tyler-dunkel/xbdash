@@ -17,31 +17,26 @@
 							</div>
 						</div>
 					</div>
-					<div class="wrapper-md">
-						<!-- stats -->
-						<div class="row">
-							<div class="visible-xl-block col-xl-2 hidden-lg hidden-md hidden-sm hidden-xs">
-								{{> mostSharedNews limit=10}}
+					<div class="wrapper-md visible-xl-block col-xl-2 hidden-lg hidden-md hidden-sm hidden-xs trending-column">
+						{{> mostSharedNews limit=8}}
+					</div>
+					<div class="wrapper-md col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
+						<div class="xbd-top-banner-ad">
+							Google Ad Banner
+						</div>
+						<div class="blog-post news">
+							{{{content}}}
+							<div class="text-center m-t-lg m-b-lg">
+								{{> shareit shareData}}
 							</div>
-							<div class="col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
-								<div style="width: 728px; height: 90px; background-color: #fff; margin: 15px auto;">
-									Ad Banner (728x90) or (336x280)
-								</div>
-								<div class="blog-post news">
-									{{{content}}}
-									<div class="text-center m-t-lg m-b-lg">
-										{{> shareit shareData}}
-									</div>
-									<div class="comment-section">
-									    {{> commentsBox id=this._id customTemplate="newsCommentBox"}}
-									</div>
-								</div>
+							<div class="comment-section">
+							    {{> commentsBox id=this._id customTemplate="newsCommentBox"}}
 							</div>
-							<div class="col-xl-3 col-lg-5 col-md-4 col-sm-12 col-xs-12">
-								<div style="width: 300px; height: 600px; background-color: #fff; margin: 15px auto;">
-									Ad Banner (300x600) or (160x600)
-								</div>
-							</div>
+						</div>
+					</div>
+					<div class="wrapper-md col-xl-3 col-lg-5 col-md-4 col-sm-12 col-xs-12">
+						<div class="xbd-right-banner-ad">
+							Google Ad Banner
 						</div>
 					</div>
 					{{/with}}

@@ -1,0 +1,91 @@
+.xbd-top-banner-ad {
+	width: 728px;
+	height: 90px;
+	background-color: #fff;
+	margin: 0 auto 20px;
+}
+@media only screen and (max-width: 991px) {
+	.xbd-top-banner-ad {
+		width: 468px;
+		height: 60px;
+		background-color: #fff;
+		margin: 5px auto 20px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.xbd-top-banner-ad {
+		width: 336px;
+		height: 280px;
+		background-color: #fff;
+		margin: 5px auto 20px;
+	}
+}
+@media only screen and (min-width: 768px) and (min-width: 1267px) {
+	.xbd-top-banner-ad {
+		display: none;
+	}
+}
+.xbd-right-banner-ad {
+	width: 300px;
+	height: 600px;
+	background-color: #fff;
+	margin: 0 auto;
+}
+@media only screen and (max-width: 767px) {
+	.xbd-right-banner-ad {
+		width: 300px;
+		height: 250px;
+		background-color: #fff;
+		margin: 0 auto 15px;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 1267px) {
+	.xbd-right-banner-ad {
+		display: none;
+	}
+}
+@media only screen and (min-width: 1268px) {
+	.xbd-right-banner-ad {
+		width: 160px;
+		height: 600px;
+		background-color: #fff;
+		margin: 0 auto 15px;
+	}
+}
+@media only screen and (min-width: 1541px) {
+	.xbd-right-banner-ad {
+		width: 300px;
+		height: 600px;
+		background-color: #fff;
+		margin: 0 auto 15px;
+	}
+}
+.xbd-right-sidebar-ad {
+	width: 336px;
+	height: 280px;
+	background-color: #fff;
+	margin: 0 auto 20px;
+}
+@media only screen and (max-width: 767px) {
+	.xbd-right-sidebar-ad {
+		width: 300px;
+		height: 250px;
+		background-color: #fff;
+		margin: 20px auto;
+		display: inline-block;
+	}
+	.trending-column {text-align: center;}
+}
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+	.xbd-right-sidebar-ad {
+		display: none;
+	}
+}
+@media only screen and (min-width: 1268px) {
+	.xbd-right-sidebar-ad {
+		width: 300px;
+		height: 250px;
+		background-color: #fff;
+		margin: 0 auto 20px;
+	}
+}
