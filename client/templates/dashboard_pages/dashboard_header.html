@@ -28,7 +28,21 @@
         </a>
       </div>
 
-      {{> dashboardHeaderStats}}
+      <ul class="nav navbar-nav hidden-sm">
+        <li class="dropdown pos-stc {{isDashboardPage}}">
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle {{isStatsDisabled}}">
+            <span>Stats</span> 
+            <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu wrapper w-full bg-light">
+            {{#if Template.subscriptionsReady}}
+              {{> dashboardHeaderStats}}
+            {{else}}
+              {{> loadingTemplate}}
+            {{/if}}
+          </div>
+        </li>
+      </ul>
 
       {{> searchBar}}
 

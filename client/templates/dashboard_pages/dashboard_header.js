@@ -38,3 +38,17 @@ Template.dashboardHeader.events({
         $this.next().is('ul') && e.preventDefault();
     }
 });
+
+Template.dashboardHeader.helpers({
+    isStatsDisabled: function () {
+        var user = Meteor.user();
+        if (!user || !user.gamertagScanned) {
+            return 'disabled hide';
+        }
+    },
+    isDashboardPage: function () {
+        if (Router.current().route.getName() === 'home') {
+            return 'disabled hide';
+        }
+    }
+});
