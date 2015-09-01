@@ -55,27 +55,34 @@
 							</div>
 						</div>
 						<div class="clearfix"></div>
-						<ul class="list-group no-bg no-borders pull-in">
+						<ul class="list-group no-bg no-borders pull-in achievements-list">
 						{{#if Template.subscriptionsReady}}
 						{{#momentum plugin='slide-height'}}
 							{{#each achievementsList}}
 							<li class="list-group-item">
-								<a href="{{pathFor 'achievement'}}" class="thumb-md {{ifDurango}} m-r" style="min-height:64px;">
-								  <img src="{{this.mediaAssets}}" class="">
+								<a href="{{pathFor 'achievement'}}">
+									<div class="pull-left inline">
+										<div class="trophy-class">
+											<i class="fa fa-trophy"></i> {{value}}
+										</div>
+									</div>
+									<div class="thumb-xxl {{chkPlatform}} m-r">
+										<img src="{{this.mediaAssets}}" class="thumb-xxl {{chkPlatform}}">
+									</div>
+									<div class="game-div title-wrap-game2">
+										<a href="{{pathFor 'achievement'}}" class="game-name">{{this.name}}</a>
+										<div class="text-left padder-t title-wrap-game2">
+											{{this.description}}
+										</div>
+									</div>
+									<div class="pull-right bg-black c100 p{{userPercentage}} small hidden-xs" style="">
+									    <span>{{userPercentage}}%</span>
+									    <div class="slice">
+									        <div class="bar"></div>
+									        <div class="fill"></div>
+									    </div>
+									</div>
 								</a>
-								<div class="game-div title-wrap-game2">
-								  <a href="{{pathFor 'achievement'}}" class="game-name">{{this.name}}</a>
-								</div>
-								<div class="pull-right bg-black inline m-t-mdx c100 p{{userPercentage}} small">
-								    <span>{{userPercentage}}%</span>
-								    <div class="slice">
-								        <div class="bar"></div>
-								        <div class="fill"></div>
-								    </div>
-								</div>
-								<div class="text-left padder-t">
-								  {{this.description}}
-								</div>
 							</li>
 							{{/each}}
 						{{/momentum}}
