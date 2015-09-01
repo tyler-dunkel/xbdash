@@ -35,11 +35,7 @@
             <span class="caret"></span>
           </a>
           <div class="dropdown-menu wrapper w-full bg-light">
-            {{#if Template.subscriptionsReady}}
-              {{> dashboardHeaderStats}}
-            {{else}}
-              {{> loadingTemplate}}
-            {{/if}}
+            {{> dashboardHeaderStats}}
           </div>
         </li>
       </ul>
