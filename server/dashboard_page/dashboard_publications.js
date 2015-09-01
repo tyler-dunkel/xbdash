@@ -151,10 +151,3 @@ Meteor.publishComposite('dashboardRecentActivity', {
 		}
 	]
 });
-
-Meteor.publishComposite('dashboardRecentActivityAchievements', {
-	find: function(gameId) {
-		if (!this.userId) return;
-		return xbdAchievements.find({ gameId: gameId });
-	}
-});

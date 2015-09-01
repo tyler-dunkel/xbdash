@@ -3,9 +3,13 @@
 		<div class="wrapper-md activity-column">
 			<div class="m-b text-md">Recent Activity</div>
 			<ul class="list-group no-bg no-borders pull-in">
-			{{#each gamesList}}
-				{{> recentActivityLine}}
-			{{/each}}
+			{{#if Template.subscriptionsReady}}
+				{{#each gamesList}}
+					{{> recentActivityLine}}
+				{{/each}}
+			{{else}}
+				<p> loading </p>
+			{{/if}}
 			</ul>
 		</div>
 	</div>
