@@ -61,26 +61,34 @@
 							{{#each achievementsList}}
 							<li class="list-group-item">
 								<a href="{{pathFor 'achievement'}}">
-									<div class="pull-left inline">
-										<div class="trophy-class">
-											<i class="fa fa-trophy"></i> {{value}}
+									<div class="row no-gutter">
+										<div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+											<div class="block padder-t trophy-class bg text-center {{chkProgress}}">
+												<div class="wrapper-xs">
+													<span class="text-white font-thin font-bold h4 block"><i class="fa fa-trophy"></i><br />
+														200</span>
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="thumb-xxl {{chkPlatform}} m-r">
-										<img src="{{this.mediaAssets}}" class="thumb-xxl {{chkPlatform}}">
-									</div>
-									<div class="game-div title-wrap-game2">
-										<a href="{{pathFor 'achievement'}}" class="game-name">{{this.name}}</a>
-										<div class="text-left padder-t title-wrap-game2">
-											{{this.description}}
+										<div class="col-xl-2 hidden-lg col-md-2 col-sm-2 col-xs-2 {{chkPlatform}} achievement-img" style="background-image: url('{{this.mediaAssets}}');">
 										</div>
-									</div>
-									<div class="pull-right bg-black c100 p{{userPercentage}} small hidden-xs" style="">
-									    <span>{{userPercentage}}%</span>
-									    <div class="slice">
-									        <div class="bar"></div>
-									        <div class="fill"></div>
-									    </div>
+										<div class="col-xl-6 col-lg-7 col-md-6 col-sm-7 col-xs-6">
+											<div class="m-l-md">
+												<div class="padder-t game-name">{{this.name}}</div>
+												<div class="padder-d title-wrap-game">
+													{{this.description}}
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm col-xs-2">
+											<div class="bg-black c100 p{{userPercentage}} small text-center m" style="">
+											    <span>{{userPercentage}}%</span>
+											    <div class="slice">
+											        <div class="bar"></div>
+											        <div class="fill"></div>
+											    </div>
+											</div>
+										</div>
 									</div>
 								</a>
 							</li>

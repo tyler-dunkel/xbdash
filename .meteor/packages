@@ -30,7 +30,6 @@ accounts-twitter
 service-configuration
 mizzao:user-status
 momentjs:moment
-d3js:d3
 reywood:publish-composite
 meteorhacks:subs-manager
 mrt:jquery-raty
@@ -48,3 +47,4 @@ mongo-livedata
 meteorhacks:fast-render
 matteodem:easy-search
 wylio:mandrill
+nvd3:nvd3

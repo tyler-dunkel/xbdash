@@ -6,9 +6,17 @@
         		<label id="achievement-chart-six-month-activity-button" class="btn btn-sm btn-success"> 6 Months</label>
         	</div>
 			<h4 class="font-thin m-t-none m-b-none text-success">Achievements Data</h4>
-			<div style="height:300px">
-				<svg id="achievements-chart"></svg>
-			</div>
+			{{#if Template.subscriptionsReady}}
+			{{> achievementsChartSvg}}
+			{{else}}
+			{{> loadingTemplate}}
+			{{/if}}
 		</div>
+	</div>
+</template>
+
+<template name="achievementsChartSvg">
+	<div id="achievements-chart">
+		<svg style="height: 300px;"></svg>
 	</div>
 </template>

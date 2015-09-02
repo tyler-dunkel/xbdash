@@ -6,9 +6,17 @@
         		<label id="gamerscore-chart-six-month-activity-button" class="btn btn-sm btn-success"> 6 Months</label>
         	</div>
 			<h4 class="font-thin m-t-none m-b-none text-success">Gamerscore Data</h4>
-			<div style="height:300px">
-				<svg id="gamerscore-chart"></svg>
-			</div>
+			{{#if Template.subscriptionsReady}}
+			{{> gamerscoreChartSvg}}
+			{{else}}
+			{{> loadingTemplate}}
+			{{/if}}
 		</div>
+	</div>
+</template>
+
+<template name="gamerscoreChartSvg">
+	<div id="gamerscore-chart">
+		<svg style="height: 300px;"></svg>
 	</div>
 </template>
