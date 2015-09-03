@@ -18,17 +18,13 @@ Template.dashboardStatBoxes.helpers({
             return numberFormatter(achievementsCount);
         }
     },
-    gamesCompleted: function () {
+    achievementsPercentage: function () {
         var userId = Meteor.userId();
         if (Template.instance().subscriptionsReady()) {
-            var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
-            return numberFormatter(gamesCount);
-        }
-    },
-    currentGamerscore: function () {
-        var user = Meteor.user();
-        if (Template.instance().subscriptionsReady()) {
-            return numberFormatter(user.profile.gamercard.gamerscore);
+            var achievementsCount = dashboardStatsCompletedAchievements.findOne({ _id: userId }).achievementCount;
+            var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
+            var achievementsPercentage = Math.round(achievementsCount / totalAchievements * 100);
+            return numberFormatter(achievementsPercentage);
         }
     },
     totalAchievements: function () {
@@ -38,11 +34,11 @@ Template.dashboardStatBoxes.helpers({
             return numberFormatter(totalAchievements);
         }
     },
-    totalGames: function () {
+    gamesCompleted: function () {
         var userId = Meteor.userId();
         if (Template.instance().subscriptionsReady()) {
-            var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
-            return numberFormatter(totalGames);
+            var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(gamesCount);
         }
     },
     gamesPercentage: function () {
@@ -52,6 +48,19 @@ Template.dashboardStatBoxes.helpers({
             var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
             var gamesPercentage = Math.round(gamesCount / totalGames * 100);
             return numberFormatter(gamesPercentage);
+        }
+    },
+    totalGames: function () {
+        var userId = Meteor.userId();
+        if (Template.instance().subscriptionsReady()) {
+            var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(totalGames);
+        }
+    },
+    currentGamerscore: function () {
+        var user = Meteor.user();
+        if (Template.instance().subscriptionsReady()) {
+            return numberFormatter(user.profile.gamercard.gamerscore);
         }
     }
 });

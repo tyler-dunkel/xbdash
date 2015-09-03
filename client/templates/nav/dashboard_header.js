@@ -21,11 +21,11 @@ Template.dashboardHeader.events({
         var currentRoute = Router.current().route.getName();
         console.log(currentRoute);
 
-        if (currentRoute === 'home' && user && user.gamertagScanned) {
-	        resizeAchievementChart();
-	        resizeGamerscoreChart();
-	        resizeGamesChart();
-	    }
+        // if (currentRoute === 'home' && user && user.gamertagScanned) {
+	    //     resizeAchievementChart();
+	    //     resizeGamerscoreChart();
+	    //     resizeGamesChart();
+	    // }
     },
     'click [ui-nav] a': function(e) {
         var $this = $(e.target), $active;

@@ -51,16 +51,25 @@ Template.gamesSinglePage.helpers({
     	var game = xbdGames.findOne({ _id: this.gameId });
     	return game.platform;
     },
-    ifDurango: function () {
+    chkPlatform: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
-        if (game.platform === 'Durango') {
+        if (game.platform === 'Xenon') {
             return 'thumb-md2';
         }
         return;
     },
+    chkProgress: function () {
+        var game = xbdGames.findOne({ _id: this.gameId });
+        var achievement = xbdAchievements.findOne({ gameId: game._id });
+        var userAchievement = userAchievements.findOne({ achievementId: achievement._id });
+        if (!userAchievement.progressState) {
+            return 'bg-danger';
+        }
+        return 'bg-success';
+    },
     achievementsList: function () {
     	var skip = achievementShowNext.get();
-        return xbdAchievements.find({ gameId: this.gameId }, { sort: { value: 1, userPercentage: -1 }, limit: 5, skip: skip });
+        return xbdAchievements.find({ gameId: this.gameId }, { sort: { value: 1, userPercentage: -1 }, limit: 7, skip: skip });
     },
     achievementImage: function () {
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
