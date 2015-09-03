@@ -18,20 +18,22 @@ Meteor.startup(function() {
 
 	//function to count a users gamerscore gains for the day and creating a daily rank according to gamerscore
 	Meteor.setInterval(function() {
-		var count = 0;
 		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1 } });
 		var oneDay = moment().startOf('day').toDate();
+
+		if (!users.count()) {
+			return;
+		}
 
 		//find each users gamerscore for the past 24 hours and put it into a field called userDailyGamerscore
 		users.forEach(function(user){
 			var userDailyAchievements = userAchievements.find({ userId: user._id, progressState: true, progression: { $gte: oneDay } });
+			var userDailyGamerscore = 0;
 			if (!userDailyAchievements.count()) {
-				Meteor._debug("this guys a fool and hasnt achieved anything today");
+				Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userDailyGamerscore": userDailyGamerscore } });
 				return;
 			}
-			var userDailyGamerscore = 0;
 			userDailyAchievements.forEach(function(achievement) {
-				count++;
 				Meteor._debug("achievement is here: " + achievement.achievementId);
 				var singleAchievement = xbdAchievements.findOne(achievement.achievementId);
 				//Meteor._debug(singleAchievement);
