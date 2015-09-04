@@ -11,52 +11,57 @@ Template.gamerscoreChart.created = function() {
 }
 
 Template.gamerscoreChartSvg.rendered = function() {
-	var gamerscoreChart;
+	// var nv = {};
 
-	var oneMonth = moment().subtract(1, 'month').toDate();
-	var userId = Meteor.userId();
-	var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: oneMonth } }, { sort: { progression: -1 }, limit: 50 }).fetch();
-		//return gamerscore.value;
+	// var gamerscoreChart;
 
-	console.log(userGamerscoreDataSet);
+	// var oneMonth = moment().subtract(1, 'month').toDate();
+	// var userId = Meteor.userId();
+	// var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: oneMonth } }, { sort: { progression: -1 }, limit: 50 }).fetch();
+	// 	//return gamerscore.value;
 
-	d3.json(userGamerscoreDataSet, function(data) {
-		var gamerscoreChart;
+	// console.log(userGamerscoreDataSet);
 
-		nv.addGraph(function() {
-			var gamerscoreChart = nv.models.cumulativeLineChart()
-				.x(function(d) { return d.progression; })
-				.y(function(d) {
-					var gamerscore = xbdAchievements.findOne({ _id: d.achievementId });
-					return gamerscore.value;
-				})
-				.color(d3.scale.category20().range())
-				.options({
-					transitionDuration: 300,
-					useInteractiveGuideline: true
-				});
+	// d3.json(userGamerscoreDataSet, function(data) {
+	// 	var gamerscoreChart;
 
-			gamerscoreChart.xAxis
-				.axisLabel('Date')
-				.tickFormat(function(d) {
-					return d3.time.format('%x')(new Date(d));
-				});
+	// 	nv.addGraph(function() {
+	// 		var gamerscoreChart = nv.models.cumulativeLineChart()
+	// 			.x(function(d) { return d.progression; })
+	// 			.y(function(d) {
+	// 				var gamerscore = xbdAchievements.findOne({ _id: d.achievementId });
+	// 				return gamerscore.value;
+	// 			})
+	// 			.color(d3.scale.category20().range())
+	// 			.options({
+	// 				transitionDuration: 300,
+	// 				useInteractiveGuideline: true
+	// 			});
 
-			gamerscoreChart.yAxis
-				.tickFormat(d3.format('05d'));
+	// 		gamerscoreChart.xAxis
+	// 			.axisLabel('Date')
+	// 			.tickFormat(function(d) {
+	// 				return d3.time.format('%x')(new Date(d));
+	// 			});
 
-			d3.select('#gamerscore-chart svg').datum(
-					[{
-						key: 'Gamerscore',
-						values: userGamerscoreDataSet
-					}]
-				).call(gamerscoreChart);
+	// 		gamerscoreChart.yAxis
+	// 			.tickFormat(d3.format('05d'));
 
-			nv.utils.windowResize(gamerscoreChart.update);
+	// 		d3.select('#gamerscore-chart svg').datum(
+	// 				[{
+	// 					key: 'Gamerscore',
+	// 					values: userGamerscoreDataSet
+	// 				}]
+	// 			).call(gamerscoreChart);
 
-			return gamerscoreChart;
-		});
-	});
+	// 		nv.utils.windowResize(gamerscoreChart.update);
+
+	// 		return gamerscoreChart;
+	// 	});
+	// });
+
+
+
 
 	// var userId = Meteor.userId();
 	// var margin = {top: 0, right: 0, bottom: 15, left: 25},
