@@ -26,20 +26,27 @@ Template.achievementsChartSvg.rendered = function() {
 			.margin({ left: 25 })
 			.showLegend(true)
 			.showXAxis(true)
-			.showYAxis(true)
-			.options({
-				transitionDuration: 300,
-				useInteractiveGuideline: true
-			});
+			.showYAxis(true);
+			//.x(function(d) { return d[0] })   //We can modify the data accessor functions...
+			//.y(function(d) { return d[1] })   //...in case your data is formatted differently.
+			// .options({
+			// 	transitionDuration: 300,
+			// 	useInteractiveGuideline: true
+			// });
 
 		achievementsChart.xAxis
 			.axisLabel('Date')
-			.tickFormat(d3.format('d'));
-			//.tickFormat(function(d) { return d3.time.format('%m/%d/%Y')(new Date(d)) });
+			.tickFormat(function(d) { 
+				return d3.time.format('%x')(new Date(d));
+			});
+			// .tickFormat(d3.format('d'));
 
 		achievementsChart.yAxis
 			.axisLabel('Achievements')
 			.tickFormat(d3.format('d'));
+
+		// var myData = sinAndCos();
+		// console.log(myData);
 
 		d3.select('#achievements-chart svg').datum(formattedAchievementData).call(achievementsChart);
 
@@ -53,11 +60,13 @@ Template.achievementsChartSvg.rendered = function() {
 			.margin({ left: 25 })
 			.showLegend(true)
 			.showXAxis(true)
-			.showYAxis(true)
-			.options({
-				transitionDuration: 300,
-				useInteractiveGuideline: true
-			});
+			.showYAxis(true);
+			//.x(function(d) { return d[0] })   //We can modify the data accessor functions...
+			//.y(function(d) { return d[1] })   //...in case your data is formatted differently.
+			// .options({
+			// 	transitionDuration: 300,
+			// 	useInteractiveGuideline: true
+			// });
 
 		var oneMonth = moment().subtract(1, 'month').toDate();
 		var userId = Meteor.userId();
@@ -68,6 +77,35 @@ Template.achievementsChartSvg.rendered = function() {
 
 		achievementsChart.update;
 	});
+}
+
+var formatAchievementData = function(dataSet) {
+	//var achievementDataArray = new Array();
+	var achievementDataArray = [];
+	var achievementDataString;
+	var groupedDates = _.groupBy(_.pluck(dataSet, 'progression'), function(date) {
+		return moment(date).format('MM/DD/YY');
+		//return date.getTime();
+	});
+
+	//groupedDates.length;
+
+	_.each(_.values(groupedDates), function(dates) {
+		achievementDataArray.push({
+			date: dates[0].getTime(),
+			total: dates.length
+		});
+		// achievementDataString = JSON.stringify(achievementDataArray);
+	});
+
+	return [
+	{
+		key: 'Achievements',			//key  - the name of the series.
+		values: achievementDataArray,	//values - represents the array of {x,y} data points
+		color: '#138013'				//color - optional: choose your own line color.
+	}
+	];
+}
 
 	// var margin = {top: 0, right: 0, bottom: 15, left: 25},
 	// width = $(".chart-wrapper").width(),
@@ -285,7 +323,7 @@ Template.achievementsChartSvg.rendered = function() {
 	//      .attr("fill", "none");
 	// 	}
 	// });
-}
+//}
 
 Template.achievementsChart.events({
  //		"click #achievement-chart-recent-activity-button": function(e) {
@@ -312,37 +350,6 @@ Template.achievementsChart.events({
 
 Tracker.autorun(function() {
 });
-
-var formatAchievementData = function(dataSet) {
-	//var achievementDataArray = new Array();
-	var achievementDataArray = [];
-	var achievementDataString;
-	var groupedDates = _.groupBy(_.pluck(dataSet, 'progression'), function(date) {
-		//return moment(date).format('MMM D');
-		return moment(date).format('MM/DD/YY');
-	});
-
-	//groupedDates.length;
-
-	_.each(_.values(groupedDates), function(dates) {
-		achievementDataArray.push({
-			// date: d3.time.format('%m/%d/%Y')(new Date(dates[0])),
-			date: moment(dates[0]).format('MM/DD/YY'),
-			total: dates.length
-		});
-		//achievementDataString = JSON.stringify(achievementDataArray);
-	});
-
-	//console.log(achievementDataArray);
-
-	return [
-	{
-		values: achievementDataArray,	//values - represents the array of {x,y} data points
-		key: 'Achievements',			//key  - the name of the series.
-		color: '#138013'				//color - optional: choose your own line color.
-	}
-	];
-}
 
 // function sinAndCos() {
 // 	var sin = [],sin2 = [],
