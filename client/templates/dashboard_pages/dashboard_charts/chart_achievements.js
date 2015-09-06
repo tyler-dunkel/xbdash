@@ -17,64 +17,95 @@ Template.achievementsChartSvg.rendered = function() {
 	var userId = Meteor.userId();
 	var userAchievementsDataSet = userAchievements.find({ userId: userId, progression: { $gt: oneMonth } }, { sort: { progresion: -1 }, limit: 50 }).fetch();
 
-	//console.log(userAchievementsDataSet);
-
 	var formattedAchievementData = formatAchievementData(userAchievementsDataSet);
 
-	//console.log(formattedAchievementData);
+	console.log(formattedAchievementData);
 
 	nv.addGraph(function() {
 		achievementsChart = nv.models.lineChart()
-			//.margin({ left: 25 })
-			//.useInteractiveGuideline(true)
-			//.transition()
-			//.duration(350)
-			//.showLegend(true)
-			//.showYAxis(true)
-			//.showXAxis(true)
-			.options({
-				transitionDuration: 300,
-				useInteractiveGuideline: true
-			});
+			.margin({ left: 25 })
+			.showLegend(true)
+			.showXAxis(true)
+			.showYAxis(true);
+			//.x(function(d) { return d[0] })   //We can modify the data accessor functions...
+			//.y(function(d) { return d[1] })   //...in case your data is formatted differently.
+			// .options({
+			// 	transitionDuration: 300,
+			// 	useInteractiveGuideline: true
+			// });
 
 		achievementsChart.xAxis
 			.axisLabel('Date')
-			.tickFormat(d3.format('d'));
+			.tickFormat(function(d) { 
+				return d3.time.format('%x')(new Date(d));
+			});
+			// .tickFormat(d3.format('d'));
 
 		achievementsChart.yAxis
 			.axisLabel('Achievements')
 			.tickFormat(d3.format('d'));
 
-		d3.select('#achievements-charts svg').datum(
-			[{
-				key: 'Achievements',
-				values: formattedAchievementData
-			}]
-		).call(achievementsChart);
+		// var myData = sinAndCos();
+		// console.log(myData);
 
-		//nv.utils.windowResize(function() { achievementsChart.update(); });
+		d3.select('#achievements-chart svg').datum(formattedAchievementData).call(achievementsChart);
+
 		nv.utils.windowResize(achievementsChart.update);
 
 		return achievementsChart;
 	});
 
 	this.autorun(function () {
+		achievementsChart = nv.models.lineChart()
+			.margin({ left: 25 })
+			.showLegend(true)
+			.showXAxis(true)
+			.showYAxis(true);
+			//.x(function(d) { return d[0] })   //We can modify the data accessor functions...
+			//.y(function(d) { return d[1] })   //...in case your data is formatted differently.
+			// .options({
+			// 	transitionDuration: 300,
+			// 	useInteractiveGuideline: true
+			// });
+
 		var oneMonth = moment().subtract(1, 'month').toDate();
 		var userId = Meteor.userId();
 		var userAchievementsDataSet = userAchievements.find({ userId: userId, progression: { $gt: oneMonth } }, { sort: { progresion: -1 }, limit: 50 }).fetch();
 		var formattedAchievementData = formatAchievementData(userAchievementsDataSet);
 
-		//console.log(formattedAchievementData);
+		d3.select('#achievements-chart svg').datum(formattedAchievementData).call(achievementsChart);
 
-		d3.select('#achievements-charts svg').datum(
-			[{
-				key: 'Achievements',
-				values: formattedAchievementData
-			}]
-		).call(achievementsChart);
-
-		achievementsChart.update();
+		achievementsChart.update;
 	});
+}
+
+var formatAchievementData = function(dataSet) {
+	//var achievementDataArray = new Array();
+	var achievementDataArray = [];
+	var achievementDataString;
+	var groupedDates = _.groupBy(_.pluck(dataSet, 'progression'), function(date) {
+		return moment(date).format('MM/DD/YY');
+		//return date.getTime();
+	});
+
+	//groupedDates.length;
+
+	_.each(_.values(groupedDates), function(dates) {
+		achievementDataArray.push({
+			date: dates[0].getTime(),
+			total: dates.length
+		});
+		// achievementDataString = JSON.stringify(achievementDataArray);
+	});
+
+	return [
+	{
+		key: 'Achievements',			//key  - the name of the series.
+		values: achievementDataArray,	//values - represents the array of {x,y} data points
+		color: '#138013'				//color - optional: choose your own line color.
+	}
+	];
+}
 
 	// var margin = {top: 0, right: 0, bottom: 15, left: 25},
 	// width = $(".chart-wrapper").width(),
@@ -292,7 +323,7 @@ Template.achievementsChartSvg.rendered = function() {
 	//      .attr("fill", "none");
 	// 	}
 	// });
-}
+//}
 
 Template.achievementsChart.events({
  //		"click #achievement-chart-recent-activity-button": function(e) {
@@ -320,18 +351,36 @@ Template.achievementsChart.events({
 Tracker.autorun(function() {
 });
 
-var formatAchievementData = function(dataSet) {
-	var achievementDataArray = new Array();
-	var groupedDates = _.groupBy(_.pluck(dataSet, 'progression'), function(date) {
-		return moment(date).format('MMM D');
-	});
+// function sinAndCos() {
+// 	var sin = [],sin2 = [],
+// 	cos = [];
 
-	_.each(_.values(groupedDates), function(dates) {
-		achievementDataArray.push({
-			date: dates[0],
-			total: dates.length
-		});
-	});
+// 	//Data is represented as an array of {x,y} pairs.
+// 	for (var i = 0; i < 100; i++) {
+// 		sin.push({x: i, y: Math.sin(i/10)});
+// 		sin2.push({x: i, y: Math.sin(i/10) *0.25 + 0.5});
+// 		cos.push({x: i, y: .5 * Math.cos(i/10)});
+// 	}
 
-	return achievementDataArray;
-}
+// 	console.log('sin:' + sin);
+
+// 	//Line chart data should be sent as an array of series objects.
+// 	return [
+// 	{
+// 		values: sin,      //values - represents the array of {x,y} data points
+// 		key: 'Sine Wave', //key  - the name of the series.
+// 		color: '#ff7f0e'  //color - optional: choose your own line color.
+// 	},
+// 	{
+// 		values: cos,
+// 		key: 'Cosine Wave',
+// 		color: '#2ca02c'
+// 	},
+// 	{
+// 		values: sin2,
+// 		key: 'Another sine wave',
+// 		color: '#7777ff',
+// 	  area: true      //area - set to true if you want this line to turn into a filled area chart.
+// 	}
+// 	];
+// }

@@ -59,9 +59,9 @@ Template.gamesSinglePage.helpers({
         return;
     },
     chkProgress: function () {
-        var game = xbdGames.findOne({ _id: this.gameId });
-        var achievement = xbdAchievements.findOne({ gameId: game._id });
-        var userAchievement = userAchievements.findOne({ achievementId: achievement._id });
+        //var achievement = xbdAchievements.findOne({ gameId: this._id });
+        var userAchievement = userAchievements.findOne({ achievementId: this._id });
+        console.log(userAchievement);
         if (!userAchievement.progressState) {
             return 'bg-danger';
         }
