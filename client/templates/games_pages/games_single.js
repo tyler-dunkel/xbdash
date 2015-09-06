@@ -62,7 +62,7 @@ Template.gamesSinglePage.helpers({
         //var achievement = xbdAchievements.findOne({ gameId: this._id });
         var userAchievement = userAchievements.findOne({ achievementId: this._id });
         console.log(userAchievement);
-        if (!userAchievement.progressState) {
+        if (!userAchievement || !userAchievement.progressState) {
             return 'bg-danger';
         }
         return 'bg-success';
