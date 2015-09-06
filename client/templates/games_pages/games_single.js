@@ -59,13 +59,11 @@ Template.gamesSinglePage.helpers({
         return;
     },
     chkProgress: function () {
-        //var achievement = xbdAchievements.findOne({ gameId: this._id });
         var userAchievement = userAchievements.findOne({ achievementId: this._id });
-        console.log(userAchievement);
-        if (!userAchievement.progressState) {
-            return 'bg-danger';
+        if (userAchievement || userAchievement.progressState) {
+            return userAchievement.progressState;
         }
-        return 'bg-success';
+        return;
     },
     achievementsList: function () {
     	var skip = achievementShowNext.get();
