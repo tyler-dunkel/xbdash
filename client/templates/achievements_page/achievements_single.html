@@ -6,44 +6,56 @@
 				<div class="col">
 					{{#with achievement}}
 					<!-- main header -->
-					<div class="bg-light col-xl-12 col-lg-12 col-xs-12 lter b-b wrapper-md">
+					<div class="bg-light col-xl-12 col-lg-12 col-xs-12 lter b-b wrapper-md achievement-title">
 						<div class="row">
-			              <div class="col-sm-6 col-xs-12">
-			                <h1 class="font-thin h3 text-black m-b-xs">{{name}}</h1>
-							<small class="text-muted">Game: <a href="{{pathFor 'game' slug=game.slug}}">{{game.name}}</a></small>
-			              </div>
-			              <div class="col-sm-6 text-right hidden-xs">
-			                <div class="inline m-r text-left">
-			                	<div class="m-b-xs">Users That Have This</div>
-								<div class="h4 text-success font-bold">{{userPercentage}}%</div>
-			                </div>
-			              </div>
-			            </div>
+							<div class="col-sm-12 col-xs-7">
+								<h1 class="font-thin h3 text-black m-b-xs">{{name}}</h1>
+								<small class="text-muted">Game: <a href="{{pathFor 'game' slug=game.slug}}">{{game.name}}</a></small>
+							</div>
+							<div class="col-sm-12 col-xs-5 text-right visible-xs-inline-block">
+								<div class="inline m-r m-l padder-t">
+									<div class="h4 text-success font-bold">
+										{{value}}<br />
+										GS
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="wrapper-md col-xl-3 col-lg-3 col-md-4 col-sm-5 col-xs-12">
 						<!-- stats -->
 						<div class="blog-post">
 							<img src="{{achievementImage}}" class="img-full {{ifXenon}}">
-							<table class="table" style="margin-bottom: 15px;">
-								<tr>
-									<td width="30%">Gamerscore:</td>
-									<td><strong>{{value}}</strong></td>
-								</tr>
-								<tr>
-									<td>Game:</td>
-									<td><strong>{{game.name}}</strong></td>
-								</tr>
-								<tr>
-									<td>Gamers:</td>
-									<td><strong>{{userPercentage}}% have this</strong></td>
-								</tr>
-							</table>
-							{{description}}
+							<div class="gamerscore-table h3 padder-t text-center wrapper-md hidden-xs">
+								<strong>{{value}}</strong> Gamerscore
+							</div>
+							<p class="h5 text-left">
+								{{description}}
+							</p>
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-5 col-lg-5 col-md-8 col-sm-7 col-xs-12" style="background-color: #fff;">
-						<div class="comment-section">
-						    {{> commentsBox id=this.slug customTemplate="achievementCommentBox"}}
+					<div class="wrapper-md col-xl-5 col-lg-5 col-md-8 col-sm-7 col-xs-12 comments-column" style="background-color: #fff;">
+						<div class="row m-b-lg">
+							<div class="col-sm-6 col-xs-12 achievement-key">
+								<div class="padder-vv-{{achievementClass}} text-center">
+									<i class="fa fa-{{trophyClass}}"></i>&nbsp;&nbsp; {{achievementClass}}
+								</div>
+							</div>
+							<div class="col-sm-6 col-xs-12 text-center">
+								<div class="inline m-r m-l">
+									<div class="m-b-xs">Users That Have This</div>
+									<div class="h3 text-success font-bold">
+										{{userPercentage}}%
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="comment-section">
+								    {{> commentsBox id=this.slug customTemplate="achievementCommentBox"}}
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="wrapper-md col-xl-3 col-lg-4 hidden-md hidden-sm trending-column">

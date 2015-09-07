@@ -4393,6 +4393,14 @@ ul.signin > li.active {
   padding: 12px 18px;
 }
 
+.comments-column .achievement-key .padder-vv- {
+  padding: 15px 18px;
+}
+
+.comments-column .m-b-xs {
+  margin-bottom: 4px;
+}
+
 .padder-vv- {
   padding: 20px;
 }
@@ -4401,6 +4409,10 @@ ul.signin > li.active {
   color: #fff;
   padding: 12px 18px;
   background-color: #000;
+}
+
+.comments-column .achievement-key .padder-vv-legendary {
+  padding: 15px 18px;
 }
 
 .padder-vv-legendary {
@@ -4415,6 +4427,10 @@ ul.signin > li.active {
   background-color: #3498db;
 }
 
+.comments-column .achievement-key .padder-vv-epic {
+  padding: 15px 18px;
+}
+
 .padder-vv-epic {
   color: #fff;
   padding: 20px;
@@ -4425,6 +4441,10 @@ ul.signin > li.active {
   color: #fff;
   padding: 12px 18px;
   background-color: #e74c3c;
+}
+
+.comments-column .achievement-key .padder-vv-rare {
+  padding: 15px 18px;
 }
 
 .padder-vv-rare {
@@ -4439,6 +4459,10 @@ ul.signin > li.active {
   background-color: #f39c12;
 }
 
+.comments-column .achievement-key .padder-vv-common {
+  padding: 15px 18px;
+}
+
 .padder-vv-common {
   color: #fff;
   padding: 20px;
@@ -4451,10 +4475,23 @@ ul.signin > li.active {
   background-color: #138013;
 }
 
+.comments-column .achievement-key .padder-vv-xbd {
+  padding: 15px 18px;
+}
+
 .padder-vv-xbd {
   color: #fff;
   padding: 20px;
   background-color: #138013;
+}
+
+@media (max-width: 768px) {
+  .achievement-key {
+    margin-bottom: 15px;
+  }
+  .comments-column .h3 {
+    font-size: 28px;
+  }
 }
 
 .padder-x {
@@ -5262,6 +5299,9 @@ ul.signin > li.active {
 @media (max-width: 767px) {
   .padder-t {
     padding: 0;
+  }
+  .achievement-title .padder-t {
+    padding: 6px 0;
   }
   .w-auto-xs {
     width: auto;

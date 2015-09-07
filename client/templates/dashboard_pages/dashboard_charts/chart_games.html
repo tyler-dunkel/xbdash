@@ -2,9 +2,17 @@
 	<div class="panel hbox hbox-auto-xs no-border">
 		<div class="col wrapper chart-wrapper">
 			<h4 class="font-thin m-t-none m-b-none text-success">Game Genre Distribution</h4>
-			<div style="height:400px">
-				<svg id="games-chart"></svg>
-			</div>
+			{{#if Template.subscriptionsReady}}
+			{{> gamesChartSvg}}
+			{{else}}
+			{{> loadingTemplate}}
+			{{/if}}
 		</div>
+	</div>
+</template>
+
+<template name="gamesChartSvg">
+	<div id="games-chart">
+		<svg style="height: 500px;"></svg>
 	</div>
 </template>

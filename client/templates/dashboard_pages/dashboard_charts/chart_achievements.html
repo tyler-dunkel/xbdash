@@ -1,11 +1,6 @@
 <template name="achievementsChart">
 	<div class="panel hbox hbox-auto-xs no-border">
 		<div class="col wrapper chart-wrapper">
-			<div class="btn-group m-t-sm pull-right">
-        		<label id="achievement-chart-recent-activity-button" class="btn btn-sm btn-success active"> Recent</label>
-        		<label id="achievement-chart-six-month-activity-button" class="btn btn-sm btn-success"> 6 Months</label>
-        	</div>
-			<h4 class="font-thin m-t-none m-b-none text-success">Achievements Data</h4>
 			{{#if Template.subscriptionsReady}}
 			{{> achievementsChartSvg}}
 			{{else}}
@@ -16,7 +11,12 @@
 </template>
 
 <template name="achievementsChartSvg">
+	<div class="btn-group m-t-sm pull-right">
+		<label id="achievement-chart-recent-activity-button" class="btn btn-sm btn-success active">Recent</label>
+		<label id="achievement-chart-three-month-activity-button" class="btn btn-sm btn-success">3 Months</label>
+	</div>
+	<h4 class="font-thin m-t-none m-b-none text-success">Achievements Data</h4>
 	<div id="achievements-chart">
-		<svg style="height: 300px;"></svg>
+		<svg style="height: 350px;"></svg>
 	</div>
 </template>

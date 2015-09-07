@@ -2,6 +2,40 @@ Template.achievementsSinglePage.created = function() {
 }
 
 Template.achievementsSinglePage.helpers({
+    achievementClass: function () {
+        var userPercentage = this.userPercentage;
+        var achievementClass = "xbd";
+        if (userPercentage >= 0 && userPercentage <= 10) {
+            achievementClass = "legendary";
+        }
+        if (userPercentage >= 11 && userPercentage <= 30) {
+            achievementClass = "epic";
+        }
+        if (userPercentage >= 31 && userPercentage <= 60) {
+            achievementClass = "rare";
+        }
+        if (userPercentage >= 61 && userPercentage <= 100) {
+            achievementClass = "common";
+        }
+        return achievementClass;
+    },
+    trophyClass: function () {
+        var userPercentage = this.userPercentage;
+        var trophyClass = "xbd";
+        if (userPercentage >= 0 && userPercentage <= 10) {
+            trophyClass = "trophy";
+        }
+        if (userPercentage >= 11 && userPercentage <= 30) {
+            trophyClass = "star";
+        }
+        if (userPercentage >= 31 && userPercentage <= 60) {
+            trophyClass = "bullseye";
+        }
+        if (userPercentage >= 61 && userPercentage <= 100) {
+            trophyClass = "unlock";
+        }
+        return trophyClass;
+    },
 	achievement: function () {
 		var slug = Router.current().params.slug;
 		return xbdAchievements.findOne({ slug: slug });
