@@ -63,9 +63,9 @@ Template.gamesSinglePage.helpers({
         var userAchievement = userAchievements.findOne({ achievementId: this._id });
         console.log(userAchievement);
         if (!userAchievement || !userAchievement.progressState) {
-            return userAchievement.progressState;
+            return 'bg-danger';
         }
-        return;
+        return 'bg-success';
     },
     achievementsList: function () {
     	var skip = achievementShowNext.get();
