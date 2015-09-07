@@ -104,7 +104,7 @@ var formatAchievementData = function(dataSet) {
 	{
 		key: 'Achievements',			//key  - the name of the series.
 		values: achievementDataArray,	//values - represents the array of {x,y} data points
-		color: '#138013',				//color - optional: choose your own line color.
+		color: '#138013'				//color - optional: choose your own line color.
 	}
 	];
 }
