@@ -16,7 +16,7 @@ Template.recentActivityColumn.helpers({
 Template.recentActivityLine.created = function() {
     //this.subscribe('dashboardRecentActivityAchievements');
     var self = this;
-    console.log(this.data);
+    //console.log(this.data);
     Meteor.call('getGameAchievementCount', this.data.gameId, function(error, result) {
         if (error) {
             console.log(error);

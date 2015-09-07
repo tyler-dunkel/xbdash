@@ -63,12 +63,25 @@
 								<a href="{{pathFor 'achievement'}}">
 									<div class="row no-gutter">
 										<div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-											<div class="block padder-t trophy-class bg text-center {{chkProgress}}">
+											{{#if chkProgress 'true'}}
+											<div class="block padder-t trophy-class text-center bg-success">
 												<div class="wrapper-xs">
-													<span class="text-white font-thin font-bold h4 block"><i class="fa fa-trophy"></i><br />
-														200</span>
+													<span class="text-white font-thin font-bold h4 block">
+														<i class="fa fa-unlock"></i><br />
+														{{this.value}}
+													</span>
 												</div>
 											</div>
+											{{else}}
+											<div class="block padder-t trophy-class text-center bg-danger">
+												<div class="wrapper-xs">
+													<span class="text-white font-thin font-bold h4 block">
+														<i class="fa fa-lock"></i><br />
+														{{this.value}}
+													</span>
+												</div>
+											</div>
+											{{/if}}
 										</div>
 										<div class="col-xl-2 hidden-lg col-md-2 col-sm-2 col-xs-2 {{chkPlatform}} achievement-img" style="background-image: url('{{this.mediaAssets}}');">
 										</div>
