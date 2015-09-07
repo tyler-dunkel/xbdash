@@ -59,8 +59,10 @@ Template.gamesSinglePage.helpers({
         return;
     },
     chkProgress: function () {
+        //var achievement = xbdAchievements.findOne({ gameId: this._id });
         var userAchievement = userAchievements.findOne({ achievementId: this._id });
-        if (userAchievement || userAchievement.progressState) {
+        console.log(userAchievement);
+        if (!userAchievement || !userAchievement.progressState) {
             return userAchievement.progressState;
         }
         return;
