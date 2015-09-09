@@ -16,7 +16,7 @@ Template.achievementsChartSvg.rendered = function() {
 
 	nv.addGraph(function() {
 		achievementsChart = nv.models.lineChart()
-			.margin({ left: 40, right: 40 })
+			.margin({ left: 65, right: 40 })
 			.x(function (d) { return d.date })
 			.y(function (d) { return d.total })
 			.showLegend(true)
@@ -29,7 +29,7 @@ Template.achievementsChartSvg.rendered = function() {
 
 		achievementsChart.xAxis
 			.axisLabel('Date')
-			.tickFormat(function(d) { return d3.time.format('%m/%d/%y')(new Date(d)) });
+			.tickFormat(function(d) { return d3.time.format('%b %d, %Y')(new Date(d)) });
 			//.tickValues(d3.time.day.range(oneMonthAgo, d, 1));
 
 		achievementsChart.yAxis
