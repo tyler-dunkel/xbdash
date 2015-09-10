@@ -3,7 +3,6 @@ var achievementsChart;
 
 Template.achievementsChart.created = function() {
 	var threeMonths = moment().subtract(3, 'month').toDate();
-    timeRangeToggle.set(threeMonths);
     var self = this;
     self.subscribe('dashboardMainCharts', threeMonths);
 }

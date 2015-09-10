@@ -2,13 +2,9 @@ var timeRangeToggle = new ReactiveVar();
 var gamerscoreChart;
 
 Template.gamerscoreChart.created = function() {
-	var oneMonth = moment().subtract(1, 'month').toDate();
-	timeRangeToggle.set(oneMonth);
+	var threeMonth = moment().subtract(3, 'month').toDate();
 	var self = this;
-	this.autorun(function() {
-		var dateRange = timeRangeToggle.get();
-		self.subscribe('dashboardMainCharts', dateRange);
-	});
+	self.subscribe('dashboardMainCharts', threeMonth);
 }
 
 Template.gamerscoreChartSvg.rendered = function() {
@@ -48,8 +44,9 @@ Template.gamerscoreChartSvg.rendered = function() {
 		console.log("gamerscore chart ran for time range");
 		if (!c.firstRun) {
 			var userId = Meteor.userId();
-			var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: oneMonth } }, { sort: { progression: 1 }, limit: 300 }).fetch();
+			var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: timeRange } }, { sort: { progression: 1 }, limit: 300 }).fetch();
 			var formattedGamerscoreData = formatGamerscoreData(userGamerscoreDataSet);
+			console.log("this is running");
 			updateGamerscoreChart(formattedGamerscoreData);
 		}
 	});
