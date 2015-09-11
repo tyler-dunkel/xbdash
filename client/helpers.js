@@ -9,6 +9,13 @@ var helpers = {
     copyrightInfo: function() {
         return "XBdash © 2015. All Rights Reserved.";
     },
+    chkGamerStatus: function () {
+        var user = Meteor.user();
+        if (user && user.gamertagScanned) {
+            return true;
+        }
+        return false;
+    },
     chkEmail: function () {
         //var userId = Meteor.userId();
         console.log(Meteor.user().services);

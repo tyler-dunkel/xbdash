@@ -8,7 +8,16 @@ Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 		find: function() {
 			if (!this.userId) return;
 			Meteor._debug(dateRange);
-			return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, { fields: { achievementId: 1, userId: 1, progressState: 1, progression: 1 }, sort: { progression: -1 }, limit: 50 });
+			return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, {
+				fields: {
+					achievementId: 1,
+					userId: 1,
+					progressState: 1,
+					progression: 1
+				},
+				sort: { progression: -1 },
+				limit: 100
+			});
 		},
 		children: [
 			{
@@ -23,12 +32,23 @@ Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 Meteor.publishComposite('dashboardGameGenreChart', {
 	find: function() {
 		if (!this.userId) return;
-		return userGames.find({ userId: this.userId }, { fields: { gameId: 1, userId: 1, earnedAchievements: 1 } });
+		return userGames.find({ userId: this.userId }, {
+			fields: {
+				gameId: 1,
+				userId: 1,
+				earnedAchievements: 1
+			}
+		});
 	},
 	children: [
 		{
 			find: function(game) {
-				return gameDetails.find({ gameId: game.gameId }, { fields: { gameId: 1, gameGenre: 1 } });
+				return gameDetails.find({ gameId: game.gameId }, {
+					fields: {
+						gameId: 1,
+						gameGenre: 1
+					}
+				});
 			}
 		}
 	]
@@ -136,7 +156,15 @@ Meteor.publish('dashboardStatsTotalGames', function () {
 Meteor.publishComposite('dashboardRecentActivity', {
 	find: function() {
 		if (!this.userId) return;
-		return userGames.find({ userId: this.userId, currentGamerscore: { $gt: 1 } }, { sort: { lastUnlock: -1 }, fields: { gameId: 1, lastUnlock: 1, earnedAchievements: 1 }, limit: 10 });
+		return userGames.find({ userId: this.userId, currentGamerscore: { $gt: 1 } }, {
+			fields: {
+				gameId: 1,
+				lastUnlock: 1,
+				earnedAchievements: 1
+			},
+			sort: { lastUnlock: -1 },
+			limit: 10
+		});
 	},
 	children: [
 		{
@@ -146,7 +174,14 @@ Meteor.publishComposite('dashboardRecentActivity', {
 		},
 		{
 			find: function(game) {
-				return xbdGames.find({ _id: game.gameId }, { fields: { platform: 1, name: 1, maxGamerscore: 1, slug: 1 }});
+				return xbdGames.find({ _id: game.gameId }, {
+					fields: {
+						platform: 1,
+						name: 1,
+						maxGamerscore: 1,
+						slug: 1
+					}
+				});
 			}
 		}
 	]
