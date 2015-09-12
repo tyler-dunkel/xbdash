@@ -69,30 +69,34 @@
 </template>
 
 <template name="gamerscoreInfo">
-	<div class="gamerscore-table h3 padder-vv-xbd text-center m-b">
+	<div class="gamerscore-table h3 padder-vv-{{#if chkCompleted}}xbd{{else}}ixbd{{/if}} text-center m-b">
 		{{#if chkGamerStatus}}
 		<div class="row">
-			<div class="col-lg-4 col-md-3 hidden-sm col-xs-3">
-				<div class="wrapper-sm text-white font-bold m-t-xs">
+			<div class="hidden-xl col-lg-4 col-md-3 hidden-sm col-xs-3">
+				<div class="text-white font-bold m-t-xs">
 					<i class="fa fa-unlock"></i>
 				</div>
 			</div>
-			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-9">
-				<strong>{{userCurrentGamerscore}} GS</strong><br />
-				{{userCurrentAchievements}} earned
+			<div class="col-xl-12 col-lg-8 col-md-9 col-sm-12 col-xs-9">
+				<div class="text-white font-thing h4">
+					<strong>{{userCurrentGamerscore}} GS</strong><br />
+					{{userCurrentAchievements}} earned
+				</div>
 			</div>
 		</div>
 		<hr />
 		{{/if}}
 		<div class="row">
-			<div class="col-lg-4 col-md-3 hidden-sm col-xs-3">
-				<div class="wrapper-sm text-white font-bold m-t-xs">
+			<div class="hidden-xl col-lg-4 col-md-3 hidden-sm col-xs-3">
+				<div class="text-white font-bold m-t-xs">
 					<i class="fa fa-trophy"></i>
 				</div>
 			</div>
-			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-9">
-				<strong>{{gameMaxGamerscore}} GS</strong><br />
-				{{gameMaxAchievements}} available
+			<div class="col-xl-12 col-lg-8 col-md-9 col-sm-12 col-xs-9">
+				<div class="text-white font-thing h4">
+					<strong>{{gameMaxGamerscore}} GS</strong><br />
+					{{gameMaxAchievements}} available
+				</div>
 			</div>
 		</div>
 	</div>

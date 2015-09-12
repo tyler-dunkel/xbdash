@@ -45,7 +45,7 @@ Template.achievementsSinglePage.helpers({
     },
     ifXenon: function () {
         var gameD = xbdGames.findOne({ _id: this.gameId });
-        if (gameD.platform === 'Durango') {
+        if (gameD.platform === 'Xenon') {
             return 'img-x360';
         }
     },

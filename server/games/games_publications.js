@@ -28,7 +28,7 @@ Meteor.publishComposite('myTopGames', {
 		{
 			find: function(game) {
 				var id;
-				var user = Meteor.users.findOne({_id: this.userId});
+				var user = Meteor.users.findOne({ _id: this.userId });
 				if (!user || !user.gamertagScanned) {
 					id = game._id;
 				} else {
@@ -90,26 +90,32 @@ Meteor.publishComposite('gamesByReleaseDate', {
 	]
 });
 
-Meteor.publishComposite('gameDetails', function(id) {
-	return {
-		find: function() {
-			return gameDetails.findOne({ gameId: id });
-		},
-		children: [
-			{
-				find: function(game) {
-					return xbdGames.find({ _id: game.gameId }, {
-						fields: {
-							platform: 1,
-							name: 1,
-							slug: 1
-						}
-					});
-				}
-			}
-		]
-	}
+Meteor.publish('gameDetails', function(id) {
+	return gameDetails.find({ gameId: id });
 });
+
+// Search system does not work with publish composite
+// Meteor.publishComposite('gameDetails', function(id) {
+// 	return {
+// 		find: function() {
+// 			return gameDetails.findOne({ gameId: id });
+// 		},
+// 		children: [
+// 			{
+// 				find: function(game) {
+// 					return xbdGames.find({ _id: game.gameId }, {
+// 						fields: {
+// 							platform: 1,
+// 							name: 1,
+// 							maxGamerscore: 1,
+// 							slug: 1
+// 						}
+// 					});
+// 				}
+// 			}
+// 		]
+// 	}
+// });
 
 Meteor.publishComposite('singleGame', function(slug) {
 	return {
@@ -166,6 +172,10 @@ Meteor.publishComposite('singleGameAchievements', function(slug) {
 			var game = xbdGames.findOne({ slug: slug });
 
 			return xbdAchievements.find({ gameId: game._id }, {
+				sort: {
+	                userPercentage: 1,
+	                name: 1,
+	            },
 				fields: {
 					gameId: 1,
 					name: 1,
@@ -180,9 +190,9 @@ Meteor.publishComposite('singleGameAchievements', function(slug) {
 		children: [
 			{
 				find: function(achievement) {
-					if (this.userId && this.gameId !== 'undefined') {
+					var user = Meteor.users.findOne({ _id: this.userId });
+					if (user || user.gamertagScanned) {
 						return userAchievements.find({ achievementId: achievement._id }, {
-							sort: { progressState: -1 },
 							fields: {
 								achievementId: 1,
 								userId: 1,

@@ -16,8 +16,18 @@ Template.newsPage.events({
 
 Template.newsApp.helpers({
 	latestNews: function() {
-		var latestNews = xbdNews.find({}, { sort: { updated: -1 }, limit: newsLimit.get() }).fetch();
-		return latestNews;
+		return xbdNews.find({}, {
+			sort: { updated: -1 },
+			fields: {
+				updated: 1,
+				title: 1,
+				content: 1,
+				id: 1,
+				author: 1,
+				shareCount: 1
+			},
+			limit: newsLimit.get()
+		}).fetch();
 	},
 	hasMoreResults: function() {
 		//var xbdNewsCount = xbdNews.find({}).count();

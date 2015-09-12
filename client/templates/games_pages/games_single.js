@@ -2,8 +2,7 @@ var achievementShowNext = new ReactiveVar(0);
 
 Template.gamesSinglePage.created = function() {
     // var self = this;
-    var slug = Router.current().params.slug;
-    this.subscribe('gameDetails', slug);
+    this.subscribe('gameDetails');
 }
 
 Template.gamesSinglePage.rendered = function() {
@@ -73,6 +72,17 @@ Template.gamerscoreInfo.created = function() {
 }
 
 Template.gamerscoreInfo.helpers({
+    chkCompleted: function () {
+        var user = Meteor.user();
+        if (user && user.gamertagScanned) {
+            var game = userGames.findOne({ gameId: this.gameId });
+            if (game && game.completed) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    },
     userCurrentGamerscore: function () {
         var game = userGames.findOne({ gameId: this.gameId }, { fields: { currentGamerscore: 1 } });
         if (game && game.currentGamerscore) {
@@ -120,9 +130,17 @@ Template.gamesSinglePageAchievement.helpers({
         var skip = achievementShowNext.get();
         return xbdAchievements.find({ gameId: this.gameId }, {
             sort: {
+                userPercentage: 1,
+                name: 1,
+            },
+            fields: {
+                gameId: 1,
+                name: 1,
+                mediaAssets: 1,
+                description: 1,
                 value: 1,
-                userPercentage: -1,
-                progressState: -1
+                slug: 1,
+                userPercentage: 1
             },
             limit: 7,
             skip: skip

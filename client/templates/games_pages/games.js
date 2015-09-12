@@ -22,12 +22,12 @@ Template.gamesApp.helpers({
     },
 	myTopGames: function() {
 		var games = userGames.find({}, {
+            sort: { currentGamerscore: -1 },
             fields: {
                 gameId: 1,
                 userId: 1,
                 currentGamerscore: 1
             },
-            sort: { currentGamerscore: -1 },
             limit: 10
         });
         var gameDetailArray = [];
