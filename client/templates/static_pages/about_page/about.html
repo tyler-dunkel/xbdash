@@ -85,50 +85,28 @@
 
 <template name="homeNewsSection">
   <div id="news" class="bg-white-only">
-    <div class="masonry-wall">
-      {{#each latestNews}}
-      <div class="masonry-brick">
-        <div class="panel panel-default b-a">
+    <div class="container container-full">
+      <div class="row m-t-xl m-b-md">
+        <h2 class="text-center">News</h2>
+      </div>
+      <div class="grid m-t-md m-b-md">
+        {{#each latestNews}}
+        <div class="grid-item">
           <div class="ih-item square effect1 bottom_to_top">
-            <a class="article-url" href="{{pathFor 'article'}}">
+            <a class="news-link" href="{{pathFor 'article'}}">
               <div class="img">
-                <img src="{{getImage}}" class="img-full" alt="{{title}}">
+                <img src="{{getImage}}" alt="{{title}}">
               </div>
               <div class="info">
-                <div class="text-u-c h4 m-b-xs text-success">{{title}}</div>
-                <div>{{updatedDate}}</div>
-                <div><i class="fa fa-square-share-o text-muted"></i> {{shareCount}}</div>
+                <h3 class="text-u-c m-b-xs text-success">{{title}}</h3>
+                <div>
+                  {{updatedDate}}&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-square-share-o text-muted"></i> {{shareCount}}
+                </div>
               </div>
             </a>
           </div>
         </div>
-      </div>
-      {{/each}}
-      <div class="masonry-wall">
-    {{#each someThingsHavePictures}}
-        <div class="masonry-brick">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h2 class="panel-title">{{this.name}}</h2></div>
-                {{#if this.img}}
-                    <div class="panel-body">
-                        <img class="panel-image" src="{{this.img}}" />
-                    </div>
-                {{/if}}
-            </div>
-        </div>
-    {{/each}}
-</div>
-      <div class="masonry-brick">
-        <div class="panel panel-default b-a">
-          <a class="news-link" href="{{pathFor 'newsPage'}}">
-            <div class="item m-l-n-xxs m-r-n-xxs">
-              <div class="center" style="width: 100%;">
-                <div class="text-u-c font-bold h4 m-b-sm text-success text-center">Read More</div>
-              </div>
-              <img src="/img/news-link-bg.jpg" class="img-full">
-            </div>
-          </a>
-        </div>
+        {{/each}}
       </div>
     </div>
   </div>

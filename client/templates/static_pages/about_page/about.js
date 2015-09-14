@@ -197,13 +197,22 @@ Template.carouselSection.rendered = function() {
 }
 
 Template.homeNewsSection.created = function() {
-	this.subscribe('latestNews', 11);
+	this.subscribe('latestNews', 12);
 }
 
 Template.homeNewsSection.rendered = function() {
     $('.post-image-box .img-full').error(function() {
         $(this).attr('src', '/img/news-default.jpg');
     });
+    $('#news .grid').masonry({
+		// set itemSelector so .grid-sizer is not used in layout
+		itemSelector: '.grid-item',
+		// use element for option
+		columnWidth: '465px',
+		isFitWidth: true,
+		transitionDuration: '0.3s'
+	});
+	$('#news .grid:nth-child(3n+0)').addClass('.grid-item--width2');
 }
 
 Template.homeNewsSection.helpers({
@@ -218,7 +227,7 @@ Template.homeNewsSection.helpers({
 				author: 1,
 				shareCount: 1
 			},
-			limit: 11
+			limit: 12
 		}).fetch();
 	},
 	getImage: function () {

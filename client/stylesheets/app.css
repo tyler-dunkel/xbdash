@@ -1201,6 +1201,13 @@ body {
     padding-left: 0;
   }
 
+  .container-full {
+    margin: 0 auto;
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+  }
+
   @media (min-width: 768px) {
     .app.container {
       width: 750px;
@@ -5675,6 +5682,31 @@ ul.signin > li.active {
   transform: rotateY(180deg);
 }
 
+.grid {
+  margin: 0 auto;
+}
+.grid-item {
+  width: 465px;
+  height: 262px;
+  float: left;
+  background: #138013;
+}
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.grid-item--width2 { width: 930px; }
+@media only screen and (max-width: 945px) {
+  .grid-item {
+    margin: 0 25%;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .grid-item {
+    margin: 0;
+  }
+}
 .pull-right {float: right;}
 .games-thumb {width: 80px; height: 110px; background-image: url("/img/game-default.jpg"); background-size: 80px 110px; background-repeat: no-repeat; vertical-align: middle;}
 .ih-item.square .img .games-thumb {max-width: 100%; height: auto; background-image: url("/img/game-default.jpg"); background-position: center; background-repeat: no-repeat;}
@@ -5737,7 +5769,21 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-
+#news .ih-item.square {
+  position: relative;
+  width: 465px;
+  height: 262px;
+}
+#news .ih-item.square .info {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 .ih-item.square.effect1 {
   overflow: hidden;
 }
@@ -5777,6 +5823,29 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   -ms-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
+}
+.ih-item.square.effect1.bottom_to_top .info h3 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 10px 0 10px;
+  margin: 180px 0 0 0;
+}
+.ih-item.square.effect1.bottom_to_top .info p,
+.ih-item.square.effect1.bottom_to_top .info div {
+  font-style: italic;
+  font-size: 12px;
+  color: #ddd;
+  padding: 5px 0 0;
+  text-align: center;
+}
+.ih-item.square.effect1.bottom_to_top a:hover .img {
+  -webkit-transform: translateY(-30px) scale(0.6);
+  -moz-transform: translateY(-30px) scale(0.6);
+  -ms-transform: translateY(-30px) scale(0.6);
+  -o-transform: translateY(-30px) scale(0.6);
+  transform: translateY(-30px) scale(0.6);
 }
 .ih-item.square.effect3 {
   overflow: hidden;
