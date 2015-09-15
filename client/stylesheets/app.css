@@ -4492,10 +4492,20 @@ ul.signin > li.active {
   background-color: #138013;
 }
 
-.padder-vv-ixbd {
+.gamerscore-table.padder-vv-xbd {
   color: #fff;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
+  background-color: #138013;
+}
+
+.gamerscore-table.padder-vv-ixbd {
+  color: #fff;
+  padding: 20px 20px 0 20px;
   background-color: #ff0000;
+}
+
+.gamerscore-table hr {
+  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
@@ -5710,6 +5720,7 @@ ul.signin > li.active {
 .pull-right {float: right;}
 .games-thumb {width: 80px; height: 110px; background-image: url("/img/game-default.jpg"); background-size: 80px 110px; background-repeat: no-repeat; vertical-align: middle;}
 .ih-item.square .img .games-thumb {max-width: 100%; height: auto; background-image: url("/img/game-default.jpg"); background-position: center; background-repeat: no-repeat;}
+.list-group.no-bg .list-group-item:hover { background-color: #F0F3F4; }
 .achievements-thumb {width: 300px; height: 169px; background-image: url("/img/achievement-default.jpg"); background-size: 300px 169px; background-repeat: no-repeat; vertical-align: middle;}
 .ih-item.square .img .achievements-thumb {max-width: 100%; height: auto; background-image: url("/img/achievement-default.jpg"); background-position: center; background-repeat: no-repeat;}
 .game-div {display: inline-block; vertical-align: middle;}

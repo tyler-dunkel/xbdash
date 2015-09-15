@@ -69,8 +69,13 @@
 </template>
 
 <template name="gamerscoreInfo">
-	<div class="gamerscore-table h3 padder-vv-{{#if chkCompleted}}xbd{{else}}ixbd{{/if}} text-center m-b">
-		{{#if chkGamerStatus}}
+	{{#if chkGamerStatus}}
+	<div class="h3 padder-vv-{{#if chkCompleted}}xbd{{else}}ixbd{{/if}} text-center gamerscore-table">
+		<div class="row">
+			<div class="col-xl-12">
+				<h3 class="h4 font-bold m-b-sm">Your Progress</h3>
+			</div>
+		</div>
 		<div class="row">
 			<div class="hidden-xl col-lg-4 col-md-3 hidden-sm col-xs-3">
 				<div class="text-white font-bold m-t-xs">
@@ -85,7 +90,9 @@
 			</div>
 		</div>
 		<hr />
-		{{/if}}
+	</div>
+	{{/if}}
+	<div class="h3 padder-vv-xbd text-center m-b">
 		<div class="row">
 			<div class="hidden-xl col-lg-4 col-md-3 hidden-sm col-xs-3">
 				<div class="text-white font-bold m-t-xs">
@@ -147,7 +154,7 @@
 					</div>
 					<div class="col-xl-2 hidden-lg col-md-2 col-sm-2 col-xs-2 {{chkPlatform}} achievement-img" style="background-image: url('{{this.mediaAssets}}');">
 					</div>
-					<div class="col-xl-6 col-lg-7 col-md-6 col-sm-7 col-xs-6">
+					<div class="col-xl-6 col-lg-7 col-md-6 col-sm-7 col-xs-6 achievement-description">
 						<div class="m-l-md">
 							<div class="padder-t game-name">{{this.name}}</div>
 							<div class="padder-d title-wrap-game">
@@ -156,8 +163,10 @@
 						</div>
 					</div>
 					<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm col-xs-2">
-						<div class="bg-black c100 p{{userPercentage}} small text-center m" style="">
-						    <span>{{userPercentage}}%</span>
+						<div class="bg-black c100 p{{userPercentage}} small text-center m user-percentage" data-toggle="popover" data-trigger="hover focus" data-placement="right" data-content="Percentage of users who earned this">
+						    <span>
+						    	{{userPercentage}}%
+						    </span>
 						    <div class="slice">
 						        <div class="bar"></div>
 						        <div class="fill"></div>

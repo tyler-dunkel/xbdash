@@ -5,9 +5,6 @@ Template.gamesSinglePage.created = function() {
     this.subscribe('gameDetails');
 }
 
-Template.gamesSinglePage.rendered = function() {
-}
-
 Template.gamesSinglePage.helpers({
 	game: function () {
         if (Template.instance().subscriptionsReady()) {
@@ -123,6 +120,10 @@ Template.gameRatingSingle.rendered = function() {
 Template.gamesSinglePageAchievement.created = function() {
     var slug = Router.current().params.slug;
     this.subscribe('singleGameAchievements', slug);
+}
+
+Template.gamesSinglePageAchievement.rendered = function() {
+    $('.user-percentage').popover();
 }
 
 Template.gamesSinglePageAchievement.helpers({
