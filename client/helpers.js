@@ -2,12 +2,27 @@ numberFormatter = function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+shareFormatter = function format(n) {
+    with (Math) {
+        var base = floor(log(abs(n))/log(1000));
+        var suffix = 'kmb'[base-1];
+        return suffix ? String(n/pow(1000,base)).substring(0,3)+suffix : ''+n;
+    }
+}
+
 var helpers = {
     appName: function () {
         return "XBdash";
     },
     copyrightInfo: function() {
         return "XBdash © 2015. All Rights Reserved.";
+    },
+    chkGamerStatus: function () {
+        var user = Meteor.user();
+        if (user && user.gamertagScanned) {
+            return true;
+        }
+        return false;
     },
     chkEmail: function () {
         //var userId = Meteor.userId();

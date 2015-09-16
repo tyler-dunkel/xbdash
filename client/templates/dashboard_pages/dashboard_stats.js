@@ -18,6 +18,13 @@ Template.dashboardStatBoxes.helpers({
             return numberFormatter(achievementsCount);
         }
     },
+    totalAchievements: function () {
+        var userId = Meteor.userId();
+        if (Template.instance().subscriptionsReady()) {
+            var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
+            return numberFormatter(totalAchievements);
+        }
+    },
     achievementsPercentage: function () {
         var userId = Meteor.userId();
         if (Template.instance().subscriptionsReady()) {
@@ -27,18 +34,18 @@ Template.dashboardStatBoxes.helpers({
             return numberFormatter(achievementsPercentage);
         }
     },
-    totalAchievements: function () {
-        var userId = Meteor.userId();
-        if (Template.instance().subscriptionsReady()) {
-            var totalAchievements = dashboardStatsTotalAchievements.findOne({ _id: userId }).achievementCount;
-            return numberFormatter(totalAchievements);
-        }
-    },
     gamesCompleted: function () {
         var userId = Meteor.userId();
         if (Template.instance().subscriptionsReady()) {
             var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
             return numberFormatter(gamesCount);
+        }
+    },
+    totalGames: function () {
+        var userId = Meteor.userId();
+        if (Template.instance().subscriptionsReady()) {
+            var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(totalGames);
         }
     },
     gamesPercentage: function () {
@@ -48,13 +55,6 @@ Template.dashboardStatBoxes.helpers({
             var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
             var gamesPercentage = Math.round(gamesCount / totalGames * 100);
             return numberFormatter(gamesPercentage);
-        }
-    },
-    totalGames: function () {
-        var userId = Meteor.userId();
-        if (Template.instance().subscriptionsReady()) {
-            var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
-            return numberFormatter(totalGames);
         }
     },
     currentGamerscore: function () {

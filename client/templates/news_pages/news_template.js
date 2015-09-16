@@ -19,7 +19,7 @@ Template.newsTemplate.helpers({
 	},
 	shareCount: function() {
 		if (this.shareCount) {
-			var shareCount = numberFormatter(this.shareCount);
+			var shareCount = shareFormatter(this.shareCount);
 			if (this.shareCount === 1) {
 				return shareCount + ' share';
 			} else {

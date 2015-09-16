@@ -1,11 +1,11 @@
+var maxGamerscore = 0;
+var maxGamerscoreDependency = new Tracker.Dependency;
+
 Template.dashboardAside.created = function() {
     this.subscribe('dashboardStatsCompletedAchievements');
     this.subscribe('dashboardStatsTotalAchievements');
     this.subscribe('dashboardStatsCompletedGames');
     this.subscribe('dashboardStatsTotalGames');
-}
-
-Template.dashboardAside.rendered = function() {
 }
 
 Template.dashboardAside.helpers({
@@ -18,19 +18,6 @@ Template.dashboardAside.helpers({
             return numberFormatter(achievementsCount);
         }
     },
-    gamesCompleted: function () {
-        var userId = Meteor.userId();
-        if (Template.instance().subscriptionsReady()) {
-            var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
-            return numberFormatter(gamesCount);
-        }
-    },
-    currentGamerscore: function () {
-        var user = Meteor.user();
-        if (Template.instance().subscriptionsReady()) {
-            return numberFormatter(user.profile.gamercard.gamerscore);
-        }
-    },
     totalAchievements: function () {
         var userId = Meteor.userId();
         if (Template.instance().subscriptionsReady()) {
@@ -38,11 +25,24 @@ Template.dashboardAside.helpers({
             return numberFormatter(totalAchievements);
         }
     },
-    totalGames: function () {
+    gamesCompleted: function () {
+        var userId = Meteor.userId();
         if (Template.instance().subscriptionsReady()) {
-            var userId = Meteor.userId();
+            var gamesCount = dashboardStatsCompletedGames.findOne({ _id: userId }).gameCount;
+            return numberFormatter(gamesCount);
+        }
+    },
+    totalGames: function () {
+        var userId = Meteor.userId();
+        if (Template.instance().subscriptionsReady()) {
             var totalGames = dashboardStatsTotalGames.findOne({ _id: userId }).gameCount;
             return numberFormatter(totalGames);
+        }
+    },
+    currentGamerscore: function () {
+        var user = Meteor.user();
+        if (Template.instance().subscriptionsReady()) {
+            return numberFormatter(user.profile.gamercard.gamerscore);
         }
     }
 });

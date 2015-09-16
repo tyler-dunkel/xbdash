@@ -41,6 +41,8 @@ Template.dashboardHeaderStats.helpers({
     },
     currentGamerscore: function () {
         var user = Meteor.user();
-        return numberFormatter(user.profile.gamercard.gamerscore);
+        if (Template.instance().subscriptionsReady()) {
+            return numberFormatter(user.profile.gamercard.gamerscore);
+        }
     }
 });

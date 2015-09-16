@@ -72,19 +72,17 @@ Template.singleGameSearch.helpers({
         return gameDetail.gameGenre;
     },
     gamesImage: function () {
-        console.log(this);
-        //var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        var gameDetail = gameDetails.findOne({ gameId: this._id });
+        var game = gameDetails.findOne({ gameId: this._id });
         var image = "/img/game-default.jpg";
         if (this.platform === 'Xenon') {
-            gameDetail.gameArt.forEach(function(art) {
+            game.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
                     image =  art.Url;
                 }
             });
         }
         if (this.platform === 'Durango') {
-            gameDetail.gameArt.forEach(function(art) {
+            game.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
                     image =  art.Url;
                 }
@@ -107,7 +105,7 @@ Template.singleNewsSearch.helpers({
 	},
 	shareCount: function() {
 		if (this.shareCount) {
-			var shareCount = numberFormatter(this.shareCount);
+			var shareCount = shareFormatter(this.shareCount);
 			if (this.shareCount === 1) {
 				return shareCount + ' share';
 			} else {

@@ -1,3 +1,5 @@
+var newsLimit = new ReactiveVar();
+
 Template.aboutUs.events({
 	'click #contactBox': function() {
 		bootbox.dialog({
@@ -74,6 +76,9 @@ Template.aboutUs.events({
 Template.aboutUs.helpers({
 	resetPasswordToken: function() {
 		return Session.get('resetPasswordToken');
+	},
+	article: function() {
+
 	}
 });
 
@@ -98,7 +103,7 @@ Template.aboutUs.destroyed = function() {
 	$('body').removeClass('home-page');
 }
 
-Template.carousel.rendered = function() {
+Template.carouselSection.rendered = function() {
 	$('#carousel1').carousel({
 		interval: false
 	});
@@ -190,3 +195,62 @@ Template.carousel.rendered = function() {
 	    });
 	});
 }
+
+Template.homeNewsSection.created = function() {
+	this.subscribe('latestNews', 12);
+}
+
+Template.homeNewsSection.rendered = function() {
+    $('.post-image-box .img-full').error(function() {
+        $(this).attr('src', '/img/news-default.jpg');
+    });
+    $('#news .grid').masonry({
+		// set itemSelector so .grid-sizer is not used in layout
+		itemSelector: '.grid-item',
+		// use element for option
+		columnWidth: '465px',
+		isFitWidth: true,
+		transitionDuration: '0.3s'
+	});
+	$('#news .grid:nth-child(3n+0)').addClass('.grid-item--width2');
+}
+
+Template.homeNewsSection.helpers({
+	latestNews: function() {
+		return xbdNews.find({}, {
+			sort: { updated: -1 },
+			fields: {
+				updated: 1,
+				title: 1,
+				content: 1,
+				id: 1,
+				author: 1,
+				shareCount: 1
+			},
+			limit: 12
+		}).fetch();
+	},
+	getImage: function () {
+        var image = this.content.match(/<img[^>]*>/);
+        if (image) {
+            var getImage = image[0].match(/src="(.+?)"/)[1];
+        } else {
+        	getImage = '/img/news-default.jpg';
+        }
+        return getImage;
+	},
+	updatedDate: function() {
+		return moment(this.updated).format('MMMM Do, YYYY');
+	},
+	shareCount: function() {
+		if (this.shareCount) {
+			var shareCount = shareFormatter(this.shareCount);
+			if (this.shareCount === 1) {
+				return shareCount + ' share';
+			} else {
+				return shareCount + ' shares';
+			}
+		}
+		return '0 shares';
+	}
+});
