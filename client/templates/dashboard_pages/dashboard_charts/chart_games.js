@@ -34,8 +34,8 @@ Template.gamesChartSvg.rendered = function() {
 			.color(d3.scale.category20().range())
 			.donut(true)
 			.donutRatio(0.35)
-			.showLabels(true)
-			.donutLabelsOutside(true)
+			.showLabels(false)
+			.donutLabelsOutside(false)
 			.labelThreshold(.01)
 			.labelType("key")
 			.cornerRadius(5);

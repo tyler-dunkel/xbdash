@@ -6,7 +6,9 @@
 Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 	return {
 		find: function() {
-			if (!this.userId) return;
+			var user = Meteor.users.findOne({ _id: this.userId });
+			if (!user) return;
+			if (!user.gamertagScanned) return;
 			Meteor._debug(dateRange);
 			return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, {
 				fields: {
@@ -31,7 +33,9 @@ Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 
 Meteor.publishComposite('dashboardGameGenreChart', {
 	find: function() {
-		if (!this.userId) return;
+		var user = Meteor.users.findOne({ _id: this.userId });
+		if (!user) return;
+		if (!user.gamertagScanned) return;
 		return userGames.find({ userId: this.userId }, {
 			fields: {
 				gameId: 1,
@@ -55,8 +59,11 @@ Meteor.publishComposite('dashboardGameGenreChart', {
 });
 
 Meteor.publish('dashboardStatsCompletedAchievements', function() {
+	var user = Meteor.users.findOne({ _id: this.userId });
+	if (!user) return;
+	if (!user.gamertagScanned) return;
+
 	var self = this;
-	if (!this.userId) return;
 	var achievementsCompleted = userAchievements.aggregate([
 		{
 			$match: {
@@ -80,8 +87,11 @@ Meteor.publish('dashboardStatsCompletedAchievements', function() {
 
 
 Meteor.publish('dashboardStatsTotalAchievements', function () {
+	var user = Meteor.users.findOne({ _id: this.userId });
+	if (!user) return;
+	if (!user.gamertagScanned) return;
+
 	var self = this;
-	if (!this.userId) return;
 	var totalAchievements = userAchievements.aggregate([
 		{
 			$match: {
@@ -103,8 +113,11 @@ Meteor.publish('dashboardStatsTotalAchievements', function () {
 });
 
 Meteor.publish('dashboardStatsCompletedGames', function () {
+	var user = Meteor.users.findOne({ _id: this.userId });
+	if (!user) return;
+	if (!user.gamertagScanned) return;
+
 	var self = this;
-	if (!this.userId) return;
 	var gamesCompleted = userGames.aggregate([
 		{
 			$match: {
@@ -132,8 +145,11 @@ Meteor.publish('dashboardStatsCompletedGames', function () {
 });
 
 Meteor.publish('dashboardStatsTotalGames', function () {
+	var user = Meteor.users.findOne({ _id: this.userId });
+	if (!user) return;
+	if (!user.gamertagScanned) return;
+
 	var self = this;
-	if (!this.userId) return;
 	var totalGames = userGames.aggregate([
 		{
 			$match: {
@@ -155,7 +171,10 @@ Meteor.publish('dashboardStatsTotalGames', function () {
 
 Meteor.publishComposite('dashboardRecentActivity', {
 	find: function() {
-		if (!this.userId) return;
+		var user = Meteor.users.findOne({ _id: this.userId });
+		if (!user) return;
+		if (!user.gamertagScanned) return;
+		
 		return userGames.find({ userId: this.userId, currentGamerscore: { $gt: 1 } }, {
 			fields: {
 				gameId: 1,

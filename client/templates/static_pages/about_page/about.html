@@ -89,13 +89,13 @@
       <div class="row m-t-xl m-b-md">
         <h2 class="text-center">News</h2>
       </div>
-      <div class="grid m-t-md m-b-md">
+      <div class="row m-t-md m-b-md">
         {{#each latestNews}}
-        <div class="grid-item">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-6 nopadding">
           <div class="ih-item square effect1 bottom_to_top">
             <a class="news-link" href="{{pathFor 'article'}}">
               <div class="img">
-                <img src="{{getImage}}" alt="{{title}}">
+                <img src="{{getImage}}" alt="{{title}}" />
               </div>
               <div class="info">
                 <h3 class="text-u-c m-b-xs text-success">{{title}}</h3>

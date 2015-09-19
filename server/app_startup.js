@@ -30,6 +30,10 @@ Meteor.startup(function() {
 		baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
 	});
 
+	userAchievements._ensureIndex({ "userId": 1, "progressState": 1 });
+	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
+	xbdAchievements._ensureIndex({ "gameId": 1 });
+
 	//function that will check referral docs to see if the referee's email has been verified
 	/*
 	Meteor.setInterval(function() {

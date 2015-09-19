@@ -5,6 +5,7 @@ Template.achievementsApp.created = function() {
 }
 
 Template.achievementsApp.rendered = function() {
+	$('[data-toggle="tooltip"]').tooltip();
 }
 
 Template.achievementsApp.helpers({

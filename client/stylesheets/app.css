@@ -1208,6 +1208,11 @@ body {
     width: 100%;
   }
 
+  .nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
   @media (min-width: 768px) {
     .app.container {
       width: 750px;
@@ -4514,6 +4519,7 @@ ul.signin > li.active {
   }
   .comments-column .h3 {
     font-size: 28px;
+    margin-bottom: 10px;
   }
 }
 
@@ -5696,8 +5702,8 @@ ul.signin > li.active {
   margin: 0 auto;
 }
 .grid-item {
-  width: 465px;
-  height: 262px;
+  width: 480px;
+  height: 360px;
   float: left;
   background: #138013;
 }
@@ -5782,8 +5788,8 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 }
 #news .ih-item.square {
   position: relative;
-  width: 465px;
-  height: 262px;
+  width: 100%;
+  padding-bottom: 56.25%;
 }
 #news .ih-item.square .info {
   position: absolute;
@@ -5840,15 +5846,17 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   color: #fff;
   text-align: center;
   font-size: 16px;
-  padding: 10px 10px 0 10px;
-  margin: 180px 0 0 0;
+  padding: 10px 15px 2px 15px;
+  margin: 37% 0 0 0;
+  max-height: 45px;
+  overflow: hidden;
 }
 .ih-item.square.effect1.bottom_to_top .info p,
 .ih-item.square.effect1.bottom_to_top .info div {
   font-style: italic;
   font-size: 12px;
   color: #ddd;
-  padding: 5px 0 0;
+  padding: 0;
   text-align: center;
 }
 .ih-item.square.effect1.bottom_to_top a:hover .img {
@@ -6061,6 +6069,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   }
 }
 @media only screen and (min-width: 992px) {
+  .ih-item.square.effect1.bottom_to_top .info h3 {
+    margin: 35% 0 0 0;
+  }
   .achievements-list .hidden-lg {
     display: block;
   }
@@ -6083,6 +6094,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   }
 }
 @media only screen and (min-width: 1200px) {
+  .ih-item.square.effect1.bottom_to_top .info h3 {
+    margin: 38% 0 0 0;
+  }
   /* lg */
   .achievements-list .hidden-lg {
     display: none;
@@ -6112,6 +6126,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   }
 }
 @media only screen and (min-width: 1400px) {
+  .ih-item.square.effect1.bottom_to_top .info h3 {
+    margin: 36% 0 0 0;
+  }
   /* xl */
   .achievements-list .trophy-class {
     width: 100%;
