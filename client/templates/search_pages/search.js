@@ -97,6 +97,8 @@ Template.singleNewsSearch.helpers({
         var image = this.content.match(/<img[^>]*>/);
         if (image) {
             var getImage = image[0].match(/src="(.+?)"/)[1];
+        } else {
+        	var getImage = "/img/news-default.jpg";
         }
         return getImage;
 	},

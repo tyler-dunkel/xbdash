@@ -10,7 +10,7 @@ Meteor.publish('latestNews', function(limit) {
 			updated: 1,
 			title: 1,
 			content: 1,
-			id: 1,
+			slug: 1,
 			author: 1,
 			shareCount: 1
 		},
@@ -28,7 +28,7 @@ Meteor.publish('mostSharedNews', function(limit) {
 			updated: 1,
 			title: 1,
 			content: 1,
-			id: 1,
+			slug: 1,
 			shareCount: 1
 		},
 		limit: limit
@@ -37,8 +37,6 @@ Meteor.publish('mostSharedNews', function(limit) {
 	return mostSharedNews;
 });
 
-Meteor.publish('singleNews', function(id) {
-	return xbdNews.find({ id: id }, {
-		fields: {}
-	});
+Meteor.publish('singleNews', function(slug) {
+	return xbdNews.find({ slug: slug });
 });

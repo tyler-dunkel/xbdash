@@ -22,7 +22,7 @@ Template.newsApp.helpers({
 				updated: 1,
 				title: 1,
 				content: 1,
-				id: 1,
+				slug: 1,
 				author: 1,
 				shareCount: 1
 			},

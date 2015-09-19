@@ -6,9 +6,10 @@ Meteor.publishComposite('mostPopularAchievements', {
 	children: [
 		{
 			find: function(achievement) {
-				if (!this.userId) {
-					return;
-				}
+				var user = Meteor.users.findOne({ _id: this.userId });
+				if (!user) return;
+				if (!user.gamertagScanned) return;
+				
 				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
 				if (typeof userAchievementCheck !== 'undefined') {
 					return userAchievementCheck;
@@ -32,9 +33,10 @@ Meteor.publishComposite('rarestAchievements', {
 	children: [
 		{
 			find: function(achievement) {
-				if (!this.userId) {
-					return;
-				}
+				var user = Meteor.users.findOne({ _id: this.userId });
+				if (!user) return;
+				if (!user.gamertagScanned) return;
+
 				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
 				if (typeof userAchievementCheck !== 'undefined') {
 					return userAchievementCheck;
