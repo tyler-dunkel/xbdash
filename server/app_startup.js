@@ -34,6 +34,11 @@ Meteor.startup(function() {
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
 	xbdAchievements._ensureIndex({ "gameId": 1 });
 
+	var testLog = leaderboardsApi;
+	var user = Meteor.users.findOne({});
+	var checkRoboAfter = leaderboardsApi.buildUserRanks(user._id);
+	var checkRoboAfter = leaderboardsApi.updateUserRanks(user._id);
+
 	//function that will check referral docs to see if the referee's email has been verified
 	/*
 	Meteor.setInterval(function() {

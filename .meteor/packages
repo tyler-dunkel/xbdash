@@ -51,3 +51,4 @@ nvd3:nvd3@=1.7.1
 d3js:d3
 mrt:jquery-masonry
 okgrow:iron-router-autoscroll
+xbdash:leaderboards-api
