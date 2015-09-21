@@ -10,6 +10,7 @@ Meteor.startup(function() {
 			checkUserForUpdates(user._id);
 		});
 	}, 1800000);
+	//}, 10000);
 });
 
 function checkUserForUpdates(userId) {
@@ -28,6 +29,8 @@ function checkUserForUpdates(userId) {
 		}
 		checkUserGamesListDurango(user._id, user.profile.xuid, false);
 		checkUserGamesListXenon(user._id, user.profile.xuid, false);
+		leaderboardsApi.updateUserRanks(userId);
+		Meteor._debug("updated leaderboards");
 	}
 	//var userGamesCount = userGames.find({userId: userId}).count();
 }

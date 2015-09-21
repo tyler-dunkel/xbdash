@@ -68,6 +68,8 @@ Meteor.methods({
 
 		Meteor.users.update({ _id: userId }, { $set: { gamertagScanned: true } });
 
+		leaderboardsApi.buildUserRanks(userId);
+
 		[
 		'gamercard',
 		'xboxonegames',
