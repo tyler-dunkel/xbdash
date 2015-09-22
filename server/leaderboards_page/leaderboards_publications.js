@@ -125,7 +125,7 @@ Meteor.publishComposite('commonAchievements', function() {
 			return userLeaderboards.find({
 				'commonAchievements.count': { $gt: 1 }
 			}, {
-				sort: { 'commonAchievements.count': -1 },
+				sort: { 'commonAchievements.rank': 1 },
 				fields: {
 					'userId': 1,
 					'commonAchievements': 1
@@ -140,7 +140,8 @@ Meteor.publishComposite('commonAchievements', function() {
 						fields: {
 							"profile.gamercard.gamertag": 1,
 							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
 					});
 				}
 			}
@@ -151,8 +152,10 @@ Meteor.publishComposite('commonAchievements', function() {
 Meteor.publishComposite('rareAchievements', function() {
 	return {
 		find: function() {
-			return userLeaderboards.find({}, {
-				sort: { 'rareAchievements.count': -1 },
+			return userLeaderboards.find({
+				'rareAchievements.count': { $gt: 1 }
+			}, {
+				sort: { 'rareAchievements.rank': 1 },
 				fields: {
 					'userId': 1,
 					'rareAchievements': 1
@@ -167,7 +170,8 @@ Meteor.publishComposite('rareAchievements', function() {
 						fields: {
 							"profile.gamercard.gamertag": 1,
 							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
 					});
 				}
 			}
@@ -178,8 +182,10 @@ Meteor.publishComposite('rareAchievements', function() {
 Meteor.publishComposite('epicAchievements', function() {
 	return {
 		find: function() {
-			return userLeaderboards.find({}, {
-				sort: { 'epicAchievements.count': -1 },
+			return userLeaderboards.find({
+				'epicAchievements.count': { $gt: 1 }
+			}, {
+				sort: { 'epicAchievements.rank': 1 },
 				fields: {
 					'userId': 1,
 					'epicAchievements': 1
@@ -194,7 +200,8 @@ Meteor.publishComposite('epicAchievements', function() {
 						fields: {
 							"profile.gamercard.gamertag": 1,
 							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
 					});
 				}
 			}
@@ -205,8 +212,10 @@ Meteor.publishComposite('epicAchievements', function() {
 Meteor.publishComposite('legendaryAchievements', function() {
 	return {
 		find: function() {
-			return userLeaderboards.find({}, {
-				sort: { 'legendaryAchievements.count': -1 },
+			return userLeaderboards.find({
+				'legendaryAchievements.count': { $gt: 1 }
+			}, {
+				sort: { 'legendaryAchievements.rank': 1 },
 				fields: {
 					'userId': 1,
 					'legendaryAchievements': 1
@@ -221,7 +230,8 @@ Meteor.publishComposite('legendaryAchievements', function() {
 						fields: {
 							"profile.gamercard.gamertag": 1,
 							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
 					});
 				}
 			}
