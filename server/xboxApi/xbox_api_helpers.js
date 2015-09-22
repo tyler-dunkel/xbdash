@@ -48,7 +48,8 @@ function updateXboxOneAchievementsData(userId, gameId) {
 				isSecret: achievement.isSecret,
 				description: achievement.description,
 				lockedDescription: achievement.lockedDescription,
-				value: achievementValue
+				value: achievementValue,
+				userPercentage: 0
 			};
 			achievementCheck = xbdAchievements.insert(singleAchievement);
 			achievementInserted = true;
@@ -173,7 +174,8 @@ function updateXbox360AchievementsData(userId, gameId) {
 					isSecret: achievement.isSecret,
 					description: achievement.description,
 					lockedDescription: achievement.lockedDescription,
-					value: achievement.gamerscore
+					value: achievement.gamerscore,
+					userPercentage: 0
 				};
 				achievementCheck = xbdAchievements.insert(singleAchievement);
 				achievementInserted = true;

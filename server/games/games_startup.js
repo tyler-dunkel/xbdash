@@ -13,5 +13,5 @@ Meteor.startup(function() {
 				userGames.update({ _id: game._id }, { $set: { completed: true }});
 			}
 		});
-	}, 10000);
+	}, 300000);
 });

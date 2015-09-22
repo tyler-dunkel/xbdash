@@ -9,10 +9,10 @@ Meteor.startup(function() {
 
 		achievements.forEach(function(achievement) {
 			userAchievementCount = userAchievements.find({ achievementId: achievement._id, progressState: true }).count();
-			//Meteor._debug("the uesr achievement count is: " + userAchievementCount);
-			achievementUnlockPercentage = Math.round((userAchievementCount / userCount)) * 100;
-			//Meteor._debug(achievementUnlockPercentage);
+			// Meteor._debug(userAchievementCount);
+			achievementUnlockPercentage = (userAchievementCount / userCount) * 100;
 			xbdAchievements.upsert({ _id: achievement._id }, { $set: { userPercentage: achievementUnlockPercentage } });
 		});
-	}, 30000);
+	}, 300000);
+	// }, 5000);
 });

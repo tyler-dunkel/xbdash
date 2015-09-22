@@ -1,6 +1,6 @@
 Package.describe({
   name: 'xbdash:leaderboards-api',
-  version: '0.0.48',
+  version: '0.0.54',
   // Brief, one-line summary of the package.
   summary: 'Class to rank users based on games, achievements, and gamerscore.',
   // URL to the Git repository containing the source code for this package.

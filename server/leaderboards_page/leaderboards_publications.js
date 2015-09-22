@@ -1,74 +1,230 @@
-Meteor.publish('completedAchievements', function() {
-	var self = this;
-	var completedAchievements = userAchievements.aggregate([
-		{
-			$match: {
-				progressState: true
-			}
+// daily rank, overall rank (total gamerscore), completed achievements, completed games
+// common, rare, epic, legendary
+
+Meteor.publishComposite('dailyRank', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({
+				'dailyRank.value': { $gt: 1 }
+			}, {
+				sort: { 'dailyRank.rank': 1 },
+				fields: {
+					'userId': 1,
+					'dailyRank': 1
+				},
+				limit: 100
+			});
 		},
-		{
-			$group: {
-				_id: "$userId",
-				achievementCount: { $sum: 1 }
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
+					});
+				}
 			}
-		}
-	]);
-	var rank = 0;
-	Meteor._debug(completedAchievements);
-	_.each(completedAchievements, function(completedAchievement) {
-		rank++;
-		var user = Meteor.users.findOne({ _id: completedAchievement._id });
-		var userGamertag = user.profile.gamercard.gamertag;
-		var userPicture = user.profile.gamercard.gamerpicLargeImagePath;
-		self.added('completedachievements', userGamertag, {
-			userPicture: userPicture,
-			achievementCount: completedAchievement.achievementCount,
-			rank: rank
-		});
-	});
-	self.ready();
+		]
+	}
 });
 
-Meteor.publish('completedGames', function() {
-	var self = this;
-	var completedGames = userGames.aggregate([
-		{
-			$match: {
-				completed: true
-			}
+Meteor.publishComposite('overallRanks', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({}, {
+				sort: { overallRank: 1 },
+				fields: {
+					'userId': 1,
+					'overallRank': 1
+				},
+				limit: 100
+			});
 		},
-		{
-			$group: {
-				_id: "$userId",
-				gameCount: { $sum: 1 }
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
+					});
+				}
 			}
-		}
-	]);
-	var rank = 0;
-	Meteor._debug(completedGames);
-	_.each(completedGames, function(completedGame) {
-		rank++;
-		var user = Meteor.users.findOne({ _id: completedGame._id });
-		var userGamertag = user.profile.gamercard.gamertag;
-		var userPicture = user.profile.gamercard.gamerpicLargeImagePath;
-		self.added('completedgames', userGamertag, {
-			userPicture: userPicture,
-			gameCount: completedGame.gameCount,
-			rank: rank
-		});
-	});
-	self.ready();
+		]
+	}
 });
 
-Meteor.publish('maxGamerscore', function() {
-	return usersByGamerscore = Meteor.users.find({}, {
-		$sort: { "profile.gamercard.gamerscore": -1 },
-		fields: {
-			"profile.gamercard.gamertag": 1,
-			"profile.gamercard.gamerscore": 1,
-			"profile.gamercard.gamerpicLargeImagePath": 1,
-			"profile.userOverallRank": 1
+Meteor.publishComposite('completedAchievements', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({
+				'completedAchievements.count': { $gt: 1 }
+			}, {
+				sort: { 'completedAchievements.rank': 1 },
+				fields: {
+					'userId': 1,
+					'completedAchievements': 1
+				},
+				limit: 100
+			});
 		},
-		limit: 100
-	});
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
+					});
+				}
+			}
+		]
+	}
+});
+
+Meteor.publishComposite('completedGames', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({
+				'completedGames.count': { $gt: 1 }
+			}, {
+				sort: { 'completedGames.rank': 1 },
+				fields: {
+					'userId': 1,
+					'completedGames': 1
+				},
+				limit: 100
+			});
+		},
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1
+						}
+					});
+				}
+			}
+		]
+	}
+});
+
+Meteor.publishComposite('commonAchievements', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({
+				'commonAchievements.count': { $gt: 1 }
+			}, {
+				sort: { 'commonAchievements.count': -1 },
+				fields: {
+					'userId': 1,
+					'commonAchievements': 1
+				},
+				limit: 100
+			});
+		},
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+					});
+				}
+			}
+		]
+	}
+});
+
+Meteor.publishComposite('rareAchievements', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({}, {
+				sort: { 'rareAchievements.count': -1 },
+				fields: {
+					'userId': 1,
+					'rareAchievements': 1
+				},
+				limit: 100
+			});
+		},
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+					});
+				}
+			}
+		]
+	}
+});
+
+Meteor.publishComposite('epicAchievements', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({}, {
+				sort: { 'epicAchievements.count': -1 },
+				fields: {
+					'userId': 1,
+					'epicAchievements': 1
+				},
+				limit: 100
+			});
+		},
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+					});
+				}
+			}
+		]
+	}
+});
+
+Meteor.publishComposite('legendaryAchievements', function() {
+	return {
+		find: function() {
+			return userLeaderboards.find({}, {
+				sort: { 'legendaryAchievements.count': -1 },
+				fields: {
+					'userId': 1,
+					'legendaryAchievements': 1
+				},
+				limit: 100
+			});
+		},
+		children: [
+			{
+				find: function(userStat) {
+					return Meteor.users.find({ _id: userStat.userId }, {
+						fields: {
+							"profile.gamercard.gamertag": 1,
+							"profile.gamercard.gamerscore": 1,
+							"profile.gamercard.gamerpicLargeSslImagePath": 1						}
+					});
+				}
+			}
+		]
+	}
 });
