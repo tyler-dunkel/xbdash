@@ -1,7 +1,20 @@
 Meteor.publishComposite('mostPopularAchievements', {
 	find: function() {
 		Meteor._debug("most popular achievement function firing");
-		return xbdAchievements.find({}, { sort: { userPercentage: 1 }, limit: 50 });
+		return xbdAchievements.find({}, {
+			fields: {
+				gameId: 1,
+				name: 1,
+				mediaAssets: 1,
+				description: 1,
+				lockedDescription: 1,
+				value: 1,
+				userPercentage: 1,
+				slug: 1
+			},
+			sort: { userPercentage: -1 },
+			limit: 50
+		});
 	},
 	children: [
 		{
@@ -28,7 +41,20 @@ Meteor.publishComposite('mostPopularAchievements', {
 Meteor.publishComposite('rarestAchievements', {
 	find: function() {
 		Meteor._debug("rarest achievement function firing");
-		return xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 50 });
+		return xbdAchievements.find({}, {
+			fields: {
+				gameId: 1,
+				name: 1,
+				mediaAssets: 1,
+				description: 1,
+				lockedDescription: 1,
+				value: 1,
+				userPercentage: 1,
+				slug: 1
+			},
+			sort: { userPercentage: 1 },
+			limit: 50
+		});
 	},
 	children: [
 		{

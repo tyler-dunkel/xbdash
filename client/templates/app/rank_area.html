@@ -1,5 +1,5 @@
 <template name="rankArea">
-	{{#if currentUser.gamertagScanned}}
+	{{#if chkGamerStatus}}
 	<div class="inline m-l m-r text-left">
 		<div class="m-b-xs">Daily Rank</div>
 		<div class="h4 text-success font-bold">{{currentUser.profile.userDailyRank}}</div>
@@ -12,7 +12,7 @@
 </template>
 
 <template name="rankAreaHeader">
-	{{#if currentUser.gamertagScanned}}
+	{{#if chkGamerStatus}}
 	<div class="col-md-6 table-cell text-left hidden-xs">
 		<div class="m-b-xs">Daily Rank</div>
 		<div class="h4 text-success font-bold">{{currentUser.profile.userDailyRank}}</div>

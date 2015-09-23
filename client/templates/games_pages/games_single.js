@@ -1,7 +1,6 @@
 var achievementShowNext = new ReactiveVar(0);
 
 Template.gamesSinglePage.created = function() {
-    // var self = this;
     this.subscribe('gameDetails');
 }
 
@@ -10,27 +9,14 @@ Template.gamesSinglePage.helpers({
         if (Template.instance().subscriptionsReady()) {
     		var slug = Router.current().params.slug;
     		var game = xbdGames.findOne({ slug: slug });
-
             if (game && game._id) {
-                return gameDetails.findOne({ gameId: game._id }, {
-                    fields: {
-                        gameId: 1,
-                        gameName: 1,
-                        gameDescription: 1,
-                        gameReleaseDate: 1,
-                        gameGenre: 1,
-                        gameArt: 1,
-                        gamePublisherName: 1,
-                        gameAllTimeAverageRating: 1
-                    }
-                });
+                return gameDetails.findOne({ gameId: game._id });
             }
         }
 	},
 	gamesImage: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
         var image = "/img/game-default.jpg";
-
         if (game.platform === 'Xenon') {
             this.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
@@ -45,14 +31,13 @@ Template.gamesSinglePage.helpers({
                 }
             });
         }
-
         return image;
     },
     dateFormat: function () {
         return moment(this.gameReleaseDate).format('l');
     },
     gamePlatform: function () {
-    	var game = xbdGames.findOne({ _id: this.gameId }, { fields: { platform: 1 } });
+    	var game = xbdGames.findOne({ _id: this.gameId });
         if (game.platform == 'Durango') {
             return 'Xbox One';
         }
@@ -81,19 +66,21 @@ Template.gamerscoreInfo.helpers({
         return false;
     },
     userCurrentGamerscore: function () {
-        var game = userGames.findOne({ gameId: this.gameId }, { fields: { currentGamerscore: 1 } });
+        var userId = Meteor.userId();
+        var game = userGames.findOne({ userId: userId, gameId: this.gameId });
         if (game && game.currentGamerscore) {
             return game.currentGamerscore;
         }
     },
     userCurrentAchievements: function () {
-        var game = userGames.findOne({ gameId: this.gameId });
+        var userId = Meteor.userId();
+        var game = userGames.findOne({ userId: userId, gameId: this.gameId });
         if (game && game.earnedAchievements) {
             return game.earnedAchievements;
         }
     },
     gameMaxGamerscore: function () {
-        var game = xbdGames.findOne({ _id: this.gameId }, { fields: { maxGamerscore: 1 } });
+        var game = xbdGames.findOne({ _id: this.gameId });
         if (game && game.maxGamerscore) {
             return game.maxGamerscore;
         }
@@ -134,15 +121,6 @@ Template.gamesSinglePageAchievement.helpers({
                 userPercentage: 1,
                 name: 1,
             },
-            fields: {
-                gameId: 1,
-                name: 1,
-                mediaAssets: 1,
-                description: 1,
-                value: 1,
-                slug: 1,
-                userPercentage: 1
-            },
             limit: 7,
             skip: skip
         });
@@ -167,7 +145,6 @@ Template.gamesSinglePageAchievement.helpers({
         var xbdGame = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
         var image = "/img/achievement-default.jpg";
-
         if (xbdGame.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt') {
@@ -193,7 +170,6 @@ Template.gamesSinglePageAchievement.events({
 			return;
 		}
 		var currentCount = achievementShowNext.get();
-
 		achievementShowNext.set(currentCount + 7);
 		console.log(achievementShowNext.get());
 	},
@@ -203,7 +179,6 @@ Template.gamesSinglePageAchievement.events({
             return;
         }
         var currentCount = achievementShowNext.get();
-
         achievementShowNext.set(currentCount - 7);
         console.log(achievementShowNext.get());
     }

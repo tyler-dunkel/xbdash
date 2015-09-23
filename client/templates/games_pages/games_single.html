@@ -14,9 +14,11 @@
 									Publisher: {{gamePublisherName}}
 								</small>
 							</div>
+							{{#if chkGamerStatus}}
 							<div class="col-lg-3 col-xs-5">
 								{{> rankArea}}
 							</div>
+							{{/if}}
 						</div>
 					</div>
 					<div class="wrapper-md col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -70,6 +72,7 @@
 
 <template name="gamerscoreInfo">
 	{{#if chkGamerStatus}}
+	{{#if chkCompleted}}
 	<div class="h3 padder-vv-{{#if chkCompleted}}xbd{{else}}ixbd{{/if}} text-center gamerscore-table">
 		<div class="row">
 			<div class="col-xl-12">
@@ -91,6 +94,7 @@
 		</div>
 		<hr />
 	</div>
+	{{/if}}
 	{{/if}}
 	<div class="h3 padder-vv-xbd text-center m-b">
 		<div class="row">
