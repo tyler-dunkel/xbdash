@@ -16,7 +16,6 @@ Meteor.publish('latestNews', function(limit) {
 		},
 		limit: limit
 	});
-
 	return latestNews;
 });
 
@@ -33,7 +32,6 @@ Meteor.publish('mostSharedNews', function(limit) {
 		},
 		limit: limit
 	});
-	
 	return mostSharedNews;
 });
 

@@ -17,7 +17,12 @@
               </div>
               {{#if chkGamerStatus}}
               <div class="col-sm-6 text-right hidden-xs">
-                {{> rankArea}}
+                <div class="inline m-l m-r text-left">
+                  {{> userDailyRank}}
+                </div>
+                <div class="inline text-left">
+                  {{> userOverallRank}}
+                </div>
               </div>
               {{/if}}
             </div>
@@ -26,18 +31,7 @@
             <!-- stats -->
             <div class="row">
               <div class="col-lg-8 col-xs-12">
-                <div class="blog-post">
-                  {{#if Template.subscriptionsReady}}
-                    {{#each latestNews}}
-                      {{> newsTemplate}}
-                    {{/each}}
-                  {{else}}
-                    {{> loadingTemplate}}
-                  {{/if}}
-                </div>
-                {{#if hasMoreResults}}
-                  <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
-                {{/if}}
+                {{> newsSection}}
               </div>
               <div class="wrapper-md col-lg-4 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
                 {{> mostSharedNews limit=9}}
@@ -48,4 +42,19 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="newsSection">
+  {{#if Template.subscriptionsReady}}
+    <div class="blog-post">
+    {{#each latestNews}}
+      {{> newsTemplate}}
+    {{/each}}
+    </div>
+    {{#if hasMoreResults}}
+      <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+    {{/if}}
+  {{else}}
+    {{> loadingTemplate}}
+  {{/if}}
 </template>
