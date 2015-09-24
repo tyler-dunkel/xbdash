@@ -55,7 +55,7 @@ Template.searchOverlay.helpers({
 });
 
 Template.singleGameSearch.created = function() {
-	this.subscribe('gameDetails', this.data._id);
+	this.subscribe('gameDetailsSearch', this.data._id);
 }
 
 Template.singleGameSearch.helpers({
@@ -72,17 +72,17 @@ Template.singleGameSearch.helpers({
         return gameDetail.gameGenre;
     },
     gamesImage: function () {
-        var game = gameDetails.findOne({ gameId: this._id });
+        var gameDetail = gameDetails.findOne({ gameId: this._id });
         var image = "/img/game-default.jpg";
         if (this.platform === 'Xenon') {
-            game.gameArt.forEach(function(art) {
+            gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
                     image =  art.Url;
                 }
             });
         }
         if (this.platform === 'Durango') {
-            game.gameArt.forEach(function(art) {
+            gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
                     image =  art.Url;
                 }

@@ -5166,6 +5166,12 @@ ul.signin > li.active {
   width: 204px;
 }
 
+.media img.thumb-xxxl:hover {
+  -webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+}
+
 .thumb-xxl {
   display: inline-block;
   width: 150px;
@@ -5726,7 +5732,12 @@ ul.signin > li.active {
 .pull-right {float: right;}
 .games-thumb {width: 80px; height: 110px; background-image: url("/img/game-default.jpg"); background-size: 80px 110px; background-repeat: no-repeat; vertical-align: middle;}
 .ih-item.square .img .games-thumb {max-width: 100%; height: auto; background-image: url("/img/game-default.jpg"); background-position: center; background-repeat: no-repeat;}
-.list-group.no-bg .list-group-item:hover { background-color: #F0F3F4; }
+.list-group.no-bg .list-group-item:hover {
+  background-color: #F0F3F4;
+  -webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+}
 .achievements-thumb {width: 300px; height: 169px; background-image: url("/img/achievement-default.jpg"); background-size: 300px 169px; background-repeat: no-repeat; vertical-align: middle;}
 .ih-item.square .img .achievements-thumb {max-width: 100%; height: auto; background-image: url("/img/achievement-default.jpg"); background-position: center; background-repeat: no-repeat;}
 .game-div {display: inline-block; vertical-align: middle;}

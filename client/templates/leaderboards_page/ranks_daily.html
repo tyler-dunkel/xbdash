@@ -1,0 +1,37 @@
+<template name="dailyRanks">
+  {{#if Template.subscriptionsReady}}
+  <div class="panel-heading text-center">
+    <h3 class="m-n padder-t text-white h4">Top Gamerscore Today</h3>
+  </div>
+  <ul class="list-group alt">
+    {{#if getUser}}
+    {{#each dailyLB}}
+    <li class="list-group-item">
+      <div class="media">
+        <span class="pull-left m-t-sm" style="display: block; font-size: 16px;">{{overallRank}}</span>
+        <span class="pull-left thumb-sm">
+          <img src="{{getUserImage}}" alt="{{getUser}}" />
+        </span>
+        <div class="pull-right text-success m-t-sm">
+          {{getGamerscore}}
+        </div>
+        <div class="media-body">
+          <div>{{getUser}}</div>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+    {{else}}
+    <li class="list-group-item">
+      <div class="media">
+        <div class="media-body text-center" style="font-size: 14px; padding-bottom: 15px;">
+          <div>Waiting for users to unlock a new achievement today.</div>
+        </div>
+      </div>
+    </li>
+    {{/if}}
+  </ul>
+  {{else}}
+    {{> loadingTemplate}}
+  {{/if}}
+</template>

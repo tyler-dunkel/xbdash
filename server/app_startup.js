@@ -34,23 +34,35 @@ Meteor.startup(function() {
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
 	xbdAchievements._ensureIndex({ "gameId": 1 });
 
+	var testLog = leaderboardsApi;
+	var users = Meteor.users.find({}, { limit: 5 });
+	if (users.count() > 0) {
+		users.forEach(function(user) {
+			leaderboardsApi.buildUserRanks(user._id);
+			leaderboardsApi.updateUserCounts(user._id);
+		});
+		Meteor.setInterval(function() {
+			leaderboardsApi.updateUserRanks();
+		}, 15000);
+	}
+
 	//function that will check referral docs to see if the referee's email has been verified
-	/*
-	Meteor.setInterval(function() {
-		var referrals = userReferrals.find({verified: false});
+	
+	// Meteor.setInterval(function() {
+	// 	var referrals = userReferrals.find({verified: false});
 		
-		if (referrals) {
-			referrals.forEach(function(referral) {
-				var referee = Meteor.users.findOne({_id: referral.refereeId});
-				if (!referee.emails[0].verified) {
-					return;	
-					Meteor._debug("the email isnt verified" + referee.emails[0].verified);
-				}
-				Meteor._debug("the referral should be set to true");
-				userReferrals.update({_id: referral._id}, {$set: {verified: true}});
-				Meteor.users.update({_id: referral.referrerId}, {$inc: {userReferralCount: 1}});
-			});
-		}
-	}, 1000);
-	*/
+	// 	if (referrals) {
+	// 		referrals.forEach(function(referral) {
+	// 			var referee = Meteor.users.findOne({_id: referral.refereeId});
+	// 			if (!referee.emails[0].verified) {
+	// 				return;	
+	// 				Meteor._debug("the email isnt verified" + referee.emails[0].verified);
+	// 			}
+	// 			Meteor._debug("the referral should be set to true");
+	// 			userReferrals.update({_id: referral._id}, {$set: {verified: true}});
+	// 			Meteor.users.update({_id: referral.referrerId}, {$inc: {userReferralCount: 1}});
+	// 		});
+	// 	}
+	// }, 1000);
+	
 });

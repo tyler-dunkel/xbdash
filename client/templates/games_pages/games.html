@@ -15,14 +15,14 @@
                 <h1 class="m-n font-thin h3 text-black">Games</h1>
                 <small class="text-muted">Search games</small>
               </div>
-              {{#if currentUser}}
+              {{#if chkGamerStatus}}
               <div class="col-sm-6 text-right hidden-xs">
                 {{> rankArea}}
               </div>
               {{/if}}
             </div>
           </div>
-          {{#if currentUser.gamertagScanned}}
+          {{#if chkGamerStatus}}
           <div class="wrapper-md">
             <div class="row">
               <div class="col-lg-12">
