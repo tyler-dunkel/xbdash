@@ -4413,6 +4413,38 @@ ul.signin > li.active {
   margin-bottom: 4px;
 }
 
+.b-l-legendary {
+  border-left-color: #000000;
+}
+
+.b-l-epic {
+  border-left-color: #3498db;
+}
+
+.b-l-rare {
+  border-left-color: #e74c3c;
+}
+
+.b-l-common {
+  border-left-color: #f39c12;
+}
+
+.bg-legendary {
+  background-color: #000000;
+}
+
+.bg-epic {
+  background-color: #3498db;
+}
+
+.bg-rare {
+  background-color: #e74c3c;
+}
+
+.bg-common {
+  background-color: #f39c12;
+}
+
 .padder-vv- {
   padding: 20px;
 }
@@ -6029,6 +6061,19 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   display: inline-block !important;
   width: 81px;
   height: 81px;
+  margin: 0;
+  border: 0;
+  background-position: center center;
+  background-size: cover;
+}
+.list-group-item .thumb-md {
+  width: 64px;
+  height: 64px;
+}
+.thumb-md .achievement-img {
+  display: inline-block !important;
+  width: 64px;
+  height: 64px;
   margin: 0;
   border: 0;
   background-position: center center;

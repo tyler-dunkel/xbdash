@@ -1,5 +1,5 @@
 <template name="userDropdown">
-	{{#if currentUser.gamertagScanned}}
+	{{#if chkGamerStatus}}
 		{{#if loggingIn}}
 			{{> loadingTemplate}}
 		{{else}}
@@ -44,7 +44,7 @@
 			<li class="dropdown">
 				<a href class="dropdown-toggle clear" data-toggle="dropdown">
 					<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-						{{#if currentUser.gamertagScanned}}
+						{{#if chkGamerStatus}}
 						<img src="{{currentUser.profile.gamercard.gamerpicSmallSslImagePath}}" alt="{{currentUser.username}}">
 						{{else}}
 						<img src="/img/gamerpic-default.jpg" alt="currentUser.profile.name" />

@@ -46,6 +46,8 @@ Meteor.startup(function() {
 		}, 15000);
 	}
 
+	var xboxAO = xboxApiObject.chkGamertag('awdadwadw');
+
 	//function that will check referral docs to see if the referee's email has been verified
 	
 	// Meteor.setInterval(function() {

@@ -39,22 +39,37 @@ syncApiCaller = Async.wrap(xboxApiCaller);
 
 Meteor.methods({
 	chkGamertag: function(gamertag) {
-		check(gamertag, String);
-		var url = 'xuid/' + gamertag;
-		var response = syncApiCaller(url);
-
-		var xuid = response.content;
-		var userExists = Meteor.users.findOne({"profile.xuid": xuid});
-
-		if (response.statusCode === 200 || response.statusCode === 201) {
-			if (userExists) {
-				throw new Meteor.Error("gamertagExists", "Gamertag is already registered", "This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
-			} else {
-				return {content: response.content, statusCode: response.statusCode};
-			}
-		} else {
-			throw new Meteor.Error("gamertagNotFound", "Gamertag Not Found", "If you are sure you entered the correct gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
+		var userExists = Meteor.users.findOne({ "profile.gamercard.gamertag": gamertag });
+		if (userExists) {
+			throw new Meteor.Error("gamertagExists", "Gamertag is already registered.");
 		}
+
+		var apiResult = xboxApiObject.chkGamertag(gamertag);
+		if (apiResult.error) {
+			throw new Meteor.Error("gamertagNotFound", apiResult.error.reason);
+		}
+
+		return {
+			content: apiResult.result.content,
+			statusCode: apiResult.result.statusCode
+		};
+
+		// check(gamertag, String);
+		// var url = 'xuid/' + gamertag;
+		// var response = syncApiCaller(url);
+
+		// var xuid = response.content;
+		// var userExists = Meteor.users.findOne({"profile.xuid": xuid});
+
+		// if (response.statusCode === 200 || response.statusCode === 201) {
+		// 	if (userExists) {
+		// 		throw new Meteor.Error("gamertagExists", "Gamertag is already registered", "This gamertag has already been registered. If you are sure this is your gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
+		// 	} else {
+		// 		return {content: response.content, statusCode: response.statusCode};
+		// 	}
+		// } else {
+		// 	throw new Meteor.Error("gamertagNotFound", "Gamertag Not Found", "If you are sure you entered the correct gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
+		// }
 	},
 	retrieveData: function(user) {
 		check(user.profile.xuid, String);

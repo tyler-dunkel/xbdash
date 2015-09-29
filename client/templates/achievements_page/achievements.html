@@ -6,9 +6,7 @@
   <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
       <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <!-- main -->
         <div class="col">
-          <!-- main header -->
           <div class="bg-light lter b-b wrapper-md">
             <div class="row">
               <div class="col-sm-4 col-xs-12">
@@ -41,41 +39,55 @@
               {{/if}}
             </div>
           </div>
-          <div class="wrapper-md">
-            <div class="row">
-              <div class="col-lg-12">
-                <h3 class="m-n font-thin padder-v text-black">Most Popular Achievements</h3>
-              </div>
-            </div>
-            <div class="row">
-            {{#if Template.subscriptionsReady}}
-              {{#each mostPopularAchievements}}
-                {{> achievementTemplate}}
-              {{/each}}
-            {{else}}
-              {{> loadingTemplate}}
-            {{/if}}
-            </div>
+          <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12 wrapper-md">
+            {{> topCommonTemplate}}
           </div>
-          <div class="wrapper-md">
-            <div class="row">
-              <div class="col-lg-12">
-                <h3 class="m-n font-thin padder-v text-black">Rarest Achievements</h3>
-              </div>
-            </div>
-            <div class="row">
-            {{#if Template.subscriptionsReady}}
-              {{#each rarestAchievements}}
-                {{> achievementTemplate}}
-              {{/each}}
-            {{else}}
-              {{> loadingTemplate}}
-            {{/if}}
-            </div>
+          <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12 wrapper-md">
+            {{> topRareTemplate}}
           </div>
-          <!--end wrapper-->
+          <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12 wrapper-md">
+            {{> topEpicTemplate}}
+          </div>
+          <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12 wrapper-md">
+            {{> topLegendaryTemplate}}
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+</template>
+
+<template name="archiveAchievementTemplates">
+  <div class="wrapper-md">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="m-n font-thin padder-v text-black">Most Popular Achievements</h3>
+      </div>
+    </div>
+    <div class="row">
+      {{#if Template.subscriptionsReady}}
+      {{#each mostPopularAchievements}}
+      {{> achievementTemplate}}
+      {{/each}}
+      {{else}}
+      {{> loadingTemplate}}
+      {{/if}}
+    </div>
+  </div>
+  <div class="wrapper-md">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="m-n font-thin padder-v text-black">Rarest Achievements</h3>
+      </div>
+    </div>
+    <div class="row">
+      {{#if Template.subscriptionsReady}}
+      {{#each rarestAchievements}}
+      {{> achievementTemplate}}
+      {{/each}}
+      {{else}}
+      {{> loadingTemplate}}
+      {{/if}}
     </div>
   </div>
 </template>
