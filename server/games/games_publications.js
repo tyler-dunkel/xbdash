@@ -125,7 +125,7 @@ Meteor.publishComposite('gamesByReleaseDate', {
 				var user = Meteor.users.findOne({ _id: this.userId });
 				if (!user) return;
 				if (!user.gamertagScanned) return;
-				return userGames.find({ gameId: game.gameId }, {
+				return userGames.find({ userId: this.userId, gameId: game.gameId }, {
 					fields: {
 						gameId: 1,
 						userId: 1,
@@ -147,39 +147,6 @@ Meteor.publish('gameDetailsSearch', function(id) {
 			gameArt: 1
 		}
 	});
-});
-
-Meteor.publishComposite('gameDetails', function(id) {
-	return {
-		find: function() {
-			return gameDetails.findOne({ gameId: id }, {
-				fields: {
-                    gameId: 1,
-                    gameName: 1,
-                    gameDescription: 1,
-                    gameReleaseDate: 1,
-                    gameGenre: 1,
-                    gameArt: 1,
-                    gamePublisherName: 1,
-                    gameAllTimeAverageRating: 1
-                }
-			});
-		},
-		children: [
-			{
-				find: function(game) {
-					return xbdGames.find({ _id: game.gameId }, {
-						fields: {
-							platform: 1,
-							name: 1,
-							maxGamerscore: 1,
-							slug: 1
-						}
-					});
-				}
-			}
-		]
-	}
 });
 
 Meteor.publishComposite('singleGame', function(slug) {
@@ -235,11 +202,10 @@ Meteor.publishComposite('singleGameAchievements', function(slug) {
 	return {
 		find: function() {
 			var game = xbdGames.findOne({ slug: slug });
-
 			return xbdAchievements.find({ gameId: game._id }, {
 				sort: {
-	                userPercentage: 1,
-	                name: 1,
+	                value: 1,
+	                name: 1
 	            },
 				fields: {
 					gameId: 1,
@@ -256,8 +222,11 @@ Meteor.publishComposite('singleGameAchievements', function(slug) {
 			{
 				find: function(achievement) {
 					var user = Meteor.users.findOne({ _id: this.userId });
-					if (user || user.gamertagScanned) {
-						return userAchievements.find({ achievementId: achievement._id }, {
+					if (user && user.gamertagScanned) {
+						return userAchievements.find({ userId: this.userId, achievementId: achievement._id }, {
+							sort: {
+								progressState: -1
+							},
 							fields: {
 								achievementId: 1,
 								userId: 1,

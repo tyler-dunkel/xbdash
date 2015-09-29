@@ -21,12 +21,15 @@ Template.newsSection.helpers({
 		return xbdNews.find({}, {
 			sort: { updated: -1 },
 			limit: newsLimit.get()
-		});
+		}).fetch();
 	},
-	moreResults: function() {
-		var xbdNewsCount = xbdNews.find({}).count();
+	hasMoreResults: function() {
+		//var xbdNewsCount = xbdNews.find({}).count();
 		var newsLimitCurrent = newsLimit.get();
-		return ! (xbdNewsCount < newsLimitCurrent);
+		var xbdNewsCount = xbdNews.find({}).count();
+		console.log(newsLimitCurrent)
+		console.log(xbdNewsCount);
+		return ! (xbdNewsCount < newsLimit.get());
 	}
 });
 
@@ -34,21 +37,21 @@ Tracker.autorun(function() {
 });
 
 function showMoreVisible() {
-	var threshold, target = $("#showMoreResults");
+	var threshold, target = $("#hasMoreResults");
 	if (!target.length) return;
 
 	threshold = $(window).scrollTop() + $(window).height() - target.height();
 
 	if (target.offset().top < threshold) {
 		if (!target.data("visible")) {
-            // console.log("target became visible (inside viewable area)");
-            target.data("visible", true);
-            newsLimit.set(newsLimit.get() + 9);
-        }
-    } else {
-    	if (target.data("visible")) {
-            // console.log("target became invisible (below viewable arae)");
-            target.data("visible", false);
-        }
-    }
+			console.log("target became visible");
+			target.data("visible", true);
+			newsLimit.set(newsLimit.get() + 9);
+		}
+	} else {
+		if (target.data("visible")) {
+			console.log("target became invisible");
+			target.data("visible", false);
+		}
+	}
 }

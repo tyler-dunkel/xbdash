@@ -1,7 +1,8 @@
 var achievementShowNext = new ReactiveVar(0);
 
 Template.gamesSinglePage.created = function() {
-    this.subscribe('gameDetails');
+    var slug = Router.current().params.slug;
+    this.subscribe('singleGame', slug);
 }
 
 Template.gamesSinglePage.helpers({
@@ -45,15 +46,22 @@ Template.gamesSinglePage.helpers({
             return 'Xbox 360';
         }
     	return 'Xbox';
+    },
+    chkUserForGame: function () {
+        var userId = Meteor.userId();
+        var userGame = userGames.find({ gameId: this.gameId, userId: userId });
+        console.log(userGame);
+        if (userGame && userGame.count() > 0) return true;
+        return false; 
     }
 });
 
-Template.gamerscoreInfo.created = function() {
+Template.userGamerscoreInfo.created = function() {
     var slug = Router.current().params.slug;
-    this.subscribe('singleGameAchievements', slug);
+    this.subscribe('singleGame', slug);
 }
 
-Template.gamerscoreInfo.helpers({
+Template.userGamerscoreInfo.helpers({
     chkCompleted: function () {
         var user = Meteor.user();
         if (user && user.gamertagScanned) {
@@ -78,7 +86,15 @@ Template.gamerscoreInfo.helpers({
         if (game && game.earnedAchievements) {
             return game.earnedAchievements;
         }
-    },
+    }
+});
+
+Template.gamerscoreInfo.created = function() {
+    var slug = Router.current().params.slug;
+    this.subscribe('singleGame', slug);
+}
+
+Template.gamerscoreInfo.helpers({
     gameMaxGamerscore: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
         if (game && game.maxGamerscore) {
@@ -110,16 +126,17 @@ Template.gamesSinglePageAchievement.created = function() {
 }
 
 Template.gamesSinglePageAchievement.rendered = function() {
-    $('.user-percentage').popover();
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 Template.gamesSinglePageAchievement.helpers({
     achievementsList: function () {
+        var user = Meteor.user();
         var skip = achievementShowNext.get();
         return xbdAchievements.find({ gameId: this.gameId }, {
             sort: {
-                userPercentage: 1,
-                name: 1,
+                value: 1,
+                name: 1
             },
             limit: 7,
             skip: skip
@@ -128,7 +145,7 @@ Template.gamesSinglePageAchievement.helpers({
     chkProgress: function () {
         var user = Meteor.user();
         if (user && user.gamertagScanned) {
-            var userAchievement = userAchievements.findOne({ achievementId: this._id });
+            var userAchievement = userAchievements.findOne({ userId: user._id, achievementId: this._id });
             if (userAchievement && userAchievement.progressState) {
                 return true;
             }

@@ -4,7 +4,7 @@ Meteor.publish('latestNews', function(limit) {
 	if (limit > defaultLimit) {
 		limit = 0;
 	}
-	var latestNews = xbdNews.find({}, {
+	return xbdNews.find({}, {
 		sort: { updated: -1 },
 		fields: {
 			updated: 1,
@@ -16,12 +16,11 @@ Meteor.publish('latestNews', function(limit) {
 		},
 		limit: limit
 	});
-	return latestNews;
 });
 
 Meteor.publish('mostSharedNews', function(limit) {
 	var twoWeeks = moment().subtract(14, 'days').toDate();
-	var mostSharedNews = xbdNews.find({ updated: { $gte: twoWeeks } }, {
+	return xbdNews.find({ updated: { $gte: twoWeeks } }, {
 		sort: { shareCount: -1 },
 		fields: {
 			updated: 1,
@@ -32,9 +31,19 @@ Meteor.publish('mostSharedNews', function(limit) {
 		},
 		limit: limit
 	});
-	return mostSharedNews;
 });
 
 Meteor.publish('singleNews', function(slug) {
-	return xbdNews.find({ slug: slug });
+	return xbdNews.find({ slug: slug }, {
+		fields: {
+			updated: 1,
+			title: 1,
+			content: 1,
+			link: 1,
+			author: 1,
+			slug: 1,
+			contentType: 1,
+			shareCount: 1
+		}
+	});
 });

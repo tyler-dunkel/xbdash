@@ -1,0 +1,43 @@
+<template name="topCommonTemplate">
+	{{#if Template.subscriptionsReady}}
+	<div class="panel-heading text-center bg-common">
+		<h3 class="m-n padder-t text-white h4">Top Common Achievements</h3>
+	</div>
+	<ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
+		{{#if achievementsPresent}}
+		{{#each topCommonAchievements}}
+		<li class="list-group-item clearfix b-l-3x b-l-{{achievementClass}}">
+			<a class="thumb-md pull-left m-r-sm" href="{{pathFor 'achievement'}}">
+				<div class="{{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');">
+				</div>
+			</a>
+			<div class="pull-right no-border padder-vv-{{achievementClass}}">
+				<i class="fa fa-{{trophyClass}}"></i> {{value}}
+			</div>
+			<div class="clear">
+				<div>
+					<a class="text-md " href="{{pathFor 'achievement'}}">{{name}}</a>
+					<a class="text-md " href="{{pathFor 'game' slug=gameSlug}}">
+						<span class="label bg-light m-l-sm ">{{gameName}}</span>
+					</a>
+				</div>
+				<div class="text-ellipsis m-t-xs ">
+					<a href="{{pathFor 'achievement'}}">
+						{{lockedDescription}}
+					</a>
+				</div>
+			</div>      
+		</li>
+		{{/each}}
+		{{else}}
+		<li class="list-group-item clearfix b-l-3x">
+			<div class="clear">
+				No legendary have been recorded yet!
+			</div>
+		</li>
+		{{/if}}
+	</ul>
+	{{else}}
+	{{> loadingTemplate}}
+	{{/if}}
+</template>
