@@ -174,86 +174,6 @@ Meteor.publishComposite('topLegendaryAchievements', {
 	]
 });
 
-Meteor.publishComposite('mostPopularAchievements', {
-	find: function() {
-		Meteor._debug("most popular achievement function firing");
-		return xbdAchievements.find({}, {
-			fields: {
-				gameId: 1,
-				name: 1,
-				mediaAssets: 1,
-				description: 1,
-				lockedDescription: 1,
-				value: 1,
-				userPercentage: 1,
-				slug: 1
-			},
-			sort: { userPercentage: -1 },
-			limit: 50
-		});
-	},
-	children: [
-		{
-			find: function(achievement) {
-				var user = Meteor.users.findOne({ _id: this.userId });
-				if (!user) return;
-				if (!user.gamertagScanned) return;
-				
-				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
-				if (typeof userAchievementCheck !== 'undefined') {
-					return userAchievementCheck;
-				}
-				return;
-			}
-		},
-		{
-			find: function(achievement) {
-				return xbdGames.find({ _id: achievement.gameId });
-			}
-		}
-	]
-});
-
-Meteor.publishComposite('rarestAchievements', {
-	find: function() {
-		Meteor._debug("rarest achievement function firing");
-		return xbdAchievements.find({}, {
-			fields: {
-				gameId: 1,
-				name: 1,
-				mediaAssets: 1,
-				description: 1,
-				lockedDescription: 1,
-				value: 1,
-				userPercentage: 1,
-				slug: 1
-			},
-			sort: { userPercentage: 1 },
-			limit: 50
-		});
-	},
-	children: [
-		{
-			find: function(achievement) {
-				var user = Meteor.users.findOne({ _id: this.userId });
-				if (!user) return;
-				if (!user.gamertagScanned) return;
-
-				var userAchievementCheck = userAchievements.find({ userId: this.userId, achievementId: achievement._id });
-				if (typeof userAchievementCheck !== 'undefined') {
-					return userAchievementCheck;
-				}
-				return;
-			}
-		},
-		{
-			find: function(achievement) {
-				return xbdGames.find({ _id: achievement.gameId });
-			}
-		}
-	]
-});
-
 Meteor.publishComposite('singleAchievement', function(slug) {
 	return {
 		find: function() {
@@ -263,12 +183,29 @@ Meteor.publishComposite('singleAchievement', function(slug) {
 		children: [
 			{
 				find: function(achievement) {
-					return xbdAchievements.find({ gameId: achievement.gameId });
+					return xbdAchievements.find({ gameId: achievement.gameId }, {
+						fields: {
+							gameId: 1,
+							name: 1,
+							mediaAssets: 1,
+							description: 1,
+							lockedDescription: 1,
+							value: 1,
+							userPercentage: 1,
+							slug: 1
+						}
+					});
 				}
 			},
 			{
 				find: function(achievement) {
-					return xbdGames.find({ _id: achievement.gameId });
+					return xbdGames.find({ _id: achievement.gameId }, {
+						fields: {
+							platform: 1,
+							name: 1,
+							slug: 1
+						}
+					});
 				}
 			},
 			{

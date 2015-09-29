@@ -149,40 +149,6 @@ Meteor.publish('gameDetailsSearch', function(id) {
 	});
 });
 
-Meteor.publishComposite('gameDetails', function(slug) {
-	return {
-		find: function() {
-			var game = xbdGames.find({ slug: slug });
-			return gameDetails.find({ gameId: game._id }, {
-				fields: {
-                    gameId: 1,
-                    gameName: 1,
-                    gameDescription: 1,
-                    gameReleaseDate: 1,
-                    gameGenre: 1,
-                    gameArt: 1,
-                    gamePublisherName: 1,
-                    gameAllTimeAverageRating: 1
-                }
-			});
-		},
-		children: [
-			{
-				find: function(game) {
-					return xbdGames.find({ _id: game.gameId }, {
-						fields: {
-							platform: 1,
-							name: 1,
-							maxGamerscore: 1,
-							slug: 1
-						}
-					});
-				}
-			}
-		]
-	}
-});
-
 Meteor.publishComposite('singleGame', function(slug) {
 	return {
 		find: function() {

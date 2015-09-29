@@ -1,7 +1,8 @@
 var achievementShowNext = new ReactiveVar(0);
 
 Template.gamesSinglePage.created = function() {
-    this.subscribe('gameDetails');
+    var slug = Router.current().params.slug;
+    this.subscribe('singleGame', slug);
 }
 
 Template.gamesSinglePage.helpers({
@@ -56,7 +57,8 @@ Template.gamesSinglePage.helpers({
 });
 
 Template.userGamerscoreInfo.created = function() {
-
+    var slug = Router.current().params.slug;
+    this.subscribe('singleGame', slug);
 }
 
 Template.userGamerscoreInfo.helpers({
@@ -124,7 +126,7 @@ Template.gamesSinglePageAchievement.created = function() {
 }
 
 Template.gamesSinglePageAchievement.rendered = function() {
-    $('.user-percentage').popover();
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 Template.gamesSinglePageAchievement.helpers({
