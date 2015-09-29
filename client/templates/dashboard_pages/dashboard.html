@@ -19,7 +19,12 @@
               </div>
               {{#if chkGamerStatus}}
               <div class="col-sm-6 text-right hidden-xs">
-                {{> rankArea}}
+                <div class="inline m-l m-r text-left">
+                  {{> userDailyRank}}
+                </div>
+                <div class="inline text-left">
+                  {{> userOverallRank}}
+                </div>
               </div>
               {{/if}}
             </div>

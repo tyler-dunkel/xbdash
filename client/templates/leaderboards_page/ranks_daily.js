@@ -1,5 +1,5 @@
 Template.dailyRanks.created = function() {
-	this.subscribe('dailyRank');
+	this.subscribe('dailyRanks');
 }
 
 Template.dailyRanks.helpers({

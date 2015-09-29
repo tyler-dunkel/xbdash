@@ -1,40 +1,32 @@
 var newsLimit = new ReactiveVar();
-Template.newsApp.created = function() {
-	newsLimit.set(10);
+
+Template.newsPage.events({
+});
+
+Template.newsSection.created = function() {
+	newsLimit.set(9);
 	this.subscribe('latestNews', newsLimit.get());
 }
 
-Template.newsApp.rendered = function() {
-	$(window).scroll(showMoreVisible);
+Template.newsSection.rendered = function() {
+	$(window).scroll(function() {
+		window.setTimeout(function() {
+			showMoreVisible();
+		}, 500);
+	});
 }
 
-Template.newsPage.events({
-	'click .load-more': function(e) {
-		e.preventDefault();
-	}
-});
-
-Template.newsApp.helpers({
+Template.newsSection.helpers({
 	latestNews: function() {
 		return xbdNews.find({}, {
 			sort: { updated: -1 },
-			fields: {
-				updated: 1,
-				title: 1,
-				content: 1,
-				slug: 1,
-				author: 1,
-				shareCount: 1
-			},
 			limit: newsLimit.get()
-		}).fetch();
+		});
 	},
-	hasMoreResults: function() {
-		//var xbdNewsCount = xbdNews.find({}).count();
-		var newsLimitCurrent = newsLimit.get();
+	moreResults: function() {
 		var xbdNewsCount = xbdNews.find({}).count();
-		console.log(xbdNewsCount);
-		return ! (xbdNewsCount < newsLimit.get());
+		var newsLimitCurrent = newsLimit.get();
+		return ! (xbdNewsCount < newsLimitCurrent);
 	}
 });
 
@@ -42,21 +34,21 @@ Tracker.autorun(function() {
 });
 
 function showMoreVisible() {
-	var threshold, target = $("#hasMoreResults");
+	var threshold, target = $("#showMoreResults");
 	if (!target.length) return;
 
 	threshold = $(window).scrollTop() + $(window).height() - target.height();
 
 	if (target.offset().top < threshold) {
 		if (!target.data("visible")) {
-			console.log("target became visible");
-			target.data("visible", true);
-			newsLimit.set(newsLimit.get() + 10);
-		}
-	} else {
-		if (target.data("visible")) {
-			console.log("target became invisible");
-			target.data("visible", false);
-		}
-	}
+            // console.log("target became visible (inside viewable area)");
+            target.data("visible", true);
+            newsLimit.set(newsLimit.get() + 9);
+        }
+    } else {
+    	if (target.data("visible")) {
+            // console.log("target became invisible (below viewable arae)");
+            target.data("visible", false);
+        }
+    }
 }

@@ -1,12 +1,10 @@
 // daily rank, overall rank (total gamerscore), completed achievements, completed games
 // common, rare, epic, legendary
 
-Meteor.publishComposite('dailyRank', function() {
+Meteor.publishComposite('dailyRanks', function() {
 	return {
 		find: function() {
-			return userLeaderboards.find({
-				'dailyRank.value': { $gt: 1 }
-			}, {
+			return userLeaderboards.find({}, {
 				sort: { 'dailyRank.rank': 1 },
 				fields: {
 					'userId': 1,
