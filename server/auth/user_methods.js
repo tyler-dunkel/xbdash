@@ -30,11 +30,12 @@ Meteor.methods({
 		var user = Meteor.user();
 		userAchievements.remove({ userId: user._id });
 		userGames.remove({ userId: user._id });
+		userLeaderboards.remove({userId: user._id});
 		Meteor.users.remove({ _id: user._id });
 	},
 	userReferred: function(user, referrerId) {
-		var referee = Meteor.users.findOne({"emails.address": user.email});
 		check(referrerId, String);
+		var referee = Meteor.users.findOne({"emails.address": user.email});
 		var referrer = Meteor.users.findOne({_id: referrerId});
 		userReferrals.insert({ referrerId: referrerId, refereeId: referee._id, verified: false });
 	},
@@ -44,6 +45,7 @@ Meteor.methods({
 		userReferrals.insert({ referrerId: referrerId, refereeId: refereeId, verified: true });
 	},
 	referralEmail: function(email1, subject, text) {
+		check([subject, text], String);
 		Mandrill.messages.send({
 			from: "XBdash <contact@xbdash.com>",
 			//from: "XBdash <xboxdashbugreporter@gmail.com>",

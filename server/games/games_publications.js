@@ -139,6 +139,7 @@ Meteor.publishComposite('gamesByReleaseDate', {
 
 // Search system does not work with publish composite
 Meteor.publish('gameDetailsSearch', function(id) {
+	check(id, String);
 	return gameDetails.find({ gameId: id }, {
 		fields: {
 			gamePublisherName: 1,
@@ -152,6 +153,7 @@ Meteor.publish('gameDetailsSearch', function(id) {
 Meteor.publishComposite('singleGame', function(slug) {
 	return {
 		find: function() {
+			check(slug, String);
 			return xbdGames.find({ slug: slug }, {
 				fields: {
 					platform: 1,
@@ -201,6 +203,7 @@ Meteor.publishComposite('singleGame', function(slug) {
 Meteor.publishComposite('singleGameAchievements', function(slug) {
 	return {
 		find: function() {
+			check(slug, String);
 			var game = xbdGames.findOne({ slug: slug });
 			return xbdAchievements.find({ gameId: game._id }, {
 				sort: {

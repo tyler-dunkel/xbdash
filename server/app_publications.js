@@ -1,5 +1,5 @@
 Meteor.publish('commentUserImage', function(userId) {
-	Meteor._debug(userId);
+	check(userId, String);
 	return Meteor.users.find({ _id: userId }, {
 		fields: {
 			"username": 1,

@@ -6,10 +6,10 @@
 Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 	return {
 		find: function() {
+			check(dateRange, String);
 			var user = Meteor.users.findOne({ _id: this.userId });
 			if (!user) return;
 			if (!user.gamertagScanned) return;
-			Meteor._debug(dateRange);
 			return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, {
 				fields: {
 					achievementId: 1,
