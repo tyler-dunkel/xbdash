@@ -1,5 +1,5 @@
 //tracker dependency for total achievements count
-var totalAchievementDependency = new Tracker.Dependency;
+var totalAchievementDependency = new ReactiveVar()
 
 Template.recentActivityColumn.created = function() {
     this.subscribe('dashboardRecentActivity');
@@ -16,28 +16,40 @@ Template.recentActivityColumn.helpers({
 Template.recentActivityLine.created = function() {
     //this.subscribe('dashboardRecentActivityAchievements');
     var self = this;
+    totalAchievementDependency.set(100);
     //console.log(this.data);
-    Meteor.call('getGameAchievementCount', this.data.gameId, function(error, result) {
-        if (error) {
-            console.log(error);
-            self.data.totalAchievements = 100;
-            return;
-        }
-        self.data.totalAchievements = result;
-        totalAchievementDependency.changed();
-    });
+    Meteor.call('getGameAchievementCount', self.data.gameId, function(error, result) {
+            if (error) {
+                console.log(error);
+                totalAchievementDependency.set(100);
+                return;
+            }
+            totalAchievementDependency.set(result);
+        });
 }
 
 Template.recentActivityLine.rendered = function() {
     $('li.activity-line .games-thumb .game-image').error(function() {
         $(this).attr('src', '/img/game-default.jpg');
     });
+    console.log("does this run?");
+    // var self = this;
+    // Meteor.call('getGameAchievementCount', this.data.gameId, function(error, result) {
+    //     if (error) {
+    //         console.log(error);
+    //         self.data.totalAchievements = 100;
+    //         return;
+    //     }
+    //     self.data.totalAchievements = result;
+    //     totalAchievementDependency.changed();
+    // });
 }
 
 Template.recentActivityLine.helpers({
     xbdGame: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+        var totalAchievements = this.totalAchievements;
         return {
             game: game,
             gameDetails: gameDetail
@@ -64,18 +76,21 @@ Template.recentActivityLine.helpers({
         return image;
     },
     percentageComplete: function () {
-        totalAchievementDependency.depend();
-        var parentData = Template.parentData(1);
-        if (parentData && parentData.totalAchievements) {
-            return Math.round(parentData.earnedAchievements / parentData.totalAchievements * 100);
+         var parentData = Template.parentData(1);
+         var totalAchievements = totalAchievementDependency.get();
+        if (parentData && totalAchievements) {
+            return Math.round(parentData.earnedAchievements / totalAchievements * 100);
         }
+        // if (this.totalAchievements) {
+        //     return Math.round(parentData.earnedAchievements / this.totalAchievements * 100);
+        // }
         //return 50;
     },
     remainingAchievements: function () {
-        totalAchievementDependency.depend();
         var parentData = Template.parentData(1);
-        if (parentData && parentData.totalAchievements) {
-            return parentData.totalAchievements - parentData.earnedAchievements;
+        var totalAchievements = totalAchievementDependency.get();
+        if (parentData && totalAchievements) {
+            return totalAchievements - parentData.earnedAchievements;
         }
         //return 100;
     }

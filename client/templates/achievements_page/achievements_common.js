@@ -1,8 +1,8 @@
-Template.topCommonTemplate.created = function() {
+Template.topCommonAchievements.created = function() {
     this.subscribe('topCommonAchievements');
 }
 
-Template.topCommonTemplate.helpers({
+Template.topCommonAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
             userPercentage: { $gte: 61 }

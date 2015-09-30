@@ -45,12 +45,17 @@ Template.gamerscoreChartSvg.rendered = function() {
 		console.log("gamerscore chart ran for time range");
 		if (!c.firstRun) {
 			var userId = Meteor.userId();
-			var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: timeRange } }, { sort: { progression: 1 }, limit: 300 }).fetch();
+			var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: timeRange } }, { 
+			sort: { progression: 1 }, limit: 300 }).fetch();
 			var formattedGamerscoreData = formatGamerscoreData(userGamerscoreDataSet);
-			console.log("this is running");
 			updateGamerscoreChart(formattedGamerscoreData);
 		}
 	});
+	Meteor.setTimeout(function() {
+		console.log("timeout function");
+		var oneMonth = moment().subtract(1, 'month').toDate();
+		timeRangeToggle.set(oneMonth);
+	}, 5000);
 }
 
 Template.gamerscoreChartSvg.events({

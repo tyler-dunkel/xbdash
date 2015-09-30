@@ -1,8 +1,8 @@
-Template.topEpicTemplate.created = function() {
+Template.topEpicAchievements.created = function() {
     this.subscribe('topEpicAchievements');
 }
 
-Template.topEpicTemplate.helpers({
+Template.topEpicAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
             userPercentage: { $gte: 11, $lte: 30 }

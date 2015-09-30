@@ -1,8 +1,8 @@
-Template.topRareTemplate.created = function() {
+Template.topRareAchievements.created = function() {
     this.subscribe('topRareAchievements');
 }
 
-Template.topRareTemplate.helpers({
+Template.topRareAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
             userPercentage: { $gte: 31, $lte: 60 }

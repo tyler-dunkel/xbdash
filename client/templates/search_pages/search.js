@@ -60,8 +60,8 @@ Template.singleGameSearch.created = function() {
 
 Template.singleGameSearch.helpers({
     gamePublisherName: function () {
-        var gameDetail = gameDetails.findOne({ gameId: this._id });
-        return gameDetail.gamePublisherName;
+        var getPublisherName = gameDetails.findOne({ gameId: this._id });
+        return getPublisherName.gamePublisherName;
     },
     dateFormat: function() {
         var gameDetail = gameDetails.findOne({ gameId: this._id });

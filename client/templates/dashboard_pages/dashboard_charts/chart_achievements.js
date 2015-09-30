@@ -43,15 +43,21 @@ Template.achievementsChartSvg.rendered = function() {
 
 	this.autorun(function (c) {
 		var timeRange = timeRangeToggle.get();
-		console.log("autorun ran for time range");
 		if (!c.firstRun) {
 			var userId = Meteor.userId();
-			var userAchievementsDataSet = userAchievements.find({ userId: userId, progression: { $gt: timeRange} }, { sort: { progression: -1 }, limit: 100 }).fetch();
+			userAchievementsDataSet = userAchievements.find({ userId: userId, progression: { $gt: timeRange} }, { sort: { progression: -1 }, limit: 100 }).fetch();
+			console.log("autorun ran for second time");
+			console.log(userAchievementsDataSet);
 			var formattedAchievementData = formatAchievementData(userAchievementsDataSet);
 			console.log("formatted data length: " + formattedAchievementData[0].values.length);
 			updateAchievementsChart(formattedAchievementData);
 		}
 	});
+	Meteor.setTimeout(function() {
+		console.log("timeout function");
+		var oneMonth = moment().subtract(1, 'month').toDate();
+		timeRangeToggle.set(oneMonth);
+	}, 5000);
 }
 
 Template.achievementsChartSvg.events({

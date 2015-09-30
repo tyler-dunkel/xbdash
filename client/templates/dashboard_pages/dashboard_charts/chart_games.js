@@ -1,5 +1,5 @@
 var gameChart;
-
+var forceRerun = new Tracker.Dependency;
 Template.gamesChart.created = function() {
 	this.subscribe('dashboardGameGenreChart');
 }
@@ -46,14 +46,13 @@ Template.gamesChartSvg.rendered = function() {
   	});
 
   	this.autorun(function (c) {
-		var timeRange = timeRangeToggle.get();
-		console.log("gamerscore chart ran for time range");
+  		var userId = Meteor.userId();
+  		forceRerun.depend();
 		if (!c.firstRun) {
-			var userId = Meteor.userId();
-			var userGamesDataSet = userGames.find({ userId: userId }, { fields: { gameId: 1 }});
 			var genreName = '';
 			var result = {};
 			var formattedGameData = [];
+			console.log('autorun ran');
 
 			userGamesDataSet.forEach(function (game) {
 				var gameId = game.gameId;
@@ -74,10 +73,10 @@ Template.gamesChartSvg.rendered = function() {
 			updateGamesChart(formattedGameData);
 		}
 	});
+	Meteor.setTimeout(function() {
+		forceRerun.changed();
+	}, 5000);
 }
-
-Tracker.autorun(function() {
-});
 
 var updateGamesChart = function(formattedData) {
 	d3.select("#games-chart svg").datum(formattedData).transition().duration(350).call(gameChart);

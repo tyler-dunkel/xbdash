@@ -1,8 +1,8 @@
-Template.topLegendaryTemplate.created = function() {
+Template.topLegendaryAchievements.created = function() {
     this.subscribe('topLegendaryAchievements');
 }
 
-Template.topLegendaryTemplate.helpers({
+Template.topLegendaryAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
             userPercentage: { $gt: 0, $lte: 10 }
