@@ -1,5 +1,6 @@
-//tracker dependency for total achievements count
-var totalAchievementDependency = new ReactiveVar()
+//reactive var that gets set by meteor method 'getGameAchievementCount'. 
+//This allows us to get our total achievement count server side while still being reactive on achievements earned
+var totalAchievementDependency = new ReactiveVar();
 
 Template.recentActivityColumn.created = function() {
     this.subscribe('dashboardRecentActivity');
