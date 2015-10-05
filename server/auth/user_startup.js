@@ -1,7 +1,7 @@
 // Meteor.startup(function() {
 // 	// function to give users an overall rank according to gamerscore
 // 	Meteor.setInterval(function() {
-// 		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1} }, { $sort: { "profile.gamercard.gamerscore": -1 } });
+// 		var users = Meteor.users.find({ "gamercard.gamerscore": { $gt: 1} }, { $sort: { "gamercard.gamerscore": -1 } });
 // 		var userOverallRank = 1;
 		
 // 		if (!users.count()) {
@@ -11,14 +11,14 @@
 
 // 		users.forEach(function(user) {
 // 			Meteor._debug("user ID is: " + user._id);
-// 			Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userOverallRank": userOverallRank } });
+// 			Meteor.users.upsert({ _id: user._id }, { $set: { "userOverallRank": userOverallRank } });
 // 			userOverallRank++;
 // 		});
 // 	}, 1000 * 1800);
 
 // 	// function to count a users gamerscore gains for the day and creating a daily rank according to gamerscore
 // 	Meteor.setInterval(function() {
-// 		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1 } });
+// 		var users = Meteor.users.find({ "gamercard.gamerscore": { $gt: 1 } });
 // 		var oneDay = moment().startOf('day').toDate();
 
 // 		if (!users.count()) {
@@ -30,7 +30,7 @@
 // 			var userDailyAchievements = userAchievements.find({ userId: user._id, progressState: true, progression: { $gte: oneDay } });
 // 			var userDailyGamerscore = 0;
 // 			if (!userDailyAchievements.count()) {
-// 				Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userDailyGamerscore": userDailyGamerscore } });
+// 				Meteor.users.upsert({ _id: user._id }, { $set: { "userDailyGamerscore": userDailyGamerscore } });
 // 				return;
 // 			}
 // 			userDailyAchievements.forEach(function(achievement) {
@@ -41,16 +41,16 @@
 // 				userDailyGamerscore += singleAchievement.value;
 // 				//Meteor._debug(userDailyGamerscore);
 // 			});
-// 			Meteor.users.upsert({ _id: user._id }, { $set: { "profile.userDailyGamerscore": userDailyGamerscore } });
+// 			Meteor.users.upsert({ _id: user._id }, { $set: { "userDailyGamerscore": userDailyGamerscore } });
 // 			Meteor._debug(count);
 // 		});
 
 // 		//find each user and assign them a daily rank based upon the above computed userDailyGamerscore
-// 		var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1 } }, { $sort: { "profile.userDailyGamerscore": -1 } });
+// 		var users = Meteor.users.find({ "gamercard.gamerscore": { $gt: 1 } }, { $sort: { "userDailyGamerscore": -1 } });
 // 		var userOverallRank = 1;
 
 // 		users.forEach(function(user){
-// 			Meteor.users.upsert({ _id: user._id }, { $set: {"profile.userDailyRank": userDailyRank } });
+// 			Meteor.users.upsert({ _id: user._id }, { $set: { userDailyRank: userDailyRank } });
 // 			userDailyRank++;
 // 		});
 // 	}, 1000 * 86400);

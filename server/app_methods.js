@@ -13,7 +13,7 @@ Meteor.methods({
 			if (_.isEmpty(user.services)) {
 				var userEmail = user.emails[0].address;
 			} else {
-				userEmail = user.services.facebook.email;
+				var userEmail = user.services.facebook.email;
 			}
 		}
 

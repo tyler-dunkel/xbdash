@@ -2,8 +2,6 @@ Accounts.onCreateUser(function(options, user) {
 	if (options.profile) {
 		user.profile = options.profile;
 	}
-    user.profile.userOverallRank = 0;
-    user.profile.userDailyRank = 0;
 	user.gamertagScanned = false;
     //user.userSentWelcomeEmail = false;
 	user.userSeenReferralBox = false;

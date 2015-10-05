@@ -39,7 +39,11 @@ syncApiCaller = Async.wrap(xboxApiCaller);
 
 Meteor.methods({
 	chkGamertag: function(gamertag) {
-		var userExists = Meteor.users.findOne({ "profile.gamercard.gamertag": gamertag });
+		check(gamertag, String);
+
+		var userId = Meteor.userId();
+
+		var userExists = Meteor.users.findOne({ "gamercard.gamertag": gamertag });
 		if (userExists) {
 			throw new Meteor.Error("gamertagExists", "Gamertag is already registered.");
 		}
@@ -48,6 +52,8 @@ Meteor.methods({
 		if (apiResult.error) {
 			throw new Meteor.Error("gamertagNotFound", apiResult.error.reason);
 		}
+
+		Meteor.users.update({ _id: userId }, { $set: { username: gamertag, xuid: apiResult.result.content } });
 
 		return {
 			content: apiResult.result.content,
@@ -59,7 +65,7 @@ Meteor.methods({
 		// var response = syncApiCaller(url);
 
 		// var xuid = response.content;
-		// var userExists = Meteor.users.findOne({"profile.xuid": xuid});
+		// var userExists = Meteor.users.findOne({ xuid: xuid});
 
 		// if (response.statusCode === 200 || response.statusCode === 201) {
 		// 	if (userExists) {
@@ -71,15 +77,9 @@ Meteor.methods({
 		// 	throw new Meteor.Error("gamertagNotFound", "Gamertag Not Found", "If you are sure you entered the correct gamertag, please contact us at <a href='mailto:support@xboxdash.com' style='color: #0000dd'>support@xboxdash.com</a>!");
 		// }
 	},
-	retrieveData: function(user) {
-		check(user.profile.xuid, String);
-		check(user.username, String);
+	retrieveData: function() {
 		var userId = Meteor.userId();
-		var setGamertag = Meteor.users.find({_id: userId}, {username: {$exists: true}});
-
-		if (typeof setGamertag !== 'undefined') {
-			Meteor.users.upsert({_id: userId}, {$set: {username: user.username, "profile.xuid": user.profile.xuid}});
-		}
+		var user = Meteor.users.findOne({ _id: userId });
 
 		Meteor.users.update({ _id: userId }, { $set: { gamertagScanned: true } });
 
@@ -88,12 +88,12 @@ Meteor.methods({
 		'xboxonegames',
 		'xbox360games'
 		].forEach(function(i) {
-			var url = user.profile.xuid + '/' + i;
+			var url = user.xuid + '/' + i;
 			var result = syncApiCaller(url);
 			//var setObject = { $set: {} };
 
 			if (i === 'gamercard') {
-				updateGamercard(userId, result.data);
+				xboxApiObject.updateGamercard(userId);
 			}
 
 			if (i === 'xboxonegames') {
@@ -116,7 +116,7 @@ Meteor.methods({
 
 				result.data.titles.forEach(function (j) {
 					if (j.maxGamerscore === 0 || j.totalGamerscore === 0) return;
-					var url = user.profile.xuid + '/achievements/' + j.titleId;
+					var url = user.xuid + '/achievements/' + j.titleId;
 					var result = syncApiCaller(url);
 					var gameId = j.titleId.toString();
 					//Meteor._debug(result.data);

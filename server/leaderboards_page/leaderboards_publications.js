@@ -18,9 +18,9 @@ Meteor.publishComposite('dailyRanks', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}
@@ -46,9 +46,9 @@ Meteor.publishComposite('overallRanks', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}
@@ -76,9 +76,9 @@ Meteor.publishComposite('completedAchievements', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}
@@ -106,9 +106,9 @@ Meteor.publishComposite('completedGames', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}
@@ -136,9 +136,9 @@ Meteor.publishComposite('commonAchievements', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}
@@ -166,9 +166,9 @@ Meteor.publishComposite('rareAchievements', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}
@@ -196,9 +196,9 @@ Meteor.publishComposite('epicAchievements', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}
@@ -226,9 +226,9 @@ Meteor.publishComposite('legendaryAchievements', function() {
 				find: function(userStat) {
 					return Meteor.users.find({ _id: userStat.userId }, {
 						fields: {
-							"profile.gamercard.gamertag": 1,
-							"profile.gamercard.gamerscore": 1,
-							"profile.gamercard.gamerpicLargeSslImagePath": 1
+							"gamercard.gamertag": 1,
+							"gamercard.gamerscore": 1,
+							"gamercard.gamerpicLargeSslImagePath": 1
 						}
 					});
 				}

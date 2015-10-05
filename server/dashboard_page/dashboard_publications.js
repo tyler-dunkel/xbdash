@@ -6,7 +6,7 @@
 Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 	return {
 		find: function() {
-			check(dateRange, String);
+			check(dateRange, Date);
 			var user = Meteor.users.findOne({ _id: this.userId });
 			if (!user) return;
 			if (!user.gamertagScanned) return;

@@ -56,7 +56,7 @@ leaderboardsApi.updateUserRanks = function() {
 
 leaderboardsApi.updateOverallRank = function() {
 	var userOverallRank = 1;
-	var users = Meteor.users.find({ "profile.gamercard.gamerscore": { $gt: 1 } }, { sort: { "profile.gamercard.gamerscore": -1 } });
+	var users = Meteor.users.find({ "gamercard.gamerscore": { $gt: 1 } }, { sort: { "gamercard.gamerscore": -1 } });
 	if (!users) return;
 	users.forEach(function(user) {
 		userLeaderboards.update({ userId: user._id }, { $set: { 'overallRank': userOverallRank } });
@@ -66,7 +66,7 @@ leaderboardsApi.updateOverallRank = function() {
 
 leaderboardsApi.dailyRank = function() {
 	var userDailyGamerscore = 0;
-	var users = Meteor.users.find({ 'profile.gamercard.gamerscore': { $gt: 1 } });
+	var users = Meteor.users.find({ 'gamercard.gamerscore': { $gt: 1 } });
 	var oneDay = moment().startOf('day').toDate();
 	//if (!users) return;
 

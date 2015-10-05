@@ -3,8 +3,8 @@ Meteor.publish('commentUserImage', function(userId) {
 	return Meteor.users.find({ _id: userId }, {
 		fields: {
 			"username": 1,
-			"profile.gamercard.gamerscore": 1,
-			"profile.gamercard.gamerpicLargeImagePath": 1
+			"gamercard.gamerscore": 1,
+			"gamercard.gamerpicLargeImagePath": 1
 		}
 	});
 });
@@ -18,7 +18,7 @@ Meteor.publishComposite('userAchievements', {
 		var user = Meteor.users.find({ _id: this.userId });
 		if (!user) return;
 		if (!user.gamertagScanned) return;
-		if (!user.profile.xuid) {
+		if (!user.xuid) {
 			Meteor._debug("no xuid");
 			return;
 		}
@@ -38,7 +38,7 @@ Meteor.publishComposite('userGames', {
 		var user = Meteor.users.find({ _id: this.userId });
 		if (!user) return;
 		if (!user.gamertagScanned) return;
-		if (!user.profile.xuid) {
+		if (!user.xuid) {
 			Meteor._debug("no xuid");
 			return;
 		}
