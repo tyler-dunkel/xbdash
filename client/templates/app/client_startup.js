@@ -31,7 +31,7 @@ Meteor.startup(function() {
 
 	// Avatar.options = {
 	// 	defaultImageUrl: 'img/a0.jpg'
-	// 	//customImageProperty: 'user.profile.gamercard.gamerpicLargeImagePath'
+	// 	//customImageProperty: 'user.gamercard.gamerpicLargeImagePath'
 	// };
 
 	// Comments.changeSchema(function (currentSchema) {

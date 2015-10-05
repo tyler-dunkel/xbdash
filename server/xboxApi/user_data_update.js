@@ -15,20 +15,20 @@ Meteor.startup(function() {
 
 function checkUserForUpdates(userId) {
 	var user = Meteor.users.findOne(userId);
-	if (typeof user.profile.gamercard == 'undefined') {
+	if (typeof user.gamercard == 'undefined') {
 		Meteor._debug('gamercard not present, not signed up');
 		return;
 	}
-	var url = user.profile.xuid + '/gamercard';
+	var url = user.xuid + '/gamercard';
 	var result = syncApiCaller(url);
 	if (result.data && result.data.gamerscore) {
-		if (user.profile.gamerscore < result.data.gamerscore) {
-			Meteor.users.update({_id: user._id}, {$set: {'profile.gamercard': result.data } });
-			checkUserGamesListDurango(user._id, user.profile.xuid, true);
-			checkUserGamesListXenon(user._id, user.profile.xuid, true);
+		if (user.gamerscore < result.data.gamerscore) {
+			Meteor.users.update({ _id: user._id }, { $set: { gamercard: result.data } });
+			checkUserGamesListDurango(user._id, user.xuid, true);
+			checkUserGamesListXenon(user._id, user.xuid, true);
 		}
-		checkUserGamesListDurango(user._id, user.profile.xuid, false);
-		checkUserGamesListXenon(user._id, user.profile.xuid, false);
+		checkUserGamesListDurango(user._id, user.xuid, false);
+		checkUserGamesListXenon(user._id, user.xuid, false);
 	}
 	Meteor._debug("updated leaderboards");
 	//var userGamesCount = userGames.find({userId: userId}).count();
@@ -98,16 +98,16 @@ function checkUserGamesListXenon(userId, userXuid, gamerscoreCheck) {
 // 	//Meteor._debug(userId);
 // 	var user = Meteor.users.findOne(userId);
 // 	//Meteor._debug(user);
-// 	if (typeof user.profile.gamercard !== 'undefined') {
+// 	if (typeof user.gamercard !== 'undefined') {
 // 		Meteor._debug("fires when gamercard is present");
 
-// 		var url = user.profile.xuid + '/gamercard';
+// 		var url = user.xuid + '/gamercard';
 // 		var result = syncApiCaller(url);
 // 		//Meteor._debug(result);
 
-// 		if (user.profile.gamercard.gamerscore < result.data.gamerscore) {
+// 		if (user.gamercard.gamerscore < result.data.gamerscore) {
 // 			Meteor._debug("gamerscore");
-// 			Meteor.users.upsert({ _id: user._id }, { $set: { 'profile.gamercard': result.data } });
+// 			Meteor.users.upsert({ _id: user._id }, { $set: { gamercard: result.data } });
 // 			userUpdater(user);
 // 		}
 // 	} else { return; }

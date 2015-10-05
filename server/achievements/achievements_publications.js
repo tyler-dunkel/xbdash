@@ -177,7 +177,7 @@ Meteor.publishComposite('topLegendaryAchievements', {
 Meteor.publishComposite('singleAchievement', function(slug) {
 	return {
 		find: function() {
-			checek(slug, String);
+			check(slug, String);
 			Meteor._debug("this is the single achievement one");
 			return xbdAchievements.find({ slug: slug });
 		},

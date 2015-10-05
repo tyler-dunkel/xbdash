@@ -60,7 +60,7 @@ Template.dashboardStatBoxes.helpers({
     currentGamerscore: function () {
         var user = Meteor.user();
         if (Template.instance().subscriptionsReady()) {
-            return numberFormatter(user.profile.gamercard.gamerscore);
+            return numberFormatter(user.gamercard.gamerscore);
         }
     }
 });
@@ -80,7 +80,7 @@ Template.dashboardStatGs.created = function() {
 Template.dashboardStatGs.helpers({
     currentGamerscore: function () {
         var user = Meteor.user();
-        return numberFormatter(user.profile.gamercard.gamerscore);
+        return numberFormatter(user.gamercard.gamerscore);
     },
     maxGamerscore: function () {
         maxGamerscoreDependency.depend();
@@ -93,7 +93,7 @@ Template.dashboardStatGs.helpers({
         maxGamerscoreDependency.depend();
         if (maxGamerscore > 0) {
             var user = Meteor.user();
-            var currentGamerscore = user.profile.gamercard.gamerscore;
+            var currentGamerscore = user.gamercard.gamerscore;
             var gamerscorePercentage = Math.round(currentGamerscore / maxGamerscore * 100);
             return numberFormatter(gamerscorePercentage);
         }

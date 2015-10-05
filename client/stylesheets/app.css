@@ -848,14 +848,17 @@ body {
   background: transparent;
 }
 
+#header ul.list-inline li,
 #footer ul.list-inline li {
   padding: 0 10px;
 }
 
+#header ul.list-inline > li,
 #footer ul.list-inline > li {
   border-right: 1px solid #ccc;
 }
 
+#header ul.list-inline > li:last-child,
 #footer ul.list-inline > li:last-child {
   border-right: none;
 }

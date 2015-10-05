@@ -13,12 +13,12 @@ Template.completedAchievementsRanks.helpers({
   },
   getUser: function() {
     var user = Meteor.users.findOne({ _id: this.userId });
-    return user.profile.gamercard.gamertag;
+    return user.gamercard.gamertag;
   },
   getUserImage: function() {
     var user = Meteor.users.findOne({ _id: this.userId });
-    if (user.profile.gamercard.gamerpicLargeSslImagePath) {
-      return user.profile.gamercard.gamerpicLargeSslImagePath;
+    if (user.gamercard.gamerpicLargeSslImagePath) {
+      return user.gamercard.gamerpicLargeSslImagePath;
     }
     return '/img/gamerpic-default.jpg';
   }

@@ -3,7 +3,7 @@ updateGamercard = function (userId, gamercard) {
 		var error = new Meteor.Error("gamercardScanError", "A problem has occured while scanning the gamertag.");
 		return error;
 	}
-	Meteor.users.upsert({ _id: userId }, { $set: { "profile.gamercard": gamercard } });
+	Meteor.users.upsert({ _id: userId }, { $set: { gamercard: gamercard } });
 	return;
 }
 
@@ -24,7 +24,7 @@ updateXboxOneData = function (userId, xboxOneGames) {
 
 function updateXboxOneAchievementsData(userId, gameId) {
 	var user = Meteor.users.findOne({ _id: userId });
-	var url = user.profile.xuid + '/achievements/' + gameId;
+	var url = user.xuid + '/achievements/' + gameId;
 	var result = syncApiCaller(url);
 	var isObject = _.isEmpty(result.data);
 
@@ -147,7 +147,7 @@ updateXbox360Data = function (userId, xbox360Games) {
 
 function updateXbox360AchievementsData(userId, gameId) {
 	var user = Meteor.users.findOne({ _id: userId });
-	var url = user.profile.xuid + '/achievements/' + gameId;
+	var url = user.xuid + '/achievements/' + gameId;
 
 	var result = syncApiCaller(url);
 

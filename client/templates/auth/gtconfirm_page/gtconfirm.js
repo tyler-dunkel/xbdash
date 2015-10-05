@@ -107,8 +107,7 @@ Template.confirmGt.events({
 				return;
 			}
 			if (result.content) {
-				var user = {username: gamertag, profile: {xuid: result.content}};
-				Meteor.call('retrieveData', user, function(error, result) {
+				Meteor.call('retrieveData', function(error, result) {
 					if (loading) {
 						loading.finish();
 						Session.set('loadingScreen', false);

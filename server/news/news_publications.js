@@ -1,5 +1,5 @@
 Meteor.publish('latestNews', function(limit) {
-	check(limit, Integer);
+	// check(limit, Number);
 	var defaultLimit = 9;
 	var twoWeeks = moment().subtract(14, 'days').toDate();
 	if (limit > defaultLimit) {
@@ -20,7 +20,7 @@ Meteor.publish('latestNews', function(limit) {
 });
 
 Meteor.publish('mostSharedNews', function(limit) {
-	check(limit, Integer);
+	// check(limit, Number);
 	var twoWeeks = moment().subtract(14, 'days').toDate();
 	return xbdNews.find({ updated: { $gte: twoWeeks } }, {
 		sort: { shareCount: -1 },

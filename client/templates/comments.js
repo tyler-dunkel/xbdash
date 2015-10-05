@@ -42,7 +42,7 @@ Template.singleComment.helpers({
 	getUserImage: function (user) {
         var user = Meteor.users.findOne({ _id: this.userId });
         console.log(user);
-		return user.profile.gamercard.gamerpicLargeImagePath;
+		return user.gamercard.gamerpicLargeImagePath;
 	},
 	take: function (params) {
 		var content = Comments.session.get('content');

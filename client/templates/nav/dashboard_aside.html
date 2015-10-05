@@ -11,7 +11,7 @@
                 {{> loadingTemplate}}
               {{else}}
                 {{#if chkGamerStatus}}
-                <img src="{{currentUser.profile.gamercard.gamerpicLargeSslImagePath}}" class="img-full" alt="{{currentUser.username}}">
+                <img src="{{currentUser.gamercard.gamerpicLargeSslImagePath}}" class="img-full" alt="{{currentUser.username}}">
                 {{else}}
                 <img src="/img/xboxdash_whiteicon.png" class="img-full" alt="{{appName}}" />
                 {{/if}}
@@ -27,7 +27,7 @@
                 <span class="block m-t-sm">
                   <strong class="font-bold text-lt">{{currentUser.username}}</strong> 
                 </span>
-                <span class="text-muted text-xs block">{{currentUser.profile.gamercard.motto}}</span>
+                <span class="text-muted text-xs block">{{currentUser.gamercard.motto}}</span>
                 {{else}}
                 <span class="block m-t-sm">
                   <a href="{{pathFor 'confirmGt'}}" class="btn btn-link btn-md aside-signup">Confirm Gamertag</a>
