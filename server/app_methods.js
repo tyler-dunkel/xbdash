@@ -116,7 +116,10 @@ Meteor.methods({
 		    }
 		});
 
-		Meteor._debug('welcome sent!');
+		return;
+    },
+    sendInviteEmail: function () {
+		Meteor._debug('invite sent!');
 		return;
     }
 });

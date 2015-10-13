@@ -1,5 +1,106 @@
-<template name="referralSignUp">
-  {{> headerSignUpPage}}
-  {{> signUpForm}}
+<template name="invitePage">
+  {{> headerReferralPage}}
+  {{> inviteForm}}
   {{> staticFooter}}
+</template>
+
+<template name="inviteForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 well m-b-md">
+        <h2 class="text-dark text-center m-t-lg">Get a chance to win an Xbox&reg; Live 12 Month Gold Membership!</h2>
+        <p class="text-center m-b-lg">For every friend you invite to XBdash that confirms their Gamertag on their computer, you will get an extra <strong>free</strong> entry into the contest!</p>
+        <div class="row">
+          <form id="contest-form" class="validate col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group">
+                  <input type="email" placeholder="Your friend's email address" id="email" name="email" class="form-control input-lg" data-onblur data-email data-required>
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-lg btn-success">Send</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div id="share-buttons" style="display: none; height: 46px; padding: 6px 0 0;">
+            <div class="col-sm-8 col-sm-offset-2">
+              <div class="text-center col-sm-6">
+                {{> shareit shareData}}
+              </div>
+              <div class="text-center col-sm-2 m-t-xs">or</div>
+              <div class="text-center col-sm-4">
+                <button type="button" id="invite-more" class="btn btn-md btn-success">Invite More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img src="/img/xbox-live-cards.png" class="center-block m-t-md m-b-md" />
+        <p class="text-center">Read the contest rules.</p>
+        <p class="text-center m-b-lg">
+          Contest ends:<br />
+          November 30, 2015, 11:59:59PM EST
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="referralSignUp">
+  {{> headerReferralPage}}
+  {{> referralForm}}
+  {{> staticFooter}}
+</template>
+
+<template name="referralForm">
+  <div id="signup" class="signup">
+    {{#if currentUser}}
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-md">
+        <form name="form" class="validate" id="socialform">
+          <h2 class="text-dark text-center">Currently Logged in as</h2>
+          <div class="list-group">
+            <div class="form-group text-center">
+              {{#if chkTwitter}}
+                <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+              {{/if}}
+              {{#if chkFacebook}}
+              <div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
+              {{else}}
+              <div style="vertical-align: middle;">{{currentUser.username}}</div>
+              {{/if}}
+            </div>
+          </div>
+          <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+        </form>
+      </div>
+    </div>
+    {{else}}
+    <div class="container well w-xxxl w-auto-xs" >
+      <div class="m-b-md">
+        <form name="form" class="validate" id="loginform">
+          <h2 class="text-dark text-center">Log In</h2>
+          <p class="text-center">Log in to view your dashboard</p>
+          <div class="list-group">
+            <div class="form-group">
+              <input type="email" placeholder="Email Address" id="email" name="email" class="form-control" data-onblur data-email data-required>
+              <span for='email' class='err-msg'></span>
+            </div>
+            <div class="form-group">
+               <input type="password" placeholder="Password" id="password" name="password" class="form-control" data-onblur data-min="6" data-required data-msg="Password must be at least 6 characters.">
+              <span for='password' class='err-msg'></span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-success btn-block">Log In</button>
+          <div class="text-center m-t m-b"><a href="{{pathFor 'forgotPassword'}}">Forgot password?</a></div>
+          <div class="line line-dashed"></div>
+          <ul class="list-inline social-logins">
+            <li><a href="#" id="facebook-login" class="btn btn-lg btn-block btn-facebook"><i class="fa fa-facebook"></i> Log In with Facebook</a></li>
+            <li><a href="#" id="twitter-login" class="btn btn-lg btn-block btn-twitter"><i class="fa fa-twitter"></i> Log In with Twitter</a></li>
+          </ul>
+        </form>
+      </div>
+    </div>
+    {{/if}}
+  </div>
 </template>
