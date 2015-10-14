@@ -1,6 +1,3 @@
-Template.settingsApp.rendered = function() {
-}
-
 Template.settingsApp.events({
 	'submit #change-password-form': function(e) {
 		e.preventDefault();

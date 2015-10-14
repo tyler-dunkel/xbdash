@@ -16,10 +16,7 @@ Template.signUp.created = function() {
 	});
 };
 
-Template.signUp.rendered = function() {
-}
-
-Template.signUp.events({
+Template.signUpForm.events({
 	'submit #signupform': function(e) {
 		subMana.clear();
 		e.preventDefault();

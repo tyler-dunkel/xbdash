@@ -29,7 +29,7 @@ Template.resetPassword.rendered = function() {
 	}
 }
 
-Template.resetPasswordApp.events({
+Template.resetPasswordForm.events({
 	'submit #reset-password-form': function(e) {
 	    e.preventDefault();
 

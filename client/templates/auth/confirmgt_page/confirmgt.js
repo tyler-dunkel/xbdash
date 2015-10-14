@@ -31,7 +31,7 @@ Template.confirmGt.rendered = function() {
 	}
 }
 
-Template.confirmGt.events({
+Template.confirmGtForm.events({
 	'click #logout': function(event) {
         Meteor.logout(function(error){
             if (error) {
