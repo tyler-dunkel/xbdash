@@ -1,6 +1,6 @@
 Package.describe({
   name: 'xbdash:xbox-api',
-  version: '0.0.2',
+  version: '0.0.4',
   // Brief, one-line summary of the package.
   summary: 'Used to update and scan users based on their gamertag',
   // URL to the Git repository containing the source code for this package.
@@ -13,8 +13,9 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
   api.use("meteorhacks:async@1.0.0", ['server']);
-  api.addFiles('xbox-api.js', ['server']);
   api.addFiles('xbox-api-caller.js', ['server']);
+  api.addFiles('xbox-api-private.js', ['server']);
+  api.addFiles('xbox-api.js', ['server']);
   api.export('xboxApiObject', 'server');
 });
 
