@@ -42,7 +42,7 @@ Template.dashboardHeader.events({
 Template.dashboardHeader.helpers({
     isStatsDisabled: function () {
         var user = Meteor.user();
-        if (!user || user.gamertagScanned.status === 'false') {
+        if (!user || user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
             return 'disabled hide';
         }
     },

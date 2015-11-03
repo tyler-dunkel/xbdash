@@ -6444,23 +6444,34 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 
 /* dashboard overlay */
 
-.app-content .overlay {
+.overlay {
   position: absolute;
   width: 100%;
   min-height: 90%;
   z-index: 10;
   background-color: rgba(0,0,0,0.95);
 }
-.app-content .overlay .loading-text {
-    position: fixed;
-    top: 50%;
+.overlay .loading-text {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  line-height: 26px;
+  margin-left: 0;
+  margin-top: -100px;
+  text-align: center;
+  padding: 60px 15px;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .overlay {
+      margin-left: 200px;
+  }
+  .overlay .loading-text {
     left: 50%;
-    line-height: 26px;
     margin-left: -200px;
-    margin-top: -100px;
-    text-align: center;
-    padding: 60px 15px;
-    font-size: 20px;
-    color: #ffffff;
-    font-weight: bold;
+    width: auto;
+  }
 }

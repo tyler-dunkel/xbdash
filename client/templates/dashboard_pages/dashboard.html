@@ -1,12 +1,13 @@
 <template name="dashboard">
-  {{> dashboardApp}}
+  {{#if chkBuilding}}
+    {{> dashboardOverlay}}
+  {{else}}
+    {{> dashboardApp}}
+  {{/if}}
 </template>
 
 <template name="dashboardApp">
   <div id="content" class="app-content" role="main">
-    {{#if chkBuilding}}
-      {{> dashboardOverlay}}
-    {{else}}
     <div class="app-content-body ">
       <div class="hbox hbox-auto-xs hbox-auto-sm">
         <!-- main -->
@@ -54,6 +55,5 @@
         {{> recentActivityColumn}}
       </div>
     </div>
-    {{/if}}
   </div>
 </template>
