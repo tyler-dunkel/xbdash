@@ -1,5 +1,9 @@
 <template name="dashboard">
-  {{> dashboardApp}}
+  {{#if chkBuilding}}
+    {{> dashboardOverlay}}
+  {{else}}
+    {{> dashboardApp}}
+  {{/if}}
 </template>
 
 <template name="dashboardApp">

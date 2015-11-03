@@ -2,7 +2,6 @@ Meteor.publishComposite('myTopGames', {
 	find: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
 		if (!user) {
-			Meteor._debug("fired publish  game by gamerscore function");
 			return xbdGames.find({}, {
 				sort: { maxGamerscore: -1 },
 				fields: {
@@ -14,8 +13,7 @@ Meteor.publishComposite('myTopGames', {
 				limit: 10
 			});
 		}
-		if (!user.gamertagScanned) {
-			Meteor._debug("fired publish  game by gamerscore function");
+		if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
 			return xbdGames.find({}, {
 				sort: { maxGamerscore: -1 },
 				fields: {
@@ -36,7 +34,7 @@ Meteor.publishComposite('myTopGames', {
 			},
 			limit: 10
 		});
-	}, 
+	},
 	children: [
 		{
 			find: function(game) {
@@ -47,8 +45,10 @@ Meteor.publishComposite('myTopGames', {
 				} else {
 					id = game.gameId;
 				}
-				if (!user.gamertagScanned) {
-					id = game._id;
+				if (user) {
+					if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+						id = game._id;
+					}
 				} else {
 					id = game.gameId;
 				}
@@ -72,9 +72,11 @@ Meteor.publishComposite('myTopGames', {
 					Meteor._debug("no user id " + game);
 					return;
 				}
-				if (!user.gamertagScanned) {
-					Meteor._debug("gamertag not scanned");
-					return;
+				if (user) {
+					if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+						Meteor._debug("gamertag not scanned");
+						return;
+					}
 				}
 				return xbdGames.find({ _id: game.gameId }, {
 					sort: { maxGamerscore: -1 },
@@ -124,7 +126,11 @@ Meteor.publishComposite('gamesByReleaseDate', {
 			find: function(game) {
 				var user = Meteor.users.findOne({ _id: this.userId });
 				if (!user) return;
-				if (!user.gamertagScanned) return;
+				if (user) {
+					if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+						return;
+					}
+				}
 				return userGames.find({ userId: this.userId, gameId: game.gameId }, {
 					fields: {
 						gameId: 1,
@@ -225,17 +231,20 @@ Meteor.publishComposite('singleGameAchievements', function(slug) {
 			{
 				find: function(achievement) {
 					var user = Meteor.users.findOne({ _id: this.userId });
-					if (user && user.gamertagScanned) {
-						return userAchievements.find({ userId: this.userId, achievementId: achievement._id }, {
-							sort: {
-								progressState: -1
-							},
-							fields: {
-								achievementId: 1,
-								userId: 1,
-								progressState: 1
-							}
-						});
+					// if (user && user.gamertagScanned) {
+					if (user) {
+						if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+							return userAchievements.find({ userId: this.userId, achievementId: achievement._id }, {
+								sort: {
+									progressState: -1
+								},
+								fields: {
+									achievementId: 1,
+									userId: 1,
+									progressState: 1
+								}
+							});
+						}
 					}
 				}
 			}

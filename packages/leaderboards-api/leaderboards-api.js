@@ -5,7 +5,11 @@ leaderboardsApi.buildUserRanks = function(userId) {
 	var user = Meteor.users.findOne({ _id: userId });
 
 	if (!user) return;
-	if (!user.gamertagScanned) return;
+	if (user) {
+		if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+			return;
+		}
+	}
 
 	var userStat = userLeaderboards.find({userId: userId});
 	if (userStat.count() > 0) return;

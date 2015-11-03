@@ -20,13 +20,13 @@ Template.recentActivityLine.created = function() {
     totalAchievementDependency.set(100);
     //console.log(this.data);
     Meteor.call('getGameAchievementCount', self.data.gameId, function(error, result) {
-            if (error) {
-                console.log(error);
-                totalAchievementDependency.set(100);
-                return;
-            }
-            totalAchievementDependency.set(result);
-        });
+        if (error) {
+            console.log(error);
+            totalAchievementDependency.set(100);
+            return;
+        }
+        totalAchievementDependency.set(result);
+    });
 }
 
 Template.recentActivityLine.rendered = function() {

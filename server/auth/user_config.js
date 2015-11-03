@@ -2,7 +2,7 @@ Accounts.onCreateUser(function(options, user) {
 	if (options.profile) {
 		user.profile = options.profile;
 	}
-	user.gamertagScanned = false;
+	user.gamertagScanned = { status: 'false', lastUpdate: null };
     //user.userSentWelcomeEmail = false;
 	user.userSeenReferralBox = false;
 	user.userReferralCount = 0;

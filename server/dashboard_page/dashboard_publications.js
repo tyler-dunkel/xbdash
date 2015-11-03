@@ -9,7 +9,8 @@ Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 			check(dateRange, Date);
 			var user = Meteor.users.findOne({ _id: this.userId });
 			if (!user) return;
-			if (!user.gamertagScanned) return;
+			// if (!user.gamertagScanned) return;
+			if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 			return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, {
 				fields: {
 					achievementId: 1,
@@ -35,7 +36,7 @@ Meteor.publishComposite('dashboardGameGenreChart', {
 	find: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
 		if (!user) return;
-		if (!user.gamertagScanned) return;
+		if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 		return userGames.find({ userId: this.userId }, {
 			fields: {
 				gameId: 1,
@@ -61,7 +62,7 @@ Meteor.publishComposite('dashboardGameGenreChart', {
 Meteor.publish('dashboardStatsCompletedAchievements', function() {
 	var user = Meteor.users.findOne({ _id: this.userId });
 	if (!user) return;
-	if (!user.gamertagScanned) return;
+	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
 	var self = this;
 	var achievementsCompleted = userAchievements.aggregate([
@@ -89,7 +90,7 @@ Meteor.publish('dashboardStatsCompletedAchievements', function() {
 Meteor.publish('dashboardStatsTotalAchievements', function () {
 	var user = Meteor.users.findOne({ _id: this.userId });
 	if (!user) return;
-	if (!user.gamertagScanned) return;
+	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
 	var self = this;
 	var totalAchievements = userAchievements.aggregate([
@@ -115,7 +116,7 @@ Meteor.publish('dashboardStatsTotalAchievements', function () {
 Meteor.publish('dashboardStatsCompletedGames', function () {
 	var user = Meteor.users.findOne({ _id: this.userId });
 	if (!user) return;
-	if (!user.gamertagScanned) return;
+	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
 	var self = this;
 	var gamesCompleted = userGames.aggregate([
@@ -147,7 +148,7 @@ Meteor.publish('dashboardStatsCompletedGames', function () {
 Meteor.publish('dashboardStatsTotalGames', function () {
 	var user = Meteor.users.findOne({ _id: this.userId });
 	if (!user) return;
-	if (!user.gamertagScanned) return;
+	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
 	var self = this;
 	var totalGames = userGames.aggregate([
@@ -173,7 +174,7 @@ Meteor.publishComposite('dashboardRecentActivity', {
 	find: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
 		if (!user) return;
-		if (!user.gamertagScanned) return;
+		if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 		
 		return userGames.find({ userId: this.userId, currentGamerscore: { $gt: 1 } }, {
 			fields: {
