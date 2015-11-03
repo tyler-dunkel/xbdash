@@ -9,7 +9,7 @@ Template.signUp.created = function() {
 					console.log("need to confirm email");
 					Router.go('confirmEmail');
 				}
-			} else if (user.gamertagScanned) {
+			} else if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
 				Router.go('home');
 			}
 		}

@@ -4,18 +4,16 @@ Template.confirmEmail.created = function() {
 		if (user) {
 			if (_.isEmpty(user.services)) {
 				if (user.emails && user.emails[0] && user.emails[0].verified) {
-					if (user.gamertagScanned) {
+					if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
 						Router.go('home');
-					} else {
-						Router.go('confirmGt');
 					}
-				}
-			} else {
-				if (user.gamertagScanned) {
-					Router.go('home');
-				} else {
 					Router.go('confirmGt');
 				}
+			} else {
+				if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+					Router.go('home');
+				}
+				Router.go('confirmGt');
 			}
 		} else {
 			Router.go('signUp');

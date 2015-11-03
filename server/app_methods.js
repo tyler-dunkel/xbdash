@@ -12,6 +12,8 @@ Meteor.methods({
 		if (user) {
 			if (_.isEmpty(user.services)) {
 				var userEmail = user.emails[0].address;
+			} else if (user.services.twitter) {
+				var userEmail = user.services.twitter.email;
 			} else {
 				var userEmail = user.services.facebook.email;
 			}

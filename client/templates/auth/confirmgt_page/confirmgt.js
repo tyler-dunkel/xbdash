@@ -8,7 +8,7 @@ Template.confirmGt.created = function() {
 					console.log("need to confirm email");
 					Router.go('confirmEmail');
 				}
-			} else if (user.gamertagScanned) {
+			} else if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
 				Router.go('home');
 			}
 		} else {
@@ -74,27 +74,27 @@ Template.confirmGtForm.events({
 		}
 
 		//set up the loading screen
-		var message = "<h3>Please wait while we retrieve your data!</h3>";
-		var spinner = "<div class='spinner'>" +
-				"<div class='double-bounce1'></div> " + 
- 				"<div class='double-bounce2'></div> " +
-				"</div>";
+		// var message = "<h3>Please wait while we retrieve your data!</h3>";
+		// var spinner = "<div class='spinner'>" +
+		// 		"<div class='double-bounce1'></div> " + 
+		//		"<div class='double-bounce2'></div> " +
+		// 		"</div>";
 
-		if (! Session.get('loadingScreen')) {
-			loading = window.pleaseWait({
-				logo: 'img/xboxdash_whiteicon.png',
-				backgroundColor: '#138013',
-				loadingHtml: message + spinner
-			});
-			Session.set('loadingScreen', true);
-		}
+		// if (! Session.get('loadingScreen')) {
+		// 	loading = window.pleaseWait({
+		// 		logo: 'img/xboxdash_whiteicon.png',
+		// 		backgroundColor: '#138013',
+		// 		loadingHtml: message + spinner
+		// 	});
+		// 	Session.set('loadingScreen', true);
+		// }
 		
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
 			if (typeof error != 'undefined') {
-				if (loading) {
-					loading.finish();
-					Session.set('loadingScreen', false);
-				}
+				// if (loading) {
+				// 	loading.finish();
+				// 	Session.set('loadingScreen', false);
+				// }
 				sweetAlert({
 					title: error.reason,
 					text: error.details,
@@ -107,13 +107,13 @@ Template.confirmGtForm.events({
 				return;
 			}
 			if (result.content) {
+				Router.go('home');
 				Meteor.call('retrieveData', function(error, result) {
-					if (loading) {
-						loading.finish();
-						Session.set('loadingScreen', false);
-					}
+					// if (loading) {
+					// 	loading.finish();
+					// 	Session.set('loadingScreen', false);
+					// }
 					Meteor.call('sendWelcomeEmail');
-					Router.go('home');
 					return;
 				});
 			}

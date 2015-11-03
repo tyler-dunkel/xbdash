@@ -1,4 +1,4 @@
-Template.dashboard.created = function() {
+Template.dashboardApp.created = function() {
 };
 
 Template.dashboard.rendered = function() {
@@ -82,4 +82,8 @@ Template.dashboard.rendered = function() {
 };
 
 Template.dashboardApp.helpers({
+    chkBuilding: function() {
+        var user = Meteor.user();
+        if (user.gamertagScanned.status === 'building') return true;
+    }
 });

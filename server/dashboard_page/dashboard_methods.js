@@ -8,7 +8,8 @@ Meteor.methods({
 	getMaxGamerscore: function() {
 		this.unblock();
 		var user = Meteor.user();
-		if (!user || !user.gamertagScanned) return;
+		if (!user) return;
+		if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 		var maxGamerscore = 0;
 		var getUserGames = userGames.find({ userId: user._id });
 

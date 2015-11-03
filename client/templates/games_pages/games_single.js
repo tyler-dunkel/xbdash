@@ -64,10 +64,13 @@ Template.userGamerscoreInfo.created = function() {
 Template.userGamerscoreInfo.helpers({
     chkCompleted: function () {
         var user = Meteor.user();
-        if (user && user.gamertagScanned) {
-            var game = userGames.findOne({ gameId: this.gameId });
-            if (game && game.completed) {
-                return true;
+        if (user) {
+            if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+                var game = userGames.findOne({ gameId: this.gameId });
+                if (game && game.completed) {
+                    return true;
+                }
+                return false;
             }
             return false;
         }
@@ -144,11 +147,14 @@ Template.gamesSinglePageAchievement.helpers({
     },
     chkProgress: function () {
         var user = Meteor.user();
-        if (user && user.gamertagScanned) {
-            var userAchievement = userAchievements.findOne({ userId: user._id, achievementId: this._id });
-            if (userAchievement && userAchievement.progressState) {
-                return true;
+        if (user) {
+            if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+                var userAchievement = userAchievements.findOne({ userId: user._id, achievementId: this._id });
+                if (userAchievement && userAchievement.progressState) {
+                    return true;
+                }
             }
+            return false;
         }
         return false;
     },

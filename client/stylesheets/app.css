@@ -6441,3 +6441,26 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
   content: "\f078";    
 }
 .popover {width: 200px;}
+
+/* dashboard overlay */
+
+.app-content .overlay {
+  position: absolute;
+  width: 100%;
+  min-height: 90%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.95);
+}
+.app-content .overlay .loading-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    line-height: 26px;
+    margin-left: -200px;
+    margin-top: -100px;
+    text-align: center;
+    padding: 60px 15px;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: bold;
+}

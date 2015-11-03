@@ -13,50 +13,60 @@ Meteor.publish('commentUserImage', function(userId) {
 
 // router achievements / games publications
 
-Meteor.publishComposite('userAchievements', {
-	find: function() {
-		var user = Meteor.users.find({ _id: this.userId });
-		if (!user) return;
-		if (!user.gamertagScanned) return;
-		if (!user.xuid) {
-			Meteor._debug("no xuid");
-			return;
-		}
-		return userAchievements.find({ userId: this.userId });
-	},
-	children: [
-		{
-			find: function(userAchievement) {
-				return xbdAchievements.find({ _id: userAchievement.achievementId });
-			}
-		}
-	]
-});
+// Meteor.publishComposite('userAchievements', {
+// 	find: function() {
+// 		var user = Meteor.users.find({ _id: this.userId });
+// 		if (!user) return;
+// 		if (user) {
+// 			if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+// 				return;
+// 			}
+// 		}
+// 		if (!user.xuid) {
+// 			Meteor._debug("no xuid");
+// 			return;
+// 		}
+// 		return userAchievements.find({ userId: this.userId });
+// 	},
+// 	children: [
+// 		{
+// 			find: function(userAchievement) {
+// 				return xbdAchievements.find({ _id: userAchievement.achievementId });
+// 			}
+// 		}
+// 	]
+// });
 
-Meteor.publishComposite('userGames', {
-	find: function() {
-		var user = Meteor.users.find({ _id: this.userId });
-		if (!user) return;
-		if (!user.gamertagScanned) return;
-		if (!user.xuid) {
-			Meteor._debug("no xuid");
-			return;
-		}
-		return userGames.find({ userId: this.userId });
-	},
-	children: [
-		{
-			find: function(userGame) {
-				return xbdGames.find({ _id: userGame.gameId })
-			}
-		},
-		{
-			find: function(userGame) {
-				return gameDetails.find({ gameId: userGame.gameId });
-			}
-		}
-	]
-});
+// Meteor.publishComposite('userGames', {
+// 	find: function() {
+// 		var user = Meteor.users.find({ _id: this.userId });
+// 		if (!user) return;
+// 		if (user) {
+// 			if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+// 				return;
+// 			}
+// 		}
+// 		if (!user.xuid) {
+// 			Meteor._debug("no xuid");
+// 			return;
+// 		}
+// 		return userGames.find({ userId: this.userId });
+// 	},
+// 	children: [
+// 		{
+// 			find: function(userGame) {
+// 				return xbdGames.find({ _id: userGame.gameId })
+// 			}
+// 		},
+// 		{
+// 			find: function(userGame) {
+// 				return gameDetails.find({ gameId: userGame.gameId });
+// 			}
+// 		}
+// 	]
+// });
+
+
 
 // games details
 

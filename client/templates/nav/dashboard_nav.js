@@ -21,7 +21,7 @@ Template.dashboardNav.rendered = function() {
 Template.dashboardNav.helpers({
 	isDashboardEnabled: function() {
 		var user = Meteor.user();
-		if (user && user.gamertagScanned) {
+		if (user || user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
 			return 'enabled';
 		} else {
 			return 'disabled';
@@ -29,7 +29,7 @@ Template.dashboardNav.helpers({
 	},
 	dashboardPopover: function() {
 		var user = Meteor.user();
-		if (user && !user.gamertagScanned) {
+		if (user || user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
 			return 'no-gamertag';
 		} else {
 			return 'no-user';
