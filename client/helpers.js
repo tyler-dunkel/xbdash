@@ -19,7 +19,7 @@ var helpers = {
     },
     chkGamerStatus: function () {
         var user = Meteor.user();
-        if (user) {
+        if (user && user.gamertagScanned) {
             if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
                 return true;
             }

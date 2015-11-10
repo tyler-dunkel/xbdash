@@ -1,0 +1,1 @@
+//rssFeeds = new Mongo.Collection('rssfeeds');

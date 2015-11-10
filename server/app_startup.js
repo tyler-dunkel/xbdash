@@ -1,5 +1,9 @@
 Meteor.startup(function() {
 
+
+	rssFeeds.insert({url: 'http://www.polygon.com/rss/group/news/index.xml'});
+
+	
 	ServiceConfiguration.configurations.remove({
 		service: 'facebook'
 	});

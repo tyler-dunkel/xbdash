@@ -21,7 +21,7 @@ Template.dashboardNav.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();
 		console.log("autorun for dashboard nav ran");
-		if (user && user.gamertagScanned.status !== 'false') {
+		if (user && user.gamertagScanned && user.gamertagScanned.status !== 'false') {
 			console.log("autorun for dashboard nav returned / href");
 			$('li a.dashboard-link').attr("href", "/");
 		}
@@ -35,7 +35,7 @@ Template.dashboardNav.created = function() {
 Template.dashboardNav.helpers({
 	isDashboardEnabled: function() {
 		var user = Meteor.user();
-		if (user && user.gamertagScanned.status !== 'false') {
+		if (user && user.gamertagScanned && user.gamertagScanned.status !== 'false') {
 			console.log("dashboard reran and there is a scanned gamertag");
 			return 'enabled';
 		} else {
@@ -45,7 +45,7 @@ Template.dashboardNav.helpers({
 	dashboardPopover: function() {
 		var user = Meteor.user();
 		if (user) {
-			if (user.gamertagScanned.status === 'false') {
+			if (user.gamertagScanned && user.gamertagScanned.status === 'false') {
 				return 'no-gamertag';
 			}
 			return;

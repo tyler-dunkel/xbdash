@@ -42,8 +42,12 @@ Template.dashboardHeader.events({
 Template.dashboardHeader.helpers({
     isStatsDisabled: function () {
         var user = Meteor.user();
-        if (!user || user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
-            return 'disabled hide';
+        var userString = EJSON.stringify(user);
+        console.log("user doc has: " + userString);
+        if (!user || !user.gamertagScanned) {
+            if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+                return 'disabled hide';
+            }
         }
     },
     isDashboardPage: function () {
