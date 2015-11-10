@@ -6444,34 +6444,117 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 
 /* dashboard overlay */
 
-.overlay {
+.dashboard-overlay {
   position: absolute;
   width: 100%;
-  min-height: 90%;
   z-index: 10;
   background-color: rgba(0,0,0,0.95);
 }
-.overlay .loading-text {
-  position: fixed;
-  top: 50%;
+.dashboard-overlay .loading-text {
+  position: relative;
+  top: 0;
   left: 0;
-  line-height: 26px;
   margin-left: 0;
-  margin-top: -100px;
+  margin-top: 0;
   text-align: center;
-  padding: 60px 15px;
-  font-size: 20px;
+  padding: 10px 15px;
   color: #ffffff;
   font-weight: bold;
   width: 100%;
 }
+.dashboard-overlay.not-found .loading-text {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-left: 0;
+  margin-top: 0;
+  text-align: center;
+  padding: 10px 15px;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100%;
+}
+.dashboard-overlay .loading-text h2 {
+  font-size: 32px;
+  font-weight: 300;
+}
+.dashboard-overlay .loading-text p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.dashboard-overlay .loading-text h3 {
+  font-size: 24px;
+}
+.dashboard-overlay .loading-text h4 {
+  color: #1C2B36;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+.dashboard-overlay .thumb-xxxl {
+  display: inline-block;
+  width: 256px;
+  background: #fff;
+}
+.dashboard-overlay .loading-text p,
+.dashboard-overlay .loading-text .continue-button {
+  color: #ffffff;
+}
+.dashboard-overlay .text-xs {
+  color: #1C2B36;
+}
+.dashboard-overlay .loading-text .continue-button {
+  text-decoration: underline;
+}
+.dashboard-overlay .line {
+  margin: 5px 0;
+}
 @media (min-width: 768px) {
-  .overlay {
-      margin-left: 200px;
+  .dashboard-overlay {
+    margin-left: 200px;
+    height: 100%;
+    position: fixed;
   }
-  .overlay .loading-text {
+  .dashboard-overlay.not-found {
+    margin: 0;
+    height: 100%;
+  }
+  .dashboard-overlay .loading-text {
+    position: absolute;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -40%;
+    padding: 0;
+    top: 5%;
     width: auto;
+  }
+  .dashboard-overlay.not-found .loading-text {
+    position: relative;
+    left: 50%;
+    margin-top: 0;
+    margin-left: -444px;
+    padding: 15px;
+    top: 0%;
+    width: 888px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  .dashboard-overlay > div > div > div:nth-child(4) {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .dashboard-overlay .loading-text {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    line-height: 26px;
+    margin-left: -375px;
+    margin-top: -100px;
+    padding: 60px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    width: auto;
+  }
+  .dashboard-overlay > div > div > div:nth-child(4) {
+    display: block;
   }
 }

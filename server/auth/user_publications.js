@@ -21,4 +21,3 @@ Meteor.publish('userReferralInfo', function() {
 		}
 	});
 });
-

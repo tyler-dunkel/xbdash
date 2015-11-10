@@ -1,5 +1,5 @@
 <template name="mostSharedNews">
-	<h4 class="font-bold">Trending</h4>
+	<h4 class="font-bold">Trending News</h4>
 	<div>
 		{{#each sharedNews limit}}
 			{{> mostSharedNewsLine}}
@@ -10,6 +10,26 @@
 <template name="mostSharedNewsLine">
 	<div class="media">
 		<a href="{{pathFor 'article'}}" class="thumb-xxxl m-r-sm">
+			<img src="{{getImage}}" class="thumb-xxxl" />
+			<h4 class="m-b-xs">{{title}}</h4>
+			<div class="text-xs block">{{updatedDate}}</div>
+		</a>
+	</div>
+	<div class="line"></div>
+</template>
+
+<template name="mostSharedNewsOverlay">
+	<h3>Trending News</h3>
+	{{#each sharedNews limit}}
+		<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+			{{> mostSharedNewsLine}}
+		</div>
+	{{/each}}
+</template>
+
+<template name="mostSharedNewsOverlayLine">
+	<div class="media">
+		<a href="{{pathFor 'article'}}" class="thumb-overlay-xxxl m-r-sm">
 			<img src="{{getImage}}" class="thumb-xxxl" />
 			<h4 class="m-b-xs">{{title}}</h4>
 			<div class="text-xs block">{{updatedDate}}</div>

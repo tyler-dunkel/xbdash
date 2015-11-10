@@ -148,6 +148,7 @@ Meteor.publish('gameDetailsSearch', function(id) {
 	check(id, String);
 	return gameDetails.find({ gameId: id }, {
 		fields: {
+			gameId: 1,
 			gamePublisherName: 1,
 			gameReleaseDate: 1,
 			gameGenre: 1,

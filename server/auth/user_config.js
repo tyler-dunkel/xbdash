@@ -9,12 +9,12 @@ Accounts.onCreateUser(function(options, user) {
 	return user;
 });
 
-Accounts.config({
-	sendVerificationEmail: true
-});
+// Accounts.config({
+// 	sendVerificationEmail: true
+// });
 
-Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';
-Accounts.emailTemplates.siteName = 'XBdash';
+// Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';
+// Accounts.emailTemplates.siteName = 'XBdash';
 Accounts.emailTemplates.verifyEmail.subject = function(user) {
     return 'Activate your XBdash account';
 }
@@ -84,9 +84,9 @@ Accounts.emailTemplates.resetPassword.html = function (user, url) {
     return result.data.html;
 }
 
-Accounts.emailTemplates.headers = {
-    'X-MC-AutoText': true
-};
+// Accounts.emailTemplates.headers = {
+//     'X-MC-AutoText': true
+// };
 
 UserStatus.events.on("connectionLogin", function(fields) {
 	

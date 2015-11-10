@@ -1,8 +1,15 @@
 <template name="dashboardOverlay">
-	<div class="overlay">
+	<div class="dashboard-overlay">
 		<div class="loading-text">
-			Thank you for signing up!<br />
-			Your Xbox&reg; data is being collected and we're building your profile.
+			<h2>Thank you for signing up!</h2>
+			<p>
+				Check out the latest Xbox&reg; news while we build your dashboard.
+				<br />
+				<a href="{{pathFor 'newsPage'}}" class="btn btn-sm btn-success padder-md m-t-xs">Continue&nbsp;&nbsp;<i class="fa fa-play"></i></a>
+			</p>
+			<div class="row m-b-xxl">
+                {{> mostSharedNewsOverlay limit=3}}
+			</div>
 		</div>
 	</div>
 </template>

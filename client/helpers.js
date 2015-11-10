@@ -54,6 +54,9 @@ var helpers = {
             return true;
         }
         return false;
+    },
+    getCurrentPath: function () {
+        return Router.current().route.path(this);
     }
 };
 

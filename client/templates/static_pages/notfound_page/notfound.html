@@ -1,0 +1,11 @@
+<template name="notFound">
+	<div class="dashboard-overlay not-found">
+		<div class="loading-text">
+			<h2>404</h2>
+			<p>We're sorry but the requested URL {{getCurrentPath}} was not found on this server. That's all we know.</p>
+			<div class="row m-b-xxl">
+                {{> mostSharedNewsOverlay limit=3}}
+			</div>
+		</div>
+	</div>
+</template>

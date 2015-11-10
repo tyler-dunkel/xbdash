@@ -58,6 +58,9 @@ Template.singleGameSearch.created = function() {
 	this.subscribe('gameDetailsSearch', this.data._id);
 }
 
+Template.singleGameSearch.rendered = function() {
+}
+
 Template.singleGameSearch.helpers({
     gamePublisherName: function () {
         var getPublisherName = gameDetails.findOne({ gameId: this._id });
@@ -73,27 +76,39 @@ Template.singleGameSearch.helpers({
     },
     gamesImage: function () {
         var gameDetail = gameDetails.findOne({ gameId: this._id });
-        var image = "/img/game-default.jpg";
-        if (this.platform === 'Xenon') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BoxArt' && art.Width === 219) {
-                    image =  art.Url;
-                }
-            });
-        }
-        if (this.platform === 'Durango') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-                    image =  art.Url;
-                }
-            });
-        }
+        var image = '/img/game-default.jpg';
+        if (gameDetail) {
+	    	if (this.platform === 'Xenon') {
+		            gameDetail.gameArt.forEach(function(art) {
+		                if (art.Purpose === 'BoxArt' && art.Width === 219) {
+		                    image = art.Url;
+		                }
+		            });
+	        }
+	        if (this.platform === 'Durango') {
+	            gameDetail.gameArt.forEach(function(art) {
+	                if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+	                    image = art.Url;
+	                }
+	            });
+	        }
+	    }
         return image;
     }
 });
 
+Template.singleAchievementSearch.helpers({
+	getAchievementImage: function () {
+		if (this.mediaAssets) {
+			return this.mediaAssets;
+		} else {
+			return '/img/achievement-default.jpg';
+		}
+	}
+});
+
 Template.singleNewsSearch.helpers({
-	getImage: function () {
+	getNewsImage: function () {
         var image = this.content.match(/<img[^>]*>/);
         if (image) {
             var getImage = image[0].match(/src="(.+?)"/)[1];

@@ -111,7 +111,7 @@
 		<a href="{{pathFor 'game'}}">
 			<div class="media game">
 				<span class="pull-left thumb-lg">
-					<img src="{{gamesImage}}" alt="{{this.name}}">
+					<img class="game-image" src="{{gamesImage}}" alt="{{this.name}}">
 				</span>
 				<div class="pull-right text-success m-t-xxl">
 					<i class="fa fa-trophy"></i> {{this.maxGamerscore}}
@@ -132,7 +132,7 @@
 		<a href="{{pathFor 'achievement'}}">
 			<div class="media achievement">
 				<span class="pull-left thumb-sm m-t-xs">
-					<img src="{{this.mediaAssets}}" alt="{{this.name}}">
+					<img src="{{getAchievementImage}}" alt="{{this.name}}">
 				</span>
 				<div class="pull-right text-success m-t-sm">
 					<i class="fa fa-trophy"></i> {{this.value}}
@@ -152,7 +152,7 @@
 	<li class="list-group-item">
 		<a class="article-url" href="{{pathFor 'article'}}">
 			<div class="media news">
-				<div class="pull-left news-img m-r" style="background-image: url('{{getImage}}');">
+				<div class="pull-left news-img m-r" style="background-image: url('{{getNewsImage}}');">
 				</div>
 				<div class="media-body">
 					<div>{{this.title}}</div>
