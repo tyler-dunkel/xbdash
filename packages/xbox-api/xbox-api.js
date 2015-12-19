@@ -78,7 +78,6 @@ xboxApiObject.updateXbox360Data = function(userId) {
 	}
 
 	response.data.titles.forEach(function (game) {
-
 		//return if game is an app and has 0 gamerscore (netflix)
 		if (game.totalGamerscore ===  0) return;
 		var gameId = game.titleId.toString();

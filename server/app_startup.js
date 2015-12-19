@@ -1,37 +1,37 @@
 Meteor.startup(function() {
 	rssFeeds.insert({url: 'http://www.polygon.com/rss/group/news/index.xml'});
-	
-	// ServiceConfiguration.configurations.remove({
-	// 	service: 'facebook'
-	// });
 
-	// ServiceConfiguration.configurations.insert({
-	// 	service: 'facebook',
-	// 	appId: '109259765831650',
-	// 	secret: '5d426e68a123871b8f051262b0f86f7b'
-	// });
+	ServiceConfiguration.configurations.remove({
+		service: 'facebook'
+	});
 
-	// ServiceConfiguration.configurations.remove({
-	// 	service: "twitter"
-	// });
+	ServiceConfiguration.configurations.insert({
+		service: 'facebook',
+		appId: Meteor.settings.services.facebookAppId,
+		secret: Meteor.settings.services.facebookSecret
+	});
 
-	// ServiceConfiguration.configurations.insert({
-	// 	service: "twitter",
-	// 	consumerKey: "UVos5UTOWCXMAUGDzvEcyHqAZ",
-	// 	loginStyle: "popup",
-	// 	secret: "9TDyJr6AK3BcONuagMN7eeBD5xWHON41UD5HxkIoymUtxvz3Dh"
-	// });
+	ServiceConfiguration.configurations.remove({
+		service: "twitter"
+	}); 
 
-	// // config and Account email verification templates
+	ServiceConfiguration.configurations.insert({
+		service: "twitter",
+		consumerKey: Meteor.settings.services.twitterConsumerKey,
+		loginStyle: "popup",
+		secret: Meteor.settings.services.twitterSecret
+	});
+
+	// // config and Account email vesrification templates
 	// // process.env.MAIL_URL="smtp://xboxdashbugreporter%40gmail.com:theskyisblue@smtp.gmail.com:465/";
 	
-	// Mandrill.config({
-	// 	username: 'keith@xbdash.com',  // the email address you log into Mandrill with. Only used to set MAIL_URL.
-	// 	key: 'Ex1VrXdHhGPIZE6D3a75BQ',  // get your Mandrill key from https://mandrillapp.com/settings/index
-	// 	port: 587,  // defaults to 465 for SMTP over TLS
-	// 	host: 'smtp.mandrillapp.com',  // the SMTP host
-	// 	baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
-	// });
+	Mandrill.config({
+		username: 'keith@xbdash.com',  // the email address you log into Mandrill with. Only used to set MAIL_URL.
+		key: Meteor.settings.services.mandrillKey,  // get your Mandrill key from https://mandrillapp.com/settings/index
+		port: 587,  // defaults to 465 for SMTP over TLS
+		host: 'smtp.mandrillapp.com',  // the SMTP host
+		baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
+	});
 
 	userAchievements._ensureIndex({ "userId": 1, "progressState": 1 });
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });

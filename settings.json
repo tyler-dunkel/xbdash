@@ -1,32 +1,9 @@
 {
-  "private": {
-    "services": [{
-        "service": "facebook",
-        "appId": "109259765831650",
-        "secret": "5d426e68a123871b8f051262b0f86f7b"
-      },{
-        "service": "twitter",
-        "consumerKey": "UVos5UTOWCXMAUGDzvEcyHqAZ",
-        "loginStyle": "popup",
-        "secret": "9TDyJr6AK3BcONuagMN7eeBD5xWHON41UD5HxkIoymUtxvz3Dh"
-      },{
-        "service": "Mandrill",
-        "username": "keith@xbdash.com",
-        "key": "Ex1VrXdHhGPIZE6D3a75BQ",
-        "port": "587",
-        "host": "smtp.mandrillapp.com",
-        "baseUrl": "https://mandrillapp.com/api/1.0/"
-      },{
-        "service": "Accounts",
-        "sendVerificationEmail": "true",
-        "emailTemplates": {
-          "from": "XBdash <contact@xbdash.com>",
-          "siteName": "XBdash",
-          "headers": {
-            "X-MC-AutoText": "true"
-          }
-        }
-      }
-    }],
+  "services": {
+    "facebookAppId": "109259765831650",
+    "facebookSecret": "5d426e68a123871b8f051262b0f86f7b",
+    "twitterConsumerKey": "UVos5UTOWCXMAUGDzvEcyHqAZ",
+    "twitterSecret": "9TDyJr6AK3BcONuagMN7eeBD5xWHON41UD5HxkIoymUtxvz3Dh",
+    "mandrillKey": "Ex1VrXdHhGPIZE6D3a75BQ"
   }
 }
