@@ -247,9 +247,7 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 		return;
 	}
 
-	console.log(result.data.Items);
-
-	// if (!result || !result.data || !result.data.Items) {
+	if (result && result.data && result.data.Items) {
 		var releaseDate = (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated;
 		releaseDate = new Date(parseInt(releaseDate.substr(6)));
 		releaseDate = releaseDate.toISOString();
@@ -271,26 +269,24 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 			gameAllTimeRatingCount: result.data.Items[0].AllTimeRatingCount, // undefined
 			gameAllTimeAverageRating: allTimeAverageRating
 		};
-		console.log(gameDetail);
-	// } else {
-	// 	var gameDetail = {
-	// 		gameName: game.name,
-	// 		gameDescription: "This is an ordinary old game.",
-	// 		gameReducedDescription: "This is an ordinary old game.",
-	// 		gameReducedName: game.name,
-	// 		gameReleaseDate: "2005-11-22T00:00:00Z",
-	// 		gameId: gameId,
-	// 		gameGenre: "Miscellaneous",
-	// 		gameArt: "/img/game-default.png",
-	// 		gamePublisherName: "Xbox 360",
-	// 		gameParentalRating: "Everyone",
-	// 		gameAllTimePlayCount: 0,
-	// 		gameSevenDaysPlayCount: 0,
-	// 		gameThirtyDaysPlayCount: 0,
-	// 		gameAllTimeRatingCount: 0,
-	// 		gameAllTimeAverageRating: 0
-	// 	};
-	// 	console.log(gameDetail);
-	// }
+	} else {
+		var gameDetail = {
+			gameName: game.name,
+			gameDescription: "This is an ordinary old game.",
+			gameReducedDescription: "This is an ordinary old game.",
+			gameReducedName: game.name,
+			gameReleaseDate: "2005-11-22T00:00:00Z",
+			gameId: gameId,
+			gameGenre: "Miscellaneous",
+			gameArt: "/img/game-default.png",
+			gamePublisherName: "Xbox 360",
+			gameParentalRating: "Everyone",
+			gameAllTimePlayCount: 0,
+			gameSevenDaysPlayCount: 0,
+			gameThirtyDaysPlayCount: 0,
+			gameAllTimeRatingCount: 0,
+			gameAllTimeAverageRating: 0
+		};
+	}
 	gameDetails.upsert({ gameId: gameId }, { $set: gameDetail });
 }

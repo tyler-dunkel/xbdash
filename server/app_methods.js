@@ -1,7 +1,8 @@
 Meteor.methods({
     sendWelcomeEmail: function () {
     	this.unblock();
-
+    	//return for now to avoid errors
+    	return;
 		var user = Meteor.user();
         var userAchievementsCount = userAchievements.find({ userId: user._id, progressState: true }).count();
         var userTotalAchievements = userAchievements.find({ userId: user._id }).count();
