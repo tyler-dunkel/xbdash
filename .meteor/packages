@@ -68,3 +68,4 @@ ejson
 spacebars
 check
 okgrow:router-autoscroll
+percolate:synced-cron
