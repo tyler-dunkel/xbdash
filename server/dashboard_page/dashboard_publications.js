@@ -19,7 +19,7 @@ Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 					progression: 1
 				},
 				sort: { progression: -1 },
-				limit: 100
+				limit: 300
 			});
 		},
 		children: [

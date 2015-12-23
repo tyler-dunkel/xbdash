@@ -2,15 +2,15 @@ var timeRangeToggle = new ReactiveVar();
 var gamerscoreChart;
 
 Template.gamerscoreChart.created = function() {
-	var threeMonth = moment().subtract(3, 'month').toDate();
+	var thirtyDays = moment().subtract(30, 'days').toDate();
 	var self = this;
-	self.subscribe('dashboardMainCharts', threeMonth);
+	self.subscribe('dashboardMainCharts', thirtyDays);
 }
 
 Template.gamerscoreChartSvg.rendered = function() {
-	var oneMonth = moment().subtract(1, 'month').toDate();
+	var fifteenDays = moment().subtract(15, 'days').toDate();
 	var userId = Meteor.userId();
-	var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: oneMonth } }, { sort: { progression: 1 }, limit: 300 }).fetch();
+	var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: fifteenDays } }, { sort: { progression: 1 }, limit: 100 }).fetch();
 	var formattedGamerscoreData = formatGamerscoreData(userGamerscoreDataSet);
 
 	nv.addGraph(function() {
@@ -53,8 +53,8 @@ Template.gamerscoreChartSvg.rendered = function() {
 	});
 	Meteor.setTimeout(function() {
 		console.log("timeout function");
-		var oneMonth = moment().subtract(1, 'month').toDate();
-		timeRangeToggle.set(oneMonth);
+		var fifteenDays = moment().subtract(15, 'days').toDate();
+		timeRangeToggle.set(fifteenDays);
 	}, 5000);
 }
 
@@ -62,23 +62,23 @@ Template.gamerscoreChartSvg.events({
 	"click #gamerscore-chart-recent-activity-button": function(e) {
 		console.log("fired");
 		if(!$(e.target).hasClass('active')) {
-			console.log("its going to 1 month");
+			console.log("its going to 15 days");
 			$(e.target).addClass('active');
-			$('#gamerscore-chart-three-month-activity-button').removeClass('active');
+			$('#gamerscore-chart-thirty-days-activity-button').removeClass('active');
 			
-			oneMonth = moment().subtract(1, 'month').toDate();
-            timeRangeToggle.set(oneMonth);
+            fifteenDays = moment().subtract(15, 'days').toDate();
+			timeRangeToggle.set(fifteenDays);
 		}
 	},
-	"click #gamerscore-chart-three-month-activity-button": function(e) {
+	"click #gamerscore-chart-thirty-days-activity-button": function(e) {
 		console.log("also fired");
 		if(!$(e.target).hasClass('active')) {
-			console.log("its going to 6 month");
+			console.log("its going to 30 days");
 			$(e.target).addClass('active');
 			$('#gamerscore-chart-recent-activity-button').removeClass('active');
 
-			threeMonths = moment().subtract(3, 'month').toDate();
-            timeRangeToggle.set(threeMonths);
+			thirtyDays = moment().subtract(30, 'days').toDate();
+            timeRangeToggle.set(thirtyDays);
 		}
 	}
 });
