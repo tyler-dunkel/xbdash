@@ -34,7 +34,6 @@ mrt:jquery-raty
 mrt:modernizr-meteor
 vjau:xml2js
 todda00:friendly-slugs
-joshowens:shareit
 percolate:momentum
 arkham:comments-ui
 gliese:pretty-email
@@ -48,7 +47,6 @@ wylio:mandrill
 nvd3:nvd3@=1.7.1
 d3js:d3
 mrt:jquery-masonry
-okgrow:iron-router-autoscroll
 xbdash:leaderboards-api
 xbdash:xbox-api
 xbdash:feed-reader
@@ -69,3 +67,6 @@ spacebars
 check
 okgrow:router-autoscroll
 percolate:synced-cron
+cfs:graphicsmagick
+liberation:shareit
+froatsnook:request
