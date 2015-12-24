@@ -8,14 +8,13 @@ Template.shareIt.helpers({
 });
 
 ShareIt.configure({
+	siteOrder: ['facebook', 'twitter', 'email'],
 	sites: {                // nested object for extra configurations
-	  	'facebook': {
-        	'appId': Meteor.settings.services.facebookAppId
-        },
+	  	'facebook': {},
         'twitter': {},
         'googleplus': {},
         'pinterest': {}
-    }
+    },
     classes: "large btn",
     iconOnly: false,
     applyColors: true,

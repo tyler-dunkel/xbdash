@@ -23,7 +23,7 @@ Template.gamerscoreChartSvg.rendered = function() {
 			.showValues(true);
 
 		gamerscoreChart.xAxis
-			.axisLabel('Date')
+			//.axisLabel('Date')
 			.tickFormat(function(d) { return d3.time.format('%b %d, %Y')(new Date(d)) });
 
 		gamerscoreChart.yAxis
@@ -34,6 +34,11 @@ Template.gamerscoreChartSvg.rendered = function() {
 			.transition()
 			.duration(350)
 			.call(gamerscoreChart);
+
+		d3.selectAll("#gamerscore-chart .nv-x .nv-axis text")
+			.attr("transform", function(d) {
+				return "translate(" + this.getBBox().height*-2 + "," + this.getBBox().height*2 + ")rotate(-45)";
+        	});
 
 		updateGamerscoreChart(formattedGamerscoreData);
 
