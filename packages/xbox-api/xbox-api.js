@@ -144,7 +144,7 @@ xboxApiObject.updateUserStats = function(userId) {
 
 	Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'updating' } });
 	
-	this.updateXboxOneData(userId);
+	this.updateXboxOneGames(userId);
 	this.updateXbox360Data(userId);
 	
 	Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
@@ -161,7 +161,7 @@ xboxApiObject.dirtyUpdateUserStats = function(userId) {
 	var url = user.xuid + '/gamercard';
 
 	try {
-		var response = syncApiCaller(url);
+		var result = syncApiCaller(url);
 	} catch(e) {
 		var error = 'there was a problem calling the xbox api';
 	}

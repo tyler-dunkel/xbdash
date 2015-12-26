@@ -33,6 +33,8 @@ Meteor.startup(function() {
 		baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
 	});
 
+	SyncedCron.start();
+
 	userAchievements._ensureIndex({ "userId": 1, "progressState": 1 });
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
 	xbdAchievements._ensureIndex({ "gameId": 1 });

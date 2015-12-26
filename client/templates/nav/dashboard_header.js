@@ -44,11 +44,12 @@ Template.dashboardHeader.helpers({
         var user = Meteor.user();
         var userString = EJSON.stringify(user);
         console.log("user doc has: " + userString);
-        if (!user || !user.gamertagScanned) {
-            if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
-                return 'disabled hide';
+        if (user && user.gamertagScanned) {
+            if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+                return;
             }
         }
+        return 'disabled hide';
     },
     isDashboardPage: function () {
         if (Router.current().route.getName() === 'home') {

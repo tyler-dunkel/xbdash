@@ -5,7 +5,7 @@ Template.topLegendaryAchievements.created = function() {
 Template.topLegendaryAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gt: 0, $lte: 10 }
+            userPercentage: { $gte: 0, $lte: 10 }
         }).count();
         if (achievements > 0) {
             return true;
@@ -14,7 +14,7 @@ Template.topLegendaryAchievements.helpers({
     },
     topLegendaryAchievements: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gt: 0, $lte: 10 }
+            userPercentage: { $gte: 0, $lte: 10 }
         }, { sort: { userPercentage: -1 }, limit: 10 });
         console.log(achievements);
         if (achievements) {
@@ -53,7 +53,7 @@ Template.topLegendaryAchievements.helpers({
     achievementClass: function () {
         var userPercentage = this.userPercentage;
         var achievementClass = "xbd";
-        if (userPercentage > 0 && userPercentage <= 10) {
+        if (userPercentage >= 0 && userPercentage <= 10) {
             achievementClass = "legendary";
         }
         return achievementClass;
@@ -61,7 +61,7 @@ Template.topLegendaryAchievements.helpers({
     trophyClass: function () {
         var userPercentage = this.userPercentage;
         var trophyClass = "xbd";
-        if (userPercentage > 0 && userPercentage <= 10) {
+        if (userPercentage >= 0 && userPercentage <= 10) {
             trophyClass = "trophy";
         }
         return trophyClass;

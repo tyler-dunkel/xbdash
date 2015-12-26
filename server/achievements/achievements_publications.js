@@ -133,7 +133,7 @@ Meteor.publishComposite('topEpicAchievements', {
 Meteor.publishComposite('topLegendaryAchievements', {
 	find: function() {
 		return xbdAchievements.find({
-				userPercentage: { $gt: 0, $lte: 10 }
+				userPercentage: { $gte: 0, $lte: 10 }
 			}, {
 			fields: {
 				gameId: 1,

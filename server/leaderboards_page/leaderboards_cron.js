@@ -30,7 +30,7 @@ SyncedCron.add({
 		return parser.text('every 2 hours');
 	},
 	job: function() {
-		var users = meteor.users.find({$or: [{'gamertagScanned.status': 'true'}, {'gamertagScanned.status': 'updating'}]});
+		var users = Meteor.users.find({$or: [{'gamertagScanned.status': 'true'}, {'gamertagScanned.status': 'updating'}]});
 		users.forEach(function(user) {
 			console.log(user.gamertagScanned);
 			leaderboardsApi.buildUserRanks(user._id);
@@ -45,7 +45,7 @@ SyncedCron.add({
 		return parser.text('every 20 min');
 	},
 	job: function() {
-		var onlineUsers = meteor.users.find({"status.online": true});
+		var onlineUsers = Meteor.users.find({"status.online": true});
 		onlineUsers.forEach(function(user) {
 			if (!user.gamertagScanned || user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
 				return;
