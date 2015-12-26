@@ -1,6 +1,6 @@
 //reactive var that gets set by meteor method 'getGameAchievementCount'. 
 //This allows us to get our total achievement count server side while still being reactive on achievements earned
-var totalAchievementDependency = new ReactiveVar();
+//var totalAchievementDependency = new ReactiveVar();
 
 Template.recentActivityColumn.created = function() {
     this.subscribe('dashboardRecentActivity');
@@ -17,15 +17,15 @@ Template.recentActivityColumn.helpers({
 Template.recentActivityLine.created = function() {
     //this.subscribe('dashboardRecentActivityAchievements');
     var self = this;
-    totalAchievementDependency.set(100);
+    self.totalAchievements = new ReactiveVar(100);
     //console.log(this.data);
     Meteor.call('getGameAchievementCount', self.data.gameId, function(error, result) {
         if (error) {
             console.log(error);
-            totalAchievementDependency.set(100);
+            self.totalAchievements.set(100);
             return;
         }
-        totalAchievementDependency.set(result);
+        self.totalAchievements.set(result);
     });
 }
 
@@ -50,7 +50,7 @@ Template.recentActivityLine.helpers({
     xbdGame: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-        var totalAchievements = this.totalAchievements;
+        //var totalAchievements = this.totalAchievements;
         return {
             game: game,
             gameDetails: gameDetail
@@ -78,9 +78,9 @@ Template.recentActivityLine.helpers({
     },
     percentageComplete: function () {
          var parentData = Template.parentData(1);
-         var totalAchievements = totalAchievementDependency.get();
-        if (parentData && totalAchievements) {
-            return Math.round(parentData.earnedAchievements / totalAchievements * 100);
+         var achievementsCount = Template.instance().totalAchievements.get();
+        if (parentData && achievementsCount) {
+            return Math.round(parentData.earnedAchievements / achievementsCount * 100);
         }
         // if (this.totalAchievements) {
         //     return Math.round(parentData.earnedAchievements / this.totalAchievements * 100);
@@ -89,9 +89,9 @@ Template.recentActivityLine.helpers({
     },
     remainingAchievements: function () {
         var parentData = Template.parentData(1);
-        var totalAchievements = totalAchievementDependency.get();
-        if (parentData && totalAchievements) {
-            return totalAchievements - parentData.earnedAchievements;
+        var achievementsCount = Template.instance().totalAchievements.get();
+        if (parentData && achievementsCount) {
+            return achievementsCount - parentData.earnedAchievements;
         }
         //return 100;
     }
