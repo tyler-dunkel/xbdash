@@ -177,7 +177,6 @@ Meteor.publishComposite('singleGame', function(slug) {
 						fields: {
 							gameId: 1,
 							gameName: 1,
-							gameName: 1,
 							gameDescription: 1,
 							gameReleaseDate: 1,
 							gameGenre: 1,
