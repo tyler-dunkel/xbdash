@@ -19,7 +19,8 @@ var trusted = [
   '*.voxmedia.com',
   '*.xbox.com',
   '*.xboxlive.com',
-  '*.youtube.com'
+  '*.youtube.com',
+  '*.ritetag.com'
 ];
 
 _.each(trusted, function(origin) {
@@ -31,4 +32,5 @@ _.each(trusted, function(origin) {
   BrowserPolicy.content.allowOriginForAll(origin);
   BrowserPolicy.content.allowFrameOrigin(originSecure);
   BrowserPolicy.content.allowFrameOrigin(origin);
+  BrowserPolicy.content.allowFrameOrigin("*.ritetag.com");
 });

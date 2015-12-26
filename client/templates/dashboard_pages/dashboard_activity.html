@@ -8,7 +8,9 @@
 					{{> recentActivityLine}}
 				{{/each}}
 			{{else}}
-				<p> loading </p>
+				{{#each gamesList}}
+					{{> recentActivityLoading}}
+				{{/each}}
 			{{/if}}
 			</ul>
 		</div>
@@ -39,4 +41,28 @@
 		</div>
 	</li>
 	{{/with}}
+</template>
+
+<template name="recentActivityLoading">
+	<li class="list-group-item activity-line">
+		<a href="#" class="thumb-sm m-r games-thumb">
+			<img src="/img/game-default.jpg" class="game-image" />
+		</a>
+		<div class="game-div title-wrap-game2">
+			<a class="game-name" href="#">Your Game</a>
+		</div>
+		<div class="pull-right bg-black inline m-t-mdx c100 p0 small">
+			<span>0%</span>
+			<div class="slice">
+				<div class="bar"></div>
+				<div class="fill"></div>
+			</div>
+		</div>
+		<div class="progress progress-md text-center">
+			<div class="progress-bar progress-bar-success" style="width: 100%">
+				0 done 
+			</div>
+			100 left
+		</div>
+	</li>
 </template>
