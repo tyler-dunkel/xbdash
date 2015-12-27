@@ -20,7 +20,7 @@ SyncedCron.add({
 	}
 })
 
-Meteor.startup(function() {
+// Meteor.startup(function() {
 	// Meteor.setInterval(function() {
 	// 	var gamesNotComplete = userGames.find({ completed: false });
 
@@ -36,4 +36,4 @@ Meteor.startup(function() {
 	// 		}
 	// 	});
 	// }, 300000);
-});
+// });

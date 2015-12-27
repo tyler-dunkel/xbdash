@@ -15,7 +15,7 @@ Template.gamerscoreChartSvg.rendered = function() {
 
 	nv.addGraph(function() {
 		gamerscoreChart = nv.models.discreteBarChart()
-			.margin({ left: 65, right: 40 })
+			.margin({ right: 20, bottom: 65, left: 65 })
 			.x(function(d) { return d.date })
 			.y(function(d) { return d.total })
 			.staggerLabels(false)
@@ -23,8 +23,9 @@ Template.gamerscoreChartSvg.rendered = function() {
 			.showValues(true);
 
 		gamerscoreChart.xAxis
-			//.axisLabel('Date')
-			.tickFormat(function(d) { return d3.time.format('%b %d, %Y')(new Date(d)) });
+			// 	.axisLabel('Date')
+			.tickFormat(function(d) { return d3.time.format('%b %d, %Y')(new Date(d)) })
+			.rotateLabels(-45);
 
 		gamerscoreChart.yAxis
 			.axisLabel('Gamerscore');
@@ -35,10 +36,10 @@ Template.gamerscoreChartSvg.rendered = function() {
 			.duration(350)
 			.call(gamerscoreChart);
 
-		d3.selectAll("#gamerscore-chart .nv-x .nv-axis text")
-			.attr("transform", function(d) {
-				return "translate(" + this.getBBox().height*-2 + "," + this.getBBox().height*2 + ")rotate(-45)";
-        	});
+		// d3.selectAll("#gamerscore-chart .nv-x .nv-axis text")
+		// 	.attr("transform", function(d) {
+		// 		return "translate(" + this.getBBox().height*-2 + "," + this.getBBox().height*2 + ")";
+		// 	});
 
 		updateGamerscoreChart(formattedGamerscoreData);
 
@@ -56,6 +57,7 @@ Template.gamerscoreChartSvg.rendered = function() {
 			updateGamerscoreChart(formattedGamerscoreData);
 		}
 	});
+
 	Meteor.setTimeout(function() {
 		console.log("timeout function");
 		var fifteenDays = moment().subtract(15, 'days').toDate();
