@@ -18,28 +18,25 @@ Template.gamerscoreChartSvg.rendered = function() {
 			.margin({ right: 20, bottom: 65, left: 65 })
 			.x(function(d) { return d.date })
 			.y(function(d) { return d.total })
+			.valueFormat(d3.format(',f'))
 			.staggerLabels(false)
 			.tooltips(true)
 			.showValues(true);
 
 		gamerscoreChart.xAxis
-			// 	.axisLabel('Date')
+			// .axisLabel('Date')
 			.tickFormat(function(d) { return d3.time.format('%b %d, %Y')(new Date(d)) })
 			.rotateLabels(-45);
 
 		gamerscoreChart.yAxis
-			.axisLabel('Gamerscore');
+			.axisLabel('Gamerscore')
+			.tickFormat(d3.format(',f'));
 
 		d3.select('#gamerscore-chart svg')
 			.datum(formattedGamerscoreData)
 			.transition()
 			.duration(350)
 			.call(gamerscoreChart);
-
-		// d3.selectAll("#gamerscore-chart .nv-x .nv-axis text")
-		// 	.attr("transform", function(d) {
-		// 		return "translate(" + this.getBBox().height*-2 + "," + this.getBBox().height*2 + ")";
-		// 	});
 
 		updateGamerscoreChart(formattedGamerscoreData);
 

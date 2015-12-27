@@ -25,7 +25,7 @@ Template.achievementsChartSvg.rendered = function() {
 
 		var d = new Date();
 		var oneMonthAgo = d3.time.day.offset(new Date(), -14);
-
+		
 		achievementsChart.xAxis
 			//.axisLabel('Date')
 			.tickFormat(function(d) { return d3.time.format('%b %d, %Y')(new Date(d)) })
