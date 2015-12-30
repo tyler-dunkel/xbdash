@@ -1,6 +1,6 @@
 BrowserPolicy.framing.disallow();
 BrowserPolicy.content.allowInlineScripts();
-BrowserPolicy.content.disallowEval();
+BrowserPolicy.content.allowEval();
 BrowserPolicy.content.allowInlineStyles();
 BrowserPolicy.content.allowFontDataUrl();
 
@@ -20,7 +20,8 @@ var trusted = [
   '*.xbox.com',
   '*.xboxlive.com',
   '*.youtube.com',
-  '*.ritetag.com'
+  '*.ritetag.com',
+  'localhost:3000'
 ];
 
 _.each(trusted, function(origin) {
@@ -32,5 +33,13 @@ _.each(trusted, function(origin) {
   BrowserPolicy.content.allowOriginForAll(origin);
   BrowserPolicy.content.allowFrameOrigin(originSecure);
   BrowserPolicy.content.allowFrameOrigin(origin);
-  BrowserPolicy.content.allowFrameOrigin("*.ritetag.com");
 });
+
+// var origins = ['a.com', 'b.com', 'c.com', 'boobies.com'];
+// for( var i=0 ; i < trusted.length; i++ ){
+//     var origin = origins[i];
+//     if(request.headers.origin.indexOf(origin) > -1){ 
+//          response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
+//          return;
+//     }
+// }

@@ -54,6 +54,7 @@ Template.achievementsSinglePage.helpers({
         if (this.mediaAssets) {
             image = this.mediaAssets;
         }
+        console.log(image);
         return image;
     }
 });
