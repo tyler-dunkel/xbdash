@@ -1,7 +1,6 @@
 Meteor.methods({
 	getGameAchievementCount: function(gameId) {
 		check(gameId, String);
-		var xbdGame = xbdGames.findOne({_id: gameId});
 		var achievementCount = xbdAchievements.find({ gameId: gameId }).count();
 		return achievementCount;
 	},

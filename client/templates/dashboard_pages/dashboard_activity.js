@@ -15,10 +15,8 @@ Template.recentActivityColumn.helpers({
 });
 
 Template.recentActivityLine.created = function() {
-    //this.subscribe('dashboardRecentActivityAchievements');
     var self = this;
     self.totalAchievements = new ReactiveVar(100);
-    //console.log(this.data);
     Meteor.call('getGameAchievementCount', self.data.gameId, function(error, result) {
         if (error) {
             console.log(error);
@@ -50,7 +48,6 @@ Template.recentActivityLine.helpers({
     xbdGame: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
         var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-        //var totalAchievements = this.totalAchievements;
         return {
             game: game,
             gameDetails: gameDetail
@@ -77,15 +74,11 @@ Template.recentActivityLine.helpers({
         return image;
     },
     percentageComplete: function () {
-         var parentData = Template.parentData(1);
-         var achievementsCount = Template.instance().totalAchievements.get();
+        var parentData = Template.parentData(1);
+        var achievementsCount = Template.instance().totalAchievements.get();
         if (parentData && achievementsCount) {
             return Math.round(parentData.earnedAchievements / achievementsCount * 100);
         }
-        // if (this.totalAchievements) {
-        //     return Math.round(parentData.earnedAchievements / this.totalAchievements * 100);
-        // }
-        //return 50;
     },
     remainingAchievements: function () {
         var parentData = Template.parentData(1);
@@ -93,7 +86,6 @@ Template.recentActivityLine.helpers({
         if (parentData && achievementsCount) {
             return achievementsCount - parentData.earnedAchievements;
         }
-        //return 100;
     }
 });
 
@@ -102,4 +94,4 @@ Template.recentActivityLine.helpers({
         var achievementCount = xbdAchievements.find({ gameId: gameId }).count();
         return achievementCount - this.earnedAchievements;
     }
-    */
+*/
