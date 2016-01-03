@@ -1,7 +1,7 @@
 SyncedCron.add({
 	name: "achievement user percentage job",
 	schedule: function(parser) {
-		return parser.text('every 1 mins');
+		return parser.text('every 5 mins');
 	},
 	job: function() {
 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
