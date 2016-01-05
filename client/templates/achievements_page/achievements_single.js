@@ -36,11 +36,11 @@ Template.achievementsSinglePage.helpers({
         }
         return trophyClass;
     },
-	achievement: function () {
-		var slug = Router.current().params.slug;
-		return xbdAchievements.findOne({ slug: slug });
-	},
-	game: function() {
+    achievement: function () {
+        var slug = Router.current().params.slug;
+        return xbdAchievements.findOne({ slug: slug });
+    },
+    game: function() {
         return xbdGames.findOne({ _id: this.gameId });
     },
     ifXenon: function () {
@@ -52,9 +52,8 @@ Template.achievementsSinglePage.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = this.mediaAssets;
+            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(this.mediaAssets);
         }
-        console.log(image);
         return image;
     }
 });

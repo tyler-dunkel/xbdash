@@ -21,14 +21,14 @@ Template.gamesSinglePage.helpers({
         if (game.platform === 'Xenon') {
             this.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
-                    image =  art.Url;
+                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }
         if (game.platform === 'Durango') {
             this.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-                    image =  art.Url;
+                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }
@@ -126,6 +126,7 @@ Template.gameRatingSingle.rendered = function() {
 Template.gamesSinglePageAchievement.created = function() {
     var slug = Router.current().params.slug;
     this.subscribe('singleGameAchievements', slug);
+    this.achievementShowNext = new ReactiveVar(0);
 }
 
 Template.gamesSinglePageAchievement.rendered = function() {
@@ -135,14 +136,13 @@ Template.gamesSinglePageAchievement.rendered = function() {
 Template.gamesSinglePageAchievement.helpers({
     achievementsList: function () {
         var user = Meteor.user();
-        var skip = achievementShowNext.get();
         return xbdAchievements.find({ gameId: this.gameId }, {
             sort: {
                 value: 1,
                 name: 1
             },
             limit: 7,
-            skip: skip
+            skip: Template.instance().achievementShowNext.get()
         });
     },
     chkProgress: function () {
@@ -165,22 +165,9 @@ Template.gamesSinglePageAchievement.helpers({
         }
     },
     achievementImage: function () {
-        var xbdGame = xbdGames.findOne({ _id: this.gameId });
-        var gameDetail = gameDetails.findOne({ gameId: this.gameId });
         var image = "/img/achievement-default.jpg";
-        if (xbdGame.platform === 'Xenon') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BoxArt') {
-                    image =  art.Url;
-                }
-            });
-        }
-        if (xbdGame.platform === 'Durango') {
-            gameDetail.gameArt.forEach(function(art) {
-                if (art.Purpose === 'BrandedKeyArt') {
-                    image =  art.Url;
-                }
-            });
+        if (this.mediaAssets) {
+            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     }
@@ -192,17 +179,15 @@ Template.gamesSinglePageAchievement.events({
 		if (button.hasClass('disabled')) {
 			return;
 		}
-		var currentCount = achievementShowNext.get();
-		achievementShowNext.set(currentCount + 7);
-		console.log(achievementShowNext.get());
+        var currentCount = Template.instance().achievementShowNext.get();
+        Template.instance().achievementShowNext.set(currentCount + 7);
 	},
     "click .achievement-previous": function(event) {
         var button = $(event.currentTarget);
         if (button.hasClass('disabled')) {
             return;
         }
-        var currentCount = achievementShowNext.get();
-        achievementShowNext.set(currentCount - 7);
-        console.log(achievementShowNext.get());
+        var currentCount = Template.instance().achievementShowNext.get();
+        Template.instance().achievementShowNext.set(currentCount - 7);
     }
 });

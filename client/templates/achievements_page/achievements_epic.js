@@ -5,7 +5,7 @@ Template.topEpicAchievements.created = function() {
 Template.topEpicAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gte: 11, $lte: 30 }
+            userPercentage: { $gte: 11, $lte: 25 }
         }).count();
         if (achievements > 0) {
             return true;
@@ -14,7 +14,7 @@ Template.topEpicAchievements.helpers({
     },
     topEpicAchievements: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gte: 11, $lte: 30 }
+            userPercentage: { $gte: 11, $lte: 25 }
         }, { sort: { userPercentage: -1 }, limit: 10 });
         if (achievements) {
             return achievements;
@@ -37,7 +37,7 @@ Template.topEpicAchievements.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = this.mediaAssets;
+            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fill,h_64,w_64/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     },
@@ -52,7 +52,7 @@ Template.topEpicAchievements.helpers({
     achievementClass: function () {
         var userPercentage = this.userPercentage;
         var achievementClass = "xbd";
-        if (userPercentage >= 11 && userPercentage <= 30) {
+        if (userPercentage >= 11 && userPercentage <= 25) {
             achievementClass = "epic";
         }
         return achievementClass;
@@ -60,7 +60,7 @@ Template.topEpicAchievements.helpers({
     trophyClass: function () {
         var userPercentage = this.userPercentage;
         var trophyClass = "xbd";
-        if (userPercentage >= 11 && userPercentage <= 30) {
+        if (userPercentage >= 11 && userPercentage <= 25) {
             trophyClass = "star";
         }
         return trophyClass;

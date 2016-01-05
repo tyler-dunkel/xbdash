@@ -4,6 +4,8 @@
     "facebookSecret": "5d426e68a123871b8f051262b0f86f7b",
     "twitterConsumerKey": "UVos5UTOWCXMAUGDzvEcyHqAZ",
     "twitterSecret": "9TDyJr6AK3BcONuagMN7eeBD5xWHON41UD5HxkIoymUtxvz3Dh",
-    "mandrillKey": "Ex1VrXdHhGPIZE6D3a75BQ"
+    "mandrillKey": "Ex1VrXdHhGPIZE6D3a75BQ",
+    "cloudinaryKey": "951726464735847",
+    "cloudinarySecret": "S2ZBSps6yEKPC5vaJgIS4Fx3WhI"
   }
 }

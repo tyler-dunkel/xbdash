@@ -60,14 +60,14 @@ Template.recentActivityLine.helpers({
         if (xbdGame.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt') {
-                    image =  art.Url;
+                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }
         if (xbdGame.platform === 'Durango') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt') {
-                    image =  art.Url;
+                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }

@@ -14,11 +14,12 @@ Template.overallRanks.helpers({
 		return user.gamercard.gamertag;
 	},
 	getUserImage: function() {
-		var user = Meteor.users.findOne({ _id: this.userId });
-		if (user.gamercard.gamerpicLargeSslImagePath) {
-			return user.gamercard.gamerpicLargeSslImagePath;
+		var user = Meteor.user();
+		var defaultGamerImage = '/img/gamerpic-default.jpg';
+		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
+			defaultGamerImage = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
 		}
-		return '/img/gamerpic-default.jpg';
+		return defaultGamerImage;
 	},
 	getGamerscore: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });

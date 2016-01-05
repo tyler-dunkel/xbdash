@@ -29,6 +29,10 @@ Meteor.startup(function() {
 	    defaultAvatar: '/img/user-default.jpg'
 	});
 
+	$.cloudinary.config({
+		cloud_name: 'xbdash'
+	});
+
 	// Avatar.options = {
 	// 	defaultImageUrl: 'img/a0.jpg'
 	// 	//customImageProperty: 'user.gamercard.gamerpicLargeImagePath'

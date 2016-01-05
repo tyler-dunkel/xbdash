@@ -21,7 +21,8 @@ var trusted = [
   '*.xboxlive.com',
   '*.youtube.com',
   '*.ritetag.com',
-  'localhost:3000'
+  '*.cloudinary.com',
+  '*localhost:3000'
 ];
 
 _.each(trusted, function(origin) {
@@ -34,12 +35,3 @@ _.each(trusted, function(origin) {
   BrowserPolicy.content.allowFrameOrigin(originSecure);
   BrowserPolicy.content.allowFrameOrigin(origin);
 });
-
-// var origins = ['a.com', 'b.com', 'c.com', 'boobies.com'];
-// for( var i=0 ; i < trusted.length; i++ ){
-//     var origin = origins[i];
-//     if(request.headers.origin.indexOf(origin) > -1){ 
-//          response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
-//          return;
-//     }
-// }
