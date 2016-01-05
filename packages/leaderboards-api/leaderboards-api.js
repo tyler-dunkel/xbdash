@@ -11,8 +11,8 @@ leaderboardsApi.buildUserRanks = function(userId) {
 		}
 	}
 
-	var userStat = userLeaderboards.find({userId: userId});
-	if (userStat.count() > 0) return;
+	var checkUserForLeaderboard = userLeaderboards.find({userId: userId});
+	if (checkUserForLeaderboard.count() > 0) return;
 
 	var userStats = {
 		userId: userId,
@@ -33,6 +33,10 @@ leaderboardsApi.buildUserRanks = function(userId) {
 leaderboardsApi.updateUserCounts = function(userId) {
 	check(userId, String);
 
+	var userStat = userLeaderboards.find({userId: userId});
+	if (!userStat || !userStat.count() || userStat.count() === 0) return;
+
+	this.countUserDailyGamerscore(userId);
 	this.countUserCompletedGames(userId);
 	this.countCompletedAchievements(userId);
 	this.countTotalAchievements(userId);
@@ -68,26 +72,27 @@ leaderboardsApi.updateOverallRank = function() {
 	});
 }
 
-leaderboardsApi.dailyRank = function() {
+leaderboardsApi.countUserDailyGamerscore = function(userId) {
 	var userDailyGamerscore = 0;
-	var users = Meteor.users.find({ 'gamercard.gamerscore': { $gt: 1 } });
+	var userStat = userLeaderboards.findOne({ userId: userId});
 	var oneDay = moment().startOf('day').toDate();
-	//if (!users) return;
+	if (!userStat || !userStat.count() || !userStat.count() > 0) return;
 
+	var userDailyAchievements = userAchievements.find({userId: userId, progressState: true, progression: { $gte: oneDay } });
 	//find each users gamerscore for the past 24 hours and put it into a field called userDailyGamerscore
-	users.forEach(function(user){
-		var userDailyAchievements = userAchievements.find({ userId: user._id, progressState: true, progression: { $gte: oneDay } });
-		if (!userDailyAchievements) {
-			userLeaderboards.update({ userId: user._id }, { $set: { 'dailyRank.value': userDailyGamerscore } });
-			return;
-		}
-		userDailyAchievements.forEach(function(achievement) {
-			var singleAchievement = xbdAchievements.findOne({ _id: achievement.achievementId });
-			userDailyGamerscore += singleAchievement.value;
-		});
-		userLeaderboards.update({ userId: user._id }, { $set: { 'dailyRank.value': userDailyGamerscore } });
-	});
+	if (!userDailyAchievements || !userDailyAchievements.count() || !userDailyAchievements.count() > 0) {
+		userLeaderboards.update({ userId: userId }, { $set: { 'dailyRank.value': userDailyGamerscore } });
+		return;
+	}
 
+	userDailyAchievements.forEach(function(achievement) {
+		var singleAchievementValue = xbdAchievements.findOne({ _id: achievement.achievementId }).value;
+		userDailyGamerscore += singleAchievementValue;
+	});
+	userLeaderboards.update({ userId: user._id }, { $set: { 'dailyRank.value': userDailyGamerscore } });
+}
+
+leaderboardsApi.dailyRank = function() {
 	//find each user and assign them a daily rank based upon the above computed userDailyGamerscore
 	var userDailyRank = 1;
 	var userStats = userLeaderboards.find({ 'dailyRank.value': { $gt: 1 } }, { $sort: { 'dailyRank.value': -1 } });
@@ -106,8 +111,8 @@ leaderboardsApi.countUserCompletedGames = function(userId) {
 
 leaderboardsApi.updateUserCompletedGamesRank = function() {
 	var rank = 1;
-	var userStats = userLeaderboards.find({}, { sort: { 'completedGames.count': -1 } });
-	if (!userStats) return;
+	var userStats = userLeaderboards.find({'completedGames.count': { $gte: 1 } }, { sort: { 'completedGames.count': -1 } });
+	if (!userStats || !userStats.count() || !userStats.count() > 0) return;
 	userStats.forEach(function(userStat) {
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'completedGames.rank': rank } });
 		rank++;
@@ -123,8 +128,8 @@ leaderboardsApi.countCompletedAchievements = function(userId) {
 
 leaderboardsApi.updateCompletedAchievementsRank = function() {
 	var rank = 1;
-	var userStats = userLeaderboards.find({}, { sort: { 'completedAchievements.count': -1 } });
-	if (!userStats) return;
+	var userStats = userLeaderboards.find({ 'completedAchievements.count': { $gte: 1 } }, { sort: { 'completedAchievements.count': -1 } });
+	if (!userStats || !userStats.count() || !userStats.count() > 0) return;
 	userStats.forEach(function(userStat) {
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'completedAchievements.rank': rank } });
 		rank++;
@@ -140,8 +145,8 @@ leaderboardsApi.countTotalAchievements = function(userId) {
 
 leaderboardsApi.updateTotalAchievementsRank = function() {
 	var rank = 1;
-	var userStats = userLeaderboards.find({}, { sort: { 'totalAchievements.count': -1 } });
-	if (!userStats) return;
+	var userStats = userLeaderboards.find({ 'totalAchievements.count': { $gte: 1 } }, { sort: { 'totalAchievements.count': -1 } });
+	if (!userStats || !userStats.count() || !userStats.count() > 0) return;
 	userStats.forEach(function(userStat) {
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'totalAchievements.rank': rank } });
 		rank++;
@@ -165,8 +170,8 @@ leaderboardsApi.countCommonAchievements = function(userId) {
 
 leaderboardsApi.updateCommonAchievementsRank = function() {
 	var rank = 1;
-	var userStats = userLeaderboards.find({}, { sort: { 'commonAchievements.count': -1 } });
-	if (!userStats) return;
+	var userStats = userLeaderboards.find({'commonAchievements.count': { $gte: 1 }}, { sort: { 'commonAchievements.count': -1 } });
+	if (!userStats || !userStats.count() || !userStats.count() > 0) return;
 	userStats.forEach(function(userStat) {
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'commonAchievements.rank': rank } });
 		rank++;
@@ -190,8 +195,8 @@ leaderboardsApi.countRareAchievements = function(userId) {
 
 leaderboardsApi.updateRareAchievementsRank = function() {
 	var rank = 1;
-	var userStats = userLeaderboards.find({}, { sort: { 'rareAchievements.count': -1 } });
-	if (!userStats) return;
+	var userStats = userLeaderboards.find({'rareAchievements.count': { $gte: 1 } }, { sort: { 'rareAchievements.count': -1 } });
+	if (!userStats || !userStats.count() || !userStats.count() > 0) return;
 	userStats.forEach(function(userStat) {
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'rareAchievements.rank': rank } });
 		rank++;
@@ -215,8 +220,8 @@ leaderboardsApi.countEpicAchievements = function(userId) {
 
 leaderboardsApi.updateEpicAchievementsRank = function() {
 	var rank = 1;
-	var userStats = userLeaderboards.find({}, { sort: { 'epicAchievements.count': -1 } });
-	if (!userStats) return;
+	var userStats = userLeaderboards.find({'epicAchievements.count': { $gte: 1 } }, { sort: { 'epicAchievements.count': -1 } });
+	if (!userStats || !userStats.count() || !userStats.count() > 0) return;
 	userStats.forEach(function(userStat) {
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'epicAchievements.rank': rank } });
 		rank++;
@@ -240,8 +245,8 @@ leaderboardsApi.countLegendaryAchievements = function(userId) {
 
 leaderboardsApi.updateLegendaryAchievementsRank = function() {
 	var rank = 1;
-	var userStats = userLeaderboards.find({}, { sort: { 'legendaryAchievements.count': -1 } });
-	if (!userStats) return;
+	var userStats = userLeaderboards.find({'legendaryAchievements.count': { $gte: 1 } }, { sort: { 'legendaryAchievements.count': -1 } });
+	if (!userStats || !userStats.count() || !userStats.count() > 0) return;
 	userStats.forEach(function(userStat) {
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'legendaryAchievements.rank': rank } });
 		rank++;

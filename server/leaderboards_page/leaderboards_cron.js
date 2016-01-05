@@ -1,33 +1,7 @@
 SyncedCron.add({
-	name: "non-optomistic update user leaderboard ranks",
-	schedule: function(parser) {
-		return parser.text('every 20 min');
-	},
-	job: function() {
-		leaderboardsApi.updateUserRanks();
-	}
-});
-
-SyncedCron.add({
-	name: "optomistic update user leaderboard ranks",
-	schedule: function(parser) {
-		return parser.text('every 5 min');
-	},
-	job: function() {
-		var onlineUsers = Meteor.users.find({"status.online": true});
-		if (onlineUsers.count() < 1) {
-			return;
-		}
-		onlineUsers.forEach(function(user) {
-			leaderboardsApi.updateUserRanks();
-		});
-	}
-});
-
-SyncedCron.add({
 	name: "non-optimistic update user leaderboard counts",
 	schedule: function(parser) {
-		return parser.text('every 2 hours');
+		return parser.text('every 40 mins');
 	},
 	job: function() {
 		var users = Meteor.users.find({$or: [{'gamertagScanned.status': 'true'}, {'gamertagScanned.status': 'updating'}]});
@@ -36,6 +10,7 @@ SyncedCron.add({
 			leaderboardsApi.buildUserRanks(user._id);
 			leaderboardsApi.updateUserCounts(user._id);
 		});
+		leaderboardsApi.updateUserRanks();
 	}
 });
 
@@ -55,5 +30,6 @@ SyncedCron.add({
 			leaderboardsApi.buildUserRanks(user._id);
 			leaderboardsApi.updateUserCounts(user._id);
 		});
+		leaderboardsApi.updateUserRanks();
 	}
 });
