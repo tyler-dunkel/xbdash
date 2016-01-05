@@ -21,6 +21,7 @@ var trusted = [
   '*.xboxlive.com',
   '*.youtube.com',
   '*.ritetag.com',
+  '*.cloudinary.com',
   '*localhost:3000'
 ];
 

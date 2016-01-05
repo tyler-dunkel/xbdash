@@ -9,6 +9,14 @@ Template.dashboardAside.created = function() {
 }
 
 Template.dashboardAside.helpers({
+    gamerImage: function () {
+        var user = Meteor.user();
+        var defaultGamerImage = '/img/xboxdash_whiteicon.png';
+        if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
+            defaultGamerImage = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+        }
+        return defaultGamerImage;
+    },
     achievementsCompleted: function () {
         var userId = Meteor.userId();
         if (Template.instance().subscriptionsReady()) {

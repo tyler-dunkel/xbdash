@@ -35,14 +35,14 @@ Template.singleGame.helpers({
         if (this.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
-                    image =  art.Url;
+                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }
         if (this.platform === 'Durango') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-                    image =  art.Url;
+                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }

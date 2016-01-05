@@ -5,7 +5,7 @@ Template.topRareAchievements.created = function() {
 Template.topRareAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gte: 31, $lte: 60 }
+            userPercentage: { $gte: 26, $lte: 50 }
         }).count();
         if (achievements > 0) {
             return true;
@@ -14,7 +14,7 @@ Template.topRareAchievements.helpers({
     },
     topRareAchievements: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gte: 31, $lte: 60 }
+            userPercentage: { $gte: 26, $lte: 50 }
         }, { sort: { userPercentage: -1 }, limit: 10 });
         if (achievements) {
             return achievements;
@@ -37,7 +37,7 @@ Template.topRareAchievements.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = this.mediaAssets;
+            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fill,h_64,w_64/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     },
@@ -52,7 +52,7 @@ Template.topRareAchievements.helpers({
     achievementClass: function () {
         var userPercentage = this.userPercentage;
         var achievementClass = "xbd";
-        if (userPercentage >= 31 && userPercentage <= 60) {
+        if (userPercentage >= 26 && userPercentage <= 50) {
             achievementClass = "rare";
         }
         return achievementClass;
@@ -60,7 +60,7 @@ Template.topRareAchievements.helpers({
     trophyClass: function () {
         var userPercentage = this.userPercentage;
         var trophyClass = "xbd";
-        if (userPercentage >= 31 && userPercentage <= 60) {
+        if (userPercentage >= 26 && userPercentage <= 50) {
             trophyClass = "bullseye";
         }
         return trophyClass;

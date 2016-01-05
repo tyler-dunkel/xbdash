@@ -33,6 +33,12 @@ Meteor.startup(function() {
 		baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
 	});
 
+	Cloudinary.config({
+		cloud_name: 'xbdash',
+		api_key: Meteor.settings.services.cloudinaryKey,
+		api_secret: Meteor.settings.services.cloudinarySecret
+	});
+
 	SyncedCron.start();
 
 	userAchievements._ensureIndex({ "userId": 1, "progressState": 1 });

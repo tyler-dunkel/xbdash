@@ -4305,6 +4305,14 @@ ul.signin > li.active {
   white-space: nowrap;
 }
 
+.text-ellipsis-inline {
+  max-width: 150px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .text-u-c {
   text-transform: uppercase;
 }

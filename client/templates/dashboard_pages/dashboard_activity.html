@@ -20,11 +20,12 @@
 <template name="recentActivityLine">
 	{{#with xbdGame}}
 	<li class="list-group-item activity-line">
+		<a class="" href="{{pathFor 'game' slug=game.slug}}" style="display: block;">
 		<a href="{{pathFor 'game' slug=game.slug}}" class="thumb-sm m-r games-thumb">
 			<img src="{{gamesListImage}}" class="game-image" />
 		</a>
 		<div class="game-div title-wrap-game2">
-			<a class="game-name" href="{{pathFor 'game' slug=game.slug}}">{{game.name}}</a>
+			<a class="game-name text-ellipsis" href="{{pathFor 'game' slug=game.slug}}">{{game.name}}</a>
 		</div>
 		<div class="pull-right bg-black inline m-t-mdx c100 p{{percentageComplete}} small">
 			<span>{{percentageComplete}}%</span>
@@ -39,6 +40,7 @@
 			</div>
 			{{remainingAchievements}} left
 		</div>
+		</a>
 	</li>
 	{{/with}}
 </template>

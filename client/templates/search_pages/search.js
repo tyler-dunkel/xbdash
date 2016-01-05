@@ -79,16 +79,16 @@ Template.singleGameSearch.helpers({
         var image = '/img/game-default.jpg';
         if (gameDetail) {
 	    	if (this.platform === 'Xenon') {
-		            gameDetail.gameArt.forEach(function(art) {
-		                if (art.Purpose === 'BoxArt' && art.Width === 219) {
-		                    image = art.Url;
-		                }
-		            });
+	            gameDetail.gameArt.forEach(function(art) {
+	                if (art.Purpose === 'BoxArt' && art.Width === 219) {
+	                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+	                }
+	            });
 	        }
 	        if (this.platform === 'Durango') {
 	            gameDetail.gameArt.forEach(function(art) {
 	                if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-	                    image = art.Url;
+	                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
 	                }
 	            });
 	        }
@@ -99,21 +99,21 @@ Template.singleGameSearch.helpers({
 
 Template.singleAchievementSearch.helpers({
 	getAchievementImage: function () {
-		if (this.mediaAssets) {
-			return this.mediaAssets;
-		} else {
-			return '/img/achievement-default.jpg';
-		}
+		var image = "/img/achievement-default.jpg";
+        if (this.mediaAssets) {
+            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_30,h_30/" + encodeURIComponent(this.mediaAssets);
+        }
+        return image;
 	}
 });
 
 Template.singleNewsSearch.helpers({
 	getNewsImage: function () {
         var image = this.content.match(/<img[^>]*>/);
+        var getImage = '/img/news-default.jpg';
         if (image) {
-            var getImage = image[0].match(/src="(.+?)"/)[1];
-        } else {
-        	var getImage = "/img/news-default.jpg";
+            getImage = image[0].match(/src="(.+?)"/)[1];
+            getImage = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_90,h_90" + encodeURIComponent(getImage);
         }
         return getImage;
 	},

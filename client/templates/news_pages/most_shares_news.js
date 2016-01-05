@@ -30,10 +30,10 @@ Template.mostSharedNewsOverlay.helpers({
 Template.mostSharedNewsLine.helpers({
 	getImage: function () {
         var image = this.content.match(/<img[^>]*>/);
+        var getImage = '/img/news-default.jpg';
         if (image) {
-            var getImage = image[0].match(/src="(.+?)"/)[1];
-        } else {
-        	getImage = '/img/news-default.jpg';
+            getImage = image[0].match(/src="(.+?)"/)[1];
+            getImage = image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
         }
         return getImage;
 	},

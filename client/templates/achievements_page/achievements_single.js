@@ -51,12 +51,8 @@ Template.achievementsSinglePage.helpers({
     },
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
-        // if (cachedImage) {
-        //     image = "/images/?imageSize=medium&url=" + cachedImage;
-        // } else {
         if (this.mediaAssets) {
-            image = this.mediaAssets;
-            image = "/images/?imageSize=medium&url=" + image;
+            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     }

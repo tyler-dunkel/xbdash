@@ -5,7 +5,7 @@ Template.topCommonAchievements.created = function() {
 Template.topCommonAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gte: 61 }
+            userPercentage: { $gte: 51 }
         }).count();
         if (achievements > 0) {
             return true;
@@ -14,7 +14,7 @@ Template.topCommonAchievements.helpers({
     },
     topCommonAchievements: function() {
         var achievements = xbdAchievements.find({
-            userPercentage: { $gte: 61 }
+            userPercentage: { $gte: 51 }
         }, { sort: { userPercentage: -1 }, limit: 10 });
         if (achievements) {
             return achievements;
@@ -37,7 +37,7 @@ Template.topCommonAchievements.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = this.mediaAssets;
+            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fill,h_64,w_64/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     },
@@ -52,7 +52,7 @@ Template.topCommonAchievements.helpers({
     achievementClass: function () {
         var userPercentage = this.userPercentage;
         var achievementClass = "xbd";
-        if (userPercentage >= 61 && userPercentage <= 100) {
+        if (userPercentage >= 51 && userPercentage <= 100) {
             achievementClass = "common";
         }
         return achievementClass;
@@ -60,7 +60,7 @@ Template.topCommonAchievements.helpers({
     trophyClass: function () {
         var userPercentage = this.userPercentage;
         var trophyClass = "xbd";
-        if (userPercentage >= 61 && userPercentage <= 100) {
+        if (userPercentage >= 51 && userPercentage <= 100) {
             trophyClass = "unlock";
         }
         return trophyClass;
