@@ -45,18 +45,18 @@ Meteor.startup(function() {
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
 	xbdAchievements._ensureIndex({ "gameId": 1 });
 
-	var testLog = leaderboardsApi;
-	var users = Meteor.users.find({}, { limit: 5 });
+	// var testLog = leaderboardsApi;
+	// var users = Meteor.users.find({}, { limit: 5 });
 
-	if (users.count() > 0) {
-		users.forEach(function(user) {
-			leaderboardsApi.buildUserRanks(user._id);
-			leaderboardsApi.updateUserCounts(user._id);
-		});
-		Meteor.setInterval(function() {
-			leaderboardsApi.updateUserRanks();
-		}, 15000);
-	}
+	// if (users.count() > 0) {
+	// 	users.forEach(function(user) {
+	// 		leaderboardsApi.buildUserRanks(user._id);
+	// 		leaderboardsApi.updateUserCounts(user._id);
+	// 	});
+	// 	Meteor.setInterval(function() {
+	// 		leaderboardsApi.updateUserRanks();
+	// 	}, 15000);
+	// }
 
 	// var xboxAO = xboxApiObject.chkGamertag('awdadwadw');
 

@@ -11,7 +11,7 @@ SyncedCron.add({
 			return;
 		}
 		users.forEach(function(user) {
-			xboxApiObject.dirtyUpdateUserStats(user._id);
+			xboxApiObject.updateUserStats(user._id);
 		});
 	}
 });

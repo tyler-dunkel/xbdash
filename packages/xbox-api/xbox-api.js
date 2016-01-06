@@ -12,6 +12,7 @@ xboxApiObject.chkGamertag = function(gamertag) {
 			reason: e.reason,
 			details: e.details
 		};
+		console.log(error);
 		console.log("this is the error catch block");
 	}
 
