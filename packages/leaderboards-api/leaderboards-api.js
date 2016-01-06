@@ -74,11 +74,11 @@ leaderboardsApi.updateOverallRank = function() {
 
 leaderboardsApi.countUserDailyGamerscore = function(userId) {
 	var userDailyGamerscore = 0;
-	var userStat = userLeaderboards.findOne({ userId: userId});
+	var userStat = userLeaderboards.find({ userId: userId });
 	var oneDay = moment().startOf('day').toDate();
 	if (!userStat || !userStat.count() || !userStat.count() > 0) return;
 
-	var userDailyAchievements = userAchievements.find({userId: userId, progressState: true, progression: { $gte: oneDay } });
+	var userDailyAchievements = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: oneDay } });
 	//find each users gamerscore for the past 24 hours and put it into a field called userDailyGamerscore
 	if (!userDailyAchievements || !userDailyAchievements.count() || !userDailyAchievements.count() > 0) {
 		userLeaderboards.update({ userId: userId }, { $set: { 'dailyRank.value': userDailyGamerscore } });
@@ -89,7 +89,7 @@ leaderboardsApi.countUserDailyGamerscore = function(userId) {
 		var singleAchievementValue = xbdAchievements.findOne({ _id: achievement.achievementId }).value;
 		userDailyGamerscore += singleAchievementValue;
 	});
-	userLeaderboards.update({ userId: user._id }, { $set: { 'dailyRank.value': userDailyGamerscore } });
+	userLeaderboards.update({ userId: userId }, { $set: { 'dailyRank.value': userDailyGamerscore } });
 }
 
 leaderboardsApi.dailyRank = function() {

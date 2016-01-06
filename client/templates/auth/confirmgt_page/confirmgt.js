@@ -96,8 +96,8 @@ Template.confirmGtForm.events({
 				// 	Session.set('loadingScreen', false);
 				// }
 				sweetAlert({
-					title: error.reason,
-					text: error.details,
+					title: error.reason || 'Internal server error!',
+					text: error.details || 'Server responded with 500.',
 					type: "error",
 					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "OK",
