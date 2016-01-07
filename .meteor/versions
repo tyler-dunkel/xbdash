@@ -213,6 +213,7 @@ rzymek:moment-locale-vi@2.9.0
 rzymek:moment-locale-zh-cn@2.9.0
 rzymek:moment-locale-zh-tw@2.9.0
 rzymek:moment-locales@2.9.0
+semantic:ui-visibility@2.1.7
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4

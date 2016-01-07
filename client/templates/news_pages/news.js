@@ -7,7 +7,6 @@ Template.newsSection.created = function() {
 	newsLimit.set(9);
 	console.log("set news limit to 9: " + newsLimit.get());
 	this.subscribe('latestNews', 21);
-	// this.newsLimit = new ReactiveVar(9);
 }
 
 Template.newsSection.rendered = function() {
@@ -16,6 +15,13 @@ Template.newsSection.rendered = function() {
 			showMoreVisible();
 		}, 500);
 	});
+	// $('#hasMoreResults').visibility({
+	// 	once: false,
+	// 	observeChanges: true,
+	// 	onTopVisible: function() {
+	// 		console.log("its top visible");
+	// 	}
+	// })
 }
 
 Template.newsSection.helpers({

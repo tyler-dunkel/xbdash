@@ -50,9 +50,10 @@
     {{#each latestNews}}
       {{> newsTemplate}}
     {{/each}}
+    <div> hello </div>
     </div>
     {{#if hasMoreResults}}
-      <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+      <div id="hasMoreResults">loading...</div>
     {{/if}}
   {{else}}
     {{> loadingTemplate}}
