@@ -45,10 +45,10 @@
 				<a href class="dropdown-toggle clear" data-toggle="dropdown">
 					<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
 						{{#if chkGamerStatus}}
-						<img src="{{currentUser.gamercard.gamerpicSmallSslImagePath}}" alt="{{currentUser.username}}">
-						{{else}}
-						<img src="/img/gamerpic-default.jpg" alt="currentUser.name" />
-						{{/if}}
+		                <img src="{{gamerImage}}" class="img-full" alt="{{currentUser.username}}">
+		                {{else}}
+		                <img src="/img/gamerpic-default.jpg" class="img-full" alt="{{currentUser.username}}" />
+		                {{/if}}
 						<i class="on md b-white bottom"></i>
 					</span>
 					<span class="hidden-sm hidden-md">{{currentUser.username}}</span> <b class="caret"></b>

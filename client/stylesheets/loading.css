@@ -110,14 +110,14 @@
   }
 }
 
-.spinner-rect {
+#hasMoreResults .spinner-rect {
   margin: 30px auto;
   width: 50px;
   height: 30px;
   text-align: center;
 }
 
-.spinner-rect > div {
+#hasMoreResults .spinner-rect > div {
   background-color: #1C2B36;
   height: 100%;
   width: 6px;
@@ -127,22 +127,59 @@
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
 
-.spinner-rect .rect2 {
+#hasMoreResults .spinner-rect .rect2 {
   -webkit-animation-delay: -1.1s;
   animation-delay: -1.1s;
 }
 
-.spinner-rect .rect3 {
+#hasMoreResults .spinner-rect .rect3 {
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;
 }
 
-.spinner-rect .rect4 {
+#hasMoreResults .spinner-rect .rect4 {
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
 }
 
-.spinner-rect .rect5 {
+#hasMoreResults .spinner-rect .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.aside-wrap .spinner-rect {
+  margin: 0 auto;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+}
+
+.aside-wrap .spinner-rect > div {
+  background-color: #ffffff;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.aside-wrap .spinner-rect .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.aside-wrap .spinner-rect .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.aside-wrap .spinner-rect .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.aside-wrap .spinner-rect .rect5 {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }

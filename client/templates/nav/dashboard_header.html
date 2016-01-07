@@ -2,10 +2,10 @@
   <header id="header" class="app-header navbar" role="menu">
     <!-- navbar header -->
     <div class="navbar-header bg-success">
-      <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+      <button class="pull-right visible-xs dk settings-toggle" ui-toggle-class="show" data-target=".navbar-collapse">
         <i class="glyphicon glyphicon-cog"></i>
       </button>
-      <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside">
+      <button class="pull-right visible-xs nav-toggle" ui-toggle-class="off-screen" data-target=".app-aside">
         <i class="glyphicon glyphicon-align-justify"></i>
       </button>
       <!-- brand -->
@@ -47,7 +47,7 @@
       {{#if currentUser}}
       {{> userDropdown}}
       {{else}}
-      <ul class="nav navbar-nav navbar-right navbar-auth">
+      <ul class="nav navbar-nav navbar-right navbar-auth col-xs-6">
         <li>
           <div class="m-t-sm">
             <a href="{{pathFor 'logIn'}}" class="btn btn-link btn-sm"><i class="fa fa-lock"></i> Log in</a>

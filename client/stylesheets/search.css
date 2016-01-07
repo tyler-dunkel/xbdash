@@ -14,13 +14,24 @@
 }
 .navbar-search .input-container .input-group {
 }
-@media (max-width: 1072px) {
+@media screen and (max-width: 1410px) {
+	.navbar-search .input-container {
+		margin-left: 0;
+	}
+}
+@media screen and (max-width: 1072px) {
 	.navbar-search {
 		padding: 0 32px;
 	}
 }
-@media (max-width: 1410px) {
+@media screen and (max-width: 768px) {
+	.navbar-nav {
+		padding: 0 58px 0 26px;
+	    width: 100% !important;
+	    margin: 10px 0;
+	}
 	.navbar-search .input-container {
-		margin-left: 0;
+	    margin: 10px 0;
+		padding: 0 10px;
 	}
 }

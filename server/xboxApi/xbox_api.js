@@ -1,17 +1,25 @@
 Meteor.methods({
 	chkGamertag: function(gamertag) {
 		check(gamertag, String);
-
 		var userId = Meteor.userId();
+		var userGamertagExists = Meteor.users.findOne({ "gamercard.gamertag": gamertag });
+		var apiResult = xboxApiObject.chkGamertag(gamertag);
+		var userXuidExists = Meteor.users.findOne({ xuid: apiResult.result.content });
 
-		var userExists = Meteor.users.findOne({ "gamercard.gamertag": gamertag });
-		if (userExists) {
+		if (userGamertagExists) {
 			throw new Meteor.Error("gamertagExists", "Gamertag is already registered.");
 		}
-
-		var apiResult = xboxApiObject.chkGamertag(gamertag);
+		
 		if (apiResult.error) {
 			throw new Meteor.Error("gamertagNotFound", apiResult.error.reason);
+		}
+
+		if (!apiResult.result || !apiResult.result.content) {
+			throw new Meteor.Error("internalServerError", "There was an error fetching your data.");
+		}
+
+		if (userXuidExists) {
+			throw new Meteor.Error("gamertagExists", "Gamertag is owned");
 		}
 
 		Meteor.users.update({ _id: userId }, { $set: { username: gamertag, xuid: apiResult.result.content } });
