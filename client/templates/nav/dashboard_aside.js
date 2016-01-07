@@ -1,14 +1,3 @@
-Template.asideHeader.rendered = function () {
-    $('.nav-toggle').on('click', function () {
-        $('.nav-toggle').toggleClass('active');
-        $('.app-aside').toggleClass('off-screen');
-    });
-    $('.settings-toggle').on('click', function () {
-        $('.settings-toggle').toggleClass('active');
-        $('.navbar-collapse').toggleClass('show');
-    });
-}
-
 Template.asideHeader.helpers({
     gamerImage: function () {
         var user = Meteor.user();
