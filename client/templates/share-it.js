@@ -1,15 +1,15 @@
 Template.shareIt.helpers({
 	xbdData: function() {
 		return {
-			//title: this.data,
-			//author: Meteor.users.findOne(this.authorId)
+			title: this.title,
+			author: this.author
 		}
 	}
 });
 
 ShareIt.configure({
 	siteOrder: ['facebook', 'twitter', 'email'],
-	sites: {                // nested object for extra configurations
+	sites: {
 	  	'facebook': {},
         'twitter': {},
         'googleplus': {},

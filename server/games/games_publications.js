@@ -69,12 +69,10 @@ Meteor.publishComposite('myTopGames', {
 			find: function(game) {
 				var user = Meteor.users.findOne({_id: this.userId});
 				if (!user) {
-					Meteor._debug("no user id " + game);
 					return;
 				}
 				if (user) {
 					if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
-						Meteor._debug("gamertag not scanned");
 						return;
 					}
 				}
@@ -94,7 +92,6 @@ Meteor.publishComposite('myTopGames', {
 
 Meteor.publishComposite('gamesByReleaseDate', {
 	find: function() {
-		Meteor._debug("fired game by releaese date");
 		return gameDetails.find({}, {
 			fields: {
                 gameId: 1,
@@ -143,7 +140,6 @@ Meteor.publishComposite('gamesByReleaseDate', {
 	]
 });
 
-// Search system does not work with publish composite
 Meteor.publish('gameDetailsSearch', function(id) {
 	check(id, String);
 	return gameDetails.find({ gameId: id }, {
@@ -231,7 +227,6 @@ Meteor.publishComposite('singleGameAchievements', function(slug) {
 			{
 				find: function(achievement) {
 					var user = Meteor.users.findOne({ _id: this.userId });
-					// if (user && user.gamertagScanned) {
 					if (user) {
 						if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
 							return userAchievements.find({ userId: this.userId, achievementId: achievement._id }, {

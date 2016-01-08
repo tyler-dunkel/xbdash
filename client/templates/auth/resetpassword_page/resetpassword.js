@@ -1,26 +1,5 @@
 var doneCallback;
 
-/*
-Accounts.onResetPasswordLink(function(token, done) {
-	Session.set('resetPasswordToken', token);
-	doneCallback = done;	
-});
-*/
-
-/*
-Template.resetPassword.created = function() {
-	if (!Accounts._resetPasswordToken) {
-		Router.go('signUp');
-	}
-}
-*/
-
-/*
-if (Accounts._resetPasswordToken) {
-	Session.set('resetPassword', token);
-}
-*/
-
 Template.resetPassword.rendered = function() {
 	var token = Router.current().params.token;
 	Session.set('resetPasswordToken', token);
@@ -32,7 +11,7 @@ Template.resetPassword.rendered = function() {
 Template.resetPasswordForm.events({
 	'submit #reset-password-form': function(e) {
 	    e.preventDefault();
-
+	    
 		var isValid = ValidateForm.validate('#reset-password-form');
 		if (!isValid) return;
 

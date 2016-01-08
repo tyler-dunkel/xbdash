@@ -1,6 +1,3 @@
-// daily rank, overall rank (total gamerscore), completed achievements, completed games
-// common, rare, epic, legendary
-
 Meteor.publishComposite('dailyRanks', function() {
 	return {
 		find: function() {

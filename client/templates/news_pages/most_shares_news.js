@@ -1,7 +1,6 @@
 Template.mostSharedNews.created = function() {
 	var limit = this.data.limit;
 	this.subscribe('mostSharedNews', limit);
-	//Meteor.subscribe('mostSharedNews');
 }
 
 Template.mostSharedNews.helpers({

@@ -16,7 +16,6 @@ Template.topLegendaryAchievements.helpers({
         var achievements = xbdAchievements.find({
             userPercentage: { $gte: 0, $lte: 10 }
         }, { sort: { userPercentage: -1 }, limit: 10 });
-        console.log(achievements);
         if (achievements) {
             return achievements;
         }

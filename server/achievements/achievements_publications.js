@@ -178,7 +178,6 @@ Meteor.publishComposite('singleAchievement', function(slug) {
 	return {
 		find: function() {
 			check(slug, String);
-			Meteor._debug("this is the single achievement one");
 			return xbdAchievements.find({ slug: slug });
 		},
 		children: [

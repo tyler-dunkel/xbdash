@@ -22,7 +22,6 @@ Template.searchBar.events({
 
 Template.searchOverlayApp.rendered = function() {
 	$(".search-input").focus();
-	// $(".search-input").attr("placeholder", "&#xF002; search");
 }
 
 Template.searchOverlayApp.helpers({

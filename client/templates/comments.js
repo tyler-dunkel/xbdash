@@ -27,8 +27,6 @@ Template.singleComment.rendered = function() {
     	console.log(this.data);
     	console.log(typeof this.data);
 	});
-
-	//this.$('p').text().replace(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g, '');
 }
 
 Template.singleComment.helpers({

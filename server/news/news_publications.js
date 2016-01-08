@@ -1,10 +1,11 @@
 Meteor.publish('latestNews', function(limit) {
-	// check(limit, Number);
 	var defaultLimit = 9;
 	var twoWeeks = moment().subtract(14, 'days').toDate();
+
 	if (limit > defaultLimit) {
 		limit = 0;
 	}
+
 	return xbdNews.find({}, {
 		sort: { updated: -1 },
 		fields: {
@@ -20,8 +21,8 @@ Meteor.publish('latestNews', function(limit) {
 });
 
 Meteor.publish('mostSharedNews', function(limit) {
-	// check(limit, Number);
 	var twoWeeks = moment().subtract(14, 'days').toDate();
+
 	return xbdNews.find({ updated: { $gte: twoWeeks } }, {
 		sort: { shareCount: -1 },
 		fields: {
@@ -36,7 +37,6 @@ Meteor.publish('mostSharedNews', function(limit) {
 });
 
 Meteor.publish('singleNews', function(slug) {
-	check(slug, String);
 	return xbdNews.find({ slug: slug }, {
 		fields: {
 			updated: 1,

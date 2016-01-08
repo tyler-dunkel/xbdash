@@ -275,14 +275,14 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 	} else {
 		var gameDetail = {
 			gameName: game.name,
-			gameDescription: "This is an ordinary old game.",
-			gameReducedDescription: "This is an ordinary old game.",
+			gameDescription: "This is the Windows version of the Xbox 360 game: " + game.name,
+			gameReducedDescription: "This is the Windows version of the Xbox 360 game: " + game.name,
 			gameReducedName: game.name,
 			gameReleaseDate: "2005-11-22T00:00:00Z",
 			gameId: gameId,
 			gameGenre: [{ Name: "Miscellaneous" }],
 			gameArt: [{ Url: "/img/game-default.png" }],
-			gamePublisherName: "Xbox 360",
+			gamePublisherName: "Games for Windows",
 			gameParentalRating: "Everyone",
 			gameAllTimePlayCount: 0,
 			gameSevenDaysPlayCount: 0,

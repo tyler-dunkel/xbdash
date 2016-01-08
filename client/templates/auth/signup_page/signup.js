@@ -21,21 +21,16 @@ Template.signUpForm.events({
 		subMana.clear();
 		e.preventDefault();
 
-		//validate the form
 		var isValid = ValidateForm.validate('#signupform');
 		if (!isValid) return;
 
-		//grab values needed to create a user
-		// var gamertag = $("#gamertag").val();
 		var email = $("#email").val();
 		var password = $("#password").val();
 		var passwordConfirm = $("#password2").val();
-
 		if (password !== passwordConfirm) return;
 
-		// var user = {username: gamertag, email: email, password: password, profile: {}};
 		var user = {email: email, password: password, profile: {}};
-
+		
 		Accounts.createUser(user, function(error, result) {
 			if (error) {
 				sweetAlert({

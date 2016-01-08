@@ -1,7 +1,7 @@
 Meteor.startup(function() {
 	ValidateForm.config({
-	  debug: false,
-	  rootLayout: 'layout'
+		debug: false,
+		rootLayout: 'layout'
 	});
 
 	toastr.options = {
@@ -32,12 +32,4 @@ Meteor.startup(function() {
 	$.cloudinary.config({
 		cloud_name: 'xbdash'
 	});
-
-	// Avatar.options = {
-	// 	defaultImageUrl: 'img/a0.jpg'
-	// 	//customImageProperty: 'user.gamercard.gamerpicLargeImagePath'
-	// };
-
-	// Comments.changeSchema(function (currentSchema) {
-	// });
 });

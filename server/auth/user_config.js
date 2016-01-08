@@ -3,21 +3,22 @@ Accounts.onCreateUser(function(options, user) {
 		user.profile = options.profile;
 	}
 	user.gamertagScanned = { status: 'false', lastUpdate: null };
-    //user.userSentWelcomeEmail = false;
 	user.userSeenReferralBox = false;
 	user.userReferralCount = 0;
 	return user;
 });
 
-// Accounts.config({
-// 	sendVerificationEmail: true
-// });
+Accounts.config({
+	sendVerificationEmail: true
+});
 
-// Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';
-// Accounts.emailTemplates.siteName = 'XBdash';
+Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';
+Accounts.emailTemplates.siteName = 'XBdash';
+
 Accounts.emailTemplates.verifyEmail.subject = function(user) {
     return 'Activate your XBdash account';
 }
+
 Accounts.emailTemplates.verifyEmail.html = function (user, url) {
     var result;
     try {
@@ -45,13 +46,15 @@ Accounts.emailTemplates.verifyEmail.html = function (user, url) {
             ]
         });
     } catch (error) {
-    	console.error('Error while rendering Mandrill template', error);
+        logger.info('Error while rendering Mandrill template.');
     }
     return result.data.html;
 }
+
 Accounts.emailTemplates.resetPassword.subject = function(user) {
     return 'XBdash Account Password Reset';
 }
+
 Accounts.emailTemplates.resetPassword.html = function (user, url) {
     var result;
     try {
@@ -79,19 +82,15 @@ Accounts.emailTemplates.resetPassword.html = function (user, url) {
             ]
         });
     } catch (error) {
-        console.error('Error while rendering Mandrill template', error);
+        logger.info('Error while rendering Mandrill template.');
     }
     return result.data.html;
 }
 
-// Accounts.emailTemplates.headers = {
-//     'X-MC-AutoText': true
-// };
+Accounts.emailTemplates.headers = {
+    'X-MC-AutoText': true
+};
 
-UserStatus.events.on("connectionLogin", function(fields) {
-	
-});
+UserStatus.events.on("connectionLogin", function(fields) {});
 
-UserStatus.events.on("connectionLogout", function(fields) {
-	
-});
+UserStatus.events.on("connectionLogout", function(fields) {});

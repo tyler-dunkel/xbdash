@@ -27,9 +27,6 @@ var helpers = {
         return false;
     },
     chkEmail: function () {
-        //var userId = Meteor.userId();
-        console.log(Meteor.user().services);
-        //console.log(Meteor.user().services.facebook.email);
         if (Meteor.user() && !Meteor.user().emails) {
             if (Meteor.user().services && Meteor.user().services.twitter.screenName) {
                 return true;
