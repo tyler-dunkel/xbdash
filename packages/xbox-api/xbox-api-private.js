@@ -250,11 +250,6 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 		return;
 	}
 
-	if (_.isEmpty(result.headers)) {
-		console.log(EJSON.stringify(result));
-		return;
-	}
-
 	if (result && result.data && result.data.Items) {
 		var releaseDate = (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated;
 		releaseDate = new Date(parseInt(releaseDate.substr(6)));
