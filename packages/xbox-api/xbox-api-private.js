@@ -219,9 +219,9 @@ xboxApiPrivate._updateXbox360GameData = function(userId, game, gameId) {
 		gameInserted = true;
 	}
 
-	if (!gameInserted) {
-		gameCheck = gameCheck._id;
-	}
+	// if (!gameInserted) {
+	// 	gameCheck = gameCheck._id;
+	// }
 
 	var completed = game.totalGamerscore > game.currentGamerscore ? false : true;
 
@@ -237,8 +237,11 @@ xboxApiPrivate._updateXbox360GameData = function(userId, game, gameId) {
 }
 
 xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
+	var gameCheck = gameDetails.findOne({ gameId: gameId });
 	var hexId = game.titleId.toString(16);
 	var url = 'game-details-hex/' + hexId;
+
+	if (gameCheck) return;
 
 	try {
 		var result = syncApiCaller(url);
@@ -288,5 +291,5 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 			gameAllTimeAverageRating: 0
 		};
 	}
-	gameDetails.upsert({ gameId: gameId }, { $set: gameDetail });
+	gameDetails.insert(gameDetail);
 }

@@ -47,9 +47,9 @@
       {{#if currentUser}}
       {{> userDropdown}}
       {{else}}
-      <ul class="nav navbar-nav navbar-right navbar-auth col-xs-6">
+      <ul class="nav navbar-nav navbar-right navbar-auth">
         <li>
-          <div class="m-t-sm">
+          <div class="m-t-sm m-b-sm text-center">
             <a href="{{pathFor 'logIn'}}" class="btn btn-link btn-sm"><i class="fa fa-lock"></i> Log in</a>
             <a href="{{pathFor 'signUp'}}" class="btn btn-sm btn-default btn-rounded m-l sign-up"><i class="fa fa-lock"></i> <strong>Sign up</strong></a>
           </div>
