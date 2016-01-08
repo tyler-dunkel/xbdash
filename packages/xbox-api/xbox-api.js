@@ -31,7 +31,7 @@ xboxApiObject.chkGamertag = function(gamertag) {
 
 xboxApiObject.updateXboxOneGames = function(userId) {
 	check(userId, String);
-	var user = Meteor.users.findOne({_id: userId}, {$exists: { xuid: 1 } });
+	var user = Meteor.users.findOne({ _id: userId }, { $exists: { xuid: 1 } });
 	
 	if (!user || !user.xuid) {
 		console.log("error, userId param has not returned a record. either no user or a user without an xuid");
@@ -65,7 +65,7 @@ xboxApiObject.updateXboxOneGames = function(userId) {
 
 xboxApiObject.updateXbox360Data = function(userId) {
 	check(userId, String);
-	var user = Meteor.users.findOne({_id: userId}, {$exists: { xuid: 1 } });
+	var user = Meteor.users.findOne({ _id: userId }, { $exists: { xuid: 1 } });
 	
 	if (!user || !user.xuid) {
 		console.log("error, userId param has not returned a record. either no user or a user without an xuid");
@@ -177,7 +177,7 @@ xboxApiObject.dirtyUpdateUserStats = function(userId) {
 	if (result.data && result.data.gamerscore) {
 		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'updating' } });
 		if (user.gamerscore < result.data.gamerscore) {
-			Meteor.users.update({_id: user._id}, {$set: {gamercard: result.data}});
+			Meteor.users.update({ _id: user._id }, { $set: { gamercard: result.data }});
 			xboxApiPrivate._checkUserGamesListDurango(user._id, user.xuid, true);
 			xboxApiPrivate._checkUserGamesListXenon(user._id, user.xuid, true);
 			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
