@@ -14,7 +14,6 @@ Template.searchBar.rendered = function() {
 
 Template.searchBar.events({
 	"click .navbar-search .form-control": function (e) {
-		console.log("clicked search bar");
 		overlay.show();
 		$('body').addClass('noscroll');
 	}
@@ -38,7 +37,6 @@ Template.searchOverlay.events({
         }
     },
 	"click .search-overlay a": function(e) {
-		console.log("clicked close");
 		overlay.hide();
 		$('body').removeClass('noscroll');
 	}
@@ -46,7 +44,6 @@ Template.searchOverlay.events({
 
 Template.searchOverlay.helpers({
 	overlayVisible: function() {
-		console.log("search overlay firing");
 		if (overlayShow.get() === 'show') {
 			return true;
 		}
@@ -80,14 +77,14 @@ Template.singleGameSearch.helpers({
 	    	if (this.platform === 'Xenon') {
 	            gameDetail.gameArt.forEach(function(art) {
 	                if (art.Purpose === 'BoxArt' && art.Width === 219) {
-	                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+	                    image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
 	                }
 	            });
 	        }
 	        if (this.platform === 'Durango') {
 	            gameDetail.gameArt.forEach(function(art) {
 	                if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-	                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+	                    image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
 	                }
 	            });
 	        }
@@ -100,7 +97,7 @@ Template.singleAchievementSearch.helpers({
 	getAchievementImage: function () {
 		var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_30,h_30/" + encodeURIComponent(this.mediaAssets);
+            image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_30,h_30/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
 	}
@@ -112,7 +109,7 @@ Template.singleNewsSearch.helpers({
         var getImage = '/img/news-default.jpg';
         if (image) {
             getImage = image[0].match(/src="(.+?)"/)[1];
-            getImage = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_90,h_90" + encodeURIComponent(getImage);
+            getImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_90,h_90/" + encodeURIComponent(getImage);
         }
         return getImage;
 	},

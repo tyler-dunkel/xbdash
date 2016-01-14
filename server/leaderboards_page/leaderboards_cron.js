@@ -1,7 +1,7 @@
 SyncedCron.add({
 	name: "non-optimistic update user leaderboard counts",
 	schedule: function(parser) {
-		return parser.text('every 20 mins');
+		return parser.text('every 20 min');
 	},
 	job: function() {
 		var users = Meteor.users.find({ $or: [{ 'gamertagScanned.status': 'true' }, { 'gamertagScanned.status': 'updating' }] });

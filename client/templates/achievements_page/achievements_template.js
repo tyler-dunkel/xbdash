@@ -12,7 +12,7 @@ Template.achievementTemplate.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(this.mediaAssets);
+            image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     },

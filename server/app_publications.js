@@ -4,7 +4,7 @@ Meteor.publish('commentUserImage', function(userId) {
 		fields: {
 			"username": 1,
 			"gamercard.gamerscore": 1,
-			"gamercard.gamerpicLargeImagePath": 1
+			"gamercard.gamerpicLargeSslImagePath": 1
 		}
 	});
 });

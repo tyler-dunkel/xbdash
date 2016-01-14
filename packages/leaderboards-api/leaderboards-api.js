@@ -96,6 +96,7 @@ leaderboardsApi.dailyRank = function() {
 	//find each user and assign them a daily rank based upon the above computed userDailyGamerscore
 	var userDailyRank = 1;
 	var userStats = userLeaderboards.find({ 'dailyRank.value': { $gt: 1 } }, { $sort: { 'dailyRank.value': -1 } });
+	
 	userStats.forEach(function(userStat){
 		userLeaderboards.update({ userId: userStat.userId }, { $set: { 'dailyRank.rank': userDailyRank } });
 		userDailyRank++;

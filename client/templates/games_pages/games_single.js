@@ -6,29 +6,29 @@ Template.gamesSinglePage.created = function() {
 }
 
 Template.gamesSinglePage.helpers({
-	game: function () {
+    game: function () {
         if (Template.instance().subscriptionsReady()) {
-    		var slug = Router.current().params.slug;
-    		var game = xbdGames.findOne({ slug: slug });
+            var slug = Router.current().params.slug;
+            var game = xbdGames.findOne({ slug: slug });
             if (game && game._id) {
                 return gameDetails.findOne({ gameId: game._id });
             }
         }
-	},
-	gamesImage: function () {
+    },
+    gamesImage: function () {
         var game = xbdGames.findOne({ _id: this.gameId });
         var image = "/img/game-default.jpg";
         if (game.platform === 'Xenon') {
             this.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt' && art.Width === 219) {
-                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+                    image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }
         if (game.platform === 'Durango') {
             this.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+                    image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }
@@ -38,19 +38,18 @@ Template.gamesSinglePage.helpers({
         return moment(this.gameReleaseDate).format('l');
     },
     gamePlatform: function () {
-    	var game = xbdGames.findOne({ _id: this.gameId });
+        var game = xbdGames.findOne({ _id: this.gameId });
         if (game.platform == 'Durango') {
             return 'Xbox One';
         }
         if (game.platform == 'Xenon') {
             return 'Xbox 360';
         }
-    	return 'Xbox';
+        return 'Xbox';
     },
     chkUserForGame: function () {
         var userId = Meteor.userId();
         var userGame = userGames.find({ gameId: this.gameId, userId: userId });
-        console.log(userGame);
         if (userGame && userGame.count() > 0) return true;
         return false; 
     }
@@ -167,21 +166,21 @@ Template.gamesSinglePageAchievement.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.mediaAssets);
+            image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     }
 });
 
 Template.gamesSinglePageAchievement.events({
-	"click .achievement-next": function(event) {
-		var button = $(event.currentTarget);
-		if (button.hasClass('disabled')) {
-			return;
-		}
+    "click .achievement-next": function(event) {
+        var button = $(event.currentTarget);
+        if (button.hasClass('disabled')) {
+            return;
+        }
         var currentCount = Template.instance().achievementShowNext.get();
         Template.instance().achievementShowNext.set(currentCount + 7);
-	},
+    },
     "click .achievement-previous": function(event) {
         var button = $(event.currentTarget);
         if (button.hasClass('disabled')) {

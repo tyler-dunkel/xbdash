@@ -2,10 +2,8 @@
 	<div id="content" class="app-content" role="main">
 		<div class="app-content-body">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
-				<!-- main -->
 				<div class="col">
 					{{#with game}}
-					<!-- main header -->
 					<div class="bg-light col-lg-12 col-xs-12 lter b-b wrapper-md">
 						<div class="row">
 							<div class="col-lg-9 col-xs-7">
@@ -27,7 +25,6 @@
 						</div>
 					</div>
 					<div class="wrapper-md col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<!-- stats -->
 						<div class="blog-post left">
 							<img src="{{gamesImage}}" class="img-full">
 							{{#if chkGamerStatus}}
@@ -80,9 +77,7 @@
 						{{> gamesSinglePageAchievement}}
 					</div>
 					<div class="wrapper-md col-xl-3 col-lg-4 hidden-md hidden-sm trending-column">
-						<div class="xbd-right-sidebar-ad">
-							Google Ad Banner
-						</div>
+						<div class="xbd-right-sidebar-ad"></div>
 						{{> mostSharedNews limit=3}}
 					</div>
 					{{/with}}

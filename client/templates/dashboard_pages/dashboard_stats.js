@@ -8,6 +8,10 @@ Template.dashboardStatBoxes.created = function() {
     this.subscribe('dashboardStatsTotalGames');
 }
 
+Template.dashboardStatBoxes.rendered = function() {
+    $('[data-toggle="tooltip"]').tooltip();
+}
+
 Template.dashboardStatBoxes.helpers({
     achievementsCompleted: function () {
         var userId = Meteor.userId();
@@ -69,7 +73,6 @@ Template.dashboardStatGs.created = function() {
     var self = this;
     Meteor.call('getMaxGamerscore', function(error, result) {
         if (error) {
-            console.log(error);
             return;
         }
         maxGamerscoreDependency.changed();

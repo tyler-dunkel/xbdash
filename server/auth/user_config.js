@@ -1,15 +1,15 @@
 Accounts.onCreateUser(function(options, user) {
-	if (options.profile) {
-		user.profile = options.profile;
-	}
-	user.gamertagScanned = { status: 'false', lastUpdate: null };
-	user.userSeenReferralBox = false;
-	user.userReferralCount = 0;
-	return user;
+    if (options.profile) {
+        user.profile = options.profile;
+    }
+    user.gamertagScanned = { status: 'false', lastUpdate: null };
+    user.userSeenReferralBox = false;
+    user.userReferralCount = 0;
+    return user;
 });
 
 Accounts.config({
-	sendVerificationEmail: true
+    sendVerificationEmail: true
 });
 
 Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';

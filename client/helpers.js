@@ -15,7 +15,7 @@ var helpers = {
         return "XBdash";
     },
     copyrightInfo: function() {
-        return "XBdash © 2015. All Rights Reserved.";
+        return "XBdash © 2016. All Rights Reserved.";
     },
     chkGamerStatus: function () {
         var user = Meteor.user();
@@ -28,7 +28,7 @@ var helpers = {
     },
     chkEmail: function () {
         if (Meteor.user() && !Meteor.user().emails) {
-            if (Meteor.user().services && Meteor.user().services.twitter.screenName) {
+            if (Meteor.user().services || Meteor.user().services.twitter.screenName) {
                 return true;
             }
         }

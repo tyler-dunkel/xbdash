@@ -1,27 +1,27 @@
 Meteor.methods({
-    sendWelcomeEmail: function () {
-    	this.unblock();
-    	//return for now to avoid errors
-    	// return;
-		var user = Meteor.user();
-        var userAchievementsCount = userAchievements.find({ userId: user._id, progressState: true }).count();
-        var userTotalAchievements = userAchievements.find({ userId: user._id }).count();
-        var userGamesCount = userGames.find({ userId: user._id, completed: true }).count();
-        var userTotalGames = userGames.find({ userId: user._id }).count();
+    sendWelcomeEmail: function (userId) {
+	    var userEmail;
+    	var user = Meteor.users.findOne({ _id: userId });
+        var userAchievementsCount = userAchievements.find({ userId: userId, progressState: true }).count();
+        var userTotalAchievements = userAchievements.find({ userId: userId }).count();
+        var userGamesCount = userGames.find({ userId: userId, completed: true }).count();
+        var userTotalGames = userGames.find({ userId: userId }).count();
         var unsubscribeLink = "http://xboxdash.us11.list-manage1.com/unsubscribe?u=c66cacf1f6aa0c1dc079eeb16&id=1f53442338";
 
-		if (user) {
-			if (_.isEmpty(user.services)) {
-				var userEmail = user.emails[0].address;
+        if (!user) return;
+
+		if (user.services) {
+			if (user.services.facebook) {
+				userEmail = user.services.facebook.email;
 			} else if (user.services.twitter) {
-				var userEmail = user.services.twitter.email;
+				userEmail = user.services.twitter.email;
 			} else {
-				var userEmail = user.services.facebook.email;
+				userEmail = user.emails[0].address;
 			}
 		} else {
-			return;
+			userEmail = user.emails[0].address;
 		}
-		
+
 		try {
 	        Mandrill.messages.sendTemplate({
 	        	template_name: 'welcome-email',

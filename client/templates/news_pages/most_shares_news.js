@@ -32,7 +32,7 @@ Template.mostSharedNewsLine.helpers({
         var getImage = '/img/news-default.jpg';
         if (image) {
             getImage = image[0].match(/src="(.+?)"/)[1];
-            getImage = image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
+            getImage = image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
         }
         return getImage;
 	},

@@ -1069,6 +1069,7 @@ body {
     display: block;
     padding: 0;
   }
+  .app-aside-fixed .popover,
   .app-aside-fixed .app-header .navbar-header {
     position: fixed;
   }
@@ -4316,6 +4317,40 @@ ul.signin > li.active {
   white-space: nowrap;
 }
 
+.list-group-item .text-ellipsis-inline {
+  max-width: 230px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 910px) {
+  .text-ellipsis-inline {
+    max-width: 75px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .text-ellipsis-inline {
+    max-width: 55px;
+  }
+  .list-group-item .text-ellipsis-inline {
+    max-width: 100px;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  .list-group-item .text-ellipsis-inline {
+    max-width: 150px;
+  }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1500px) {
+  .text-ellipsis-inline {
+    max-width: 105px;
+  }
+  .list-group-item .text-ellipsis-inline {
+    max-width: 104px;
+  }
+}
+
 .text-u-c {
   text-transform: uppercase;
 }
@@ -5699,6 +5734,7 @@ ul.signin > li.active {
 .app-aside-folded .navi ul.nav li a > img.xbd {margin: 17px 22px;}
 .affix {width: 200px;}
 @media (max-width: 767px) {
+  .app-aside-folded .navi ul.nav li a > img.xbd {margin: 3px 17px 3px 2px;}
   .affix {width: 100%;}
 }
 .leaderboards .h3,

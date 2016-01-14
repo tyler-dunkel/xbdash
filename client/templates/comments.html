@@ -1,22 +1,22 @@
 <template name="achievementCommentBox">
     <h2 class="h3 pull-left padder-t"> {{ take key='title' default='Achievement Solutions & Discussions'}} </h2>
     <div class="clearfix"></div>
-	
+    
     {{#if loginAction}}
-		<div class="alert alert-warning" role="alert"> You need to login to {{loginAction}}</div>
-	{{/if}}
+        <div class="alert alert-warning" role="alert"> You need to login to {{loginAction}}</div>
+    {{/if}}
 
-	{{> textarea}}
+    {{> textarea}}
 
-	<div class="media-list comments">
-		{{#each comment}}
-			{{> singleComment}}
-		{{/each}}
-	</div>
+    <div class="media-list comments">
+        {{#each comment}}
+            {{> singleComment}}
+        {{/each}}
+    </div>
 
-	{{#if hasMoreComments}}
-		<button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
-	{{/if}}
+    {{#if hasMoreComments}}
+        <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+    {{/if}}
 </template>
 
 <template name="newsCommentBox">
@@ -41,22 +41,22 @@
 </template>
 
 <template name="singleComment">
-	{{debugger}}
-	<div class="media">
-		<div class="media-left">
-			<img alt="user" src="{{getUserImage user=user}}">
-		</div>
-		<div class="media-body comment">
-			<h4 class="media-heading">
+    {{debugger}}
+    <div class="media">
+        <div class="media-left">
+            <img alt="user" src="{{getUserImage}}">
+        </div>
+        <div class="media-body comment">
+            <h4 class="media-heading">
                 {{getUser}}
                 <small>{{createdAgo}}</small>
             </h4>
-			<div class="content">
-				<p class="comment-content" data-id="{{commentId}}">{{content}}</p>
+            <div class="content">
+                <p class="comment-content" data-id="{{commentId}}">{{content}}</p>
 
-				<div class="actions btn-group btn-group-xs">
-					<div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
-						<small>{{likesCount}}</small>
+                <div class="actions btn-group btn-group-xs">
+                    <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
+                        <small>{{likesCount}}</small>
                         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                     </div>
                     <div class="btn btn-default reply-action" aria-label="Left Align">
@@ -69,7 +69,7 @@
                         {{ take key='save' default='Save' }}
                     </div>
                     {{else}}
-	                <div class="btn btn-default edit-action" aria-label="Left Align">
+                    <div class="btn btn-default edit-action" aria-label="Left Align">
                         {{ take key='edit' default='Edit' }}
                     </div>
                     {{/if}}
@@ -81,15 +81,15 @@
             </div>
 
             {{#if addReply}}
-            	<div class="create-reply">
+                <div class="create-reply">
                     {{> textarea reply=true scope=this }}
                 </div>
             {{/if}}
 
             {{#if reply}}
-            	{{#each reply}}
-            		{{> singleComment}}
-            	{{/each}}
+                {{#each reply}}
+                    {{> singleComment}}
+                {{/each}}
             {{/if}}
         </div>
     </div>
