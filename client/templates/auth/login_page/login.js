@@ -6,11 +6,9 @@ Template.logIn.events({
 		subMana.clear();
 		e.preventDefault();
 
-		//validate the form
 		var isValid = ValidateForm.validate('#loginform');
 		if (!isValid) return;
 
-		//grab values needed to create a user
 		var email = $("#email").val();
 		var password = $("#password").val();
 
@@ -28,9 +26,6 @@ Template.logIn.events({
 			}
 			else {
 				var user = Meteor.user();
-				//if (user && !user.gamertagScanned) {
-
-				//}
 				Router.go('home');
 			}
 		});

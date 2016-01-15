@@ -1,32 +1,25 @@
 xboxApiPrivate = xboxApiPrivate || {};
 
-//private package functions to update xbox one and 360 data for users. NOT accessable outside of the package
-
-//xbox one private functions
-
-xboxApiPrivate._updateXboxOneAchievementsData = function(userId, gameId) {
-	console.log("_updateXboxOneAchievementsData func is firing");
-	
+xboxApiPrivate._updateXboxOneAchievementsData = function(userId, gameId) {	
 	var user = Meteor.users.findOne({ _id: userId });
 	var url = user.xuid + '/achievements/' + gameId;
 
 	try {
 		var result = syncApiCaller(url);
 	} catch (e) {
-		console.log("error in calling the api: " + e.reason);
 		return;
 	}
 
 	if (!result || !result.data) {
-		console.log(EJSON.stringify(result));
 		return;
 	}
 
 	if (_.isEmpty(result.data)) {
-		console.log(EJSON.stringify(result));
 		return;
 	}
 
+	if (typeof result.data.forEach !== 'function') return;
+	
 	result.data.forEach(function (achievement) {
 		var achievementCheck = xbdAchievements.findOne({ gameId: gameId, name: achievement.name });
 		var progressState = (achievement.progressState !== 'NotStarted') ? true : false;
@@ -35,8 +28,6 @@ xboxApiPrivate._updateXboxOneAchievementsData = function(userId, gameId) {
 		var achievementInserted = false;
 		var achievementValue = achievement.rewards && achievement.rewards.length ? achievement.rewards[0].value : achievement.value;
 
-		//we must check if we already have an xbdAchievement record for this achievement i.e. one not tied to a user.
-		//if we do not, we have to insert the relevant fields into the xbdAchievement doc for this acheivement. 
 		if (!achievementCheck) {
 			var singleAchievement = {
 				gameId: gameId,
@@ -52,8 +43,6 @@ xboxApiPrivate._updateXboxOneAchievementsData = function(userId, gameId) {
 			achievementInserted = true;
 		}
 
-		//if we did not insert an xbdAchievement, then we will set achievement check to the _id so we can use the field to relate the user 
-		//achievement doc to the xbdAchievement. 
 		if (!achievementInserted) {
 			achievementCheck = achievementCheck._id;
 		}
@@ -64,6 +53,7 @@ xboxApiPrivate._updateXboxOneAchievementsData = function(userId, gameId) {
 			progressState: progressState,
 			progression: progression
 		};
+
 		userAchievements.upsert({ achievementId: achievementCheck, userId: userId }, { $set: userAchievement });
 	});
 }
@@ -104,18 +94,16 @@ xboxApiPrivate._updateXboxOneGameData = function(userId, game, gameId) {
 }
 
 xboxApiPrivate._updateXboxOneGameDetails = function(userId, game, gameId) {
-	console.log("_updateXboxOneGameDetails func is firing");
 	var hexId = game.titleId.toString(16);
 	var url = 'game-details-hex/' + hexId;
 
 	try {
 		var result = syncApiCaller(url);
 	} catch (e) {
-		console.log("error updating xbox one game details: " + e.reason);
+		return;
 	}
 
 	if (!result || !result.data || !result.data.Items) {
-		console.log(EJSON.stringify(result));
 		return;
 	}
 
@@ -136,10 +124,9 @@ xboxApiPrivate._updateXboxOneGameDetails = function(userId, game, gameId) {
 		gameAllTimeRatingCount: result.data.Items[0].AllTimeRatingCount,
 		gameAllTimeAverageRating: result.data.Items[0].AllTimeAverageRating
 	};
+
 	gameDetails.upsert({ gameId: gameId }, { $set: gameDetail });
 }
-
-//xbox 360 private functions
 
 xboxApiPrivate._updateXbox360AchievementsData = function(userId, gameId) {
 	var user = Meteor.users.findOne({ _id: userId });
@@ -148,17 +135,14 @@ xboxApiPrivate._updateXbox360AchievementsData = function(userId, gameId) {
 	try {
 		var result = syncApiCaller(url);
 	} catch (e) {
-		console.log("error in calling the api: " + e.reason);
 		return;
 	}
 
 	if (!result || !result.data) {
-		console.log(EJSON.stringify(result));
 		return;
 	}
 
 	if (_.isEmpty(result.data)) {
-		console.log(EJSON.stringify(result));
 		return;
 	}
 
@@ -194,10 +178,10 @@ xboxApiPrivate._updateXbox360AchievementsData = function(userId, gameId) {
 				progressState: progressState,
 				progression: progression
 			};
+
 			userAchievements.upsert({ achievementId: achievementCheck, userId: userId }, { $set: userAchievement });
 		});
 	} catch (error) {
-		console.log(EJSON.stringify(result));
 		return;
 	}
 }
@@ -246,14 +230,15 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 	try {
 		var result = syncApiCaller(url);
 	} catch (e) {
-		console.log("error in calling the api: " + e.reason);
 		return;
 	}
 
 	if (result && result.data && result.data.Items) {
 		var releaseDate = (typeof result.data.Items[0].ReleaseDate !== 'undefined') ? result.data.Items[0].ReleaseDate : result.data.Items[0].Updated;
+		
 		releaseDate = new Date(parseInt(releaseDate.substr(6)));
 		releaseDate = releaseDate.toISOString();
+		
 		var allTimeAverageRating = (typeof result.data.Items[0].AllTimeAverageRating !== 'undefined') ? result.data.Items[0].AllTimeAverageRating : 0;
 		var gameDetail = {
 			gameName: game.name,
@@ -275,14 +260,14 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 	} else {
 		var gameDetail = {
 			gameName: game.name,
-			gameDescription: "This is an ordinary old game.",
-			gameReducedDescription: "This is an ordinary old game.",
+			gameDescription: "This is the Windows version of the Xbox 360 game: " + game.name,
+			gameReducedDescription: "This is the Windows version of the Xbox 360 game: " + game.name,
 			gameReducedName: game.name,
 			gameReleaseDate: "2005-11-22T00:00:00Z",
 			gameId: gameId,
 			gameGenre: [{ Name: "Miscellaneous" }],
 			gameArt: [{ Url: "/img/game-default.png" }],
-			gamePublisherName: "Xbox 360",
+			gamePublisherName: "Games for Windows",
 			gameParentalRating: "Everyone",
 			gameAllTimePlayCount: 0,
 			gameSevenDaysPlayCount: 0,

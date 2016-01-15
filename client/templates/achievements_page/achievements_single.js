@@ -8,13 +8,13 @@ Template.achievementsSinglePage.helpers({
         if (userPercentage >= 0 && userPercentage <= 10) {
             achievementClass = "legendary";
         }
-        if (userPercentage >= 11 && userPercentage <= 30) {
+        if (userPercentage >= 11 && userPercentage <= 25) {
             achievementClass = "epic";
         }
-        if (userPercentage >= 31 && userPercentage <= 60) {
+        if (userPercentage >= 26 && userPercentage <= 50) {
             achievementClass = "rare";
         }
-        if (userPercentage >= 61 && userPercentage <= 100) {
+        if (userPercentage >= 51 && userPercentage <= 100) {
             achievementClass = "common";
         }
         return achievementClass;
@@ -25,13 +25,13 @@ Template.achievementsSinglePage.helpers({
         if (userPercentage >= 0 && userPercentage <= 10) {
             trophyClass = "trophy";
         }
-        if (userPercentage >= 11 && userPercentage <= 30) {
+        if (userPercentage >= 11 && userPercentage <= 25) {
             trophyClass = "star";
         }
-        if (userPercentage >= 31 && userPercentage <= 60) {
+        if (userPercentage >= 26 && userPercentage <= 50) {
             trophyClass = "bullseye";
         }
-        if (userPercentage >= 61 && userPercentage <= 100) {
+        if (userPercentage >= 51 && userPercentage <= 100) {
             trophyClass = "unlock";
         }
         return trophyClass;
@@ -52,7 +52,7 @@ Template.achievementsSinglePage.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(this.mediaAssets);
+            image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     }

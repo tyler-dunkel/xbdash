@@ -3,9 +3,7 @@ Template.confirmGt.created = function() {
 		var user = Meteor.user();
 		if (user) {
 			if (_.isEmpty(user.services)) {
-				console.log("not social");
 				if (user.emails && user.emails[0] && !user.emails[0].verified) {
-					console.log("need to confirm email");
 					Router.go('confirmEmail');
 				}
 			} else if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
@@ -21,13 +19,6 @@ Template.confirmGt.rendered = function() {
 	var user = Meteor.user();
 
 	if (Session.get('socialLoginReferer')) {
-		Meteor.call('userReferredSocialSignup', user._id, Session.get('socialLoginReferer'), function(error, result) {
-			if (error) {
-				console.log(error);
-				return;
-			}
-			Session.set('socialLoginReferer', "");
-		});
 	}
 }
 
@@ -46,15 +37,11 @@ Template.confirmGtForm.events({
 		subMana.clear();
 		e.preventDefault();
 
-		//validate the form
 		var isValid = ValidateForm.validate('#gamertagform');
 		if (!isValid) return;
 
-		//grab values needed to create a user
 		var gamertag = $("#gamertag").val();
 		var email = $("#twitter-email").val();
-
-		console.log(email);
 
 		if (email !== undefined) {
 			Meteor.call('setTwitterEmail', email, function(error, result) {
@@ -73,28 +60,8 @@ Template.confirmGtForm.events({
 			});
 		}
 
-		//set up the loading screen
-		// var message = "<h3>Please wait while we retrieve your data!</h3>";
-		// var spinner = "<div class='spinner'>" +
-		// 		"<div class='double-bounce1'></div> " + 
-		//		"<div class='double-bounce2'></div> " +
-		// 		"</div>";
-
-		// if (! Session.get('loadingScreen')) {
-		// 	loading = window.pleaseWait({
-		// 		logo: 'img/xboxdash_whiteicon.png',
-		// 		backgroundColor: '#138013',
-		// 		loadingHtml: message + spinner
-		// 	});
-		// 	Session.set('loadingScreen', true);
-		// }
-		
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
 			if (typeof error != 'undefined') {
-				// if (loading) {
-				// 	loading.finish();
-				// 	Session.set('loadingScreen', false);
-				// }
 				sweetAlert({
 					title: error.reason || 'Internal server error!',
 					text: error.details || 'Server responded with 500.',
@@ -109,12 +76,17 @@ Template.confirmGtForm.events({
 			if (result.content) {
 				Router.go('home');
 				Meteor.call('retrieveData', function(error, result) {
-					// if (loading) {
-					// 	loading.finish();
-					// 	Session.set('loadingScreen', false);
-					// }
-					Meteor.call('sendWelcomeEmail');
-					return;
+					if (result) {
+						sweetAlert({
+							title: 'Your dashboard is complete!',
+							text: 'We have finished compiling your data and building your XBdash profile.',
+							type: 'success',
+							confirmButtonColor: '#138013',
+							confirmButtonText: 'OK',
+							closeOnConfirm: true,
+							html: true
+						});
+					}
 				});
 			}
 		});

@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "winston": {
+      "version": "2.1.1",
+      "dependencies": {
+        "async": {
+          "version": "1.0.0"
+        },
+        "colors": {
+          "version": "1.0.3"
+        },
+        "cycle": {
+          "version": "1.0.3"
+        },
+        "eyes": {
+          "version": "0.1.8"
+        },
+        "isstream": {
+          "version": "0.1.2"
+        },
+        "pkginfo": {
+          "version": "0.3.1"
+        },
+        "stack-trace": {
+          "version": "0.0.9"
+        }
+      }
+    },
+    "winston-papertrail": {
+      "version": "1.0.2",
+      "dependencies": {
+        "glossy": {
+          "version": "0.1.7"
+        }
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ Template.completedGamesRanks.created = function() {
 Template.completedGamesRanks.helpers({
 	completedGamesLB: function() {
 		return userLeaderboards.find({
-				'completedGames.count': { $gt: 1 }
+			'completedGames.count': { $gt: 1 }
 		}, {
 			sort: { 'completedGames.rank': 1 },
 			limit: 100
@@ -19,7 +19,7 @@ Template.completedGamesRanks.helpers({
 		var user = Meteor.users.findOne({ _id: this.userId });
 		var defaultGamerImage = '/img/gamerpic-default.jpg';
 		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
-			defaultGamerImage = "http://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
 		}
 		return defaultGamerImage;
 	}

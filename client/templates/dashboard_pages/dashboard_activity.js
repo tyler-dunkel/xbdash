@@ -1,7 +1,3 @@
-//reactive var that gets set by meteor method 'getGameAchievementCount'. 
-//This allows us to get our total achievement count server side while still being reactive on achievements earned
-//var totalAchievementDependency = new ReactiveVar();
-
 Template.recentActivityColumn.created = function() {
     this.subscribe('dashboardRecentActivity');
 }
@@ -19,7 +15,6 @@ Template.recentActivityLine.created = function() {
     self.totalAchievements = new ReactiveVar(100);
     Meteor.call('getGameAchievementCount', self.data.gameId, function(error, result) {
         if (error) {
-            console.log(error);
             self.totalAchievements.set(100);
             return;
         }
@@ -31,17 +26,6 @@ Template.recentActivityLine.rendered = function() {
     $('li.activity-line .games-thumb .game-image').error(function() {
         $(this).attr('src', '/img/game-default.jpg');
     });
-    console.log("does this run?");
-    // var self = this;
-    // Meteor.call('getGameAchievementCount', this.data.gameId, function(error, result) {
-    //     if (error) {
-    //         console.log(error);
-    //         self.data.totalAchievements = 100;
-    //         return;
-    //     }
-    //     self.data.totalAchievements = result;
-    //     totalAchievementDependency.changed();
-    // });
 }
 
 Template.recentActivityLine.helpers({
@@ -60,14 +44,14 @@ Template.recentActivityLine.helpers({
         if (xbdGame.platform === 'Xenon') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BoxArt') {
-                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+                    image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }
         if (xbdGame.platform === 'Durango') {
             gameDetail.gameArt.forEach(function(art) {
                 if (art.Purpose === 'BrandedKeyArt') {
-                    image = "http://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+                    image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
                 }
             });
         }

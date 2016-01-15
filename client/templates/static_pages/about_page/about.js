@@ -35,7 +35,6 @@ Template.aboutUs.events({
 						var email = $('#email').val();
 						var subject = $("#subject").val();
 						var text = $('#message').val();
-						//Example.show("Thank you " + name + ". Your message has been sent!");
 						Meteor.call(
 							'contactUsEmail',
 							name,
@@ -44,21 +43,9 @@ Template.aboutUs.events({
 							text,
 							function (error, result) {
 								if (error) {
-									// error
+									console.log(error);
 								} else {
 									toastr.success("Thank you for contacting us " + name + ". We'll get back to you as soon as we can.", "Thank You");
-									/*
-									bootbox.dialog({
-										title: "Thank You",
-										message: "Thank you for contacting us " + name + ". We'll get back to you as soon as we can.",
-										buttons: {
-											danger: {
-												label: "Close",
-												className: "btn-danger"
-											}
-										}
-									});
-									*/
 								}
 							}
 						);
@@ -146,7 +133,6 @@ Template.carouselSection.rendered = function() {
 	$('#carousel-image').load(function() {
 		$('.notify').waypoint(function(direction) {
 				if (direction === "down") {
-		            //console.log("waypoint fire");
 		            $('#dash-image').addClass('animate');
 		            $('#dash-image').addClass('fadeInLeft');
 		            $('#dash-image').addClass('animated');
@@ -224,10 +210,10 @@ Template.homeNewsSection.helpers({
 	},
 	getImage: function () {
         var image = this.content.match(/<img[^>]*>/);
+        var getImage = '/img/news-default.jpg';
         if (image) {
-            var getImage = image[0].match(/src="(.+?)"/)[1];
-        } else {
-        	getImage = '/img/news-default.jpg';
+            getImage = image[0].match(/src="(.+?)"/)[1];
+            getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
         }
         return getImage;
 	},

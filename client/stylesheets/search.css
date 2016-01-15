@@ -1,5 +1,4 @@
 .navbar-search-container {
-
 }
 .navbar-search {
     border: 0 none;
@@ -24,7 +23,7 @@
 		padding: 0 32px;
 	}
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	.navbar-nav {
 		padding: 0 58px 0 26px;
 	    width: 100% !important;

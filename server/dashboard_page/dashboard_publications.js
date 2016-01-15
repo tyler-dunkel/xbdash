@@ -1,15 +1,9 @@
-// Meteor.publish('dashboardMainCharts', function(dateRange) {
-// 	if (!this.userId) return;
-// 	return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, { fields: { achievementId: 1, userId: 1, progressState: 1, progression: 1 }, sort: { progression: -1 }, limit: 50 });
-// });
-
 Meteor.publishComposite('dashboardMainCharts', function(dateRange) {
 	return {
 		find: function() {
 			check(dateRange, Date);
 			var user = Meteor.users.findOne({ _id: this.userId });
 			if (!user) return;
-			// if (!user.gamertagScanned) return;
 			if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 			return userAchievements.find({ userId: this.userId, progressState: true, progression: { $gt: dateRange } }, {
 				fields: {
@@ -61,6 +55,7 @@ Meteor.publishComposite('dashboardGameGenreChart', {
 
 Meteor.publish('dashboardStatsCompletedAchievements', function() {
 	var user = Meteor.users.findOne({ _id: this.userId });
+
 	if (!user) return;
 	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
@@ -79,16 +74,17 @@ Meteor.publish('dashboardStatsCompletedAchievements', function() {
 			}
 		}
 	]);
-	self.added('dashboard_stats_completed_achievements',  achievementsCompleted[0]._id,
-		{
-			achievementCount: achievementsCompleted[0].achievementCount
-		});
+
+	self.added('dashboard_stats_completed_achievements',  achievementsCompleted[0]._id, {
+		achievementCount: achievementsCompleted[0].achievementCount
+	});
 	self.ready();
 });
 
 
 Meteor.publish('dashboardStatsTotalAchievements', function () {
 	var user = Meteor.users.findOne({ _id: this.userId });
+
 	if (!user) return;
 	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
@@ -106,8 +102,8 @@ Meteor.publish('dashboardStatsTotalAchievements', function () {
 			}
 		}
 	]);
-	self.added('dashboard_stats_total_achievements', totalAchievements[0]._id,
-	{
+
+	self.added('dashboard_stats_total_achievements', totalAchievements[0]._id, {
 		achievementCount: totalAchievements[0].achievementCount
 	});
 	self.ready();
@@ -115,6 +111,7 @@ Meteor.publish('dashboardStatsTotalAchievements', function () {
 
 Meteor.publish('dashboardStatsCompletedGames', function () {
 	var user = Meteor.users.findOne({ _id: this.userId });
+
 	if (!user) return;
 	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
@@ -133,6 +130,7 @@ Meteor.publish('dashboardStatsCompletedGames', function () {
 			}
 		}
 	]);
+
 	if (gamesCompleted.length === 0) {
 		self.added('dashboard_stats_completed_games', this.userId, {
 			gameCount: 0
@@ -142,11 +140,13 @@ Meteor.publish('dashboardStatsCompletedGames', function () {
 			gameCount: gamesCompleted[0].gameCount
 		});
 	}
+
 	self.ready();
 });
 
 Meteor.publish('dashboardStatsTotalGames', function () {
 	var user = Meteor.users.findOne({ _id: this.userId });
+
 	if (!user) return;
 	if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 
@@ -164,6 +164,7 @@ Meteor.publish('dashboardStatsTotalGames', function () {
 			}
 		}
 	]);
+
 	self.added('dashboard_stats_total_games', totalGames[0]._id, {
 		gameCount: totalGames[0].gameCount
 	});
@@ -173,6 +174,7 @@ Meteor.publish('dashboardStatsTotalGames', function () {
 Meteor.publishComposite('dashboardRecentActivity', {
 	find: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
+		
 		if (!user) return;
 		if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') return;
 		

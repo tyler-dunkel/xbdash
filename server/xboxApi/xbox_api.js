@@ -33,7 +33,6 @@ Meteor.methods({
 		this.unblock();
 		
 		var userId = Meteor.userId();
-		var user = Meteor.users.findOne({ _id: userId });
 
 		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'building' } });
 
@@ -42,6 +41,13 @@ Meteor.methods({
 		xboxApiObject.updateXbox360Data(userId);
 
 		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
+
+		Meteor.call('sendWelcomeEmail', userId, function(error) {
+			if (error) {
+				console.log(error);
+				console.log('send welcome email error');
+			}
+		});
 
 		return "hello world";
 	}

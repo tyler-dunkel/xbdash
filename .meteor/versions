@@ -23,7 +23,6 @@ browser-policy-framing@1.0.6
 caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
-cfs:graphicsmagick@0.0.18
 check@1.1.0
 chrismbeckett:toastr@2.1.2_1
 chuangbo:cookie@1.1.0
@@ -46,7 +45,6 @@ email@1.0.8
 facebook@1.2.2
 fastclick@1.0.7
 fortawesome:fontawesome@4.2.0_2
-froatsnook:request@2.67.0
 geojson-utils@1.0.4
 gliese:pretty-email@0.1.2
 handlebars@1.0.4
@@ -78,7 +76,6 @@ liberation:shareit@1.1.1
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
-manuelschoebel:ms-seo@0.4.1
 matb33:collection-hooks@0.8.1
 matteodem:easy-search@1.6.4
 mdg:validation-error@0.1.0
@@ -238,4 +235,5 @@ webapp-hashing@1.0.5
 wylio:mandrill@1.0.1
 xbdash:feed-reader@0.0.1
 xbdash:leaderboards-api@0.0.54
+xbdash:xbd-logger@0.0.1
 xbdash:xbox-api@0.0.4

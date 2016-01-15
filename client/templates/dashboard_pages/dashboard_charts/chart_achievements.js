@@ -45,15 +45,11 @@ Template.achievementsChartSvg.rendered = function() {
 		if (!c.firstRun) {
 			var userId = Meteor.userId();
 			userAchievementsDataSet = userAchievements.find({ userId: userId, progression: { $gt: timeRange} }, { sort: { progression: -1 }, limit: 300 }).fetch();
-			console.log("autorun ran for second time");
-			console.log(userAchievementsDataSet);
 			var formattedAchievementData = formatAchievementData(userAchievementsDataSet);
-			console.log("formatted data length: " + formattedAchievementData[0].values.length);
 			updateAchievementsChart(formattedAchievementData);
 		}
 	});
 	Meteor.setTimeout(function() {
-		console.log("timeout function");
 		var fifteenDays = moment().subtract(15, 'days').toDate();
 		timeRangeToggle.set(fifteenDays);
 	}, 5000);
@@ -61,9 +57,7 @@ Template.achievementsChartSvg.rendered = function() {
 
 Template.achievementsChartSvg.events({
  	"click #achievement-chart-recent-activity-button": function(e) {
-        console.log("fired");
         if(!$(e.target).hasClass('active')) {
-            console.log("its going to 15 days");
             $(e.target).addClass('active');
             $('#achievement-chart-thirty-days-activity-button').removeClass('active');
 
@@ -72,9 +66,7 @@ Template.achievementsChartSvg.events({
         }
     },
     "click #achievement-chart-thirty-days-activity-button": function(e) {
-        console.log("also fired");
         if(!$(e.target).hasClass('active')) {
-            console.log("its going to 30 days");
             $(e.target).addClass('active');
             $('#achievement-chart-recent-activity-button').removeClass('active');
 

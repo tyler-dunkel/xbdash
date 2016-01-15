@@ -16,7 +16,6 @@ Template.topLegendaryAchievements.helpers({
         var achievements = xbdAchievements.find({
             userPercentage: { $gte: 0, $lte: 10 }
         }, { sort: { userPercentage: -1 }, limit: 10 });
-        console.log(achievements);
         if (achievements) {
             return achievements;
         }
@@ -38,7 +37,7 @@ Template.topLegendaryAchievements.helpers({
     achievementImage: function () {
         var image = "/img/achievement-default.jpg";
         if (this.mediaAssets) {
-            image = "http://res.cloudinary.com/xbdash/image/fetch/c_fill,h_64,w_64/" + encodeURIComponent(this.mediaAssets);
+            image = "https://res.cloudinary.com/xbdash/image/fetch/c_fill,h_64,w_64/" + encodeURIComponent(this.mediaAssets);
         }
         return image;
     },

@@ -4,6 +4,7 @@ Template.settingsApp.events({
 		
 		var isValid = ValidateForm.validate('#change-password');
 		if (!isValid) return;
+		
 		var oldPassword = $("#old-password").val();
 		var newPassword = $("#password").val();
 		var newPasswordConfirm = $("#password2").val();

@@ -1,12 +1,9 @@
 Template.signUp.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();
-		console.log(user);
 		if (user) {
 			if (_.isEmpty(user.services)) {
-				console.log("not social");
 				if (user.emails && user.emails[0] && !user.emails[0].verified) {
-					console.log("need to confirm email");
 					Router.go('confirmEmail');
 				}
 			} else if (user.gamertagScanned) {
@@ -21,21 +18,16 @@ Template.signUpForm.events({
 		subMana.clear();
 		e.preventDefault();
 
-		//validate the form
 		var isValid = ValidateForm.validate('#signupform');
 		if (!isValid) return;
 
-		//grab values needed to create a user
-		// var gamertag = $("#gamertag").val();
 		var email = $("#email").val();
 		var password = $("#password").val();
 		var passwordConfirm = $("#password2").val();
-
 		if (password !== passwordConfirm) return;
 
-		// var user = {username: gamertag, email: email, password: password, profile: {}};
 		var user = {email: email, password: password, profile: {}};
-
+		
 		Accounts.createUser(user, function(error, result) {
 			if (error) {
 				sweetAlert({

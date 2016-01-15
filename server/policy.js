@@ -22,7 +22,7 @@ var trusted = [
   '*.youtube.com',
   '*.ritetag.com',
   '*.cloudinary.com',
-  '*localhost:3000'
+  '*.xbdash.com'
 ];
 
 _.each(trusted, function(origin) {

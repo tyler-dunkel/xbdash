@@ -23,7 +23,6 @@ http
 kevohagan:sweetalert
 msavin:mongol
 msavin:jetsetter
-manuelschoebel:ms-seo
 accounts-twitter
 service-configuration
 mizzao:user-status
@@ -67,8 +66,7 @@ spacebars
 check
 okgrow:router-autoscroll
 percolate:synced-cron
-cfs:graphicsmagick
 liberation:shareit
-froatsnook:request
 lepozepo:cloudinary
 semantic:ui-visibility
+xbdash:xbd-logger

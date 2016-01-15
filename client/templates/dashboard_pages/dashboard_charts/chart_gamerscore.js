@@ -45,7 +45,6 @@ Template.gamerscoreChartSvg.rendered = function() {
 
 	this.autorun(function (c) {
 		var timeRange = timeRangeToggle.get();
-		console.log("gamerscore chart ran for time range");
 		if (!c.firstRun) {
 			var userId = Meteor.userId();
 			var userGamerscoreDataSet = userAchievements.find({ userId: userId, progressState: true, progression: { $gte: timeRange } }, { 
@@ -56,7 +55,6 @@ Template.gamerscoreChartSvg.rendered = function() {
 	});
 
 	Meteor.setTimeout(function() {
-		console.log("timeout function");
 		var fifteenDays = moment().subtract(15, 'days').toDate();
 		timeRangeToggle.set(fifteenDays);
 	}, 5000);
@@ -64,9 +62,7 @@ Template.gamerscoreChartSvg.rendered = function() {
 
 Template.gamerscoreChartSvg.events({
 	"click #gamerscore-chart-recent-activity-button": function(e) {
-		console.log("fired");
 		if(!$(e.target).hasClass('active')) {
-			console.log("its going to 15 days");
 			$(e.target).addClass('active');
 			$('#gamerscore-chart-thirty-days-activity-button').removeClass('active');
 			
@@ -75,9 +71,7 @@ Template.gamerscoreChartSvg.events({
 		}
 	},
 	"click #gamerscore-chart-thirty-days-activity-button": function(e) {
-		console.log("also fired");
 		if(!$(e.target).hasClass('active')) {
-			console.log("its going to 30 days");
 			$(e.target).addClass('active');
 			$('#gamerscore-chart-recent-activity-button').removeClass('active');
 

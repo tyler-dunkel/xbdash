@@ -1,14 +1,12 @@
 <template name="helpPage">
-	{{> helpApp}}
+  {{> helpApp}}
 </template>
 
 <template name="helpApp">
   <div id="content" class="app-content" role="main">
     <div class="app-content-body">
       <div class="hbox hbox-auto-xs hbox-auto-sm faqs">
-        <!-- main -->
         <div class="">
-          <!-- main header -->
           <div class="bg-light lter b-b wrapper-md">
             <div class="row">
               <div class="col-sm-12 col-xs-12">
@@ -27,7 +25,6 @@
                   <li><a href="#profile">Profile</a></li>
                   <li><a href="#news">News</a></li>
                   <li><a href="#achievements-games">Achievements / Games</a></li>
-                  <!--<li><a href="#badges">Badges</a></li>-->
                   <li><a href="#more">More Questions</a></li>
                 </ul>
               </div>
@@ -192,25 +189,11 @@
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree0" aria-expanded="false" aria-controls="collapseThree0">
                         <div class="panel-heading" role="tab" id="headingThree0">
                           <h4 class="panel-title">
-                            Can I reset my account?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseThree0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree0">
-                        <div class="panel-body">
-                          You can delete your account by heading to Settings > Delete Account, and confirming the deletion.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree1">
-                        <div class="panel-heading" role="tab" id="headingThree1">
-                          <h4 class="panel-title">
                             Can I delete my account?
                           </h4>
                         </div>
                       </a>
-                      <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree1">
+                      <div id="collapseThree0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree0">
                         <div class="panel-body">
                           You can delete your account by heading to Settings > Delete Account, and confirming the deletion.
                         </div>
@@ -303,42 +286,6 @@
                     </div>
                   </div>
                 </section>
-                <!--
-                <section id="badges">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>Badges</h3>
-                    </div>
-                  </div>
-                  <div class="panel-group" id="accordion7" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion7" href="#collapseSeven0" aria-expanded="false" aria-controls="collapseSeven0">
-                        <div class="panel-heading" role="tab" id="headingSeven0">
-                          <h4 class="panel-title">
-                            Badges are earned at key milestones in your gaming history. What are some milestones?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseSeven0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven0">
-                        <div class="panel-body">
-                          <ul>
-                            <li>Being part of {{appName}} will earn you the anniversary badge every year.</li>
-                            <li>Gamerscore Badges are earned every 5,000 Gamerscore for the first 100,000 Gamerscore and every 25,000 GS after 100,000 Gamerscore.</li>
-                            <li>Completed Games badges will update on every game completed.</li>
-                            <li>Completed Achievement badges will update on every achievement 5 achievements earned.</li>
-                            <li>Game Completion Percentage badges are earned every 5% increased or decreased in ratio.</li>
-                            <li>Achievements Completion Percentage badges are earned every 5% increased or decreased in ratio.</li>
-                          </ul>
-
-                          <strong>Note:</strong> All badges are calculated based on whether you set your account to include DLC achievements and gamerscore.<br /><br />
-
-                          For example, if you have 100% status on a game and set "Include DLC Achievements" to no then your DLC achievements are not included in the calculation and you will stay at 100%. However, if you set "Include DLC Achievements" to yes, then your 100% status on a game goes back down relative to how many achievements and gamerscore are left with the DLCs for that game.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                -->
                 <section id="more">
                   <div class="row">
                     <div class="col-lg-12">
