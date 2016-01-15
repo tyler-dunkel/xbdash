@@ -48,7 +48,6 @@ d3js:d3
 mrt:jquery-masonry
 xbdash:leaderboards-api
 xbdash:xbox-api
-xbdash:feed-reader
 browser-policy
 standard-minifiers
 meteor-base
