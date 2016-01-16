@@ -52,16 +52,107 @@ Template.achievementsShowMoreSection.rendered = function() {
 }
 
 Template.achievementsShowMoreSection.helpers({
-	'achievementList': function() {
+	achievementList: function() {
 		return xbdAchievements.find({}, {
 			sort: { userPercentage: -1 },
 			limit: achievementLimit.get()
 		}).fetch();
 	},
-	'hasMoreResults': function() {
+	hasMoreResults: function() {
 		var achievementLimitCurrent = achievementLimit.get();
 		var xbdAcheivementCount = xbdAchievements.find({}).count();
 		return ! (xbdAcheivementCount < achievementLimitCurrent);
+	}
+});
+
+Template.achievementsShowMoreSection2.created = function() {
+	var limit, self = this;
+	achievementLimit.set(25);
+	this.autorun(function() {
+		limit = achievementLimit.get();
+		Meteor.subscribe('achievementShowMore', {
+			limit: limit, 
+			tier: self.data.tier
+		});
+	});
+}
+
+Template.achievementsShowMoreSection2.rendered = function() {
+	$(window).scroll(function() {
+		window.setTimeout(function() {
+			showMoreVisible();
+		}, 500);
+	});
+}
+
+Template.achievementsShowMoreSection2.helpers({
+	achievementList: function() {
+		return xbdAchievements.find({}, {
+			sort: {
+				userPercentage: -1,
+				name: 1
+			},
+			limit: achievementLimit.get()
+		}).fetch();
+	},
+	hasMoreResults: function() {
+		var achievementLimitCurrent = achievementLimit.get();
+		var xbdAcheivementCount = xbdAchievements.find({}).count();
+		return ! (xbdAcheivementCount < achievementLimitCurrent);
+	},
+	chkPlatform: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		if (game.platform === 'Xenon') {
+			return 'thumb-md2';
+		}
+	},
+	achievementClass: function () {
+		var userPercentage = this.userPercentage;
+		var achievementClass = "xbd";
+		if (userPercentage >= 0 && userPercentage <= 10) {
+			achievementClass = "legendary";
+		}
+		if (userPercentage >= 11 && userPercentage <= 25) {
+			achievementClass = "epic";
+		}
+		if (userPercentage >= 26 && userPercentage <= 50) {
+			achievementClass = "rare";
+		}
+		if (userPercentage >= 51 && userPercentage <= 100) {
+			achievementClass = "common";
+		}
+		return achievementClass;
+	},
+	achievementImage: function () {
+		var image = "/img/achievement-default.jpg";
+		if (this.mediaAssets) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.mediaAssets);
+		}
+		return image;
+	},
+	gamesImage: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+		var image = "/img/game-default.jpg";
+		if (game.platform === 'Xenon') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BoxArt' && art.Width === 219) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		if (game.platform === 'Durango') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		return image;
+	},
+	gameName: function () {
+		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+		return gameDetail.gameReducedName;
 	}
 });
 
@@ -81,4 +172,3 @@ function showMoreVisible() {
 		}
 	}
 }
-

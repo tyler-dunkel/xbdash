@@ -10,11 +10,20 @@ Template.newsSinglePage.helpers({
 		return moment(this.published).format('MMMM Do YYYY, h:mm a');
 	},
 	shareData: function () {
-		var slug = Router.current().params.slug;
-		var article = xbdNews.findOne({ slug: slug });
+		var image = this.content.match(/<img[^>]*>/);
+		var getImage = '/img/news-default.jpg';
+
+		if (image) {
+            getImage = image[0].match(/src="(.+?)"/)[1];
+            getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
+        }
+
 	    return {
-	    	title: article.title,
-	    	author: article.author
+	    	title: this.title,
+	    	author: this.author,
+	    	image: function () {
+		        return getImage;
+	    	}
 	    }
 	}
 });

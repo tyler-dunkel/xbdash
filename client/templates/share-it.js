@@ -1,8 +1,13 @@
 Template.shareIt.helpers({
 	xbdData: function() {
+		var getImage = "/img/news-default.jpg";
+		
 		return {
 			title: this.title,
-			author: this.author
+			author: this.author,
+			image: function () {
+		        return getImage;
+	    	}
 		}
 	}
 });
@@ -10,7 +15,9 @@ Template.shareIt.helpers({
 ShareIt.configure({
 	siteOrder: ['facebook', 'twitter', 'email'],
 	sites: {
-	  	'facebook': {},
+	  	'facebook': {
+	  		'appId': null
+	  	},
         'twitter': {},
         'googleplus': {},
         'pinterest': {}

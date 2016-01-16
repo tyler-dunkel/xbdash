@@ -1,7 +1,7 @@
 SyncedCron.add({
 	name: "update user percentage for acheivements a-e",
 	schedule: function(parser) {
-		return parser.text('every 30 min');
+		return parser.text('every 4 hours');
 	},
 	job: function() {
 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
@@ -18,7 +18,7 @@ SyncedCron.add({
 SyncedCron.add({
 	name: "update user percentage for acheivements f-j",
 	schedule: function(parser) {
-		return parser.text('every 35 min');
+		return parser.text('every 5 hours');
 	},
 	job: function() {
 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
@@ -35,7 +35,7 @@ SyncedCron.add({
 SyncedCron.add({
 	name: "update user percentage for acheivements k-o",
 	schedule: function(parser) {
-		return parser.text('every 40 min');
+		return parser.text('every 4 hours');
 	},
 	job: function() {
 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
@@ -52,7 +52,7 @@ SyncedCron.add({
 SyncedCron.add({
 	name: "update user percentage for acheivements p-t",
 	schedule: function(parser) {
-		return parser.text('every 45 min');
+		return parser.text('every 5 hours');
 	},
 	job: function() {
 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
@@ -69,7 +69,7 @@ SyncedCron.add({
 SyncedCron.add({
 	name: "update user percentage for acheivements u-z",
 	schedule: function(parser) {
-		return parser.text('every 50 min');
+		return parser.text('every 6 hours');
 	},
 	job: function() {
 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
@@ -86,11 +86,11 @@ SyncedCron.add({
 SyncedCron.add({
 	name: "updating achievements with 0 user percent",
 	schedule: function(parser) {
-		return parser.text('every 2 hours');
+		return parser.text('every 30 min');
 	},
 	job: function() {
 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
-		var achievements = xbdAchievements.find({ "userPercentage": 0 });
+		var achievements = xbdAchievements.find({ "userPercentage": 0 }, { limit: 500 });
 		
 		achievements.forEach(function(achievement) {
 			userAchievementCount = userAchievements.find({ achievementId: achievement._id, progressState: true }).count();

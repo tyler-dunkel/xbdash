@@ -245,19 +245,19 @@ Meteor.publishComposite('achievementShowMore', function(options) {
 			console.log('limit is: ' + options.limit);
 			return xbdAchievements.find({
 				userPercentage: { $gte: bottomLimit, $lte: topLimit }
-				}, {
-					fields: {
-						gameId: 1,
-						name: 1,
-						mediaAssets: 1,
-						description: 1,
-						lockedDescription: 1,
-						value: 1,
-						userPercentage: 1,
-						slug: 1
-					},
-					sort: { userPercentage: -1 },
-					limit: options.limit
+			}, {
+				fields: {
+					gameId: 1,
+					name: 1,
+					mediaAssets: 1,
+					description: 1,
+					lockedDescription: 1,
+					value: 1,
+					userPercentage: 1,
+					slug: 1
+				},
+				sort: { userPercentage: -1 },
+				limit: options.limit
 			});
 		},
 		children: [
@@ -276,6 +276,7 @@ Meteor.publishComposite('achievementShowMore', function(options) {
 				find: function(achievement) {
 					return gameDetails.find({ gameId: achievement.gameId }, {
 						fields: {
+							gameReducedName: 1,
 							gameId: 1,
 							gameArt: 1
 						}
