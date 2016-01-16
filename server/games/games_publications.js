@@ -90,54 +90,59 @@ Meteor.publishComposite('myTopGames', {
 	]
 });
 
-Meteor.publishComposite('gamesByReleaseDate', {
-	find: function() {
-		return gameDetails.find({}, {
-			fields: {
-                gameId: 1,
-                gameName: 1,
-                gameReleaseDate: 1,
-                gameGenre: 1,
-                gameArt: 1,
-                gamePublisherName: 1,
-                gameAllTimeAverageRating: 1
-            },
-            sort: { gameReleaseDate: -1 },
-            limit: 10
-        });
-	},
-	children: [
-		{
-			find: function(game) {
-				return xbdGames.find({ _id: game.gameId }, {
-					fields: {
-		                platform: 1,
-		                name: 1,
-		                maxGamerscore: 1,
-		                slug: 1
-		            }
-				});
-			}
+Meteor.publishComposite('gamesByReleaseDate', function(options) {
+	return {
+		find: function() {
+			options = options || {};
+			var limit = typeof options.limit === 'number' ? options.limit : 10;
+			console.log(limit);
+			return gameDetails.find({}, {
+				fields: {
+	                gameId: 1,
+	                gameName: 1,
+	                gameReleaseDate: 1,
+	                gameGenre: 1,
+	                gameArt: 1,
+	                gamePublisherName: 1,
+	                gameAllTimeAverageRating: 1
+	            },
+	            sort: { gameReleaseDate: -1 },
+	            limit: limit
+	        });
 		},
-		{
-			find: function(game) {
-				var user = Meteor.users.findOne({ _id: this.userId });
-				if (!user) return;
-				if (user) {
-					if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
-						return;
-					}
+		children: [
+			{
+				find: function(game) {
+					return xbdGames.find({ _id: game.gameId }, {
+						fields: {
+			                platform: 1,
+			                name: 1,
+			                maxGamerscore: 1,
+			                slug: 1
+			            }
+					});
 				}
-				return userGames.find({ userId: this.userId, gameId: game.gameId }, {
-					fields: {
-						gameId: 1,
-						userId: 1,
-						currentGamerscore: 1
+			},
+			{
+				find: function(game) {
+					var user = Meteor.users.findOne({ _id: this.userId });
+					if (!user) return;
+					if (user) {
+						if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+							return;
+						}
 					}
-				});
+					return userGames.find({ userId: this.userId, gameId: game.gameId }, {
+						fields: {
+							gameId: 1,
+							userId: 1,
+							currentGamerscore: 1
+						}
+					});
+				}
 			}
-		}
-	]
+		]
+	}
 });
 
 Meteor.publish('gameDetailsSearch', function(id) {
