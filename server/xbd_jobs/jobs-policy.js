@@ -1,0 +1,3 @@
+// xbdJobCollection.allow({
+	
+// });

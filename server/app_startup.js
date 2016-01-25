@@ -34,7 +34,11 @@ Meteor.startup(function() {
 		api_secret: Meteor.settings.services.cloudinarySecret
 	});
 
-	SyncedCron.start();
+	xbdJobscollection.setLogStream(process.stdout);
+
+	xbdJobscollection.startJobServer();
+
+	// SyncedCron.start();
 
 	userAchievements._ensureIndex({ "userId": 1, "progressState": 1 });
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
