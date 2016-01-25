@@ -90,7 +90,7 @@
 // 	},
 // 	job: function() {
 // 		var userCount = Meteor.users.find({ xuid: { $exists: true } }).count();
-// 		var achievements = xbdAchievements.find({ "userPercentage": 0 }, { limit: 500 });
+// 		var achievements = xbdAchievements.find({ "userPercentage": 0 });
 		
 // 		achievements.forEach(function(achievement) {
 // 			userAchievementCount = userAchievements.find({ achievementId: achievement._id, progressState: true }).count();
