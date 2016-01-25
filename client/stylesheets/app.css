@@ -4431,6 +4431,11 @@ ul.signin > li.active {
   padding-left: 15px;
 }
 
+.padder-sm {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .padder-d {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -4448,6 +4453,11 @@ ul.signin > li.active {
 .padder-v {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+.padder-w {
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .achievement-key .padder-vv- {
@@ -4512,6 +4522,30 @@ ul.signin > li.active {
   color: #fff;
   padding: 20px;
   background-color: #000;
+}
+
+.achievements-list .padder-vv-legendary,
+.achievements-list .padder-vv-epic,
+.achievements-list .padder-vv-rare,
+.achievements-list .padder-vv-common {
+  color: #fff;
+  padding: 35px 0;
+  background-color: #000;
+}
+
+.achievements-list .padder-vv-legendary .h4,
+.achievements-list .padder-vv-epic .h4,
+.achievements-list .padder-vv-rare .h4,
+.achievements-list .padder-vv-common .h4 {
+  font-size: 24px;
+}
+
+.achievements-list .game-img {
+  display: inline-block !important;
+  height: 96px;
+  border: 0;
+  background-position: center center;
+  background-size: cover;
 }
 
 .achievement-key .padder-vv-epic {
@@ -6554,6 +6588,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 }
 .dashboard-overlay .line {
   margin: 5px 0;
+}
+.tier-name {
+  text-transform: capitalize;
 }
 @media (min-width: 768px) {
   .dashboard-overlay {
