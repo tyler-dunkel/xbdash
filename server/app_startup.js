@@ -34,9 +34,9 @@ Meteor.startup(function() {
 		api_secret: Meteor.settings.services.cloudinarySecret
 	});
 
-	xbdJobscollection.setLogStream(process.stdout);
+	xbdJobsCollection.setLogStream(process.stdout);
 
-	xbdJobscollection.startJobServer();
+	xbdJobsCollection.startJobServer();
 
 	// SyncedCron.start();
 
