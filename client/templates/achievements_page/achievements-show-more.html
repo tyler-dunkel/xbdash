@@ -28,7 +28,7 @@
           <div class="wrapper-md">
             <div class="row">
               <div class="col-lg-7 col-xs-12">
-                {{> achievementsShowMoreSection2 tier=achievementTier}}
+                {{> achievementsShowMoreSection tier=achievementTier}}
               </div>
               <div class="wrapper-md col-lg-5 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
               </div>
@@ -41,22 +41,6 @@
 </template>
 
 <template name="achievementsShowMoreSection">
-  {{#if Template.subscriptionsReady}}
-    <div class="blog-post">
-    {{#each achievementList}}
-      {{> achievementTemplate}}
-    {{/each}}
-    <div style="display:block;">&nbsp;</div>
-    </div>
-    {{#if hasMoreResults}}
-      <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
-    {{/if}}
-  {{else}}
-    {{> loadingTemplate}}
-  {{/if}}
-</template>
-
-<template name="achievementsShowMoreSection2">
   <ul class="list-group no-bg no-borders achievements-list">
   {{#if Template.subscriptionsReady}}
     {{#each achievementList}}

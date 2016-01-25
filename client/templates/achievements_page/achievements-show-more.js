@@ -38,8 +38,10 @@ Template.achievementsShowMoreSection.created = function() {
 	achievementLimit.set(25);
 	this.autorun(function() {
 		limit = achievementLimit.get();
-		Meteor.subscribe('achievementShowMore', {limit: limit, 
-		tier: self.data.tier });
+		Meteor.subscribe('achievementShowMore', {
+			limit: limit, 
+			tier: self.data.tier
+		});
 	});
 }
 
@@ -52,40 +54,6 @@ Template.achievementsShowMoreSection.rendered = function() {
 }
 
 Template.achievementsShowMoreSection.helpers({
-	achievementList: function() {
-		return xbdAchievements.find({}, {
-			sort: { userPercentage: -1 },
-			limit: achievementLimit.get()
-		}).fetch();
-	},
-	hasMoreResults: function() {
-		var achievementLimitCurrent = achievementLimit.get();
-		var xbdAcheivementCount = xbdAchievements.find({}).count();
-		return ! (xbdAcheivementCount < achievementLimitCurrent);
-	}
-});
-
-Template.achievementsShowMoreSection2.created = function() {
-	var limit, self = this;
-	achievementLimit.set(25);
-	this.autorun(function() {
-		limit = achievementLimit.get();
-		Meteor.subscribe('achievementShowMore', {
-			limit: limit, 
-			tier: self.data.tier
-		});
-	});
-}
-
-Template.achievementsShowMoreSection2.rendered = function() {
-	$(window).scroll(function() {
-		window.setTimeout(function() {
-			showMoreVisible();
-		}, 500);
-	});
-}
-
-Template.achievementsShowMoreSection2.helpers({
 	achievementList: function() {
 		return xbdAchievements.find({}, {
 			sort: {
