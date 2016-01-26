@@ -40,6 +40,12 @@ Meteor.startup(function() {
 
 	// SyncedCron.start();
 
+	var testUser = Meteor.users.findOne({'gamertagScanned.status': true});
+
+	if (testUser) {
+		xboxApiObject.dirtyUpdateUserStats(testUser._id);
+	}
+
 	userAchievements._ensureIndex({ "userId": 1, "progressState": 1 });
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
 	xbdAchievements._ensureIndex({ "gameId": 1 });

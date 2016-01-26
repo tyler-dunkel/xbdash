@@ -278,3 +278,69 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 	}
 	gameDetails.insert(gameDetail);
 }
+
+xboxApiPrivate._dirtyCheckXboxOneGames = function(userLastUpdate) {
+	
+	var url = user.xuid + '/xboxonegames';
+
+	try {
+		var response = syncApiCaller(url);
+	} catch (e) {
+		return;
+	}
+
+	if (!response || !response.data || !response.data.titles) {
+		return;
+	}
+
+	response.data.titles.forEach(function (game) {
+		if (game.maxGamerscore ===  0) return;
+		
+		var gameId = game.titleId.toString();
+
+		var gameLastUnlock = new Date(game.lastUnlock);
+
+		console.log(game.name + " last unlock is " + gameLastUnlock);
+		console.log("user last update is " + userLastUpdate);
+
+		if (gameLastUnlock < userLastUpdate) {
+			console.log(game.name + " does not need updating");
+			return;
+		}
+
+		this._updateXboxOneAchievementsData(userId, gameId);
+		this._updateXboxOneGameData(userId, game, gameId);
+		this._updateXboxOneGameDetails(userId, game, gameId);
+	});
+}
+
+xboxApiPrivate._dirtyCheckXbox360Games = function (userLastUpdate) {
+	
+	var url = user.xuid + '/xbox360games';
+
+	try {
+		var response = syncApiCaller(url);
+	} catch (e) {
+		return;
+	}
+
+	if (!response || !response.data || !response.data.titles) {
+		return;
+	}
+
+	response.data.titles.forEach(function (game) {
+		if (game.totalGamerscore ===  0) return;
+
+		var gameId = game.titleId.toString();
+
+		var gameLastPlayed = new Date(game.lastPlayed);
+		if (gameLastPlayed < userLastUpdate) {
+			console.log(game.name + " does not need updating");
+			return;
+		}
+
+		this._updateXbox360AchievementsData(userId, gameId);
+		this._updateXbox360GameData(userId, game, gameId);
+		this._updateXbox360GameDetails(userId, game, gameId);
+	});
+}

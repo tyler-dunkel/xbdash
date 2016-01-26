@@ -160,16 +160,13 @@ xboxApiObject.dirtyUpdateUserStats = function(userId) {
 	}
 
 	if (result.data && result.data.gamerscore) {
-		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'updating' } });
 		if (user.gamerscore < result.data.gamerscore) {
+			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'updating' } });
 			Meteor.users.update({ _id: user._id }, { $set: { gamercard: result.data }});
-			xboxApiPrivate._checkUserGamesListDurango(user._id, user.xuid, true);
-			xboxApiPrivate._checkUserGamesListXenon(user._id, user.xuid, true);
+			xboxApiPrivate._dirtyCheckXboxOneGames(user.gaertagScanned.lastUpdate);
+			xboxApiPrivate._dirtyCheckXbox360Games(user.gaertagScanned.lastUpdate);
 			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
 			return;
 		}
-		xboxApiPrivate._checkUserGamesListDurango(user._id, user.xuid, false);
-		xboxApiPrivate._checkUserGamesListXenon(user._id, user.xuid, false);
-		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
 	}
 }
