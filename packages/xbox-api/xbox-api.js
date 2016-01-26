@@ -163,8 +163,8 @@ xboxApiObject.dirtyUpdateUserStats = function(userId) {
 		if (user.gamerscore < result.data.gamerscore) {
 			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'updating' } });
 			Meteor.users.update({ _id: user._id }, { $set: { gamercard: result.data }});
-			xboxApiPrivate._dirtyCheckXboxOneGames(user.gaertagScanned.lastUpdate);
-			xboxApiPrivate._dirtyCheckXbox360Games(user.gaertagScanned.lastUpdate);
+			xboxApiPrivate._dirtyCheckXboxOneGames(user);
+			xboxApiPrivate._dirtyCheckXbox360Games(user);
 			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
 			return;
 		}

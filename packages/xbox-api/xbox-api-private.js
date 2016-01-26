@@ -279,9 +279,10 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 	gameDetails.insert(gameDetail);
 }
 
-xboxApiPrivate._dirtyCheckXboxOneGames = function(userLastUpdate) {
+xboxApiPrivate._dirtyCheckXboxOneGames = function(user) {
 	
 	var url = user.xuid + '/xboxonegames';
+	var userLastUpdate = user.gamertagScanned.lastUpdate;
 
 	try {
 		var response = syncApiCaller(url);
@@ -314,9 +315,10 @@ xboxApiPrivate._dirtyCheckXboxOneGames = function(userLastUpdate) {
 	});
 }
 
-xboxApiPrivate._dirtyCheckXbox360Games = function (userLastUpdate) {
+xboxApiPrivate._dirtyCheckXbox360Games = function (user) {
 	
 	var url = user.xuid + '/xbox360games';
+	var userLastUpdate = user.gamertagScanned.lastUpdate;
 
 	try {
 		var response = syncApiCaller(url);
