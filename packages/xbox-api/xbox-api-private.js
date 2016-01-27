@@ -281,6 +281,7 @@ xboxApiPrivate._updateXbox360GameDetails = function(userId, game, gameId) {
 
 xboxApiPrivate._dirtyCheckXboxOneGames = function(user) {
 	
+	var self = this;
 	var url = user.xuid + '/xboxonegames';
 	var userLastUpdate = user.gamertagScanned.lastUpdate;
 
@@ -309,14 +310,15 @@ xboxApiPrivate._dirtyCheckXboxOneGames = function(user) {
 			return;
 		}
 
-		this._updateXboxOneAchievementsData(userId, gameId);
-		this._updateXboxOneGameData(userId, game, gameId);
-		this._updateXboxOneGameDetails(userId, game, gameId);
+		self._updateXboxOneAchievementsData(user._id, gameId);
+		self._updateXboxOneGameData(user._id, game, gameId);
+		self._updateXboxOneGameDetails(user._id, game, gameId);
 	});
 }
 
 xboxApiPrivate._dirtyCheckXbox360Games = function (user) {
 	
+	var self = this;
 	var url = user.xuid + '/xbox360games';
 	var userLastUpdate = user.gamertagScanned.lastUpdate;
 
@@ -341,8 +343,8 @@ xboxApiPrivate._dirtyCheckXbox360Games = function (user) {
 			return;
 		}
 
-		this._updateXbox360AchievementsData(userId, gameId);
-		this._updateXbox360GameData(userId, game, gameId);
-		this._updateXbox360GameDetails(userId, game, gameId);
+		self._updateXbox360AchievementsData(user._id, gameId);
+		self._updateXbox360GameData(user._id, game, gameId);
+		self._updateXbox360GameDetails(user._id, game, gameId);
 	});
 }

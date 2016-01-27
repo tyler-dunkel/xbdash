@@ -40,9 +40,10 @@ Meteor.startup(function() {
 
 	// SyncedCron.start();
 
-	var testUser = Meteor.users.findOne({'gamertagScanned.status': true});
-
+	var testUser = Meteor.users.findOne({'gamercard.gamertag': 'Mayvn'});
+	console.log(testUser);
 	if (testUser) {
+		console.log('the function is firing');
 		xboxApiObject.dirtyUpdateUserStats(testUser._id);
 	}
 
