@@ -160,7 +160,8 @@ xboxApiObject.dirtyUpdateUserStats = function(userId) {
 	}
 
 	if (result.data && result.data.gamerscore) {
-		if (user.gamerscore < result.data.gamerscore) {
+		if (user.gamercard.gamerscore < result.data.gamerscore) {
+			console.log('the gamerscore on record is lower than on the api');
 			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'updating' } });
 			Meteor.users.update({ _id: user._id }, { $set: { gamercard: result.data }});
 			xboxApiPrivate._dirtyCheckXboxOneGames(user);
