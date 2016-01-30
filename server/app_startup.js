@@ -34,18 +34,16 @@ Meteor.startup(function() {
 		api_secret: Meteor.settings.services.cloudinarySecret
 	});
 
-	xbdJobsCollection.setLogStream(process.stdout);
-
 	xbdJobsCollection.startJobServer();
 
 	// SyncedCron.start();
 
-	var testUser = Meteor.users.findOne({'gamercard.gamertag': 'Mayvn'});
-	console.log(testUser);
-	if (testUser) {
-		console.log('the function is firing');
-		xboxApiObject.dirtyUpdateUserStats(testUser._id);
-	}
+	// var testUser = Meteor.users.findOne({'gamercard.gamertag': 'Mayvn'});
+	// console.log(testUser);
+	// if (testUser) {
+	// 	console.log('the function is firing');
+	// 	xboxApiObject.dirtyUpdateUserStats(testUser._id);
+	// }
 
 	userAchievements._ensureIndex({ "userId": 1, "progressState": 1 });
 	userGames._ensureIndex({ "userId": 1, "currentGamerscore": -1 });
