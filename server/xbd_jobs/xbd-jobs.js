@@ -1,5 +1,5 @@
-var clearDailyRanksJob = new Job(xbdJobsCollection, 'clearDailyRanksJob', {
-})
+var clearDailyRanksJob = new Job(xbdJobsCollection, 'clearDailyRanksJob', {})
+.priority('normal')
 .repeat({
 	schedule: xbdJobsCollection.later.parse.text('at 12:00 am')
 })
@@ -10,8 +10,8 @@ var clearDailyRanksJob = new Job(xbdJobsCollection, 'clearDailyRanksJob', {
 	}
 });
 
-var dirtyUserStatsJob = new Job(xbdJobsCollection, 'dirtyUserStatsJob', {
-})
+var dirtyUserStatsJob = new Job(xbdJobsCollection, 'dirtyUserStatsJob', {})
+.priority('normal')
 .repeat({
 	schedule: xbdJobsCollection.later.parse.text('every 2 hours')
 })
@@ -22,17 +22,17 @@ var dirtyUserStatsJob = new Job(xbdJobsCollection, 'dirtyUserStatsJob', {
 	}
 });
 
-// var checkUserStatsJob = new Job(xbdJobsCollection, 'checkUserStatsJob', {
-// })
-// .repeat({
-// 	schedule: xbdJobsCollection.later.parse.text('every 2 hours')
-// })
-// .save(function (err, result) {
-// 	if (err) return;
-// 	if (!err && result) {
-// 		console .log('new user stats update job saved with ID: ' + result);
-// 	}
-// });
+var checkUserStatsJob = new Job(xbdJobsCollection, 'checkUserStatsJob', {})
+.priority('normal')
+.repeat({
+	schedule: xbdJobsCollection.later.parse.text('every 2 hours')
+})
+.save(function (err, result) {
+	if (err) return;
+	if (!err && result) {
+		console .log('new user stats update job saved with ID: ' + result);
+	}
+});
 
 var checkGamesJob = new Job(xbdJobsCollection, 'checkGamesJob', {})
 .priority('normal')
@@ -46,8 +46,8 @@ var checkGamesJob = new Job(xbdJobsCollection, 'checkGamesJob', {})
 	}
 });
 
-var checkLeaderboardsJob = new Job(xbdJobsCollection, 'checkLeaderboardsJob', {
-})
+var checkLeaderboardsJob = new Job(xbdJobsCollection, 'checkLeaderboardsJob', {})
+.priority('normal')
 .repeat({
 	schedule: xbdJobsCollection.later.parse.text('every 4 hours')
 })
@@ -58,8 +58,8 @@ var checkLeaderboardsJob = new Job(xbdJobsCollection, 'checkLeaderboardsJob', {
 	}
 });
 
-var checkAchievementsJob = new Job(xbdJobsCollection, 'checkAchievementsJob', {
-})
+var checkAchievementsJob = new Job(xbdJobsCollection, 'checkAchievementsJob', {})
+.priority('normal')
 .repeat({
 	schedule: xbdJobsCollection.later.parse.text('every 6 hours')
 })

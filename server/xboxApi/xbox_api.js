@@ -36,18 +36,27 @@ Meteor.methods({
 
 		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'building' } });
 
-		xboxApiObject.updateGamercard(userId);
-		xboxApiObject.updateXboxOneGames(userId);
-		xboxApiObject.updateXbox360Data(userId);
-
-		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
-
-		Meteor.call('sendWelcomeEmail', userId, function(error) {
-			if (error) {
-				console.log(error);
-				console.log('send welcome email error');
+		var buildUserProfileJob = new Job(xbdJobsCollection, 'buildUserProfileJob', { userId: userId })
+		.priority('normal')
+		.save(function (err, result) {
+			if (err) return;
+			if (!err && result) {
+				console.log('building user profile');
 			}
 		});
+
+		// xboxApiObject.updateGamercard(userId);
+		// xboxApiObject.updateXboxOneGames(userId);
+		// xboxApiObject.updateXbox360Data(userId);
+
+		// Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
+
+		// Meteor.call('sendWelcomeEmail', userId, function(error) {
+		// 	if (error) {
+		// 		console.log(error);
+		// 		console.log('send welcome email error');
+		// 	}
+		// });
 
 		return "hello world";
 	}
