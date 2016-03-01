@@ -1,36 +1,37 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'run', 'start' ]
-2 info using npm@2.1.18
-3 info using node@v0.10.35
-4 verbose node symlink /usr/local/bin/node
-5 verbose run-script [ 'prestart', 'start', 'poststart' ]
-6 info prestart xbox-dash@1.0.0
-7 info start xbox-dash@1.0.0
-8 verbose unsafe-perm in lifecycle true
-9 info xbox-dash@1.0.0 Failed to exec start script
-10 verbose stack Error: xbox-dash@1.0.0 start: `meteor --settings settings.json`
-10 verbose stack Exit status 254
-10 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:212:16)
-10 verbose stack     at EventEmitter.emit (events.js:98:17)
-10 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:14:12)
-10 verbose stack     at ChildProcess.emit (events.js:98:17)
-10 verbose stack     at maybeClose (child_process.js:766:16)
-10 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:833:5)
-11 verbose pkgid xbox-dash@1.0.0
-12 verbose cwd /Users/kguirao87/Meteor/xboxdash
-13 error Darwin 13.4.0
-14 error argv "node" "/usr/local/bin/npm" "run" "start"
-15 error node v0.10.35
-16 error npm  v2.1.18
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'run', 'start' ]
+2 info using npm@2.14.12
+3 info using node@v4.3.0
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart xbox-dash@1.0.0
+6 info start xbox-dash@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info xbox-dash@1.0.0 Failed to exec start script
+9 verbose stack Error: xbox-dash@1.0.0 start: `meteor --settings settings.json`
+9 verbose stack spawn ENOENT
+9 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:17:16)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at ChildProcess.emit (events.js:172:7)
+9 verbose stack     at maybeClose (internal/child_process.js:821:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+10 verbose pkgid xbox-dash@1.0.0
+11 verbose cwd /Users/tdunkel/dev_projects/xboxdash
+12 error Darwin 14.4.0
+13 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "start"
+14 error node v4.3.0
+15 error npm  v2.14.12
+16 error file sh
 17 error code ELIFECYCLE
-18 error xbox-dash@1.0.0 start: `meteor --settings settings.json`
-18 error Exit status 254
-19 error Failed at the xbox-dash@1.0.0 start script 'meteor --settings settings.json'.
-19 error This is most likely a problem with the xbox-dash package,
-19 error not with npm itself.
-19 error Tell the author that this fails on your system:
-19 error     meteor --settings settings.json
-19 error You can get their info via:
-19 error     npm owner ls xbox-dash
-19 error There is likely additional logging output above.
-20 verbose exit [ 1, true ]
+18 error errno ENOENT
+19 error syscall spawn
+20 error xbox-dash@1.0.0 start: `meteor --settings settings.json`
+20 error spawn ENOENT
+21 error Failed at the xbox-dash@1.0.0 start script 'meteor --settings settings.json'.
+21 error This is most likely a problem with the xbox-dash package,
+21 error not with npm itself.
+21 error Tell the author that this fails on your system:
+21 error     meteor --settings settings.json
+21 error You can get their info via:
+21 error     npm owner ls xbox-dash
+21 error There is likely additional logging output above.
+22 verbose exit [ 1, true ]

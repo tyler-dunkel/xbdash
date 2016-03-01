@@ -1,4 +1,14 @@
 Meteor.startup(function() {
+
+	// var buildUserProfileJob = new Job(xbdJobsCollection, 'buildUserProfileJob', { userId: 'ohMSnhTSpkyMzaz2S' })
+	// 	.priority('normal')
+	// 	.save(function (err, result) {
+	// 		if (err) return;
+	// 		if (!err && result) {
+	// 			console.log('building user profile');
+	// 		}
+	// 	});
+
 	ServiceConfiguration.configurations.remove({
 		service: 'facebook'
 	});
