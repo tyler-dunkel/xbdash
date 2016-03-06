@@ -17,10 +17,17 @@ Meteor.methods({
 	contactUsEmail: function(name, email, subject, text) {
 		check([name, subject, text], [String]);
 
-		Mandrill.messages.send({
-			from_email: "contact@xbdash.com",
-			from_name: "XBdash",
+		// Mandrill.messages.send({
+		// 	from_email: "contact@xbdash.com",
+		// 	from_name: "XBdash",
+		// 	to: "kguirao87@gmail.com",
+		// 	subject: subject,
+		// 	text: text
+		// });
+
+		Email.send({
 			to: "kguirao87@gmail.com",
+			from: "XBdash <contact@email.xbdash.com>",
 			subject: subject,
 			text: text
 		});

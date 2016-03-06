@@ -12,43 +12,23 @@ Accounts.config({
     sendVerificationEmail: true
 });
 
-Accounts.emailTemplates.from = 'XBdash <contact@xbdash.com>';
+Accounts.emailTemplates.from = 'XBdash <contact@email.xbdash.com>';
 Accounts.emailTemplates.siteName = 'XBdash';
-
 Accounts.emailTemplates.verifyEmail.subject = function(user) {
     return 'Activate your XBdash account';
 }
 
+SSR.compileTemplate( 'verifyEmail', Assets.getText( 'verify-email.html' ) );
+SSR.compileTemplate( 'resetEmail', Assets.getText( 'reset-password.html' ) );
+SSR.compileTemplate( 'welcomeEmail', Assets.getText( 'welcome-email.html' ) );
+
 Accounts.emailTemplates.verifyEmail.html = function (user, url) {
-    var result;
     try {
-        result = Mandrill.templates.render({
-            template_name: 'verify-email',
-            template_content: [
-                {
-                    name: 'CONFIRMURL',
-                    content: url
-                },
-                {
-                    name: 'FNAME',
-                    content: user.username
-                }
-            ],
-            merge_vars: [
-                {
-                    name: 'CONFIRMURL',
-                    content: url
-                },
-                {
-                    name: 'FNAME',
-                    content: user.username
-                }
-            ]
-        });
+        return SSR.render( 'verifyEmail', { confirmUrl: url });
     } catch (error) {
-        logger.info('Error while rendering Mandrill template.');
+        logger.info('Error rendering Verify email.');
+        return;
     }
-    return result.data.html;
 }
 
 Accounts.emailTemplates.resetPassword.subject = function(user) {
@@ -56,41 +36,17 @@ Accounts.emailTemplates.resetPassword.subject = function(user) {
 }
 
 Accounts.emailTemplates.resetPassword.html = function (user, url) {
-    var result;
     try {
-        result = Mandrill.templates.render({
-            template_name: 'reset-password',
-            template_content: [
-                {
-                    name: 'RESETURL',
-                    content: url
-                },
-                {
-                    name: 'FNAME',
-                    content: user.username
-                }
-            ],
-            merge_vars: [
-                {
-                    name: 'RESETURL',
-                    content: url
-                },
-                {
-                    name: 'FNAME',
-                    content: user.username
-                }
-            ]
-        });
+        return SSR.render( 'resetEmail', { resetUrl: url });
     } catch (error) {
-        logger.info('Error while rendering Mandrill template.');
+        logger.info('Error rendering Reset Password email.');
+        return;
     }
-    return result.data.html;
 }
 
-Accounts.emailTemplates.headers = {
-    'X-MC-AutoText': true
-};
+// Accounts.emailTemplates.headers = {
+//     'X-MC-AutoText': true
+// };
 
 UserStatus.events.on("connectionLogin", function(fields) {});
-
 UserStatus.events.on("connectionLogout", function(fields) {});

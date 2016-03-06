@@ -17,6 +17,7 @@ Template.dashboardNav.rendered = function() {
 	});
 	$('li.disabled.no-user a, li.disabled.no-gamertag a').attr("href", "#");
 }
+
 Template.dashboardNav.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();

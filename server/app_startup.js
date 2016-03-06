@@ -30,13 +30,15 @@ Meteor.startup(function() {
 		secret: Meteor.settings.services.twitterSecret
 	});
 
-	Mandrill.config({
-		username: 'keith@xbdash.com',
-		key: Meteor.settings.services.mandrillKey,
-		port: 587,
-		host: 'smtp.mandrillapp.com',
-		baseUrl: 'https://mandrillapp.com/api/1.0/'
-	});
+	// Mandrill.config({
+	// 	username: 'keith@xbdash.com',
+	// 	key: Meteor.settings.services.mandrillKey,
+	// 	port: 587,
+	// 	host: 'smtp.mandrillapp.com',
+	// 	baseUrl: 'https://mandrillapp.com/api/1.0/'
+	// });
+
+	process.env.MAIL_URL = "smtp://postmaster%40email.xbdash.com:" + Meteor.settings.services.mailgunKey + "@smtp.mailgun.org:587";
 
 	Cloudinary.config({
 		cloud_name: 'xbdash',
