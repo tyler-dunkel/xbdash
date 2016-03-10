@@ -20,7 +20,7 @@ Accounts.emailTemplates.verifyEmail.subject = function(user) {
 
 SSR.compileTemplate( 'verifyEmail', Assets.getText( 'verify-email.html' ) );
 SSR.compileTemplate( 'resetEmail', Assets.getText( 'reset-password.html' ) );
-SSR.compileTemplate( 'welcomeEmail', Assets.getText( 'welcome-email.html' ) );
+// SSR.compileTemplate( 'welcomeEmail', Assets.getText( 'welcome-email.html' ) );
 
 Accounts.emailTemplates.verifyEmail.html = function (user, url) {
     try {
