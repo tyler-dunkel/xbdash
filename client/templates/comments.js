@@ -1,34 +1,58 @@
-Template.singleComment.created = function() {
-    this.subscribe("commentUserImage", this.data.userId);
-}
+// Template.singleComment.created = function() {
+//     this.subscribe("commentUserImage", this.data.userId);
+// }
 
-Template.singleComment.rendered = function() {
-    this.$('p').contents().each(function() {
-        if (this.nodeType !== 3) {
-            return true;
-        }
+// Template.singleComment.rendered = function() {
+//     this.$('p').contents().each(function() {
+//         if (this.nodeType !== 3) {
+//             return true;
+//         }
 
-        var matches = this.data.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g);
+//         var matches = this.data.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g);
         
-        if (matches) {
-            matches = matches[0].match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
-        } else {
-            return;
-        }
+//         if (matches) {
+//             matches = matches[0].match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
+//         } else {
+//             return;
+//         }
 
-        if (matches[2].length != 11) {
-            return;
-        }
+//         if (matches[2].length != 11) {
+//             return;
+//         }
 
-        var iframeWrap = '<div class="embed-responsive embed-responsive-16by9"></div>';
-        var iframe = $('<iframe class="embed-responsive-item" allowfullscreen />');
+//         var iframeWrap = '<div class="embed-responsive embed-responsive-16by9"></div>';
+//         var iframe = $('<iframe class="embed-responsive-item" allowfullscreen />');
         
-        iframe.attr('src', function(i, val) {
-            return '//www.youtube.com/embed/' + matches[2];
-        })
-        iframe.insertAfter(this).wrap(iframeWrap);
-    });
-}
+//         iframe.attr('src', function(i, val) {
+//             return '//www.youtube.com/embed/' + matches[2];
+//         })
+//         iframe.insertAfter(this).wrap(iframeWrap);
+//     });
+// }
+
+Template.achievementCommentBox.helpers({
+    loginAction: function () {
+        return Comments.session.get('loginAction');
+    },
+    textarea: function () {
+        return Template.commentsTextarea;
+    },
+    hasMoreComments: function () {
+        return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
+    }
+});
+
+Template.newsCommentBox.helpers({
+    loginAction: function () {
+        return Comments.session.get('loginAction');
+    },
+    textarea: function () {
+        return Template.commentsTextarea;
+    },
+    hasMoreComments: function () {
+        return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
+    }
+});
 
 Template.singleComment.helpers({
     debugger: function () {
@@ -36,15 +60,14 @@ Template.singleComment.helpers({
     },
     getUser: function (user){
         var user = Meteor.users.findOne({ _id: this.userId });
-        return user.username;
+        return user.gamercard.gamertag;
     },
-    getUserImage: function (user) {
+    avatarUrl: function (user) {
         var user = Meteor.users.findOne({ _id: this.userId });
-        var getUserImage = '/img/gamerpic-default.jpg';
         if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
             getUserImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
         }
-        return getUserImage;
+        return getUserImage || Comments.ui.config().defaultAvatar;
     },
     take: function (params) {
         var content = Comments.session.get('content');
@@ -76,11 +99,14 @@ Template.singleComment.helpers({
     },
     addReply: function () {
         var id = this._id || this.replyId;
-        return Comments.session.get('replyTo') === id;
+        return Comments.session.equals('replyTo', id);
     },
     isEditable: function () {
         var id = this._id || this.replyId;
-        return Comments.session.get('editingDocument') === id;
+        return Comments.session.equals('editingDocument', id);
+    },
+    mediaContent: function () {
+        return mediaService.getMarkup(this.media);
     },
     reply: function () {
         if (_.isFunction(this.enhancedReplies)) {
