@@ -89,6 +89,7 @@ meteorhacks:fast-render@2.11.0
 meteorhacks:inject-data@1.4.1
 meteorhacks:inject-initial@1.0.3
 meteorhacks:picker@1.0.3
+meteorhacks:ssr@2.2.0
 meteorhacks:subs-manager@1.6.2
 meteortoys:toykit@2.2.1
 minifiers@1.1.7
