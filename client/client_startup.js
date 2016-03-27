@@ -24,7 +24,7 @@ Meteor.startup(function() {
 
 	var imageAnalyzer = {
 		name: 'image',
-		getMediaFromContent(content) {
+		getMediaFromContent: function(content) {
 			if (content) {
 				var urls = content.match(/(\S+\.[^/\s]+(\/\S+|\/|))(.jpg|.png|.gif)/g) ;
 				if (urls && urls[0]) {
@@ -32,15 +32,18 @@ Meteor.startup(function() {
 				}
 			}
 			return '';
-	    },
-	    getMarkup: (mediaContent) => `<img src="${mediaContent}" />`
+		},
+	    getMarkup: function(mediaContent) {
+	    	return `<img src="${mediaContent}" />`;
+	    }
 	};
 
 	var youtubeAnalyzer = {
 		name: 'youtube',
-		getMediaFromContent(content) {
+		getMediaFromContent: function(content) {
 			var parts = (/(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/([\w\=\?]+)/gm).exec(content);
 			let mediaContent = '';
+			console.log('firing get media content');
 			if (parts && parts[3]) {
 				let id = parts[3];
 				if (id.indexOf('v=') > -1) {
@@ -49,11 +52,13 @@ Meteor.startup(function() {
 						id = subParts[1];
 					}
 				}
-				mediaContent = `http://www.youtube.com/embed/${id}`;
+				mediaContent = 'http://www.youtube.com/embed/${id}';
 			}
 			return mediaContent;
 		},
-		getMarkup: (mediaContent) => `<iframe src="${mediaContent}" type="text/html" frameborder="0"></iframe>`
+		getMarkup: function(mediaContent) {
+			return `<iframe src="${mediaContent}" type="text/html" frameborder="0"></iframe>`;
+		}
 	};
 
 	Comments.config({

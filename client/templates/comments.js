@@ -106,7 +106,10 @@ Template.singleComment.helpers({
         return Comments.session.equals('editingDocument', id);
     },
     mediaContent: function () {
-        return mediaService.getMarkup(this.media);
+        console.log(mediaService);
+        //console.log(Comments.mediaService);
+        //return mediaService.getMarkup(this.media);
+        return;
     },
     reply: function () {
         if (_.isFunction(this.enhancedReplies)) {
@@ -114,5 +117,18 @@ Template.singleComment.helpers({
         } else if (_.isArray(this.enhancedReplies)) {
             return this.enhancedReplies;
         }
+    },
+    showAnonymousInput: function(isReply) { 
+        return userService.isAnonymous() && !isReply;
+    },
+    configGet: function(key) {
+        console.log(Comments.config()[key]);
+        return Comments.config()[key];
+    },
+    uiConfigGet: function(key) {
+        return Comments.ui.config()[key];
+    },
+    sessionGet: function(key) {
+        return Comments.session.get(key);
     }
 });
