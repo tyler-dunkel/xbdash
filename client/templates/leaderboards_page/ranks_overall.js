@@ -4,7 +4,7 @@ Template.overallRanks.created = function() {
 
 Template.overallRanks.helpers({
 	overallLB: function() {
-		return userLeaderboards.find({}, {
+		return userLeaderboards.find({ overallRank: {$gt: 0 } }, {
 			sort: { overallRank: 1 },
 			limit: 100
 		});

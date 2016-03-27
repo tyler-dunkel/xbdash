@@ -34,7 +34,6 @@ mrt:modernizr-meteor
 vjau:xml2js
 todda00:friendly-slugs
 percolate:momentum
-arkham:comments-ui
 gliese:pretty-email
 iron:location
 meteorhacks:aggregate
@@ -71,3 +70,4 @@ xbdash:xbd-logger
 okgrow:analytics
 vsivsi:job-collection
 meteorhacks:ssr
+arkham:comments-ui
