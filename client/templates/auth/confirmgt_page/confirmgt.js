@@ -79,7 +79,7 @@ Template.confirmGtForm.events({
 					if (result) {
 						sweetAlert({
 							title: 'Your dashboard is complete!',
-							text: 'We have finished compiling your data and building your XBdash profile.',
+							text: Blaze.render(welcomeOverlay),
 							type: 'success',
 							confirmButtonColor: '#138013',
 							confirmButtonText: 'OK',
