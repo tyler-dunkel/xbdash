@@ -78,13 +78,13 @@ Template.confirmGtForm.events({
 				Meteor.call('retrieveData', function(error, result) {
 					if (result) {
 						sweetAlert({
-							title: 'Your dashboard is complete!',
-							text: 'We have finished compiling your data and building your XBdash profile.',
-							type: 'success',
+							title: 'Staying Engaged on XBdash',
+							html: Blaze.toHTML(Template.welcomeOverlay),
+							customClass: 'welcome-overlay',
+							confirmButtonText: 'Let\'s Go!',
 							confirmButtonColor: '#138013',
-							confirmButtonText: 'OK',
 							closeOnConfirm: true,
-							html: true
+							width: 1000
 						});
 					}
 				});

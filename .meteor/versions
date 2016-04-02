@@ -66,17 +66,16 @@ jparker:crypto-md5@0.1.1
 jparker:gravatar@0.3.1
 jquery@1.11.4
 jquery-waypoints@1.0.4
-kevohagan:sweetalert@0.5.0
 lai:collection-extensions@0.1.4
 launch-screen@1.0.4
 lepozepo:cloudinary@4.1.2
 less@2.5.1
 liberation:shareit@1.1.1
+limonte:sweetalert2@0.4.5
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
 markdown@1.0.5
-matb33:collection-hooks@0.8.1
 matteodem:easy-search@1.6.4
 meteor@1.1.10
 meteor-base@1.0.1
@@ -93,7 +92,6 @@ meteorhacks:subs-manager@1.6.2
 meteortoys:toykit@2.2.1
 minifiers@1.1.7
 minimongo@1.0.10
-mizzao:bootboxjs@4.4.0
 mizzao:timesync@0.3.4
 mizzao:user-status@0.6.6
 mobile-experience@1.0.1
@@ -143,7 +141,6 @@ srp@1.0.4
 standard-minifiers@1.0.2
 templating@1.1.5
 templating-tools@1.0.0
-todda00:friendly-slugs@0.3.6
 tracker@1.0.9
 twbs:bootstrap@3.3.6
 twitter@1.1.5
