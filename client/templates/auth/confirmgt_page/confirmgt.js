@@ -86,7 +86,6 @@ Template.confirmGtForm.events({
 							closeOnConfirm: true,
 							width: 1000
 						});
-						
 					}
 				});
 			}

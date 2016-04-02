@@ -1,61 +1,33 @@
 var newsLimit = new ReactiveVar();
 
 Template.aboutUs.events({
-	'click #contactBox': function() {
-		bootbox.dialog({
-			title: "Contact Us",
-			message: "<div class='row'>" +
-					"<div class='col-sm-12 contact-form'>" + 
-					"<form id='contact' method='post' class='form' role='form'>" + 
-					"<div class='row'>" + 
-						"<div class='col-xs-6 col-md-4 form-group'>" + 
-							"<input class='form-control' id='name' name='name' placeholder='Name*' type='text' required autofocus />" + 
-						"</div>" + 
-						"<div class='col-xs-6 col-md-4 form-group'>" + 
-							"<input class='form-control' id='email' name='email' placeholder='Email*' type='email' required />" + 
-						"</div>" + 
-						"<div class='col-xs-6 col-md-4 form-group'>" + 
-							"<select class='form-control selectpicker' id='subject' data-style='btn-inverse' required>" +
-								"<option value='General Inquiry'>General Inquiry</option>" +
-								"<option value='Feature Request'>Feature Request</option>" +
-								"<option value='Report a Bug'>Report a Bug</option>" +
-							"</select>" +
-						"</div>" + 
-					"</div>" + 
-					"<textarea class='form-control' id='message' name='message' placeholder='Message' rows='5'></textarea>" + 
-					"</form>" + 
-				"</div>" +
-				"</div>",
-			buttons: {
-				success: {
-					label: "Send Message",
-					className: "btn-success",
-					callback: function () {
-						var name = $('#name').val();
-						var email = $('#email').val();
-						var subject = $("#subject").val();
-						var text = $('#message').val();
-						Meteor.call(
-							'contactUsEmail',
-							name,
-							email,
-							subject,
-							text,
-							function (error, result) {
-								if (error) {
-									console.log(error);
-								} else {
-									toastr.success("Thank you for contacting us " + name + ". We'll get back to you as soon as we can.", "Thank You");
-								}
-							}
-						);
+	'click #contact-box': function() {
+		sweetAlert({
+			title: 'Contact Us',
+			html: Blaze.toHTML(Template.contactUsForm),
+			customClass: 'welcome-overlay',
+			allowOutsideClick: false,
+			allowEscapeKey: true,
+			showCancelButton: true,
+			confirmButtonText: 'Send Message',
+			confirmButtonColor: '#138013',
+			confirmButtonClass: 'btn-success',
+			closeOnConfirm: true,
+			width: 600
+		}, function() {
+			sweetAlert.disableButtons();
+			setTimeout(function() {
+				var name = $('#name').val();
+				var email = $('#email').val();
+				var subject = $("#subject").val();
+				var text = $('#message').val();
+				Meteor.call('contactUsEmail', name, email, subject, text, function (error, result) {
+					if (error) {
+						console.log(error);
 					}
-				}
-			},
-			onEscape: function() {
-				bootbox.hideAll();
-			},
-			backdrop: true
+					sweetAlert("Thank You", "Thank you for contacting us " + name + ". We'll get back to you as soon as we can.", "success");
+				});
+			}, 1000);
 		});
 	}
 });
