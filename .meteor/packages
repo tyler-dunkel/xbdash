@@ -20,7 +20,6 @@ skinnygeek1010:validate-form
 reactive-var
 meteorhacks:async
 http
-kevohagan:sweetalert
 msavin:mongol
 msavin:jetsetter
 accounts-twitter
@@ -71,3 +70,4 @@ okgrow:analytics
 vsivsi:job-collection
 meteorhacks:ssr
 arkham:comments-ui
+limonte:sweetalert2
