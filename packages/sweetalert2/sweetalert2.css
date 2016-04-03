@@ -51,6 +51,12 @@
   height: 10px;
   color: transparent;
   border: 0;
+  margin: 5px 0;
+}
+.sweet-alert.welcome-overlay hr {
+  height: 0;
+  color: transparent;
+  border: 0;
   margin: 0;
 }
 .sweet-alert button.styled {
@@ -61,7 +67,7 @@
   font-weight: 500;
   border-radius: 5px;
   padding: 10px 32px;
-  margin: 0 5px;
+  margin: 10px 5px;
   cursor: pointer;
 }
 .sweet-alert button.styled:focus {
@@ -113,7 +119,7 @@
   width: 47px;
   background-color: #f27474;
   display: block;
-  top: 37px;
+  top: 30px;
   border-radius: 2px;
 }
 .sweet-alert .icon.error .line.left {
@@ -229,17 +235,20 @@
 .sweet-alert .icon.success .line.tip {
   width: 25px;
   left: 14px;
-  top: 46px;
+  top: 38px;
   transform: rotate(45deg);
 }
 .sweet-alert .icon.success .line.long {
   width: 47px;
   right: 8px;
-  top: 38px;
+  top: 30px;
   transform: rotate(-45deg);
 }
 .sweet-alert .sweet-image {
   margin: 20px auto;
+}
+.sweet-alert.welcome-overlay .panel {
+  margin-bottom: 10px;
 }
 
 @keyframes showSweetAlert {

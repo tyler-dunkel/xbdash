@@ -1,6 +1,3 @@
-Template.logIn.rendered = function() {
-}
-
 Template.logIn.events({
 	'submit #loginform': function(e) {
 		subMana.clear();

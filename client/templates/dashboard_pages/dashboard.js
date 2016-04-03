@@ -1,6 +1,3 @@
-Template.dashboard.created = function() {
-};
-
 Template.dashboard.rendered = function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()

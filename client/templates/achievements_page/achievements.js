@@ -18,9 +18,3 @@ Template.achievementsApp.helpers({
 		return achievements;
 	}
 });
-
-Template.achievementsPage.events({
-});
-
-Tracker.autorun(function() {
-});

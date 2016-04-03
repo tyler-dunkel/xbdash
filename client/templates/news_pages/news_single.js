@@ -1,6 +1,3 @@
-Template.newsSinglePage.rendered = function() {
-}
-
 Template.newsSinglePage.helpers({
 	article: function() {
 		var slug = Router.current().params.slug;
@@ -26,7 +23,4 @@ Template.newsSinglePage.helpers({
 	    	}
 	    }
 	}
-});
-
-Tracker.autorun(function() {
 });

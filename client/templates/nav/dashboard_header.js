@@ -11,6 +11,24 @@ Template.dashboardHeader.rendered = function () {
     });
 }
 
+Template.dashboardHeader.helpers({
+    isStatsDisabled: function () {
+        var user = Meteor.user();
+        var userString = EJSON.stringify(user);
+        if (user && user.gamertagScanned) {
+            if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+                return;
+            }
+        }
+        return 'disabled hide';
+    },
+    isDashboardPage: function () {
+        if (Router.current().route.getName() === 'home') {
+            return 'disabled hide';
+        }
+    }
+});
+
 Template.dashboardHeader.events({
     'click #logout': function(e) {
         e.preventDefault();
@@ -46,23 +64,5 @@ Template.dashboardHeader.events({
         ($this.parent().hasClass('active') && $this.next().slideUp(200)) || $this.next().slideDown(200);
         $this.parent().toggleClass('active');
         $this.next().is('ul') && e.preventDefault();
-    }
-});
-
-Template.dashboardHeader.helpers({
-    isStatsDisabled: function () {
-        var user = Meteor.user();
-        var userString = EJSON.stringify(user);
-        if (user && user.gamertagScanned) {
-            if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
-                return;
-            }
-        }
-        return 'disabled hide';
-    },
-    isDashboardPage: function () {
-        if (Router.current().route.getName() === 'home') {
-            return 'disabled hide';
-        }
     }
 });

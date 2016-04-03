@@ -1,6 +1,3 @@
-Template.helpPage.created = function() {
-}
-
 Template.helpPage.rendered = function() {
 	$('#sidebar').affix({
 	    offset: {     

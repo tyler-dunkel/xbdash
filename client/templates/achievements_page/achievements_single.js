@@ -1,5 +1,4 @@
-Template.achievementsSinglePage.created = function() {
-}
+Template.achievementsSinglePage.created = function() {}
 
 Template.achievementsSinglePage.helpers({
     achievementClass: function () {
@@ -56,10 +55,4 @@ Template.achievementsSinglePage.helpers({
         }
         return image;
     }
-});
-
-Template.achievementsSinglePage.events({
-});
-
-Tracker.autorun(function() {
 });

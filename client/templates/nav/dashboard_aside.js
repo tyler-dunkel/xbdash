@@ -19,7 +19,7 @@ Template.asideHeader.helpers({
     chkGamerBuilding: function () {
         var user = Meteor.user();
         if (user && user.gamertagScanned) {
-            if (user.gamertagScanned.status === 'building'){
+            if (user.gamertagScanned.status === 'building') {
                 return true;
             }
         }

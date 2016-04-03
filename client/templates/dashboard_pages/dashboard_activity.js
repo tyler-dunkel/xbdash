@@ -72,10 +72,3 @@ Template.recentActivityLine.helpers({
         }
     }
 });
-
-/*,
-    remainingAchievements: function (gameId) {
-        var achievementCount = xbdAchievements.find({ gameId: gameId }).count();
-        return achievementCount - this.earnedAchievements;
-    }
-*/

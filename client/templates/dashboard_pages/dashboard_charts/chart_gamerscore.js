@@ -81,9 +81,6 @@ Template.gamerscoreChartSvg.events({
 	}
 });
 
-Tracker.autorun(function() {
-});
-
 var updateGamerscoreChart = function(formattedData) {
 	d3.select('#gamerscore-chart svg').datum(formattedData).transition().duration(350).call(gamerscoreChart);
 	nv.utils.windowResize(gamerscoreChart.update);

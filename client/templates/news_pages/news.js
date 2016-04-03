@@ -30,9 +30,6 @@ Template.newsSection.helpers({
 	}
 });
 
-Tracker.autorun(function() {
-});
-
 function showMoreVisible() {
 	var threshold, target = $("#hasMoreResults");
 	if (!target.length) return;
