@@ -1,26 +1,46 @@
 <template name="completedGamesRanks">
   {{#if Template.subscriptionsReady}}
-  <div class="panel-heading text-center">
-    <h3 class="m-n padder-t text-white h4">Completed Games</h3>
+  <div class="panel panel-black" style="margin-bottom: 0;">
+    <div class="panel-heading text-center">
+      <h3 class="m-n padder-t text-white h4">Completed Games</h3>
+    </div>
   </div>
-  <ul class="list-group alt">
-    {{#each completedGamesLB}}
-    <li class="list-group-item">
+  <div class="panel panel-success" style="margin-bottom: 0;">
+    <div class="panel-heading current-user">
       <div class="media">
-        <span class="pull-left m-t-sm" style="display: block; font-size: 16px;">{{completedGames.rank}}</span>
+        <span class="pull-left m-t-sm">{{getCurrentUserGamesRank}}</span>
         <span class="pull-left thumb-sm">
-          <img src="{{getUserImage}}" alt="{{getUser}}" />
+          <img src="{{getCurrentUserImage}}" alt="{{getCurrentUser}}" />
         </span>
         <div class="pull-right text-success m-t-sm">
-          {{completedGames.count}}
+          {{getCurrentUserGamesCount}}
         </div>
         <div class="media-body">
-          <div class="text-ellipsis-inline">{{getUser}}</div>
+          <div class="text-ellipsis-inline m-t-sm">{{getCurrentUser}}</div>
         </div>
       </div>
-    </li>
-    {{/each}}
-  </ul>
+    </div>
+  </div>
+  <div class="panel panel-black">
+    <ul class="list-group alt">
+      {{#each completedGamesLB}}
+      <li class="list-group-item">
+        <div class="media">
+          <span class="pull-left m-t-sm">{{completedGames.rank}}</span>
+          <span class="pull-left thumb-sm">
+            <img src="{{getUserImage}}" alt="{{getUser}}" />
+          </span>
+          <div class="pull-right text-success m-t-sm">
+            {{completedGames.count}}
+          </div>
+          <div class="media-body">
+            <div class="text-ellipsis-inline">{{getUser}}</div>
+          </div>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
   {{else}}
     {{> loadingTemplate}}
   {{/if}}

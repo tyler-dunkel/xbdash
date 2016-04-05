@@ -1,15 +1,16 @@
-.leaderboards-page ul.list-group.alt li:first-child .media .thumb-sm {
-	width: 64px;
-	height: auto;
-}
 .leaderboards-page ul.list-group.alt li .media .media-body,
 .leaderboards-page ul.list-group.alt li .media .m-t-sm {
 	padding-top: 5px;
 	margin: 0;
 }
-.leaderboards-page ul.list-group.alt li:first-child .media .media-body,
-.leaderboards-page ul.list-group.alt li:first-child .media .m-t-sm {
+.leaderboards-page .panel-heading.current-user .media .thumb-sm {
+	width: 64px;
+	height: auto;
+}
+.leaderboards-page .panel-heading.current-user .media .m-t-sm {
+	color: #1C2B36;
+	display: block;
 	font-size: 18px;
-	padding-top: 15px;
 	margin: 0;
+	padding-top: 15px;
 }

@@ -8,7 +8,6 @@
   display: none;
   z-index: 1000;
 }
-
 .sweet-alert {
   background-color: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -24,6 +23,14 @@
   overflow-y: auto;
   display: none;
   z-index: 2000;
+}
+@media screen and (max-width: 1000px) {
+  .sweet-alert {
+      max-width: 100%;
+      left: 0 !important;
+      margin-left: 0 !important;
+      top: 38%;
+  }
 }
 .sweet-alert h2 {
   color: #575757;
@@ -265,6 +272,7 @@
     transform: scale(1);
   }
 }
+
 @keyframes hideSweetAlert {
   0% {
     transform: scale(1);
@@ -273,13 +281,13 @@
     transform: scale(0.5);
   }
 }
+
 .show-sweet-alert {
   animation: showSweetAlert 0.3s;
 }
 .show-sweet-alert.no-animation {
   animation: none;
 }
-
 .hide-sweet-alert {
   animation: hideSweetAlert 0.2s;
 }
@@ -314,6 +322,7 @@
     top: 45px;
   }
 }
+
 @keyframes animate-success-long {
   0% {
     width: 0;
@@ -336,6 +345,7 @@
     top: 38px;
   }
 }
+
 @keyframes rotatePlaceholder {
   0% {
     transform: rotate(-45deg);
@@ -350,6 +360,7 @@
     transform: rotate(-405deg);
   }
 }
+
 .animate-success-tip {
   animation: animate-success-tip 0.75s;
 }
@@ -372,6 +383,7 @@
     opacity: 1;
   }
 }
+
 .animate-error-icon {
   animation: animate-error-icon 0.5s;
 }
@@ -397,6 +409,7 @@
     opacity: 1;
   }
 }
+
 .animate-x-mark {
   animation: animate-x-mark 0.5s;
 }
@@ -409,6 +422,7 @@
     border-color: #f8bb86;
   }
 }
+
 .pulse-warning {
   animation: pulse-warning 0.75s infinite alternate;
 }

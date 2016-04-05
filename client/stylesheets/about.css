@@ -70,11 +70,11 @@
 
 @media (max-width: 1200px) {
     .home-page .carousel-caption {
-        top: auto;
+        top: 10%;
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
     .home-page .carousel-caption h3 {
         font-size: 32px;
     }
@@ -98,8 +98,8 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 878px) {
     .home-page .carousel-caption {
-        top: 0;
+        top: 3%;
     }
 }
