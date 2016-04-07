@@ -27,10 +27,14 @@
           </div>
           <div class="wrapper-md">
             <div class="row">
-              <div class="col-lg-8 col-xs-12">
+              <div class="col-lg-6 col-xs-12">
                 {{> newsSection}}
               </div>
-              <div class="wrapper-md col-lg-4 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
+              <div class="col-lg-2 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
+                {{> mostSharedNews limit=5}}
+              </div>
+              <div class="col-lg-4 col-xs-12">
+                <div class="xbd-right-banner-ad"></div>
               </div>
             </div>
           </div>
@@ -43,10 +47,12 @@
 <template name="newsSection">
   {{#if Template.subscriptionsReady}}
     <div class="blog-post">
-    {{#each latestNews}}
-      {{> newsTemplate}}
-    {{/each}}
-    <div style="display:block;">&nbsp;</div>
+      <div class="list-group list-group-lg list-group-sp">
+      {{#each latestNews}}          
+        {{> newsTemplate}}
+      {{/each}}
+      </div>
+      <div style="display:block;">&nbsp;</div>
     </div>
     {{#if hasMoreResults}}
       <div id="hasMoreResults">{{> loadingTemplateRect}}</div>

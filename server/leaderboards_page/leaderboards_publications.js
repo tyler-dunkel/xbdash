@@ -1,3 +1,7 @@
+Meteor.publish('currentUserLeaderboard', function() {
+	return userLeaderboards.find({ 'userId': this.userId });
+});
+
 Meteor.publishComposite('dailyRanks', function() {
 	return {
 		find: function() {

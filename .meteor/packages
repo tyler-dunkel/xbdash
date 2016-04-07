@@ -60,7 +60,6 @@ ejson
 spacebars
 check
 okgrow:router-autoscroll
-liberation:shareit
 lepozepo:cloudinary
 semantic:ui-visibility
 xbdash:xbd-logger
@@ -69,3 +68,4 @@ vsivsi:job-collection
 meteorhacks:ssr
 arkham:comments-ui
 limonte:sweetalert2
+joshowens:shareit

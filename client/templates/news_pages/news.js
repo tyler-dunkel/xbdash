@@ -35,7 +35,6 @@ function showMoreVisible() {
 	if (!target.length) return;
 	threshold = $(window).scrollTop() + $(window).height() - target.height();
 	if (target.offset().top < threshold) {
-		console.log(target.data);
 		if (!target.data("visible")) {
 			target.data("visible", true);
 			newsLimit.set(newsLimit.get() + 9);

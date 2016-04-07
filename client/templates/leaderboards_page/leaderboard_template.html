@@ -1,0 +1,53 @@
+<template name="leaderboardTemplate">
+  {{#if Template.subscriptionsReady}}
+    <div class="panel panel-black" style="margin-bottom: 0;">
+      <div class="panel-heading text-center">
+        <h3 class="m-n padder-t text-white h4">{{boardTitle}}</h3>
+      </div>
+    </div>
+    {{#if chkGamerStatus}}
+      {{> currentUserLeaderboard boardType=this.boardType}}
+    {{/if}}
+    <div class="panel panel-black">
+      <ul class="list-group alt">
+        {{#each rank}}
+        <li class="list-group-item">
+          <div class="media">
+            <span class="pull-left m-t-sm">{{getUserRank}}</span>
+            <span class="pull-left thumb-sm">
+              <img src="{{getUserImage}}" alt="{{getUser}}" />
+            </span>
+            <div class="pull-right text-success m-t-sm">
+              {{getUserRankValue}}
+            </div>
+            <div class="media-body">
+              <div class="text-ellipsis-inline">{{getUser}}</div>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{else}}
+    {{> loadingTemplate}}
+  {{/if}}
+</template>
+
+<template name="currentUserLeaderboard">
+  <div class="panel panel-success" style="margin-bottom: 0;">
+    <div class="panel-heading current-user">
+      <div class="media">
+        <span class="pull-left m-t-sm">{{getCurrentUserLBRank}}</span>
+        <span class="pull-left thumb-sm">
+          <img src="{{getCurrentUserImage}}" alt="{{getCurrentUser}}" />
+        </span>
+        <div class="pull-right text-success m-t-sm">
+          {{getCurrentUserLBCount}}
+        </div>
+        <div class="media-body">
+          <div class="text-ellipsis-inline m-t-sm">{{getCurrentUser}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
