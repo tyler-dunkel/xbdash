@@ -54,14 +54,14 @@ Meteor.publishComposite('myTopGames', {
 				}
 				return gameDetails.find({ gameId: id }, {
 					fields: {
-	                    gameId: 1,
-	                    gameName: 1,
-	                    gameReleaseDate: 1,
-	                    gameGenre: 1,
-	                    gameArt: 1,
-	                    gamePublisherName: 1,
-	                    gameAllTimeAverageRating: 1
-	                }
+						gameId: 1,
+						gameName: 1,
+						gameReleaseDate: 1,
+						gameGenre: 1,
+						gameArt: 1,
+						gamePublisherName: 1,
+						gameAllTimeAverageRating: 1
+					}
 				});
 			}
 		},
@@ -78,12 +78,12 @@ Meteor.publishComposite('myTopGames', {
 				}
 				return xbdGames.find({ _id: game.gameId }, {
 					sort: { maxGamerscore: -1 },
-		            fields: {
-		                platform: 1,
-		                name: 1,
-		                maxGamerscore: 1,
-		                slug: 1
-		            }
+					fields: {
+						platform: 1,
+						name: 1,
+						maxGamerscore: 1,
+						slug: 1
+					}
 				});
 			}
 		}
@@ -98,28 +98,28 @@ Meteor.publishComposite('gamesByReleaseDate', function(options) {
 			console.log(limit);
 			return gameDetails.find({}, {
 				fields: {
-	                gameId: 1,
-	                gameName: 1,
-	                gameReleaseDate: 1,
-	                gameGenre: 1,
-	                gameArt: 1,
-	                gamePublisherName: 1,
-	                gameAllTimeAverageRating: 1
-	            },
-	            sort: { gameReleaseDate: -1 },
-	            limit: limit
-	        });
+					gameId: 1,
+					gameName: 1,
+					gameReleaseDate: 1,
+					gameGenre: 1,
+					gameArt: 1,
+					gamePublisherName: 1,
+					gameAllTimeAverageRating: 1
+				},
+				sort: { gameReleaseDate: -1 },
+				limit: limit
+			});
 		},
 		children: [
 			{
 				find: function(game) {
 					return xbdGames.find({ _id: game.gameId }, {
 						fields: {
-			                platform: 1,
-			                name: 1,
-			                maxGamerscore: 1,
-			                slug: 1
-			            }
+							platform: 1,
+							name: 1,
+							maxGamerscore: 1,
+							slug: 1
+						}
 					});
 				}
 			},
@@ -179,6 +179,7 @@ Meteor.publishComposite('singleGame', function(slug) {
 							gameId: 1,
 							gameName: 1,
 							gameDescription: 1,
+							gameReducedDescription: 1,
 							gameReleaseDate: 1,
 							gameGenre: 1,
 							gameArt: 1,
@@ -214,9 +215,9 @@ Meteor.publishComposite('singleGameAchievements', function(slug) {
 			var game = xbdGames.findOne({ slug: slug });
 			return xbdAchievements.find({ gameId: game._id }, {
 				sort: {
-	                value: 1,
-	                name: 1
-	            },
+					value: 1,
+					name: 1
+				},
 				fields: {
 					gameId: 1,
 					name: 1,

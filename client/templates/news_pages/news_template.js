@@ -14,8 +14,17 @@ Template.newsTemplate.helpers({
         }
         return getImage;
 	},
-	updatedDate: function() {
-		return moment(this.updated).format('MMMM Do YYYY, h:mm a');
+	sourceExists: function () {
+		if (this.source !== 'xboxdash') {
+			return true;
+		}
+		return false;
+	},
+	sourceName: function () {
+		if (this.source) {
+			return 'from ' + this.source.toUpperCase();
+		}
+		return;
 	},
 	shareCount: function() {
 		if (this.shareCount) {

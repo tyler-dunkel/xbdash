@@ -4,8 +4,8 @@
 	    	<img src="{{getImage}}" class="img-full">
 	    </span>
 	    <span class="clear">
-	    	<h3 class="text-lt m-b-sm title-wrap-news" style="min-height: 60px;">{{title}}</h3>
-	    	<small>from <em>{{source}}</em></small>
+	    	<h3 class="text-lt m-b-sm title-wrap-news">{{title}}</h3>
+	    	{{#if sourceExists}}<small>{{sourceName}}</small>{{/if}}
 	    	<div>
 	    		<i class="fa fa-square-share-o text-muted"></i> {{shareCount}}
 			</div>

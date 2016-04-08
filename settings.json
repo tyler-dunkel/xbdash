@@ -1,6 +1,5 @@
 {
 	"services": {
-		"facebookAppId": "109259765831650",
 		"facebookSecret": "5d426e68a123871b8f051262b0f86f7b",
 		"twitterConsumerKey": "UVos5UTOWCXMAUGDzvEcyHqAZ",
 		"twitterSecret": "9TDyJr6AK3BcONuagMN7eeBD5xWHON41UD5HxkIoymUtxvz3Dh",
@@ -12,6 +11,7 @@
 	"public": {
 		"analyticsSettings": {
 			"Google Analytics": {"trackingId": "UA-72492857-1"}
-		}
+		},
+		"facebookAppId": "109259765831650"
 	}
 }

@@ -3,33 +3,20 @@ Template.shareIt.helpers({
 		var content = this.content;
 		var author = this.author;
 		console.log(author);
-		// var getImage = content.match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i');
+		var getImage = $('div > img')[0].src;
 
-		// if (!getImage) {
-		var getImage = "/img/news-default.jpg";
-		// }
+		if (getImage) {
+			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(selectFirstImage);
+		} else {
+			getImage = '/img/news-default.jpg';
+		}
 
 		return {
 			title: this.title,
-			author: 'XboxDash',
+			author: 'XBdash',
 			image: function () {
-		        return getImage;
-	    	}
+				return getImage;
+			}
 		}
 	}
-});
-
-ShareIt.configure({
-	sites: {
-		'facebook': {
-			'appId': null
-		},
-		'twitter': {},
-		'pinterest': {}
-	},
-	classes: "large btn",
-	iconOnly: false,
-	applyColors: true,
-	faSize: '',
-	faClass: ''
 });

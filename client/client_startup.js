@@ -22,6 +22,22 @@ Meteor.startup(function() {
 		"hideMethod": "fadeOut"
 	};
 
+	ShareIt.configure({
+		sites: {
+			'facebook': {
+				'appId': Meteor.settings.public.facebookAppId
+			},
+			'twitter': {},
+			'pinterest': {},
+			'googleplus': {}
+		},
+		classes: "large btn",
+		iconOnly: false,
+		applyColors: true,
+		faSize: 'fa-lg',
+		faClass: ''
+	});
+
 	var imageAnalyzer = {
 		name: 'image',
 		getMediaFromContent: function(content) {
@@ -79,7 +95,8 @@ Meteor.startup(function() {
 		limit: 5,
 		loadMoreCount: 10,
 		defaultAvatar: '/img/user-default.jpg',
-		markdown: false
+		markdown: false,
+		template: 'bootstrap'
 	});
 
 	$.cloudinary.config({
