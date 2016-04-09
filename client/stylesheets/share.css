@@ -1,0 +1,22 @@
+.share-bar {
+	text-align: center;
+	padding: 10px 0 0;
+}
+.share-bar h4 {
+	margin-top: 0;
+}
+.share-buttons .shareit-pinterest-colors,
+.share-buttons .shareit-google-colors {
+	display: none;
+}
+.share-buttons .shareit-facebook-colors,
+.share-buttons .shareit-twitter-colors {
+	margin-bottom: 15px;
+}
+.blog-post.left .share-bar {
+	padding: 10px 0;
+}
+.blog-post.left .share-buttons .shareit-facebook-colors,
+.blog-post.left .share-buttons .shareit-twitter-colors {
+	margin-bottom: 10px;
+}

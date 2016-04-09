@@ -27,7 +27,8 @@ Template.aboutUs.helpers({
 });
 
 Template.aboutUs.events({
-	'click #contact-box': function() {
+	'click #contact-box': function(e) {
+		e.preventDefault();
 		sweetAlert({
 			title: 'Contact Us',
 			html: Blaze.toHTML(Template.contactUsForm),

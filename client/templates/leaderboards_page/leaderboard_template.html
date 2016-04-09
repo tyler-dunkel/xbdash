@@ -6,7 +6,9 @@
       </div>
     </div>
     {{#if chkGamerStatus}}
+    {{#if checkForLB}}
       {{> currentUserLeaderboard boardType=this.boardType}}
+    {{/if}}
     {{/if}}
     <div class="panel panel-black">
       <ul class="list-group alt">

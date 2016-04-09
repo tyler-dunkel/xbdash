@@ -32,6 +32,30 @@ Template.leaderboardTemplate.helpers({
                 return 'Top All-Time Gamerscore';
         }
     },
+    checkForLB: function() {
+        var count;
+        var user = Meteor.user();
+        var boardType = Template.instance().data.boardType;
+        switch(boardType) {
+            case 'dailyRank':
+                count = userLeaderboards.find({ 'userId': user._id, 'dailyRank.rank': { $gte: 1 } }).count();
+                if (count > 0) return true;
+                return false;
+                break;
+            case 'completedAchievements': 
+                count = userLeaderboards.find({ 'userId': user._id, 'completedAchievements.rank': { $gte: 1 } }).count();
+                if (count > 0) return true;
+                return false;
+                break;
+            case 'completedGames':
+                count = userLeaderboards.find({ 'userId': user._id, 'completedGames.rank': { $gte: 1 } }).count();
+                if (count > 0) return true;
+                return false;
+                break;
+            default:
+                return true;
+        }
+    },
     rank: function() {
         var boardType = Template.instance().data.boardType;
         switch(boardType) {
@@ -65,6 +89,18 @@ Template.leaderboardTemplate.helpers({
                     limit: 50
                 });
         }
+    },
+    getUser: function() {
+        var user = Meteor.users.findOne({ _id: this.userId });
+        return user.gamercard.gamertag;
+    },
+    getUserImage: function() {
+        var user = Meteor.users.findOne({ _id: this.userId });
+        var defaultGamerImage = '/img/gamerpic-default.jpg';
+        if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath && (user.gamercard.gamerpicLargeSslImagePath !== '')) {
+            defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+        }
+        return defaultGamerImage;
     },
     getUserRank: function() {
         var boardType = Template.parentData(1).boardType;
@@ -100,18 +136,6 @@ Template.leaderboardTemplate.helpers({
             default:
                 return user.gamercard.gamerscore;
         }
-    },
-    getUser: function() {
-        var user = Meteor.users.findOne({ _id: this.userId });
-        return user.gamercard.gamertag;
-    },
-    getUserImage: function() {
-        var user = Meteor.users.findOne({ _id: this.userId });
-        var defaultGamerImage = '/img/gamerpic-default.jpg';
-        if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
-            defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
-        }
-        return defaultGamerImage;
     }
 });
 
@@ -126,7 +150,11 @@ Template.currentUserLeaderboard.helpers({
     },
     getCurrentUserImage: function() {
         var user = Meteor.user();
-        return "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+        var defaultGamerImage = '/img/gamerpic-default.jpg';
+        if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
+            defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+        }
+        return defaultGamerImage;
     },
     getCurrentUserLBRank: function() {
         var user = Meteor.user();

@@ -1,5 +1,6 @@
 Template.privacyPolicy.events({
-	'click #contact-us': function() {
+	'click #contact-us': function(e) {
+		e.preventDefault();
 		sweetAlert({
 			title: 'Contact Us',
 			html: Blaze.toHTML(Template.contactUsForm),
