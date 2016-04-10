@@ -1,10 +1,8 @@
 Template.dashboardHeader.rendered = function () {
-    // on nav-toggle click, toggle active class and toggle off-screen class
     $('.nav-toggle').on('click', function () {
         $('.nav-toggle').toggleClass('active');
         $('.app-aside').toggleClass('off-screen');
     });
-    // on settings-toggle click, toggle active class and toggle show class
     $('.settings-toggle').on('click', function () {
         $('.settings-toggle').toggleClass('active');
         $('.navbar-collapse').toggleClass('show');

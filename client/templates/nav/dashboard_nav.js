@@ -44,8 +44,8 @@ Template.dashboardNav.events({
 			type: "error",
 			confirmButtonText: "Sign Up",
 			confirmButtonColor: "#138013"
-		}, function(isConfirm) {
-			if (isConfirm) {
+		}, function(e) {
+			if (e) {
 				Router.go('signUp');
 			}
 		});
@@ -58,8 +58,8 @@ Template.dashboardNav.events({
 			type: "error",
 			confirmButtonText: "Confirm Gamertag",
 			confirmButtonColor: "#138013"
-		}, function(isConfirm) {
-			if (isConfirm) {
+		}, function(e) {
+			if (e) {
 				Router.go('confirmGt');
 			}
 		});

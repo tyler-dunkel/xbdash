@@ -1,59 +1,54 @@
 <template name="dashboard">
-  {{#if chkBuilding}}
-    {{> dashboardOverlay}}
-  {{else}}
-    {{> dashboardApp}}
-  {{/if}}
+	{{#if chkBuilding}}
+	{{> dashboardOverlay}}
+	{{else}}
+	{{> dashboardApp}}
+	{{/if}}
 </template>
 
 <template name="dashboardApp">
-  <div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-      <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <!-- main -->
-        <div class="col">
-          <!-- main header -->
-          <div class="bg-light lter b-b wrapper-md">
-            <div class="row">
-              <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">Dashboard</h1>
-                {{#if chkGamerStatus}}
-                <small class="text-muted">Welcome back!</small>
-                {{/if}}
-              </div>
-              {{#if chkGamerStatus}}
-              <div class="col-sm-6 text-right hidden-xs">
-                <div class="inline m-l m-r text-left">
-                  {{> userDailyRank}}
-                </div>
-                <div class="inline text-left">
-                  {{> userOverallRank}}
-                </div>
-              </div>
-              {{/if}}
-            </div>
-          </div>
-          <!-- / main header -->
-          <div class="wrapper-md">
-            <!-- stats -->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row row-sm text-center dashboard-stats">
-                  {{> dashboardStatBoxes}}
-                </div>
-                <div class="row row-sm text-center">
-                  {{> dashboardStatGs}}
-                </div>
-              </div>
-            </div>
-            {{> achievementsChart}}
-            {{> gamerscoreChart}}
-            {{> gamesChart}}
-          </div>
-        </div>
-        <!-- / main -->
-        {{> recentActivityColumn}}
-      </div>
-    </div>
-  </div>
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Dashboard</h1>
+								{{#if chkGamerStatus}}
+								<small class="text-muted">Welcome back!</small>
+								{{/if}}
+							</div>
+							{{#if chkGamerStatus}}
+							<div class="col-sm-6 text-right hidden-xs">
+								<div class="inline m-l m-r text-left">
+									{{> userDailyRank}}
+								</div>
+								<div class="inline text-left">
+									{{> userOverallRank}}
+								</div>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row row-sm text-center dashboard-stats">
+									{{> dashboardStatBoxes}}
+								</div>
+								<div class="row row-sm text-center dashboard-stats dashboard-gamerscore-row">
+									{{> dashboardStatGs}}
+								</div>
+							</div>
+						</div>
+						{{> achievementsChart}}
+						{{> gamerscoreChart}}
+						{{> gamesChart}}
+					</div>
+				</div>
+				{{> recentActivityColumn}}
+			</div>
+		</div>
+	</div>
 </template>

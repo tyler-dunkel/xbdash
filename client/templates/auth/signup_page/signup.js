@@ -36,8 +36,7 @@ Template.signUpForm.events({
 					type: "error",
 					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "OK",
-					closeOnConfirm: false,
-					html: true
+					closeOnConfirm: false
 				});
 				Router.go('signUp');
 				return;

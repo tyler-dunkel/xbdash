@@ -12,6 +12,7 @@
     {{/if}}
     <div class="panel panel-black">
       <ul class="list-group alt">
+        {{#if checkForLB}}
         {{#each rank}}
         <li class="list-group-item">
           <div class="media">
@@ -28,6 +29,13 @@
           </div>
         </li>
         {{/each}}
+        {{else}}
+        <li class="list-group-item">
+          <div class="padder-v text-center">
+            <div class="text-md">Currently collecting data.</div>
+          </div>
+        </li>
+        {{/if}}
       </ul>
     </div>
   {{else}}

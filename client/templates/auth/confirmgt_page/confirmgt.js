@@ -52,8 +52,7 @@ Template.confirmGtForm.events({
 						type: "error",
 						confirmButtonColor: "#DD6B55",
 						confirmButtonText: "OK",
-						closeOnConfirm: false,
-						html: true
+						closeOnConfirm: false
 					});
 					return;
 				}

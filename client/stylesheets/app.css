@@ -6193,7 +6193,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	border-bottom: 1px solid #dddddd;
 }
 @media only screen and (max-width: 530px) {
-	.col-xs-6 {
+	.achievements-list .col-xs-6 {
 		width: 42%;
 	}
 }

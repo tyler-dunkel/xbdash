@@ -41,7 +41,6 @@ Meteor.publish('mostSharedNews', function(limit) {
 	self = this;
 
 	sharedNews.forEach(function(article) {
-		console.log(article);
 		self.added('most_shared_news', article._id, {
 			updated: article.updated,
 			title: article.title,
