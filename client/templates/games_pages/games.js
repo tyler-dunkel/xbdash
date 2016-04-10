@@ -1,6 +1,3 @@
-Template.gamesApp.rendered = function() {
-}
-
 Template.gamesApp.created = function() {
 	var limit = 20;
 	this.subscribe('myTopGames');
@@ -35,10 +32,4 @@ Template.gamesApp.helpers({
             limit: 10
         });
 	}
-});
-
-Template.gamesPage.events({
-});
-
-Tracker.autorun(function() {
 });

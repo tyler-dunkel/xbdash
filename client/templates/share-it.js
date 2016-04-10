@@ -1,30 +1,22 @@
 Template.shareIt.helpers({
 	xbdData: function() {
-		var getImage = "/img/news-default.jpg";
-		
+		var content = this.content;
+		var author = this.author;
+		console.log(author);
+		var getImage = $('div > img')[0].src;
+
+		if (getImage) {
+			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(selectFirstImage);
+		} else {
+			getImage = '/img/news-default.jpg';
+		}
+
 		return {
 			title: this.title,
-			author: this.author,
+			author: 'XBdash',
 			image: function () {
-		        return getImage;
-	    	}
+				return getImage;
+			}
 		}
 	}
-});
-
-ShareIt.configure({
-	siteOrder: ['facebook', 'twitter', 'email'],
-	sites: {
-	  	'facebook': {
-	  		'appId': null
-	  	},
-        'twitter': {},
-        'googleplus': {},
-        'pinterest': {}
-    },
-    classes: "large btn",
-    iconOnly: false,
-    applyColors: true,
-    faSize: '',
-    faClass: ''
 });

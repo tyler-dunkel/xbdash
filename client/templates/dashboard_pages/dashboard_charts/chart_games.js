@@ -1,5 +1,6 @@
 var gameChart;
 var forceRerun = new Tracker.Dependency;
+
 Template.gamesChart.created = function() {
 	this.subscribe('dashboardGameGenreChart');
 }

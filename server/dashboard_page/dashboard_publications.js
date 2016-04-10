@@ -171,6 +171,14 @@ Meteor.publish('dashboardStatsTotalGames', function () {
 	self.ready();
 });
 
+Meteor.publish('userGamerscoreStats', function () {
+	return Meteor.users.find({ _id: this.userId }, {
+		fields: {
+			"gamercard": 1
+		}
+	});
+});
+
 Meteor.publishComposite('dashboardRecentActivity', {
 	find: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });

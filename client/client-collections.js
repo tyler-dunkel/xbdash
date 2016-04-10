@@ -9,3 +9,5 @@ dashboardStatsTotalAchievements = new Mongo.Collection('dashboard_stats_total_ac
 dashboardStatsCompletedGames = new Mongo.Collection('dashboard_stats_completed_games');
 
 dashboardStatsTotalGames = new Mongo.Collection('dashboard_stats_total_games');
+
+mostSharedNews = new Mongo.Collection('most_shared_news');

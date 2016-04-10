@@ -11,9 +11,10 @@ Meteor.publish('latestNews', function(limit) {
 		fields: {
 			updated: 1,
 			title: 1,
+			source: 1,
 			content: 1,
-			slug: 1,
 			author: 1,
+			slug: 1,
 			shareCount: 1
 		},
 		limit: limit
@@ -23,17 +24,33 @@ Meteor.publish('latestNews', function(limit) {
 Meteor.publish('mostSharedNews', function(limit) {
 	var twoWeeks = moment().subtract(14, 'days').toDate();
 
-	return xbdNews.find({ updated: { $gte: twoWeeks } }, {
+	var sharedNews = xbdNews.find({ updated: { $gte: twoWeeks } }, {
 		sort: { shareCount: -1 },
 		fields: {
+			_id: 1,
 			updated: 1,
 			title: 1,
+			source: 1,
 			content: 1,
 			slug: 1,
 			shareCount: 1
 		},
 		limit: limit
 	});
+
+	self = this;
+
+	sharedNews.forEach(function(article) {
+		self.added('most_shared_news', article._id, {
+			updated: article.updated,
+			title: article.title,
+			source: article.source,
+			content: article.content,
+			slug: article.slug,
+			shareCount: article.shareCount
+		});
+	});
+	self.ready();
 });
 
 Meteor.publish('singleNews', function(slug) {
@@ -41,6 +58,7 @@ Meteor.publish('singleNews', function(slug) {
 		fields: {
 			updated: 1,
 			title: 1,
+			source: 1,
 			content: 1,
 			link: 1,
 			author: 1,

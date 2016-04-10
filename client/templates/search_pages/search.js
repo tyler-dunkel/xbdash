@@ -9,9 +9,6 @@ var overlay = {
 	}
 }
 
-Template.searchBar.rendered = function() {
-}
-
 Template.searchBar.events({
 	"click .navbar-search .form-control": function (e) {
 		overlay.show();
@@ -29,6 +26,14 @@ Template.searchOverlayApp.helpers({
 	}
 });
 
+Template.searchOverlay.helpers({
+	overlayVisible: function() {
+		if (overlayShow.get() === 'show') {
+			return true;
+		}
+	}
+});
+
 Template.searchOverlay.events({
 	"keyup input": function(e) {
         if (e.keyCode === 27) {
@@ -42,19 +47,8 @@ Template.searchOverlay.events({
 	}
 });
 
-Template.searchOverlay.helpers({
-	overlayVisible: function() {
-		if (overlayShow.get() === 'show') {
-			return true;
-		}
-	}
-});
-
 Template.singleGameSearch.created = function() {
 	this.subscribe('gameDetailsSearch', this.data._id);
-}
-
-Template.singleGameSearch.rendered = function() {
 }
 
 Template.singleGameSearch.helpers({
@@ -127,7 +121,4 @@ Template.singleNewsSearch.helpers({
 		}
 		return '0 shares';
 	}
-});
-
-Tracker.autorun(function() {
 });

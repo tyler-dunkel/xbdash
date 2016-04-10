@@ -1,15 +1,31 @@
 Template.dashboardHeader.rendered = function () {
-    // on nav-toggle click, toggle active class and toggle off-screen class
     $('.nav-toggle').on('click', function () {
         $('.nav-toggle').toggleClass('active');
         $('.app-aside').toggleClass('off-screen');
     });
-    // on settings-toggle click, toggle active class and toggle show class
     $('.settings-toggle').on('click', function () {
         $('.settings-toggle').toggleClass('active');
         $('.navbar-collapse').toggleClass('show');
     });
 }
+
+Template.dashboardHeader.helpers({
+    isStatsDisabled: function () {
+        var user = Meteor.user();
+        var userString = EJSON.stringify(user);
+        if (user && user.gamertagScanned) {
+            if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+                return;
+            }
+        }
+        return 'disabled hide';
+    },
+    isDashboardPage: function () {
+        if (Router.current().route.getName() === 'home') {
+            return 'disabled hide';
+        }
+    }
+});
 
 Template.dashboardHeader.events({
     'click #logout': function(e) {
@@ -46,23 +62,5 @@ Template.dashboardHeader.events({
         ($this.parent().hasClass('active') && $this.next().slideUp(200)) || $this.next().slideDown(200);
         $this.parent().toggleClass('active');
         $this.next().is('ul') && e.preventDefault();
-    }
-});
-
-Template.dashboardHeader.helpers({
-    isStatsDisabled: function () {
-        var user = Meteor.user();
-        var userString = EJSON.stringify(user);
-        if (user && user.gamertagScanned) {
-            if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
-                return;
-            }
-        }
-        return 'disabled hide';
-    },
-    isDashboardPage: function () {
-        if (Router.current().route.getName() === 'home') {
-            return 'disabled hide';
-        }
     }
 });

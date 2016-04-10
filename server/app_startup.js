@@ -15,7 +15,7 @@ Meteor.startup(function() {
 
 	ServiceConfiguration.configurations.insert({
 		service: 'facebook',
-		appId: Meteor.settings.services.facebookAppId,
+		appId: Meteor.settings.public.facebookAppId,
 		secret: Meteor.settings.services.facebookSecret
 	});
 

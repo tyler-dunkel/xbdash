@@ -1,11 +1,38 @@
 var newsLimit = new ReactiveVar();
 
+Template.aboutUs.rendered = function() {
+	$('body').addClass('home-page');
+
+	$(window).bind('scroll', function() {
+        if ($(window).scrollTop() > 150) {
+            $('.navbar-fixed-top').addClass('on');
+        } else {
+            $('.navbar-fixed-top').removeClass('on');
+        }
+    });
+
+    $('body').scrollspy({ 
+        target: '.navbar-fixed-top',
+        offset: 100
+    });
+}
+
+Template.aboutUs.helpers({
+	resetPasswordToken: function() {
+		return Session.get('resetPasswordToken');
+	},
+	article: function() {
+
+	}
+});
+
 Template.aboutUs.events({
-	'click #contact-box': function() {
+	'click #contact-box': function(e) {
+		e.preventDefault();
 		sweetAlert({
 			title: 'Contact Us',
 			html: Blaze.toHTML(Template.contactUsForm),
-			customClass: 'welcome-overlay',
+			customClass: 'contact-us-modal',
 			allowOutsideClick: false,
 			allowEscapeKey: true,
 			showCancelButton: true,
@@ -31,32 +58,6 @@ Template.aboutUs.events({
 		});
 	}
 });
-
-Template.aboutUs.helpers({
-	resetPasswordToken: function() {
-		return Session.get('resetPasswordToken');
-	},
-	article: function() {
-
-	}
-});
-
-Template.aboutUs.rendered = function() {
-	$('body').addClass('home-page');
-
-	$(window).bind('scroll', function() {
-        if ($(window).scrollTop() > 150) {
-            $('.navbar-fixed-top').addClass('on');
-        } else {
-            $('.navbar-fixed-top').removeClass('on');
-        }
-    });
-
-    $('body').scrollspy({ 
-        target: '.navbar-fixed-top',
-        offset: 100
-    });
-}
 
 Template.aboutUs.destroyed = function() {
 	$('body').removeClass('home-page');

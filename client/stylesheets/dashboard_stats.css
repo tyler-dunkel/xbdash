@@ -1,0 +1,22 @@
+.dashboard-stats .dashboard-boxes-padder {
+	padding: 25px 0;
+}
+.dashboard-stats .spinner {
+	height: 35px;
+	margin: 4% auto 6%;
+	width: 35px;
+}
+@media (max-width: 767px) {
+	.dashboard-stats .hbox .col {
+		display: block;
+	}
+	.dashboard-stats .hbox .col.w-xs {
+		width: 100%;
+	}
+	.dashboard-stats.dashboard-gamerscore-row .b-a {
+		border: 2px solid #dee5e7;
+	}
+	.dashboard-stats.dashboard-gamerscore-row .panel {
+		margin-bottom: 0;
+	}
+}

@@ -2,10 +2,6 @@ Template.userDailyRank.created = function() {
 	this.subscribe('dailyRanks');
 }
 
-Template.userOverallRank.created = function() {
-	this.subscribe('overallRanks');
-}
-
 Template.userDailyRank.helpers({
 	userDailyRank: function() {
 		var userId = Meteor.userId();
@@ -16,6 +12,10 @@ Template.userDailyRank.helpers({
 		return '---';
 	}
 });
+
+Template.userOverallRank.created = function() {
+	this.subscribe('overallRanks');
+}
 
 Template.userOverallRank.helpers({
 	userOverallRank: function() {

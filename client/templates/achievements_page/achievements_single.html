@@ -26,6 +26,14 @@
 							<div class="h3 padder-vv-xbd text-center hidden-xs m-b">
 								<strong>{{value}}</strong> Gamerscore
 							</div>
+							{{#if chkGamerStatus}}
+							{{#if chkUserForAchievement}}
+								<div class="share-bar">
+									<h4>Share Your Achievement</h4>
+									{{> shareit achievementData}}
+								</div>
+							{{/if}}
+							{{/if}}
 							<p class="h5 text-left">
 								<h4 style="text-decoration: underline;">Description:</h4>
 								{{description}}

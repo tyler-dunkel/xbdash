@@ -20,8 +20,8 @@ Meteor.startup(function () {
                         xbdNews.insert(i);
                     } else {
                         var shareCount;
-                        var articleUrl = 'http://xboxdash.com/news/'+i.slug;
-                        var url = "https://api.facebook.com/method/links.getStats?urls="+articleUrl+"&format=json";
+                        var articleUrl = 'https://beta.xbdash.com/news/'+i.slug;
+                        var url = "https://api.facebook.com/method/links.getStats?urls=" + articleUrl + "&format=json";
                         HTTP.get(url, function (err, result) {
                             if (result.statusCode === 200) {
                                 var respJson = JSON.parse(result.content);

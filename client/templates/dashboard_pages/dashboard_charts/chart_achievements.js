@@ -76,9 +76,6 @@ Template.achievementsChartSvg.events({
     }
 });
 
-Tracker.autorun(function() {
-});
-
 var updateAchievementsChart = function(formattedData) {
 	d3.select('#achievements-chart svg').datum(formattedData).transition().duration(350).call(achievementsChart);
 	nv.utils.windowResize(achievementsChart.update);

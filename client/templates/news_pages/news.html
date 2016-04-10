@@ -1,57 +1,67 @@
 <template name="newsPage">
-  {{> newsApp}}
+	{{> newsApp}}
 </template>
 
 <template name="newsApp">
-  <div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-      <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <div class="col">
-          <div class="bg-light lter b-b wrapper-md">
-            <div class="row">
-              <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">Latest News</h1>
-                <small class="text-muted">Read the latest in Xbox&reg; achievements, search solutions</small>
-              </div>
-              {{#if chkGamerStatus}}
-              <div class="col-sm-6 text-right hidden-xs">
-                <div class="inline m-l m-r text-left">
-                  {{> userDailyRank}}
-                </div>
-                <div class="inline text-left">
-                  {{> userOverallRank}}
-                </div>
-              </div>
-              {{/if}}
-            </div>
-          </div>
-          <div class="wrapper-md">
-            <div class="row">
-              <div class="col-lg-8 col-xs-12">
-                {{> newsSection}}
-              </div>
-              <div class="wrapper-md col-lg-4 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Latest News</h1>
+								<small class="text-muted">Read the latest in Xbox&reg; achievements, search solutions</small>
+							</div>
+							{{#if chkGamerStatus}}
+							<div class="col-sm-6 text-right hidden-xs">
+								<div class="inline m-l m-r text-left">
+									{{> userDailyRank}}
+								</div>
+								<div class="inline text-left">
+									{{> userOverallRank}}
+								</div>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-lg-8 col-md-12">
+							{{> newsSection}}
+							</div>
+							<div class="col-lg-4 hidden-md hidden-sm hidden-xs trending-column">
+								<div class="row">
+									<div class="col-xs-12">
+										<h2 class="m-b-sm font-thin h3 text-black">Trending News</h2>
+									</div>
+									<div class="col-xs-12">
+										{{> mostSharedNews limit=5}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="newsSection">
-  {{#if Template.subscriptionsReady}}
-    <div class="blog-post">
-    {{#each latestNews}}
-      {{> newsTemplate}}
-    {{/each}}
-    <div style="display:block;">&nbsp;</div>
-    </div>
-    {{#if hasMoreResults}}
-      <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
-    {{/if}}
-  {{else}}
-    {{> loadingTemplate}}
-  {{/if}}
+	{{#if Template.subscriptionsReady}}
+	<div class="blog-post news-section">
+		<div class="list-group list-group-lg list-group-sp">
+		{{#each latestNews}}			
+			{{> newsTemplate}}
+		{{/each}}
+		</div>
+		<div style="display:block;">&nbsp;</div>
+	</div>
+	{{#if hasMoreResults}}
+		<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+	{{/if}}
+	{{else}}
+	   {{> loadingTemplate}}
+	{{/if}}
 </template>

@@ -28,24 +28,16 @@
           <div class="wrapper-md">
             <div class="row row-sm">
               <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                <div class="panel panel-black">
-                {{> dailyRanks}}
-                </div>
+                {{> leaderboardTemplate boardType="dailyRank"}}
               </div>
               <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                <div class="panel panel-black">
-                {{> overallRanks}}
-                </div>
+                {{> leaderboardTemplate boardType="overallRank"}}
               </div>
               <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                <div class="panel panel-black">
-                {{> completedAchievementsRanks}}
-                </div>
+                {{> leaderboardTemplate boardType="completedAchievements"}}
               </div>
               <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                <div class="panel panel-black">
-                {{> completedGamesRanks}}
-                </div>
+                {{> leaderboardTemplate boardType="completedGames"}}
               </div>
             </div>
           </div>

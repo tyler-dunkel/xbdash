@@ -1,0 +1,73 @@
+.dashboard-building {
+	color: #fff;
+	background-color: rgba(0,0,0,0.95);
+}
+.dashboard-building .wrapper-md {
+	padding: 20px 25%;
+}
+@media (max-width: 767px) {
+	.dashboard-building .wrapper-md {
+		padding: 20px 15%;
+	}
+}
+.dashboard-overlay {
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+}
+.dashboard-overlay .well {
+	background-color: transparent;
+	padding: 10px 25%;
+}
+.dashboard-overlay .thumb-xxxl {
+	display: inline-block;
+	width: 256px;
+	background: #fff;
+}
+.dashboard-overlay .text-xs {
+	color: #1C2B36;
+}
+.dashboard-overlay .line {
+	margin: 15px 0;
+}
+.tier-name {
+	text-transform: capitalize;
+}
+@media (min-width: 768px) {
+	.dashboard-overlay {
+		margin-left: 200px;
+		height: 100%;
+	}
+	.dashboard-overlay.not-found {
+		margin: 0;
+		height: 100%;
+	}
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+	.dashboard-overlay > div > div > div:nth-child(4) {
+		display: none;
+	}
+}
+@media (max-width: 1199px) {
+	.dashboard-building .thumb-news,
+	.dashboard-overlay .thumb-news {
+		max-width: 100%;
+	}
+	.dashboard-building .m-r,
+	.dashboard-overlay .m-r {
+		margin-right: 0;
+	}
+	.dashboard-building .clear,
+	.dashboard-overlay .clear {
+		display: inline-block;
+	}
+	.dashboard-building h3,
+	.dashboard-overlay h3 {
+		margin-top: 10px;
+	}
+}
+@media (min-width: 1200px) {
+	.dashboard-overlay > div > div > div:nth-child(4) {
+		display: block;
+	}
+}

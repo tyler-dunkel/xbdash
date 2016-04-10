@@ -1,86 +1,72 @@
 <template name="dashboardStatBoxes">
-  {{#if Template.subscriptionsReady}}
-  <div class="col-lg-3 col-md-6 col-sm-6">
-    <div class="panel padder-v item">
-      <div class="text-dark font-thin h1 p-container">
-        <div class="p-flipper">
-          <div class="p-front">
-            <div class="font-thin h1">{{achievementsCompleted}}</div>
-          </div>
-          <span class="p-back">
-            <span class="text-success">{{achievementsPercentage}}%</span>
-          </span>
-        </div>
-      </div>
-      <span class="text-muted text-xs">Achievements Completed</span>
-      <div class="top text-right w-full">
-        <i class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of achievements completed to date."></i>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6">
-    <a href class="block panel padder-v bg-success item">
-      <span class="text-white font-thin h1 block">{{totalAchievements}}</span>
-      <span class="text-muted text-xs">Total Achievements Available</span>
-      <div class="top text-right w-full">
-        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of achievemnts you can get based on your game history."></i>
-      </div>
-    </a>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6">
-    <a href class="block panel padder-v item">
-      <div class="text-dark font-thin h1 p-container">
-        <div class="p-flipper">
-          <div class="p-front">
-            <div class="font-thin h1">{{gamesCompleted}}</div>
-          </div>
-          <span class="p-back">
-            <span class="text-success">{{gamesPercentage}}%</span>
-          </span>
-        </div>
-      </div>
-      <span class="text-muted text-xs">Games Completed</span>
-      <div class="top text-right w-full">
-        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The number of games completed to date."></i>
-      </div>
-    </a>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6">
-    <a href class="block panel padder-v bg-success item">
-      <span class="text-white font-thin h1 block">{{totalGames}}</span>
-      <span class="text-muted text-xs">Total Games Played</span>
-      <div class="top text-right w-full">
-        <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="The total number of games you have played to date."></i>
-      </div>
-    </a>
-  </div>
-  {{else}}
-    {{> loadingTemplate}}
-  {{/if}}
+	{{#if Template.subscriptionsReady}}
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="panel dashboard-boxes-padder item">
+			<div class="text-dark font-thin h1">
+				<span class="font-thin h1">
+					{{achievementsCompleted}} |
+					<span class="font-bold text-success">{{achievementsPercentage}}%</span>
+				</span>
+			</div>
+			<span class="text-dark text-sm">Achievements Completed</span>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="block panel dashboard-boxes-padder bg-success item">
+			<span class="text-white font-thin h1 block">{{totalAchievements}}</span>
+			<span class="text-muted text-sm">Total Achievements Available</span>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="block panel dashboard-boxes-padder item">
+			<div class="text-dark font-thin h1">
+				<span class="font-thin h1">
+					{{gamesCompleted}} | 
+					<span class="font-bold text-success">{{gamesPercentage}}%</span>
+				</span>
+			</div>
+			<span class="text-dark text-sm">Games Completed</span>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="block panel dashboard-boxes-padder bg-success item">
+			<span class="text-white font-thin h1 block">{{totalGames}}</span>
+			<span class="text-muted text-sm">Total Games Played</span>
+		</div>
+	</div>
+	{{else}}
+	{{> loadingTemplate}}
+	{{/if}}
 </template>
 
 <template name="dashboardStatGs">
-  <div class="col-xs-12 m-b-md">
-    <div class="r bg-light dker item hbox no-border">
-      <div class="col w-xs v-middle hidden-md">
-        <i class="fa fa-trophy icon fa-3x"></i>
-      </div>
-      <div class="col dk padder-v r-r">
-        <div class="text-dark font-thin h1 p-container">
-          <div class="p-flipper">
-            <div class="p-front">
-              <span>{{currentGamerscore}}</span><span class="font-thin h5"> / {{maxGamerscore}}</span>
-            </div>
-            <span class="p-back">
-              <span class="text-success">{{gamerscorePercentage}}%</span>
-            </span>
-          </div>
-        </div>
-        <span class="text-muted text-xs">Current Gamerscore / Max Gamerscore</span>
-        <div class="top text-right w-full">
-          <i type="button" class="fa fa-info-circle text-warning m-r-sm" data-toggle="tooltip" data-placement="right" title="Your current Gamerscore based on your history over the maximum Gamerscore you can get if all games in your history have been completed."></i>
-        </div>
-      </div>
-    </div>
-  </div>
+	{{#if Template.subscriptionsReady}}
+	<div class="col-xs-12 m-b-md">
+		<div class="r bg-light dker item hbox no-border">
+			<div class="col w-xs v-middle hidden-md dashboard-boxes-padder">
+				<i class="fa fa-trophy icon fa-3x"></i>
+			</div>
+			<div class="col panel dashboard-boxes-padder b-a">
+				<div class="text-dark font-thin h1">
+					<span>{{currentGamerscore}}</span>
+				</div>
+				<span class="text-dark text-md">Current Gamerscore</span>
+			</div>
+			<div class="col panel dashboard-boxes-padder b-a">
+				<div class="text-dark font-thin h1">
+					<span class="">{{maxGamerscore}}</span>
+				</div>
+				<span class="text-dark text-md">Max Gamerscore</span>
+			</div>
+			<div class="col panel dashboard-boxes-padder b-a">
+				<div class="text-dark font-thin h1">
+					<div class="font-bold text-success">{{gamerscorePercentage}}%</div>
+				</div>
+				<span class="text-success text-md">Gamerscore Ratio</span>
+			</div>
+		</div>
+	</div>
+	{{else}}
+	{{> loadingTemplate}}
+	{{/if}}
 </template>

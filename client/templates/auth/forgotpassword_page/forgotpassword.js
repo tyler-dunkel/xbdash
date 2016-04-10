@@ -15,8 +15,7 @@ Template.forgotPasswordApp.events({
 					type: "error",
 					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "OK",
-					closeOnConfirm: false,
-					html: true
+					closeOnConfirm: false
 				});
 				return;
 			} else {
@@ -26,8 +25,7 @@ Template.forgotPasswordApp.events({
 					type: "success",
 					confirmButtonColor: "#138013",
 					confirmButtonText: "OK",
-					closeOnConfirm: true,
-					html: true
+					closeOnConfirm: true
 				},
 				function() {
 					Router.go('home');

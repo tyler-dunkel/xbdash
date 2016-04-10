@@ -8,11 +8,18 @@
     modal: 'sweet-alert',
     overlay: 'sweet-overlay',
     confirm: 'sweet-confirm',
-    cancel: 'sweet-cancel'
+    cancel: 'sweet-cancel',
+    icon: 'sweet-icon',
+    iconTypes: {
+      success: 'sweet-success',
+      warning: 'sweet-warning',
+      info: 'sweet-info',
+      question: 'sweet-question',
+      error: 'sweet-error'
+    }
   };
 
   var mediaqueryId = 'sweet-alert-mediaquery';
-  var alertTypes   = ['error', 'warning', 'info', 'success'];
   var defaultParams = {
     title: '',
     text: '',
@@ -155,7 +162,6 @@
       };
       tick();
     }
-    elem.style.display = 'block'; //fallback IE8
   };
 
   var fireClick = function(node) {
@@ -209,13 +215,13 @@
           resetPrevState();
         }
         // If getModal returns values then continue
-        modalDependant.apply(this, args);
+        return modalDependant.apply(this, args);
     } else {
         // If getModal returns null i.e. no matches, then set up a interval event to check the return value until it is not null
         var modalCheckInterval = setInterval(function() {
           if (getModal() !== null) {
             clearInterval(modalCheckInterval);
-            modalDependant.apply(this, args);
+            return modalDependant.apply(this, args);
           }
       }, 100);
     }
@@ -294,16 +300,6 @@
         params.imageWidth         = arguments[0].imageWidth || defaultParams.imageWidth;
         params.imageHeight        = arguments[0].imageHeight || defaultParams.imageHeight;
         params.imageClass         = arguments[0].imageClass || defaultParams.imageClass;
-        params.callback           = arguments[1] || null;
-
-         /*
-         * Global function to call sweetAlert callback
-         */
-        window.sweetAlert.callback = window.swal.callback = function(isConfirm) {
-          if (typeof params.callback === 'function') {
-            params.callback(isConfirm);
-          }
-        };
 
         break;
 
@@ -320,243 +316,240 @@
     // Modal interactions
     var modal = getModal();
 
-    // Close on timer
-    if (params.timer) {
-      modal.timeout = setTimeout(function() {
-        closeModal();
-        if (typeof params.callback === 'function') {
-          params.callback();
+    return new Promise(function(resolve) {
+      // Close on timer
+      if (params.timer) {
+        modal.timeout = setTimeout(function() {
+          closeModal();
+          resolve(undefined);
+        }, params.timer);
+      }
+
+      // Mouse interactions
+      var onButtonEvent = function(event) {
+        var e = event || window.event;
+        var target = e.target || e.srcElement;
+        var targetedConfirm = hasClass(target, window.swalClasses.confirm);
+        var targetedCancel  = hasClass(target, window.swalClasses.cancel);
+        var modalIsVisible  = hasClass(modal, 'visible');
+
+        switch (e.type) {
+          case 'mouseover':
+          case 'mouseup':
+          case 'focus':
+            if (params.buttonsStyling) {
+              if (targetedConfirm) {
+                target.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.1);
+              } else if (targetedCancel) {
+                target.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.1);
+              }
+            }
+            break;
+          case 'mouseout':
+          case 'blur':
+            if (params.buttonsStyling) {
+              if (targetedConfirm) {
+                target.style.backgroundColor = params.confirmButtonColor;
+              } else if (targetedCancel) {
+                target.style.backgroundColor = params.cancelButtonColor;
+              }
+            }
+            break;
+          case 'mousedown':
+            if (params.buttonsStyling) {
+              if (targetedConfirm) {
+                target.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.2);
+              } else if (targetedCancel) {
+                target.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.2);
+              }
+            }
+            break;
+          case 'click':
+            // Clicked 'confirm'
+            if (targetedConfirm && modalIsVisible) {
+
+              if (params.closeOnConfirm) {
+                closeModal();
+              }
+
+              resolve(true);
+
+            // Clicked 'cancel'
+            } else if (targetedCancel && modalIsVisible) {
+
+              if (params.closeOnCancel) {
+                closeModal();
+              }
+
+              resolve(false);
+
+            } else {
+              closeModal();
+            }
+
+            break;
         }
-      }, params.timer);
-    }
+      };
 
-    // Mouse interactions
-    var onButtonEvent = function(event) {
-      var e = event || window.event;
-      var target = e.target || e.srcElement;
-      var targetedConfirm = hasClass(target, window.swalClasses.confirm);
-      var targetedCancel  = hasClass(target, window.swalClasses.cancel);
-      var modalIsVisible  = hasClass(modal, 'visible');
+      var $buttons = modal.querySelectorAll('button');
+      var i;
+      for (i = 0; i < $buttons.length; i++) {
+        $buttons[i].onclick     = onButtonEvent;
+        $buttons[i].onmouseover = onButtonEvent;
+        $buttons[i].onmouseout  = onButtonEvent;
+        $buttons[i].onmousedown = onButtonEvent;
+      }
 
-      switch (e.type) {
-        case 'mouseover':
-        case 'mouseup':
-        case 'focus':
-          if (params.buttonsStyling) {
-            if (targetedConfirm) {
-              target.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.1);
-            } else if (targetedCancel) {
-              target.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.1);
-            }
+      // Remember the current document.onclick event.
+      previousDocumentClick = document.onclick;
+      document.onclick = function(event) {
+        var e = event || window.event;
+        var target = e.target || e.srcElement;
+
+        if (target === getOverlay() && params.allowOutsideClick) {
+          closeModal();
+          resolve(undefined);
+        }
+      };
+
+      // Keyboard interactions
+      var $confirmButton = modal.querySelector('button.' + window.swalClasses.confirm);
+      var $cancelButton = modal.querySelector('button.' + window.swalClasses.cancel);
+      var $modalElements = modal.querySelectorAll('button, input:not([type=hidden]), textarea, select');
+      for (i = 0; i < $modalElements.length; i++) {
+        $modalElements[i].onfocus = onButtonEvent;
+        $modalElements[i].onblur = onButtonEvent;
+      }
+
+      // Reverse buttons if neede d
+      if (params.reverseButtons) {
+        $confirmButton.parentNode.insertBefore($cancelButton, $confirmButton);
+      }
+
+      // Focus the first element (input or button)
+      setFocus(-1, 1);
+
+      function setFocus(index, increment) {
+        // search for visible elements and select the next possible match
+        for (var i = 0; i < $modalElements.length; i++) {
+          index = index + increment;
+
+          // rollover to first item
+          if (index === $modalElements.length) {
+            index = 0;
+
+          // go to last item
+          } else if (index === -1) {
+            index = $modalElements.length - 1;
           }
-          break;
-        case 'mouseout':
-        case 'blur':
-          if (params.buttonsStyling) {
-            if (targetedConfirm) {
-              target.style.backgroundColor = params.confirmButtonColor;
-            } else if (targetedCancel) {
-              target.style.backgroundColor = params.cancelButtonColor;
-            }
+
+          // determine if element is visible, the following is borrowed from jqeury $(elem).is(':visible') implementation
+          if (
+            $modalElements[index].offsetWidth ||
+            $modalElements[index].offsetHeight ||
+            $modalElements[index].getClientRects().length
+          ) {
+            $modalElements[index].focus();
+            return;
           }
-          break;
-        case 'mousedown':
-          if (params.buttonsStyling) {
-            if (targetedConfirm) {
-              target.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.2);
-            } else if (targetedCancel) {
-              target.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.2);
-            }
+        }
+      }
+
+      function handleKeyDown(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;
+        var modalIsVisible = hasClass(modal, 'visible');
+
+        if ([9,13,32,27].indexOf(keyCode) === -1) {
+          // Don't do work on keys we don't care about.
+          return;
+        }
+
+        var $targetElement = e.target || e.srcElement;
+
+        var btnIndex = -1; // Find the button - note, this is a nodelist, not an array.
+        for (var i = 0; i < $modalElements.length; i++) {
+          if ($targetElement === $modalElements[i]) {
+            btnIndex = i;
+            break;
           }
-          break;
-        case 'click':
-          // Clicked 'confirm'
-          if (targetedConfirm && params.callback && modalIsVisible) {
-            params.callback(true);
+        }
 
-            if (params.closeOnConfirm) {
-              closeModal();
-            }
+        if (keyCode === 9) {
+          // TAB
 
-          // Clicked 'cancel'
-          } else if (params.callback && modalIsVisible) {
+          // Should only happen if modal is visible
+          if (!modalIsVisible) {
+            return;
+          }
 
-            // Check if callback function expects a parameter (to track cancel actions)
-            if (params.callback.length > 0) {
-              params.callback(false);
-            }
-
-            if (params.closeOnCancel) {
-              closeModal();
-            }
+          if (!e.shiftKey) {
+            // Cycle to the next button
+            setFocus(btnIndex, 1);
           } else {
-            closeModal();
+            // Cycle to the prev button
+            setFocus(btnIndex, -1);
           }
 
-          break;
-      }
-    };
+          stopEventPropagation(e);
 
-    var $buttons = modal.querySelectorAll('button');
-    var i;
-    for (i = 0; i < $buttons.length; i++) {
-      $buttons[i].onclick     = onButtonEvent;
-      $buttons[i].onmouseover = onButtonEvent;
-      $buttons[i].onmouseout  = onButtonEvent;
-      $buttons[i].onmousedown = onButtonEvent;
-    }
-
-    // Remember the current document.onclick event.
-    previousDocumentClick = document.onclick;
-    document.onclick = function(event) {
-      var e = event || window.event;
-      var target = e.target || e.srcElement;
-
-      if (target === getOverlay() && params.allowOutsideClick) {
-        closeModal();
-        if (typeof params.callback === 'function') {
-          params.callback();
-        }
-      }
-    };
-
-    // Keyboard interactions
-    var $confirmButton = modal.querySelector('button.' + window.swalClasses.confirm);
-    var $cancelButton = modal.querySelector('button.' + window.swalClasses.cancel);
-    var $modalElements = modal.querySelectorAll('button, input:not([type=hidden]), textarea, select');
-    for (i = 0; i < $modalElements.length; i++) {
-      $modalElements[i].onfocus = onButtonEvent;
-      $modalElements[i].onblur = onButtonEvent;
-    }
-
-    // Reverse buttons if needed
-    if (params.reverseButtons) {
-      $confirmButton.parentNode.insertBefore($cancelButton, $confirmButton);
-    }
-
-    // Focus the first element (input or button)
-    setFocus(-1, 1);
-
-    function setFocus(index, increment) {
-      // search for visible elements and select the next possible match
-      for (var i = 0; i < $modalElements.length; i++) {
-        index = index + increment;
-
-        // rollover to first item
-        if (index === $modalElements.length) {
-          index = 0;
-
-        // go to last item
-        } else if (index === -1) {
-          index = $modalElements.length - 1;
-        }
-
-        // determine if element is visible, the following is borrowed from jqeury $(elem).is(':visible') implementation
-        if (
-          $modalElements[index].offsetWidth ||
-          $modalElements[index].offsetHeight ||
-          $modalElements[index].getClientRects().length
-        ) {
-          $modalElements[index].focus();
-          return;
-        }
-      }
-    }
-
-    function handleKeyDown(event) {
-      var e = event || window.event;
-      var keyCode = e.keyCode || e.which;
-      var modalIsVisible = hasClass(modal, 'visible');
-
-      if ([9,13,32,27].indexOf(keyCode) === -1) {
-        // Don't do work on keys we don't care about.
-        return;
-      }
-
-      var $targetElement = e.target || e.srcElement;
-
-      var btnIndex = -1; // Find the button - note, this is a nodelist, not an array.
-      for (var i = 0; i < $modalElements.length; i++) {
-        if ($targetElement === $modalElements[i]) {
-          btnIndex = i;
-          break;
-        }
-      }
-
-      if (keyCode === 9) {
-        // TAB
-
-        // Should only happen if modal is visible
-        if (!modalIsVisible) {
-          return;
-        }
-
-        if (!e.shiftKey) {
-          // Cycle to the next button
-          setFocus(btnIndex, 1);
         } else {
-          // Cycle to the prev button
-          setFocus(btnIndex, -1);
-        }
-
-        stopEventPropagation(e);
-
-      } else {
-        if (keyCode === 13 || keyCode === 32) {
-          if (btnIndex === -1) {
-            // ENTER/SPACE clicked outside of a button.
-            fireClick($confirmButton, e);
+          if (keyCode === 13 || keyCode === 32) {
+            if (btnIndex === -1) {
+              // ENTER/SPACE clicked outside of a button.
+              fireClick($confirmButton, e);
+            }
+          } else if (keyCode === 27 && params.allowEscapeKey === true) {
+            fireClick($cancelButton, e);
           }
-        } else if (keyCode === 27 && params.allowEscapeKey === true) {
-          fireClick($cancelButton, e);
         }
       }
-    }
 
-    previousWindowKeyDown = window.onkeydown;
-    window.onkeydown = handleKeyDown;
+      previousWindowKeyDown = window.onkeydown;
+      window.onkeydown = handleKeyDown;
 
-    // Loading state
-    if (params.buttonsStyling) {
-      $confirmButton.style.borderLeftColor = params.confirmButtonColor;
-      $confirmButton.style.borderRightColor = params.confirmButtonColor;
-    }
+      // Loading state
+      if (params.buttonsStyling) {
+        $confirmButton.style.borderLeftColor = params.confirmButtonColor;
+        $confirmButton.style.borderRightColor = params.confirmButtonColor;
+      }
 
-    window.swal.toggleLoading = function() {
-      $confirmButton.disabled = !$confirmButton.disabled;
-      $cancelButton.disabled = !$cancelButton.disabled;
-    };
+      window.swal.toggleLoading = function() {
+        $confirmButton.disabled = !$confirmButton.disabled;
+        $cancelButton.disabled = !$cancelButton.disabled;
+      };
 
-    window.swal.enableButtons = function() {
-      $confirmButton.disabled = false;
-      $cancelButton.disabled = false;
-    };
+      window.swal.enableButtons = function() {
+        $confirmButton.disabled = false;
+        $cancelButton.disabled = false;
+      };
 
-    window.swal.disableButtons = function() {
-      $confirmButton.disabled = true;
-      $cancelButton.disabled = true;
-    };
+      window.swal.disableButtons = function() {
+        $confirmButton.disabled = true;
+        $cancelButton.disabled = true;
+      };
 
-    swal.enableButtons();
+      swal.enableButtons();
 
-    window.onfocus = function() {
-      // When the user has focused away and focused back from the whole window.
-      window.setTimeout(function() {
-        // Put in a timeout to jump out of the event sequence. Calling focus() in the event
-        // sequence confuses things.
-        if (lastFocusedButton !== undefined) {
-          lastFocusedButton.focus();
-          lastFocusedButton = undefined;
-        }
-      }, 0);
-    };
+      window.onfocus = function() {
+        // When the user has focused away and focused back from the whole window.
+        window.setTimeout(function() {
+          // Put in a timeout to jump out of the event sequence. Calling focus() in the event
+          // sequence confuses things.
+          if (lastFocusedButton !== undefined) {
+            lastFocusedButton.focus();
+            lastFocusedButton = undefined;
+          }
+        }, 0);
+      };
+    });
   }
 
   /*
    * Add modal + overlay to DOM
    */
   window.swal.init = function() {
-    var sweetHTML = '<div class="' + window.swalClasses.overlay + '" tabIndex="-1"></div><div class="' + window.swalClasses.modal + '" style="display: none" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <img class="sweet-image"> <h2>Title</h2><div class="sweet-content">Text</div><hr class="sweet-spacer"><button class="' + window.swalClasses.confirm + '">OK</button><button class="' + window.swalClasses.cancel + '">Cancel</button></div>';
+    var sweetHTML = '<div class="' + window.swalClasses.overlay + '" tabIndex="-1"></div><div class="' + window.swalClasses.modal + '" style="display: none" tabIndex="-1"><div class="' + window.swalClasses.icon + ' ' + window.swalClasses.iconTypes.error + '"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="' + window.swalClasses.icon + ' ' + window.swalClasses.iconTypes.question + '">?</div><div class="' + window.swalClasses.icon + ' ' + window.swalClasses.iconTypes.warning + '">!</div> <div class="' + window.swalClasses.icon + ' ' + window.swalClasses.iconTypes.info + '">i</div> <div class="' + window.swalClasses.icon + ' ' + window.swalClasses.iconTypes.success + '"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <img class="sweet-image"> <h2>Title</h2><div class="sweet-content">Text</div><hr class="sweet-spacer"><button class="' + window.swalClasses.confirm + '">OK</button><button class="' + window.swalClasses.cancel + '">Cancel</button></div>';
     var sweetWrap = document.createElement('div');
     sweetWrap.className = 'sweet-container';
 
@@ -633,11 +626,11 @@
     }
 
     // Icon
-    hide(modal.querySelectorAll('.icon'));
+    hide(modal.querySelectorAll('.' + window.swalClasses.icon));
     if (params.type) {
       var validType = false;
-      for (var i = 0; i < alertTypes.length; i++) {
-        if (params.type === alertTypes[i]) {
+      for (var iconType in window.swalClasses.iconTypes) {
+        if (params.type === iconType) {
           validType = true;
           break;
         }
@@ -646,7 +639,7 @@
         window.console.error('Unknown alert type: ' + params.type);
         return false;
       }
-      var $icon = modal.querySelector('.icon.' + params.type);
+      var $icon = modal.querySelector('.' + window.swalClasses.icon + '.' + window.swalClasses.iconTypes[params.type]);
       show($icon);
 
       // Animate icon
@@ -662,8 +655,6 @@
           break;
         case 'warning':
           addClass($icon, 'pulse-warning');
-          addClass($icon.querySelector('.body'), 'pulse-warning-ins');
-          addClass($icon.querySelector('.dot'), 'pulse-warning-ins');
           break;
       }
 
@@ -806,19 +797,17 @@
 
     // Reset icon animations
 
-    var $successIcon = modal.querySelector('.icon.success');
+    var $successIcon = modal.querySelector('.' + window.swalClasses.icon + '.' + window.swalClasses.iconTypes.success);
     removeClass($successIcon, 'animate');
     removeClass($successIcon.querySelector('.tip'), 'animate-success-tip');
     removeClass($successIcon.querySelector('.long'), 'animate-success-long');
 
-    var $errorIcon = modal.querySelector('.icon.error');
+    var $errorIcon = modal.querySelector('.' + window.swalClasses.icon + '.' + window.swalClasses.iconTypes.error);
     removeClass($errorIcon, 'animate-error-icon');
     removeClass($errorIcon.querySelector('.x-mark'), 'animate-x-mark');
 
-    var $warningIcon = modal.querySelector('.icon.warning');
+    var $warningIcon = modal.querySelector('.' + window.swalClasses.icon + '.' + window.swalClasses.iconTypes.warning);
     removeClass($warningIcon, 'pulse-warning');
-    removeClass($warningIcon.querySelector('.body'), 'pulse-warning-ins');
-    removeClass($warningIcon.querySelector('.dot'), 'pulse-warning-ins');
 
     resetPrevState();
   }
@@ -873,4 +862,5 @@
       }
     }
   })();
+
 })(window, document);

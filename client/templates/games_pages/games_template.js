@@ -15,6 +15,13 @@ Template.gameRating.rendered = function() {
     });
 }
 
+Template.gameRating.helpers({
+    gameAllTimeAverageRating: function () {
+        var gameDetail = gameDetails.findOne({ gameId: this._id });
+        return gameDetail.gameAllTimeAverageRating;
+    }
+});
+
 Template.singleGame.helpers({
     gamePublisherName: function () {
         var gameDetail = gameDetails.findOne({ gameId: this._id });
@@ -46,12 +53,5 @@ Template.singleGame.helpers({
             });
         }
         return image;
-    }
-});
-
-Template.gameRating.helpers({
-    gameAllTimeAverageRating: function () {
-        var gameDetail = gameDetails.findOne({ gameId: this._id });
-        return gameDetail.gameAllTimeAverageRating;
     }
 });

@@ -1,6 +1,3 @@
-Template.logIn.rendered = function() {
-}
-
 Template.logIn.events({
 	'submit #loginform': function(e) {
 		subMana.clear();
@@ -20,8 +17,7 @@ Template.logIn.events({
 					type: "error",
 					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "OK",
-					closeOnConfirm: false,
-					html: true
+					closeOnConfirm: false
 				});
 			}
 			else {

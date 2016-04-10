@@ -52,8 +52,7 @@ Template.confirmGtForm.events({
 						type: "error",
 						confirmButtonColor: "#DD6B55",
 						confirmButtonText: "OK",
-						closeOnConfirm: false,
-						html: true
+						closeOnConfirm: false
 					});
 					return;
 				}
@@ -66,10 +65,9 @@ Template.confirmGtForm.events({
 					title: error.reason || 'Internal server error!',
 					text: error.details || 'Server responded with 500.',
 					type: "error",
-					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "OK",
-					closeOnConfirm: false,
-					html: true
+					confirmButtonColor: "#DD6B55",
+					closeOnConfirm: false
 				});
 				return;
 			}
@@ -81,9 +79,10 @@ Template.confirmGtForm.events({
 							title: 'Staying Engaged on XBdash',
 							html: Blaze.toHTML(Template.welcomeOverlay),
 							customClass: 'welcome-overlay',
+							allowOutsideClick: false,
+							allowEscapeKey: false,
 							confirmButtonText: 'Let\'s Go!',
 							confirmButtonColor: '#138013',
-							closeOnConfirm: true,
 							width: 1000
 						});
 					}
@@ -98,7 +97,4 @@ Template.confirmGtForm.events({
 	'focus .form-control': function(e) {
 		ValidateForm.clearInputStatus(e.target);
 	}
-});
-
-Tracker.autorun(function() {
 });
