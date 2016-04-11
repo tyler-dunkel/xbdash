@@ -85,10 +85,7 @@ Meteor.startup(function() {
 		},
 		replies: true,
 		anonymous: false
-	 });
-
-	// default avatar can't be replaced with custom avatar
-	// bootstrap comments single comment missing media code
+	});
 
 	Comments.ui.config({
 		limit: 5,

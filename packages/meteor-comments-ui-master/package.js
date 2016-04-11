@@ -72,7 +72,7 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
   api.use(['tinytest', 'accounts-password', 'audit-argument-checks', 'check']);
-  api.use('arkham:comments-ui');
+  api.use('arkham:comments-ui-local');
 
   api.addFiles('tests/api-tests.js');
   api.addFiles('tests/ui-tests.js', 'client');

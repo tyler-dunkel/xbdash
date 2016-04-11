@@ -82,7 +82,7 @@ Template.newsCommentBox.helpers({
 //     hasMoreComments: function () {
 //         return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
 //     },
-//     textarea: function () {
+//`     textarea: function () {
 //         return Template.commentsTextarea;
 //     },
 //     commentId: function () {

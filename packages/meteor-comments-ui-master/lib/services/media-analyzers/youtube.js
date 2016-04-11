@@ -32,5 +32,5 @@ youtubeAnalyzer = {
    *
    * @return {String}
    */
-  getMarkup: (mediaContent) => `<iframe src="${mediaContent}" type="text/html" frameborder="0"></iframe>`
+  getMarkup: (mediaContent) => `<iframe src="${mediaContent}" type="text/html" class="embed-responsive-item" frameborder="0"></iframe>`
 };

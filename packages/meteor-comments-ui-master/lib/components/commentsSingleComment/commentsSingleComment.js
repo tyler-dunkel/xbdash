@@ -25,9 +25,10 @@ Template.commentsSingleComment.helpers(_.extend(defaultCommentHelpers, {
   },
   avatarUrl() {
     var user = Meteor.users.findOne(this.userId);
+    var getUserImage = "/img/user-default.jpg";
     if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
-        getUserImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+      getUserImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
     }
-    return getUserImage || Comments.ui.config().defaultAvatar;
+    return getUserImage;
   }
 }));
