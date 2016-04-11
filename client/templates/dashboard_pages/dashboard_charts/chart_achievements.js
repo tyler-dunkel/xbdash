@@ -3,8 +3,8 @@ var achievementsChart;
 
 Template.achievementsChart.created = function() {
 	var thirtyDays = moment().subtract(30, 'days').toDate();
-    var self = this;
-    self.subscribe('dashboardMainCharts', thirtyDays);
+	var self = this;
+	self.subscribe('dashboardMainCharts', thirtyDays);
 }
 
 Template.achievementsChartSvg.rendered = function() {
@@ -21,7 +21,8 @@ Template.achievementsChartSvg.rendered = function() {
 			.showLegend(true)
 			.showXAxis(true)
 			.showYAxis(true)
-			.forceY([0]);
+			.forceY([0])
+			.noData("Your data will update when you unlock an achievement.");
 
 		var d = new Date();
 		var oneMonthAgo = d3.time.day.offset(new Date(), -14);
@@ -57,23 +58,23 @@ Template.achievementsChartSvg.rendered = function() {
 
 Template.achievementsChartSvg.events({
  	"click #achievement-chart-recent-activity-button": function(e) {
-        if(!$(e.target).hasClass('active')) {
-            $(e.target).addClass('active');
-            $('#achievement-chart-thirty-days-activity-button').removeClass('active');
+		if(!$(e.target).hasClass('active')) {
+			$(e.target).addClass('active');
+			$('#achievement-chart-thirty-days-activity-button').removeClass('active');
 
-            fifteenDays = moment().subtract(15, 'days').toDate();
+			fifteenDays = moment().subtract(15, 'days').toDate();
 			timeRangeToggle.set(fifteenDays);
-        }
-    },
-    "click #achievement-chart-thirty-days-activity-button": function(e) {
-        if(!$(e.target).hasClass('active')) {
-            $(e.target).addClass('active');
-            $('#achievement-chart-recent-activity-button').removeClass('active');
+		}
+	},
+	"click #achievement-chart-thirty-days-activity-button": function(e) {
+		if(!$(e.target).hasClass('active')) {
+			$(e.target).addClass('active');
+			$('#achievement-chart-recent-activity-button').removeClass('active');
 
-            thirtyDays = moment().subtract(30, 'days').toDate();
-            timeRangeToggle.set(thirtyDays);
-        }
-    }
+			thirtyDays = moment().subtract(30, 'days').toDate();
+			timeRangeToggle.set(thirtyDays);
+		}
+	}
 });
 
 var updateAchievementsChart = function(formattedData) {

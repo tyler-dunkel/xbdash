@@ -66,6 +66,6 @@ xbdash:xbd-logger
 okgrow:analytics
 vsivsi:job-collection
 meteorhacks:ssr
-arkham:comments-ui
 limonte:sweetalert2
 joshowens:shareit
+arkham:comments-ui-local

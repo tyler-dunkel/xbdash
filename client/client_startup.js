@@ -38,44 +38,44 @@ Meteor.startup(function() {
 		faClass: ''
 	});
 
-	var imageAnalyzer = {
-		name: 'image',
-		getMediaFromContent: function(content) {
-			if (content) {
-				var urls = content.match(/(\S+\.[^/\s]+(\/\S+|\/|))(.jpg|.png|.gif)/g) ;
-				if (urls && urls[0]) {
-					return urls[0];
-				}
-			}
-			return '';
-		},
-	    getMarkup: function(mediaContent) {
-	    	return `<img src="${mediaContent}" />`;
-	    }
-	};
+	// var imageAnalyzer = {
+	// 	name: 'image',
+	// 	getMediaFromContent: function(content) {
+	// 		if (content) {
+	// 			var urls = content.match(/(\S+\.[^/\s]+(\/\S+|\/|))(.jpg|.png|.gif)/g) ;
+	// 			if (urls && urls[0]) {
+	// 				return urls[0];
+	// 			}
+	// 		}
+	// 		return '';
+	// 	},
+	//     getMarkup: function(mediaContent) {
+	//     	return `<img src="${mediaContent}" />`;
+	//     }
+	// };
 
-	var youtubeAnalyzer = {
-		name: 'youtube',
-		getMediaFromContent: function(content) {
-			var parts = (/(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/([\w\=\?]+)/gm).exec(content);
-			let mediaContent = '';
-			console.log('firing get media content');
-			if (parts && parts[3]) {
-				let id = parts[3];
-				if (id.indexOf('v=') > -1) {
-					var subParts = (/v=([\w]+)+/g).exec(id);
-					if (subParts && subParts[1]) {
-						id = subParts[1];
-					}
-				}
-				mediaContent = 'http://www.youtube.com/embed/${id}';
-			}
-			return mediaContent;
-		},
-		getMarkup: function(mediaContent) {
-			return `<iframe src="${mediaContent}" type="text/html" frameborder="0"></iframe>`;
-		}
-	};
+	// var youtubeAnalyzer = {
+	// 	name: 'youtube',
+	// 	getMediaFromContent: function(content) {
+	// 		var parts = (/(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/([\w\=\?]+)/gm).exec(content);
+	// 		let mediaContent = '';
+	// 		console.log('firing get media content');
+	// 		if (parts && parts[3]) {
+	// 			let id = parts[3];
+	// 			if (id.indexOf('v=') > -1) {
+	// 				var subParts = (/v=([\w]+)+/g).exec(id);
+	// 				if (subParts && subParts[1]) {
+	// 					id = subParts[1];
+	// 				}
+	// 			}
+	// 			mediaContent = 'http://www.youtube.com/embed/${id}';
+	// 		}
+	// 		return mediaContent;
+	// 	},
+	// 	getMarkup: function(mediaContent) {
+	// 		return `<iframe src="${mediaContent}" type="text/html" frameborder="0"></iframe>`;
+	// 	}
+	// };
 
 	Comments.config({
 		publishUserFields: { 
@@ -83,18 +83,16 @@ Meteor.startup(function() {
 			"gamercard.gamerscore": 1,
 			"gamercard.gamerpicLargeSslImagePath": 1
 		},
-		mediaAnalyzers: [
-			imageAnalyzer,
-			youtubeAnalyzer
-		],
 		replies: true,
 		anonymous: false
-	});
+	 });
+
+	// default avatar can't be replaced with custom avatar
+	// bootstrap comments single comment missing media code
 
 	Comments.ui.config({
 		limit: 5,
 		loadMoreCount: 10,
-		defaultAvatar: '/img/user-default.jpg',
 		markdown: false,
 		template: 'bootstrap'
 	});

@@ -1,59 +1,67 @@
 <template name="achievementCommentBox">
-    <h2 class="h3 pull-left padder-t">
-        {{ take key='title' default='Achievement Solutions & Discussions' }}
-    </h2>
-    <div class="clearfix"></div>
+    <div class="comments-box">
+        {{#if templateIs 'bootstrap' }}
+        <h2 class="h3 pull-left padder-t">
+            {{ take key='title' default='Achievement Solutions & Discussions' }}
+        </h2>
+        <div class="clearfix"></div>
 
-    {{#if loginAction}}
-        <div class="alert alert-warning" role="alert">
-            You need to login to {{loginAction}}
+        {{#if loginAction}}
+            <div class="alert alert-warning" role="alert">
+                You need to login to {{loginAction}}
+            </div>
+        {{/if}}
+
+        {{> textarea}}
+
+        <div class="media-list comments">
+            {{#each comment}}
+                {{> commentsSingleComment}}
+            {{/each}}
         </div>
-    {{/if}}
 
-    {{> textarea}}
-
-    <div class="media-list comments">
-        {{#each comment}}
-            {{> singleComment}}
-        {{/each}}
+        {{#if hasMoreComments}}
+            <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">
+                {{ take key='load-more' default='Load more comments' }}
+            </button>
+        {{/if}}
+        {{/if}}
     </div>
-
-    {{#if hasMoreComments}}
-        <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">
-            {{ take key='load-more' default='Load more comments' }}
-        </button>
-    {{/if}}
 </template>
 
 <template name="newsCommentBox">
-    <h2 class="h3 pull-left padder-t">
-        {{ take key='title' default='Comments' }}
-    </h2>
-    <div class="clearfix"></div>
+    <div class="comments-box">
+        {{#if templateIs 'bootstrap' }}
+        <h2 class="h3 pull-left padder-t">
+            {{ take key='title' default='Comments' }}
+        </h2>
+        <div class="clearfix"></div>
 
-    {{#if loginAction}}
-        <div class="alert alert-warning" role="alert">
-            You need to login to {{loginAction}}
+        {{#if loginAction}}
+            <div class="alert alert-warning" role="alert">
+                You need to login to {{loginAction}}
+            </div>
+        {{/if}}
+
+        {{> textarea}}
+
+        <div class="media-list comments">
+            {{#each comment}}
+                {{> commentsSingleComment}}
+            {{/each}}
         </div>
-    {{/if}}
 
-    {{> textarea}}
-
-    <div class="media-list comments">
-        {{#each comment}}
-            {{> singleComment}}
-        {{/each}}
+        {{#if hasMoreComments}}
+            <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">
+                {{ take key='load-more' default='Load more comments' }}
+            </button>
+        {{/if}}
+        {{/if}}
     </div>
-
-    {{#if hasMoreComments}}
-        <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">
-            {{ take key='load-more' default='Load more comments' }}
-        </button>
-    {{/if}}
 </template>
 
-<template name="singleComment">
-    {{debugger}}
+<!-- <template name="singleComment">
+    {{#if templateIs 'bootstrap' }}
     <div class="media">
         <div class="media-left">
             <img alt="{{getUser}}" class="img-thumbnail img-avatar" src="{{avatarUrl}}">
@@ -70,9 +78,9 @@
                 {{/if}}
                 </p>
                 {{#if media.content}}
-                    <div class="content-media">
-                      {{{mediaContent}}}
-                    </div>
+                <div class="content-media">
+                    {{{mediaContent}}}
+                </div>
                 {{/if}}
                 <div class="actions btn-group btn-group-xs">
                     <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
@@ -116,4 +124,5 @@
             {{/if}}
         </div>
     </div>
-</template>
+    {{/if}}
+</template> -->

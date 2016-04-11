@@ -1,3 +1,27 @@
+Template.achievementCommentBox.helpers({
+    loginAction: function () {
+        return Comments.session.get('loginAction');
+    },
+    textarea: function () {
+        return Template.commentsTextarea;
+    },
+    hasMoreComments: function () {
+        return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
+    }
+});
+
+Template.newsCommentBox.helpers({
+    loginAction: function () {
+        return Comments.session.get('loginAction');
+    },
+    textarea: function () {
+        return Template.commentsTextarea;
+    },
+    hasMoreComments: function () {
+        return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
+    }
+});
+
 // Template.singleComment.created = function() {
 //     this.subscribe("commentUserImage", this.data.userId);
 // }
@@ -30,105 +54,77 @@
 //     });
 // }
 
-Template.achievementCommentBox.helpers({
-    loginAction: function () {
-        return Comments.session.get('loginAction');
-    },
-    textarea: function () {
-        return Template.commentsTextarea;
-    },
-    hasMoreComments: function () {
-        return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
-    }
-});
-
-Template.newsCommentBox.helpers({
-    loginAction: function () {
-        return Comments.session.get('loginAction');
-    },
-    textarea: function () {
-        return Template.commentsTextarea;
-    },
-    hasMoreComments: function () {
-        return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
-    }
-});
-
-Template.singleComment.helpers({
-    debugger: function () {
-        console.log(this);
-    },
-    getUser: function (user){
-        var user = Meteor.users.findOne({ _id: this.userId });
-        return user.gamercard.gamertag;
-    },
-    avatarUrl: function (user) {
-        var user = Meteor.users.findOne({ _id: this.userId });
-        if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
-            getUserImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
-        }
-        return getUserImage || Comments.ui.config().defaultAvatar;
-    },
-    take: function (params) {
-        var content = Comments.session.get('content');
-        if (content[params.hash.key]) {
-            return content[params.hash.key];
-        }
-        return params.hash.default;
-    },
-    templateIs: function (name) {
-        return name === Comments.ui.config().template;
-    },
-    hasMoreComments: function () {
-        return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
-    },
-    textarea: function () {
-        return Template.commentsTextarea;
-    },
-    commentId: function () {
-        return this._id || this.replyId;
-    },
-    hasLiked: function () {
-        return this.likes.indexOf(Meteor.userId()) > -1;
-    },
-    isOwnComment: function () {
-        return this.userId === Meteor.userId();
-    },
-    loginAction: function () {
-        return Comments.session.get('loginAction');
-    },
-    addReply: function () {
-        var id = this._id || this.replyId;
-        return Comments.session.equals('replyTo', id);
-    },
-    isEditable: function () {
-        var id = this._id || this.replyId;
-        return Comments.session.equals('editingDocument', id);
-    },
-    mediaContent: function () {
-        console.log(mediaService);
-        //console.log(Comments.mediaService);
-        //return mediaService.getMarkup(this.media);
-        return;
-    },
-    reply: function () {
-        if (_.isFunction(this.enhancedReplies)) {
-            return this.enhancedReplies();
-        } else if (_.isArray(this.enhancedReplies)) {
-            return this.enhancedReplies;
-        }
-    },
-    showAnonymousInput: function(isReply) { 
-        return userService.isAnonymous() && !isReply;
-    },
-    configGet: function(key) {
-        console.log(Comments.config()[key]);
-        return Comments.config()[key];
-    },
-    uiConfigGet: function(key) {
-        return Comments.ui.config()[key];
-    },
-    sessionGet: function(key) {
-        return Comments.session.get(key);
-    }
-});
+// Template.singleComment.helpers({
+//     debugger: function () {
+//         console.log(this);
+//     },
+//     getUser: function (user){
+//         var user = Meteor.users.findOne({ _id: this.userId });
+//         return user.gamercard.gamertag;
+//     },
+//     avatarUrl: function (user) {
+//         var user = Meteor.users.findOne({ _id: this.userId });
+//         if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
+//             getUserImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+//         }
+//         return getUserImage || Comments.ui.config().defaultAvatar;
+//     },
+//     take: function (params) {
+//         var content = Comments.session.get('content');
+//         if (content[params.hash.key]) {
+//             return content[params.hash.key];
+//         }
+//         return params.hash.default;
+//     },
+//     templateIs: function (name) {
+//         return name === Comments.ui.config().template;
+//     },
+//     hasMoreComments: function () {
+//         return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
+//     },
+//     textarea: function () {
+//         return Template.commentsTextarea;
+//     },
+//     commentId: function () {
+//         return this._id || this.replyId;
+//     },
+//     hasLiked: function () {
+//         return this.likes.indexOf(Meteor.userId()) > -1;
+//     },
+//     isOwnComment: function () {
+//         return this.userId === Meteor.userId();
+//     },
+//     loginAction: function () {
+//         return Comments.session.get('loginAction');
+//     },
+//     addReply: function () {
+//         var id = this._id || this.replyId;
+//         return Comments.session.equals('replyTo', id);
+//     },
+//     isEditable: function () {
+//         var id = this._id || this.replyId;
+//         return Comments.session.equals('editingDocument', id);
+//     },
+//     mediaContent: function () {
+//         return mediaService.getMarkup(this.media);
+//     },
+//     reply: function () {
+//         if (_.isFunction(this.enhancedReplies)) {
+//             return this.enhancedReplies();
+//         } else if (_.isArray(this.enhancedReplies)) {
+//             return this.enhancedReplies;
+//         }
+//     },
+//     showAnonymousInput: function(isReply) { 
+//         return userService.isAnonymous() && !isReply;
+//     },
+//     configGet: function(key) {
+//         return Comments.config()[key];
+//     },
+//     uiConfigGet: function(key) {
+//         return Comments.ui.config()[key];
+//     },
+//     sessionGet: function(key) {
+//         return Comments.session.get(key);
+//     }
+// });
