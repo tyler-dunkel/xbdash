@@ -21,5 +21,5 @@ imageAnalyzer = {
    *
    * @return {String}
    */
-  getMarkup: (mediaContent) => `<img src="${mediaContent}" />`
+  getMarkup: (mediaContent) => `<img src="${mediaContent}" class="img-responsive" />`
 };
