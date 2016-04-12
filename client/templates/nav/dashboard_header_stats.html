@@ -1,50 +1,50 @@
 <template name="dashboardHeaderStats">
-  {{#if Template.subscriptionsReady}}
-  <div class="row row-sm text-center">
-    <div class="col-md-2">
-      <a href class="block padder-v bg-white item">
-        <span class="text-dark font-thin h1 block">{{achievementsCompleted}}</span>
-        <span class="text-muted text-xs">Achievements Completed</span>
-      </a>
-    </div>
-    <div class="col-md-2">
-      <a href class="block padder-v bg-success item">
-        <div class="text-white font-thin h1 block">{{totalAchievements}}</div>
-        <span class="text-muted text-xs">Your Available Achievements</span>
-      </a>
-    </div>
-    <div class="col-md-2">
-      <a href class="block padder-v bg-white item">
-        <div class="text-dark font-thin h1 block">{{gamesCompleted}}</div>
-        <span class="text-muted text-xs">Games Completed</span>
-      </a>
-    </div>
-    <div class="col-md-2">
-      <a href class="block padder-v bg-success item">
-        <span class="text-white font-thin h1 block">{{totalGames}}</span>
-        <span class="text-xs">Total Games Played</span>
-      </a>
-    </div>
-    <div class="col-md-2">
-      <div class="text-right padder-v hidden-xs">
-        <div class="col-md-6 table-cell text-left hidden-xs">
-          {{> userDailyRank}}
-        </div>
-        <div class="col-md-6 table-cell text-left">
-          {{> userOverallRank}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="padder-v bg-success r-r">
-        <div class="text-white font-thin h1 block">
-          {{currentGamerscore}}
-        </div>
-        <span class="text-muted text-xs">Gamerscore</span>
-      </div>
-    </div>
-  </div>
-  {{else}}
-    {{> loadingTemplate}}
-  {{/if}}
+	{{#if Template.subscriptionsReady}}
+	<div class="row row-sm text-center">
+		<div class="col-md-2">
+			<a href class="block padder-v bg-white item">
+				<span class="text-dark font-thin h1 block">{{achievementsCompleted}}</span>
+				<span class="text-muted text-xs">Achievements Completed</span>
+			</a>
+		</div>
+		<div class="col-md-2">
+			<a href class="block padder-v bg-success item">
+				<div class="text-white font-thin h1 block">{{totalAchievements}}</div>
+				<span class="text-muted text-xs">Your Available Achievements</span>
+			</a>
+		</div>
+		<div class="col-md-2">
+			<a href class="block padder-v bg-white item">
+				<div class="text-dark font-thin h1 block">{{gamesCompleted}}</div>
+				<span class="text-muted text-xs">Games Completed</span>
+			</a>
+		</div>
+		<div class="col-md-2">
+			<a href class="block padder-v bg-success item">
+				<span class="text-white font-thin h1 block">{{totalGames}}</span>
+				<span class="text-xs">Total Games Played</span>
+			</a>
+		</div>
+		<div class="col-md-2">
+			<div class="text-right padder-v hidden-xs">
+				<div class="col-md-6 table-cell text-left hidden-xs">
+					{{> userDailyRank}}
+				</div>
+				<div class="col-md-6 table-cell text-left">
+					{{> userOverallRank}}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="padder-v bg-success r-r">
+				<div class="text-white font-thin h1 block">
+					{{currentGamerscore}}
+				</div>
+				<span class="text-muted text-xs">Gamerscore</span>
+			</div>
+		</div>
+	</div>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
 </template>
