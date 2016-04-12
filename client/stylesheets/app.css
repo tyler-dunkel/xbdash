@@ -5864,6 +5864,7 @@ ul.signin > li.active {
 .ih-item.square .img .achievements-thumb {max-width: 100%; height: auto; background-image: url("/img/achievement-default.jpg"); background-position: center; background-repeat: no-repeat;}
 .game-div {display: inline-block; vertical-align: middle;}
 .game-name {font-size: 105%; font-weight: bold;}
+.game-name label { margin-bottom: -5px; }
 #achievementsChart { width: 100%; height: auto; position: absolute; }
 path.slice{stroke-width:2px;}
 polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}

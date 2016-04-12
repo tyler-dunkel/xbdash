@@ -186,7 +186,12 @@
 					<div class="col-xl-2 hidden-lg col-md-2 col-sm-2 col-xs-2 {{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');"></div>
 					<div class="col-xl-6 col-lg-7 col-md-6 col-sm-7 col-xs-6 achievement-description">
 						<div class="m-l-md">
-							<div class="padder-t game-name">{{this.name}}</div>
+							<div class="padder-t game-name">
+								{{this.name}}
+								<label class="label bg-{{achievementClass}} m-l-sm text-ellipsis-inline">
+									<i class="fa fa-{{trophyClass}}"></i> {{achievementClass}}
+								</label>
+							</div>
 							<div class="padder-d title-wrap-game">{{this.description}}</div>
 						</div>
 					</div>
