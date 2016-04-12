@@ -28,11 +28,11 @@ Template.newsSinglePage.helpers({
 			getImage = '/img/news-default.jpg';
 		}
 
-		var getContent = this.content.replace(/<img[^>]*>/, '');
-
+		var getSource = this.source.toUpperCase();
+		
 		return {
 			title: this.title,
-			description: 'from ' + this.source + ' | ' + getContent,
+			description: 'Source: ' + getSource + ' | Read the latest news on XBdash.com.',
 			image: function () {
 				return getImage;
 			},
