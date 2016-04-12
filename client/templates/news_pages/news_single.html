@@ -16,6 +16,7 @@
 						</div>
 					</div>
 					<div class="wrapper-md visible-xl-block col-xl-2 hidden-lg hidden-md hidden-sm hidden-xs trending-column">
+						<h2 class="m-b-sm font-thin h3 text-black">Trending</h2>
 						{{> mostSharedNews limit=8}}
 					</div>
 					<div class="wrapper-md col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
@@ -27,7 +28,7 @@
 								{{> shareit newsData}}
 							</div>
 							<div class="comment-section">
-							    {{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
+								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
 							</div>
 						</div>
 					</div>

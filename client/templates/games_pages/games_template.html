@@ -26,14 +26,13 @@
 							Release Date: {{dateFormat}}
 						</p>
 						{{#each gameGenre}}
-						<a href="#linkToGenreList" class="m-l-xss text-xxs">{{this.Name}}</a>
+						<a href="#linkToGenreList" class="m-l-xss text-xs">{{this.Name}}</a>
 						{{/each}}
 					</span>
 				</div>
 				<div class="item img">
 					<div class="overlay">
 						<span class="game-page-link"><a href="{{pathFor 'game'}}" class="btn btn-sm btn-success padder-md m-b"><i class="fa fa-share"></i> See Details</a></span>
-						{{> gameRating}}
 						<span class="games-thumb">
 							{{#if Template.subscriptionsReady}}
 							<img src="{{gamesImage}}" class="img-full game-image">

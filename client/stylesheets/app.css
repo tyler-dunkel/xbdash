@@ -6029,6 +6029,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	-webkit-transition: all 0.35s ease-in-out;
 	-moz-transition: all 0.35s ease-in-out;
 	transition: all 0.35s ease-in-out;
+	padding-bottom: 5px;
 }
 .ih-item.square.effect3 .info2 {
 	top: 61px;
@@ -6054,7 +6055,8 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	-o-transform: translateY(40px);
 	transform: translateY(40px);
 }
-.ih-item.square.effect3.top_to_bottom a:hover .info, .ih-item.square.effect3.top_to_bottom a:hover .info2 {
+.ih-item.square.effect3.top_to_bottom a:hover .info,
+.ih-item.square.effect3.top_to_bottom a:hover .info2 {
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
 	-ms-transform: translateY(0);

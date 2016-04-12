@@ -21,7 +21,8 @@ Template.gamerscoreChartSvg.rendered = function() {
 			.valueFormat(d3.format(',f'))
 			.staggerLabels(false)
 			.tooltips(true)
-			.showValues(true);
+			.showValues(true)
+			.noData("Your data will update when your Gamerscore changes.");
 
 		gamerscoreChart.xAxis
 			// .axisLabel('Date')

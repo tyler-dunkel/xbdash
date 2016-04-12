@@ -39,7 +39,8 @@ Template.gamesChartSvg.rendered = function() {
 			.donutLabelsOutside(false)
 			.labelThreshold(.01)
 			.labelType("key")
-			.cornerRadius(5);
+			.cornerRadius(5)
+			.noData("Your data will update when you unlock an achievement.");
 
 		updateGamesChart(formattedGameData);
 
