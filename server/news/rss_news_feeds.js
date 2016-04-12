@@ -5,10 +5,10 @@ Meteor.startup(function () {
             xml2js.parseString(res.content, function (err, result) {
                 result.feed.entry.forEach(function (i) {
                     i.slug = i.id[0].replace(/.*\//,'');
-
                     //insert articles
                     var count = xbdNews.find({ slug: i.slug }).count(); // http://stackoverflow.com/questions/10167604/how-can-i-add-a-two-column-unique-id-to-the-mongodb-in-a-meteor-app
                     if (count === 0) {
+                    	i.source = 'polygon';
                         i.link = i.link[0]['$'];
                         i.contentType = i.content[0]['$'];
                         i.content = i.content[0]['_'];

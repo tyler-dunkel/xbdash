@@ -61,3 +61,7 @@ Meteor.publishComposite('comments/reference', function (id, limit, skip = 0) {
     }]
   };
 });
+
+Meteor.publish('commentUserFields', function(userId) {
+  return Meteor.users.find({ userId: userId }, { fields: { "gamercard.gamerpicLargeSslImagePath": 1, "gamercard.gamertag": 1 } });
+});

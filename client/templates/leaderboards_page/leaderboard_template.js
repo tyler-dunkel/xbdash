@@ -64,7 +64,7 @@ Template.leaderboardTemplate.helpers({
                     'dailyRank.value': { $gt: 1 }
                 }, {
                     sort: { 'dailyRank.rank': 1 },
-                    limit: 100
+                    limit: 50
                 });
                 break;
             case 'completedAchievements':
@@ -72,7 +72,7 @@ Template.leaderboardTemplate.helpers({
                     'completedAchievements.count': { $gt: 1 }
                 }, {
                     sort: { 'completedAchievements.rank': 1 },
-                    limit: 100
+                    limit: 50
                 });
                 break;
             case 'completedGames':
@@ -80,7 +80,7 @@ Template.leaderboardTemplate.helpers({
                     'completedGames.count': { $gt: 1 }
                 }, {
                     sort: { 'completedGames.rank': 1 },
-                    limit: 100
+                    limit: 50
                 });
                 break;
             default:

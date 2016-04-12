@@ -59,10 +59,10 @@
   {{#if templateIs 'bootstrap' }}
     <div class="media">
       <div class="media-left">
-        <img alt="{{user.gamercard.gamertag}}" class="img-thumbnail img-avatar" src="{{avatarUrl}}" />
+        <img alt="{{getUser}}" class="img-thumbnail img-avatar" src="{{avatarUrl}}" />
       </div>
       <div class="media-body comment">
-        <h4 class="media-heading">{{user.gamercard.gamertag}} <small>{{createdAgo}}</small></h4>
+        <h4 class="media-heading">{{getUser}} <small>{{createdAgo}}</small></h4>
         <div class="content">
           <p class="comment-content" data-id="{{commentId}}">
             {{#if uiConfigGet 'markdown'}}

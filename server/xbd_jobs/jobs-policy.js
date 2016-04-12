@@ -1,5 +1,5 @@
 xbdJobsCollection.allow({
-	admin: function (userId, method, params) {
+	admin: function() {
 		return true;
-	}	
+	}
 });

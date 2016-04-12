@@ -1,3 +1,7 @@
+Template.commentsSingleComment.created = function() {
+  this.subscribe('commentUserFields', this.userId);
+}
+
 Template.commentsSingleComment.helpers(_.extend(defaultCommentHelpers, {
   hasLiked() {
     return this.likes.indexOf(userService.getUserId()) > -1;
@@ -22,6 +26,10 @@ Template.commentsSingleComment.helpers(_.extend(defaultCommentHelpers, {
     } else if (_.isArray(this.enhancedReplies)) {
       return this.enhancedReplies;
     }
+  },
+  getUser() {
+    var user = Meteor.users.findOne(this.userId);
+    return user.gamercard.gamertag;
   },
   avatarUrl() {
     var user = Meteor.users.findOne(this.userId);

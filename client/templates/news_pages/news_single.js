@@ -28,9 +28,11 @@ Template.newsSinglePage.helpers({
 			getImage = '/img/news-default.jpg';
 		}
 
+		var getContent = this.content.replace(/<img[^>]*>/, '');
+
 		return {
 			title: this.title,
-			description: this.content,
+			description: 'from ' + this.source + ' | ' + getContent,
 			image: function () {
 				return getImage;
 			},

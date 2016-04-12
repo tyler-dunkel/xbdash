@@ -22,7 +22,7 @@ youtubeAnalyzer = {
         }
       }
 
-      mediaContent = `http://www.youtube.com/embed/${id}`;
+      mediaContent = `https://www.youtube.com/embed/${id}`;
     }
 
     return mediaContent;
