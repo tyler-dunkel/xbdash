@@ -1,22 +1,13 @@
 Template.shareIt.helpers({
 	xbdData: function() {
-		var content = this.content;
-		var author = this.author;
-		console.log(author);
-		var getImage = $('div > img')[0].src;
-
-		if (getImage) {
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(selectFirstImage);
-		} else {
-			getImage = '/img/news-default.jpg';
-		}
-
 		return {
-			title: this.title,
-			author: 'XBdash',
+			title: 'XBdash | Manage achievements. Complete games. See results.',
+			description: 'XBdash is the dashboard for all Xbox® Gamers. Sign up today!',
 			image: function () {
+				var getImage = '/img/share-default.jpg';
 				return getImage;
-			}
+			},
+			author: 'xboxdash'
 		}
 	}
 });

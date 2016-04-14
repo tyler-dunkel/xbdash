@@ -25,10 +25,7 @@ Template.resetPasswordForm.events({
     			sweetAlert({
 					title: error.reason,
 					text: error.message,
-					type: "error",
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "OK",
-					closeOnConfirm: false
+					type: "error"
 				},
 				function() {
 					Router.go('forgotPassword');
@@ -41,9 +38,7 @@ Template.resetPasswordForm.events({
 					title: "Password Reset",
 					text: "Your password has been reset. Welcome back!",
 					type: "success",
-					confirmButtonColor: "#138013",
-					confirmButtonText: "OK",
-					closeOnConfirm: true,
+					confirmButtonColor: "#138013"
 				});
 
     			if (doneCallback) {

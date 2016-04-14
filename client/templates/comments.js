@@ -55,9 +55,6 @@ Template.newsCommentBox.helpers({
 // }
 
 // Template.singleComment.helpers({
-//     debugger: function () {
-//         console.log(this);
-//     },
 //     getUser: function (user){
 //         var user = Meteor.users.findOne({ _id: this.userId });
 //         return user.gamercard.gamertag;

@@ -4,7 +4,7 @@
 	background-color: #fff;
 	margin: 0 auto 20px;
 }
-@media only screen and (max-width: 991px) {
+@media (max-width: 991px) {
 	.xbd-top-banner-ad {
 		width: 468px;
 		height: 60px;
@@ -12,7 +12,7 @@
 		margin: 5px auto 20px;
 	}
 }
-@media only screen and (max-width: 767px) {
+@media (max-width: 767px) {
 	.xbd-top-banner-ad {
 		width: 336px;
 		height: 280px;
@@ -20,7 +20,7 @@
 		margin: 5px auto 20px;
 	}
 }
-@media only screen and (min-width: 768px) and (min-width: 1267px) {
+@media (min-width: 768px) and (min-width: 1267px) {
 	.xbd-top-banner-ad {
 		display: none;
 	}
@@ -32,7 +32,7 @@
 	margin: 0 auto;
 	border: 1px #cccccc; 
 }
-@media only screen and (max-width: 767px) {
+@media (max-width: 767px) {
 	.xbd-right-banner-ad {
 		width: 300px;
 		height: 250px;
@@ -40,12 +40,12 @@
 		margin: 0 auto 15px;
 	}
 }
-@media only screen and (min-width: 768px) and (max-width: 1267px) {
+@media (min-width: 768px) and (max-width: 1267px) {
 	.xbd-right-banner-ad {
 		display: none;
 	}
 }
-@media only screen and (min-width: 1268px) {
+@media (min-width: 1268px) {
 	.xbd-right-banner-ad {
 		width: 160px;
 		height: 600px;
@@ -53,7 +53,7 @@
 		margin: 0 auto 15px;
 	}
 }
-@media only screen and (min-width: 1541px) {
+@media (min-width: 1541px) {
 	.xbd-right-banner-ad {
 		width: 300px;
 		height: 600px;
@@ -67,7 +67,7 @@
 	background-color: #fff;
 	margin: 0 auto 20px;
 }
-@media only screen and (max-width: 767px) {
+@media (max-width: 767px) {
 	.xbd-right-sidebar-ad {
 		width: 300px;
 		height: 250px;
@@ -76,12 +76,12 @@
 		display: inline-block;
 	}
 }
-@media only screen and (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1199px) {
 	.xbd-right-sidebar-ad {
 		display: none;
 	}
 }
-@media only screen and (min-width: 1268px) {
+@media (min-width: 1268px) {
 	.xbd-right-sidebar-ad {
 		width: 300px;
 		height: 250px;
@@ -96,24 +96,24 @@
 	margin: 30px auto;
 	display: block;
 }
-@media only screen and (min-width: 768px) {
+@media (min-width: 768px) {
 	.xbd-left-sidebar-ad {
 		width: 160px;
 		height: 600px;
 	}
 }
-@media only screen and (min-width: 992px) {
+@media (min-width: 992px) {
 	.xbd-left-sidebar-ad {
 		margin: 20px auto;
 	}
 }
-@media only screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
 	.xbd-left-sidebar-ad {
 		width: 250px;
 		height: 250px;
 	}
 }
-@media only screen and (min-width: 1400px) {
+@media (min-width: 1400px) {
 	.xbd-left-sidebar-ad {
 		width: 300px;
 		height: 250px;

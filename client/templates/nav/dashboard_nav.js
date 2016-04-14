@@ -4,7 +4,7 @@ Template.dashboardNav.created = function() {
 		console.log("autorun for dashboard nav ran");
 		if (user && user.gamertagScanned && user.gamertagScanned.status !== 'false') {
 			console.log("autorun for dashboard nav returned / href");
-			$('li a.dashboard-link').attr("href", "#");
+			$('li a.dashboard-link').attr("href", "/");
 		} else {
 			console.log("autorun for dashboard nav returned # href");
 			$('li a.dashboard-link').attr("href", "#");

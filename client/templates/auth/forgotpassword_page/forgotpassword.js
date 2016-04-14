@@ -12,10 +12,7 @@ Template.forgotPasswordApp.events({
 				sweetAlert({
 					title: error.reason,
 					text: error.details,
-					type: "error",
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "OK",
-					closeOnConfirm: false
+					type: "error"
 				});
 				return;
 			} else {
@@ -23,9 +20,7 @@ Template.forgotPasswordApp.events({
 					title: "Forgot Password",
 					text: "Please check your email for password reset instructions.",
 					type: "success",
-					confirmButtonColor: "#138013",
-					confirmButtonText: "OK",
-					closeOnConfirm: true
+					confirmButtonColor: "#138013"
 				},
 				function() {
 					Router.go('home');

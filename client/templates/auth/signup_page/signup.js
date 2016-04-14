@@ -33,10 +33,7 @@ Template.signUpForm.events({
 				sweetAlert({
 					title: error.reason,
 					text: error.details,
-					type: "error",
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "OK",
-					closeOnConfirm: false
+					type: "error"
 				});
 				Router.go('signUp');
 				return;

@@ -49,10 +49,7 @@ Template.confirmGtForm.events({
 					sweetAlert({
 						title: error.reason,
 						text: error.details,
-						type: "error",
-						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "OK",
-						closeOnConfirm: false
+						type: "error"
 					});
 					return;
 				}
@@ -64,10 +61,7 @@ Template.confirmGtForm.events({
 				sweetAlert({
 					title: error.reason || 'Internal server error!',
 					text: error.details || 'Server responded with 500.',
-					type: "error",
-					confirmButtonText: "OK",
-					confirmButtonColor: "#DD6B55",
-					closeOnConfirm: false
+					type: "error"
 				});
 				return;
 			}

@@ -5841,12 +5841,12 @@ ul.signin > li.active {
 	clear: both;
 }
 .grid-item--width2 { width: 930px; }
-@media only screen and (max-width: 945px) {
+@media (max-width: 945px) {
 	.grid-item {
 		margin: 0 25%;
 	}
 }
-@media only screen and (max-width: 640px) {
+@media (max-width: 640px) {
 	.grid-item {
 		margin: 0;
 	}
@@ -5863,8 +5863,8 @@ ul.signin > li.active {
 .achievements-thumb {width: 300px; height: 169px; background-image: url("/img/achievement-default.jpg"); background-size: 300px 169px; background-repeat: no-repeat; vertical-align: middle;}
 .ih-item.square .img .achievements-thumb {max-width: 100%; height: auto; background-image: url("/img/achievement-default.jpg"); background-position: center; background-repeat: no-repeat;}
 .game-div {display: inline-block; vertical-align: middle;}
-.game-name {font-size: 105%; font-weight: bold;}
-.game-name label { margin-bottom: -5px; }
+.achievement-name {font-size: 105%; font-weight: bold;}
+.achievement-name label { margin-bottom: 0; }
 #achievementsChart { width: 100%; height: auto; position: absolute; }
 path.slice{stroke-width:2px;}
 polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
@@ -6149,6 +6149,12 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	text-overflow: ellipsis;
 	max-width: 60ch;
 }
+.title-wrap-achievement-description {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 60ch;
+}
 .title-wrap-game2 {
 	white-space: normal;
 	overflow: hidden;
@@ -6195,12 +6201,31 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .achievements-list.list-group.no-borders .list-group-item {
 	border-bottom: 1px solid #dddddd;
 }
-@media only screen and (max-width: 530px) {
+@media (max-width: 530px) {
 	.achievements-list .col-xs-6 {
 		width: 42%;
 	}
 }
-@media only screen and (min-width: 768px) {
+@media (max-width: 767px) {
+	.achievement-name-ellipsis {
+		white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    max-width: 274px;
+	}
+	.achievements-list .achievement-img {
+		width: 16.66666667%
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.achievement-name-ellipsis {
+		white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    max-width: 274px;
+	}
+}
+@media (min-width: 768px) {
 	/* sm */
 	.achievements-list .trophy-class {
 		width: 100%;
@@ -6227,7 +6252,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 		padding-bottom: 10px;
 	}
 }
-@media only screen and (min-width: 992px) {
+@media (min-width: 992px) {
 	.ih-item.square.effect1.bottom_to_top .info h3 {
 		margin: 35% 0 0 0;
 	}
@@ -6252,7 +6277,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 		margin-left: 15px;
 	}
 }
-@media only screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
 	.ih-item.square.effect1.bottom_to_top .info h3 {
 		margin: 38% 0 0 0;
 	}
@@ -6274,17 +6299,24 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 		background-position: center center;
 		background-size: cover;
 	}
-	.achievements-list .title-wrap-game {
+	.achievement-name-ellipsis {
+		white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    max-width: 274px;
+	}
+	.achievements-list .title-wrap-achievement-description {
 		white-space: normal;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		max-width: 40ch;
+		max-height: 55px;
 	}
 	.achievements-list .m {
 		margin: 15px;
 	}
 }
-@media only screen and (min-width: 1400px) {
+@media (min-width: 1400px) {
 	.ih-item.square.effect1.bottom_to_top .info h3 {
 		margin: 36% 0 0 0;
 	}
@@ -6303,7 +6335,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 		background-position: center center;
 		background-size: cover;
 	}
-	.achievements-list .title-wrap-game {
+	.achievements-list .title-wrap-achievement-description {
 		white-space: normal;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -6320,114 +6352,6 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	background-position: center center;
 	background-size: cover;
 }
-
-/*
-@media only screen and (min-width: 420px) and (max-width: 639px) {
-.achievements-list .trophy-class {
-width: 100%;
-height: 64px;
-}
-.achievements-list .thumb-xl {
-width: 114px;
-}
-.achievements-list .title-wrap-game2 {
-max-width: 24ch;
-font-size: 12px;
-}
-}
-@media only screen and (min-width: 640px) and (max-width: 767px) {
-.achievements-list .trophy-class {
-width: 100%;
-height: 72px;
-}
-.achievements-list .title-wrap-game2 {
-max-width: 40ch;
-font-size: 13px;
-}
-.achievements-list .c100.small {
-margin: 5px 10px 6px;
-}
-.achievements-list .hidden-xs {
-display: inline-block !important;
-}
-}
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-.achievements-list .trophy-class {
-width: 100%;
-height: 72px;
-padding-top: 25px;
-}
-.achievements-list .title-wrap-game2 {
-max-width: 26ch;
-font-size: 12px;
-}
-.achievements-list .c100.small {
-margin: 5px 10px 6px;
-}
-.achievements-list .hidden-xs {
-display: inline-block !important;
-}
-}
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-.achievements-list .trophy-class {
-width: 100%;
-height: 84px;
-padding-top: 18px;
-}
-.achievements-list .title-wrap-game2 {
-max-width: 32ch;
-font-size: 12px;
-}
-.achievements-list .c100.small {
-margin: 5px 10px 6px;
-}
-.achievements-list .hidden-xs {
-display: inline-block !important;
-}
-}
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
-.achievements-list .wrapper-sm {
-padding: 8px 5px;
-}
-.achievements-list .trophy-class {
-width: 100%;
-padding-top: 24px;
-}
-.achievements-list .trophy-class .h4 {
-font-size: 14px;
-}
-.achievements-list .title-wrap-game2 {
-max-width: 76ch;
-font-size: 14px;
-}
-.achievements-list .c100.small {
-margin: 5px 10px 6px;
-}
-.achievements-list .hidden-xs {
-display: inline-block !important;
-}
-}
-@media only screen and (min-width: 1400px) {
-.achievements-list .wrapper-sm {
-padding: 8px 5px;
-}
-.achievements-list .trophy-class {
-width: 100%;
-height: 84px;
-padding-top: 18px;
-}
-.achievements-list .title-wrap-game2 {
-max-width: 76ch;
-font-size: 14px;
-}
-.achievements-list .c100.small {
-margin: 5px 10px 6px;
-}
-.achievements-list .hidden-xs {
-display: inline-block !important;
-}
-}
-*/
 
 .blog-post.news { max-width: 640px; margin: 0 auto; }
 .blog-post p { font-size: 16px; line-height: 1.5em; padding: 0 10px; }

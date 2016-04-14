@@ -24,7 +24,7 @@
 							{{/if}}
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-2 col-lg-3 col-md-4 col-sm-4 col-xs-12">
+					<div class="wrapper-md col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-12">
 						<div class="blog-post left">
 							<img src="{{gamesImage}}" class="img-full">
 							{{#if chkGamerStatus}}
@@ -184,18 +184,18 @@
 						{{/if}}
 					</div>
 					<div class="col-xl-2 hidden-lg col-md-2 col-sm-2 col-xs-2 {{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');"></div>
-					<div class="col-xl-6 col-lg-7 col-md-6 col-sm-7 col-xs-6 achievement-description">
+					<div class="col-xl-6 col-lg-7 col-md-6 col-sm-7 col-xs-8 achievement-description">
 						<div class="m-l-md">
-							<div class="padder-t game-name">
+							<div class="padder-t achievement-name achievement-name-ellipsis">
 								{{this.name}}
 								<label class="label bg-{{achievementClass}} m-l-sm text-ellipsis-inline">
-									<i class="fa fa-{{trophyClass}}"></i> {{achievementClass}}
+									<i class="fa fa-{{trophyClass}}"></i><span class="hidden-md hidden-sm hidden-xs"> {{achievementClass}}</span>
 								</label>
 							</div>
-							<div class="padder-d title-wrap-game">{{this.description}}</div>
+							<div class="padder-d title-wrap-achievement-description">{{this.description}}</div>
 						</div>
 					</div>
-					<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm col-xs-2">
+					<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm hidden-xs">
 						<div class="bg-black c100 p{{userPercentage}} small text-center m">
 							<span>
 								{{userPercentage}}%

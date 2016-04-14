@@ -15,10 +15,7 @@ Template.settingsApp.events({
 				sweetAlert({
 					title: error.reason,
 					text: error.details,
-					type: "error",
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "OK",
-					closeOnConfirm: true
+					type: "error"
 				});
 				return;
 			} else {
@@ -26,9 +23,7 @@ Template.settingsApp.events({
 					title: "Password Changed",
 					text: "Your password has been changed!",
 					type: "success",
-					confirmButtonColor: "#138013",
-					confirmButtonText: "OK",
-					closeOnConfirm: true
+					confirmButtonColor: "#138013"
 				});
 				Router.go('home');
 			}

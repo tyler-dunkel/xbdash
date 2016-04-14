@@ -14,13 +14,9 @@ Template.logIn.events({
 				sweetAlert({
 					title: error.reason,
 					text: error.details,
-					type: "error",
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "OK",
-					closeOnConfirm: false
+					type: "error"
 				});
-			}
-			else {
+			} else {
 				var user = Meteor.user();
 				Router.go('home');
 			}
