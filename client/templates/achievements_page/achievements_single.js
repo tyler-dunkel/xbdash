@@ -24,7 +24,19 @@ Template.achievementsSinglePage.helpers({
 	chkUserForAchievement: function () {
 		var userId = Meteor.userId();
 		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId });
-		if (userAchievement && userAchievement.count() > 0) return true;
+		if (userAchievement && userAchievement.count() > 0) {
+			console.log('achievement checked');
+			return true;
+		}
+		return false; 
+	},
+	isUnlocked: function () {
+		var userId = Meteor.userId();
+		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId, progressState: true });
+		if (userAchievement && userAchievement.count() > 0) {
+			console.log('achievement unlocked');
+			return true;
+		}
 		return false; 
 	},
 	achievementData: function () {
@@ -32,7 +44,7 @@ Template.achievementsSinglePage.helpers({
 		var getGame = xbdGames.findOne({ _id: this.gameId });
 
 		if (getImage) {
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
+			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + encodeURIComponent(getImage);
 		} else {
 			getImage = '/img/achievement-default.jpg';
 		}

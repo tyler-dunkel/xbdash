@@ -14,7 +14,8 @@ Template.logIn.events({
 				sweetAlert({
 					title: error.reason,
 					text: error.details,
-					type: "error"
+					type: "error",
+					closeOnConfirm: true
 				});
 			} else {
 				var user = Meteor.user();

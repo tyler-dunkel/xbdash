@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
-		"start": "meteor --settings settings.json"
+		"start": "meteor --settings settings.json",
+		"deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy beta.xbdash.com --settings './settings-prod.json'"
 	}
 }

@@ -32,7 +32,7 @@ Template.leaderboardTemplate.helpers({
                 return 'Top All-Time Gamerscore';
         }
     },
-    checkForLB: function() {
+    checkCurrentUserForLB: function() {
         var count;
         var user = Meteor.user();
         var boardType = Template.instance().data.boardType;
@@ -56,6 +56,45 @@ Template.leaderboardTemplate.helpers({
                 return true;
         }
     },
+    defaultBoardText: function() {
+        var boardType = Template.instance().data.boardType;
+        switch(boardType) {
+            case 'dailyRank':
+                return "Unlock an achievement today<br/>for a daily rank.";
+                break;
+            case 'completedAchievements': 
+                return "Unlock an achievement<br/>for a rank.";
+                break;
+            case 'completedGames':
+                return "Complete a game's achievements<br />for a rank.";
+                break;
+            default:
+                return "Start hunting for achievements<br />for a rank.";
+        }
+    },
+    checkForLB: function() {
+        var count;
+        var boardType = Template.instance().data.boardType;
+        switch(boardType) {
+            case 'dailyRank':
+                count = userLeaderboards.find({ 'dailyRank.rank': { $gte: 1 } }).count();
+                if (count > 0) return true;
+                return false;
+                break;
+            case 'completedAchievements': 
+                count = userLeaderboards.find({ 'completedAchievements.rank': { $gte: 1 } }).count();
+                if (count > 0) return true;
+                return false;
+                break;
+            case 'completedGames':
+                count = userLeaderboards.find({ 'completedGames.rank': { $gte: 1 } }).count();
+                if (count > 0) return true;
+                return false;
+                break;
+            default:
+                return true;
+        }
+    },
     rank: function() {
         var boardType = Template.instance().data.boardType;
         switch(boardType) {
@@ -64,7 +103,7 @@ Template.leaderboardTemplate.helpers({
                     'dailyRank.value': { $gt: 1 }
                 }, {
                     sort: { 'dailyRank.rank': 1 },
-                    limit: 50
+                    limit: 25
                 });
                 break;
             case 'completedAchievements':
@@ -72,7 +111,7 @@ Template.leaderboardTemplate.helpers({
                     'completedAchievements.count': { $gt: 1 }
                 }, {
                     sort: { 'completedAchievements.rank': 1 },
-                    limit: 50
+                    limit: 25
                 });
                 break;
             case 'completedGames':
@@ -80,13 +119,13 @@ Template.leaderboardTemplate.helpers({
                     'completedGames.count': { $gt: 1 }
                 }, {
                     sort: { 'completedGames.rank': 1 },
-                    limit: 50
+                    limit: 25
                 });
                 break;
             default:
-                return userLeaderboards.find({ overallRank: {$gt: 0 } }, {
+                return userLeaderboards.find({ overallRank: { $gt: 0 } }, {
                     sort: { overallRank: 1 },
-                    limit: 50
+                    limit: 25
                 });
         }
     },

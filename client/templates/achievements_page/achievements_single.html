@@ -28,10 +28,12 @@
 							</div>
 							{{#if chkGamerStatus}}
 							{{#if chkUserForAchievement}}
+							{{#if isUnlocked}}
 								<div class="share-bar">
 									<h4>Share Your Achievement</h4>
 									{{> shareit achievementData}}
 								</div>
+							{{/if}}
 							{{/if}}
 							{{/if}}
 							<p class="h5 text-left">

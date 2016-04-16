@@ -22,7 +22,7 @@ Template.gamesSinglePage.helpers({
 		if (game.platform === 'Xenon') {
 			this.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BoxArt' && art.Width === 219) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+					image = "https://res.cloudinary.com/xbdash/image/fetch/h_628,c_scale" + encodeURIComponent(art.Url);
 				}
 			});
 		}
@@ -54,14 +54,14 @@ Template.gamesSinglePage.helpers({
 		if (game.platform === 'Xenon') {
 			this.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BoxArt' && art.Width === 219) {
-					getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+					getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + encodeURIComponent(art.Url);
 				}
 			});
 		}
 		if (game.platform === 'Durango') {
 			this.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-					getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+					getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + encodeURIComponent(art.Url);
 				}
 			});
 		}

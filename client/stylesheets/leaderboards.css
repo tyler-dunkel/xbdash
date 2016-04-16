@@ -7,6 +7,11 @@
 	width: 64px;
 	height: auto;
 }
+.leaderboards-page .panel-heading.current-user .text-md {
+	color: #1C2B36;
+	font-size: 18px;
+	line-height: 22px;
+}
 .leaderboards-page .panel-heading.current-user .media .m-t-sm {
 	color: #1C2B36;
 	display: block;

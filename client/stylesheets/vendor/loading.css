@@ -78,6 +78,19 @@
   -webkit-animation-delay: -0.1s;
   animation-delay: -0.1s;
 }
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+@keyframes bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
 #hasMoreResults .spinner-rect {
   margin: 30px auto;
   width: 50px;
@@ -120,7 +133,6 @@
   height: 100%;
   width: 6px;
   display: inline-block;
-  
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
@@ -140,31 +152,6 @@
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }
-.user-dropdown-loading {
-  height: 25%;
-  padding-right: 15%;
-  position: absolute;
-  right: 0;
-  width: 25%;
-}
-.user-dropdown-loading .spinner {
-  height: 25px;
-  margin: 10px auto;
-  width: 25px;
-}
-@-webkit-keyframes bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0.0) }
-  40% { -webkit-transform: scale(1.0) }
-}
-@keyframes bouncedelay {
-  0%, 80%, 100% { 
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 40% { 
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
-}
 @-webkit-keyframes sk-stretchdelay {
   0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
   20% { -webkit-transform: scaleY(1.0) }
@@ -177,4 +164,16 @@
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
+}
+.user-dropdown-loading {
+  height: 25%;
+  padding-right: 15%;
+  position: absolute;
+  right: 0;
+  width: 25%;
+}
+.user-dropdown-loading .spinner {
+  height: 25px;
+  margin: 10px auto;
+  width: 25px;
 }

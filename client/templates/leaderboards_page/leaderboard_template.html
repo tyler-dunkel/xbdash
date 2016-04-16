@@ -6,8 +6,18 @@
       </div>
     </div>
     {{#if chkGamerStatus}}
-    {{#if checkForLB}}
+    {{#if checkCurrentUserForLB}}
       {{> currentUserLeaderboard boardType=this.boardType}}
+    {{else}}
+      <div class="panel panel-success" style="margin-bottom: 0;">
+        <div class="panel-heading current-user">
+          <div class="padder-d text-center">
+            <div class="text-md">
+              {{{defaultBoardText}}}
+            </div>
+          </div>
+        </div>
+      </div>
     {{/if}}
     {{/if}}
     <div class="panel panel-black">
@@ -32,7 +42,7 @@
         {{else}}
         <li class="list-group-item">
           <div class="padder-v text-center">
-            <div class="text-md">Currently collecting data.</div>
+            <div class="text-md">Currently collecting data...</div>
           </div>
         </li>
         {{/if}}
