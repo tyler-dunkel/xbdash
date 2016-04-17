@@ -23,7 +23,7 @@ Template.newsSinglePage.helpers({
 		var getImage = image[0].match(/src="(.+?)"/)[1];
 
 		if (getImage) {
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
+			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + getImage;
 		} else {
 			getImage = '/img/news-default.jpg';
 		}
