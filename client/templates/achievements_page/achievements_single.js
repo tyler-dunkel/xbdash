@@ -44,7 +44,8 @@ Template.achievementsSinglePage.helpers({
 		var getGame = xbdGames.findOne({ _id: this.gameId });
 
 		if (getImage) {
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + encodeURIComponent(getImage);
+			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + getImage;
+			getImage = encodeURIComponent(getImage);
 		} else {
 			getImage = '/img/achievement-default.jpg';
 		}
