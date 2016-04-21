@@ -1,9 +1,10 @@
-var newsLimit = new ReactiveVar();
+var newsLimit;
 
 Template.newsPage.events({
 });
 
 Template.newsSection.created = function() {
+	newsLimit = new ReactiveVar();
 	newsLimit.set(9);
 	this.subscribe('latestNews', newsLimit.get());
 }

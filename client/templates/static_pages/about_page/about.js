@@ -2,7 +2,7 @@ var newsLimit = new ReactiveVar();
 
 Template.aboutUs.rendered = function() {
 	$('body').addClass('home-page');
-
+	
 	$(window).bind('scroll', function() {
         if ($(window).scrollTop() > 150) {
             $('.navbar-fixed-top').addClass('on');

@@ -48,6 +48,12 @@ Meteor.startup(function() {
 
 	xbdJobsCollection.startJobServer();
 
+	// jc.shutdownJobServer(
+	// 	{
+	// 	timeout: 60000
+	// 	}
+	// );
+
 	// SyncedCron.start();
 
 	// var testUser = Meteor.users.findOne({'gamercard.gamertag': 'Mayvn'});
