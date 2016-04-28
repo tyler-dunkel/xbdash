@@ -63,5 +63,17 @@ Template.dashboardNav.events({
 				Router.go('confirmGt');
 			}
 		});
-	}
+	},
+	'click li.contest-modal-trigger': function (e) {
+		console.log("fired");
+			e.preventDefault();
+			sweetAlert({
+				title: 'Contest',
+				html: Blaze.toHTML(Template.referralModalTemplate)
+			}, function(e) {
+				if (e) {
+					//Router.go('submit');
+				}
+			});
+		}
 });

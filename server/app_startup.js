@@ -9,6 +9,8 @@ Meteor.startup(function() {
 	// 		}
 	// 	});
 
+	xbdContests.insert({status: 'active', entries: []});
+
 	ServiceConfiguration.configurations.remove({
 		service: 'facebook'
 	});
@@ -21,7 +23,7 @@ Meteor.startup(function() {
 
 	ServiceConfiguration.configurations.remove({
 		service: "twitter"
-	}); 
+	});
 
 	ServiceConfiguration.configurations.insert({
 		service: "twitter",
