@@ -1,12 +1,6 @@
 Template.signUp.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();
-		var referraltoken = Router.current().params.query.referraltoken;
-		if(referraltoken){
-			console.log(referraltoken);
-		} else {
-			console.log("No referral token was found");
-		}
 		if (user) {
 			if (_.isEmpty(user.services)) {
 				if (user.emails && user.emails[0] && !user.emails[0].verified) {
@@ -33,16 +27,7 @@ Template.signUpForm.events({
 		if (password !== passwordConfirm) return;
 
 		var user = {email: email, password: password, profile: {}};
-
 		var referraltoken = Router.current().params.query.referraltoken;
-		var userToAddReferral = getUserFromReferralTokenSignup(referraltoken);
-		console.log(userToAddReferral);
-
-		if(userToAddReferral){
-			addToReferralCount(userToAddReferral);
-		} else {
-			console.log("No user was found based off provided token");
-		}
 
 		Accounts.createUser(user, function(error, result) {
 			if (error) {
@@ -54,6 +39,10 @@ Template.signUpForm.events({
 				Router.go('signUp');
 				return;
 			} else {
+				if (referralToken) {
+					Meteor.call('resolveReferralToken', referralToken, function() {
+					});
+				}
 				Router.go('confirmEmail');
 			}
 		});
@@ -67,10 +56,15 @@ Template.signUpForm.events({
 	},
 	'click #facebook-login': function(event) {
 		subMana.clear();
+		var referralToken = Router.current().params.query.referraltoken;
         Meteor.loginWithFacebook({}, function(error){
             if (error) {
                 throw new Meteor.Error("Facebook login failed");
             } else {
+            	if (referralToken) {
+					Meteor.call('resolveReferralToken', referralToken, function() {
+					});
+				}
             	Router.go('confirmGt');
 				return;
             }
@@ -78,10 +72,15 @@ Template.signUpForm.events({
     },
     'click #twitter-login': function(event) {
     	subMana.clear();
+    	var referralToken = Router.current().params.query.referraltoken;
         Meteor.loginWithTwitter({}, function(error){
             if (error) {
                 throw new Meteor.Error("Twitter login failed.");
             } else {
+            	if (referralToken) {
+					Meteor.call('resolveReferralToken', referralToken, function() {
+					});
+				}
             	Router.go('confirmGt');
 				return;
             }
@@ -92,7 +91,7 @@ Template.signUpForm.events({
             if (error) {
                 throw new Meteor.Error("Logout failed");
             }
-        })
+        });
     }
 });
 
