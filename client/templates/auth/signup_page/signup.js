@@ -27,7 +27,7 @@ Template.signUpForm.events({
 		if (password !== passwordConfirm) return;
 
 		var user = {email: email, password: password, profile: {}};
-		var referraltoken = Router.current().params.query.referraltoken;
+		var referralToken = Router.current().params.query.referraltoken;
 
 		Accounts.createUser(user, function(error, result) {
 			if (error) {

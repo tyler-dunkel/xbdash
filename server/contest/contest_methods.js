@@ -22,10 +22,12 @@ Meteor.methods({
       var userToken = Random.id(7);
       xbdContests.update({status: 'active'}, {$push: {entries: {userId: user._id, referralToken: userToken, referralCount: 1}}});
     } else if (checkForUserToken) {
+      console.log('token belonged to user');
       //user was referred by another user. give that user a count increment
       xbdContests.update({status: 'active', entries: {$elemMatch: {referralToken: token}}}, {$inc: {'entries.$.referralCount': 1}});
     } else {
       //token invalid. just return;
+      console.log('not valid token');
       return;
     }
   } 
