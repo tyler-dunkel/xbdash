@@ -1,6 +1,12 @@
 Template.signUp.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();
+		var referraltoken = Router.current().params.query.referraltoken;
+		if(referraltoken){
+			console.log(referraltoken);
+		} else {
+			console.log("No referral token was found");
+		}
 		if (user) {
 			if (_.isEmpty(user.services)) {
 				if (user.emails && user.emails[0] && !user.emails[0].verified) {
@@ -27,7 +33,17 @@ Template.signUpForm.events({
 		if (password !== passwordConfirm) return;
 
 		var user = {email: email, password: password, profile: {}};
-		
+
+		var referraltoken = Router.current().params.query.referraltoken;
+		var userToAddReferral = getUserFromReferralTokenSignup(referraltoken);
+		console.log(userToAddReferral);
+
+		if(userToAddReferral){
+			addToReferralCount(userToAddReferral);
+		} else {
+			console.log("No user was found based off provided token");
+		}
+
 		Accounts.createUser(user, function(error, result) {
 			if (error) {
 				sweetAlert({

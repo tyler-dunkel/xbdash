@@ -12,4 +12,13 @@ Meteor.methods({
       return referralId;
     }
   }
+
+  getUserFromReferralTokenSignup: function(referralToken) {
+    return xbdContests.findOne({"entries.userId": referraltoken});
+  }
+
+  addToReferralCount: function(userId){
+    //var user = Meteor.users.update({_id.: user._id}, {add to referral count});
+    return "User id: " + user.id + ", now has " + user.referralCount + " referrals";
+  }
 });
