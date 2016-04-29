@@ -65,15 +65,16 @@ Template.dashboardNav.events({
 		});
 	},
 	'click li.contest-modal-trigger': function (e) {
-		console.log("fired");
-			e.preventDefault();
-			sweetAlert({
-				title: 'Contest',
-				html: Blaze.toHTML(Template.referralModalTemplate)
-			}, function(e) {
-				if (e) {
-					//Router.go('submit');
-				}
-			});
+		// console.log("fired");
+		// 	e.preventDefault();
+		// 	Router.go
+		// 	sweetAlert({
+		// 		title: 'Contest',
+		// 		html: Blaze.toHTML(Template.referralModalTemplate)
+		// 	}, function(e) {
+		// 		if (e) {
+		// 			//Router.go('submit');
+		// 		}
+		// 	});
 		}
 });

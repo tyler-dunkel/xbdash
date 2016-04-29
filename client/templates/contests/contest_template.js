@@ -1,4 +1,4 @@
-Template.referralModalTemplate.created = function() {
+Template.contestTemplate.created = function() {
   var self = this;
   self.referralToken = new ReactiveVar();
   console.log(self.data);
@@ -14,7 +14,7 @@ Template.referralModalTemplate.created = function() {
   });
 }
 
-Template.referralModalTemplate.helpers({
+Template.contestTemplate.helpers({
   'referralUrl': function() {
     var inst = Template.instance();
     var referralToken = Template.instance().referralToken.get();
@@ -28,7 +28,7 @@ Template.referralModalTemplate.helpers({
       return 'there was an error generating your share url';
     }
     else {
-      return 'https://beta.xbdash.com/signUp?referralToken=' + referralToken;
+      return 'https://beta.xbdash.com/signup?referraltoken=' + referralToken;
     }
   },
   'debugger': function() {
