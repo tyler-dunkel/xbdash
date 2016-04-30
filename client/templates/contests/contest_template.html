@@ -3,8 +3,12 @@
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
+					{{#if currentUser}}
 					url is:	{{referralUrl}}
 					share buttons: {{> shareit}}
+					{{else}} 
+					<div class="referral-signup"> referral signup button </div>
+					{{/if}}
 				</div>
 			</div>
 		</div>

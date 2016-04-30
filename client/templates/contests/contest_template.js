@@ -1,15 +1,13 @@
 Template.contestTemplate.created = function() {
   var self = this;
-  self.referralToken = new ReactiveVar();
+  this.contestToken = 'fewafew';
+  self.referralToken = new ReactiveVar('');
   console.log(self.data);
   Meteor.call('checkReferralToken', function(err, res) {
     if (err) {
       self.referralToken.set('error');
     } else{
-      console.log(res);
-      console.log('setting react var');
       self.referralToken.set(res);
-      console.log(self.referralToken.get());
     }
   });
 }
@@ -33,5 +31,13 @@ Template.contestTemplate.helpers({
   },
   'debugger': function() {
     //console.log(this);
+  }
+});
+
+Template.contestTemplate.events({
+  'click .referral-signup': function(e) {
+    e.preventDefault();
+    var contestToken = Template.instance().contestToken;
+    Router.go('signUp', {}, {query: 'referraltoken=' + contestToken});
   }
 });
