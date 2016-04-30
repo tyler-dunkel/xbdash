@@ -4,7 +4,7 @@ Template.newsSinglePage.helpers({
 		return xbdNews.findOne({ slug: slug });
 	},
 	sourceExists: function () {
-		if (this.source !== 'xboxdash') {
+		if (this.source !== 'xbdash') {
 			return true;
 		}
 		return false;
@@ -15,15 +15,19 @@ Template.newsSinglePage.helpers({
 		}
 		return;
 	},
-	published: function () {
-		return moment(this.published).format('MMMM Do YYYY, h:mm a');
+	updated: function () {
+		return moment(this.updated).format('MMMM Do YYYY, h:mm a');
 	},
 	newsData: function () {
 		var image = this.content.match(/<img[^>]*>/);
-		var getImage = image[0].match(/src="(.+?)"/)[1];
-
-		if (getImage) {
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + getImage;
+		
+		if (image) {
+			if (this.source === 'xbdash') {
+				return image[0].match(/src="(.+?)"/)[1];
+			} else {
+				getImage = image[0].match(/src="(.+?)"/)[1];
+				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
+			}
 		} else {
 			getImage = '/img/news-default.jpg';
 		}

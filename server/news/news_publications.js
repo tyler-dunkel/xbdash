@@ -1,3 +1,51 @@
+Meteor.publish('xbdashNews', function(limit) {
+	var defaultLimit = 9;
+	var twoWeeks = moment().subtract(14, 'days').toDate();
+
+	if (limit > defaultLimit) {
+		limit = 0;
+	}
+
+	return xbdNews.find({
+		source: "xbdash"
+	}, {
+		sort: { updated: -1 },
+		fields: {
+			updated: 1,
+			title: 1,
+			source: 1,
+			content: 1,
+			author: 1,
+			slug: 1
+		},
+		limit: limit
+	});
+});
+
+Meteor.publish('polygonNews', function(limit) {
+	var defaultLimit = 9;
+	var twoWeeks = moment().subtract(14, 'days').toDate();
+
+	if (limit > defaultLimit) {
+		limit = 0;
+	}
+
+	return xbdNews.find({
+		source: "polygon"
+	}, {
+		sort: { updated: -1 },
+		fields: {
+			updated: 1,
+			title: 1,
+			source: 1,
+			content: 1,
+			author: 1,
+			slug: 1
+		},
+		limit: limit
+	});
+});
+
 Meteor.publish('latestNews', function(limit) {
 	var defaultLimit = 9;
 	var twoWeeks = moment().subtract(14, 'days').toDate();
@@ -14,8 +62,7 @@ Meteor.publish('latestNews', function(limit) {
 			source: 1,
 			content: 1,
 			author: 1,
-			slug: 1,
-			shareCount: 1
+			slug: 1
 		},
 		limit: limit
 	});
@@ -27,7 +74,6 @@ Meteor.publish('mostSharedNews', function(limit) {
 	var sharedNews = xbdNews.find({ updated: { $gte: twoWeeks } }, {
 		sort: { shareCount: -1 },
 		fields: {
-			_id: 1,
 			updated: 1,
 			title: 1,
 			source: 1,
@@ -60,11 +106,8 @@ Meteor.publish('singleNews', function(slug) {
 			title: 1,
 			source: 1,
 			content: 1,
-			link: 1,
 			author: 1,
-			slug: 1,
-			contentType: 1,
-			shareCount: 1
+			slug: 1
 		}
 	});
 });

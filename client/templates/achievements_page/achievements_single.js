@@ -44,7 +44,7 @@ Template.achievementsSinglePage.helpers({
 		var getGame = xbdGames.findOne({ _id: this.gameId });
 
 		if (getGame.platform === "Xenon") {
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + getImage;
+			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
 		}
 		if (getGame.platform === "Durango") {
 			getImage = this.mediaAssets;
