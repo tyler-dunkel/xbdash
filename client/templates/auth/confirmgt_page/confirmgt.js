@@ -16,10 +16,6 @@ Template.confirmGt.created = function() {
 };
 
 Template.confirmGt.rendered = function() {
-	var user = Meteor.user();
-
-	if (Session.get('socialLoginReferer')) {
-	}
 }
 
 Template.confirmGtForm.events({
