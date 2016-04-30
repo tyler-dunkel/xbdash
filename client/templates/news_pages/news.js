@@ -1,11 +1,22 @@
-var newsLimit = new ReactiveVar();
-
-Template.newsPage.events({
-});
+var newsLimit;
 
 Template.newsSection.created = function() {
+	newsLimit = new ReactiveVar();
 	newsLimit.set(9);
-	this.subscribe('latestNews', newsLimit.get());
+
+	console.log(this.data.getSource);
+
+	switch(this.data.getSource) {
+		case 'xbdash':
+			this.subscribe('xbdashNews', newsLimit.get());
+			break;
+		case 'polygon':
+			this.subscribe('polygonNews', newsLimit.get());
+			break;
+		default:
+			this.subscribe('latestNews', newsLimit.get());
+			return;
+	}
 }
 
 Template.newsSection.rendered = function() {
@@ -17,8 +28,10 @@ Template.newsSection.rendered = function() {
 }
 
 Template.newsSection.helpers({
-	latestNews: function() {
-		return xbdNews.find({}, {
+	latestNews: function(getSource) {
+		return xbdNews.find({
+			source: getSource
+		}, {
 			sort: { updated: -1 },
 			limit: newsLimit.get()
 		}).fetch();

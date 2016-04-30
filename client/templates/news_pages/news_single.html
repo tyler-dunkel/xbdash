@@ -10,14 +10,14 @@
 								<h1 class="font-thin h3 text-black m-b-xs">{{title}}</h1>
 								<div class="text-muted">
 									<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
-									<i class="fa fa-clock-o text-muted"></i> {{published}}
+									<i class="fa fa-clock-o text-muted"></i> {{updated}}
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="wrapper-md visible-xl-block col-xl-2 hidden-lg hidden-md hidden-sm hidden-xs trending-column">
 						<h2 class="m-b-sm font-thin h3 text-black">Trending</h2>
-						{{> mostSharedNews limit=8}}
+						{{> mostSharedNews limit=7}}
 					</div>
 					<div class="wrapper-md col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
 						<div class="xbd-top-banner-ad"></div>

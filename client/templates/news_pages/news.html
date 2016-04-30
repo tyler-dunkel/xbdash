@@ -14,7 +14,7 @@
 								<small class="text-muted">Read the latest in Xbox&reg; achievements, search solutions</small>
 							</div>
 							{{#if chkGamerStatus}}
-							<div class="col-sm-6 text-right hidden-xs">
+							<div class="col-sm-6 text-right hidden-xs user-rank-area">
 								<div class="inline m-l m-r text-left">
 									{{> userDailyRank}}
 								</div>
@@ -28,7 +28,10 @@
 					<div class="wrapper-md">
 						<div class="row">
 							<div class="col-lg-8 col-md-12">
-							{{> newsSection}}
+								<h3 class="m-b-sm font-thin h3 text-black">News from XBdash</h3>
+								{{> newsSection getSource="xbdash"}}
+								<h3 class="m-b-sm font-thin h3 text-black">News from Around the Web</h3>
+								{{> newsSection getSource="polygon"}}
 							</div>
 							<div class="col-lg-4 hidden-md hidden-sm hidden-xs trending-column">
 								<h2 class="m-b-sm font-thin h3 text-black">Trending News</h2>
@@ -46,7 +49,7 @@
 	{{#if Template.subscriptionsReady}}
 	<div class="blog-post news-section">
 		<div class="list-group list-group-lg list-group-sp">
-		{{#each latestNews}}			
+		{{#each latestNews getSource}}
 			{{> newsTemplate}}
 		{{/each}}
 		</div>

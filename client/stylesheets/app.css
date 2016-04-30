@@ -6178,6 +6178,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	.achievements-list .achievement-img {
 		width: 16.66666667%
 	}
+	.user-rank-area .m-l {
+		margin-left: 0;
+	}
 }
 @media (max-width: 530px) {
 	.achievements-list .col-xs-6 {

@@ -6,9 +6,17 @@
 		<span class="clear">
 			<h3 class="text-lt m-b-sm title-wrap-news">{{title}}</h3>
 			{{#if sourceExists}}<small>{{sourceName}}</small>{{/if}}
+			{{#if shareCounted}}
 			<div>
-				<i class="fa fa-square-share-o text-muted"></i> {{shareCount}}
+				<i class="fa fa-share-square-o text-lt"></i> {{shareCount}}
 			</div>
-	   	</span>
+			{{/if}}
+		</span>
 	</a>
+</template>
+
+<template name="mostSharedNews">
+	{{#each sharedNews limit}}
+		{{> newsTemplate}}
+	{{/each}}
 </template>

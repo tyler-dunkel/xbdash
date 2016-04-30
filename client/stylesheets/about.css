@@ -2,6 +2,10 @@
 
 .home-page #header .navbar-inner { background: transparent; }
 
+.header-primary {
+	background-color: #138013;
+}
+
 .home-page #header .navbar-inner .navbar-nav > li > a {
 	color: #ddd;
 	font-size: 15px;

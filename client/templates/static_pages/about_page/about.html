@@ -1,187 +1,187 @@
 <template name="aboutUs">
-  {{#unless resetPasswordToken}}
-    {{> headerLandingPage}}
-    {{> carouselSection}}
-    {{> homeNewsSection}}
-    {{> homeFeaturesSection}}
-    {{> homeFaqsSection}}
-    {{> footerLandingPage}}
-  {{else}}
-    {{> resetPasswordToken}}
-  {{/unless}}
+	{{#unless resetPasswordToken}}
+		{{> headerLandingPage}}
+		{{> carouselSection}}
+		{{> homeNewsSection}}
+		{{> homeFeaturesSection}}
+		{{> homeFaqsSection}}
+		{{> footerLandingPage}}
+	{{else}}
+		{{> resetPasswordToken}}
+	{{/unless}}
 </template>
 
 <template name="carouselSection">
-  <div class="home">
-    <div id="carousel1" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="item active">
-          <img id="carousel-image" src="/img/home_slide_1_bg.jpg" alt="...">
-          <div class="carousel-caption hidden-xs">
-            <h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Be Great with Achievements</h3>
-            <p class="text-white l-h-1x m-b-md">Manage your achievements and work together with other Xbox&reg; gamers to unlock them.</p>
-            <a href="{{pathFor 'achievementsPage'}}" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> See Achievements</a>
-          </div>
-        </div>
-        <div class="item">
-          <img id="carousel-image" src="/img/home_slide_2_bg.jpg" alt="...">
-          <div class="carousel-caption hidden-xs">
-            <h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Your Game Progress Matters</h3>
-            <p class="text-white l-h-1x m-b-md">Track your games and plan what games you want to play next.</p>
-            <a href="{{pathFor 'gamesPage'}}" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> See Games</a>
-          </div>
-        </div>
-        <div class="item">
-          <img id="carousel-image" src="/img/home_slide_3_bg.jpg" alt="...">
-          <div class="carousel-caption hidden-xs">
-            <h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Stay Informed</h3>
-            <p class="text-white l-h-1x m-b-md">Read the latest news in the Xbox&reg; and the {{appName}} community.</p>
-            <a href="{{pathFor 'newsPage'}}" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> Read News</a>
-          </div>
-        </div>
-      </div>
-      <div id="what" class="bg-light">
-        <div class="container">
-          <div class="row text-center nav carousel-nav nav-pills">
-            <div class="col-sm-4 to-animate home-what-icons active" data-target="#carousel1" data-slide-to="0">
-              <a href="#" class="p-t-xl">
-                <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
-                  <i class="fa w-1x fa-trophy fa-2x text-black"></i>
-                </p>
-                <div class="m-b-lg">
-                  <h4 class="m-t-none">Be Great with Achievements</h4>
-                  <p class="m-t-lg padder-md">Manage your achievements and work together with other Xbox&reg; gamers to unlock them.</p>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-4 to-animate home-what-icons" data-target="#carousel1" data-slide-to="1">
-              <a href="#" class="p-t-xl">
-                <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
-                  <img src="/img/xbox12.png" width="50" height="50" />
-                </p>
-                <div class="m-b-lg">
-                  <h4 class="m-t-none">Your Game Progress Matters</h4>
-                  <p class="m-t-lg padder-md">Track your games and plan what games you want to play next.</p>
-                </div>
-              </a>
-            </div>
-            <div class="col-sm-4 to-animate home-what-icons" data-target="#carousel1" data-slide-to="2">
-              <a href="#" class="p-t-xl">
-                <p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
-                  <i class="fa w-1x fa-newspaper-o fa-2x text-black"></i>
-                </p>
-                <div class="m-b-lg">
-                  <h4 class="m-t-none">Stay Informed</h4>
-                  <p class="m-t-lg padder-md">Read the latest news in the Xbox&reg; and the {{appName}} community. Contact us for news and blogger partnership opportunities.</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="home">
+		<div id="carousel1" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="item active">
+					<img id="carousel-image" src="/img/home_slide_1_bg.jpg" alt="...">
+					<div class="carousel-caption hidden-xs">
+						<h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Be Great with Achievements</h3>
+						<p class="text-white l-h-1x m-b-md">Manage your achievements and work together with other Xbox&reg; gamers to unlock them.</p>
+						<a href="{{pathFor 'achievementsPage'}}" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> See Achievements</a>
+					</div>
+				</div>
+				<div class="item">
+					<img id="carousel-image" src="/img/home_slide_2_bg.jpg" alt="...">
+					<div class="carousel-caption hidden-xs">
+						<h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Your Game Progress Matters</h3>
+						<p class="text-white l-h-1x m-b-md">Track your games and plan what games you want to play next.</p>
+						<a href="{{pathFor 'gamesPage'}}" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> See Games</a>
+					</div>
+				</div>
+				<div class="item">
+					<img id="carousel-image" src="/img/home_slide_3_bg.jpg" alt="...">
+					<div class="carousel-caption hidden-xs">
+						<h3 class="font-bold l-h-1x m-t-xxl text-white animated fadeInDown">Stay Informed</h3>
+						<p class="text-white l-h-1x m-b-md">Read the latest news in the Xbox&reg; and the {{appName}} community.</p>
+						<a href="{{pathFor 'newsPage'}}" class="btn b-2x btn-lg b-black btn-success btn-rounded text-lg font-bold m-b-lg animated fadeInUpBig"><i class="fa fa-lock"></i> Read News</a>
+					</div>
+				</div>
+			</div>
+			<div id="what" class="bg-light">
+				<div class="container">
+					<div class="row text-center nav carousel-nav nav-pills">
+						<div class="col-sm-4 to-animate home-what-icons active" data-target="#carousel1" data-slide-to="0">
+							<a href="#" class="p-t-xl">
+								<p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
+									<i class="fa w-1x fa-trophy fa-2x text-black"></i>
+								</p>
+								<div class="m-b-lg">
+									<h4 class="m-t-none">Be Great with Achievements</h4>
+									<p class="m-t-lg padder-md">Manage your achievements and work together with other Xbox&reg; gamers to unlock them.</p>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4 to-animate home-what-icons" data-target="#carousel1" data-slide-to="1">
+							<a href="#" class="p-t-xl">
+								<p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
+									<img src="/img/xbox12.png" width="50" height="50" />
+								</p>
+								<div class="m-b-lg">
+									<h4 class="m-t-none">Your Game Progress Matters</h4>
+									<p class="m-t-lg padder-md">Track your games and plan what games you want to play next.</p>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4 to-animate home-what-icons" data-target="#carousel1" data-slide-to="2">
+							<a href="#" class="p-t-xl">
+								<p class="h3 m-b-xl inline b b-dark rounded wrapper-lg">
+									<i class="fa w-1x fa-newspaper-o fa-2x text-black"></i>
+								</p>
+								<div class="m-b-lg">
+									<h4 class="m-t-none">Stay Informed</h4>
+									<p class="m-t-lg padder-md">Read the latest news in the Xbox&reg; and the {{appName}} community. Contact us for news and blogger partnership opportunities.</p>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="homeNewsSection">
-  <div id="news" class="bg-white-only">
-    <div class="container container-full">
-      <div class="row m-t-xl m-b-md">
-        <h2 class="text-center">News</h2>
-      </div>
-      <div class="row m-t-md m-b-md">
-        {{#each latestNews}}
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-6 nopadding">
-          <div class="ih-item square effect1 bottom_to_top">
-            <a class="news-link" href="{{pathFor 'article'}}">
-              <div class="img">
-                <img src="{{getImage}}" alt="{{title}}" />
-              </div>
-              <div class="info">
-                <h3 class="text-u-c m-b-xs text-success">{{title}}</h3>
-                <div>
-                  {{updatedDate}}&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-square-share-o text-muted"></i> {{shareCount}}
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-  </div>
+	<div id="news" class="bg-white-only">
+		<div class="container container-full">
+			<div class="row m-t-xl m-b-md">
+				<h2 class="text-center">News</h2>
+			</div>
+			<div class="row m-t-md m-b-md">
+				{{#each latestNews}}
+				<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-6 nopadding">
+					<div class="ih-item square effect1 bottom_to_top">
+						<a class="news-link" href="{{pathFor 'article'}}">
+							<div class="img">
+								<img src="{{getImage}}" alt="{{title}}" />
+							</div>
+							<div class="info">
+								<h3 class="text-u-c m-b-xs text-success">{{title}}</h3>
+								<div>
+									{{updatedDate}}
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="homeFeaturesSection">
-  <div id="features" class="bg-white-only">
-    <div class="container">
-      <div class="row m-t-xl m-b-md">
-        <h2 class="text-center">Features</h2>
-      </div>
-      <div class="row m-t-md">
-        <div class="col-sm-6 to-animate" id="dash-image">
-          <div class="m-t-xxl text-center">
-            <img src="/img/iphone6_xbdashboard.png" width="400" />
-          </div>
-        </div>
-        <div class="col-sm-6 wrapper-xl to-animate dashboard-features">
-          <h3 class="text-dark font-bold m-b-lg">The Dashboard</h3>
-          <ul class="list-unstyled  m-t-xl">
-            <li data-ride="animated" data-animation="fadeInUp" data-delay="600">
-              <i class="icon-check pull-left text-lg m-r m-t-sm"></i>
-              <p class="clear m-b-lg"><strong>Real-Time</strong> Using the latest in web technologies, you will see your statistics and game progress in real-time.</p>
-            </li>
-            <li data-ride="animated" data-animation="fadeInUp" data-delay="900">
-              <i class="icon-check pull-left text-lg m-r m-t-sm"></i>
-              <p class="clear m-b-lg"><strong>Graphed Data</strong> With our founding team's history in big data analytics, we use your personal Xbox&reg; data to create your visual experience.</p>
-            </li>
-            <li data-ride="animated" data-animation="fadeInUp" data-delay="1100">
-              <i class="icon-check pull-left text-lg m-r m-t-sm"></i>
-              <p class="clear m-b-lg notify"><strong>Streamlined Discussions</strong> Our modern dashboard design gives you a better user experience.</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="features" class="bg-white-only">
+		<div class="container">
+			<div class="row m-t-xl m-b-md">
+				<h2 class="text-center">Features</h2>
+			</div>
+			<div class="row m-t-md">
+				<div class="col-sm-6 to-animate" id="dash-image">
+					<div class="m-t-xxl text-center">
+						<img src="/img/iphone6_xbdashboard.png" width="400" />
+					</div>
+				</div>
+				<div class="col-sm-6 wrapper-xl to-animate dashboard-features">
+					<h3 class="text-dark font-bold m-b-lg">The Dashboard</h3>
+					<ul class="list-unstyled	m-t-xl">
+						<li data-ride="animated" data-animation="fadeInUp" data-delay="600">
+							<i class="icon-check pull-left text-lg m-r m-t-sm"></i>
+							<p class="clear m-b-lg"><strong>Real-Time</strong> Using the latest in web technologies, you will see your statistics and game progress in real-time.</p>
+						</li>
+						<li data-ride="animated" data-animation="fadeInUp" data-delay="900">
+							<i class="icon-check pull-left text-lg m-r m-t-sm"></i>
+							<p class="clear m-b-lg"><strong>Graphed Data</strong> With our founding team's history in big data analytics, we use your personal Xbox&reg; data to create your visual experience.</p>
+						</li>
+						<li data-ride="animated" data-animation="fadeInUp" data-delay="1100">
+							<i class="icon-check pull-left text-lg m-r m-t-sm"></i>
+							<p class="clear m-b-lg notify"><strong>Streamlined Discussions</strong> Our modern dashboard design gives you a better user experience.</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="homeFaqsSection">
-  <div id="homeFaqs" class="bg-light">
-    <div class="container">
-      <div class="row m-t-xl m-b-md">
-        <h2 class="text-center">Frequently Asked Questions</h2>
-      </div>
-      <div class="row m-t-md wrapper-md">
-        <div class="col-sm-6 to-animate faqs-1">
-          <h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> Why {{appName}}?</h3>
-          <p class="clear">
-            With {{appName}}, you can use your personal dashboard to track and analyze your achievement hunting skills. The leaderboards help you compare with our community's top Xbox&reg; gamers and we help you stay up to date with the latest in Xbox&reg; news.
-          </p>
-        </div>
-        <div class="col-sm-6 to-animate faqs-2">
-          <h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> Why create {{appName}}?</h3>
-          <p class="clear">
-            As Xbox&reg; gamers, we've always been compelled to connect the gamer to the games they play on another level. {{appName}} does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.<br /><br />
+	<div id="homeFaqs" class="bg-light">
+		<div class="container">
+			<div class="row m-t-xl m-b-md">
+				<h2 class="text-center">Frequently Asked Questions</h2>
+			</div>
+			<div class="row m-t-md wrapper-md">
+				<div class="col-sm-6 to-animate faqs-1">
+					<h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> Why {{appName}}?</h3>
+					<p class="clear">
+						With {{appName}}, you can use your personal dashboard to track and analyze your achievement hunting skills. The leaderboards help you compare with our community's top Xbox&reg; gamers and we help you stay up to date with the latest in Xbox&reg; news.
+					</p>
+				</div>
+				<div class="col-sm-6 to-animate faqs-2">
+					<h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> Why create {{appName}}?</h3>
+					<p class="clear">
+						As Xbox&reg; gamers, we've always been compelled to connect the gamer to the games they play on another level. {{appName}} does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.<br /><br />
 
-            The only thing you need to do is stay engaged!
-          </p>
-        </div>
-      </div>
-      <div class="row m-b-md wrapper-md">
-        <div class="col-sm-6 to-animate faqs-1">
-          <h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> How does {{appName}} help me on Xbox&reg; acheivments?</h3>
-          <p class="clear">
-            {{appName}}'s searchable achievement database makes finding new challenges easy while our users can give you a helping hand with community solutions.
-          </p>
-        </div>
-        <div class="col-sm-6 to-animate faqs-2">
-          <h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> Will {{appName}} help me find new games to play?</h3>
-          <p class="clear">
-            {{appName}} features a modern search system that helps gamers find particular games in the Xbox library of games. As more users sign up, our internal library will become more populated.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+						The only thing you need to do is stay engaged!
+					</p>
+				</div>
+			</div>
+			<div class="row m-b-md wrapper-md">
+				<div class="col-sm-6 to-animate faqs-1">
+					<h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> How does {{appName}} help me on Xbox&reg; acheivments?</h3>
+					<p class="clear">
+						{{appName}}'s searchable achievement database makes finding new challenges easy while our users can give you a helping hand with community solutions.
+					</p>
+				</div>
+				<div class="col-sm-6 to-animate faqs-2">
+					<h3 class="text-dark font-bold m-b-lg"><i class="icon-question pull-left text-lg m-r m-t-xs"></i> Will {{appName}} help me find new games to play?</h3>
+					<p class="clear">
+						{{appName}} features a modern search system that helps gamers find particular games in the Xbox library of games. As more users sign up, our internal library will become more populated.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

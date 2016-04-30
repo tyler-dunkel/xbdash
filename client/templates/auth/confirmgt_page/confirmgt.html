@@ -1,56 +1,56 @@
 <template name="confirmGt">
-  {{> headerConfirmPage}}
-  {{> confirmGtForm}}
-  {{> staticFooter}}
+	{{> headerConfirmPage}}
+	{{> confirmGtForm}}
+	{{> staticFooter}}
 </template>
 
 <template name="confirmGtForm">
-  <div id="signup" class="signup">
-    <div class="container well w-xxxl w-auto-xs" >
-      <div class="m-b-md">
-        <form name="form" class="validate" id="gamertagform">
-          <h2 class="text-dark text-center">Confirm Your Gamertag</h2>
-          <p class="text-center">You're 1 step away from seeing your new dashboard!</p>
-          <div class="list-group">
-            <div class="form-group">
-              <input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control" data-onblur data-max="15" data-required data-msg="Valid Xbox&reg; Live gamertag required.">
-              <span for='gamertag' class='err-msg'></span>
-            </div>
-            {{#if chkEmail}}
-            <div class="form-group">
-              <input type="email" placeholder="Email Address" id="twitter-email" name="email" class="form-control" data-onblur data-email data-required>
-              <span for='email' class='err-msg'></span>
-            </div>
-            {{/if}}
-          </div>
-          <div class="checkbox m-b-md m-t-none">
-            <label class="i-checks">
-              By clicking "Confirm Gamertag", I agree to the <a href="{{pathFor 'termsConditions'}}" target="_blank">Terms of Use</a> and <a href="{{pathFor 'privacyPolicy'}}" target="_blank">Privacy Policy</a>.
-            </label>
-          </div>
-          <button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Confirm Gamertag</button>
-        </form>
-      </div>
-    </div>
-    <div class="container well w-xxxl w-auto-xs" >
-      <div class="m-b-md">
-        <form name="form" class="validate" id="socialform">
-          <h2 class="text-dark text-center">Currently Logged in as</h2>
-          <div class="list-group">
-            <div class="form-group text-center">
-              {{#if chkTwitter}}
-                <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
-              {{/if}}
-              {{#if chkFacebook}}
-              <div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
-              {{else}}
-              <div style="vertical-align: middle;">{{currentUser.username}}</div>
-              {{/if}}
-            </div>
-          </div>
-          <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
-        </form>
-      </div>
-    </div>
-  </div>
+	<div id="signup" class="signup">
+		<div class="container well w-xxxl w-auto-xs" >
+			<div class="m-b-md">
+				<form name="form" class="validate" id="gamertagform">
+					<h2 class="text-dark text-center">Confirm Your Gamertag</h2>
+					<p class="text-center">You're 1 step away from seeing your new dashboard!</p>
+					<div class="list-group">
+						<div class="form-group">
+							<input placeholder="Gamertag" id="gamertag" name="gamertag" class="form-control" data-onblur data-max="15" data-required data-msg="Valid Xbox&reg; Live gamertag required.">
+							<span for='gamertag' class='err-msg'></span>
+						</div>
+						{{#if chkEmail}}
+						<div class="form-group">
+							<input type="email" placeholder="Email Address" id="twitter-email" name="email" class="form-control" data-onblur data-email data-required>
+							<span for='email' class='err-msg'></span>
+						</div>
+						{{/if}}
+					</div>
+					<div class="checkbox m-b-md m-t-none">
+						<label class="i-checks">
+							By clicking "Confirm Gamertag", I agree to the <a href="{{pathFor 'termsConditions'}}" target="_blank">Terms of Use</a> and <a href="{{pathFor 'privacyPolicy'}}" target="_blank">Privacy Policy</a>.
+						</label>
+					</div>
+					<button type="submit" class="btn btn-lg btn-success btn-block sign-up-submit">Confirm Gamertag</button>
+				</form>
+			</div>
+		</div>
+		<div class="container well w-xxxl w-auto-xs" >
+			<div class="m-b-md">
+				<form name="form" class="validate" id="socialform">
+					<h2 class="text-dark text-center">Currently Logged in as</h2>
+					<div class="list-group">
+						<div class="form-group text-center">
+							{{#if chkTwitter}}
+								<img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+							{{/if}}
+							{{#if chkFacebook}}
+							<div style="vertical-align: middle;">{{currentUser.profile.name}}</div>
+							{{else}}
+							<div style="vertical-align: middle;">{{currentUser.username}}</div>
+							{{/if}}
+						</div>
+					</div>
+					<button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </template>
