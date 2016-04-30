@@ -2,6 +2,13 @@ Template.topEpicAchievements.created = function() {
     this.subscribe('topEpicAchievements');
 }
 
+Template.topEpicAchievements.events({
+    "click .panel-heading": function(e) {
+        e.preventDefault();
+        Router.go('achievementsPage', {}, {query: 'tier=epic'});
+    }
+});
+
 Template.topEpicAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({

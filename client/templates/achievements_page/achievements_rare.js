@@ -2,6 +2,13 @@ Template.topRareAchievements.created = function() {
     this.subscribe('topRareAchievements');
 }
 
+Template.topRareAchievements.events({
+    "click .panel-heading": function(e) {
+        e.preventDefault();
+        Router.go('achievementsPage', {}, {query: 'tier=rare'});
+    }
+});
+
 Template.topRareAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({

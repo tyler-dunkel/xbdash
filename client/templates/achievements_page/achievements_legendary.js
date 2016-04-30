@@ -2,6 +2,13 @@ Template.topLegendaryAchievements.created = function() {
     this.subscribe('topLegendaryAchievements');
 }
 
+Template.topLegendaryAchievements.events({
+    "click .panel-heading": function(e) {
+        e.preventDefault();
+        Router.go('achievementsPage', {}, {query: 'tier=legendary'});
+    }
+});
+
 Template.topLegendaryAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({

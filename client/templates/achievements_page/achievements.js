@@ -18,3 +18,14 @@ Template.achievementsApp.helpers({
 		return achievements;
 	}
 });
+
+Template.achievementsPage.helpers({
+	showMore: function() {
+		var options = Router.current().params.query;
+		console.log(options);
+		if (_.isEmpty(options)) {
+			return false;
+		}
+		return true;
+	}
+});

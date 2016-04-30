@@ -2,6 +2,13 @@ Template.topCommonAchievements.created = function() {
     this.subscribe('topCommonAchievements');
 }
 
+Template.topCommonAchievements.events({
+    "click .panel-heading": function(e) {
+        e.preventDefault();
+        Router.go('achievementsPage', {}, {query: 'tier=common'});
+    }
+});
+
 Template.topCommonAchievements.helpers({
     achievementsPresent: function() {
         var achievements = xbdAchievements.find({

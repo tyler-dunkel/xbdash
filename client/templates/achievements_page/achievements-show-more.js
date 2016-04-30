@@ -1,23 +1,29 @@
 var achievementLimit = new ReactiveVar();
 
+Template.achievementsShowMorePage.created = function() {
+	this.autorun(function() {
+		var options = Router.current().params.query;
+		options.limit = achievementLimit.get();
+		Meteor.subscribe('achievementShowMore', options);
+	});
+}
+
 Template.achievementsShowMoreApp.created = function() {
 	console.log('this fired');
-	var achievementTier = Router.current().params.tier,
+	this.options = Router.current().params.query,
 	validVals = ['epic', 'legendary', 'common', 'rare'];
-	console.log(achievementTier);
-	if (_.indexOf(validVals, achievementTier) === -1) {
-		Router.go('achievementsPage');
-	} else {
-		this.tier = achievementTier;
-	}
 }
 
 Template.achievementsShowMoreApp.helpers({
 	'achievementTier': function() {
-		return Template.instance().tier;
+		if (Template.instance().options.tier) {
+			return Template.instance().options.tier;
+		} else {
+			return 'hello';
+		}
 	},
 	'achievementPercentage': function() {
-		var c = Template.instance().tier;
+		var c = Template.instance().options.tier;
 		if (c === 'epic') {
 			return '11 to 25 percent';
 		}
@@ -36,13 +42,7 @@ Template.achievementsShowMoreApp.helpers({
 Template.achievementsShowMoreSection.created = function() {
 	var limit, self = this;
 	achievementLimit.set(25);
-	this.autorun(function() {
-		limit = achievementLimit.get();
-		Meteor.subscribe('achievementShowMore', {
-			limit: limit, 
-			tier: self.data.tier
-		});
-	});
+	console.log(this.data);
 }
 
 Template.achievementsShowMoreSection.rendered = function() {

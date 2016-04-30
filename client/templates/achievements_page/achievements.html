@@ -1,5 +1,9 @@
 <template name="achievementsPage">
-  {{> achievementsApp}}
+  {{#if showMore}}
+    {{> achievementsShowMorePage}}
+  {{else}}
+    {{> achievementsApp}}
+  {{/if}}
 </template>
 
 <template name="achievementsApp">

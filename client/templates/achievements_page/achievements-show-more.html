@@ -1,5 +1,9 @@
-<template name="achievementsTierPage">
-  {{> achievementsShowMoreApp}}
+<template name="achievementsShowMorePage">
+  {{#if Template.subscriptionsReady}}
+    {{> achievementsShowMoreApp}}
+  {{else}}
+    {{> loadingTemplate}}
+  {{/if}}
 </template>
 
 <template name="achievementsShowMoreApp">
