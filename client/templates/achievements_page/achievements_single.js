@@ -40,16 +40,16 @@ Template.achievementsSinglePage.helpers({
 		return false; 
 	},
 	achievementData: function () {
-		var getImage = this.mediaAssets;
+		var getImage  = '/img/achievement-default.jpg';
 		var getGame = xbdGames.findOne({ _id: this.gameId });
 
-		if (getImage) {
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + getImage;
-			getImage = encodeURIComponent(getImage);
-		} else {
-			getImage = '/img/achievement-default.jpg';
+		if (getGame.platform === "Xenon") {
+			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
 		}
-
+		if (getGame.platform === "Durango") {
+			getImage = this.mediaAssets;
+		}
+		
 		return {
 			title: 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' Gamerscore! #xbox #xboxdash #xbdash',
 			description: this.description,

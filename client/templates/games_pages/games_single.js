@@ -65,9 +65,7 @@ Template.gamesSinglePage.helpers({
 				}
 			});
 		}
-
-		getImage = encodeURIComponent(getImage);
-		
+				
 		return {
 			title: 'I completed ' + this.gameName + '! #xbox #xboxdash #xbdash',
 			description: this.gameReducedDescription,
