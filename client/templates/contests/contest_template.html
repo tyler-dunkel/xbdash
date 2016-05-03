@@ -1,13 +1,82 @@
-<template name="contestTemplate">
-<div id="content" class="app-content" role="main">
-		<div class="app-content-body ">
+<template name="contestPage">
+	{{> contestApp}}
+	<!-- {{#if Template.subscriptionsReady}}
+		{{> contestApp}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}} -->
+</template>
+
+<template name="contestApp">
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
+					<div class="row">
+						<div class="col-xl-12">
+							<h1 class="text-center m-t-lg m-b-md">May 2016 Giveaway Contest</h1>
+						</div>
+					</div>
 					{{#if currentUser}}
-					url is:	{{referralUrl}}
-					share buttons: {{> shareit}}
-					{{else}} 
-					<div class="referral-signup"> referral signup button </div>
+					<div class="row">
+						<div class="col-xl-4 col-xl-offset-2 m-t-sm m-b-sm text-center">
+							<h4>Win this month's giveaway featuring a FREE copy of:</h4>
+							<h2>Fallout 4</h2>
+							<div>
+								<img src="/img/contests/fallout4-xbone.png" />
+							</div>
+						</div>
+						<div class="col-xl-4">
+							<div class="well" style="padding: 30px;">
+								<p class="align-left"><strong>Rules:</strong></p>
+								<ul class="m-b-lg align-left">
+									<li>1 Winner will receive a copy of Fallout 4 in original packaging.</li>
+									<li>Your first friend to sign up through your link below gives you entry into the contest.</li>
+									<li>Each friend invited to sign up through your link below thereafter gives you an extra entry into this month's contest only.</li>
+									<li>Limit 10 entries per contestant.</li>
+								</ul>
+								<form>
+									<p class="text-center"><strong>Share this link with friends!</strong></p>
+									<div class="input-group">
+										<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button" id="copy-button"
+											data-toggle="tooltip" data-placement="button"
+											title="Copy to Clipboard">
+											Copy
+											</button>
+										</span>
+									</div>
+								</form>
+								<div class="m-t-sm m-b-lg text-center">
+									{{> shareit}}
+								</div>
+								<div class="row m-b-md">
+									<div class="col-sm-6">
+										<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:<br />
+										<span style="margin-left: 16px;">May 31, 2016 11:59 pm EST</span>
+									</div>
+									<div class="col-sm-6">
+										<i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:<br />
+										<span style="margin-left: 16px;">June 1, 2016 9:00 am EST</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<span style="font-size: 85%;">
+											XBdash (GameDash, LLC) is not affiliated with the giveaway, it's developer, or publisher. <a href="{{pathFor 'contestRules'}}">Read official rules.</a>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{else}}
+					<form>
+						<div class="input-group">
+							<div class="referral-signup">Sign up for free!</div>
+						</div>
+					</form>
 					{{/if}}
 				</div>
 			</div>
