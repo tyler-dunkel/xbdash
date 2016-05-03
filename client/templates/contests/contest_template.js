@@ -53,17 +53,18 @@ Template.contestApp.helpers({
 	},
     contestData: function () {
         var referralToken = Template.instance().referralToken.get();
-        var getImage = "/img/achievement-default.jpg";
+        var getImage = "/img/contests/share-banner.jpg";
+
         return {
-            title: 'Get your personalized dashboard for Xbox today! #xboxdash #xbdash',
-            description: 'I am loving my new dashboard! I wanted to share this with you!',
+            title: 'I Recently Signed Up For XBdash, A Personalized Dashboard For Xbox Gamers!',
+            description: 'Manage your Xbox progress and work together with other Xbox® gamers to unlock them.',
             image: function () {
                 return getImage;
             },
             author: 'xboxdash',
             url: 'https://beta.xbdash.com/signup?referraltoken=' + referralToken
         }
-    },
+    }
 });
 
 Template.contestApp.events({
