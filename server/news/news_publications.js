@@ -2,8 +2,8 @@ Meteor.publish('xbdashNews', function(limit) {
 	var defaultLimit = 9;
 	var twoWeeks = moment().subtract(14, 'days').toDate();
 
-	if (limit > defaultLimit) {
-		limit = 0;
+	if (limit < defaultLimit) {
+		limit = 9;
 	}
 
 	return xbdNews.find({
@@ -26,8 +26,8 @@ Meteor.publish('polygonNews', function(limit) {
 	var defaultLimit = 9;
 	var twoWeeks = moment().subtract(14, 'days').toDate();
 
-	if (limit > defaultLimit) {
-		limit = 0;
+	if (limit < defaultLimit) {
+		limit = 9;
 	}
 
 	return xbdNews.find({

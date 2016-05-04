@@ -3,20 +3,22 @@ var newsLimit;
 Template.newsSection.created = function() {
 	newsLimit = new ReactiveVar();
 	newsLimit.set(9);
+	var self = this;
 
 	console.log(this.data.getSource);
-
-	switch(this.data.getSource) {
+	this.autorun(function() {
+		switch(self.data.getSource) {
 		case 'xbdash':
-			this.subscribe('xbdashNews', newsLimit.get());
+			self.subscribe('xbdashNews', newsLimit.get());
 			break;
 		case 'polygon':
-			this.subscribe('polygonNews', newsLimit.get());
+			self.subscribe('polygonNews', newsLimit.get());
 			break;
 		default:
-			this.subscribe('latestNews', newsLimit.get());
+			self.subscribe('latestNews', newsLimit.get());
 			return;
-	}
+		}
+	});
 }
 
 Template.newsSection.rendered = function() {
