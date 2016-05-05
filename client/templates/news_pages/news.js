@@ -1,23 +1,10 @@
-var newsLimit;
+var newsLimit = new ReactiveVar();
 
 Template.newsSection.created = function() {
-	newsLimit = new ReactiveVar();
 	newsLimit.set(9);
-	var self = this;
-
-	console.log(this.data.getSource);
+	
 	this.autorun(function() {
-		switch(self.data.getSource) {
-		case 'xbdash':
-			self.subscribe('xbdashNews', newsLimit.get());
-			break;
-		case 'polygon':
-			self.subscribe('polygonNews', newsLimit.get());
-			break;
-		default:
-			self.subscribe('latestNews', newsLimit.get());
-			return;
-		}
+		Meteor.subscribe('latestNews', newsLimit.get());
 	});
 }
 
@@ -30,11 +17,12 @@ Template.newsSection.rendered = function() {
 }
 
 Template.newsSection.helpers({
-	latestNews: function(getSource) {
-		return xbdNews.find({
-			source: getSource
-		}, {
-			sort: { updated: -1 },
+	latestNews: function() {
+		return xbdNews.find({}, {
+			sort: {
+				source: -1,
+				updated: -1
+			},
 			limit: newsLimit.get()
 		}).fetch();
 	},
@@ -52,7 +40,7 @@ function showMoreVisible() {
 	if (target.offset().top < threshold) {
 		if (!target.data("visible")) {
 			target.data("visible", true);
-			newsLimit.set(newsLimit.get() + 9);
+			newsLimit.set(newsLimit.get() + 5);
 		}
 	} else {
 		if (target.data("visible")) {

@@ -1,51 +1,3 @@
-Meteor.publish('xbdashNews', function(limit) {
-	var defaultLimit = 9;
-	var twoWeeks = moment().subtract(14, 'days').toDate();
-
-	if (limit < defaultLimit) {
-		limit = 9;
-	}
-
-	return xbdNews.find({
-		source: "xbdash"
-	}, {
-		sort: { updated: -1 },
-		fields: {
-			updated: 1,
-			title: 1,
-			source: 1,
-			content: 1,
-			author: 1,
-			slug: 1
-		},
-		limit: limit
-	});
-});
-
-Meteor.publish('polygonNews', function(limit) {
-	var defaultLimit = 9;
-	var twoWeeks = moment().subtract(14, 'days').toDate();
-
-	if (limit < defaultLimit) {
-		limit = 9;
-	}
-
-	return xbdNews.find({
-		source: "polygon"
-	}, {
-		sort: { updated: -1 },
-		fields: {
-			updated: 1,
-			title: 1,
-			source: 1,
-			content: 1,
-			author: 1,
-			slug: 1
-		},
-		limit: limit
-	});
-});
-
 Meteor.publish('latestNews', function(limit) {
 	var defaultLimit = 9;
 	var twoWeeks = moment().subtract(14, 'days').toDate();
@@ -55,7 +7,10 @@ Meteor.publish('latestNews', function(limit) {
 	}
 
 	return xbdNews.find({}, {
-		sort: { updated: -1 },
+		sort: {
+			source: -1,
+			updated: -1
+		},
 		fields: {
 			updated: 1,
 			title: 1,
