@@ -1,11 +1,11 @@
 var gameLimit = new ReactiveVar();
 
-Template.recentGamesApp.created = function() {
-	gameLimit.set(15);
+Template.myGamesApp.created = function() {
+	gameLimit.set(25);
 	this.autorun(function() {
 		var limit = gameLimit.get();
-		console.log('limit is: ' + limit);
-		Meteor.subscribe('gamesByReleaseDate', {limit: limit});
+		console.log('the limit is: ' + limit);
+		Meteor.subscribe('myTopGames', {limit: limit});
 	});
 	$(window).scroll(function() {
 		window.setTimeout(function() {
@@ -14,18 +14,25 @@ Template.recentGamesApp.created = function() {
 	});
 }
 
-Template.recentGamesApp.helpers({
+Template.myGamesApp.helpers({
 	xbdGame: function () {
         return xbdGames.findOne({ _id: this.gameId }, {
-            sort: { maxGamerscore: -1 },
-            limit: 10
+            sort: { maxGamerscore: -1 }
         });
     },
-    gamesByReleaseDate: function() {
-		return gameDetails.find({}, {
-            sort: { gameReleaseDate: -1 },
-            limit: gameLimit.get()
+    gamesByGamerscore: function() {
+		var userId = Meteor.userId();
+		var games = userGames.find({ userId: userId }, {
+            sort: { currentGamerscore: -1 }
         });
+        var gameDetailArray = [];
+
+        games.forEach(function(game) {
+            var sortedGameDetail = gameDetails.findOne({ gameId: game.gameId });
+            gameDetailArray.push(sortedGameDetail);
+        });
+
+        return gameDetailArray;
 	},
 	'hasMoreResults': function() {
 		var gameLimitCurrent = gameLimit.get();

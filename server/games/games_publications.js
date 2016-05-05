@@ -1,93 +1,97 @@
-Meteor.publishComposite('myTopGames', {
-	find: function() {
-		var user = Meteor.users.findOne({ _id: this.userId });
-		if (!user) {
-			return xbdGames.find({}, {
-				sort: { maxGamerscore: -1 },
-				fields: {
-					platform: 1,
-					name: 1,
-					maxGamerscore: 1,
-					slug: 1
-				},
-				limit: 10
-			});
-		}
-		if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
-			return xbdGames.find({}, {
-				sort: { maxGamerscore: -1 },
-				fields: {
-					platform: 1,
-					name: 1,
-					maxGamerscore: 1,
-					slug: 1
-				},
-				limit: 10
-			});
-		}
-		return userGames.find({ userId: this.userId }, {
-			sort: { currentGamerscore: -1 },
-			fields: {
-				gameId: 1,
-				userId: 1,
-				currentGamerscore: 1
-			},
-			limit: 10
-		});
-	},
-	children: [
-		{
-			find: function(game) {
-				var id;
-				var user = Meteor.users.findOne({ _id: this.userId });
-				if (!user) {
-					id = game._id;
-				} else {
-					id = game.gameId;
-				}
-				if (user) {
-					if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
-						id = game._id;
-					}
-				} else {
-					id = game.gameId;
-				}
-				return gameDetails.find({ gameId: id }, {
-					fields: {
-						gameId: 1,
-						gameName: 1,
-						gameReleaseDate: 1,
-						gameGenre: 1,
-						gameArt: 1,
-						gamePublisherName: 1,
-						gameAllTimeAverageRating: 1
-					}
-				});
-			}
-		},
-		{
-			find: function(game) {
-				var user = Meteor.users.findOne({_id: this.userId});
-				if (!user) {
-					return;
-				}
-				if (user) {
-					if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
-						return;
-					}
-				}
-				return xbdGames.find({ _id: game.gameId }, {
+Meteor.publishComposite('myTopGames', function(options) {
+	return {
+		find: function() {
+			var user = Meteor.users.findOne({ _id: this.userId });
+			options = options || {};
+			var limit = typeof options.limit === 'number' ? options.limit : 10;
+			if (!user) {
+				return xbdGames.find({}, {
 					sort: { maxGamerscore: -1 },
 					fields: {
 						platform: 1,
 						name: 1,
 						maxGamerscore: 1,
 						slug: 1
-					}
+					},
+					limit: limit
 				});
 			}
-		}
-	]
+			if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+				return xbdGames.find({}, {
+					sort: { maxGamerscore: -1 },
+					fields: {
+						platform: 1,
+						name: 1,
+						maxGamerscore: 1,
+						slug: 1
+					},
+					limit: limit
+				});
+			}
+			return userGames.find({ userId: this.userId }, {
+				sort: { currentGamerscore: -1 },
+				fields: {
+					gameId: 1,
+					userId: 1,
+					currentGamerscore: 1
+				},
+				limit: limit
+			});
+		},
+		children: [
+			{
+				find: function(game) {
+					var id;
+					var user = Meteor.users.findOne({ _id: this.userId });
+					if (!user) {
+						id = game._id;
+					} else {
+						id = game.gameId;
+					}
+					if (user) {
+						if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+							id = game._id;
+						}
+					} else {
+						id = game.gameId;
+					}
+					return gameDetails.find({ gameId: id }, {
+						fields: {
+							gameId: 1,
+							gameName: 1,
+							gameReleaseDate: 1,
+							gameGenre: 1,
+							gameArt: 1,
+							gamePublisherName: 1,
+							gameAllTimeAverageRating: 1
+						}
+					});
+				}
+			},
+			{
+				find: function(game) {
+					var user = Meteor.users.findOne({_id: this.userId});
+					if (!user) {
+						return;
+					}
+					if (user) {
+						if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+							return;
+						}
+					}
+					return xbdGames.find({ _id: game.gameId }, {
+						sort: { maxGamerscore: -1 },
+						fields: {
+							platform: 1,
+							name: 1,
+							maxGamerscore: 1,
+							slug: 1
+						}
+					});
+				}
+			}
+		]
+	}
 });
 
 Meteor.publishComposite('gamesByReleaseDate', function(options) {

@@ -1,7 +1,7 @@
 <template name="recentActivityColumn">
 	<div class="col w-xxl bg-white-only b-l bg-auto no-border-xs">
 		<div class="wrapper-md activity-column">
-			<div class="m-b text-md">Recent Activity</div>
+			<div class="m-b text-md"><a href="{{pathFor 'myGames'}}">Recent Activity</a></div>
 			<ul class="list-group no-bg no-borders pull-in">
 			{{#if Template.subscriptionsReady}}
 				{{#each gamesList}}
