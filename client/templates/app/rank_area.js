@@ -1,29 +1,29 @@
 Template.userDailyRank.created = function() {
-	this.subscribe('dailyRanks');
+	this.subscribe('currentUserLeaderboard');
 }
 
 Template.userDailyRank.helpers({
 	userDailyRank: function() {
-		var userId = Meteor.userId();
-		var userStat = userLeaderboards.findOne({ userId: userId });
-		if (userStat && userStat.dailyRank && userStat.dailyRank.rank > 0) {
-			return userStat.dailyRank.rank;
-		}
-		return '---';
-	}
+        var user = Meteor.user();
+        var userLb = userLeaderboards.findOne({ userId: user._id });
+        if (userLb && userLb.dailyRank && userLb.dailyRank.rank > 0) {
+        	return userLb.dailyRank.rank;
+        }
+        return '---';
+    }
 });
 
 Template.userOverallRank.created = function() {
-	this.subscribe('overallRanks');
+	this.subscribe('currentUserLeaderboard');
 }
 
 Template.userOverallRank.helpers({
 	userOverallRank: function() {
-		var userId = Meteor.userId();
-		var userStat = userLeaderboards.findOne({ userId: userId });
-		if (userStat && userStat.overallRank > 0) {
-			return userStat.overallRank;
-		}
-		return '---';
-	}
+        var user = Meteor.user();
+        var userLb = userLeaderboards.findOne({ userId: user._id });
+        if (userLb && userLb.overallRank > 0) {
+        	return userLb.overallRank;
+        }
+        return '---';
+    }
 });

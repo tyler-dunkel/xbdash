@@ -1,24 +1,24 @@
 Template.achievementCommentBox.helpers({
-		loginAction:function(){
-				returnComments.session.get('loginAction');
-		},
-		textarea:function(){
-				returnTemplate.commentsTextarea;
-		},
-		hasMoreComments:function(){
-				returnComments.get(this.id).count()<Comments.session.get(this.id+'_count');
-		}
+	loginAction:function(){
+			return Comments.session.get('loginAction');
+	},
+	textarea:function(){
+			return Template.commentsTextarea;
+	},
+	hasMoreComments:function(){
+			return Comments.get(this.id).count()<Comments.session.get(this.id+'_count');
+	}
 });
 
 Template.newsCommentBox.helpers({
 	loginAction:function(){
-			returnComments.session.get('loginAction');
+			return Comments.session.get('loginAction');
 	},
 	textarea:function(){
-			returnTemplate.commentsTextarea;
+			return Template.commentsTextarea;
 	},
 	hasMoreComments:function(){
-			returnComments.get(this.id).count()<Comments.session.get(this.id+'_count');
+			return Comments.get(this.id).count()<Comments.session.get(this.id+'_count');
 	}
 });
 
@@ -29,7 +29,7 @@ Template.newsCommentBox.helpers({
 // Template.singleComment.rendered = function() {
 // 	this.$('p').contents().each(function() {
 // 		if (this.nodeType !== 3) {
-// 			returntrue;
+// 			return true;
 // 		}
 
 // 		varmatches = this.data.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g);
@@ -58,71 +58,71 @@ Template.newsCommentBox.helpers({
 // Template.singleComment.helpers({
 // 	getUser:function(user){
 // 			varuser=Meteor.users.findOne({_id:this.userId});
-// 			returnuser.gamercard.gamertag;
+// 			return user.gamercard.gamertag;
 // 	},
 // 	avatarUrl:function(user){
 // 			varuser=Meteor.users.findOne({_id:this.userId});
 // 			if(user&&user.gamercard&&user.gamercard.gamerpicLargeSslImagePath){
 // 					getUserImage="https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/"+encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
 // 			}
-// 			returngetUserImage||Comments.ui.config().defaultAvatar;
+// 			return getUserImage||Comments.ui.config().defaultAvatar;
 // 	},
 // 	take:function(params){
 // 			varcontent=Comments.session.get('content');
 // 			if(content[params.hash.key]){
-// 					returncontent[params.hash.key];
+// 					return content[params.hash.key];
 // 			}
-// 			returnparams.hash.default;
+// 			return params.hash.default;
 // 	},
 // 	templateIs:function(name){
-// 			returnname===Comments.ui.config().template;
+// 			return name===Comments.ui.config().template;
 // 	},
 // 	hasMoreComments:function(){
-// 			returnComments.get(this.id).count()<Comments.session.get(this.id+'_count');
+// 			return Comments.get(this.id).count()<Comments.session.get(this.id+'_count');
 // 	},
 // 	textarea:function(){
-// 			returnTemplate.commentsTextarea;
+// 			return Template.commentsTextarea;
 // 	},
 // 	commentId:function(){
-// 			returnthis._id||this.replyId;
+// 			return this._id||this.replyId;
 // 	},
 // 	hasLiked:function(){
-// 			returnthis.likes.indexOf(Meteor.userId())>-1;
+// 			return this.likes.indexOf(Meteor.userId())>-1;
 // 	},
 // 	isOwnComment:function(){
-// 			returnthis.userId===Meteor.userId();
+// 			return this.userId===Meteor.userId();
 // 	},
 // 	loginAction:function(){
-// 			returnComments.session.get('loginAction');
+// 			return Comments.session.get('loginAction');
 // 	},
 // 	addReply:function(){
 // 			varid=this._id||this.replyId;
-// 			returnComments.session.equals('replyTo',id);
+// 			return Comments.session.equals('replyTo',id);
 // 	},
 // 	isEditable:function(){
 // 			varid=this._id||this.replyId;
-// 			returnComments.session.equals('editingDocument',id);
+// 			return Comments.session.equals('editingDocument',id);
 // 	},
 // 	mediaContent:function(){
-// 			returnmediaService.getMarkup(this.media);
+// 			return mediaService.getMarkup(this.media);
 // 	},
 // 	reply:function(){
 // 			if(_.isFunction(this.enhancedReplies)){
-// 					returnthis.enhancedReplies();
+// 					return this.enhancedReplies();
 // 			}elseif(_.isArray(this.enhancedReplies)){
-// 					returnthis.enhancedReplies;
+// 					return this.enhancedReplies;
 // 			}
 // 	},
 // 	showAnonymousInput:function(isReply){
-// 			returnuserService.isAnonymous()&&!isReply;
+// 			return userService.isAnonymous()&&!isReply;
 // 	},
 // 	configGet:function(key){
-// 			returnComments.config()[key];
+// 			return Comments.config()[key];
 // 	},
 // 	uiConfigGet:function(key){
-// 			returnComments.ui.config()[key];
+// 			return Comments.ui.config()[key];
 // 	},
 // 	sessionGet:function(key){
-// 			returnComments.session.get(key);
+// 			return Comments.session.get(key);
 // 	}
 // });

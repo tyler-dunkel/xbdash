@@ -18,7 +18,7 @@ Meteor.startup(function () {
                         xbdNews.insert(i);
                     } else {
                         var shareCount;
-                        var articleUrl = 'https://beta.xbdash.com/news/'+i.slug;
+                        var articleUrl = 'https://beta.xbdash.com/news/' + i.slug;
                         var url = "https://api.facebook.com/method/links.getStats?urls=" + articleUrl + "&format=json";
                         HTTP.get(url, function (err, result) {
                             if (result.statusCode === 200) {
