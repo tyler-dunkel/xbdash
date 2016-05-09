@@ -23,7 +23,8 @@ Template.newsSinglePage.helpers({
 		
 		if (image) {
 			if (this.source === 'xbdash') {
-				return image[0].match(/src="(.+?)"/)[1];
+				getImage = image[0].match(/src="(.+?)"/)[1];
+				getImage = encodeURIComponent(getImage);
 			} else {
 				getImage = image[0].match(/src="(.+?)"/)[1];
 				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
