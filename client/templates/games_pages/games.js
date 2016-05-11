@@ -1,3 +1,14 @@
+Template.gamesPage.helpers({
+    genreSearch: function() {
+        var options = Router.current().params.query;
+        console.log(options);
+        if (_.isEmpty(options)) {
+            return false;
+        }
+        return true;
+    }
+});
+
 Template.gamesApp.created = function() {
 	var limit = 20;
 	this.subscribe('myTopGames');

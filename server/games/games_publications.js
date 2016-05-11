@@ -1,3 +1,71 @@
+Meteor.publishComposite('gameByGenre', function(options) {
+	return {
+		find: function() {
+			options = options || {};
+			var limit = typeof options.limit === 'number' ? options.limit : 10;
+			var genres = (Array.isArray(options.genres)) ? options.genres : null;
+			if (genres) {
+				var regArray = [];
+				genres.forEach(function(genre) {
+					var reg = new RegExp(genre, "i");
+					console.log(reg);
+					regArray.push(reg);
+				});
+				genres = regArray;
+			}
+			console.log(genres);
+			var selector = (genres) ? {'gameGenre.Name': {$in: genres}} : {};
+			console.log(options);
+			console.log(selector);
+			return gameDetails.find(selector, {
+				fields: {
+					gameId: 1,
+					gameName: 1,
+					gameReleaseDate: 1,
+					gameGenre: 1,
+					gameArt: 1,
+					gamePublisherName: 1,
+					gameAllTimeAverageRating: 1
+				},
+				sort: { gameReleaseDate: -1 },
+				limit: limit
+			});
+		},
+		children: [
+			{
+				find: function(game) {
+					return xbdGames.find({ _id: game.gameId }, {
+						fields: {
+							platform: 1,
+							name: 1,
+							maxGamerscore: 1,
+							slug: 1
+						}
+					});
+				}
+			},
+			{
+				find: function(game) {
+					var user = Meteor.users.findOne({ _id: this.userId });
+					if (!user) return;
+					if (user) {
+						if (user.gamertagScanned.status === 'false' || user.gamertagScanned.status === 'building') {
+							return;
+						}
+					}
+					return userGames.find({ userId: this.userId, gameId: game.gameId }, {
+						fields: {
+							gameId: 1,
+							userId: 1,
+							currentGamerscore: 1
+						}
+					});
+				}
+			}
+		]
+	}
+});
+
 Meteor.publishComposite('myTopGames', function(options) {
 	return {
 		find: function() {

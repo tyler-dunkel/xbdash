@@ -1,6 +1,11 @@
 <template name="gamesPage">
-	{{> gamesApp}}
+	{{#if genreSearch}}
+		{{> gameByGenre}}
+	{{else}}
+		{{> gamesApp}}
+	{{/if}}
 </template>
+
 
 <template name="gamesApp">
 	<div id="content" class="app-content" role="main">
