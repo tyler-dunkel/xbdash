@@ -4,53 +4,51 @@
 
 <template name="myGamesApp">
 	<div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-      <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <!-- main -->
-        <div class="col">
-          <!-- main header -->
-          <div class="bg-light lter b-b wrapper-md">
-            <div class="row">
-              <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">My Games</h1>
-                <small class="text-muted">All the games in my current xbox library</small>
-              </div>
-              {{#if chkGamerStatus}}
-              <div class="col-sm-6 text-right hidden-xs">
-                <div class="inline m-l m-r text-left">
-                  {{> userDailyRank}}
-                </div>
-                <div class="inline text-left">
-                  {{> userOverallRank}}
-                </div>
-              </div>
-              {{/if}}
-            </div>
-          </div>
-          <div class="wrapper-md">
-            <div class="row">
-              <div class="col-lg-12">
-                <h3 class="m-n font-thin padder-v text-black">My Games By Gamerscore Earned</h3>
-              </div>
-            </div>
-            <div class="row">
-            {{#if Template.subscriptionsReady}}
-              {{#each gamesByGamerscore}}
-                {{#with xbdGame}}
-                  {{> singleGame}}
-                {{/with}}
-              {{/each}}
-              <div style="display:block;">&nbsp;</div>
-              {{#if hasMoreResults}}
-			      <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
-		       {{/if}}
-            {{else}}
-              {{> loadingTemplate}}
-            {{/if}}
-            </div>
-          </div>
-      	</div>
-      </div>
-    </div>
-  </div>
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+							   <h1 class="m-n font-thin h3 text-black">My Games</h1>
+							   <small class="text-muted">All the games in my current xbox library</small>
+							</div>
+							{{#if chkGamerStatus}}
+							<div class="col-sm-6 text-right hidden-xs">
+								<div class="inline m-l m-r text-left">
+									{{> userDailyRank}}
+								</div>
+								<div class="inline text-left">
+									{{> userOverallRank}}
+								</div>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-lg-12">
+							<h3 class="m-n font-thin padder-v text-black">My Games By Gamerscore Earned</h3>
+							</div>
+						</div>
+						<div class="row">
+						{{#if Template.subscriptionsReady}}
+							{{#each gamesByGamerscore}}
+							{{#with xbdGame}}
+								{{> singleGame}}
+							{{/with}}
+							{{/each}}
+							<div style="display:block;">&nbsp;</div>
+							{{#if hasMoreResults}}
+								<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+							 {{/if}}
+						{{else}}
+							{{> loadingTemplate}}
+						{{/if}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

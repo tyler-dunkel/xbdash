@@ -19,15 +19,15 @@ Template.gameByGenre.created = function() {
 
 Template.gameByGenre.helpers({
 	xbdGame: function () {
-        return xbdGames.findOne({ _id: this.gameId }, {
-            sort: { maxGamerscore: -1 }
-        });
-    },
-    gamesByReleaseDate: function() {
+		return xbdGames.findOne({ _id: this.gameId }, {
+			sort: { maxGamerscore: -1 }
+		});
+	},
+	gamesByReleaseDate: function() {
 		return gameDetails.find({}, {
-            sort: { gameReleaseDate: -1 },
-            limit: gameLimit.get()
-        });
+			sort: { gameReleaseDate: -1 },
+			limit: gameLimit.get()
+		});
 	},
 	'hasMoreResults': function() {
 		var gameLimitCurrent = gameLimit.get();

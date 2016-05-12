@@ -513,6 +513,14 @@ a.list-group-item.hover {
 	border-top: 1px solid #eaedef;
 }
 
+.panel-heading .display-block {
+	display: block;
+}
+
+.panel-heading .display-none {
+	display: none;
+}
+
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
 	padding: 8px 15px;

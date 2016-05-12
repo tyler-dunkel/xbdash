@@ -30,23 +30,9 @@ Template.gameSortButtons.events({
 			}
 		} else {
 			console.log('no genres');
-			sortParams.genres = {genres: target.data('val')};
+			sortParams.genres = { genres: target.data('val') };
 		}
 		console.log(sortParams);
-		Router.go('gamesPage', {}, {query: sortParams});
+		Router.go('gamesPage', {}, { query: sortParams });
 	}
 });
-
-function convertQueryArray(genreArray) {
-	if (!genreArray.length) {
-		console.log('no array length');
-		return '';
-	}
-	var queryString = '';
-	for(var i=0; i < genreArray.length; i++) {
-		console.log(queryString);
-		var addComma = (genreArray.length > 1) ? ',' : '';
-		queryString = queryString.concat(genreArray[i] + addComma);
-	}
-	return queryString;
-}

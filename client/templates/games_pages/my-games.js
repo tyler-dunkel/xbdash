@@ -16,23 +16,23 @@ Template.myGamesApp.created = function() {
 
 Template.myGamesApp.helpers({
 	xbdGame: function () {
-        return xbdGames.findOne({ _id: this.gameId }, {
-            sort: { maxGamerscore: -1 }
-        });
-    },
-    gamesByGamerscore: function() {
+		return xbdGames.findOne({ _id: this.gameId }, {
+			sort: { maxGamerscore: -1 }
+		});
+	},
+	gamesByGamerscore: function() {
 		var userId = Meteor.userId();
 		var games = userGames.find({ userId: userId }, {
-            sort: { currentGamerscore: -1 }
-        });
-        var gameDetailArray = [];
+			sort: { currentGamerscore: -1 }
+		});
+		var gameDetailArray = [];
 
-        games.forEach(function(game) {
-            var sortedGameDetail = gameDetails.findOne({ gameId: game.gameId });
-            gameDetailArray.push(sortedGameDetail);
-        });
+		games.forEach(function(game) {
+			var sortedGameDetail = gameDetails.findOne({ gameId: game.gameId });
+			gameDetailArray.push(sortedGameDetail);
+		});
 
-        return gameDetailArray;
+		return gameDetailArray;
 	},
 	'hasMoreResults': function() {
 		var gameLimitCurrent = gameLimit.get();

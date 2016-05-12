@@ -8,6 +8,25 @@ Template.achievementsApp.rendered = function() {
 	$('[data-toggle="tooltip"]').tooltip();
 }
 
+Template.achievementsApp.events({
+	"click .common-button": function(e) {
+		e.preventDefault();
+		Router.go('achievementsPage', {}, { query: 'tier=common' });
+	},
+	"click .rare-button": function(e) {
+		e.preventDefault();
+		Router.go('achievementsPage', {}, { query: 'tier=rare' });
+	},
+	"click .epic-button": function(e) {
+		e.preventDefault();
+		Router.go('achievementsPage', {}, { query: 'tier=epic' });
+	},
+	"click .legendary-button": function(e) {
+		e.preventDefault();
+		Router.go('achievementsPage', {}, { query: 'tier=legendary' });
+	}
+});
+
 Template.achievementsApp.helpers({
 	mostPopularAchievements: function() {
 		var achievements = xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 10 });
