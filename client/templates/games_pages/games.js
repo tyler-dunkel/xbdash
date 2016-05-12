@@ -1,7 +1,6 @@
 Template.gamesPage.helpers({
     genreSearch: function() {
         var options = Router.current().params.query;
-        console.log(options);
         if (_.isEmpty(options)) {
             return false;
         }

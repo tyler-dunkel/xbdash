@@ -7,15 +7,16 @@ Meteor.publishComposite('gameByGenre', function(options) {
 			if (genres) {
 				var regArray = [];
 				genres.forEach(function(genre) {
+					if (genre === '') {
+						return;
+					}
 					var reg = new RegExp(genre, "i");
-					console.log(reg);
+					//console.log(reg);
 					regArray.push(reg);
 				});
 				genres = regArray;
 			}
-			console.log(genres);
 			var selector = (genres) ? {'gameGenre.Name': {$in: genres}} : {};
-			console.log(options);
 			console.log(selector);
 			return gameDetails.find(selector, {
 				fields: {
