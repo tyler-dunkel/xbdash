@@ -2,7 +2,6 @@ Template.gameSortButtons.created = function() {
 	var routeParams = Router.current().params.query;
 	this.sortParams = {};
 	if (routeParams.genres) {
-		//this.sortParams.genres = convertQueryArray(routeParams.genres);
 		this.sortParams.genres = routeParams.genres.join(",");
 		console.log(this.sortParams.genres);
 	}

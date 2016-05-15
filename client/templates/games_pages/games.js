@@ -43,10 +43,7 @@ Template.gamesApp.events({
 
 Template.gamesApp.helpers({
 	xbdGame: function () {
-		return xbdGames.findOne({ _id: this.gameId }, {
-			sort: { maxGamerscore: -1 },
-			limit: 5
-		});
+		return xbdGames.findOne({ _id: this.gameId });
 	},
 	myTopGames: function() {
 		var userId = Meteor.userId();

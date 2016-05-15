@@ -4,20 +4,34 @@ Meteor.publishComposite('gameByGenre', function(options) {
 			options = options || {};
 			var limit = typeof options.limit === 'number' ? options.limit : 10;
 			var genres = (Array.isArray(options.genres)) ? options.genres : null;
+			var releaseDate = options.releaseDate === 'asc' ? 1 : -1;
+			var name = options.name;
 			if (genres) {
 				var regArray = [];
 				genres.forEach(function(genre) {
 					if (genre === '') {
 						return;
 					}
+					if (genre === 'all') {
+						genre = '.*';
+					}
 					var reg = new RegExp(genre, "i");
-					//console.log(reg);
+					console.log(reg);
 					regArray.push(reg);
 				});
 				genres = regArray;
 			}
 			var selector = (genres) ? {'gameGenre.Name': {$in: genres}} : {};
-			console.log(selector);
+			var sortSelector;
+
+			if (!name) {
+				sortSelector = {gameReleaseDate: releaseDate};
+			} else {
+				name = (name === 'asc') ? -1 : 1;
+				sortSelector = {gameName: name, gameReleaseDate: releaseDate};
+			}
+
+			console.log(sortSelector);
 			return gameDetails.find(selector, {
 				fields: {
 					gameId: 1,
@@ -28,7 +42,7 @@ Meteor.publishComposite('gameByGenre', function(options) {
 					gamePublisherName: 1,
 					gameAllTimeAverageRating: 1
 				},
-				sort: { gameReleaseDate: -1 },
+				sort: sortSelector,
 				limit: limit
 			});
 		},

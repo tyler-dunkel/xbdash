@@ -8,6 +8,7 @@ Template.gameByGenre.created = function() {
 		if (!Array.isArray(options.genres)) {
 			options.genres = (options.genres) ? options.genres.split(',') : null;
 		}
+		console.log(options);
 		Meteor.subscribe('gameByGenre', options);
 	});
 	$(window).scroll(function() {
@@ -24,8 +25,29 @@ Template.gameByGenre.helpers({
 		});
 	},
 	gamesByReleaseDate: function() {
+		var sortParams = Router.current().params.query;
+		var releaseDate = -1;
+		var name = 0;
+		var sortSelector;
+		if (sortParams && sortParams.releaseDate && sortParams.releaseDate === 'asc') {
+			releaseDate = 1;
+		}
+		if (sortParams && sortParams.name) {
+			console.log('there is a name param');
+			if (sortParams.name === 'asc') {
+				name = -1;
+			} else {
+				name = 1;
+			}
+		}
+		if (name === 0) {
+			sortSelector = {gameReleaseDate: releaseDate};
+		} else {
+			sortSelector = {gameName: name, gameReleaseDate: releaseDate};
+		}
+		console.log(sortSelector);
 		return gameDetails.find({}, {
-			sort: { gameReleaseDate: -1 },
+			sort: sortSelector,
 			limit: gameLimit.get()
 		});
 	},
