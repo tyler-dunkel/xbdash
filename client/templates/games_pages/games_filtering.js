@@ -12,6 +12,9 @@ Template.recentGamesFiltering.rendered = function() {
 
 	$('.selectpicker').on('changed.bs.select', function(e, currIdx) {
 		var sortParams = self.sortParams;
+		if (sortParams.name) {
+			delete sortParams.name;
+		}
 		sortParams.releaseDate = (currIdx === 1) ? 'asc' : 'dsc';
 		console.log(sortParams);
 		Router.go('gamesPage', {}, {query: sortParams });
