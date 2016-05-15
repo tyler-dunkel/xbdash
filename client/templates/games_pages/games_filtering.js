@@ -43,11 +43,19 @@ Template.recentGamesFiltering.events({
 		var sortParams = Template.instance().sortParams;
 		sortParams.name = 'desc';
 		Router.go('gamesPage', {}, {query: sortParams});
+		$(e.currentTarget).removeClass('notActive');
+		$(e.currentTarget).addClass('active');
+		$('.z-to-a').addClass('notActive');
+		$('.z-to-a').removeClass('active');
 	},
 	"click .z-to-a": function(e) {
 		var sortParams = Template.instance().sortParams;
 		sortParams.name = 'asc';
 		Router.go('gamesPage', {}, {query: sortParams});
+		$(e.currentTarget).removeClass('notActive');
+		$(e.currentTarget).addClass('active');
+		$('.a-to-z').addClass('notActive');
+		$('.a-to-z').removeClass('active');
 	}
 });
 
