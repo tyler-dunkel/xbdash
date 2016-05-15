@@ -1,0 +1,210 @@
+<template name="recentGamesFiltering">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 filtering-menu">
+			<div class="col-xs-7 col-sm-6 col-md-3">
+				<div class="form-group filter-centering">
+					<div class="input-group grid">
+						<div id="radioBtn" class="btn-group">
+							<a class="btn btn-success btn-sm active" data-toggle="happy" data-title="Y">15</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">30</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">60</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">90</a>
+						</div>
+						<input name="happy" id="happy" type="hidden">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-5 col-sm-6 col-md-3">
+				<div class="form-group filter-centering">
+					<div class="input-group grid">
+						<div id="radioBtn" class="btn-group">
+							<a class="btn btn-success btn-sm active" data-toggle="happy" data-title="Y">A-Z</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">Z-A</a>
+						</div>
+						<input name="happy" id="happy" type="hidden">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<div class="filter-centering">
+					<select class="selectpicker" data-style="btn-success">
+						<option>Most Recent First</option>
+						<option>Oldest First</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<div id="accordion" class="filter-centering">
+					<button class="btn btn-success btn-sm collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						All Genres <span class="caret"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+			<div style="height: auto;" id="collapseOne" class="panel-collapse collapse">
+				<div class="col-md-12">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="all">
+							<i></i> All Genres
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="action &amp; adventure">
+							<i></i> Action &amp; Adventure
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="card &amp; board">
+							<i></i> Card &amp; Board
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="classics">
+							<i></i> Classics
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="educational">
+							<i></i> Educational
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="family">
+							<i></i> Family
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="fighting">
+							<i></i> Fighting
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="kinect">
+							<i></i> Kinect
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="music">
+							<i></i> Music
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="other">
+							<i></i> Other
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="platformer">
+							<i></i> Platformer
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="puzzle &amp; trivia">
+							<i></i> Puzzle &amp; Trivia
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="racing &amp; flying">
+							<i></i> Racing &amp; Flying
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="role playing">
+							<i></i> Role Playing
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="shooter">
+							<i></i> Shooter
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="sports &amp; recreation">
+							<i></i> Sports &amp; Recreation
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="strategy &amp; simulation">
+							<i></i> Strategy &amp; Simulation
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="myGamesFiltering">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 filtering-menu">
+			<div class="col-xs-7 col-sm-6 col-md-3">
+				<div class="form-group filter-centering">
+					<div class="input-group grid">
+						<div id="radioBtn" class="btn-group">
+							<a class="btn btn-success btn-sm active" data-toggle="happy" data-title="Y">15</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">30</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">60</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">90</a>
+						</div>
+						<input name="happy" id="happy" type="hidden">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-5 col-sm-6 col-md-3">
+				<div class="form-group filter-centering">
+					<div class="input-group grid">
+						<div id="radioBtn" class="btn-group">
+							<a class="btn btn-success btn-sm active" data-toggle="happy" data-title="Y">A-Z</a>
+							<a class="btn btn-success btn-sm notActive" data-toggle="happy" data-title="N">Z-A</a>
+						</div>
+						<input name="happy" id="happy" type="hidden">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<div class="filter-centering">
+					<select class="selectpicker" data-style="btn-success">
+						<option>Most Achievements Earned</option>
+						<option>Least Achievements Earned</option>
+						<option>Most Gamerscore</option>
+						<option>Least Gamerscore</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-3">
+                <div class="filter-centering">
+                    <select class="selectpicker" data-style="btn-success">
+                        <option>All Games</option>
+                        <option>Completed Games</option>
+                        <option>Incomplete Games</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

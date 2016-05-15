@@ -1,12 +1,12 @@
-<template name="achievementsShowMorePage">
+<template name="myAchievementsPage">
 	{{#if Template.subscriptionsReady}}
-		{{> achievementsShowMoreApp}}
+		{{> myAchievementsApp}}
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
 </template>
 
-<template name="achievementsShowMoreApp">
+<template name="myAchievementsApp">
 	<div id="content" class="app-content" role="main">
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
@@ -30,12 +30,12 @@
 						</div>
 					</div>
 					<div class="bg-light lter b-b wrapper-md">
-                        {{> achievementsFiltering}}
+                        {{> myAchievementsFiltering}}
                     </div>
 					<div class="wrapper-md">
 						<div class="row">
 							<div class="col-lg-7 col-xs-12">
-								{{> achievementsShowMoreSection tier=achievementTier}}
+								{{> myAchievementsSection tier=achievementTier}}
 							</div>
 							<div class="wrapper-md col-lg-5 col-xs-12 hidden-md hidden-sm hidden-xs trending-column"></div>
 						</div>
@@ -46,7 +46,7 @@
 	</div>
 </template>
 
-<template name="achievementsShowMoreSection">
+<template name="myAchievementsSection">
 	<ul class="list-group no-bg no-borders achievements-list">
 	{{#if Template.subscriptionsReady}}
 		{{#each achievementList}}

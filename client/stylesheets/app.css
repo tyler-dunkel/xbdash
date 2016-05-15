@@ -6441,3 +6441,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	content: "\f078";	
 }
 .popover {width: 200px;}
+.filtering-menu .filter-centering {
+	margin: 7px 0px; text-align: center;
+}
+.dropdown-toggle.btn-success {
+	font-size: 12px;
+}

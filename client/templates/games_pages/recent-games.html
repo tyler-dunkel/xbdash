@@ -1,5 +1,5 @@
 <template name="recentGamesPage">
-	{{> recentGamesApp}}
+	<div>{{> recentGamesApp}}</div>
 </template>
 
 <template name="recentGamesApp">
@@ -25,12 +25,10 @@
 							{{/if}}
 						</div>
 					</div>
+					<div class="bg-light lter b-b wrapper-md">
+						{{> recentGamesFiltering}}
+					</div>
 					<div class="wrapper-md">
-						<div class="row">
-							<div class="col-lg-12">
-								<h3 class="m-n font-thin padder-v text-black">Recently Added Games</h3>
-							</div>
-						</div>
 						<div class="row">
 						{{#if Template.subscriptionsReady}}
 							{{#each gamesByReleaseDate}}
@@ -40,7 +38,7 @@
 							{{/each}}
 							<div style="display:block;">&nbsp;</div>
 							{{#if hasMoreResults}}
-							<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+								<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
 							{{/if}}
 						{{else}}
 							{{> loadingTemplate}}
