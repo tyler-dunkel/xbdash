@@ -41,6 +41,7 @@ Template.recentGamesFiltering.events({
 		}
 		console.log(sortParams);
 		Router.go('gamesPage', {}, { query: sortParams });
+		Session.set('forceReset', 0);
 	},
 	"click .a-to-z": function(e) {
 		var sortParams = Template.instance().sortParams;
@@ -50,6 +51,7 @@ Template.recentGamesFiltering.events({
 		$(e.currentTarget).addClass('active');
 		$('.z-to-a').addClass('notActive');
 		$('.z-to-a').removeClass('active');
+		Session.set('forceReset', 0);
 	},
 	"click .z-to-a": function(e) {
 		var sortParams = Template.instance().sortParams;
@@ -59,6 +61,7 @@ Template.recentGamesFiltering.events({
 		$(e.currentTarget).addClass('active');
 		$('.a-to-z').addClass('notActive');
 		$('.a-to-z').removeClass('active');
+		Session.set('forceReset', 0);
 	}
 });
 
