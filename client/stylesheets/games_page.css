@@ -1,0 +1,16 @@
+.single-games-page .m-t-xxxl { margin-top: 77px; }
+.single-games-page .m-b-xxxl { margin-bottom: 77px; }
+.single-games-page .nav-tabs { border-bottom: 2px solid #DDD; }
+.single-games-page .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+.single-games-page .nav-tabs > li > a { border: none; color: #666; padding: 10px 20px; margin-right: 0; }
+.single-games-page .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #138013 !important; background: transparent; }
+.single-games-page .nav-tabs > li > a::after { content: ""; background: #138013; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+.single-games-page .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.single-games-page .tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.single-games-page .achievements-list .col-xl-6 { margin-bottom: ; }
+.single-games-page hr { margin: 10px 0; border-top: 1px solid #efefef; }
+
+@media (max-width: 768px) {
+	.single-games-page .m-t-xxxl { margin-top: 15px; }
+	.single-games-page .m-b-xxxl { margin-bottom: 15px; }
+}
