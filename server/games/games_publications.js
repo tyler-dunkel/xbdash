@@ -87,6 +87,19 @@ Meteor.publishComposite('myTopGames', function(options) {
 			var user = Meteor.users.findOne({ _id: this.userId });
 			options = options || {};
 			var limit = typeof options.limit === 'number' ? options.limit : 10;
+			var sortSelector = {};
+			var selector = {userId: this.userId};
+			console.log(options);
+			if (options.completed !== 'all') {
+				selector.completed = (options.completed === 'true') ? true : false;
+			}
+			if (options.earnedgamerscore) {
+				sortSelector.currentGamerscore = (options.earnedgamerscore === 'asc') ? 1 : -1;
+			}
+			if (options.earnedachievements) {
+				console.log('in the block');
+				sortSelector.earnedAchievements = (options.earnedachievements === 'asc') ? 1 : -1;
+			}
 			if (!user) {
 				return xbdGames.find({}, {
 					sort: { maxGamerscore: -1 },
@@ -111,12 +124,16 @@ Meteor.publishComposite('myTopGames', function(options) {
 					limit: limit
 				});
 			}
-			return userGames.find({ userId: this.userId }, {
-				sort: { currentGamerscore: -1 },
+			console.log(selector);
+			console.log(sortSelector);
+			return userGames.find(selector, {
+				sort: sortSelector,
 				fields: {
 					gameId: 1,
 					userId: 1,
-					currentGamerscore: 1
+					currentGamerscore: 1,
+					earnedAchievements: 1,
+					completed: 1
 				},
 				limit: limit
 			});

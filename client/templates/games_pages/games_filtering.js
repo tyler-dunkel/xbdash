@@ -18,6 +18,7 @@ Template.recentGamesFiltering.rendered = function() {
 		sortParams.releaseDate = (currIdx === 1) ? 'asc' : 'dsc';
 		console.log(sortParams);
 		Router.go('gamesPage', {}, {query: sortParams });
+		Session.set('forceReset', 0);
 	});
 }
 
@@ -65,6 +66,81 @@ Template.recentGamesFiltering.events({
 	}
 });
 
-Template.myGamesFiltering.rendered = function() {
-	$('.selectpicker').selectpicker();
+Template.myGamesFiltering.created = function() {
+	var routeParams = Router.current().params.query;
+	this.sortParams = {};
 }
+
+
+Template.myGamesFiltering.rendered = function() {
+	var self = this;
+	$('.selectpicker').selectpicker();
+
+	$('.selectpicker').on('changed.bs.select', function(e, currIdx) {
+		var sortParams = self.sortParams;
+		console.log(e.currentTarget);
+		if ($(e.currentTarget).data('mod') === 'achievement-selector') {
+			switch(currIdx) {
+				case 0: 
+					if (sortParams.earnedgamerscore) {
+						delete sortParams.earnedgamerscore;
+					}
+					sortParams.earnedachievements = 'desc';
+					Router.go('myGames', {}, {query: sortParams});
+					break;
+				case 1:
+					if (sortParams.earnedgamerscore) {
+						delete sortParams.earnedgamerscore;
+					}
+					sortParams.earnedachievements = 'asc';
+					Router.go('myGames', {}, {query: sortParams});
+					break;
+				case 2:
+					sortParams.earnedgamerscore = 'desc';
+					Router.go('myGames', {}, {query: sortParams});
+					break;
+				default:
+					sortParams.earnedgamerscore = 'asc';
+					Router.go('myGames', {}, {query: sortParams});
+			}
+		} else {
+			switch(currIdx) {
+				case 0: 
+					sortParams.completed = 'all';
+					Router.go('myGames', {}, {query: sortParams});
+					break;
+				case 1:
+					sortParams.completed = 'true';
+					Router.go('myGames', {}, {query: sortParams});
+					break;
+				default: 
+					sortParams.completed = 'false';
+					Router.go('myGames', {}, {query: sortParams});
+			}
+		}
+		Session.set('forceReset', 0);
+	});
+}
+
+Template.myGamesFiltering.events({
+	// "click .a-to-z": function(e) {
+	// 	var sortParams = Template.instance().sortParams;
+	// 	sortParams.name = 'desc';
+	// 	Router.go('myGames', {}, {query: sortParams});
+	// 	$(e.currentTarget).removeClass('notActive');
+	// 	$(e.currentTarget).addClass('active');
+	// 	$('.z-to-a').addClass('notActive');
+	// 	$('.z-to-a').removeClass('active');
+	// 	Session.set('forceReset', 0);
+	// },
+	// "click .z-to-a": function(e) {
+	// 	var sortParams = Template.instance().sortParams;
+	// 	sortParams.name = 'asc';
+	// 	Router.go('myGames', {}, {query: sortParams});
+	// 	$(e.currentTarget).removeClass('notActive');
+	// 	$(e.currentTarget).addClass('active');
+	// 	$('.a-to-z').addClass('notActive');
+	// 	$('.a-to-z').removeClass('active');
+	// 	Session.set('forceReset', 0);
+	// }
+});

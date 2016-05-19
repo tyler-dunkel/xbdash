@@ -3,9 +3,9 @@ var gameLimit = new ReactiveVar();
 Template.myGamesApp.created = function() {
 	gameLimit.set(25);
 	this.autorun(function() {
-		var limit = gameLimit.get();
-		console.log('the limit is: ' + limit);
-		Meteor.subscribe('myTopGames', {limit: limit});
+		var options = Router.current().params.query;
+		options.limit = gameLimit.get();
+		Meteor.subscribe('myTopGames', options);
 	});
 	$(window).scroll(function() {
 		window.setTimeout(function() {
@@ -14,6 +14,14 @@ Template.myGamesApp.created = function() {
 	});
 }
 
+//ugly hack to force reset of gamelimit when a filtering option is selected
+//would like to remove if implementation fix can be found.
+Meteor.autorun(function() {
+	Session.set('forceReset', 1);
+	Session.get('forceReset');
+	gameLimit.set(10);
+});
+
 Template.myGamesApp.helpers({
 	xbdGame: function () {
 		return xbdGames.findOne({ _id: this.gameId }, {
@@ -21,9 +29,30 @@ Template.myGamesApp.helpers({
 		});
 	},
 	gamesByGamerscore: function() {
+		var sortParams = Router.current().params.query;
 		var userId = Meteor.userId();
+		var sortSelector = {};
+		var selector = {userId: userId};
+		console.log(sortParams);
+		console.log(_.isEmpty(sortParams));
+		if (!_.isEmpty(sortParams)) {
+			console.log('in the if block');
+			if (sortParams.earnedgamerscore) {
+				sortSelector.currentGamerscore = (sortParams.earnedgamerscore === 'asc') ? 1 : -1;
+			}
+			if (sortParams.earnedachievements) {
+				sortSelector.earnedAchievements = (sortParams.earnedachievements === 'asc') ? 1 : -1;
+			}
+			if (sortParams.completed && sortParams.completed !== 'all') {
+				selector.completed = (sortParams.completed === 'true') ? true : false;
+			}
+		} else {
+			sortSelector.currentGamerscore = -1;
+		}
+		console.log(sortSelector);
+		console.log(selector);
 		var games = userGames.find({ userId: userId }, {
-			sort: { currentGamerscore: -1 }
+			sort: sortSelector
 		});
 		var gameDetailArray = [];
 
