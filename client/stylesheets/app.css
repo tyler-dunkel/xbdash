@@ -6453,11 +6453,31 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .dropdown-toggle.btn-success {
 	font-size: 12px;
 }
+.panel-heading:hover,
+.common-button:hover,
+.rare-button:hover,
+.epic-button:hover,
+.legendary-button:hover {
+	cursor: pointer;
+}
+.legendary-text.text-white:hover {
+	color: #cccccc;
+}
+.completed-games-title a:hover, .recent-games-title a:hover {
+	text-decoration: underline;
+}
 @media (max-width: 768px) {
-	.filtering-menu .tier-filter .btn {
-		width: 100%;
-	}
 	.filtering-menu .bootstrap-select > .dropdown-toggle {
 		width: 80%;
+	}
+	.filtering-menu .tier-filter .btn,
+	.filtering-menu .tier-filter .bootstrap-select,
+	.filtering-menu .tier-filter .bootstrap-select > .dropdown-toggle,
+	.filtering-menu .tier-filter .bootstrap-select .dropdown-menu  {
+		width: 100% !important;
+	}
+	.title-wrap-game {
+		max-width: 100%;
+		overflow: hidden;
 	}
 }

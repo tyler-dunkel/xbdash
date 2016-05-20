@@ -12,72 +12,107 @@
 		<div class="app-content-body">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
-					<div class="row">
-						<div class="col-xl-12">
-							<h1 class="text-center m-t-lg m-b-md">May 2016 Giveaway Contest</h1>
-						</div>
-					</div>
-					{{#if currentUser}}
-					<div class="row">
-						<div class="col-xl-4 col-xl-offset-2 m-t-sm m-b-sm text-center">
-							<h4>Win this month's giveaway featuring a FREE copy of:</h4>
-							<h2>Fallout 4</h2>
-							<div>
-								<img src="/img/contests/fallout4-xbone.png" />
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-xl-12">
+								<h1 class="h1 text-center m-t-md m-b-md">June 2016 Launch Contest</h1>
+								<p class="h4 text-center m-b-lg">In celebration of officially coming out of beta, we're featuring a double-prize contest. Hereafter, each month we'll feature a new giveaway!</p>
 							</div>
 						</div>
-						<div class="col-xl-4">
-							<div class="well" style="padding: 30px;">
-								<p class="align-left"><strong>Rules:</strong></p>
-								<ul class="m-b-lg align-left">
-									<li>1 Winner will receive a copy of Fallout 4 in original packaging.</li>
-									<li>Your first friend to sign up through your link below gives you entry into the contest.</li>
-									<li>Each friend invited to sign up through your link below thereafter gives you an extra entry into this month's contest only.</li>
-									<li>Limit 10 entries per contestant.</li>
-								</ul>
-								<form>
-									<p class="text-center"><strong>Share this link with friends!</strong></p>
-									<div class="input-group">
-										<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="button" id="copy-button"
-											data-toggle="tooltip" data-placement="button"
-											title="Copy to Clipboard">
-											Copy
-											</button>
-										</span>
-									</div>
-								</form>
-								<div class="m-t-sm m-b-lg text-center">
-									{{> shareit contestData}}
+						{{#if currentUser}}
+						<div class="row">
+							<div class="col-xs-6 col-md-3 m-t-sm m-b-sm text-center">
+								<p class="h5 m-b-sm">First Place Winner:</p>
+								<h2 class="h3" style="min-height: 72px;">Overwatch - Origins Edition</h2>
+								<div>
+									<img src="/img/contests/overwatch-xbone.png" class="img-responsive grid" />
 								</div>
-								<div class="row m-b-md">
-									<div class="col-sm-6">
-										<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:<br />
-										<span style="margin-left: 16px;">May 31, 2016 11:59 pm EST</span>
-									</div>
-									<div class="col-sm-6">
-										<i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:<br />
-										<span style="margin-left: 16px;">June 1, 2016 9:00 am EST</span>
-									</div>
+							</div>
+							<div class="col-xs-6 col-md-3 m-t-sm m-b-sm text-center">
+								<p class="h5 m-b-sm">Second Place Winner:</p>
+								<h2 class="h3" style="min-height: 72px;">Fallout 4</h2>
+								<div>
+									<img src="/img/contests/fallout4-xbone.png" class="img-responsive grid" />
 								</div>
-								<div class="row">
-									<div class="col-sm-12">
-										<span style="font-size: 85%;">
-											XBdash (GameDash, LLC) is not affiliated with the giveaway, it's developer, or publisher. <a href="{{pathFor 'contestRules'}}">Read official rules.</a>
-										</span>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<div class="well" style="padding: 30px;">
+									<p class="align-left"><strong>Rules:</strong></p>
+									<ul class="m-b-lg align-left">
+										<li>1 first-place winner will receive a copy of Overwatch in original packaging.</li>
+										<li>1 second-place winner will receive a copy of Fallout 4 in original packaging.</li>
+										<li>Your first friend to sign up through your link below gives you entry into the contest.</li>
+										<li>Each friend invited to sign up through your link below thereafter gives you an extra entry into this month's contest only.</li>
+										<li>Limit 10 entries per contestant.</li>
+									</ul>
+									<form>
+										<p class="text-center"><strong>Share this link with friends and gain more entries!</strong></p>
+										<div class="input-group">
+											<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
+											<span class="input-group-btn">
+												<button class="btn btn-default" type="button" id="copy-button"
+												data-toggle="tooltip" data-placement="button"
+												title="Copy to Clipboard">
+												Copy
+												</button>
+											</span>
+										</div>
+									</form>
+									<div class="m-t-sm m-b-lg text-center">
+										{{> shareit contestData}}
+									</div>
+									<div class="row m-b-md text-center">
+										<div class="col-sm-6">
+											<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:<br />
+											<span>May 31, 2016 11:59 pm EST</span>
+										</div>
+										<div class="col-sm-6">
+											<i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:<br />
+											<span>June 1, 2016 9:00 am EST</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-12 text-center">
+											<p style="font-size: 85%;">
+												XBdash (GameDash, LLC) is not affiliated with the giveaway(s), it's developer(s), or publisher(s). <a href="{{pathFor 'contestRules'}}" class="text-u-l">Read official rules.</a>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					{{else}}
-					<form>
-						<div class="input-group">
-							<div class="referral-signup">Sign up for free!</div>
+						{{else}}
+						<div class="row">
+							<div class="col-xs-6 m-t-sm m-b-sm text-center">
+								<p class="h5 m-b-sm">First Place Winner:</p>
+								<h2 class="h3" style="min-height: 72px;">Overwatch - Origins Edition</h2>
+								<div>
+									<img src="/img/contests/overwatch-xbone.png" class="img-responsive grid" />
+								</div>
+							</div>
+							<div class="col-xs-6 m-t-sm m-b-sm text-center">
+								<p class="h5 m-b-sm">Second Place Winner:</p>
+								<h2 class="h3" style="min-height: 72px;">Fallout 4</h2>
+								<div>
+									<img src="/img/contests/fallout4-xbone.png" class="img-responsive grid" />
+								</div>
+							</div>
 						</div>
-					</form>
-					{{/if}}
+						<form class="m-t-lg m-b-lg">
+							<p class="text-center h4">Sign up for a chance to win the June 2016 launch contest!</p>
+							<div class="text-center block">
+								<a class="referral-signup btn b-2x btn-lg btn-success btn-rounded text-lg font-bold m-t-lg m-b-lg" href="#">Sign Up</a>
+							</div>
+						</form>
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<p style="font-size: 85%;">
+									XBdash (GameDash, LLC) is not affiliated with the giveaway(s), it's developer(s), or publisher(s). <a href="{{pathFor 'contestRules'}}" class="text-u-l">Read official rules.</a>
+								</p>
+							</div>
+						</div>
+						{{/if}}
+					</div>
 				</div>
 			</div>
 		</div>

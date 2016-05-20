@@ -105,14 +105,14 @@ Template.achievementsShowMoreSection.helpers({
 		if (game.platform === 'Xenon') {
 			gameDetail.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BoxArt' && art.Width === 219) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
 				}
 			});
 		}
 		if (game.platform === 'Durango') {
 			gameDetail.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
 				}
 			});
 		}
