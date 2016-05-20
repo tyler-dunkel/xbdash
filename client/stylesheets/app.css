@@ -6444,6 +6444,20 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .filtering-menu .filter-centering {
 	margin: 7px 0px; text-align: center;
 }
+.filtering-menu .bootstrap-select,
+.filtering-menu .bootstrap-select > .dropdown-toggle,
+.filtering-menu .bootstrap-select.btn-group .dropdown-menu {
+	width: auto;
+	min-width: auto;
+}
 .dropdown-toggle.btn-success {
 	font-size: 12px;
+}
+@media (max-width: 768px) {
+	.filtering-menu .tier-filter .btn {
+		width: 100%;
+	}
+	.filtering-menu .bootstrap-select > .dropdown-toggle {
+		width: 80%;
+	}
 }
