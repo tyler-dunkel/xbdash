@@ -7,42 +7,47 @@
 					<div style="background: url('/img/games-bg.png') repeat;">
 						<div class="wrapper-md bg-white-opacity">
 							<div class="row">
-								<div class="col-sm-7">
+								<div class="col-sm-6 col-md-6 col-lg-6 col-xl-5">
 									<a href class="thumb-xxl pull-left m-r">
 										<img src="{{gamesImage}}" class="img-full">
 									</a>
 									<div class="clear m-t-xxxl m-b-xxxl">
 										<h1 class="font-thin h3 text-black m-b-xs">{{gameName}}</h1>
-										<small class="text-muted">Released: {{{dateFormat}}}</small>
+										<small class="text-muted">Platform: {{gamePlatform}}</small>
 									</div>
 								</div>
-								<div class="col-sm-5">
+								<div class="col-sm-3 hidden-md col-lg-3 col-xl-4">
+                                    <div class="pull-right pull-none-xs text-center padder-vv-{{#if chkCompleted}}xbd{{else}}ixbd{{/if}}">
 									{{#if chkGamerStatus}}
 										{{#if chkUserForGame}}
 											{{> userGamerscoreInfoNew}}
 										{{/if}}
 									{{/if}}
 									{{> gamerscoreInfoNew}}
-									<p class="m-b">
-										{{#if chkGamerStatus}}
-											{{#if chkUserForGame}}
-												{{#if chkIfCompleted}}
-													<div class="share-bar">
-														<h4>Share Your Completed Game</h4>
-														{{> shareit gameData}}
-													</div>
-												{{/if}}
-											{{/if}}
-										{{/if}}
-									</p>
+                                    </div>
 								</div>
+                                <div class="col-sm-3 col-md-6 col-lg-3 col-xl-3">
+                                    <p class="m-t-lg m-b-sm">
+                                        {{#if chkGamerStatus}}
+                                            {{#if chkUserForGame}}
+                                                {{#if chkIfCompleted}}
+                                                    <div class="share-bar">
+                                                        <h4>Share Your Completed Game</h4>
+                                                        {{> shareit gameData}}
+                                                    </div>
+                                                {{/if}}
+                                            {{/if}}
+                                        {{/if}}
+                                    </p>
+                                </div>
 							</div>
 						</div>
 					</div>
 					<div class="bg-white b-b">
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#game-achievements" aria-controls="game-achievements" role="tab" data-toggle="tab">Achievements</a></li>
-							<li role="presentation"><a href="#game-info" aria-controls="game-info" role="tab" data-toggle="tab">Info</a></li>
+							<li role="achievements" class="active"><a href="#game-achievements" aria-controls="game-achievements" role="tab" data-toggle="tab">Achievements</a></li>
+							<li role="info"><a href="#game-info" aria-controls="game-info" role="tab" data-toggle="tab">Info</a></li>
+                            <li role="user-progress" class="visible-md-inline-block hidden-lg"><a href="#user-progress" aria-controls="user-progress" role="tab" data-toggle="tab">Your Progress</a></li>
 						</ul>
 					</div>
 					<div class="wrapper-md bg-white">
@@ -59,9 +64,9 @@
 										</strong></td>
 									</tr>
 									<tr>
-										<td>Platform:</td>
+										<td>Released:</td>
 										<td><strong>
-											{{gamePlatform}}
+											{{{dateFormat}}}
 										</strong></td>
 									</tr>
 									<tr>
@@ -75,6 +80,18 @@
 								</table>
 								{{{gameDescription}}}
 							</div>
+                            <div role="tabpanel" class="tab-pane" id="user-progress">
+                                <div class="row">
+                                    <div class="col-xs-8 col-xs-offset-2 text-center padder-w">
+                                        {{#if chkGamerStatus}}
+                                            {{#if chkUserForGame}}
+                                                {{> userGamerscoreInfoNew}}
+                                            {{/if}}
+                                        {{/if}}
+                                        {{> gamerscoreInfoNew}}
+                                    </div>
+                                </div>
+                            </div>
 						</div>
 					</div>
 					{{/with}}
@@ -92,86 +109,85 @@
 </template>
 
 <template name="userGamerscoreInfoNew">
-	<div class="pull-right pull-none-xs text-center">
-		<h4 class="text-white h4 font-bold m-b-sm">Your Progress</h4>
-		<strong>{{userCurrentGamerscore}} GS</strong><br />
-		<i class="fa fa-trophy"></i> {{userCurrentAchievements}} earned
-	</div>
+    <h4 class="text-black h4 m-b-sm">Your Progress</h4>
+    <div class="text-black font-thing h4">
+        <i class="fa fa-unlock"></i> <strong>{{userCurrentGamerscore}} GS</strong><br />
+        {{userCurrentAchievements}} earned
+    </div>
+    <hr />
 </template>
 
 <template name="gamerscoreInfoNew">
-	<div class="pull-right pull-none-xs text-center">
-		<a href class="m-b-md inline m">
-			<span class="h3 block font-bold">250</span>
-			<small>Following</small>
-			<strong>{{gameMaxGamerscore}} GS</strong><br />
-			<i class="fa fa-trophy"></i> {{gameMaxAchievements}} available
-		</a>
-	</div>
+    <h4 class="text-black h4 m-b-sm">Your Progress</h4>
+    <div class="text-black font-thing h4">
+        <i class="fa fa-trophy"></i> <strong>{{gameMaxGamerscore}} GS</strong><br />
+        {{gameMaxAchievements}} available
+    </div>
 </template>
 
 <template name="gamesSinglePageAchievementNew">
 	<div class="row">
 		<div class="achievements-list">
 		{{#if Template.subscriptionsReady}}
-			{{#momentum plugin='slide-height'}}
 			{{#each achievementsList}}
-            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-6 col-xl-4">
-            	<a href="{{pathFor 'achievement'}}" class="achievement-link">
-            		<div class="row no-gutter">
-            			<div class="col-xs-2 col-sm-4 col-md-2 col-lg-2 col-xl-2">
-            				{{#if chkProgress}}
-            				<div class="block padder-t trophy-class text-center bg-success" style="min-height: 96px;">
-            					<div class="wrapper-xs">
-            						<span class="text-white font-thin font-bold h4 block">
-            							<i class="fa fa-trophy"></i><br />
-            							{{this.value}}
-            						</span>
-            					</div>
-            				</div>
-            				{{else}}
-            				<div class="block padder-t trophy-class text-center bg-danger" style="min-height: 96px;">
-            					<div class="wrapper-xs">
-            						<span class="text-white font-thin font-bold h4 block">
-            							<i class="fa fa-lock"></i><br />
-            							{{this.value}}
-            						</span>
-            					</div>
-            				</div>
-            				{{/if}}
-            			</div>
-                        <div class="col-xs-2 hidden-sm hidden-md col-lg-2 col-xl-2" style="max-height: 96px;">
-                            <div class="{{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');"></div>
-                        </div>
-            			<div class="col-xs-7 col-sm-6 col-md-9 col-lg-7 col-xl-7 achievement-description" style="min-height: 96px;">
-            				<div class="m-l-md">
-            					<div class="padder-t achievement-name achievement-name-ellipsis">
-            						{{this.name}}
-            						<label class="label bg-{{achievementClass}} m-l-sm text-ellipsis-inline">
-            							<i class="fa fa-{{trophyClass}}"></i><span class="hidden-xs hidden-sm hidden-md"> {{achievementClass}}</span>
-            						</label>
-            					</div>
-            					<div class="padder-d title-wrap-achievement-description line-clamp">{{this.description}}</div>
-            				</div>
-            			</div>
-            			<div class="col-xs-1 col-sm-2 col-md-1 col-lg-1 col-xl-1 achievement-button" style="max-height: 96px;">
-            				<div class="block padder-t text-center" style="padding: 38px 0 37px;">
-            					<span class="text-black font-thin font-bold h4 block">
-            						<i class="fa fa-play"></i>
-            					</span>
-            				</div>
-            			</div>
-            		</div>
-            	</a>
-            	<hr />
-            </div>
-            {{/each}}
-            {{/momentum}}
-        {{else}}
-            <div class="col-lg-12">
-                {{> loadingTemplate}}
-            </div>
-        {{/if}}
-        </div>
-    </div>
+			<div class="col-xs-12 col-sm-6 col-md-12 col-lg-6 col-xl-4">
+				<a href="{{pathFor 'achievement'}}" class="achievement-link">
+					<div class="row no-gutter">
+						<div class="col-xs-2 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+							{{#if chkProgress}}
+							<div class="block padder-t trophy-class text-center bg-success" style="min-height: 96px;">
+								<div class="wrapper-xs">
+									<span class="text-white font-thin font-bold h4 block">
+										<i class="fa fa-trophy"></i><br />
+										{{this.value}}
+									</span>
+								</div>
+							</div>
+							{{else}}
+							<div class="block padder-t trophy-class text-center bg-danger" style="min-height: 96px;">
+								<div class="wrapper-xs">
+									<span class="text-white font-thin font-bold h4 block">
+										<i class="fa fa-lock"></i><br />
+										{{this.value}}
+									</span>
+								</div>
+							</div>
+							{{/if}}
+						</div>
+						<div class="col-xs-2 hidden-sm hidden-md col-lg-2 col-xl-2" style="max-height: 96px;">
+							<div class="{{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');"></div>
+						</div>
+						<div class="col-xs-7 col-sm-6 col-md-9 col-lg-7 col-xl-7 achievement-description" style="min-height: 96px;">
+							<div class="m-l-md">
+								<div class="padder-t achievement-name achievement-name-ellipsis">
+									{{this.name}}
+									<label class="label bg-{{achievementClass}} m-l-sm text-ellipsis-inline">
+										<i class="fa fa-{{trophyClass}}"></i><span class="hidden-xs hidden-sm hidden-md"> {{achievementClass}}</span>
+									</label>
+								</div>
+								<div class="padder-d title-wrap-achievement-description line-clamp">{{this.description}}</div>
+							</div>
+						</div>
+						<div class="col-xs-1 col-sm-2 col-md-1 col-lg-1 col-xl-1 achievement-button" style="max-height: 96px;">
+							<div class="block padder-t text-center" style="padding: 38px 0 37px;">
+								<span class="text-black font-thin font-bold h4 block">
+									<i class="fa fa-play"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+				</a>
+				<hr />
+			</div>
+			{{/each}}
+			{{#if hasMoreResults}}
+			<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+			{{/if}}
+		{{else}}
+			<div class="col-lg-12">
+				{{> loadingTemplate}}
+			</div>
+		{{/if}}
+		</div>
+	</div>
 </template>

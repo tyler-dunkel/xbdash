@@ -4583,9 +4583,7 @@ ul.signin > li.active {
 }
 
 .padder-vv-xbd {
-	color: #fff;
-	padding: 20px;
-	background-color: #138013;
+	padding: 0 20px;
 }
 
 .gamerscore-table.padder-vv-xbd {

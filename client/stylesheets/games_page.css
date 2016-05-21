@@ -1,5 +1,6 @@
 .single-games-page .m-t-xxxl { margin-top: 77px; }
 .single-games-page .m-b-xxxl { margin-bottom: 77px; }
+.single-games-page .thumb-xxl { width: 170px; }
 .single-games-page .nav-tabs { border-bottom: 2px solid #DDD; }
 .single-games-page .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
 .single-games-page .nav-tabs > li > a { border: none; color: #666; padding: 10px 20px; margin-right: 0; }
@@ -11,6 +12,6 @@
 .single-games-page hr { margin: 10px 0; border-top: 1px solid #efefef; }
 
 @media (max-width: 768px) {
-	.single-games-page .m-t-xxxl { margin-top: 15px; }
-	.single-games-page .m-b-xxxl { margin-bottom: 15px; }
+	.single-games-page .m-t-xxxl { margin-top: 0; padding-top: 15px; }
+	.single-games-page .m-b-xxxl { margin-bottom: 0; padding-bottom: 15px; }
 }

@@ -1,4 +1,4 @@
-var achievementShowNext = new ReactiveVar(0);
+var achievementsLimit = new ReactiveVar();
 
 Template.gamesSinglePageNew.created = function() {
 	var slug = Router.current().params.slug;
@@ -87,15 +87,7 @@ Template.gamesSinglePageNew.helpers({
 			return 'Xbox 360';
 		}
 		return 'Xbox';
-	}
-});
-
-Template.userGamerscoreInfoNew.created = function() {
-	var slug = Router.current().params.slug;
-	this.subscribe('singleGame', slug);
-}
-
-Template.userGamerscoreInfoNew.helpers({
+	},
 	chkCompleted: function () {
 		var user = Meteor.user();
 		if (user) {
@@ -109,7 +101,15 @@ Template.userGamerscoreInfoNew.helpers({
 			return false;
 		}
 		return false;
-	},
+	}
+});
+
+Template.userGamerscoreInfoNew.created = function() {
+	var slug = Router.current().params.slug;
+	this.subscribe('singleGame', slug);
+}
+
+Template.userGamerscoreInfoNew.helpers({
 	userCurrentGamerscore: function () {
 		var userId = Meteor.userId();
 		var game = userGames.findOne({ userId: userId, gameId: this.gameId });
@@ -145,25 +145,35 @@ Template.gamerscoreInfoNew.helpers({
 
 Template.gamesSinglePageAchievementNew.created = function() {
 	var slug = Router.current().params.slug;
-	this.subscribe('singleGameAchievements', slug);
-	this.achievementShowNext = new ReactiveVar(0);
+	achievementsLimit.set(15);
+
+	this.autorun(function() {
+		Meteor.subscribe('singleGameAchievements', slug, achievementsLimit.get());
+	});
 }
 
 Template.gamesSinglePageAchievementNew.rendered = function() {
-	$('[data-toggle="tooltip"]').tooltip();
+	$(window).scroll(function() {
+		window.setTimeout(function() {
+			showMoreVisible();
+		}, 500);
+	});
 }
 
 Template.gamesSinglePageAchievementNew.helpers({
 	achievementsList: function () {
-		var user = Meteor.user();
 		return xbdAchievements.find({ gameId: this.gameId }, {
 			sort: {
 				value: 1,
 				name: 1
 			},
-			limit: 12,
-			skip: Template.instance().achievementShowNext.get()
+			limit: achievementsLimit.get(),
 		});
+	},
+	hasMoreResults: function() {
+		var achievementsLimitCurrent = achievementsLimit.get();
+		var xbdAchievementsCount = xbdAchievements.find({}).count();
+		return ! (xbdAchievementsCount < achievementsLimitCurrent);
 	},
 	chkProgress: function () {
 		var user = Meteor.user();
@@ -227,21 +237,20 @@ Template.gamesSinglePageAchievementNew.helpers({
 	}
 });
 
-Template.gamesSinglePageAchievementNew.events({
-	"click .achievement-next": function(event) {
-		var button = $(event.currentTarget);
-		if (button.hasClass('disabled')) {
-			return;
-		}
-		var currentCount = Template.instance().achievementShowNext.get();
-		Template.instance().achievementShowNext.set(currentCount + 7);
-	},
-	"click .achievement-previous": function(event) {
-		var button = $(event.currentTarget);
-		if (button.hasClass('disabled')) {
-			return;
-		}
-		var currentCount = Template.instance().achievementShowNext.get();
-		Template.instance().achievementShowNext.set(currentCount - 7);
+function showMoreVisible() {
+	var threshold, target = $("#hasMoreResults");
+	if (!target.length) return;
+	threshold = $(window).scrollTop() + $(window).height() - target.height();
+	if (target.offset().top < threshold) {
+		console.log(target.data);
+		// if (!target.data("visible")) {
+			target.data("visible", true);
+			var newLimit = achievementsLimit.get() + 6;
+			achievementsLimit.set(achievementsLimit.get() + 6);
+		// }
+	} else {
+		// if (target.data("visible")) {
+			target.data("visible", false);
+		// }
 	}
-});
+}

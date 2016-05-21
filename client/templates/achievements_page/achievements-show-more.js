@@ -54,7 +54,7 @@ Template.achievementsShowMoreSection.rendered = function() {
 }
 
 Template.achievementsShowMoreSection.helpers({
-	achievementList: function() {
+	achievementsList: function() {
 		return xbdAchievements.find({}, {
 			sort: {
 				userPercentage: -1,
