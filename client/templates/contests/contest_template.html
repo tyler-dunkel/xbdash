@@ -19,16 +19,15 @@
 								<p class="h4 text-center m-b-lg">In celebration of officially coming out of beta, we're featuring a double-prize contest. Hereafter, each month we'll feature a new giveaway!</p>
 							</div>
 						</div>
-						{{#if currentUser}}
 						<div class="row">
-							<div class="col-xs-6 col-md-3 m-t-sm m-b-sm text-center">
+							<div class="col-xs-6 col-md-3 m-t-sm m-b-md text-center">
 								<p class="h5 m-b-sm">First Place Winner:</p>
 								<h2 class="h3" style="min-height: 72px;">Overwatch - Origins Edition</h2>
 								<div>
 									<img src="/img/contests/overwatch-xbone.png" class="img-responsive grid" />
 								</div>
 							</div>
-							<div class="col-xs-6 col-md-3 m-t-sm m-b-sm text-center">
+							<div class="col-xs-6 col-md-3 m-t-sm m-b-md text-center">
 								<p class="h5 m-b-sm">Second Place Winner:</p>
 								<h2 class="h3" style="min-height: 72px;">Fallout 4</h2>
 								<div>
@@ -38,12 +37,11 @@
 							<div class="col-xs-12 col-md-6">
 								<div class="well" style="padding: 30px;">
 									<p class="align-left"><strong>Rules:</strong></p>
+									{{#if currentUser}}
 									<ul class="m-b-lg align-left">
-										<li>1 first-place winner will receive a copy of Overwatch in original packaging.</li>
-										<li>1 second-place winner will receive a copy of Fallout 4 in original packaging.</li>
-										<li>Your first friend to sign up through your link below gives you entry into the contest.</li>
-										<li>Each friend invited to sign up through your link below thereafter gives you an extra entry into this month's contest only.</li>
-										<li>Limit 10 entries per contestant.</li>
+										<li>1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.</li>
+										<li>1 second place winner will receive a copy of Fallout 4 in original packaging.</li>
+										<li>Each friend invited that sign up through your link below gives you an extra entry into this month's contest only.</li>
 									</ul>
 									<form>
 										<p class="text-center"><strong>Share this link with friends and gain more entries!</strong></p>
@@ -61,6 +59,19 @@
 									<div class="m-t-sm m-b-lg text-center">
 										{{> shareit contestData}}
 									</div>
+									{{else}}
+									<ul class="m-b-lg align-left">
+										<li>1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.</li>
+										<li>1 second place winner will receive a copy of Fallout 4 in original packaging.</li>
+										<li>Signing up below gains entry into the contest.</li>
+									</ul>
+									<form>
+										<p class="text-center h4">Sign up for a chance to win the June 2016 launch contest!</p>
+										<div class="text-center block">
+											<a class="referral-signup btn b-2x btn-lg btn-success btn-rounded text-lg font-bold m-t-lg m-b-lg" href="#">Sign Up</a>
+										</div>
+									</form>
+									{{/if}}
 									<div class="row m-b-md text-center">
 										<div class="col-sm-6">
 											<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:<br />
@@ -81,37 +92,6 @@
 								</div>
 							</div>
 						</div>
-						{{else}}
-						<div class="row">
-							<div class="col-xs-6 m-t-sm m-b-sm text-center">
-								<p class="h5 m-b-sm">First Place Winner:</p>
-								<h2 class="h3" style="min-height: 72px;">Overwatch - Origins Edition</h2>
-								<div>
-									<img src="/img/contests/overwatch-xbone.png" class="img-responsive grid" />
-								</div>
-							</div>
-							<div class="col-xs-6 m-t-sm m-b-sm text-center">
-								<p class="h5 m-b-sm">Second Place Winner:</p>
-								<h2 class="h3" style="min-height: 72px;">Fallout 4</h2>
-								<div>
-									<img src="/img/contests/fallout4-xbone.png" class="img-responsive grid" />
-								</div>
-							</div>
-						</div>
-						<form class="m-t-lg m-b-lg">
-							<p class="text-center h4">Sign up for a chance to win the June 2016 launch contest!</p>
-							<div class="text-center block">
-								<a class="referral-signup btn b-2x btn-lg btn-success btn-rounded text-lg font-bold m-t-lg m-b-lg" href="#">Sign Up</a>
-							</div>
-						</form>
-						<div class="row">
-							<div class="col-xs-12 text-center">
-								<p style="font-size: 85%;">
-									XBdash (GameDash, LLC) is not affiliated with the giveaway(s), it's developer(s), or publisher(s). <a href="{{pathFor 'contestRules'}}" class="text-u-l">Read official rules.</a>
-								</p>
-							</div>
-						</div>
-						{{/if}}
 					</div>
 				</div>
 			</div>

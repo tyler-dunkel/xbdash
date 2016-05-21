@@ -6,7 +6,6 @@ Template.myGamesFiltering.created = function() {
 Template.myGamesFiltering.rendered = function() {
 	var self = this;
 	$('.selectpicker').selectpicker();
-
 	$('.selectpicker').on('changed.bs.select', function(e, currIdx) {
 		var sortParams = self.sortParams;
 		console.log(e.currentTarget);
@@ -58,9 +57,7 @@ Template.myGamesFiltering.events({
 		var sortParams = Template.instance().sortParams;
 		sortParams.name = 'desc';
 		Router.go('myGames', {}, { query: sortParams });
-		$(e.currentTarget).removeClass('notActive');
 		$(e.currentTarget).addClass('active');
-		$('.z-to-a').addClass('notActive');
 		$('.z-to-a').removeClass('active');
 		Session.set('forceReset', 0);
 	},
@@ -68,9 +65,7 @@ Template.myGamesFiltering.events({
 		var sortParams = Template.instance().sortParams;
 		sortParams.name = 'asc';
 		Router.go('myGames', {}, { query: sortParams });
-		$(e.currentTarget).removeClass('notActive');
 		$(e.currentTarget).addClass('active');
-		$('.a-to-z').addClass('notActive');
 		$('.a-to-z').removeClass('active');
 		Session.set('forceReset', 0);
 	}
@@ -126,9 +121,7 @@ Template.recentGamesFiltering.events({
 		var sortParams = Template.instance().sortParams;
 		sortParams.name = 'desc';
 		Router.go('gamesPage', {}, { query: sortParams });
-		$(e.currentTarget).removeClass('notActive');
 		$(e.currentTarget).addClass('active');
-		$('.z-to-a').addClass('notActive');
 		$('.z-to-a').removeClass('active');
 		Session.set('forceReset', 0);
 	},
@@ -136,9 +129,7 @@ Template.recentGamesFiltering.events({
 		var sortParams = Template.instance().sortParams;
 		sortParams.name = 'asc';
 		Router.go('gamesPage', {}, { query: sortParams });
-		$(e.currentTarget).removeClass('notActive');
 		$(e.currentTarget).addClass('active');
-		$('.a-to-z').addClass('notActive');
 		$('.a-to-z').removeClass('active');
 		Session.set('forceReset', 0);
 	}
