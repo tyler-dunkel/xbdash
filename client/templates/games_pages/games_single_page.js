@@ -15,6 +15,20 @@ Template.gamesSinglePageNew.helpers({
 			}
 		}
 	},
+	chkCompleted: function () {
+		var user = Meteor.user();
+		if (user) {
+			if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
+				var game = userGames.findOne({ gameId: this.gameId });
+				if (game && game.completed) {
+					return true;
+				}
+				return false;
+			}
+			return false;
+		}
+		return false;
+	},
 	gamesImage: function () {
 		var game = xbdGames.findOne({ _id: this.gameId });
 		var image = "/img/game-default.jpg";
@@ -88,20 +102,6 @@ Template.gamesSinglePageNew.helpers({
 		}
 		return 'Xbox';
 	},
-	chkCompleted: function () {
-		var user = Meteor.user();
-		if (user) {
-			if (user.gamertagScanned.status === 'true' || user.gamertagScanned.status === 'updating') {
-				var game = userGames.findOne({ gameId: this.gameId });
-				if (game && game.completed) {
-					return true;
-				}
-				return false;
-			}
-			return false;
-		}
-		return false;
-	}
 });
 
 Template.userGamerscoreInfoNew.created = function() {

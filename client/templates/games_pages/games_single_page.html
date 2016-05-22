@@ -7,7 +7,7 @@
 					<div style="background: url('/img/games-bg.png') repeat;">
 						<div class="wrapper-md bg-white-opacity">
 							<div class="row">
-								<div class="col-sm-6 col-md-8 col-lg-6 col-xl-5">
+								<div class="{{#if chkCompleted}}col-sm-6 col-md-8 col-lg-6 col-xl-5{{else}}col-sm-7 col-md-8 col-lg-8 col-xl-8{{/if}}">
 									<a href class="thumb-xxl pull-left m-r">
 										<img src="{{gamesImage}}" class="img-full">
 									</a>
@@ -16,7 +16,7 @@
 										<small class="text-muted">Platform: {{gamePlatform}}</small>
 									</div>
 								</div>
-								<div class="col-sm-6 hidden-md col-lg-3 col-xl-4">
+								<div class="{{#if chkCompleted}}col-sm-6 hidden-md col-lg-3 col-xl-4{{else}}col-sm-5 hidden-md col-lg-3 col-xl-3{{/if}}">
                                     <div class="pull-right pull-none-xs text-center padder-vv-{{#if chkCompleted}}xbd{{else}}ixbd{{/if}}">
 									{{#if chkGamerStatus}}
 										{{#if chkUserForGame}}
@@ -26,18 +26,18 @@
 									{{> gamerscoreInfoNew}}
                                     </div>
 								</div>
-                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
-                                    {{#if chkGamerStatus}}
-                                        {{#if chkUserForGame}}
-                                            {{#if chkIfCompleted}}
-                                            <div class="share-bar m-t-lg m-b-sm text-center">
-                                                <h4 class="text-black h4 m-b-sm">Share Your Completed Game</h4>
-                                                {{> shareit gameData}}
-                                            </div>
-                                            {{/if}}
+								{{#if chkGamerStatus}}
+                                    {{#if chkUserForGame}}
+                                        {{#if chkIfCompleted}}
+		                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+			                                <div class="share-bar m-t-lg m-b-sm text-center">
+			                                    <h4 class="text-black h4 m-b-sm">Share Your Completed Game</h4>
+			                                    {{> shareit gameData}}
+			                                </div>
+		                                </div>
                                         {{/if}}
                                     {{/if}}
-                                </div>
+                                {{/if}}
 							</div>
 						</div>
 					</div>
@@ -45,7 +45,9 @@
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="achievements" class="active"><a href="#game-achievements" aria-controls="game-achievements" role="tab" data-toggle="tab">Achievements</a></li>
 							<li role="info"><a href="#game-info" aria-controls="game-info" role="tab" data-toggle="tab">Info</a></li>
+							{{#if chkUserForGame}}
                             <li role="user-progress" class="visible-sm-inline-block visible-md-inline-block hidden-lg"><a href="#user-progress" aria-controls="user-progress" role="tab" data-toggle="tab">Your Progress</a></li>
+                            {{/if}}
 						</ul>
 					</div>
 					<div class="wrapper-md bg-white">
@@ -95,10 +97,10 @@
 					{{/with}}
 				</div>
 				<div class="col w-lg bg-light lter b-l bg-auto">
-					<div class="wrapper">
+					<div class="wrapper games-page-news">
 						<div class="xbd-right-sidebar-ad"></div>
 						<h2 class="m-t-sm m-b-sm font-thin h3 text-black">Trending News</h2>
-						{{> mostSharedNews limit=3}}
+						{{> mostSharedNews limit=6}}
 					</div>
 				</div>
 			</div>
@@ -116,7 +118,6 @@
 </template>
 
 <template name="gamerscoreInfoNew">
-    <h4 class="text-black h4 m-b-sm">Your Progress</h4>
     <div class="text-black font-thing h4">
         <i class="fa fa-trophy"></i> <strong>{{gameMaxGamerscore}} GS</strong><br />
         {{gameMaxAchievements}} available
