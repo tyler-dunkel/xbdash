@@ -1,77 +1,77 @@
 <template name="confirmEmail">
-  {{> headerConfirmPage}}
-  {{> confirmEmailForm}}
-  {{> logoutBox}}
-  {{> staticFooter}}
+	{{> headerConfirmPage}}
+	{{> confirmEmailForm}}
+	{{> logoutBox}}
+	{{> staticFooter}}
 </template>
 
 <template name="checkEmail">
-  {{> headerConfirmPage}}
-  {{> checkEmailBody}}
-  {{> staticFooter}}
+	{{> headerConfirmPage}}
+	{{> checkEmailBody}}
+	{{> staticFooter}}
 </template>
 
 <template name="verifiedEmail">
-  {{> headerConfirmPage}}
-  {{> verifiedEmailBody}}
-  {{> staticFooter}}
+	{{> headerConfirmPage}}
+	{{> verifiedEmailBody}}
+	{{> staticFooter}}
 </template>
 
 <template name="confirmEmailForm">
-  <div id="signup" class="signup">
-    <div class="container well w-xxxl w-auto-xs" >
-      <div class="m-b-md text-center">
-        <form name="form" class="validate" id="emailconfirmform">
-          <h2 class="text-dark">Confirm Your Email</h2>
-          <p>You're a step away from seeing your new dashboard!</p>
-          <div class="list-group">
-            <div class="form-group">
-              <button type="submit" id="resend-submit" class="btn btn-lg btn-success btn-block">Resend Confirmation</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+	<div id="signup" class="signup">
+		<div class="container well w-xxxl w-auto-xs" >
+			<div class="m-b-md text-center">
+				<form name="form" class="validate" id="emailconfirmform">
+					<h2 class="text-dark">Confirm Your Email</h2>
+					<p>You're a step away from seeing your new dashboard!</p>
+					<div class="list-group">
+						<div class="form-group">
+							<button type="submit" id="resend-submit" class="btn btn-lg btn-success btn-block">Resend Confirmation</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="checkEmailBody">
-  <div id="signup" class="signup">
-    <div class="container well w-xxxl w-auto-xs" >
-      <div class="text-center">
-        <h2 class="text-dark">Please Check Your Email</h2>
-        <p>You're about to unlock your personalized dashboard.</p>
-      </div>
-    </div>
-  </div>
+	<div id="signup" class="signup">
+		<div class="container well w-xxxl w-auto-xs" >
+			<div class="text-center">
+				<h2 class="text-dark">Please Check Your Email</h2>
+				<p>You're about to unlock your personalized dashboard.</p>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="verifiedEmailBody">
-  <div id="signup" class="signup">
-    <div class="container well w-xxxl w-auto-xs">
-      <div class="text-center">
-        <h2 class="text-dark">Thank You</h2>
-        <p>Thank you for verifying your email!</p>
-      </div>
-    </div>
-  </div>
+	<div id="signup" class="signup">
+		<div class="container well w-xxxl w-auto-xs">
+			<div class="text-center">
+				<h2 class="text-dark">Thank You</h2>
+				<p>Thank you for verifying your email!</p>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="logoutBox">
-  <div class="container well w-xxxl w-auto-xs" >
-    <div class="m-b-md">
-      <form name="form" class="validate" id="socialform">
-        <h2 class="text-dark text-center">Currently Logged in as</h2>
-        <div class="list-group">
-          <div class="form-group text-center">
-            {{#if chkTwitter}}
-              <img src="{{currentUser.services.twitter.profile_image_url_https}}" />
-            {{/if}}
-            <div style="vertical-align: middle;">{{currentUser.username}}</div>
-          </div>
-        </div>
-        <button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
-      </form>
-    </div>
-  </div>
+	<div class="container well w-xxxl w-auto-xs" >
+		<div class="m-b-md">
+			<form name="form" class="validate" id="socialform">
+				<h2 class="text-dark text-center">Currently Logged in as</h2>
+				<div class="list-group">
+					<div class="form-group text-center">
+						{{#if chkTwitter}}
+							<img src="{{currentUser.services.twitter.profile_image_url_https}}" />
+						{{/if}}
+						<div style="vertical-align: middle;">{{currentUser.username}}</div>
+					</div>
+				</div>
+				<button id="logout" class="btn btn-lg btn-danger btn-block">Logout</button>
+			</form>
+		</div>
+	</div>
 </template>

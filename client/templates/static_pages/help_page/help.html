@@ -1,308 +1,308 @@
 <template name="helpPage">
-  {{> helpApp}}
+	{{> helpApp}}
 </template>
 
 <template name="helpApp">
-  <div id="content" class="app-content" role="main">
-    <div class="app-content-body">
-      <div class="hbox hbox-auto-xs hbox-auto-sm faqs">
-        <div class="">
-          <div class="bg-light lter b-b wrapper-md">
-            <div class="row">
-              <div class="col-sm-12 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">Help</h1>
-                <small class="text-muted">Frequently Asked Questions</small>
-              </div>
-            </div>
-          </div>
-          <div class="wrapper" data-scroll="scroll" data-target=".scrollspy">
-            <div class="row">
-              <div class="col-lg-2 bg-light b-r bg-auto scrollspy">
-                <ul id="sidebar" class="nav nav-stacked hidden-xs hidden-sm" data-spy="affix">
-                  <li><a href="#top">Top Questions</a></li>
-                  <li><a href="#about-us">About Us Questions</a></li>
-                  <li><a href="#account">Account Questions</a></li>
-                  <li><a href="#profile">Profile</a></li>
-                  <li><a href="#news">News</a></li>
-                  <li><a href="#achievements-games">Achievements / Games</a></li>
-                  <li><a href="#more">More Questions</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                {{#if Template.subscriptionsReady}}
-                <section id="top">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>Top Questions</h3>
-                    </div>
-                  </div>
-                  <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne0" aria-expanded="false" aria-controls="collapseOne0">
-                        <div class="panel-heading" role="tab" id="headingOne0">
-                          <h4 class="panel-title">
-                            Why {{appName}}?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseOne0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne0">
-                        <div class="panel-body">
-                          With {{appName}}, you can use your personal dashboard to track and analyze your achievement hunting skills. The leaderboards help you compare with our community's top Xbox&reg; gamers and we help you stay up to date with the latest in Xbox&reg; news.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1">
-                        <div class="panel-heading" role="tab" id="headingOne1">
-                          <h4 class="panel-title">
-                            Why is my dashboard not populating?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne1">
-                        <div class="panel-body">
-                          Your dashboard is most likely not populating because of your privacy settings on Xbox&reg;(R) Live.<br /><br />
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body">
+			<div class="hbox hbox-auto-xs hbox-auto-sm faqs">
+				<div class="">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-12 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Help</h1>
+								<small class="text-muted">Frequently Asked Questions</small>
+							</div>
+						</div>
+					</div>
+					<div class="wrapper" data-scroll="scroll" data-target=".scrollspy">
+						<div class="row">
+							<div class="col-lg-2 bg-light b-r bg-auto scrollspy">
+								<ul id="sidebar" class="nav nav-stacked hidden-xs hidden-sm" data-spy="affix">
+									<li><a href="#top">Top Questions</a></li>
+									<li><a href="#about-us">About Us Questions</a></li>
+									<li><a href="#account">Account Questions</a></li>
+									<li><a href="#profile">Profile</a></li>
+									<li><a href="#news">News</a></li>
+									<li><a href="#achievements-games">Achievements / Games</a></li>
+									<li><a href="#more">More Questions</a></li>
+								</ul>
+							</div>
+							<div class="col-lg-6">
+								{{#if Template.subscriptionsReady}}
+								<section id="top">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Top Questions</h3>
+										</div>
+									</div>
+									<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne0" aria-expanded="false" aria-controls="collapseOne0">
+												<div class="panel-heading" role="tab" id="headingOne0">
+													<h4 class="panel-title">
+														Why {{appName}}?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseOne0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne0">
+												<div class="panel-body">
+													With {{appName}}, you can use your personal dashboard to track and analyze your achievement hunting skills. The leaderboards help you compare with our community's top Xbox&reg; gamers and we help you stay up to date with the latest in Xbox&reg; news.
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1">
+												<div class="panel-heading" role="tab" id="headingOne1">
+													<h4 class="panel-title">
+														Why is my dashboard not populating?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne1">
+												<div class="panel-body">
+													Your dashboard is most likely not populating because of your privacy settings on Xbox&reg;(R) Live.<br /><br />
 
-                          Follow these steps:
+													Follow these steps:
 
-                          <ul type="1">
-                            <li>Log into Xbox&reg; Live online or on your console</li>
-                            <li>Go to Privacy / Online Settings
-                              https://account.xbox.com/en-GB/Settings</li>
-                            <li>Make sure that your settings are on "Public" or "Everybody".</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne2" aria-expanded="false" aria-controls="collapseOne2">
-                        <div class="panel-heading" role="tab" id="headingOne2">
-                          <h4 class="panel-title">
-                            My Gamertag came up as claimed/invalid, why?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseOne2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne2">
-                        <div class="panel-body">
-                          Your Gamertag can come up as invalid for any number of reasons.<br /><br />
+													<ul type="1">
+														<li>Log into Xbox&reg; Live online or on your console</li>
+														<li>Go to Privacy / Online Settings
+															https://account.xbox.com/en-GB/Settings</li>
+														<li>Make sure that your settings are on "Public" or "Everybody".</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne2" aria-expanded="false" aria-controls="collapseOne2">
+												<div class="panel-heading" role="tab" id="headingOne2">
+													<h4 class="panel-title">
+														My Gamertag came up as claimed/invalid, why?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseOne2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne2">
+												<div class="panel-body">
+													Your Gamertag can come up as invalid for any number of reasons.<br /><br />
 
-                          <ul type="a">
-                            <li>Did you type it in incorrectly?</li>
-                            <li>Did you register before?</li>
-                          </ul>
+													<ul type="a">
+														<li>Did you type it in incorrectly?</li>
+														<li>Did you register before?</li>
+													</ul>
 
-                          If the answer to the above questions are no, please email <a href="mailto:support@xbdash.com">support@xbdash.com</a>, describe what the issue is, and we'll take care of that as soon as we can!
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne3" aria-expanded="false" aria-controls="collapseOne3">
-                        <div class="panel-heading" role="tab" id="headingOne3">
-                          <h4 class="panel-title">
-                            How does {{appName}} help me on Xbox&reg; acheivments?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseOne3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne3">
-                        <div class="panel-body">
-                          {{appName}}'s searchable achievement database makes finding new challenges easy while our users can give you a helping hand with community solutions.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne4" aria-expanded="false" aria-controls="collapseOne4">
-                        <div class="panel-heading" role="tab" id="headingOne4">
-                          <h4 class="panel-title">
-                            Can I win prizes using {{appName}}?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseOne4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne4">
-                        <div class="panel-body">
-                          {{appName}} regularly holds contests involving several aspects of the Xbox&reg; world where users can win games, Xbox&reg; Live codes, and more.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5">
-                        <div class="panel-heading" role="tab" id="headingOne5">
-                          <h4 class="panel-title">
-                            Will {{appName}} help me find new games to play?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseOne5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne5">
-                        <div class="panel-body">
-                          {{appName}} features a modern search system that helps gamers find particular games in the Xbox library of games. As more users sign up, our internal library will become more populated.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <section id="about-us">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>About Us</h3>
-                    </div>
-                  </div>
-                  <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo0" aria-expanded="false" aria-controls="collapseTwo0">
-                        <div class="panel-heading" role="tab" id="headingTwo0">
-                          <h4 class="panel-title">
-                            Why create {{appName}}?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseTwo0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo0">
-                        <div class="panel-body">
-                          As Xbox&reg; gamers, we've always been compelled to connect the gamer to the games they play on another level. {{appName}} does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.<br /><br />
+													If the answer to the above questions are no, please email <a href="mailto:support@xbdash.com">support@xbdash.com</a>, describe what the issue is, and we'll take care of that as soon as we can!
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne3" aria-expanded="false" aria-controls="collapseOne3">
+												<div class="panel-heading" role="tab" id="headingOne3">
+													<h4 class="panel-title">
+														How does {{appName}} help me on Xbox&reg; acheivments?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseOne3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne3">
+												<div class="panel-body">
+													{{appName}}'s searchable achievement database makes finding new challenges easy while our users can give you a helping hand with community solutions.
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne4" aria-expanded="false" aria-controls="collapseOne4">
+												<div class="panel-heading" role="tab" id="headingOne4">
+													<h4 class="panel-title">
+														Can I win prizes using {{appName}}?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseOne4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne4">
+												<div class="panel-body">
+													{{appName}} regularly holds contests involving several aspects of the Xbox&reg; world where users can win games, Xbox&reg; Live codes, and more.
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5">
+												<div class="panel-heading" role="tab" id="headingOne5">
+													<h4 class="panel-title">
+														Will {{appName}} help me find new games to play?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseOne5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne5">
+												<div class="panel-body">
+													{{appName}} features a modern search system that helps gamers find particular games in the Xbox library of games. As more users sign up, our internal library will become more populated.
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+								<section id="about-us">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>About Us</h3>
+										</div>
+									</div>
+									<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo0" aria-expanded="false" aria-controls="collapseTwo0">
+												<div class="panel-heading" role="tab" id="headingTwo0">
+													<h4 class="panel-title">
+														Why create {{appName}}?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseTwo0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo0">
+												<div class="panel-body">
+													As Xbox&reg; gamers, we've always been compelled to connect the gamer to the games they play on another level. {{appName}} does that by letting you know your progress with an all-in-one web app to help you figure out what to do next.<br /><br />
 
-                          The only thing you need to do is stay engaged!
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
-                        <div class="panel-heading" role="tab" id="headingTwo1">
-                          <h4 class="panel-title">
-                            Are we affiliated with Microsoft?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo1">
-                        <div class="panel-body">
-                          At this stage of {{appName}}, we are <strong>not</strong> affiliated with Microsoft&reg; or Xbox&reg;. However, we've applied for a Microsoft's Independent Developer license and it's only a matter of time. We'll send an announcement email when we do become Microsoft-certified.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <section id="account">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>Account Questions</h3>
-                    </div>
-                  </div>
-                  <div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree0" aria-expanded="false" aria-controls="collapseThree0">
-                        <div class="panel-heading" role="tab" id="headingThree0">
-                          <h4 class="panel-title">
-                            Can I delete my account?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseThree0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree0">
-                        <div class="panel-body">
-                          You can delete your account by heading to Settings > Delete Account, and confirming the deletion.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <section id="profile">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>Profile</h3>
-                    </div>
-                  </div>
-                  <div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour0" aria-expanded="false" aria-controls="collapseFour0">
-                        <div class="panel-heading" role="tab" id="headingFour0">
-                          <h4 class="panel-title">
-                            My Gamertag has changed, how do I update my account on {{appName}}?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseFour0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour0">
-                        <div class="panel-body">
-                          If your Gamertag has changed, fear not!<br /><br />
+													The only thing you need to do is stay engaged!
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+												<div class="panel-heading" role="tab" id="headingTwo1">
+													<h4 class="panel-title">
+														Are we affiliated with Microsoft?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo1">
+												<div class="panel-body">
+													At this stage of {{appName}}, we are <strong>not</strong> affiliated with Microsoft&reg; or Xbox&reg;. However, we've applied for a Microsoft's Independent Developer license and it's only a matter of time. We'll send an announcement email when we do become Microsoft-certified.
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+								<section id="account">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Account Questions</h3>
+										</div>
+									</div>
+									<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree0" aria-expanded="false" aria-controls="collapseThree0">
+												<div class="panel-heading" role="tab" id="headingThree0">
+													<h4 class="panel-title">
+														Can I delete my account?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseThree0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree0">
+												<div class="panel-body">
+													You can delete your account by heading to Settings > Delete Account, and confirming the deletion.
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+								<section id="profile">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Profile</h3>
+										</div>
+									</div>
+									<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour0" aria-expanded="false" aria-controls="collapseFour0">
+												<div class="panel-heading" role="tab" id="headingFour0">
+													<h4 class="panel-title">
+														My Gamertag has changed, how do I update my account on {{appName}}?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseFour0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour0">
+												<div class="panel-body">
+													If your Gamertag has changed, fear not!<br /><br />
 
-                          Our system will update with your new one automatically.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <section id="news">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>News</h3>
-                    </div>
-                  </div>
-                  <div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5" href="#collapseFive0" aria-expanded="false" aria-controls="collapseFive0">
-                        <div class="panel-heading" role="tab" id="headingFive0">
-                          <h4 class="panel-title">
-                            What is your news source?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseFive0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive0">
-                        <div class="panel-body">
-                          We use several RSS feeds to bring users the latest in Xbox&reg; and video game news.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5" href="#collapseFive1" aria-expanded="false" aria-controls="collapseFive1">
-                        <div class="panel-heading" role="tab" id="headingFive1">
-                          <h4 class="panel-title">
-                            Are you planning to generate original content?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseFive1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive1">
-                        <div class="panel-body">
-                          We plan to expand our team in both the writing and video divisions in the near future. If you'd like to work with us, please email us at jobs@xbdash.com.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <section id="achievements-games">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>Achievements / Games</h3>
-                    </div>
-                  </div>
-                  <div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion6" href="#collapseSix0" aria-expanded="false" aria-controls="collapseSix0">
-                        <div class="panel-heading" role="tab" id="headingSix0">
-                          <h4 class="panel-title">
-                            My gamerscore, achievement completion percentage, game completion percentage, or other data is not accurate to what I have on Xbox&reg; One, Xbox&reg; 360, or Xbox&reg; Live. What's happening?
-                          </h4>
-                        </div>
-                      </a>
-                      <div id="collapseSix0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix0">
-                        <div class="panel-body">
-                          Please wait at least one hour and if the problem persists contact us at <a href="mailto:support@xbdash.com">support@xbdash.com</a>.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <section id="more">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h3>More</h3>
-                      <p>If you have more questions about {{appName}}, please feel free to <a href="#" id="contact-us">contact us</a>.</p>
-                    </div>
-                  </div>
-                </section>
-                {{else}}
-                  {{> loadingTemplate}}
-                {{/if}}
-              </div>
-              <div class="col-lg-4"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+													Our system will update with your new one automatically.
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+								<section id="news">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>News</h3>
+										</div>
+									</div>
+									<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5" href="#collapseFive0" aria-expanded="false" aria-controls="collapseFive0">
+												<div class="panel-heading" role="tab" id="headingFive0">
+													<h4 class="panel-title">
+														What is your news source?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseFive0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive0">
+												<div class="panel-body">
+													We use several RSS feeds to bring users the latest in Xbox&reg; and video game news.
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5" href="#collapseFive1" aria-expanded="false" aria-controls="collapseFive1">
+												<div class="panel-heading" role="tab" id="headingFive1">
+													<h4 class="panel-title">
+														Are you planning to generate original content?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseFive1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive1">
+												<div class="panel-body">
+													We plan to expand our team in both the writing and video divisions in the near future. If you'd like to work with us, please email us at jobs@xbdash.com.
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+								<section id="achievements-games">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>Achievements / Games</h3>
+										</div>
+									</div>
+									<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-default">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion6" href="#collapseSix0" aria-expanded="false" aria-controls="collapseSix0">
+												<div class="panel-heading" role="tab" id="headingSix0">
+													<h4 class="panel-title">
+														My gamerscore, achievement completion percentage, game completion percentage, or other data is not accurate to what I have on Xbox&reg; One, Xbox&reg; 360, or Xbox&reg; Live. What's happening?
+													</h4>
+												</div>
+											</a>
+											<div id="collapseSix0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix0">
+												<div class="panel-body">
+													Please wait at least one hour and if the problem persists contact us at <a href="mailto:support@xbdash.com">support@xbdash.com</a>.
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+								<section id="more">
+									<div class="row">
+										<div class="col-lg-12">
+											<h3>More</h3>
+											<p>If you have more questions about {{appName}}, please feel free to <a href="#" id="contact-us">contact us</a>.</p>
+										</div>
+									</div>
+								</section>
+								{{else}}
+									{{> loadingTemplate}}
+								{{/if}}
+							</div>
+							<div class="col-lg-4"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

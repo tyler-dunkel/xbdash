@@ -2,7 +2,7 @@ var newsLimit = new ReactiveVar();
 
 Template.aboutUs.rendered = function() {
 	$('body').addClass('home-page');
-
+	
 	$(window).bind('scroll', function() {
         if ($(window).scrollTop() > 150) {
             $('.navbar-fixed-top').addClass('on');
@@ -170,14 +170,6 @@ Template.homeNewsSection.helpers({
 	latestNews: function() {
 		return xbdNews.find({}, {
 			sort: { updated: -1 },
-			fields: {
-				updated: 1,
-				title: 1,
-				content: 1,
-				slug: 1,
-				author: 1,
-				shareCount: 1
-			},
 			limit: 12
 		}).fetch();
 	},
@@ -192,16 +184,17 @@ Template.homeNewsSection.helpers({
 	},
 	updatedDate: function() {
 		return moment(this.updated).format('MMMM Do, YYYY');
-	},
-	shareCount: function() {
-		if (this.shareCount) {
-			var shareCount = shareFormatter(this.shareCount);
-			if (this.shareCount === 1) {
-				return shareCount + ' share';
-			} else {
-				return shareCount + ' shares';
-			}
-		}
-		return '0 shares';
 	}
+	// ,
+	// shareCount: function() {
+	// 	if (this.shareCount) {
+	// 		var shareCount = shareFormatter(this.shareCount);
+	// 		if (this.shareCount === 1) {
+	// 			return shareCount + ' share';
+	// 		} else {
+	// 			return shareCount + ' shares';
+	// 		}
+	// 	}
+	// 	return '0 shares';
+	// }
 });

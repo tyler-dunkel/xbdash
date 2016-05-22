@@ -6186,6 +6186,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	.achievements-list .achievement-img {
 		width: 16.66666667%
 	}
+	.user-rank-area .m-l {
+		margin-left: 0;
+	}
 }
 @media (max-width: 530px) {
 	.achievements-list .col-xs-6 {
@@ -6330,6 +6333,8 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 
 .blog-post.news { max-width: 640px; margin: 0 auto; }
 .blog-post p { font-size: 16px; line-height: 1.5em; padding: 0 10px; }
+.blog-post ul, .blog-post ol { font-size: 16px; line-height: 1.5em; padding: 0 30px; }
+.blog-post li { padding: 10px 0; }
 .comments p.comment-content { font-size: 14px; margin: 0 0 10px; padding: 0; }
 .blog-post img { max-width: 640px; width: 100%; height: auto; margin: 0 auto 15px; }
 .blog-post .left { text-align: left; }
