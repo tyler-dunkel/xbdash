@@ -1,6 +1,6 @@
 var achievementLimit = new ReactiveVar();
 
-Template.achievementsShowMorePage.created = function() {
+Template.myAchievementsPage.created = function() {
 	this.autorun(function() {
 		var options = Router.current().params.query;
 		options.limit = achievementLimit.get();
@@ -8,13 +8,13 @@ Template.achievementsShowMorePage.created = function() {
 	});
 }
 
-Template.achievementsShowMoreApp.created = function() {
+Template.myAchievementsApp.created = function() {
 	console.log('this fired');
 	this.options = Router.current().params.query,
 	validVals = ['epic', 'legendary', 'common', 'rare'];
 }
 
-Template.achievementsShowMoreApp.helpers({
+Template.myAchievementsApp.helpers({
 	'achievementTier': function() {
 		if (Template.instance().options.tier) {
 			return Template.instance().options.tier;
@@ -39,13 +39,13 @@ Template.achievementsShowMoreApp.helpers({
 	}
 });
 
-Template.achievementsShowMoreSection.created = function() {
+Template.myAchievementsSection.created = function() {
 	var limit, self = this;
 	achievementLimit.set(25);
 	console.log(this.data);
 }
 
-Template.achievementsShowMoreSection.rendered = function() {
+Template.myAchievementsSection.rendered = function() {
 	$(window).scroll(function() {
 		window.setTimeout(function() {
 			showMoreVisible();
@@ -53,7 +53,7 @@ Template.achievementsShowMoreSection.rendered = function() {
 	});
 }
 
-Template.achievementsShowMoreSection.helpers({
+Template.myAchievementsSection.helpers({
 	achievementList: function() {
 		return xbdAchievements.find({}, {
 			sort: {
@@ -105,14 +105,14 @@ Template.achievementsShowMoreSection.helpers({
 		if (game.platform === 'Xenon') {
 			gameDetail.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BoxArt' && art.Width === 219) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
+					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
 				}
 			});
 		}
 		if (game.platform === 'Durango') {
 			gameDetail.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
+					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
 				}
 			});
 		}

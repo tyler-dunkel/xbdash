@@ -513,6 +513,14 @@ a.list-group-item.hover {
 	border-top: 1px solid #eaedef;
 }
 
+.panel-heading .display-block {
+	display: block;
+}
+
+.panel-heading .display-none {
+	display: none;
+}
+
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
 	padding: 8px 15px;
@@ -6438,3 +6446,41 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	content: "\f078";	
 }
 .popover {width: 200px;}
+.filtering-menu .filter-centering {
+	margin: 7px 0px; text-align: center;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+  width: 100%;
+}
+.filtering-menu .bootstrap-select {
+	width: auto;
+	min-width: auto;
+}
+.dropdown-toggle.btn-success {
+	font-size: 12px;
+}
+.panel-heading:hover,
+.common-button:hover,
+.rare-button:hover,
+.epic-button:hover,
+.legendary-button:hover {
+	cursor: pointer;
+}
+.legendary-text.text-white:hover {
+	color: #cccccc;
+}
+.completed-games-title a:hover, .recent-games-title a:hover {
+	text-decoration: underline;
+}
+@media (max-width: 768px) {
+	.filtering-menu .tier-filter .btn,
+	.filtering-menu .tier-filter .bootstrap-select,
+	.filtering-menu .tier-filter .bootstrap-select > .dropdown-toggle,
+	.filtering-menu .tier-filter .bootstrap-select .dropdown-menu  {
+		width: 100% !important;
+	}
+	.title-wrap-game {
+		max-width: 100%;
+		overflow: hidden;
+	}
+}

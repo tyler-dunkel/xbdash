@@ -45,3 +45,25 @@ Template.newsSinglePage.helpers({
 		}
 	}
 });
+
+Template.newsSinglePage.rendered = function() {
+	var user = Meteor.user();
+	if (!user) {
+		setTimeout(function() {
+			sweetAlert({
+				title: 'Get Your Free Account',
+				html: 'Sign up and confirm your Gamertag to unlock your <em>personal</em> dashboard!',
+				customClass: 'sign-up-modal',
+				allowOutsideClick: false,
+				showCancelButton: true,
+				confirmButtonText: 'Sign Up for Free',
+				cancelButtonText: 'Not Right Now',
+				confirmButtonColor: '#138013',
+				confirmButtonClass: 'btn-success',
+				width: 600
+			}, function() {
+				Router.go('signUp');
+			});
+		}, 300000);
+	}
+}

@@ -1,8 +1,8 @@
-<template name="recentGamesPage">
-	<div>{{> recentGamesApp}}</div>
+<template name="myGamesPage">
+	<div>{{> myGamesApp}}</div>
 </template>
 
-<template name="recentGamesApp">
+<template name="myGamesApp">
 	<div id="content" class="app-content" role="main">
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
@@ -10,8 +10,8 @@
 					<div class="bg-light lter b-b wrapper-md">
 						<div class="row">
 							<div class="col-sm-6 col-xs-12">
-								<h1 class="m-n font-thin h3 text-black">Recent Games</h1>
-								<small class="text-muted">The newest titles in the XBdash library</small>
+								<h1 class="m-n font-thin h3 text-black">My Games</h1>
+								<small class="text-muted">All the games in my current xbox library</small>
 							</div>
 							{{#if chkGamerStatus}}
 							<div class="col-sm-6 text-right hidden-xs">
@@ -26,12 +26,12 @@
 						</div>
 					</div>
 					<div class="bg-light lter b-b wrapper-md">
-						{{> recentGamesFiltering}}
+						{{> myGamesFiltering}}
 					</div>
 					<div class="wrapper-md">
 						<div class="row">
 						{{#if Template.subscriptionsReady}}
-							{{#each gamesByReleaseDate}}
+							{{#each gamesByGamerscore}}
 								{{#with xbdGame}}
 									{{> singleGame}}
 								{{/with}}

@@ -14,7 +14,7 @@ Meteor.publishComposite('topCommonAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [
@@ -58,7 +58,7 @@ Meteor.publishComposite('topRareAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [
@@ -102,7 +102,7 @@ Meteor.publishComposite('topEpicAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [
@@ -146,7 +146,7 @@ Meteor.publishComposite('topLegendaryAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [
@@ -222,14 +222,16 @@ Meteor.publishComposite('singleAchievement', function(slug) {
 Meteor.publishComposite('achievementShowMore', function(options) {
 	return {
 		find: function() {
-			var topLimit, bottomLimit;
-			if (!options || !options.tier) return;
-			switch(options.tier) {
+			var limit = options.limit || 25,
+				tier = options.tier || '';
+			console.log('this is the tier' + tier);
+			switch(tier) {
 				case 'legendary': 
 					topLimit = 10;
 					bottomLimit = 0;
 					break;
 				case 'epic':
+					console.log('it was epic');
 					topLimit = 25;
 					bottomLimit = 11;
 					break;
@@ -237,12 +239,16 @@ Meteor.publishComposite('achievementShowMore', function(options) {
 					topLimit = 50;
 					bottomLimit = 26;
 					break;
-				default: 
+				case 'common':
 					topLimit = 100;
 					bottomLimit = 51;
+					break;
+				default: 
+					console.log('it went default');
+					topLimit = 100;
+					bottomLimit = 0;
 			}
-			console.log(topLimit + ' ' + bottomLimit);
-			console.log('limit is: ' + options.limit);
+
 			return xbdAchievements.find({
 				userPercentage: { $gte: bottomLimit, $lte: topLimit }
 			}, {
@@ -257,32 +263,100 @@ Meteor.publishComposite('achievementShowMore', function(options) {
 					slug: 1
 				},
 				sort: { userPercentage: -1 },
-				limit: options.limit
+				limit: limit
 			});
 		},
 		children: [
-			{
-				find: function(achievement) {
-					return xbdGames.find({ _id: achievement.gameId }, {
-						fields: {
-							platform: 1,
-							name: 1,
-							slug: 1
-						}
-					});
-				}
-			},
-			{
-				find: function(achievement) {
-					return gameDetails.find({ gameId: achievement.gameId }, {
-						fields: {
-							gameReducedName: 1,
-							gameId: 1,
-							gameArt: 1
-						}
-					});
-				}
+		{
+			find: function(achievement) {
+				return xbdGames.find({ _id: achievement.gameId }, {
+					fields: {
+						platform: 1,
+						name: 1,
+						slug: 1
+					}
+				});
 			}
+		},
+		{
+			find: function(achievement) {
+				return gameDetails.find({ gameId: achievement.gameId }, {
+					fields: {
+						gameReducedName: 1,
+						gameId: 1,
+						gameArt: 1
+					}
+				});
+			}
+		}
 		]
 	}
 });
+
+// Meteor.publishComposite('achievementShowMore', function(options) {
+// 	return {
+// 		find: function() {
+// 			var topLimit, bottomLimit;
+// 			if (!options || !options.tier) return;
+// 			switch(options.tier) {
+// 				case 'legendary': 
+// 					topLimit = 10;
+// 					bottomLimit = 0;
+// 					break;
+// 				case 'epic':
+// 					topLimit = 25;
+// 					bottomLimit = 11;
+// 					break;
+// 				case 'rare':
+// 					topLimit = 50;
+// 					bottomLimit = 26;
+// 					break;
+// 				default: 
+// 					topLimit = 100;
+// 					bottomLimit = 51;
+// 			}
+// 			console.log(topLimit + ' ' + bottomLimit);
+// 			console.log('limit is: ' + options.limit);
+// 			return xbdAchievements.find({
+// 				userPercentage: { $gte: bottomLimit, $lte: topLimit }
+// 			}, {
+// 				fields: {
+// 					gameId: 1,
+// 					name: 1,
+// 					mediaAssets: 1,
+// 					description: 1,
+// 					lockedDescription: 1,
+// 					value: 1,
+// 					userPercentage: 1,
+// 					slug: 1
+// 				},
+// 				sort: { userPercentage: -1 },
+// 				limit: options.limit
+// 			});
+// 		},
+// 		children: [
+// 			{
+// 				find: function(achievement) {
+// 					return xbdGames.find({ _id: achievement.gameId }, {
+// 						fields: {
+// 							platform: 1,
+// 							name: 1,
+// 							slug: 1
+// 						}
+// 					});
+// 				}
+// 			},
+// 			{
+// 				find: function(achievement) {
+// 					return gameDetails.find({ gameId: achievement.gameId }, {
+// 						fields: {
+// 							gameReducedName: 1,
+// 							gameId: 1,
+// 							gameArt: 1
+// 						}
+// 					});
+// 				}
+// 			}
+// 		]
+// 	}
+// });

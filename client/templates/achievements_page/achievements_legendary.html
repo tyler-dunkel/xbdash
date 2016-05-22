@@ -1,7 +1,15 @@
 <template name="topLegendaryAchievements">
 	{{#if Template.subscriptionsReady}}
-	<div class="panel-heading text-center bg-legendary">
-		<h3 class="m-n padder-t text-white h4">Top Legendary Achievements</h3>
+	<div class="panel-heading bg-legendary">
+		<div class="inline">
+			<h3 class="m-n padder-t text-white h4">Top Legendary Achievements</h3>
+		</div>
+		<div class="view-button pull-right padder-t inline">
+			<a class="m-n text-white" href="#">View more</a>
+		</div>
+		<div class="view-arrow pull-right padder-t none">
+			<a class="m-n text-white legendary-text" href="#">View more&nbsp;&nbsp;<i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>
+		</div>
 	</div>
 	<ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
 		{{#if achievementsPresent}}
@@ -38,6 +46,6 @@
 		{{/if}}
 	</ul>
 	{{else}}
-	{{> loadingTemplate}}
+		{{> loadingTemplate}}
 	{{/if}}
 </template>

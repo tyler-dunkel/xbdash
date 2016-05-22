@@ -1,4 +1,9 @@
 Meteor.startup(function() {
+
+	if (xbdContests.find({}).count() < 1) {
+		xbdContests.insert({status: 'active', contestToken: 'xbdDirect', entries: []});
+	}
+
 	ServiceConfiguration.configurations.remove({
 		service: 'facebook'
 	});
@@ -11,7 +16,7 @@ Meteor.startup(function() {
 
 	ServiceConfiguration.configurations.remove({
 		service: "twitter"
-	}); 
+	});
 
 	ServiceConfiguration.configurations.insert({
 		service: "twitter",
