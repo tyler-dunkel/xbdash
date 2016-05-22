@@ -1,7 +1,7 @@
 var gameLimit = new ReactiveVar();
 
 Template.gameByGenre.created = function() {
-	gameLimit.set(10);
+	gameLimit.set(12);
 	console.log('created game by genre temp');
 	this.autorun(function() {
 		var options = Router.current().params.query;
@@ -25,7 +25,7 @@ Template.gameByGenre.created = function() {
 Meteor.autorun(function() {
 	Session.set('forceReset', 1);
 	Session.get('forceReset');
-	gameLimit.set(10);
+	gameLimit.set(12);
 });
 
 Template.gameByGenre.helpers({

@@ -88,7 +88,7 @@ Template.recentGamesFiltering.rendered = function() {
 		if (sortParams.name) {
 			delete sortParams.name;
 		}
-		sortParams.releaseDate = (currIdx === 1) ? 'asc' : 'dsc';
+		sortParams.releaseDate = (currIdx === 1) ? 'asc' : 'desc';
 		console.log(sortParams);
 		Router.go('gamesPage', {}, { query: sortParams });
 		Session.set('forceReset', 0);

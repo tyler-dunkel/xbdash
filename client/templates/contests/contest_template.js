@@ -1,6 +1,6 @@
 Template.contestApp.created = function() {
 	var self = this;
-	this.contestToken = 'fewafew';
+	this.contestToken = 'xbdDirect';
 	self.referralToken = new ReactiveVar('');
 	Meteor.call('checkReferralToken', function(err, res) {
 		if (err) {

@@ -14,7 +14,7 @@ Meteor.publishComposite('topCommonAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [
@@ -58,7 +58,7 @@ Meteor.publishComposite('topRareAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [
@@ -102,7 +102,7 @@ Meteor.publishComposite('topEpicAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [
@@ -146,7 +146,7 @@ Meteor.publishComposite('topLegendaryAchievements', {
 				slug: 1
 			},
 			sort: { userPercentage: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	children: [

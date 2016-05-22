@@ -1,7 +1,7 @@
 var gameLimit = new ReactiveVar();
 
 Template.recentGamesApp.created = function() {
-	gameLimit.set(15);
+	gameLimit.set(12);
 	this.autorun(function() {
 		var limit = gameLimit.get();
 		console.log('limit is: ' + limit);
@@ -18,7 +18,7 @@ Template.recentGamesApp.helpers({
 	xbdGame: function () {
 		return xbdGames.findOne({ _id: this.gameId }, {
 			sort: { maxGamerscore: -1 },
-			limit: 10
+			limit: 12
 		});
 	},
 	gamesByReleaseDate: function() {
@@ -42,7 +42,7 @@ function showMoreVisible() {
 		console.log(target.data);
 		if (!target.data("visible")) {
 			target.data("visible", true);
-			gameLimit.set(gameLimit.get() + 9);
+			gameLimit.set(gameLimit.get() + 12);
 		}
 	} else {
 		if (target.data("visible")) {

@@ -9,7 +9,6 @@ Template.gamesPage.helpers({
 });
 
 Template.gamesApp.created = function() {
-	var limit = 5;
 	this.subscribe('myTopGames');
 	this.subscribe('gamesByReleaseDate');
 }
@@ -49,7 +48,7 @@ Template.gamesApp.helpers({
 		var userId = Meteor.userId();
 		var games = userGames.find({ userId: userId }, {
 			sort: { currentGamerscore: -1 },
-			limit: 5
+			limit: 6
 		});
 		var gameDetailArray = [];
 
@@ -63,7 +62,7 @@ Template.gamesApp.helpers({
 	gamesByReleaseDate: function() {
 		return gameDetails.find({}, {
 			sort: { gameReleaseDate: -1 },
-			limit: 5
+			limit: 6
 		});
 	}
 });

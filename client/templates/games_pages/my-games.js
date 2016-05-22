@@ -1,7 +1,7 @@
 var gameLimit = new ReactiveVar();
 
 Template.myGamesApp.created = function() {
-	gameLimit.set(25);
+	gameLimit.set(12);
 	this.autorun(function() {
 		var options = Router.current().params.query;
 		options.limit = gameLimit.get();
@@ -19,7 +19,7 @@ Template.myGamesApp.created = function() {
 Meteor.autorun(function() {
 	Session.set('forceReset', 1);
 	Session.get('forceReset');
-	gameLimit.set(10);
+	gameLimit.set(12);
 });
 
 Template.myGamesApp.helpers({
@@ -78,7 +78,7 @@ function showMoreVisible() {
 		console.log(target.data);
 		if (!target.data("visible")) {
 			target.data("visible", true);
-			gameLimit.set(gameLimit.get() + 9);
+			gameLimit.set(gameLimit.get() + 12);
 		}
 	} else {
 		if (target.data("visible")) {

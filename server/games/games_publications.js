@@ -2,7 +2,7 @@ Meteor.publishComposite('gameByGenre', function(options) {
 	return {
 		find: function() {
 			options = options || {};
-			var limit = typeof options.limit === 'number' ? options.limit : 10;
+			var limit = typeof options.limit === 'number' ? options.limit : 12;
 			var genres = (Array.isArray(options.genres)) ? options.genres : null;
 			var releaseDate = options.releaseDate === 'asc' ? 1 : -1;
 			var name = options.name;
@@ -25,10 +25,10 @@ Meteor.publishComposite('gameByGenre', function(options) {
 			var sortSelector;
 
 			if (!name) {
-				sortSelector = {gameReleaseDate: releaseDate};
+				sortSelector = { gameReleaseDate: releaseDate };
 			} else {
 				name = (name === 'asc') ? -1 : 1;
-				sortSelector = {gameName: name, gameReleaseDate: releaseDate};
+				sortSelector = { gameName: name, gameReleaseDate: releaseDate };
 			}
 
 			console.log(sortSelector);
@@ -68,7 +68,10 @@ Meteor.publishComposite('gameByGenre', function(options) {
 							return;
 						}
 					}
-					return userGames.find({ userId: this.userId, gameId: game.gameId }, {
+					return userGames.find({
+						userId: this.userId,
+						gameId: game.gameId
+					}, {
 						fields: {
 							gameId: 1,
 							userId: 1,
@@ -86,7 +89,7 @@ Meteor.publishComposite('myTopGames', function(options) {
 		find: function() {
 			var user = Meteor.users.findOne({ _id: this.userId });
 			options = options || {};
-			var limit = typeof options.limit === 'number' ? options.limit : 10;
+			var limit = typeof options.limit === 'number' ? options.limit : 12;
 			var sortSelector = {};
 			var selector = {userId: this.userId};
 			console.log(options);
@@ -198,7 +201,7 @@ Meteor.publishComposite('gamesByReleaseDate', function(options) {
 	return {
 		find: function() {
 			options = options || {};
-			var limit = typeof options.limit === 'number' ? options.limit : 10;
+			var limit = typeof options.limit === 'number' ? options.limit : 12;
 			console.log(limit);
 			return gameDetails.find({}, {
 				fields: {
