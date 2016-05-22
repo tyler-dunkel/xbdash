@@ -8,13 +8,17 @@
 				<a href class="dropdown-toggle clear" data-toggle="dropdown">
 					<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
 						{{#if chkGamerStatus}}
-		                <img src="{{gamerImage}}" class="img-full" alt="{{currentUser.username}}">
+		                <img src="{{gamerImage}}" class="img-full" alt="{{currentUser.gamercard.gamertag}}">
 		                {{else}}
 		                <img src="/img/gamerpic-default.jpg" class="img-full" alt="{{currentUser.username}}" />
 		                {{/if}}
 						<i class="on md b-white bottom"></i>
 					</span>
+					{{#if chkGamerStatus}}
+					<span class="hidden-sm hidden-md">{{currentUser.gamercard.gamertag}}</span> <b class="caret"></b>
+					{{else}}
 					<span class="hidden-sm hidden-md">{{currentUser.username}}</span> <b class="caret"></b>
+					{{/if}}
 				</a>
 				<ul class="dropdown-menu animated">
 					<li>

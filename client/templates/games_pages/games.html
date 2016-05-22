@@ -1,6 +1,11 @@
 <template name="gamesPage">
-	{{> gamesApp}}
+	{{#if genreSearch}}
+		{{> gameByGenre}}
+	{{else}}
+		{{> gamesApp}}
+	{{/if}}
 </template>
+
 
 <template name="gamesApp">
 	<div id="content" class="app-content" role="main">
@@ -30,8 +35,18 @@
 					{{#if chkGamerStatus}}
 					<div class="wrapper-md">
 						<div class="row">
-							<div class="col-lg-12">
-								<h3 class="m-n font-thin padder-v text-black">Recently Completed Games</h3>
+							<div class="col-lg-12 completed-games-title">
+								<div class="inline">
+									<h3 class="m-n font-thin padder-v text-black">
+										<a href="{{pathFor 'myGames'}}">Recently Completed Games</a>
+									</h3>
+								</div>
+								<div class="view-button pull-right m-t-xs padder-v inline">
+									<a class="m-n text-u-l" href="{{pathFor 'myGames'}}">View more</a>
+								</div>
+								<div class="view-arrow pull-right m-t-xs padder-v none">
+									<a class="m-n text-u-l" href="{{pathFor 'myGames'}}">View more&nbsp;&nbsp;<i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -49,8 +64,18 @@
 					{{/if}}
 					<div class="wrapper-md">
 						<div class="row">
-							<div class="col-lg-12">
-								<h3 class="m-n font-thin padder-v text-black">Recently Added Games</h3>
+							<div class="col-lg-12 recent-games-title">
+								<div class="inline">
+									<h3 class="m-n font-thin padder-v text-black">
+										<a href="{{pathFor 'recentlyReleasedGames'}}">Recently Added Games</a>
+									</h3>
+								</div>
+								<div class="view-button pull-right m-t-xs padder-v inline">
+									<a class="m-n text-u-l" href="{{pathFor 'recentlyReleasedGames'}}">View more</a>
+								</div>
+								<div class="view-arrow pull-right m-t-xs padder-v none">
+									<a class="m-n text-u-l" href="{{pathFor 'recentlyReleasedGames'}}">View more&nbsp;&nbsp;<i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>
+								</div>
 							</div>
 						</div>
 						<div class="row">

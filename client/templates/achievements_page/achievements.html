@@ -1,93 +1,97 @@
 <template name="achievementsPage">
-  {{> achievementsApp}}
+	{{#if showMore}}
+		{{> achievementsShowMorePage}}
+	{{else}}
+		{{> achievementsApp}}
+	{{/if}}
 </template>
 
 <template name="achievementsApp">
-  <div id="content" class="app-content" role="main">
-    <div class="app-content-body ">
-      <div class="hbox hbox-auto-xs hbox-auto-sm">
-        <div class="col">
-          <div class="bg-light lter b-b wrapper-md">
-            <div class="row">
-              <div class="col-sm-4 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">Achievements</h1>
-                <small class="text-muted">Search achievements, search solutions</small>
-              </div>
-              <div class="col-sm-5 text-right hidden-xs achievement-key">
-                <div class="float-left padder-vv-common text-center">
-                  <i class="fa fa-unlock" data-toggle="tooltip" data-placement="bottom" title="51% or more players have this">&nbsp;common</i>
-                </div>
-                <div class="float-left padder-vv-rare text-center">
-                  <i class="fa fa-bullseye" data-toggle="tooltip" data-placement="bottom" title="26% - 50% of players have this">&nbsp;rare</i>
-                </div>
-                <div class="float-left padder-vv-epic text-center">
-                  <i class="fa fa-star" data-toggle="tooltip" data-placement="bottom" title="11% - 25% of players have this">&nbsp;epic</i>
-                </div>
-                <div class="float-left padder-vv-legendary text-center">
-                  <i class="fa fa-trophy" data-toggle="tooltip" data-placement="bottom" title="0% - 10% of players have this">&nbsp;legendary</i>
-                </div>
-              </div>
-              {{#if chkGamerStatus}}
-              <div class="col-sm-3 text-right hidden-xs user-rank-area">
-                <div class="inline m-l m-r text-left">
-                  {{> userDailyRank}}
-                </div>
-                <div class="inline text-left">
-                  {{> userOverallRank}}
-                </div>
-              </div>
-              {{/if}}
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
-            {{> topCommonAchievements}}
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
-            {{> topRareAchievements}}
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
-            {{> topEpicAchievements}}
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
-            {{> topLegendaryAchievements}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-4 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Achievements</h1>
+								<small class="text-muted">Search achievements, search solutions</small>
+							</div>
+							<div class="col-sm-5 text-right hidden-xs achievement-key">
+								<div class="float-left padder-vv-common text-center common-button" data-toggle="tooltip" data-placement="bottom" title="51% or more players have this">
+									<i class="fa fa-unlock"></i>&nbsp;common
+								</div>
+								<div class="float-left padder-vv-rare text-center rare-button" data-toggle="tooltip" data-placement="bottom" title="26% - 50% of players have this">
+									<i class="fa fa-bullseye"></i>&nbsp;rare
+								</div>
+								<div class="float-left padder-vv-epic text-center epic-button" data-toggle="tooltip" data-placement="bottom" title="11% - 25% of players have this">
+									<i class="fa fa-star"></i>&nbsp;epic
+								</div>
+								<div class="float-left padder-vv-legendary text-center legendary-button" data-toggle="tooltip" data-placement="bottom" title="0% - 10% of players have this">
+									<i class="fa fa-trophy"></i>&nbsp;legendary
+								</div>
+							</div>
+							{{#if chkGamerStatus}}
+							<div class="col-sm-3 text-right hidden-xs">
+								<div class="inline m-l m-r text-left">
+									{{> userDailyRank}}
+								</div>
+								<div class="inline text-left">
+									{{> userOverallRank}}
+								</div>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
+					{{> topCommonAchievements}}
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
+					{{> topRareAchievements}}
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
+					{{> topEpicAchievements}}
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wrapper-md">
+					{{> topLegendaryAchievements}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="archiveAchievementTemplates">
-  <div class="wrapper-md">
-    <div class="row">
-      <div class="col-lg-12">
-        <h3 class="m-n font-thin padder-v text-black">Most Popular Achievements</h3>
-      </div>
-    </div>
-    <div class="row">
-      {{#if Template.subscriptionsReady}}
-      {{#each mostPopularAchievements}}
-      {{> achievementTemplate}}
-      {{/each}}
-      {{else}}
-      {{> loadingTemplate}}
-      {{/if}}
-    </div>
-  </div>
-  <div class="wrapper-md">
-    <div class="row">
-      <div class="col-lg-12">
-        <h3 class="m-n font-thin padder-v text-black">Rarest Achievements</h3>
-      </div>
-    </div>
-    <div class="row">
-      {{#if Template.subscriptionsReady}}
-      {{#each rarestAchievements}}
-      {{> achievementTemplate}}
-      {{/each}}
-      {{else}}
-      {{> loadingTemplate}}
-      {{/if}}
-    </div>
-  </div>
+	<div class="wrapper-md">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="m-n font-thin padder-v text-black">Most Popular Achievements</h3>
+			</div>
+		</div>
+		<div class="row">
+			{{#if Template.subscriptionsReady}}
+				{{#each mostPopularAchievements}}
+					{{> achievementTemplate}}
+				{{/each}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
+		</div>
+	</div>
+	<div class="wrapper-md">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="m-n font-thin padder-v text-black">Rarest Achievements</h3>
+			</div>
+		</div>
+		<div class="row">
+			{{#if Template.subscriptionsReady}}
+				{{#each rarestAchievements}}
+					{{> achievementTemplate}}
+				{{/each}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
+		</div>
+	</div>
 </template>

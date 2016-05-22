@@ -1,0 +1,35 @@
+<template name="usersPage">
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<!-- main -->
+				<div class="col">
+					<!-- main header -->
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">User Page</h1>
+								<small class="text-muted">find other users</small>
+							</div>
+							{{#if chkGamerStatus}}
+							<div class="col-sm-6 text-right hidden-xs">
+								<div class="inline m-l m-r text-left">
+									{{> userDailyRank}}
+								</div>
+								<div class="inline text-left">
+									{{> userOverallRank}}
+								</div>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					{{> usersApp}}
+				</div>	
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="usersApp">
+	<div> hello </div>
+</template>

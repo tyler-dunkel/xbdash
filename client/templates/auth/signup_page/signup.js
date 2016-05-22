@@ -27,7 +27,8 @@ Template.signUpForm.events({
 		if (password !== passwordConfirm) return;
 
 		var user = {email: email, password: password, profile: {}};
-		
+		var referralToken = Router.current().params.query.referraltoken;
+
 		Accounts.createUser(user, function(error, result) {
 			if (error) {
 				sweetAlert({
@@ -38,6 +39,10 @@ Template.signUpForm.events({
 				Router.go('signUp');
 				return;
 			} else {
+				if (referralToken) {
+					Meteor.call('resolveReferralToken', referralToken, function() {
+					});
+				}
 				Router.go('confirmEmail');
 			}
 		});
@@ -51,10 +56,15 @@ Template.signUpForm.events({
 	},
 	'click #facebook-login': function(event) {
 		subMana.clear();
+		var referralToken = Router.current().params.query.referraltoken;
         Meteor.loginWithFacebook({}, function(error){
             if (error) {
                 throw new Meteor.Error("Facebook login failed");
             } else {
+            	if (referralToken) {
+					Meteor.call('resolveReferralToken', referralToken, function() {
+					});
+				}
             	Router.go('confirmGt');
 				return;
             }
@@ -62,10 +72,15 @@ Template.signUpForm.events({
     },
     'click #twitter-login': function(event) {
     	subMana.clear();
+    	var referralToken = Router.current().params.query.referraltoken;
         Meteor.loginWithTwitter({}, function(error){
             if (error) {
                 throw new Meteor.Error("Twitter login failed.");
             } else {
+            	if (referralToken) {
+					Meteor.call('resolveReferralToken', referralToken, function() {
+					});
+				}
             	Router.go('confirmGt');
 				return;
             }
@@ -76,7 +91,7 @@ Template.signUpForm.events({
             if (error) {
                 throw new Meteor.Error("Logout failed");
             }
-        })
+        });
     }
 });
 

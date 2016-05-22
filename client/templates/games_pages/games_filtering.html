@@ -1,0 +1,173 @@
+<template name="myGamesFiltering">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 filtering-menu">
+			<div class="col-xs-6 col-lg-4 col-lg-offset-2">
+				<div class="filter-centering btn-group-justified">
+					<select class="selectpicker" data-mod="achievement-selector" data-style="form-control btn-block btn-success">
+						<option>Most Achievements Earned</option>
+						<option>Least Achievements Earned</option>
+						<option>Most Gamerscore</option>
+						<option>Least Gamerscore</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-lg-4">
+				<div class="filter-centering tier-filter">
+					<select class="selectpicker" data-mod="completion-sort" data-style="form-control btn-block btn-success">
+						<option>All Games</option>
+						<option>Completed Games</option>
+						<option>Incomplete Games</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="recentGamesFiltering">
+	<div class="row">
+		<div class="col-xs-12 filtering-menu">
+			<div class="col-xs-6 col-sm-4">
+				<div class="form-group filter-centering">
+					<div class="input-group grid">
+						<div class="btn-group btn-group-justified">
+							<a class="btn btn-success a-to-z">A-Z</a>
+							<a class="btn btn-success z-to-a">Z-A</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-4">
+				<div class="filter-centering">
+					<select class="selectpicker" data-mod="order-selector" data-style="form-control btn-block btn-success">
+						<option>Most Recent First</option>
+						<option>Oldest First</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div id="accordion" class="filter-centering btn-group bootstrap-select">
+					<button type="button" class="btn dropdown-toggle form-control btn-block btn-success collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						<span class="filter-option pull-left">All Genres</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div style="height: auto;" id="collapseOne" class="panel-collapse collapse">
+				<div class="col-md-12">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="all">
+							<i></i> All Genres
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="action,adventure">
+							<i></i> Action &amp; Adventure
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="card,board">
+							<i></i> Card &amp; Board
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="classics">
+							<i></i> Classics
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="educational">
+							<i></i> Educational
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="family">
+							<i></i> Family
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="fighting">
+							<i></i> Fighting
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="kinect">
+							<i></i> Kinect
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="music">
+							<i></i> Music
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="other">
+							<i></i> Other
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="platformer">
+							<i></i> Platformer
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="puzzle,trivia">
+							<i></i> Puzzle &amp; Trivia
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="racing,flying">
+							<i></i> Racing &amp; Flying
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="role playing">
+							<i></i> Role Playing
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="shooter">
+							<i></i> Shooter
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="sports,recreation">
+							<i></i> Sports &amp; Recreation
+						</label>
+					</div>
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="strategy,simulation">
+							<i></i> Strategy &amp; Simulation
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

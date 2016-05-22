@@ -1,24 +1,24 @@
 Template.achievementCommentBox.helpers({
-	loginAction:function(){
+	loginAction: function() {
 			return Comments.session.get('loginAction');
 	},
-	textarea:function(){
+	textarea: function() {
 			return Template.commentsTextarea;
 	},
-	hasMoreComments:function(){
-			return Comments.get(this.id).count()<Comments.session.get(this.id+'_count');
+	hasMoreComments: function() {
+			return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
 	}
 });
 
 Template.newsCommentBox.helpers({
-	loginAction:function(){
+	loginAction: function() {
 			return Comments.session.get('loginAction');
 	},
-	textarea:function(){
+	textarea: function() {
 			return Template.commentsTextarea;
 	},
-	hasMoreComments:function(){
-			return Comments.get(this.id).count()<Comments.session.get(this.id+'_count');
+	hasMoreComments: function() {
+			return Comments.get(this.id).count() < Comments.session.get(this.id + '_count');
 	}
 });
 

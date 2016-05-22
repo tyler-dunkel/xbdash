@@ -1,0 +1,145 @@
+<template name="achievementsFiltering">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 filtering-menu">
+			<div class="col-xs-5 col-sm-4">
+				<div class="form-group filter-centering">
+					<div class="input-group grid">
+						<div id="radioBtn" class="btn-group">
+							<a class="btn btn-success btn-sm active" data-title="Y">A-Z</a>
+							<a class="btn btn-success btn-sm notActive" data-title="N">Z-A</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-4">
+				<div class="filter-centering">
+					<select class="selectpicker" data-mod="gamerscore-selector" data-style="form-control btn-block btn-success">
+						<option>High Gamerscore First</option>
+						<option>Low Gamerscore First</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div id="accordion" class="filter-centering tier-filter">
+					<button class="btn form-control btn-block btn-success collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						All Achievements <span class="caret"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div style="height: auto;" id="collapseOne" class="panel-collapse collapse">
+				<div class="col-xs-12">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="all">
+							<i></i> All Achievements
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="action &amp; adventure">
+							<i></i> Common
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="card &amp; board">
+							<i></i> Rare
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="classics">
+							<i></i> Epic
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="educational">
+							<i></i> Legendary
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="myAchievementsFiltering">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 filtering-menu">
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<div class="filter-centering">
+					<select class="selectpicker" data-mod="achievement-selector" data-style="form-control btn-block btn-success">
+						<option>Completed Achievements First</option>
+						<option>Incompleted Achievements First</option>
+						<option>High Gamerscore First</option>
+						<option>Low Gamerscore First</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-3">
+				<div id="accordion" class="filter-centering tier-filter">
+					<button class="btn form-control btn-block btn-success collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						All Achievements <span class="caret"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+			<div style="height: auto;" id="collapseOne" class="panel-collapse collapse">
+				<div class="col-md-12">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="all">
+							<i></i> All Achievements
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="action &amp; adventure">
+							<i></i> Common
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="card &amp; board">
+							<i></i> Rare
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="classics">
+							<i></i> Epic
+						</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-3">
+					<div class="checkbox">
+						<label class="i-checks">
+							<input class="game-genre-button" type="checkbox" value="" data-val="educational">
+							<i></i> Legendary
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
