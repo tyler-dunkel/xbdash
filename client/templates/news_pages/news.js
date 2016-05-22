@@ -38,13 +38,13 @@ function showMoreVisible() {
 	if (!target.length) return;
 	threshold = $(window).scrollTop() + $(window).height() - target.height();
 	if (target.offset().top < threshold) {
-		if (!target.data("visible")) {
-			target.data("visible", true);
-			newsLimit.set(newsLimit.get() + 5);
-		}
+		// if (!target.data("visible")) {
+		target.data("visible", true);
+		newsLimit.set(newsLimit.get() + 5);
+		// }
 	} else {
-		if (target.data("visible")) {
-			target.data("visible", false);
-		}
+		// if (target.data("visible")) {
+		target.data("visible", false);
+		// }
 	}
 }

@@ -13,6 +13,22 @@
 }
 .navbar-search .input-container .input-group {
 }
+/*.home-page .navbar-search {
+	margin-top: 65px;
+}*/
+.home-page .navbar-search {
+	margin-top: 10px;
+}
+.home-page .navbar-search .input-container {
+    margin-left: 0;
+}
+.home-page .bg-black {
+    color: #58666e;
+    background-color: #fff;
+}
+/*.home-page .col-sm-8 {
+	width: 100%;
+}*/
 @media screen and (max-width: 1410px) {
 	.navbar-search .input-container {
 		margin-left: 0;
