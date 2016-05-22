@@ -4591,9 +4591,7 @@ ul.signin > li.active {
 }
 
 .padder-vv-xbd {
-	color: #fff;
-	padding: 20px;
-	background-color: #138013;
+	padding: 0 20px;
 }
 
 .gamerscore-table.padder-vv-xbd {
@@ -6039,7 +6037,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	-o-transform: translateY(0);
 	transform: translateY(0);
 }
-.overlay .game-page-link {  
+.overlay .game-page-link {	
 	background: rgba(0, 0, 0, .75);
 	text-align: center;
 	opacity: 0;	
@@ -6059,7 +6057,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 .overlay .game-page-link:hover, .overlay .game-page-link:hover i {
 	opacity: 1;
 }
-.overlay .achievement-page-link {  
+.overlay .achievement-page-link {	
 	background: rgba(0, 0, 0, .75);
 	text-align: center;
 	opacity: 0;	
@@ -6125,7 +6123,6 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	max-width: 60ch;
 }
 .title-wrap-achievement-description {
-	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	max-width: 60ch;
@@ -6136,15 +6133,21 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	text-overflow: ellipsis;
 	max-width: 22ch;
 }
+.achievements-list .achievement-link:hover .row.no-gutter {
+	background-color: #efefef;
+}
+.achievements-list .achievement-link:hover .achievement-button .text-black {
+	color: #138013;
+}
 .achievements-list .trophy-class {
 	width: 100%;
-	height: 81px;
-	padding: 20px 0;
+	height: 96px;
+	padding: 24px 0;
 }
 .achievements-list .achievement-img {
 	display: inline-block !important;
-	width: 81px;
-	height: 81px;
+	width: 100%;
+	height: 96px;
 	margin: 0;
 	border: 0;
 	background-position: center center;
@@ -6168,7 +6171,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 }
 .achievements-list .m-l-md .padder-t {
 	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-bottom: 8px;
 }
 .achievements-list .m {
 	margin: 10px;
@@ -6179,12 +6182,12 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 @media (max-width: 767px) {
 	.achievement-name-ellipsis {
 		white-space: nowrap;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-	    max-width: 274px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 274px;
 	}
 	.achievements-list .achievement-img {
-		width: 16.66666667%
+		width: 100%;
 	}
 	.user-rank-area .m-l {
 		margin-left: 0;
@@ -6198,22 +6201,22 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 @media (min-width: 768px) and (max-width: 991px) {
 	.achievement-name-ellipsis {
 		white-space: nowrap;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-	    max-width: 274px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 274px;
 	}
 }
 @media (min-width: 768px) {
 	/* sm */
 	.achievements-list .trophy-class {
 		width: 100%;
-		height: 71px;
-		padding: 10px 0;
+		height: 96px;
+		padding: 24px 0;
 	}
 	.achievements-list .achievement-img {
 		display: inline-block !important;
-		width: 71px;
-		height: 71px;
+		width: 100%;
+		height: 96px;
 		margin: 0;
 		border: 0;
 		background-position: center center;
@@ -6226,8 +6229,8 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 		margin-left: 15px;
 	}
 	.achievements-list .m-l-md .padder-t {
-		padding-top: 10px;
-		padding-bottom: 10px;
+		padding-top: 15px;
+		padding-bottom: 5px;
 	}
 }
 @media (min-width: 992px) {
@@ -6239,13 +6242,13 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	}
 	.achievements-list .trophy-class {
 		width: 100%;
-		height: 71px;
-		padding: 10px 0;
+		height: 96px;
+		padding: 24px 0;
 	}
 	.achievements-list .achievement-img {
 		display: inline-block !important;
-		width: 71px;
-		height: 71px;
+		width: 100%;
+		height: 96px;
 		margin: 0;
 		border: 0;
 		background-position: center center;
@@ -6266,11 +6269,11 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	.achievements-list .trophy-class {
 		width: 100%;
 		height: 96px;
-		padding: 25px 0;
+		padding: 24px 0;
 	}
 	.achievements-list .achievement-img {
-		display: none !important;
-		width: 96px;
+		display: inline-block !important;
+		width: 100%;
 		height: 96px;
 		margin: 0;
 		border: 0;
@@ -6279,9 +6282,9 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	}
 	.achievement-name-ellipsis {
 		white-space: nowrap;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-	    max-width: 274px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 274px;
 	}
 	.achievements-list .title-wrap-achievement-description {
 		white-space: normal;
@@ -6302,11 +6305,11 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	.achievements-list .trophy-class {
 		width: 100%;
 		height: 96px;
-		padding: 25px 0;
+		padding: 24px 0;
 	}
 	.achievements-list .achievement-img {
 		display: inline-block !important;
-		width: 96px;
+		width: 100%;
 		height: 96px;
 		margin: 0;
 		border: 0;
