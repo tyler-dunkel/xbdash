@@ -77,7 +77,7 @@ function showMoreVisible() {
 		console.log(target.data);
 		if (!target.data("visible")) {
 			target.data("visible", true);
-			gameLimit.set(gameLimit.get() + 9);
+			gameLimit.set(gameLimit.get() + 12);
 		}
 	} else {
 		if (target.data("visible")) {
