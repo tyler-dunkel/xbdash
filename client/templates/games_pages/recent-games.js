@@ -18,7 +18,7 @@ Template.recentGamesApp.helpers({
 	xbdGame: function () {
 		return xbdGames.findOne({ _id: this.gameId }, {
 			sort: { maxGamerscore: -1 },
-			limit: 18
+			limit: gameLimit.get()
 		});
 	},
 	gamesByReleaseDate: function() {
