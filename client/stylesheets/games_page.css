@@ -15,11 +15,16 @@
 .single-games-page .games-page-news .list-group-item { padding: 0; margin-bottom: 15px; }
 .single-games-page .games-page-news .list-group-item .m-r { margin: 0; }
 .single-games-page .games-page-news .list-group-item .clear { display: block; padding: 15px; }
-.single-games-page .games-page-news .list-group-item .clear .title-wrap-news { margin: 0 0 10px; font-size: 16px; }
+.single-games-page .games-page-news .list-group-item .clear .title-wrap-news { margin: 0 0 10px; font-size: 18px; font-weight: bold; }
 .single-games-page .games-page-news .list-group-item .clear small { font-size: 12px; }
 
 @media (max-width: 768px) {
 	.single-games-page .m-t-xxxl { margin-top: 0; padding-top: 15px; }
 	.single-games-page .padder-vv-xbd { padding: 15px 20px; }
 	.single-games-page .padder-vv-ixbd { margin-top: 0; padding: 15px 0 0; }
+}
+
+@media (max-width: 500px) {
+	.single-games-page .games-page-news .list-group-item .thumb-news { max-width: 100% }
+	.single-games-page .games-page-news .list-group-item .clear .title-wrap-news { font-size: 22px; }
 }

@@ -16,6 +16,13 @@ Template.searchBar.events({
 	}
 });
 
+Template.searchBarMobile.events({
+	"click .mobile-search .form-control": function (e) {
+		overlay.show();
+		$('body').addClass('noscroll');
+	}
+});
+
 Template.searchOverlayApp.rendered = function() {
 	$(".search-input").focus();
 }

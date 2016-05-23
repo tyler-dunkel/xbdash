@@ -13,6 +13,10 @@
 }
 .navbar-search .input-container .input-group {
 }
+.mobile-search {
+	position: absolute;
+	margin: 16% 0 0;
+}
 /*.home-page .navbar-search {
 	margin-top: 65px;
 }*/

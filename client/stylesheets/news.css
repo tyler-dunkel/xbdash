@@ -1,6 +1,7 @@
 .news-section h3 {
 	color: #252525;
 	font-size: 22px;
+	font-weight: bold;
 }
 .thumb-trending {
 	display: inline-block;
@@ -25,6 +26,7 @@
 .trending-column h3 {
 	font-size: 18px;
 	margin-top: 10px;
+	font-weight: bold;
 }
 .trending-column .list-group-item {
 	padding: 15px;
@@ -44,7 +46,7 @@
 }
 @media (max-width: 1280px) {
 	.blog-post h3 {
-		font-size: 18px;
+		font-size: 22px;
 	}
 }
 @media (max-width: 992px) {
@@ -68,6 +70,7 @@
 		font-size: 22px;
 		margin-top: 10px;
 		min-height: 22px;
+		font-weight: bold;
 	}
 	.news-section small {
 		line-height: 24px;
