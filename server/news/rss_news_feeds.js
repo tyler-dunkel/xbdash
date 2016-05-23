@@ -18,7 +18,7 @@ Meteor.startup(function () {
                         xbdNews.insert(i);
                     } else {
                         var shareCount;
-                        var articleUrl = 'https://beta.xbdash.com/news/' + i.slug;
+                        var articleUrl = 'https://www.xbdash.com/news/' + i.slug;
                         var url = "https://api.facebook.com/method/links.getStats?urls=" + articleUrl + "&format=json";
                         HTTP.get(url, function (err, result) {
                             if (result.statusCode === 200) {
@@ -31,6 +31,6 @@ Meteor.startup(function () {
                 });
             });
         });
-        Meteor.setTimeout(timer, 30 * 60 * 1000) // 20 minutes)
+        Meteor.setTimeout(timer, 30 * 60 * 1000) // 20 minutes
     }());
 });

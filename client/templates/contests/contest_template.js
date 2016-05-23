@@ -43,21 +43,21 @@ Template.contestApp.helpers({
 		} else if (referralToken === 'error') {
 			return 'There was an error generating your share url.';
 		} else {
-			return 'https://beta.xbdash.com/signup?referraltoken=' + referralToken;
+			return 'https://www.xbdash.com/signup?referraltoken=' + referralToken;
 		}
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
-		var getImage = "/img/contests/share-banner.jpg";
+		var getImage = "https://www.xbdash.com/img/contests/share-banner.jpg";
 
 		return {
-			title: 'I Recently Signed Up For XBdash, A Personalized Dashboard For Xbox Gamers!',
+			title: 'I recently signed up for XBdash, a dashboard For Xbox Gamers! #xbox #xboxdash #xbdash',
 			description: 'Manage your Xbox progress and work together with other Xbox® gamers to unlock them.',
 			image: function () {
 				return getImage;
 			},
 			author: 'xboxdash',
-			url: 'https://beta.xbdash.com/signup?referraltoken=' + referralToken
+			url: 'https://www.xbdash.com/signup?referraltoken=' + referralToken
 		}
 	}
 });
