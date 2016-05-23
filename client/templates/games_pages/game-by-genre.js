@@ -1,7 +1,7 @@
 var gameLimit = new ReactiveVar();
 
 Template.gameByGenre.created = function() {
-	gameLimit.set(12);
+	gameLimit.set(18);
 	console.log('created game by genre temp');
 	this.autorun(function() {
 		var options = Router.current().params.query;
@@ -19,13 +19,14 @@ Template.gameByGenre.created = function() {
 	});
 }
 
-
 //ugly hack to force reset of gamelimit when a filtering option is selected
 //would like to remove if implementation fix can be found.
-Meteor.autorun(function() {
-	Session.set('forceReset', 1);
+Meteor.autorun(function(c) {
+	if (!c.firstRun) {
+		Session.set('forceReset', 1);
+		gameLimit.set(18);
+	}
 	Session.get('forceReset');
-	gameLimit.set(12);
 });
 
 Template.gameByGenre.helpers({

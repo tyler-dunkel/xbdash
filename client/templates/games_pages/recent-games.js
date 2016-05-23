@@ -1,7 +1,7 @@
 var gameLimit = new ReactiveVar();
 
 Template.recentGamesApp.created = function() {
-	gameLimit.set(12);
+	gameLimit.set(18);
 	this.autorun(function() {
 		var limit = gameLimit.get();
 		console.log('limit is: ' + limit);
@@ -18,7 +18,7 @@ Template.recentGamesApp.helpers({
 	xbdGame: function () {
 		return xbdGames.findOne({ _id: this.gameId }, {
 			sort: { maxGamerscore: -1 },
-			limit: 12
+			limit: 18
 		});
 	},
 	gamesByReleaseDate: function() {
