@@ -4,6 +4,6 @@
 	"description": "",
 	"scripts": {
 		"start": "meteor --settings settings.json",
-		"deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy beta.xbdash.com --settings './settings-prod.json'"
+		"deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy www.xbdash.com --settings './settings-prod.json'"
 	}
 }
