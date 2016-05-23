@@ -37,6 +37,9 @@ Template.gamesApp.events({
         $('.recent-games-title .view-button').addClass("inline");
         $('.recent-games-title .view-arrow').removeClass("inline");
         $('.recent-games-title .view-arrow').addClass("none");
+    },
+    "click .recent-games": function() {
+    	Router.go('gamesPage', {}, { query: {releaseDate: 'desc'} });
     }
 });
 
