@@ -6195,7 +6195,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	.user-rank-area .m-l {
 		margin-left: 0;
 	}
-	.hidden-xs {
+	.achievements-list .hidden-xs {
 		display: none !important;
 	}
 }
