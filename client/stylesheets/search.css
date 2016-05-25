@@ -16,6 +16,7 @@
 .mobile-search {
 	position: absolute;
 	margin: 16% 0 0;
+	width: 100%;
 }
 /*.home-page .navbar-search {
 	margin-top: 65px;

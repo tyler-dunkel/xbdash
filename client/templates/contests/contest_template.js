@@ -51,8 +51,8 @@ Template.contestApp.helpers({
 		var getImage = "https://www.xbdash.com/img/contests/share-banner.jpg";
 
 		return {
-			title: 'I recently signed up for XBdash, a dashboard For Xbox Gamers! #xbox #xboxdash #xbdash',
-			description: 'Manage your Xbox progress and work together with other Xbox® gamers to unlock them.',
+			title: "I just entered to win a FREE #Xbox Game in the #XBdash Launch #Contest! #gaming #gamer",
+			description: 'Manage your Xbox achievements and work together with other Xbox® gamers to unlock them and complete games together.',
 			image: function () {
 				return getImage;
 			},
