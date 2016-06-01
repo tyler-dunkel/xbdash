@@ -4326,9 +4326,9 @@ ul.signin > li.active {
 	}
 }
 
-@media screen and (min-width: 1400px) and (max-width: 1500px) {
+@media screen and (min-width: 1400px) and (max-width: 1505px) {
 	.text-ellipsis-inline {
-		max-width: 105px;
+		max-width: 92px;
 	}
 	.list-group-item .text-ellipsis-inline {
 		max-width: 104px;

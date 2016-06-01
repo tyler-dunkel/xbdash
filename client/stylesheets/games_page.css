@@ -19,7 +19,7 @@
 .single-games-page .games-page-news .list-group-item .clear small { font-size: 12px; }
 
 @media (max-width: 768px) {
-	.single-games-page .m-t-xxxl { margin-top: 0; padding-top: 15px; }
+	.single-games-page .m-t-xxxl { margin-top: 0; padding-top: 0; }
 	.single-games-page .padder-vv-xbd { padding: 15px 20px; }
 	.single-games-page .padder-vv-ixbd { margin-top: 0; padding: 15px 0 0; }
 }

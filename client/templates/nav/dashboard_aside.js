@@ -1,7 +1,7 @@
 Template.asideHeader.helpers({
     gamerImage: function () {
         var user = Meteor.user();
-        var defaultGamerImage = '/img/xboxdash_whiteicon.png';
+        var defaultGamerImage = '/img/xbdash_whiteicon.png';
         if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
             defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
         }

@@ -107,11 +107,19 @@ Template.singleAchievementSearch.helpers({
 Template.singleNewsSearch.helpers({
 	getNewsImage: function () {
         var image = this.content.match(/<img[^>]*>/);
-        var getImage = '/img/news-default.jpg';
+
         if (image) {
-            getImage = image[0].match(/src="(.+?)"/)[1];
-            getImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_90,h_90/" + encodeURIComponent(getImage);
-        }
+			if (this.source === 'xbdash') {
+				getImage = image[0].match(/src="(.+?)"/)[1];
+				getImage = encodeURIComponent(getImage);
+			} else {
+				getImage = image[0].match(/src="(.+?)"/)[1];
+				getImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_90,h_90/" + encodeURIComponent(getImage);
+			}
+		} else {
+			getImage = '/img/news-default.jpg';
+		}
+		
         return getImage;
 	},
 	updatedDate: function() {
