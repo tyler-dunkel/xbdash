@@ -6485,7 +6485,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	-webkit-box-orient: vertical;
 	position: relative;
 	line-height: 1.4em;
-	height: 3.4em;
+	height: auto;
 }
 .line-clamp-3 {
 	display: -webkit-box;
@@ -6494,7 +6494,15 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 	overflow: hidden;
 	position: relative;
 	line-height: 1.1em;
-	height: 3.3em;
+	height: auto;
+}
+@media (max-width: 767px) {
+	.line-clamp {
+		height: 3.4em;
+	}
+	.line-clamp-3 {
+		height: 3.3em;
+	}
 }
 .filtering-menu .filter-centering {
 	margin: 7px 0px; text-align: center;

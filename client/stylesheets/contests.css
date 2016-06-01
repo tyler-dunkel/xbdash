@@ -1,0 +1,5 @@
+.contest-page .h3 { min-height: 72px; }
+.contest-page .well { padding: 20px; }
+.contest-page .well .h3 { min-height: auto; padding-bottom: 15px; }
+.contest-page .well .contest-rules { font-size: 15px; }
+.contest-page .well .contest-rules li { margin-bottom: 10px; }
