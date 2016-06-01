@@ -699,13 +699,13 @@
 .visible-xl {
   display: none !important;
 }
- 
+
 .visible-xl-block,
 .visible-xl-inline,
 .visible-xl-inline-block {
   display: none !important;
 }
- 
+
 @media (min-width: 1200px) and (max-width: 1399px) {
   .visible-lg {
     display: block !important;
