@@ -22,7 +22,8 @@ var trusted = [
 	'*.youtube.com',
 	'*.ritetag.com',
 	'*.cloudinary.com',
-	'*.xbdash.com'
+	'*.xbdash.com',
+	'*.amazon-adsystem.com'
 ];
 
 _.each(trusted, function(origin) {
