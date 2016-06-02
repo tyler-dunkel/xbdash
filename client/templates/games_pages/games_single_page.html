@@ -98,11 +98,9 @@
 				</div>
 				<div class="col w-lg bg-light lter b-l bg-auto">
 					<div class="wrapper games-page-news">
-						<div class="xbd-right-sidebar-ad">
-							{{> amznSmartAd}}
-						</div>
+						{{> amznSmartAd}}
 						<h2 class="m-t-sm m-b-sm font-thin h3 text-black">Trending News</h2>
-						{{> mostSharedNews limit=6}}
+						{{> mostSharedNews limit=5}}
 					</div>
 				</div>
 			</div>
@@ -194,5 +192,7 @@
 </template>
 
 <template name="amznSmartAd">
-	<div id="amzn-smart-ad"><div id='amzn_assoc_ad_div_adunit0_0'></div></div>
+	<div id="amzn-smart-ad">
+		<div id='amzn_assoc_ad_div_adunit0_0'></div>
+	</div>
 </template>
