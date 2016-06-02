@@ -55,8 +55,8 @@ Template.confirmGtForm.events({
 		Meteor.call('chkGamertag', gamertag, function(error, result) {
 			if (typeof error != 'undefined') {
 				sweetAlert({
-					title: error.reason || 'Internal server error!',
-					text: error.details || 'Server responded with 500.',
+					title: error.reason || 'Oops! There was an error.',
+					text: error.details || 'Please verify your gamertag is spelled correctly and submit again.',
 					type: "error"
 				});
 				return;
