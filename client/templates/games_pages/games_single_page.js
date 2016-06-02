@@ -237,6 +237,22 @@ Template.gamesSinglePageAchievementNew.helpers({
 	}
 });
 
+Template.amznSmartAd.onRendered(function() {
+	$(document).ready(function() {
+		var scriptVars = document.createElement("script");
+		var smartScript = document.createElement("script");
+
+		scriptVars.type = "text/javascript";
+		scriptVars.text = "amzn_assoc_placement = 'adunit0'; amzn_assoc_enable_interest_ads = 'true'; amzn_assoc_tracking_id = 'xbdash-20'; amzn_assoc_ad_mode = 'auto'; amzn_assoc_ad_type = 'smart'; amzn_assoc_marketplace = 'amazon'; amzn_assoc_region = 'US'; amzn_assoc_linkid = '53a282e17ec77b7ea536f5c81dba5683'; amzn_assoc_emphasize_categories = '979455011,468642'; amzn_assoc_fallback_mode = {'type':'search','value':'xbox overwatch'}; amzn_assoc_default_category = 'VideoGames';";
+
+		smartScript.type = "text/javascript";
+		smartScript.src = "//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US";
+
+		$("#amzn-smart-ad").append(scriptVars);
+		$("#amzn-smart-ad").append(smartScript);
+	});
+});
+
 function showMoreVisible() {
 	var threshold, target = $("#hasMoreResults");
 	if (!target.length) return;

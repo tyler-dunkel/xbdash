@@ -99,10 +99,7 @@
 				<div class="col w-lg bg-light lter b-l bg-auto">
 					<div class="wrapper games-page-news">
 						<div class="xbd-right-sidebar-ad">
-							<a href="/contests">
-								<img src="/img/ads/xbdash-ads-300x250.jpg" class="rightside300250" />
-								<img src="/img/ads/xbdash-ads-250x250.jpg" class="rightside250250" />
-							</a>
+							{{> amznSmartAd}}
 						</div>
 						<h2 class="m-t-sm m-b-sm font-thin h3 text-black">Trending News</h2>
 						{{> mostSharedNews limit=6}}
@@ -194,4 +191,8 @@
 		{{/if}}
 		</div>
 	</div>
+</template>
+
+<template name="amznSmartAd">
+	<div id="amzn-smart-ad"></div>
 </template>
