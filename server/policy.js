@@ -23,7 +23,8 @@ var trusted = [
 	'*.ritetag.com',
 	'*.cloudinary.com',
 	'*.xbdash.com',
-	'*.amazon-adsystem.com'
+	'*.amazon-adsystem.com',
+	'*.images-amazon.com'
 ];
 
 _.each(trusted, function(origin) {

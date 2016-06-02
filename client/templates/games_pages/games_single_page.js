@@ -237,10 +237,18 @@ Template.gamesSinglePageAchievementNew.helpers({
 	}
 });
 
+amzn_assoc_placement = "adunit0";amzn_assoc_enable_interest_ads = "true";amzn_assoc_tracking_id = "xbdash-20";amzn_assoc_ad_mode = "auto";amzn_assoc_ad_type = "smart";amzn_assoc_marketplace = "amazon";amzn_assoc_region = "US";amzn_assoc_linkid = "53a282e17ec77b7ea536f5c81dba5683";amzn_assoc_emphasize_categories = "979455011,468642";amzn_assoc_fallback_mode = {"type":"search","value":"xbox overwatch"};amzn_assoc_default_category = "VideoGames";
+
 Template.amznSmartAd.rendered = function() {
 	$(document).ready(function() {
 		var container = document.getElementById("amzn-smart-ad");
-		container.innerHTML = '<script type="text/javascript">amzn_assoc_placement = "adunit0";amzn_assoc_enable_interest_ads = "true";amzn_assoc_tracking_id = "xbdash-20";amzn_assoc_ad_mode = "auto";amzn_assoc_ad_type = "smart";amzn_assoc_marketplace = "amazon";amzn_assoc_region = "US";amzn_assoc_linkid = "53a282e17ec77b7ea536f5c81dba5683";amzn_assoc_emphasize_categories = "979455011,468642";amzn_assoc_fallback_mode = {"type":"search","value":"xbox overwatch"};amzn_assoc_default_category = "VideoGames";</script><script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>';
+		var script1 = document.createElement( 'script' );
+		var script2 = document.createElement( 'script' );
+		script1.type = "text/javascript";
+		script1.innerHTML = 'amzn_assoc_placement = "adunit0";amzn_assoc_enable_interest_ads = "true";amzn_assoc_tracking_id = "xbdash-20";amzn_assoc_ad_mode = "auto";amzn_assoc_ad_type = "smart";amzn_assoc_marketplace = "amazon";amzn_assoc_region = "US";amzn_assoc_linkid = "53a282e17ec77b7ea536f5c81dba5683";amzn_assoc_emphasize_categories = "979455011,468642";amzn_assoc_fallback_mode = {"type":"search","value":"xbox overwatch"};amzn_assoc_default_category = "VideoGames";';
+		container.appendChild(script1);
+		script2.src = "//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US";
+		container.appendChild(script2);	
 	});
 }
 
