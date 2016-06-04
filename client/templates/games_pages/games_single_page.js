@@ -3,6 +3,19 @@ var achievementsLimit = new ReactiveVar();
 Template.gamesSinglePageNew.created = function() {
 	var slug = Router.current().params.slug;
 	this.subscribe('singleGame', slug);
+
+	// var game = xbdGames.findOne({ slug: slug });
+
+	// DocHead.addLink(linkInfo);
+	// DocHead.addMeta(defaultMeta);
+	
+	// if (game && game._id) {
+	// 	var currentGame = gameDetails.findOne({ gameId: game._id });
+	// 	DocHead.setTitle(currentGame.gameName + ' achievement list. ' + currentGame.gameName + 'has ');
+	// } else {
+	// 	DocHead.addLink(linkInfo);
+	// 	DocHead.addMeta(defaultMeta);
+	// }
 }
 
 Template.gamesSinglePageNew.helpers({

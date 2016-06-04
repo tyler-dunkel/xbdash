@@ -28,6 +28,7 @@ chrismbeckett:toastr@2.1.2_1
 chuangbo:cookie@1.1.0
 cmather:handlebars-server@0.2.0
 coffeescript@1.0.11
+cosmos:browserify@0.8.4
 d3js:d3@3.5.8
 dburles:collection-helpers@1.0.4
 dburles:mongo-collection-instances@0.3.4
@@ -42,6 +43,7 @@ ecmascript@0.1.6
 ecmascript-runtime@0.2.6
 ejson@1.0.7
 email@1.0.8
+es5-shim@4.1.14
 facebook@1.2.2
 fastclick@1.0.7
 force-ssl@1.0.6
@@ -69,6 +71,7 @@ jparker:crypto-md5@0.1.1
 jparker:gravatar@0.3.1
 jquery@1.11.4
 jquery-waypoints@1.0.4
+kadira:dochead@1.4.0
 lai:collection-extensions@0.1.4
 launch-screen@1.0.4
 lepozepo:cloudinary@4.1.3

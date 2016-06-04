@@ -13,22 +13,52 @@ Template.confirmGt.created = function() {
 			Router.go('signUp');
 		}
 	});
-};
 
-Template.confirmGt.rendered = function() {
-}
+	DocHead.removeDocHeadAddedTags();
+
+	var linkInfo = [
+		{ rel: "icon", type: "image/x-icon", href: "https://www.xbdash.com/img/favicon.ico" },
+		{ rel: "canonical", href: window.location.href }
+	];
+
+	var confirmGtMeta = [
+		{ name: "description", content: "Confirm your gamertag to start scanning your history." },
+		{ property: "fb:app_id", content: Meteor.settings.public.facebookAppId },
+		{ property: "og:description", content: "Confirm your gamertag to start scanning your history." },
+		{ property: "og:image", content: "https://www.xbdash.com/img/share-default.jpg" },
+		{ property: "og:locale", content: "en_US" },
+		{ property: "og:site_name", content: "XBdash" },
+		{ property: "og:title", content: "Confirm Your Gamertag - XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ property: "og:type", content: "website" },
+		{ property: "og:url", content: window.location.href },
+		{ name: "twitter:card", content: "summary_large_image" },
+		{ name: "twitter:description", content: "Confirm your gamertag to start scanning your history." },
+		{ name: "twitter:title", content: "Confirm Your Gamertag - XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ name: "twitter:image", content: "https://www.xbdash.com/img/share-default.jpg" }
+	];
+
+	DocHead.setTitle("Confirm Your Gamertag - XBdash - The Personalized Dashboard for Xbox® Gamers");
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
+	}
+
+	for(var i = 0; i < confirmGtMeta.length; i++) {
+		DocHead.addMeta(confirmGtMeta[i]);;
+	}
+};
 
 Template.confirmGtForm.events({
 	'click #logout': function(event) {
-        Meteor.logout(function(error){
-            if (error) {
-                throw new Meteor.Error("Logout failed");
-            } else {
-            	Router.go('signUp');
+		Meteor.logout(function(error){
+			if (error) {
+				throw new Meteor.Error("Logout failed");
+			} else {
+				Router.go('signUp');
 				return;
-            }
-        })
-    },
+			}
+		})
+	},
 	'submit #gamertagform': function(e) {
 		subMana.clear();
 		e.preventDefault();
@@ -52,28 +82,42 @@ Template.confirmGtForm.events({
 			});
 		}
 
-		Meteor.call('chkGamertag', gamertag, function(error, result) {
-			if (typeof error != 'undefined') {
-				sweetAlert({
-					title: error.reason || 'Oops! There was an error.',
-					text: error.details || 'Please verify your gamertag is spelled correctly and submit again.',
-					type: "error"
-				});
-				return;
-			}
-			if (result.content) {
-				Router.go('home');
-				Meteor.call('retrieveData', function(error, result) {
-					if (result) {
+		sweetAlert({
+			html: "<span style='font-size: 1.5em;'>Are you sure you spelled your gamertag <strong>" + gamertag + "</strong> correctly?</span>",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#138013",
+			cancelButtonColor: "#dd3333",
+			confirmButtonText: "Yes, let's do this!",
+			cancelButtonText: "No, it's misspelled.",
+			closeOnConfirm: true,
+			closeOnCancel: true
+		}).then(function(isConfirm) {
+			if (isConfirm) {
+				Meteor.call('chkGamertag', gamertag, function(error, result) {
+					if (typeof error != 'undefined') {
 						sweetAlert({
-							title: 'Staying Engaged on XBdash',
-							html: Blaze.toHTML(Template.welcomeOverlay),
-							customClass: 'welcome-overlay',
-							allowOutsideClick: false,
-							allowEscapeKey: false,
-							confirmButtonText: 'Let\'s Go!',
-							confirmButtonColor: '#138013',
-							width: 1000
+							title: error.reason || 'Oops! There was an error.',
+							text: error.details || 'Please verify your gamertag is spelled correctly and submit again.',
+							type: "error"
+						});
+						return;
+					}
+					if (result.content) {
+						Meteor.call('retrieveData', function(error, result) {
+							if (result) {
+								Router.go('home');
+								sweetAlert({
+									title: 'Staying Engaged on XBdash',
+									html: Blaze.toHTML(Template.welcomeOverlay),
+									customClass: 'welcome-overlay',
+									allowOutsideClick: false,
+									allowEscapeKey: false,
+									confirmButtonText: 'Let\'s Go!',
+									confirmButtonColor: '#138013',
+									width: 1000
+								});
+							}
 						});
 					}
 				});
