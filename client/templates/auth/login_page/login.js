@@ -2,24 +2,27 @@ Template.logIn.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
 	var linkInfo = [
-		{ rel: "icon", type: "image/x-icon", href: "https://www.xbdash.com/img/favicon.ico" },
-		{ rel: "canonical", href: window.location.href }
+		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": window.location.href }
 	];
 
 	var logInMeta = [
-		{ name: "description", content: "Log in to your account." },
-		{ property: "fb:app_id", content: Meteor.settings.public.facebookAppId },
-		{ property: "og:description", content: "Log in to your account." },
-		{ property: "og:image", content: "https://www.xbdash.com/img/share-default.jpg" },
-		{ property: "og:locale", content: "en_US" },
-		{ property: "og:site_name", content: "XBdash" },
-		{ property: "og:title", content: "Log In - XBdash - The Personalized Dashboard for Xbox® Gamers" },
-		{ property: "og:type", content: "website" },
-		{ property: "og:url", content: window.location.href },
-		{ name: "twitter:card", content: "summary_large_image" },
-		{ name: "twitter:description", content: "Log in to your account." },
-		{ name: "twitter:title", content: "Log In - XBdash - The Personalized Dashboard for Xbox® Gamers" },
-		{ name: "twitter:image", content: "https://www.xbdash.com/img/share-default.jpg" }
+		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+		{ "charset": "utf-8" },
+		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "description", "content": "Log in to your account." },
+		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+		{ "property": "og:description", "content": "Log in to your account." },
+		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
+		{ "property": "og:locale", "content": "en_US" },
+		{ "property": "og:site_name", "content": "XBdash" },
+		{ "property": "og:title", "content": "Log In - XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:type", "content": "website" },
+		{ "property": "og:url", "content": window.location.href },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:description", "content": "Log in to your account." },
+		{ "name": "twitter:title", "content": "Log In - XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
 	];
 
 	DocHead.setTitle("Log In - XBdash - The Personalized Dashboard for Xbox® Gamers");

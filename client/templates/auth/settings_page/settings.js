@@ -1,3 +1,41 @@
+Template.settingsApp.created = function() {
+	DocHead.removeDocHeadAddedTags();
+
+	var linkInfo = [
+		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": window.location.href }
+	];
+
+	var settingsAppMeta = [
+		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+		{ "charset": "utf-8" },
+		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "description", "content": "Change your settings and save." },
+		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+		{ "property": "og:description", "content": "Change your settings and save." },
+		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
+		{ "property": "og:locale", "content": "en_US" },
+		{ "property": "og:site_name", "content": "XBdash" },
+		{ "property": "og:title", "content": "Your Settings - XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:type", "content": "website" },
+		{ "property": "og:url", "content": window.location.href },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:description", "content": "Change your settings and save." },
+		{ "name": "twitter:title", "content": "Your Settings - XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
+	];
+
+	DocHead.setTitle("Your Settings - XBdash - The Personalized Dashboard for Xbox® Gamers");
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
+	}
+
+	for(var i = 0; i < settingsAppMeta.length; i++) {
+		DocHead.addMeta(settingsAppMeta[i]);;
+	}
+}
+
 Template.settingsApp.events({
 	'submit #change-password-form': function(e) {
 		e.preventDefault();

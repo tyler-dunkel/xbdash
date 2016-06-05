@@ -1,69 +1,9 @@
-Meteor.startup(function() {
-	ValidateForm.config({
-		debug: false,
-		rootLayout: 'layout'
-	});
-
-	toastr.options = {
-		"closeButton": false,
-		"debug": false,
-		"newestOnTop": true,
-		"progressBar": true,
-		"positionClass": "toast-top-right",
-		"preventDuplicates": false,
-		"onclick": null,
-		"showDuration": "300",
-		"hideDuration": "1000",
-		"timeOut": "6000",
-		"extendedTimeOut": "1000",
-		"showEasing": "swing",
-		"hideEasing": "linear",
-		"showMethod": "fadeIn",
-		"hideMethod": "fadeOut"
-	};
-
-	ShareIt.configure({
-		sites: {
-			'facebook': {
-				'appId': Meteor.settings.public.facebookAppId
-			},
-			'twitter': {},
-			'pinterest': {},
-			'googleplus': {}
-		},
-		classes: "large btn",
-		iconOnly: false,
-		applyColors: true,
-		faSize: 'fa-lg',
-		faClass: ''
-	});
-
-	Comments.config({
-		publishUserFields: { 
-			"gamercard.gamertag": 1,
-			"gamercard.gamerscore": 1,
-			"gamercard.gamerpicLargeSslImagePath": 1
-		},
-		replies: true,
-		anonymous: false
-	});
-
-	Comments.ui.config({
-		limit: 5,
-		loadMoreCount: 10,
-		markdown: false,
-		template: 'bootstrap'
-	});
-
-	$.cloudinary.config({
-		cloud_name: 'xbdash'
-	});
-
+Template.dashboard.rendered = function() {
 	DocHead.removeDocHeadAddedTags();
 
 	var linkInfo = [
-		{ rel: "icon", type: "image/x-icon", href: "https://www.xbdash.com/img/favicon.ico" },
-		{ rel: "canonical", href: window.location.href }
+		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": window.location.href }
 	];
 
 	var dashboardMeta = [
@@ -94,4 +34,17 @@ Meteor.startup(function() {
 	for(var i = 0; i < dashboardMeta.length; i++) {
 		DocHead.addMeta(dashboardMeta[i]);;
 	}
+}
+
+Template.dashboard.rendered = function() {
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+};
+
+Template.dashboard.helpers({
+    chkBuilding: function() {
+        var user = Meteor.user();
+        if (user.gamertagScanned.status === 'building') return true;
+    }
 });
