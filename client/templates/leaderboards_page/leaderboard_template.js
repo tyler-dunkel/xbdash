@@ -22,9 +22,9 @@ Template.leaderboardTemplate.created = function() {
 	];
 
 	var leaderboardsMeta = [
-        { "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
-        { "charset": "utf-8" },
-        { "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+		{ "charset": "utf-8" },
+		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
 		{ "name": "description", "content": "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games." },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
 		{ "property": "og:description", "content": "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games." },
@@ -40,7 +40,7 @@ Template.leaderboardTemplate.created = function() {
 		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
 	];
 
-	DocHead.setTitle("See Today's Top Leaders - XBdash");
+	DocHead.setTitle("See Today's Top Leaders | XBdash - The Personalized Dashboard for Xbox® Gamers");
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;

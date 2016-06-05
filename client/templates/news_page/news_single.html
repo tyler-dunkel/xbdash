@@ -29,7 +29,14 @@
 							{{{content}}}
 							<div class="m-t-md m-b-md share-bar">
 								<h4>Share This Article</h4>
-								{{> shareit newsData}}
+								<div class="share-buttons">
+									<a target="_blank" class="large btn shareit-facebook-colors fb-share" href="https://www.facebook.com/dialog/feed?app_id=109259765831650&amp;link={{getUrl}}&amp;name={{title}}&amp;description={{getShortDescription}}&amp;redirect_uri={{getUrl}}&amp;picture={{getShareImage}}">
+										<i class="fa fa-facebook fa-lg"></i> Share on Facebook
+									</a>
+									<a class="large btn shareit-twitter-colors tw-share" href="https://twitter.com/intent/tweet?url={{getUrl}}&amp;text={{title}}&amp;via=xboxdash">
+										<i class="fa fa-twitter fa-lg"></i> Share on Twitter
+									</a>
+								</div>
 							</div>
 							<div class="comment-section">
 								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}

@@ -1,3 +1,74 @@
+Template.newsSinglePage.created = function() {
+	if (Template.instance().subscriptionsReady()) {
+		DocHead.removeDocHeadAddedTags();
+
+		var slug = Router.current().params.slug;
+		var article = xbdNews.findOne({ slug: slug });
+
+		var articleDescription = $(article.content).text();
+		articleDescription = articleDescription.substr(0,50);
+
+		var image = article.content.match(/<img[^>]*>/);
+		
+		if (image) {
+			if (article.source === 'xbdash') {
+				getImage = image[0].match(/src="(.+?)"/)[1];
+			} else {
+				getImage = image[0].match(/src="(.+?)"/)[1];
+				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
+			}
+		} else {
+			getImage = '/img/news-default.jpg';
+		}
+
+		var articleUrl = window.location.href + '/' + slug;
+
+		var newsSinglePageMeta = [
+			{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+			{ "charset": "utf-8" },
+			{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+			{ "name": "description", "content": articleDescription },
+			{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+			{ "property": "og:description", "content": articleDescription },
+			{ "property": "og:image", "content": getImage },
+			{ "property": "og:locale", "content": "en_US" },
+			{ "property": "og:site_name", "content": "XBdash" },
+			{ "property": "og:title", "content": article.title + " | XBdash" },
+			{ "property": "og:type", "content": "article" },
+			{ "property": "og:url", "content": articleUrl },
+			{ "property": "og:updated_time", "content": article.updated },
+			{ "name": "twitter:card", "content": "summary_large_image" },
+			{ "name": "twitter:url", "content": articleUrl },
+			{ "name": "twitter:title", "content": article.title + " | XBdash" },
+			{ "name": "twitter:description", "content": articleDescription },
+			{ "name": "twitter:image:src", "content": getImage },
+			{ "name": "twitter:site", "content": "@xboxdash" },
+			{ "name": "article:modified_time", "content": article.updated },
+			{ "name": "article:published_time", "content": article.published },
+			{ "name": "article:author", "content": article.author }
+		];
+
+		var linkInfo = [
+			{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+			{ "rel": "canonical", "href": articleUrl },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+		];
+
+		DocHead.setTitle(article.title + " | XBdash");
+
+		for(var i = 0; i < newsSinglePageMeta.length; i++) {
+			DocHead.addMeta(newsSinglePageMeta[i]);;
+		}
+
+		for(var i = 0; i < linkInfo.length; i++) {
+			DocHead.addLink(linkInfo[i]);;
+		}
+	}
+}
+
 Template.newsSinglePage.helpers({
 	article: function() {
 		var slug = Router.current().params.slug;
@@ -18,13 +89,23 @@ Template.newsSinglePage.helpers({
 	updated: function () {
 		return moment(this.updated).format('MMMM Do YYYY, h:mm a');
 	},
-	newsData: function () {
+	getUrl: function () {
+		var slug = Router.current().params.slug;
+		return window.location.href + '/' + slug;
+	},
+	getShortDescription: function () {
+		var slug = Router.current().params.slug;
+		var article = xbdNews.findOne({ slug: slug });
+		var articleDescription = $(this.content).text();
+		articleDescription = articleDescription.substr(0,50);
+	},
+	getShareImage: function () {
 		var image = this.content.match(/<img[^>]*>/);
-		
+
 		if (image) {
 			if (this.source === 'xbdash') {
 				getImage = image[0].match(/src="(.+?)"/)[1];
-				getImage = encodeURIComponent(getImage);
+				getImage = 'https://www.xbdash.com' + encodeURIComponent(getImage);
 			} else {
 				getImage = image[0].match(/src="(.+?)"/)[1];
 				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
@@ -33,16 +114,7 @@ Template.newsSinglePage.helpers({
 			getImage = '/img/news-default.jpg';
 		}
 
-		var getSource = this.source.toUpperCase();
-		
-		return {
-			title: this.title,
-			description: 'Source: ' + getSource + ' | Read the latest news on XBdash.com.',
-			image: function () {
-				return getImage;
-			},
-			author: 'xboxdash'
-		}
+		return getImage;
 	}
 });
 

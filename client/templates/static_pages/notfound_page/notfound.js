@@ -16,12 +16,12 @@ Template.notFound.created = function() {
 		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "404 - Page Not Found - XBdash" },
+		{ "property": "og:title", "content": "404 - Page Not Found | XBdash" },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href },
+		{ "property": "og:url", "content": window.location.href }
 	];
 
-	DocHead.setTitle('404 - Page Not Found - XBdash');
+	DocHead.setTitle('404 - Page Not Found | XBdash');
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;

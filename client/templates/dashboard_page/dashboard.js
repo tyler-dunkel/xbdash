@@ -16,16 +16,16 @@ Template.dashboard.rendered = function() {
 		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Welcome to Your Dashboard - XBdash" },
+		{ "property": "og:title", "content": "Welcome to Your Dashboard | XBdash - The Personalized Dashboard for Xbox® Gamers" },
 		{ "property": "og:type", "content": "website" },
 		{ "property": "og:url", "content": window.location.href },
 		{ "name": "twitter:card", "content": "summary_large_image" },
 		{ "name": "twitter:description", "content": "Review your achievements per day, gamerscore per day, and your game genre distribution." },
-		{ "name": "twitter:title", "content": "Welcome to Your Dashboard - XBdash" },
+		{ "name": "twitter:title", "content": "Welcome to Your Dashboard | XBdash - The Personalized Dashboard for Xbox® Gamers" },
 		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
 	];
 
-	DocHead.setTitle("Welcome to Your Dashboard - XBdash");
+	DocHead.setTitle("Welcome to Your Dashboard | XBdash - The Personalized Dashboard for Xbox® Gamers");
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
@@ -37,14 +37,14 @@ Template.dashboard.rendered = function() {
 }
 
 Template.dashboard.rendered = function() {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    });
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	});
 };
 
 Template.dashboard.helpers({
-    chkBuilding: function() {
-        var user = Meteor.user();
-        if (user.gamertagScanned.status === 'building') return true;
-    }
+	chkBuilding: function() {
+		var user = Meteor.user();
+		if (user.gamertagScanned.status === 'building') return true;
+	}
 });

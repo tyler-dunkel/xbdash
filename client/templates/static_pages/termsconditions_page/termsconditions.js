@@ -16,16 +16,12 @@ Template.termsConditions.created = function() {
 		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Terms & Conditions - XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:title", "content": "Terms & Conditions | XBdash - The Personalized Dashboard for Xbox® Gamers" },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href },
-		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:description", "content": "Review our terms and conditions." },
-		{ "name": "twitter:title", "content": "Terms & Conditions - XBdash - The Personalized Dashboard for Xbox® Gamers" },
-		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
+		{ "property": "og:url", "content": window.location.href }
 	];
 
-	DocHead.setTitle("Terms & Conditions - XBdash - The Personalized Dashboard for Xbox® Gamers");
+	DocHead.setTitle("Terms & Conditions | XBdash - The Personalized Dashboard for Xbox® Gamers");
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;

@@ -32,7 +32,14 @@
 		                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
 			                                <div class="share-bar m-t-lg m-b-sm text-center">
 			                                    <h4 class="text-black h4 m-b-sm">Share Your Completed Game</h4>
-			                                    {{> shareit gameData}}
+			                                    <div class="share-buttons">
+													<a target="_blank" class="large btn shareit-facebook-colors fb-share" href="https://www.facebook.com/dialog/feed?app_id=109259765831650&amp;link={{getUrl}}&amp;name={{getTitle}}&amp;description={{getShortDescription}}&amp;redirect_uri={{getUrl}}&amp;picture={{getShareImage}}">
+														<i class="fa fa-facebook fa-lg"></i> Share on Facebook
+													</a>
+													<a class="large btn shareit-twitter-colors tw-share" href="https://twitter.com/intent/tweet?url={{getUrl}}&amp;text={{title}}&amp;via=xboxdash">
+														<i class="fa fa-twitter fa-lg"></i> Share on Twitter
+													</a>
+												</div>
 			                                </div>
 		                                </div>
                                         {{/if}}
