@@ -4,24 +4,22 @@ Template.newsSinglePage.created = function() {
 
 		var slug = Router.current().params.slug;
 		var article = xbdNews.findOne({ slug: slug });
-
 		var articleDescription = $(article.content).text();
-		articleDescription = articleDescription.substr(0,50);
-
+		articleDescription = articleDescription.substr(0,70) + '...';
 		var image = article.content.match(/<img[^>]*>/);
+		var articleUrl = window.location.href + '/' + slug;
 		
 		if (image) {
 			if (article.source === 'xbdash') {
 				getImage = image[0].match(/src="(.+?)"/)[1];
+				getImage = 'https://www.xbdash.com' + getImage;
 			} else {
 				getImage = image[0].match(/src="(.+?)"/)[1];
 				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
 			}
 		} else {
-			getImage = '/img/news-default.jpg';
+			getImage = 'https://www.xbdash.com/img/news-default.jpg';
 		}
-
-		var articleUrl = window.location.href + '/' + slug;
 
 		var newsSinglePageMeta = [
 			{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
@@ -36,15 +34,14 @@ Template.newsSinglePage.created = function() {
 			{ "property": "og:title", "content": article.title + " | XBdash" },
 			{ "property": "og:type", "content": "article" },
 			{ "property": "og:url", "content": articleUrl },
-			{ "property": "og:updated_time", "content": article.updated },
+			{ "property": "og:updated_time", "content": article.updated.toISOString() },
 			{ "name": "twitter:card", "content": "summary_large_image" },
 			{ "name": "twitter:url", "content": articleUrl },
 			{ "name": "twitter:title", "content": article.title + " | XBdash" },
 			{ "name": "twitter:description", "content": articleDescription },
 			{ "name": "twitter:image:src", "content": getImage },
 			{ "name": "twitter:site", "content": "@xboxdash" },
-			{ "name": "article:modified_time", "content": article.updated },
-			{ "name": "article:published_time", "content": article.published },
+			{ "name": "article:published_time", "content": article.updated.toISOString() },
 			{ "name": "article:author", "content": article.author }
 		];
 
@@ -94,10 +91,8 @@ Template.newsSinglePage.helpers({
 		return window.location.href + '/' + slug;
 	},
 	getShortDescription: function () {
-		var slug = Router.current().params.slug;
-		var article = xbdNews.findOne({ slug: slug });
 		var articleDescription = $(this.content).text();
-		articleDescription = articleDescription.substr(0,50);
+		return articleDescription.substr(0,70) + '...';
 	},
 	getShareImage: function () {
 		var image = this.content.match(/<img[^>]*>/);
