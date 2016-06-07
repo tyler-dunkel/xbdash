@@ -54,9 +54,9 @@ Template.newsSinglePage.rendered = function() {
 Template.articleDocHead.created = function() {
 	var slug = Router.current().params.slug;
 	var articleDescription = $(this.data.content).text();
-	articleDescription = articleDescription.substr(0,70) + '...';
+	articleDescription = articleDescription.substr(0,152) + '...';
 	var image = this.data.content.match(/<img[^>]*>/);
-	var articleUrl = window.location.href + '/' + slug;
+	var articleUrl = window.location.href;
 	
 	if (image) {
 		if (this.data.source === 'xbdash') {
@@ -70,7 +70,7 @@ Template.articleDocHead.created = function() {
 		getImage = 'https://www.xbdash.com/img/news-default.jpg';
 	}
 
-	var newsSinglePageMeta = [
+	var articleDocHeadMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
@@ -105,8 +105,8 @@ Template.articleDocHead.created = function() {
 
 	DocHead.setTitle(this.data.title + " | XBdash");
 
-	for(var i = 0; i < newsSinglePageMeta.length; i++) {
-		DocHead.addMeta(newsSinglePageMeta[i]);;
+	for(var i = 0; i < articleDocHeadMeta.length; i++) {
+		DocHead.addMeta(articleDocHeadMeta[i]);;
 	}
 
 	for(var i = 0; i < linkInfo.length; i++) {
@@ -117,7 +117,7 @@ Template.articleDocHead.created = function() {
 Template.articleShareButtons.helpers({
 	getUrl: function () {
 		var slug = Router.current().params.slug;
-		return window.location.href + '/' + slug;
+		return window.location.href;
 	},
 	getShortDescription: function () {
 		var articleDescription = $(this.content).text();
@@ -135,7 +135,7 @@ Template.articleShareButtons.helpers({
 				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
 			}
 		} else {
-			getImage = '/img/news-default.jpg';
+			getImage = 'https://www.xbdash.com/img/news-default.jpg';
 		}
 
 		return getImage;
