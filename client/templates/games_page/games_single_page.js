@@ -1,86 +1,20 @@
 var achievementsLimit = new ReactiveVar();
 
 Template.gamesSinglePageNew.created = function() {
-	var slug = Router.current().params.slug;
-	this.subscribe('singleGame', slug);
-
 	DocHead.removeDocHeadAddedTags();
 
-	if (Template.instance().subscriptionsReady()) {
-		var slug = Router.current().params.slug;
-		var game = xbdGames.findOne({ slug: slug });
-		var singleGame = gameDetails.findOne({ gameId: game._id });
-		var gameDescription = singleGame.gameDescription;
-		var getImage = "/img/game-default.jpg";
+	var self = this;
+	var slug = Router.current().params.slug;
 
-		gameDescription = gameDescription.substr(0,50);
-
-		if (game.platform === 'Xenon') {
-			singleGame.gameArt.forEach(function(art) {
-				if (art.Purpose === 'BoxArt' && art.Width === 219) {
-					getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
-				}
-			});
-		}
-		if (game.platform === 'Durango') {
-			singleGame.gameArt.forEach(function(art) {
-				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-					getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
-				}
-			});
-		}
-
-		var newsSinglePageMeta = [
-			{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
-			{ "charset": "utf-8" },
-			{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-			{ "name": "description", "content": gameDescription },
-			{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-			{ "property": "og:description", "content": gameDescription },
-			{ "property": "og:image", "content": getImage },
-			{ "property": "og:locale", "content": "en_US" },
-			{ "property": "og:site_name", "content": "XBdash" },
-			{ "property": "og:title", "content": singleGame.gameName + " | XBdash" },
-			{ "property": "og:type", "content": "website" },
-			{ "property": "og:url", "content": window.location.href },
-			{ "property": "og:updated_time", "content": article.updated },
-			{ "name": "twitter:card", "content": "summary_large_image" },
-			{ "name": "twitter:url", "content": window.location.href },
-			{ "name": "twitter:title", "content": singleGame.gameName + " | XBdash" },
-			{ "name": "twitter:description", "content": gameDescription },
-			{ "name": "twitter:image:src", "content": getImage },
-			{ "name": "twitter:site", "content": "@xboxdash" }
-		];
-
-		var linkInfo = [
-			{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-			{ "rel": "canonical", "href": window.location.href },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
-		];
-
-		DocHead.setTitle(singleGame.gameName + ' Achievements List | XBdash');
-
-		for(var i = 0; i < newsSinglePageMeta.length; i++) {
-			DocHead.addMeta(newsSinglePageMeta[i]);;
-		}
-
-		for(var i = 0; i < linkInfo.length; i++) {
-			DocHead.addLink(linkInfo[i]);;
-		}
-	}
+	this.subscribe('singleGame', slug);
 }
 
 Template.gamesSinglePageNew.helpers({
 	game: function () {
-		if (Template.instance().subscriptionsReady()) {
-			var slug = Router.current().params.slug;
-			var game = xbdGames.findOne({ slug: slug });
-			if (game && game._id) {
-				return gameDetails.findOne({ gameId: game._id });
-			}
+		var slug = Router.current().params.slug;
+		var game = xbdGames.findOne({ slug: slug });
+		if (game && game._id) {
+			return gameDetails.findOne({ gameId: game._id });
 		}
 	},
 	chkCompleted: function () {
@@ -174,6 +108,72 @@ Template.gamesSinglePageNew.helpers({
 		return 'Xbox';
 	},
 });
+
+Template.gameDocHead.created = function() {
+	var slug = Router.current().params.slug;
+	var game = xbdGames.findOne({ slug: slug });
+	var singleGame = gameDetails.findOne({ gameId: game._id });
+	var gameDescription = singleGame.gameDescription;
+	gameDescription = gameDescription.substr(0,70) + '...';
+	var getImage = "/img/game-default.jpg";
+	var gameUrl = window.location.href + '/' + slug;
+	var gameMaxAchievements = xbdAchievements.find({ gameId: game._id }).count()
+
+	if (game.platform === 'Xenon') {
+		singleGame.gameArt.forEach(function(art) {
+			if (art.Purpose === 'BoxArt' && art.Width === 219) {
+				getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+			}
+		});
+	}
+	if (game.platform === 'Durango') {
+		singleGame.gameArt.forEach(function(art) {
+			if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+				getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+			}
+		});
+	}
+
+	var newsSinglePageMeta = [
+		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+		{ "charset": "utf-8" },
+		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "description", "content": gameDescription },
+		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+		{ "property": "og:description", "content": gameDescription },
+		{ "property": "og:image", "content": getImage },
+		{ "property": "og:locale", "content": "en_US" },
+		{ "property": "og:site_name", "content": "XBdash" },
+		{ "property": "og:title", "content": game.name + " Achievements List. " + game.name + " has " + gameMaxAchievements + " Achievements worth " + game.maxGamerscore + " GamerScore. | XBdash" },
+		{ "property": "og:type", "content": "website" },
+		{ "property": "og:url", "content": gameUrl },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:url", "content": gameUrl },
+		{ "name": "twitter:title", "content": game.name + " Achievements List. " + game.name + " has " + gameMaxAchievements + " Achievements worth " + game.maxGamerscore + " GamerScore. | XBdash" },
+		{ "name": "twitter:description", "content": gameDescription },
+		{ "name": "twitter:image:src", "content": getImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
+	];
+
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": gameUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
+
+	DocHead.setTitle(game.name + " Achievements List. " + game.name + " has " + gameMaxAchievements + " Achievements worth " + game.maxGamerscore + " GamerScore. | XBdash");
+
+	for(var i = 0; i < newsSinglePageMeta.length; i++) {
+		DocHead.addMeta(newsSinglePageMeta[i]);;
+	}
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
+	}
+}
 
 Template.userGamerscoreInfoNew.created = function() {
 	var slug = Router.current().params.slug;
@@ -322,6 +322,42 @@ Template.amznSmartAd.rendered = function() {
 		container.appendChild(script2);	
 	});
 }
+
+Template.gameShareButtons.helpers({
+	getUrl: function () {
+		var slug = Router.current().params.slug;
+		return window.location.href + '/' + slug;
+	},
+	getTitle: function() {
+		return 'I completed ' + this.gameName + '! #xbox #xboxdash #xbdash';
+	},
+	getShortDescription: function () {
+		var singleGame = gameDetails.findOne({ gameId: this.gameId });
+		var gameDescription = singleGame.gameDescription;
+		return gameDescription.substr(0,70) + '...';
+	},
+	getShareImage: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		var getImage = "/img/game-default.jpg";
+
+		if (game.platform === 'Xenon') {
+			this.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BoxArt' && art.Width === 219) {
+					getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+				}
+			});
+		}
+		if (game.platform === 'Durango') {
+			this.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+					getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+				}
+			});
+		}
+
+		return getImage;
+	}
+});
 
 function showMoreVisible() {
 	var threshold, target = $("#hasMoreResults");
