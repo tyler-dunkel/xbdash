@@ -1,38 +1,49 @@
 Template.gamesPage.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var linkInfo = [
-		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": window.location.href }
-	];
+	var gamesPageDescription = "Find award-winning video games, new franchises, and your favorite blockbusters.";
+	var gamesPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var gamesPageTitle = "Games | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var gamesPageUrl = window.location.href;
 
 	var gamesPageMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": "Find award-winning video games, new franchises, and your favorite blockbusters." },
+		{ "name": "description", "content": gamesPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": "Find award-winning video games, new franchises, and your favorite blockbusters." },
-		{ "property": "og:image", "content": "https://www.xbdash.com/img/contests/contest-banner.jpg" },
+		{ "property": "og:description", "content": gamesPageDescription },
+		{ "property": "og:image", "content": gamesPageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Games | XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:title", "content": gamesPageTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href },
+		{ "property": "og:url", "content": gamesPageUrl },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:description", "content": "Find award-winning video games, new franchises, and your favorite blockbusters." },
-		{ "name": "twitter:title", "content": "Games | XBdash - The Personalized Dashboard for Xbox® Gamers" },
-		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/contests/contest-banner.jpg" }
+		{ "name": "twitter:url", "content": gamesPageUrl },
+		{ "name": "twitter:title", "content": gamesPageTitle },
+		{ "name": "twitter:description", "content": gamesPageDescription },
+		{ "name": "twitter:image:src", "content": gamesPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
-	DocHead.setTitle("Games | XBdash - The Personalized Dashboard for Xbox® Gamers");
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": gamesPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
 
-	for(var i = 0; i < linkInfo.length; i++) {
-		DocHead.addLink(linkInfo[i]);;
-	}
+	DocHead.setTitle(gamesPageTitle);
 
 	for(var i = 0; i < gamesPageMeta.length; i++) {
 		DocHead.addMeta(gamesPageMeta[i]);;
+	}
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
 	}
 }
 

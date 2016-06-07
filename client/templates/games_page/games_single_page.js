@@ -30,7 +30,7 @@ Template.gamesSinglePageNew.helpers({
 	},
 	gamesImage: function () {
 		var game = xbdGames.findOne({ _id: this.gameId });
-		var image = "/img/game-default.jpg";
+		var image = "https://www.xbdash.com/img/game-default.jpg";
 
 		if (game.platform === 'Xenon') {
 			this.gameArt.forEach(function(art) {
@@ -80,23 +80,25 @@ Template.gameDocHead.created = function() {
 	var game = xbdGames.findOne({ slug: slug });
 	var gameDescription = this.data.gameDescription;
 	gameDescription = game.name + " has a total of " + game.maxGamerscore + " GamerScore. " + gameDescription.substr(0,62) + '...';
-	var getImage = "/img/game-default.jpg";
-	var gameUrl = window.location.href;
+	var gameImage = "https://www.xbdash.com/img/game-default.jpg";
 
 	if (game.platform === 'Xenon') {
 		this.data.gameArt.forEach(function(art) {
 			if (art.Purpose === 'BoxArt' && art.Width === 219) {
-				getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+				gameImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
 			}
 		});
 	}
 	if (game.platform === 'Durango') {
 		this.data.gameArt.forEach(function(art) {
 			if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-				getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+				gameImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
 			}
 		});
 	}
+
+	var gameTitle = game.name + " Game Details & Achievements | XBdash";
+	var gameUrl = window.location.href;
 
 	var gameDocHeadMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
@@ -105,17 +107,17 @@ Template.gameDocHead.created = function() {
 		{ "name": "description", "content": gameDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
 		{ "property": "og:description", "content": gameDescription },
-		{ "property": "og:image", "content": getImage },
+		{ "property": "og:image", "content": gameImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": game.name + " Achievements | XBdash" },
+		{ "property": "og:title", "content": gameTitle },
 		{ "property": "og:type", "content": "website" },
 		{ "property": "og:url", "content": gameUrl },
 		{ "name": "twitter:card", "content": "summary_large_image" },
 		{ "name": "twitter:url", "content": gameUrl },
-		{ "name": "twitter:title", "content": game.name + " Achievements | XBdash" },
+		{ "name": "twitter:title", "content": gameTitle },
 		{ "name": "twitter:description", "content": gameDescription },
-		{ "name": "twitter:image:src", "content": getImage },
+		{ "name": "twitter:image:src", "content": gameImage },
 		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
@@ -128,9 +130,7 @@ Template.gameDocHead.created = function() {
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
 	];
 
-	DocHead.setTitle(game.name + " Achievements | XBdash");
-
-	//" + game.name + " has a total of " + game.maxGamerscore + " GamerScore.
+	DocHead.setTitle(gameTitle);
 
 	for(var i = 0; i < gameDocHeadMeta.length; i++) {
 		DocHead.addMeta(gameDocHeadMeta[i]);;
@@ -297,11 +297,11 @@ Template.gameShareButtons.helpers({
 	getShortDescription: function () {
 		var singleGame = gameDetails.findOne({ gameId: this.gameId });
 		var gameDescription = singleGame.gameDescription;
-		return gameDescription.substr(0,70) + '...';
+		return gameDescription.substr(0,62) + '...';
 	},
 	getShareImage: function () {
 		var game = xbdGames.findOne({ _id: this.gameId });
-		var getImage = "/img/game-default.jpg";
+		var getImage = "https://www.xbdash.com/img/game-default.jpg";
 
 		if (game.platform === 'Xenon') {
 			this.gameArt.forEach(function(art) {

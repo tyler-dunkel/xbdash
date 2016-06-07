@@ -57,6 +57,7 @@ Template.articleDocHead.created = function() {
 	articleDescription = articleDescription.substr(0,152) + '...';
 	var image = this.data.content.match(/<img[^>]*>/);
 	var articleUrl = window.location.href;
+	var articleTitle = this.data.title + " | XBdash";
 	
 	if (image) {
 		if (this.data.source === 'xbdash') {
@@ -80,13 +81,13 @@ Template.articleDocHead.created = function() {
 		{ "property": "og:image", "content": getImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": this.data.title + " | XBdash" },
+		{ "property": "og:title", "content": articleTitle },
 		{ "property": "og:type", "content": "article" },
 		{ "property": "og:url", "content": articleUrl },
 		{ "property": "og:updated_time", "content": this.data.updated.toISOString() },
 		{ "name": "twitter:card", "content": "summary_large_image" },
 		{ "name": "twitter:url", "content": articleUrl },
-		{ "name": "twitter:title", "content": this.data.title + " | XBdash" },
+		{ "name": "twitter:title", "content": articleTitle },
 		{ "name": "twitter:description", "content": articleDescription },
 		{ "name": "twitter:image:src", "content": getImage },
 		{ "name": "twitter:site", "content": "@xboxdash" },
@@ -103,7 +104,7 @@ Template.articleDocHead.created = function() {
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
 	];
 
-	DocHead.setTitle(this.data.title + " | XBdash");
+	DocHead.setTitle(articleTitle);
 
 	for(var i = 0; i < articleDocHeadMeta.length; i++) {
 		DocHead.addMeta(articleDocHeadMeta[i]);;

@@ -1,38 +1,49 @@
 Template.achievementsPage.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var linkInfo = [
-		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": window.location.href }
-	];
+	var achievementsPageDescription = achievementsPageDescription;
+	var achievementsPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var achievementsPageTitle = "News | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var achievementsPageUrl = window.location.href;
 
 	var achievementsPageMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": "Find the most difficult achievements and collaborate with other gamers for achievement solutions." },
+		{ "name": "description", "content": achievementsPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": "Find the most difficult achievements and collaborate with other gamers for achievement solutions." },
-		{ "property": "og:image", "content": "https://www.xbdash.com/img/contests/contest-banner.jpg" },
+		{ "property": "og:description", "content": achievementsPageDescription },
+		{ "property": "og:image", "content": achievementsPageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Achievements | XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:title", "content": achievementsPageTitle },
 		{ "property": "og:type", "content": "website" },
 		{ "property": "og:url", "content": window.location.href },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:description", "content": "Find the most difficult achievements and collaborate with other gamers for achievement solutions." },
-		{ "name": "twitter:title", "content": "Achievements | XBdash - The Personalized Dashboard for Xbox® Gamers" },
-		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/contests/contest-banner.jpg" }
+		{ "name": "twitter:url", "content": newsUrl },
+		{ "name": "twitter:title", "content": achievementsPageTitle },
+		{ "name": "twitter:description", "content": achievementsPageDescription },
+		{ "name": "twitter:image:src", "content": achievementsPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
-	DocHead.setTitle("Achievements | XBdash - The Personalized Dashboard for Xbox® Gamers");
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": newsUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
 
-	for(var i = 0; i < linkInfo.length; i++) {
-		DocHead.addLink(linkInfo[i]);;
-	}
+	DocHead.setTitle(achievementsPageTitle);
 
 	for(var i = 0; i < achievementsPageMeta.length; i++) {
 		DocHead.addMeta(achievementsPageMeta[i]);;
+	}
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
 	}
 }
 
