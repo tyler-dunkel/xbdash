@@ -106,13 +106,11 @@ Template.achievementSingleDocHead.created = function() {
 	var game = xbdGames.findOne({ _id: this.data.gameId });
 	var achievementSingleDescription = this.data.description;
 	achievementSingleDescription = this.data.name + " achievement is worth " + this.data.value + " GamerScore. " + this.data.description;
-	var achievementSingleImage  = 'https://www.xbdash.com/img/achievement-default.jpg';
 	
-	if (game.platform === "Xenon") {
-		achievementSingleImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.data.mediaAssets;
-	}
-	if (game.platform === "Durango") {
-		achievementSingleImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.data.mediaAssets;
+	if (this.data.mediaAssets) {
+		var achievementSingleImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.data.mediaAssets;
+	} else {
+		var achievementSingleImage  = 'https://www.xbdash.com/img/achievement-default.jpg';
 	}
 
 	var achievementSingleTitle = this.data.name + " Achievement Solutions & Details - " + game.name + " | XBdash";
