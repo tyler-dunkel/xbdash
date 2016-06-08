@@ -5,7 +5,7 @@
 				<div class="col">
 				{{#if Template.subscriptionsReady}}
 					{{#with article}}
-					{{> articleDocHead}}
+					{{> newsSinglePageDocHead}}
 					<div class="bg-light lter b-b wrapper-md">
 						<div class="row">
 							<div class="col-md-12 col-xs-12">
@@ -31,7 +31,7 @@
 							{{{content}}}
 							<div class="m-t-md m-b-md share-bar">
 								<h4>Share This Article</h4>
-								{{> articleShareButtons}}
+								{{> newsSinglePageShareButtons}}
 							</div>
 							<div class="comment-section">
 								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
@@ -48,7 +48,7 @@
 						</div>
 					</div>
 					<div class="shareDiv">
-						{{> articleShareButtons}}
+						{{> newsSinglePageShareButtons}}
 					</div>
 					{{/with}}
 				{{else}}
@@ -60,9 +60,9 @@
 	</div>
 </template>
 
-<template name="articleDocHead"></template>
+<template name="newsSinglePageDocHead"></template>
 
-<template name="articleShareButtons">
+<template name="newsSinglePageShareButtons">
 	<div class="share-buttons">
 		<ul class="rrssb-buttons rrssb1 clearfix">
 			<li class="rrssb-facebook">

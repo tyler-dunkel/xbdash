@@ -51,63 +51,71 @@ Template.newsSinglePage.rendered = function() {
 	}
 }
 
-Template.articleDocHead.created = function() {
+Template.newsSinglePageDocHead.created = function() {
 	var slug = Router.current().params.slug;
-	var articleDescription = $(this.data.content).text();
-	articleDescription = articleDescription.substr(0,152) + '...';
+	var newsSinglePageDescription = $(this.data.content).text();
+	newsSinglePageDescription = newsSinglePageDescription.substr(0,152) + '...';
 	var image = this.data.content.match(/<img[^>]*>/);
-	var articleUrl = window.location.href;
-	var articleTitle = this.data.title + " | XBdash";
 	
 	if (image) {
 		if (this.data.source === 'xbdash') {
-			getImage = image[0].match(/src="(.+?)"/)[1];
-			getImage = 'https://www.xbdash.com' + getImage;
+			newsSinglePageImage = image[0].match(/src="(.+?)"/)[1];
+			newsSinglePageImage = 'https://www.xbdash.com' + newsSinglePageImage;
 		} else {
-			getImage = image[0].match(/src="(.+?)"/)[1];
-			getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
+			newsSinglePageImage = image[0].match(/src="(.+?)"/)[1];
+			newsSinglePageImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(newsSinglePageImage);
 		}
 	} else {
-		getImage = 'https://www.xbdash.com/img/news-default.jpg';
+		newsSinglePageImage = 'https://www.xbdash.com/img/news-default.jpg';
 	}
 
-	var articleDocHeadMeta = [
+	var newsSinglePageTitle = this.data.title + " | XBdash";
+	var newsSinglePageUrl = window.location.href;
+	var newsSinglePageUpdatedTime = this.data.updated.toISOString();
+	
+	if (this.data.source === 'xbdash') {
+		var newsSinglePageAuthor = this.data.author;
+	} else {
+		var newsSinglePageAuthor = this.data.author + ' of POLYGON';
+	}
+
+	var newsSinglePageDocHeadMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": articleDescription },
+		{ "name": "description", "content": newsSinglePageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": articleDescription },
-		{ "property": "og:image", "content": getImage },
+		{ "property": "og:description", "content": newsSinglePageDescription },
+		{ "property": "og:image", "content": newsSinglePageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": articleTitle },
+		{ "property": "og:title", "content": newsSinglePageTitle },
 		{ "property": "og:type", "content": "article" },
-		{ "property": "og:url", "content": articleUrl },
-		{ "property": "og:updated_time", "content": this.data.updated.toISOString() },
+		{ "property": "og:url", "content": newsSinglePageUrl },
+		{ "property": "og:updated_time", "content": newsSinglePageUpdatedTime },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:url", "content": articleUrl },
-		{ "name": "twitter:title", "content": articleTitle },
-		{ "name": "twitter:description", "content": articleDescription },
-		{ "name": "twitter:image:src", "content": getImage },
+		{ "name": "twitter:url", "content": newsSinglePageUrl },
+		{ "name": "twitter:title", "content": newsSinglePageTitle },
+		{ "name": "twitter:description", "content": newsSinglePageDescription },
+		{ "name": "twitter:image:src", "content": newsSinglePageImage },
 		{ "name": "twitter:site", "content": "@xboxdash" },
-		{ "name": "article:published_time", "content": this.data.updated.toISOString() },
-		{ "name": "article:author", "content": this.data.author }
+		{ "name": "article:published_time", "content": newsSinglePageUpdatedTime },
+		{ "name": "article:author", "content": newsSinglePageAuthor }
 	];
 
 	var linkInfo = [
 		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": articleUrl },
+		{ "rel": "canonical", "href": newsSinglePageUrl },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
 	];
 
-	DocHead.setTitle(articleTitle);
+	DocHead.setTitle(newsSinglePageTitle);
 
-	for(var i = 0; i < articleDocHeadMeta.length; i++) {
-		DocHead.addMeta(articleDocHeadMeta[i]);;
+	for(var i = 0; i < newsSinglePageDocHeadMeta.length; i++) {
+		DocHead.addMeta(newsSinglePageDocHeadMeta[i]);;
 	}
 
 	for(var i = 0; i < linkInfo.length; i++) {
@@ -115,7 +123,7 @@ Template.articleDocHead.created = function() {
 	}
 }
 
-Template.articleShareButtons.helpers({
+Template.newsSinglePageShareButtons.helpers({
 	getUrl: function () {
 		var slug = Router.current().params.slug;
 		return window.location.href;

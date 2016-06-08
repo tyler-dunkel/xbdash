@@ -1,9 +1,9 @@
 Template.achievementsPage.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var achievementsPageDescription = achievementsPageDescription;
+	var achievementsPageDescription = "Find the most difficult achievements and collaborate with other gamers for achievement solutions.";
 	var achievementsPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var achievementsPageTitle = "News | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var achievementsPageTitle = "Achievements | XBdash - The Personalized Dashboard for Xbox® Gamers";
 	var achievementsPageUrl = window.location.href;
 
 	var achievementsPageMeta = [
@@ -18,9 +18,9 @@ Template.achievementsPage.created = function() {
 		{ "property": "og:site_name", "content": "XBdash" },
 		{ "property": "og:title", "content": achievementsPageTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href },
+		{ "property": "og:url", "content": achievementsPageUrl },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:url", "content": newsUrl },
+		{ "name": "twitter:url", "content": achievementsPageUrl },
 		{ "name": "twitter:title", "content": achievementsPageTitle },
 		{ "name": "twitter:description", "content": achievementsPageDescription },
 		{ "name": "twitter:image:src", "content": achievementsPageImage },
@@ -29,7 +29,7 @@ Template.achievementsPage.created = function() {
 
 	var linkInfo = [
 		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": newsUrl },
+		{ "rel": "canonical", "href": achievementsPageUrl },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },

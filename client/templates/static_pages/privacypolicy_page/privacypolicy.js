@@ -1,34 +1,49 @@
 Template.privacyPolicy.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var linkInfo = [
-		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": window.location.href }
-	];
+	var privacyPolicyPageDescription = "Review our privacy policy.";
+	var privacyPolicyPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var privacyPolicyPageTitle = "Privacy Policy | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var privacyPolicyPageUrl = window.location.href;
 
-	var privacyPolicyMeta = [
+	var privacyPolicyPageMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": "Review our privacy policy." },
+		{ "name": "description", "content": privacyPolicyPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": "Review our privacy policy." },
-		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
+		{ "property": "og:description", "content": privacyPolicyPageDescription },
+		{ "property": "og:image", "content": privacyPolicyPageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Privacy Policy | XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:title", "content": privacyPolicyPageTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href }
+		{ "property": "og:url", "content": privacyPolicyPageUrl },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:url", "content": privacyPolicyPageUrl },
+		{ "name": "twitter:title", "content": privacyPolicyPageTitle },
+		{ "name": "twitter:description", "content": privacyPolicyPageDescription },
+		{ "name": "twitter:image:src", "content": privacyPolicyPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
-	DocHead.setTitle("Privacy Policy | XBdash - The Personalized Dashboard for Xbox® Gamers");
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": privacyPolicyPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
 
+	DocHead.setTitle(privacyPolicyPageTitle);
+
+	for(var i = 0; i < privacyPolicyPageMeta.length; i++) {
+		DocHead.addMeta(privacyPolicyPageMeta[i]);;
+	}
+	
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
-	}
-
-	for(var i = 0; i < privacyPolicyMeta.length; i++) {
-		DocHead.addMeta(privacyPolicyMeta[i]);;
 	}
 }
 

@@ -5,7 +5,7 @@
 				<div class="col">
 				{{#if Template.subscriptionsReady}}
 					{{#with achievement}}
-					{{> achievementDocHead}}
+					{{> achievementSingleDocHead}}
 					<div class="bg-light col-xl-12 col-lg-12 col-xs-12 lter b-b wrapper-md achievement-title">
 						<div class="row">
 							<div class="col-sm-12 col-xs-7">
@@ -32,7 +32,7 @@
 							{{#if chkUserForAchievement}}
 							{{#if isUnlocked}}
 								<div class="share-bar">
-									<h4 class="text-black h4">Share Your Completed Game</h4>
+									<h4 class="text-black h4">Share Your Completed Achievement</h4>
 									{{> achievementShareButtons}}
 								</div>
 							{{/if}}
@@ -88,11 +88,11 @@
 	</div>
 </template>
 
-<template name="achievementDocHead"></template>
+<template name="achievementSingleDocHead"></template>
 
 <template name="achievementShareButtons">
 	<div class="share-buttons">
-		<ul class="rrssb-buttons rrssb2 clearfix">
+		<ul class="rrssb-buttons rrssb3 clearfix">
 			<li class="rrssb-facebook">
 				<a href="https://www.facebook.com/sharer/sharer.php?u={{getUrl}}&amp;name={{getTitle}}&amp;description={{getShortDescription}}&amp;redirect_uri={{getUrl}}&amp;picture={{getShareImage}}" class="popup">
 					<span class="rrssb-icon">

@@ -16,38 +16,49 @@ Template.confirmGt.created = function() {
 
 	DocHead.removeDocHeadAddedTags();
 
-	var linkInfo = [
-		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": window.location.href }
-	];
+	var confirmGtPageDescription = "Confirm your gamertag to start scanning your history.";
+	var confirmGtPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var confirmGtPageTitle = "Confirm Your Gamertag | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var confirmGtPageUrl = window.location.href;
 
-	var confirmGtMeta = [
+	var confirmGtPageMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": "Confirm your gamertag to start scanning your history." },
+		{ "name": "description", "content": confirmGtPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": "Confirm your gamertag to start scanning your history." },
-		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
+		{ "property": "og:description", "content": confirmGtPageDescription },
+		{ "property": "og:image", "content": confirmGtPageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Confirm Your Gamertag | XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:title", "content": confirmGtPageTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href },
+		{ "property": "og:url", "content": confirmGtPageUrl },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:description", "content": "Confirm your gamertag to start scanning your history." },
-		{ "name": "twitter:title", "content": "Confirm Your Gamertag | XBdash - The Personalized Dashboard for Xbox® Gamers" },
-		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
+		{ "name": "twitter:url", "content": confirmGtPageUrl },
+		{ "name": "twitter:title", "content": confirmGtPageTitle },
+		{ "name": "twitter:description", "content": confirmGtPageDescription },
+		{ "name": "twitter:image:src", "content": confirmGtPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
-	DocHead.setTitle("Confirm Your Gamertag | XBdash - The Personalized Dashboard for Xbox® Gamers");
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": confirmGtPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
+
+	DocHead.setTitle(confirmGtPageTitle);
+
+	for(var i = 0; i < confirmGtPageMeta.length; i++) {
+		DocHead.addMeta(confirmGtPageMeta[i]);;
+	}
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
-	}
-
-	for(var i = 0; i < confirmGtMeta.length; i++) {
-		DocHead.addMeta(confirmGtMeta[i]);;
 	}
 };
 

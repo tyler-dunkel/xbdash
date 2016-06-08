@@ -3,38 +3,49 @@ var doneCallback;
 Template.resetPassword.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var linkInfo = [
-		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": window.location.href }
-	];
+	var resetPasswordPageDescription = "Please enter your new password and confirm to reset.";
+	var resetPasswordPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var resetPasswordPageTitle = "Reset Password | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var resetPasswordPageUrl = window.location.href;
 
-	var resetPasswordMeta = [
+	var resetPasswordPageMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": "Please enter your new password and confirm to reset." },
+		{ "name": "description", "content": resetPasswordPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": "Please enter your new password and confirm to reset." },
-		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
+		{ "property": "og:description", "content": resetPasswordPageDescription },
+		{ "property": "og:image", "content": resetPasswordPageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Reset Password | XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:title", "content": resetPasswordPageTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href },
+		{ "property": "og:url", "content": resetPasswordPageUrl },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:description", "content": "Please enter your new password and confirm to reset." },
-		{ "name": "twitter:title", "content": "Reset Password | XBdash - The Personalized Dashboard for Xbox® Gamers" },
-		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
+		{ "name": "twitter:url", "content": resetPasswordPageUrl },
+		{ "name": "twitter:title", "content": resetPasswordPageTitle },
+		{ "name": "twitter:description", "content": resetPasswordPageDescription },
+		{ "name": "twitter:image:src", "content": resetPasswordPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
-	DocHead.setTitle("Reset Password | XBdash - The Personalized Dashboard for Xbox® Gamers");
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": resetPasswordPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
+
+	DocHead.setTitle(resetPasswordPageTitle);
+
+	for(var i = 0; i < resetPasswordPageMeta.length; i++) {
+		DocHead.addMeta(resetPasswordPageMeta[i]);;
+	}
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
-	}
-
-	for(var i = 0; i < resetPasswordMeta.length; i++) {
-		DocHead.addMeta(resetPasswordMeta[i]);;
 	}
 }
 

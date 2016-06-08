@@ -75,65 +75,65 @@ Template.gamesSinglePageNew.helpers({
 	}
 });
 
-Template.gameDocHead.created = function() {
+Template.gamesSingleDocHead.created = function() {
 	var slug = Router.current().params.slug;
 	var game = xbdGames.findOne({ slug: slug });
-	var gameDescription = this.data.gameDescription;
-	gameDescription = game.name + " has a total of " + game.maxGamerscore + " GamerScore. " + gameDescription.substr(0,62) + '...';
-	var gameImage = "https://www.xbdash.com/img/game-default.jpg";
+	var gamesSingleDescription = this.data.gameDescription;
+	gamesSingleDescription = game.name + " has a total of " + game.maxGamerscore + " GamerScore. " + gamesSingleDescription.substr(0,62) + '...';
+	var gamesSingleImage = "https://www.xbdash.com/img/game-default.jpg";
 
 	if (game.platform === 'Xenon') {
 		this.data.gameArt.forEach(function(art) {
 			if (art.Purpose === 'BoxArt' && art.Width === 219) {
-				gameImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+				gamesSingleImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
 			}
 		});
 	}
 	if (game.platform === 'Durango') {
 		this.data.gameArt.forEach(function(art) {
 			if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-				gameImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
+				gamesSingleImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + art.Url;
 			}
 		});
 	}
 
-	var gameTitle = game.name + " Game Details & Achievements | XBdash";
-	var gameUrl = window.location.href;
+	var gamesSingleTitle = game.name + " Game Details & Achievements | XBdash";
+	var gamesSingleUrl = window.location.href;
 
-	var gameDocHeadMeta = [
+	var gamesSingleDocHeadMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": gameDescription },
+		{ "name": "description", "content": gamesSingleDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": gameDescription },
-		{ "property": "og:image", "content": gameImage },
+		{ "property": "og:description", "content": gamesSingleDescription },
+		{ "property": "og:image", "content": gamesSingleImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": gameTitle },
+		{ "property": "og:title", "content": gamesSingleTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": gameUrl },
+		{ "property": "og:url", "content": gamesSingleUrl },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:url", "content": gameUrl },
-		{ "name": "twitter:title", "content": gameTitle },
-		{ "name": "twitter:description", "content": gameDescription },
-		{ "name": "twitter:image:src", "content": gameImage },
+		{ "name": "twitter:url", "content": gamesSingleUrl },
+		{ "name": "twitter:title", "content": gamesSingleTitle },
+		{ "name": "twitter:description", "content": gamesSingleDescription },
+		{ "name": "twitter:image:src", "content": gamesSingleImage },
 		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
 	var linkInfo = [
 		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": gameUrl },
+		{ "rel": "canonical", "href": gamesSingleUrl },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
 	];
 
-	DocHead.setTitle(gameTitle);
+	DocHead.setTitle(gamesSingleTitle);
 
-	for(var i = 0; i < gameDocHeadMeta.length; i++) {
-		DocHead.addMeta(gameDocHeadMeta[i]);;
+	for(var i = 0; i < gamesSingleDocHeadMeta.length; i++) {
+		DocHead.addMeta(gamesSingleDocHeadMeta[i]);;
 	}
 
 	for(var i = 0; i < linkInfo.length; i++) {

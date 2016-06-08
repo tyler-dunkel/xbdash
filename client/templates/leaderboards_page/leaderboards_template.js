@@ -16,38 +16,49 @@ Template.leaderboardTemplate.created = function() {
 
 	DocHead.removeDocHeadAddedTags();
 
-	var linkInfo = [
-		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": window.location.href }
-	];
+	var leaderboardPageDescription = "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games.";
+	var leaderboardPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var leaderboardPageTitle = "See Today's Top Leaders | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var leaderboardPageUrl = window.location.href;
 
-	var leaderboardsMeta = [
+	var leaderboardPageMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games." },
+		{ "name": "description", "content": leaderboardPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games." },
-		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
+		{ "property": "og:description", "content": leaderboardPageDescription },
+		{ "property": "og:image", "content": leaderboardPageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "See Today's Top Leaders - XBdash" },
+		{ "property": "og:title", "content": leaderboardPageTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href },
+		{ "property": "og:url", "content": leaderboardPageUrl },
 		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:description", "content": "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games." },
-		{ "name": "twitter:title", "content": "See Today's Top Leaders - XBdash" },
-		{ "name": "twitter:image", "content": "https://www.xbdash.com/img/share-default.jpg" }
+		{ "name": "twitter:url", "content": leaderboardPageUrl },
+		{ "name": "twitter:title", "content": leaderboardPageTitle },
+		{ "name": "twitter:description", "content": leaderboardPageDescription },
+		{ "name": "twitter:image:src", "content": leaderboardPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
-	DocHead.setTitle("See Today's Top Leaders | XBdash - The Personalized Dashboard for Xbox® Gamers");
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": leaderboardPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
+
+	DocHead.setTitle(leaderboardPageTitle);
+
+	for(var i = 0; i < leaderboardPageMeta.length; i++) {
+		DocHead.addMeta(leaderboardPageMeta[i]);;
+	}
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
-	}
-
-	for(var i = 0; i < leaderboardsMeta.length; i++) {
-		DocHead.addMeta(leaderboardsMeta[i]);;
 	}
 }
 

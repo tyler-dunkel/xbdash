@@ -1,34 +1,49 @@
 Template.termsConditions.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var linkInfo = [
-		{ "rel": "icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": window.location.href }
-	];
+	var termsConditionsPageDescription = "Review our terms and conditions.";
+	var termsConditionsPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var termsConditionsPageTitle = "Terms & Conditions | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var termsConditionsPageUrl = window.location.href;
 
-	var termsConditionsMeta = [
+	var termsConditionsPageMeta = [
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": "Review our terms and conditions." },
+		{ "name": "description", "content": termsConditionsPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": "Review our terms and conditions." },
-		{ "property": "og:image", "content": "https://www.xbdash.com/img/share-default.jpg" },
+		{ "property": "og:description", "content": termsConditionsPageDescription },
+		{ "property": "og:image", "content": termsConditionsPageImage },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": "Terms & Conditions | XBdash - The Personalized Dashboard for Xbox® Gamers" },
+		{ "property": "og:title", "content": termsConditionsPageTitle },
 		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": window.location.href }
+		{ "property": "og:url", "content": termsConditionsPageUrl },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:url", "content": termsConditionsPageUrl },
+		{ "name": "twitter:title", "content": termsConditionsPageTitle },
+		{ "name": "twitter:description", "content": termsConditionsPageDescription },
+		{ "name": "twitter:image:src", "content": termsConditionsPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
 
-	DocHead.setTitle("Terms & Conditions | XBdash - The Personalized Dashboard for Xbox® Gamers");
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": termsConditionsPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
+
+	DocHead.setTitle(termsConditionsPageTitle);
+
+	for(var i = 0; i < termsConditionsPageMeta.length; i++) {
+		DocHead.addMeta(termsConditionsPageMeta[i]);;
+	}
 
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
-	}
-
-	for(var i = 0; i < termsConditionsMeta.length; i++) {
-		DocHead.addMeta(termsConditionsMeta[i]);;
 	}
 }
 
