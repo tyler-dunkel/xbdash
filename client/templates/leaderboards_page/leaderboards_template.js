@@ -280,3 +280,41 @@ Template.currentUserLeaderboard.helpers({
 		
 	}
 });
+
+Template.currentUserShareButtons.helpers({
+	getUrl: function () {
+		var slug = Router.current().params.slug;
+		return window.location.href;
+	},
+	getTitle: function() {
+		var user = Meteor.user();
+		var boardType = Template.instance().data.boardType;
+		var userLb = userLeaderboards.findOne({ userId: user._id });
+		switch(boardType) {
+			case 'dailyRank':
+				var userRank = userLb.dailyRank.rank;
+				return "I'm ranked " + userRank + " for Top Gamerscore Today!";
+				break;
+			case 'completedAchievements': 
+				var userRank = userLb.completedAchievements.rank;
+				return "I'm ranked " + userRank + " for Completed Achievements!";
+				break;
+			case 'completedGames':
+				var userRank = userLb.completedGames.rank;
+				return "I'm ranked " + userRank + " for Completed Games!";
+				break;
+			default:
+				var userRank = userLb.overallRank;
+				return "I'm ranked " + userRank + " for All-Time Gamerscore!";
+		}
+	},
+	getShortDescription: function () {
+		return "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games.";
+	},
+	getShareImage: function () {
+		return "https://www.xbdash.com/img/leaderboards-share.jpg";
+	},
+	getHashTags: function() {
+		return "xbox,xbdash,gamerscore,achievement,leader";
+	}
+});

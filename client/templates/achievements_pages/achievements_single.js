@@ -164,7 +164,7 @@ Template.achievementShareButtons.helpers({
 	},
 	getTitle: function() {
 		var getGame = xbdGames.findOne({ _id: this.gameId });
-		return 'I won the ' + this.name + ' achievement from ' + getGame.name + ' worth ' + this.value + ' #Gamerscore! #xbox #xboxdash #xbdash';
+		return 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' GS!';
 	},
 	getShortDescription: function () {
 		var achievementDescription = this.description;
@@ -183,5 +183,8 @@ Template.achievementShareButtons.helpers({
 		}
 
 		return achievementImage;
+	},
+	getHashTags: function() {
+		return 'xbox,xbdash,gamerscore';
 	}
 });

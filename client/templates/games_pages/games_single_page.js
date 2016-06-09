@@ -292,7 +292,7 @@ Template.gameShareButtons.helpers({
 		return window.location.href;
 	},
 	getTitle: function() {
-		return 'I completed ' + this.gameName + '! #xbox #xboxdash #xbdash';
+		return 'I completed ' + this.gameName + '!';
 	},
 	getShortDescription: function () {
 		var singleGame = gameDetails.findOne({ gameId: this.gameId });
@@ -319,6 +319,9 @@ Template.gameShareButtons.helpers({
 		}
 
 		return getImage;
+	},
+	getHashTags: function() {
+		return 'xbox,xbdash,gamerscore';
 	}
 });
 
