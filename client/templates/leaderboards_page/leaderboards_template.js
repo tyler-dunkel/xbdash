@@ -17,7 +17,7 @@ Template.leaderboardTemplate.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
 	var leaderboardPageDescription = "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games.";
-	var leaderboardPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var leaderboardPageImage = "https://www.xbdash.com/img/leaderboards-share.jpg";
 	var leaderboardPageTitle = "See Today's Top Leaders | XBdash - The Personalized Dashboard for Xbox® Gamers";
 	var leaderboardPageUrl = window.location.href;
 
@@ -277,7 +277,6 @@ Template.currentUserLeaderboard.helpers({
 			default:
 				return user.gamercard.gamerscore;
 		}
-		
 	}
 });
 
