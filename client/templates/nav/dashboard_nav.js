@@ -12,6 +12,12 @@ Template.dashboardNav.created = function() {
 	});
 }
 
+Template.dashboardNav.rendered = function () {
+	$('nav.navi .nav li a').on('click', function() {
+		$('.app-aside').toggleClass('off-screen');
+	});
+}
+
 Template.dashboardNav.helpers({
 	isDashboardEnabled: function() {
 		var user = Meteor.user();
@@ -63,18 +69,19 @@ Template.dashboardNav.events({
 				Router.go('confirmGt');
 			}
 		});
-	},
-	'click li.contest-modal-trigger': function (e) {
-		// console.log("fired");
-		// 	e.preventDefault();
-		// 	Router.go
-		// 	sweetAlert({
-		// 		title: 'Contest',
-		// 		html: Blaze.toHTML(Template.referralModalTemplate)
-		// 	}, function(e) {
-		// 		if (e) {
-		// 			//Router.go('submit');
-		// 		}
-		// 	});
-		}
+	}
+	// ,
+	// 'click li.contest-modal-trigger': function (e) {
+	// 	console.log("fired");
+	// 	e.preventDefault();
+	// 	Router.go
+	// 	sweetAlert({
+	// 		title: 'Contest',
+	// 		html: Blaze.toHTML(Template.referralModalTemplate)
+	// 	}, function(e) {
+	// 		if (e) {
+	// 			//Router.go('submit');
+	// 		}
+	// 	});
+	// }
 });
