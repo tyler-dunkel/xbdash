@@ -193,8 +193,7 @@ Template.gamesSinglePageAchievementNew.helpers({
 			sort: {
 				value: 1,
 				name: 1
-			},
-			limit: achievementsLimit.get(),
+			}
 		});
 	},
 	chkProgress: function () {
