@@ -315,16 +315,11 @@ Meteor.publishComposite('singleGame', function(slug) {
 	}
 });
 
-Meteor.publishComposite('singleGameAchievements', function(slug, limit) {
+Meteor.publishComposite('singleGameAchievements', function(slug) {
 	return {
 		find: function() {
 			check(slug, String);
-			var defaultLimit = 15;
 			var game = xbdGames.findOne({ slug: slug });
-
-			if (limit > defaultLimit) {
-				limit = 0;
-			}
 
 			return xbdAchievements.find({ gameId: game._id }, {
 				sort: {
@@ -339,8 +334,7 @@ Meteor.publishComposite('singleGameAchievements', function(slug, limit) {
 					value: 1,
 					slug: 1,
 					userPercentage: 1
-				},
-				limit: limit
+				}
 			});
 		},
 		children: [

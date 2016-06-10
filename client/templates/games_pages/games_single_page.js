@@ -1,4 +1,3 @@
-var achievementsLimit = new ReactiveVar();
 
 Template.gamesSinglePageNew.created = function() {
 	var slug = Router.current().params.slug;
@@ -105,8 +104,6 @@ Template.gamesSinglePageNew.helpers({
 });
 
 Template.userGamerscoreInfoNew.created = function() {
-	var slug = Router.current().params.slug;
-	this.subscribe('singleGame', slug);
 }
 
 Template.userGamerscoreInfoNew.helpers({
@@ -145,19 +142,13 @@ Template.gamerscoreInfoNew.helpers({
 
 Template.gamesSinglePageAchievementNew.created = function() {
 	var slug = Router.current().params.slug;
-	achievementsLimit.set(15);
 
 	this.autorun(function() {
-		Meteor.subscribe('singleGameAchievements', slug, achievementsLimit.get());
+		Meteor.subscribe('singleGameAchievements', slug);
 	});
 }
 
 Template.gamesSinglePageAchievementNew.rendered = function() {
-	$(window).scroll(function() {
-		window.setTimeout(function() {
-			showMoreVisible();
-		}, 500);
-	});
 }
 
 Template.gamesSinglePageAchievementNew.helpers({
@@ -169,11 +160,6 @@ Template.gamesSinglePageAchievementNew.helpers({
 			},
 			limit: achievementsLimit.get(),
 		});
-	},
-	hasMoreResults: function() {
-		var achievementsLimitCurrent = achievementsLimit.get();
-		var xbdAchievementsCount = xbdAchievements.find({}).count();
-		return ! (xbdAchievementsCount < achievementsLimitCurrent);
 	},
 	chkProgress: function () {
 		var user = Meteor.user();
@@ -250,22 +236,4 @@ Template.amznSmartAd.rendered = function() {
 		script2.src = "//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US";
 		container.appendChild(script2);	
 	});
-}
-
-function showMoreVisible() {
-	var threshold, target = $("#hasMoreResults");
-	if (!target.length) return;
-	threshold = $(window).scrollTop() + $(window).height() - target.height();
-	if (target.offset().top < threshold) {
-		console.log(target.data);
-		// if (!target.data("visible")) {
-			target.data("visible", true);
-			var newLimit = achievementsLimit.get() + 6;
-			achievementsLimit.set(achievementsLimit.get() + 6);
-		// }
-	} else {
-		// if (target.data("visible")) {
-			target.data("visible", false);
-		// }
-	}
 }
