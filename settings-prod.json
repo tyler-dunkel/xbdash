@@ -3,8 +3,7 @@
 		"env": {
 			"MONGO_URL": "mongodb://xbadmin:tda88f552e87k15g@capital.4.mongolayer.com:10130,capital.5.mongolayer.com:10130/xbdash-production?replicaSet=set-569077792b73d794a800039f",
 			"MONGO_OPLOG_URL": "mongodb://xbadmin:tda88f552e87k15g@capital.4.mongolayer.com:10130,capital.5.mongolayer.com:10130/local?authSource=xbdash-production",
-			"ROOT_URL": "http://www.xbdash.com",
-			"MAIL_URL": "smtp://keith%40xbdash.com:LK_ByeK6BNiIEM9Bm1t7tQ@smtp.mandrillapp.com:587"
+			"ROOT_URL": "http://www.xbdash.com"
 		}
 	},
 	"services": {
