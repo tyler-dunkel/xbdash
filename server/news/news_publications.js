@@ -1,9 +1,7 @@
 Meteor.publish('latestNews', function(limit) {
 	var defaultLimit = 9;
-	var twoWeeks = moment().subtract(14, 'days').toDate();
-
-	if (limit > defaultLimit) {
-		limit = 0;
+	if (!limit) {
+		limit = defaultLimit;
 	}
 
 	return xbdNews.find({}, {
