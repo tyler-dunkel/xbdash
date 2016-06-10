@@ -24,7 +24,8 @@ var trusted = [
 	'*.cloudinary.com',
 	'*.xbdash.com',
 	'*.amazon-adsystem.com',
-	'*.images-amazon.com'
+	'*.images-amazon.com',
+	'*.ssl-images-amazon.com'
 ];
 
 _.each(trusted, function(origin) {

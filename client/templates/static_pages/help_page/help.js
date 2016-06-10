@@ -1,3 +1,52 @@
+Template.helpPage.created = function() {
+	DocHead.removeDocHeadAddedTags();
+
+	var helpPageDescription = "Review help and frequently asked questions.";
+	var helpPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var helpPageTitle = "Help & FAQs | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var helpPageUrl = window.location.href;
+
+	var helpPageMeta = [
+		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+		{ "charset": "utf-8" },
+		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "description", "content": helpPageDescription },
+		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+		{ "property": "og:description", "content": helpPageDescription },
+		{ "property": "og:image", "content": helpPageImage },
+		{ "property": "og:locale", "content": "en_US" },
+		{ "property": "og:site_name", "content": "XBdash" },
+		{ "property": "og:title", "content": helpPageTitle },
+		{ "property": "og:type", "content": "website" },
+		{ "property": "og:url", "content": helpPageUrl },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:url", "content": helpPageUrl },
+		{ "name": "twitter:title", "content": helpPageTitle },
+		{ "name": "twitter:description", "content": helpPageDescription },
+		{ "name": "twitter:image:src", "content": helpPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
+	];
+
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": helpPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
+
+	DocHead.setTitle(helpPageTitle);
+
+	for(var i = 0; i < helpPageMeta.length; i++) {
+		DocHead.addMeta(helpPageMeta[i]);;
+	}
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
+	}
+}
+
 Template.helpPage.rendered = function() {
 	$('#sidebar').affix({
 	    offset: {     

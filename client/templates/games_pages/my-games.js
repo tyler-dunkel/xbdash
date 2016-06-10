@@ -1,5 +1,54 @@
 var gameLimit = new ReactiveVar();
 
+Template.myGamesPage.created = function() {
+	DocHead.removeDocHeadAddedTags();
+
+	var myGamesPageDescription = "Review help and frequently asked questions.";
+	var myGamesPageImage = "https://www.xbdash.com/img/share-default.jpg";
+	var myGamesPageTitle = "My Games | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var myGamesPageUrl = window.location.href;
+
+	var myGamesPageMeta = [
+		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+		{ "charset": "utf-8" },
+		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "description", "content": myGamesPageDescription },
+		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+		{ "property": "og:description", "content": myGamesPageDescription },
+		{ "property": "og:image", "content": myGamesPageImage },
+		{ "property": "og:locale", "content": "en_US" },
+		{ "property": "og:site_name", "content": "XBdash" },
+		{ "property": "og:title", "content": myGamesPageTitle },
+		{ "property": "og:type", "content": "website" },
+		{ "property": "og:url", "content": myGamesPageUrl },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:url", "content": myGamesPageUrl },
+		{ "name": "twitter:title", "content": myGamesPageTitle },
+		{ "name": "twitter:description", "content": myGamesPageDescription },
+		{ "name": "twitter:image:src", "content": myGamesPageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
+	];
+
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": myGamesPageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
+
+	DocHead.setTitle(myGamesPageTitle);
+
+	for(var i = 0; i < myGamesPageMeta.length; i++) {
+		DocHead.addMeta(myGamesPageMeta[i]);;
+	}
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
+	}
+}
+
 Template.myGamesApp.created = function() {
 	gameLimit.set(18);
 	this.autorun(function() {
