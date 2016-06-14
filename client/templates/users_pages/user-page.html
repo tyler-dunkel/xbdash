@@ -4,29 +4,543 @@
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<!-- main -->
 				<div class="col">
-					<!-- main header -->
-					<div class="bg-light lter b-b wrapper-md">
-						<div class="row">
-							<div class="col-sm-6 col-xs-12">
-								<h1 class="m-n font-thin h3 text-black">User Page</h1>
-								<small class="text-muted">find other users</small>
-							</div>
-							{{#if chkGamerStatus}}
-							<div class="col-sm-6 text-right hidden-xs">
-								<div class="inline m-l m-r text-left">
-									{{> userDailyRank}}
-								</div>
-								<div class="inline text-left">
-									{{> userOverallRank}}
-								</div>
-							</div>
-							{{/if}}
+					{{> userProfileArea}}
+					<div class="bg-white b-b">
+						<div class="nav-tabs-alt" >
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="active">
+									<a data-target="#tab-activity" role="tab" data-toggle="tab">Xbox Activity</a>
+								</li>
+								<li>
+									<a data-target="#tab-personals" role="tab" data-toggle="tab">Personals</a>
+								</li>
+								<li>
+									<a data-target="#tab-rankings" role="tab" data-toggle="tab">Rankings</a>
+								</li>
+								<li>
+									<a data-target="#tab-guides" role="tab" data-toggle="tab">Guides</a>
+								</li>
+							</ul>
 						</div>
 					</div>
-					{{> usersApp}}
-				</div>	
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="tab-activity">
+							<div class="padder">
+								<div class="row">
+									<div class="col-md-6">
+										{{> latestActivity}}
+									</div>
+									<div class="col-md-6 wrapper">
+					                    <div class="row">
+						                    <div class="col-md-12">
+						                    	{{> latestVideoClips}}
+						                    </div>
+											<div class="col-sm-12">
+												{{> latestScreenCaptures}}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-personals" id="tab-personals">
+							<div class="padder container-fluid">
+								{{> userBadges}}
+								<div class="row">
+									<div class="col-md-6 wrapper">
+										{{> userWishlist}}
+									</div>
+									<div class="col-md-6 wrapper">
+										{{> userTrophyCase}}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-rankings" id="tab-rankings">
+						</div>
+						<div role="tabpanel" class="tab-pane tab-guides" id="tab-guides">
+						</div>
+					</div>
+				</div>
+				<div class="col w-lg bg-white lter b-l bg-auto no-border-xs">
+					<div class="nav-tabs-alt" >
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="active">
+								<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-bullhorn text-md text-muted wrapper-sm"></i></a>
+							</li>
+							<li>
+								<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-twitter text-md text-muted wrapper-sm"></i></a>
+							</li>
+							<li>
+								<a data-target="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-twitch text-md text-muted wrapper-sm"></i></a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="tab-1">
+							<div class="wrapper-md">
+								<div class="m-b-sm text-md">Announcements</div>
+								<div class="m-b-sm">
+									<article class="media">
+										<div class="pull-left">
+											<span class="fa-stack fa-lg">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-bold fa-stack-1x text-white"></i>
+											</span>
+										</div>
+										<div class="media-body">                        
+											<a href class="h4">Bootstrap 3: What you need to know</a>
+											<small class="block m-t-xs">Sleek, intuitive, and powerful mobile-first front-end framework for faster and easier web development.</small>
+											<em class="text-xs">Posted on <span class="text-danger">Feb 23, 2013</span></em>
+										</div>
+									</article>
+									<div class="line pull-in"></div>
+									<article class="media">
+										<div class="pull-left">
+											<span class="fa-stack fa-lg">
+												<i class="fa fa-circle fa-stack-2x text-info"></i>
+												<i class="fa fa-file-o fa-stack-1x text-white"></i>
+											</span>
+										</div>
+										<div class="media-body">
+											<a href class="h4">Bootstrap documents</a>
+											<small class="block m-t-xs">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
+											<em class="text-xs">Posted on <span class="text-danger">Feb 12, 2013</span></em>
+										</div>
+									</article>
+									<div class="line pull-in"></div>
+									<article class="media">
+										<div class="pull-left">
+											<span class="fa-stack fa-lg">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-mobile fa-stack-1x text-white"></i>
+											</span>
+										</div>
+										<div class="media-body">
+											<a href class="h4 text-success">Mobile first html/css framework</a>
+											<small class="block m-t-xs">Bootstrap, Ratchet</small>
+											<em class="text-xs">Posted on <span class="text-danger">Feb 05, 2013</span></em>
+										</div>
+									</article>
+									<div class="line pull-in"></div>
+									<article class="media">
+										<div class="pull-left">
+											<span class="fa-stack fa-lg">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-mobile fa-stack-1x text-white"></i>
+											</span>
+										</div>
+										<div class="media-body">
+											<a href class="h4 text-success">Mobile first html/css framework</a>
+											<small class="block m-t-xs">Bootstrap, Ratchet</small>
+											<em class="text-xs">Posted on <span class="text-danger">Feb 05, 2013</span></em>
+										</div>
+									</article>
+									<div class="line pull-in"></div>
+									<article class="media">
+										<div class="pull-left">
+											<span class="fa-stack fa-lg">
+												<i class="fa fa-circle fa-stack-2x"></i>
+												<i class="fa fa-mobile fa-stack-1x text-white"></i>
+											</span>
+										</div>
+										<div class="media-body">
+											<a href class="h4 text-success">Mobile first html/css framework</a>
+											<small class="block m-t-xs">Bootstrap, Ratchet</small>
+											<em class="text-xs">Posted on <span class="text-danger">Feb 05, 2013</span></em>
+										</div>
+									</article>
+								</div>
+								<div class="m-t-md text-center">
+									<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-2" id="tab-2">
+							<div class="wrapper-md b-a">
+								<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/xboxdash" class="text-success" target="_blank">@xboxdash</a></div>
+								<ul class="list-group">
+									<li class="list-group-item">
+										<p>Wellcome <a href class="text-success">@Drew Wllon</a> and play this web application template, have fun1 </p>
+										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</small>
+									</li>
+									<li class="list-group-item">
+										<p>Morbi nec <a href class="text-success">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
+										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
+									</li>
+									<li class="list-group-item">					 
+										<p><a href class="text-success">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
+										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
+									</li>
+									<li class="list-group-item">
+										<p>Morbi nec <a href class="text-success">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
+										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
+									</li>
+									<li class="list-group-item">					 
+										<p><a href class="text-success">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
+										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
+									</li>
+								</ul>
+								<div class="m-t-md text-center">
+									<a href class="btn btn-sm btn-primary padder-md m-b">More Tweets</a>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-3" id="tab-3">
+							<div class="wrapper-md">
+								<div class="m-b-sm text-md">Latest Broadcasts</div>
+								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
+									<a href="XXX">
+										<div class="center text-center w-full" style="margin-top:-60px">
+										</div>
+										<div class="bottom wrapper bg-gd-dk text-white">            
+											<div>Restaurant</div>
+											<div>9:00 am - 12:00 pm</div>
+											<div class="text-primary">Watch Now</div>
+										</div>
+										<img src="img/c0.jpg" class="img-full">
+									</a>
+								</div>
+								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
+									<a href="XXX">
+										<div class="center text-center w-full" style="margin-top:-60px">
+										</div>
+										<div class="bottom wrapper bg-gd-dk text-white">            
+											<div>Restaurant</div>
+											<div>9:00 am - 12:00 pm</div>
+											<div class="text-primary">Watch Now</div>
+										</div>
+										<img src="img/c0.jpg" class="img-full">
+									</a>
+								</div>
+								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
+									<a href="XXX">
+										<div class="center text-center w-full" style="margin-top:-60px">
+										</div>
+										<div class="bottom wrapper bg-gd-dk text-white">            
+											<div>Restaurant</div>
+											<div>9:00 am - 12:00 pm</div>
+											<div class="text-primary">Watch Now</div>
+										</div>
+										<img src="img/c0.jpg" class="img-full">
+									</a>
+								</div>
+								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
+									<a href="XXX">
+										<div class="center text-center w-full" style="margin-top:-60px">
+										</div>
+										<div class="bottom wrapper bg-gd-dk text-white">            
+											<div>Restaurant</div>
+											<div>9:00 am - 12:00 pm</div>
+											<div class="text-primary">Watch Now</div>
+										</div>
+										<img src="img/c0.jpg" class="img-full">
+									</a>
+								</div>
+								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
+									<a href="XXX">
+										<div class="center text-center w-full" style="margin-top:-60px">
+										</div>
+										<div class="bottom wrapper bg-gd-dk text-white">            
+											<div>Restaurant</div>
+											<div>9:00 am - 12:00 pm</div>
+											<div class="text-primary">Watch Now</div>
+										</div>
+										<img src="img/c0.jpg" class="img-full">
+									</a>
+								</div>
+								<div class="text-center">
+									<a href class="btn btn-sm btn-primary padder-md m-b">More Videos</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
+</template>
+
+<template name="userProfileArea">
+	<div style="background:url(img/user-bg.png) center center; background-size:cover">
+		<div class="wrapper-lg bg-white-opacity">
+			<div class="row m-t">
+				<div class="col-sm-7">
+					<a href class="thumb-lg pull-left m-r">
+						<img src="img/a0.jpg" class="img-circle">
+					</a>
+					<div class="clear m-b">
+						<div class="m-b m-t-sm">
+							<span class="h3 text-black">{{gamercard.gamertag}}</span>
+							<small class="m-l">{{gamercard.motto}}</small>
+						</div>
+						<p class="m-b">
+							<a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
+							<a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
+							<a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a>
+						</p>
+						<a href class="btn btn-sm btn-success btn-rounded">Follow</a>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<div class="pull-right pull-none-xs text-center">
+						<a href class="m-b-md inline m">
+							<span class="h3 block font-bold">2k</span>
+							<small>Followers</small>
+						</a>
+						<a href class="m-b-md inline m">
+							<span class="h3 block font-bold">250</span>
+							<small>Following</small>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="latestActivity">
+	<div class="streamline b-l b-info m-l-lg m-b padder-v">
+		<div>
+			<a class="pull-left thumb-sm avatar m-l-n-md">
+			<img src="img/a9.jpg" class="img-circle" alt="...">
+			</a>
+			<div class="m-l-lg">
+			<div class="m-b-xs">
+				<a href class="h4">John smith</a>
+				<span class="text-muted m-l-sm pull-right">
+				Just now
+				</span>
+			</div>
+			<div class="m-b">
+				<div>Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
+				<div class="m-t-sm">
+					<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
+					<a href class="text-muted m-xs"><i class="icon-star"></i></a>
+					<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div>
+			<a class="pull-left thumb-sm avatar m-l-n-md">
+				<img src="img/a6.jpg" class="img-circle" alt="...">
+			</a>
+			<div class="m-l-lg m-b-lg">
+			<div class="m-b-xs">
+				<a href class="h4">Jessica</a>
+				<span class="text-muted m-l-sm pull-right">
+				3h ago
+				</span>
+			</div>
+			<div class="m-b">
+				<div class="m-b">Cecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
+				<img src="img/c5.jpg" class="b b-a wrapper-xs bg-white img-responsive">
+				<div class="m-t-sm">
+					<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
+					<a href class="text-muted m-xs"><i class="icon-star"></i></a>
+					<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="latestVideoClips">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			Latest Clips
+		</div>
+		<div class="container-fluid">
+			<h1>Bootstrap 3 Lightbox using Modal</h1>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/992233"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+			</div>
+		</div>
+		<div class="modal" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" data-dismiss="modal">×</button>
+						<h3 class="modal-title"></h3>
+					</div>
+					<div class="modal-body">
+						<div id="modalCarousel" class="carousel">
+							<div class="carousel-inner"></div>
+							<a class="carousel-control left" href="#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+							<a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="latestScreenCaptures">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			Latest Captures
+		</div>
+		<div class="container-fluid">
+			<h1>Bootstrap 3 Lightbox using Modal</h1>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/992233"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+			</div>
+		</div>
+		<div class="modal" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" data-dismiss="modal">×</button>
+						<h3 class="modal-title"></h3>
+					</div>
+					<div class="modal-body">
+						<div id="modalCarousel" class="carousel">
+							<div class="carousel-inner"></div>
+							<a class="carousel-control left" href="#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+							<a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="userBadges">
+	<div class="row text-center">
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">text</div>
+		<div class="col-md-1 wrapper-sm">See More</div>
+	</div>
+</template>
+
+<template name="userWishlist">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			{{gamercard.gamertag}}'s Wishlist
+		</div>
+		<div class="list-group bg-white">
+			<a href class="list-group-item">
+				<i class="fa fa-fw fa-envelope"></i> Inbox
+			</a>
+			<a href class="list-group-item">
+				<i class="fa fa-fw fa-eye"></i> Profile visits
+			</a>
+			<a href class="list-group-item">
+				<i class="fa fa-fw fa-phone"></i> Call
+			</a>
+			<a href class="list-group-item">
+				<i class="fa fa-fw fa-comments-o"></i> Messages
+			</a>
+			<a href class="list-group-item">
+				<i class="fa fa-fw fa-bookmark"></i> Bookmarks
+			</a>
+			<a href class="list-group-item">
+				<i class="fa fa-fw fa-bell"></i> Notifications
+			</a>
+		</div>
+	</div>
+</template>
+
+<template name="userTrophyCase">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			{{gamercard.gamertag}}'s Trophy Case
+		</div>
+		<ul class="list-group alt">
+			<li class="list-group-item">
+				<div class="media">
+					<span class="pull-left thumb-sm"><img src="img/a1.jpg" alt="..." class="img-circle"></span>
+					<div class="pull-right text-success m-t-sm">
+						<i class="fa fa-circle"></i>
+					</div>
+					<div class="media-body">
+						<div><a href>Chris Fox</a></div>
+						<small class="text-muted">about 2 minutes ago</small>
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="media">
+					<span class="pull-left thumb-sm"><img src="img/a2.jpg" alt="..." class="img-circle"></span>
+					<div class="pull-right text-muted m-t-sm">
+						<i class="fa fa-circle"></i>
+					</div>
+					<div class="media-body">
+						<div><a href>Amanda Conlan</a></div>
+						<small class="text-muted">about 2 hours ago</small>
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="media">
+					<span class="pull-left thumb-sm"><img src="img/a3.jpg" alt="..." class="img-circle"></span>
+					<div class="pull-right text-warning m-t-sm">
+						<i class="fa fa-circle"></i>
+					</div>
+					<div class="media-body">
+						<div><a href>Dan Doorack</a></div>
+						<small class="text-muted">3 days ago</small>
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="media">
+					<span class="pull-left thumb-sm"><img src="img/a4.jpg" alt="..." class="img-circle"></span>
+					<div class="pull-right text-danger m-t-sm">
+						<i class="fa fa-circle"></i>
+					</div>
+					<div class="media-body">
+						<div><a href>Lauren Taylor</a></div>
+						<small class="text-muted">about 2 minutes ago</small>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
 </template>
 

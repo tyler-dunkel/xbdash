@@ -12,6 +12,7 @@ Template.aboutUs.created = function() {
 		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
 		{ "charset": "utf-8" },
 		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "p:domain_verify", "content": "00252b5416e600a95b1e2e9bf0e294b0" },
 		{ "name": "description", "content": aboutUsPageDescription },
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
 		{ "property": "og:description", "content": aboutUsPageDescription },
@@ -28,7 +29,7 @@ Template.aboutUs.created = function() {
 		{ "name": "twitter:image:src", "content": aboutUsPageImage },
 		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
-
+	
 	var linkInfo = [
 		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
 		{ "rel": "canonical", "href": aboutUsPageUrl },
