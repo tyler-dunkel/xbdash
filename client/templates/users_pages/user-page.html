@@ -1,10 +1,15 @@
-<template name="usersPage">
+<template name="userProfilePage">
 	<div id="content" class="app-content" role="main">
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
-				<!-- main -->
 				<div class="col">
-					{{> userProfileArea}}
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{> userProfileArea}}
+					{{/with}}
+				{{else}}
+					{{> loadingTemplate}}
+				{{/if}}
 					<div class="bg-white b-b">
 						<div class="nav-tabs-alt" >
 							<ul class="nav nav-tabs" role="tablist">
@@ -14,12 +19,6 @@
 								<li>
 									<a data-target="#tab-personals" role="tab" data-toggle="tab">Personals</a>
 								</li>
-								<li>
-									<a data-target="#tab-rankings" role="tab" data-toggle="tab">Rankings</a>
-								</li>
-								<li>
-									<a data-target="#tab-guides" role="tab" data-toggle="tab">Guides</a>
-								</li>
 							</ul>
 						</div>
 					</div>
@@ -28,15 +27,33 @@
 							<div class="padder">
 								<div class="row">
 									<div class="col-md-6">
-										{{> latestActivity}}
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> latestActivity}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
 									</div>
 									<div class="col-md-6 wrapper">
 					                    <div class="row">
 						                    <div class="col-md-12">
-						                    	{{> latestVideoClips}}
+						                    {{#if Template.subscriptionsReady}}
+												{{#with user}}
+													{{> latestVideoClips}}
+												{{/with}}
+											{{else}}
+												{{> loadingTemplate}}
+											{{/if}}
 						                    </div>
 											<div class="col-sm-12">
-												{{> latestScreenCaptures}}
+											{{#if Template.subscriptionsReady}}
+												{{#with user}}
+													{{> latestScreenCaptures}}
+												{{/with}}
+											{{else}}
+												{{> loadingTemplate}}
+											{{/if}}
 											</div>
 										</div>
 									</div>
@@ -45,20 +62,34 @@
 						</div>
 						<div role="tabpanel" class="tab-pane tab-personals" id="tab-personals">
 							<div class="padder container-fluid">
-								{{> userBadges}}
+								{{#if Template.subscriptionsReady}}
+									{{#with user}}
+										{{> userBadges }}
+									{{/with}}
+								{{else}}
+									{{> loadingTemplate}}
+								{{/if}}
 								<div class="row">
 									<div class="col-md-6 wrapper">
-										{{> userWishlist}}
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> userWishlist}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
 									</div>
 									<div class="col-md-6 wrapper">
-										{{> userTrophyCase}}
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> userTrophyCase}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
 									</div>
 								</div>
 							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane tab-rankings" id="tab-rankings">
-						</div>
-						<div role="tabpanel" class="tab-pane tab-guides" id="tab-guides">
 						</div>
 					</div>
 				</div>
@@ -79,179 +110,41 @@
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="tab-1">
 							<div class="wrapper-md">
-								<div class="m-b-sm text-md">Announcements</div>
-								<div class="m-b-sm">
-									<article class="media">
-										<div class="pull-left">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-bold fa-stack-1x text-white"></i>
-											</span>
-										</div>
-										<div class="media-body">                        
-											<a href class="h4">Bootstrap 3: What you need to know</a>
-											<small class="block m-t-xs">Sleek, intuitive, and powerful mobile-first front-end framework for faster and easier web development.</small>
-											<em class="text-xs">Posted on <span class="text-danger">Feb 23, 2013</span></em>
-										</div>
-									</article>
-									<div class="line pull-in"></div>
-									<article class="media">
-										<div class="pull-left">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x text-info"></i>
-												<i class="fa fa-file-o fa-stack-1x text-white"></i>
-											</span>
-										</div>
-										<div class="media-body">
-											<a href class="h4">Bootstrap documents</a>
-											<small class="block m-t-xs">There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.</small>
-											<em class="text-xs">Posted on <span class="text-danger">Feb 12, 2013</span></em>
-										</div>
-									</article>
-									<div class="line pull-in"></div>
-									<article class="media">
-										<div class="pull-left">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-mobile fa-stack-1x text-white"></i>
-											</span>
-										</div>
-										<div class="media-body">
-											<a href class="h4 text-success">Mobile first html/css framework</a>
-											<small class="block m-t-xs">Bootstrap, Ratchet</small>
-											<em class="text-xs">Posted on <span class="text-danger">Feb 05, 2013</span></em>
-										</div>
-									</article>
-									<div class="line pull-in"></div>
-									<article class="media">
-										<div class="pull-left">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-mobile fa-stack-1x text-white"></i>
-											</span>
-										</div>
-										<div class="media-body">
-											<a href class="h4 text-success">Mobile first html/css framework</a>
-											<small class="block m-t-xs">Bootstrap, Ratchet</small>
-											<em class="text-xs">Posted on <span class="text-danger">Feb 05, 2013</span></em>
-										</div>
-									</article>
-									<div class="line pull-in"></div>
-									<article class="media">
-										<div class="pull-left">
-											<span class="fa-stack fa-lg">
-												<i class="fa fa-circle fa-stack-2x"></i>
-												<i class="fa fa-mobile fa-stack-1x text-white"></i>
-											</span>
-										</div>
-										<div class="media-body">
-											<a href class="h4 text-success">Mobile first html/css framework</a>
-											<small class="block m-t-xs">Bootstrap, Ratchet</small>
-											<em class="text-xs">Posted on <span class="text-danger">Feb 05, 2013</span></em>
-										</div>
-									</article>
-								</div>
-								<div class="m-t-md text-center">
-									<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
-								</div>
+							{{#if Template.subscriptionsReady}}
+								{{> xbdAnnouncements}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane tab-2" id="tab-2">
 							<div class="wrapper-md b-a">
-								<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/xboxdash" class="text-success" target="_blank">@xboxdash</a></div>
-								<ul class="list-group">
-									<li class="list-group-item">
-										<p>Wellcome <a href class="text-success">@Drew Wllon</a> and play this web application template, have fun1 </p>
-										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</small>
-									</li>
-									<li class="list-group-item">
-										<p>Morbi nec <a href class="text-success">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
-										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
-									</li>
-									<li class="list-group-item">					 
-										<p><a href class="text-success">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
-										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
-									</li>
-									<li class="list-group-item">
-										<p>Morbi nec <a href class="text-success">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
-										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
-									</li>
-									<li class="list-group-item">					 
-										<p><a href class="text-success">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
-										<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
-									</li>
-								</ul>
-								<div class="m-t-md text-center">
-									<a href class="btn btn-sm btn-primary padder-md m-b">More Tweets</a>
-								</div>
+							{{#if Template.subscriptionsReady}}
+								{{#if chkUserTwitter}}
+									{{#with user}}
+										{{> xbdTweets screenName=this.services.twitter.screenName}}
+									{{/with}}
+								{{else}}
+									{{> xbdTweets screenName=xboxdash}}
+								{{/if}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane tab-3" id="tab-3">
 							<div class="wrapper-md">
-								<div class="m-b-sm text-md">Latest Broadcasts</div>
-								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
-									<a href="XXX">
-										<div class="center text-center w-full" style="margin-top:-60px">
-										</div>
-										<div class="bottom wrapper bg-gd-dk text-white">            
-											<div>Restaurant</div>
-											<div>9:00 am - 12:00 pm</div>
-											<div class="text-primary">Watch Now</div>
-										</div>
-										<img src="img/c0.jpg" class="img-full">
-									</a>
-								</div>
-								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
-									<a href="XXX">
-										<div class="center text-center w-full" style="margin-top:-60px">
-										</div>
-										<div class="bottom wrapper bg-gd-dk text-white">            
-											<div>Restaurant</div>
-											<div>9:00 am - 12:00 pm</div>
-											<div class="text-primary">Watch Now</div>
-										</div>
-										<img src="img/c0.jpg" class="img-full">
-									</a>
-								</div>
-								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
-									<a href="XXX">
-										<div class="center text-center w-full" style="margin-top:-60px">
-										</div>
-										<div class="bottom wrapper bg-gd-dk text-white">            
-											<div>Restaurant</div>
-											<div>9:00 am - 12:00 pm</div>
-											<div class="text-primary">Watch Now</div>
-										</div>
-										<img src="img/c0.jpg" class="img-full">
-									</a>
-								</div>
-								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
-									<a href="XXX">
-										<div class="center text-center w-full" style="margin-top:-60px">
-										</div>
-										<div class="bottom wrapper bg-gd-dk text-white">            
-											<div>Restaurant</div>
-											<div>9:00 am - 12:00 pm</div>
-											<div class="text-primary">Watch Now</div>
-										</div>
-										<img src="img/c0.jpg" class="img-full">
-									</a>
-								</div>
-								<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
-									<a href="XXX">
-										<div class="center text-center w-full" style="margin-top:-60px">
-										</div>
-										<div class="bottom wrapper bg-gd-dk text-white">            
-											<div>Restaurant</div>
-											<div>9:00 am - 12:00 pm</div>
-											<div class="text-primary">Watch Now</div>
-										</div>
-										<img src="img/c0.jpg" class="img-full">
-									</a>
-								</div>
-								<div class="text-center">
-									<a href class="btn btn-sm btn-primary padder-md m-b">More Videos</a>
-								</div>
+							{{#if Template.subscriptionsReady}}
+								{{#if chkUserTwitter}}
+									{{#with user}}
+										{{> xbdBroadcasts screenName=this.services.twitch.screenName}}
+									{{/with}}
+								{{else}}
+									{{> xbdBroadcasts screenName=xboxdash}}
+								{{/if}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
 							</div>
 						</div>
 					</div>
@@ -262,17 +155,17 @@
 </template>
 
 <template name="userProfileArea">
-	<div style="background:url(img/user-bg.png) center center; background-size:cover">
+	<div style="background:url('/img/user-bg.png') center center; background-repeat: repeat;">
 		<div class="wrapper-lg bg-white-opacity">
 			<div class="row m-t">
 				<div class="col-sm-7">
 					<a href class="thumb-lg pull-left m-r">
-						<img src="img/a0.jpg" class="img-circle">
+						<img src="{{userGamerPic}}" class="img-circle">
 					</a>
 					<div class="clear m-b">
 						<div class="m-b m-t-sm">
-							<span class="h3 text-black">{{gamercard.gamertag}}</span>
-							<small class="m-l">{{gamercard.motto}}</small>
+							<span class="h3 text-black">{{userGamercard}}</span>
+							<small class="m-l">{{userMotto}}</small>
 						</div>
 						<p class="m-b">
 							<a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
@@ -303,7 +196,7 @@
 	<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		<div>
 			<a class="pull-left thumb-sm avatar m-l-n-md">
-			<img src="img/a9.jpg" class="img-circle" alt="...">
+			<img src="/img/a9.jpg" class="img-circle" alt="...">
 			</a>
 			<div class="m-l-lg">
 			<div class="m-b-xs">
@@ -324,7 +217,7 @@
 		</div>
 		<div>
 			<a class="pull-left thumb-sm avatar m-l-n-md">
-				<img src="img/a6.jpg" class="img-circle" alt="...">
+				<img src="/img/a6.jpg" class="img-circle" alt="...">
 			</a>
 			<div class="m-l-lg m-b-lg">
 			<div class="m-b-xs">
@@ -335,7 +228,7 @@
 			</div>
 			<div class="m-b">
 				<div class="m-b">Cecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
-				<img src="img/c5.jpg" class="b b-a wrapper-xs bg-white img-responsive">
+				<img src="/img/c5.jpg" class="b b-a wrapper-xs bg-white img-responsive">
 				<div class="m-t-sm">
 					<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
 					<a href class="text-muted m-xs"><i class="icon-star"></i></a>
@@ -355,14 +248,14 @@
 		<div class="container-fluid">
 			<h1>Bootstrap 3 Lightbox using Modal</h1>
 			<div class="row">
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/992233"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/992233"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
 			</div>
 		</div>
 		<div class="modal" id="myModal" role="dialog">
@@ -396,14 +289,14 @@
 		<div class="container-fluid">
 			<h1>Bootstrap 3 Lightbox using Modal</h1>
 			<div class="row">
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/992233"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="//placehold.it/600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/992233"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
+				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
 			</div>
 		</div>
 		<div class="modal" id="myModal" role="dialog">
@@ -430,6 +323,11 @@
 </template>
 
 <template name="userBadges">
+	<div class="panel panel-black" style="margin-bottom: 0;">
+		<div class="panel-heading text-center">
+			<h3 class="m-n padder-t text-white h4">{{user}}'s Badges</h3>
+		</div>
+	</div>
 	<div class="row text-center">
 		<div class="col-md-1 wrapper-sm">text</div>
 		<div class="col-md-1 wrapper-sm">text</div>
@@ -494,7 +392,7 @@
 		<ul class="list-group alt">
 			<li class="list-group-item">
 				<div class="media">
-					<span class="pull-left thumb-sm"><img src="img/a1.jpg" alt="..." class="img-circle"></span>
+					<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
 					<div class="pull-right text-success m-t-sm">
 						<i class="fa fa-circle"></i>
 					</div>
@@ -506,7 +404,7 @@
 			</li>
 			<li class="list-group-item">
 				<div class="media">
-					<span class="pull-left thumb-sm"><img src="img/a2.jpg" alt="..." class="img-circle"></span>
+					<span class="pull-left thumb-sm"><img src="/img/a2.jpg" alt="..." class="img-circle"></span>
 					<div class="pull-right text-muted m-t-sm">
 						<i class="fa fa-circle"></i>
 					</div>
@@ -518,7 +416,7 @@
 			</li>
 			<li class="list-group-item">
 				<div class="media">
-					<span class="pull-left thumb-sm"><img src="img/a3.jpg" alt="..." class="img-circle"></span>
+					<span class="pull-left thumb-sm"><img src="/img/a3.jpg" alt="..." class="img-circle"></span>
 					<div class="pull-right text-warning m-t-sm">
 						<i class="fa fa-circle"></i>
 					</div>
@@ -530,7 +428,7 @@
 			</li>
 			<li class="list-group-item">
 				<div class="media">
-					<span class="pull-left thumb-sm"><img src="img/a4.jpg" alt="..." class="img-circle"></span>
+					<span class="pull-left thumb-sm"><img src="/img/a4.jpg" alt="..." class="img-circle"></span>
 					<div class="pull-right text-danger m-t-sm">
 						<i class="fa fa-circle"></i>
 					</div>
@@ -544,6 +442,62 @@
 	</div>
 </template>
 
-<template name="usersApp">
-	<div> hello </div>
+<template name="xbdAnnouncements">
+	<div class="m-b-sm text-md">Announcements</div>
+	<div class="m-b-sm">
+		{{#each singleAnnouncement}}
+		<article class="media">
+			<div class="pull-left">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+				</span>
+			</div>
+			<div class="media-body">                        
+				<a href class="h4">{{getAnnouncementTitle}}</a>
+				<small class="block m-t-xs">{{getAnnouncementText}}</small>
+				<em class="text-xs">Posted on <span class="text-danger">{{getDate}}</span></em>
+			</div>
+		</article>
+		<div class="line pull-in"></div>
+		{{/each}}
+	</div>
+	<div class="m-t-md text-center">
+		<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
+	</div>
+</template>
+
+<template name="xbdTweets">
+	<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/{{getTwitterScreenName}}" class="text-success" target="_blank">{{result.user}}</a></div>
+	<ul class="list-group">
+		{{#each singleTweet}}
+		<li class="list-group-item">
+			<p>{{result.text}}</p>
+			<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> {{result.user.created_at}}</small>
+		</li>
+		{{/each}}
+	</ul>
+	<div class="m-t-md text-center">
+		<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-primary padder-md m-b">More Tweets</a>
+	</div>
+</template>
+
+<template name="xbdBroadcasts">
+	<div class="m-b-sm text-md">Latest Broadcasts - <a href="https://twitter.com/{{twitchName}}" class="text-success" target="_blank">{{twitchName}}</a></div>
+	{{#each singleBroadcast}}
+	<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
+		<a href="XXX">
+			<div class="center text-center w-full" style="margin-top:-60px">
+			</div>
+			<div class="bottom wrapper bg-gd-dk text-white">            
+				<div>Restaurant</div>
+				<div>9:00 am - 12:00 pm</div>
+				<div class="text-primary">Watch Now</div>
+			</div>
+			<img src="/img/c0.jpg" class="img-full">
+		</a>
+	</div>
+	{{/each}}
+	<div class="text-center">
+		<a href="https://www.twitch.tv/{{twitchName}}" class="btn btn-sm btn-primary padder-md m-b">More Videos</a>
+	</div>
 </template>
