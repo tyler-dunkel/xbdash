@@ -29,7 +29,7 @@
 									<div class="col-md-6">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
-											{{> latestActivity}}
+											{{> userActivity}}
 										{{/with}}
 									{{else}}
 										{{> loadingTemplate}}
@@ -40,7 +40,7 @@
 						                    <div class="col-md-12">
 						                    {{#if Template.subscriptionsReady}}
 												{{#with user}}
-													{{> latestVideoClips}}
+													{{> userClips}}
 												{{/with}}
 											{{else}}
 												{{> loadingTemplate}}
@@ -49,7 +49,7 @@
 											<div class="col-sm-12">
 											{{#if Template.subscriptionsReady}}
 												{{#with user}}
-													{{> latestScreenCaptures}}
+													{{> userCaptures}}
 												{{/with}}
 											{{else}}
 												{{> loadingTemplate}}
@@ -164,7 +164,7 @@
 					</a>
 					<div class="clear m-b">
 						<div class="m-b m-t-sm">
-							<span class="h3 text-black">{{userGamercard}}</span>
+							<span class="h3 text-black">{{userGamertag}}</span>
 							<small class="m-l">{{userMotto}}</small>
 						</div>
 						<p class="m-b">
@@ -192,7 +192,7 @@
 	</div>
 </template>
 
-<template name="latestActivity">
+<template name="userActivity">
 	<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		<div>
 			<a class="pull-left thumb-sm avatar m-l-n-md">
@@ -240,7 +240,7 @@
 	</div>
 </template>
 
-<template name="latestVideoClips">
+<template name="userClips">
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			Latest Clips
@@ -281,7 +281,7 @@
 	</div>
 </template>
 
-<template name="latestScreenCaptures">
+<template name="userCaptures">
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			Latest Captures
@@ -468,6 +468,7 @@
 
 <template name="xbdTweets">
 	<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/{{getTwitterScreenName}}" class="text-success" target="_blank">{{result.user}}</a></div>
+	{{getTweets}}
 	<ul class="list-group">
 		{{#each singleTweet}}
 		<li class="list-group-item">

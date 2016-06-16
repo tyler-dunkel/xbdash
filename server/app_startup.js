@@ -1,7 +1,7 @@
 Meteor.startup(function() {
 
 	if (xbdContests.find({}).count() < 1) {
-		xbdContests.insert({status: 'active', contestToken: 'xbdDirect', entries: []});
+		xbdContests.insert({ status: 'active', contestToken: 'xbdDirect', entries: [] });
 	}
 
 	ServiceConfiguration.configurations.remove({
@@ -26,7 +26,7 @@ Meteor.startup(function() {
 	});
 
 	process.env.MAIL_URL = "smtp://postmaster%40email.xbdash.com:" + Meteor.settings.services.mailgunKey + "@smtp.mailgun.org:587";
-
+	
 	Cloudinary.config({
 		cloud_name: 'xbdash',
 		api_key: Meteor.settings.services.cloudinaryKey,
