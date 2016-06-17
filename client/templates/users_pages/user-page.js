@@ -97,8 +97,15 @@ Template.userActivity.created = function() {
 
 Template.userActivity.helpers({
 	activity: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.find({ gamertagSlug: gamertagSlug });
+		console.log(user);
 		console.log(this.userId);
-		return recentActivity.find({ userId: this._id });
+		var userActivity = recentActivity.find({ userId: this._id });
+		return userActivity.activityList;
+	},
+	singleActivity: function () {
+		console.log(this + "1");
 	}
 });
 

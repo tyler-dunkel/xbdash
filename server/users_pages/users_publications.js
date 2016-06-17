@@ -21,6 +21,20 @@ Meteor.publishComposite('userActivity', function(gamertagSlug) {
 		children: [
 			{
 				find: function(user) {
+					return Meteor.users.find({ _id: user._id }, {
+						fields: {
+							"services.twitter": 1,
+							"emails": 1,
+							"gamercard": 1,	
+							"gamertagSlug": 1,
+							"xboxProfile": 1,
+							"presence": 1
+						}
+					});
+				}
+			},
+			{
+				find: function(user) {
 					return recentActivity.find({ userId: user._id }, {
 						fields: {
 							"userId": 1,

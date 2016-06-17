@@ -196,9 +196,14 @@
 </template>
 
 <template name="userActivity">
-	{{#with activity}}
-	{{/with}}
 	<div class="streamline b-l b-info m-l-lg m-b padder-v">
+		{{#if Template.subscriptionsReady}}
+			{{#each activity}}
+				{{singleActivity}}
+			{{/each}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
 		<div>
 			<a class="pull-left thumb-sm avatar m-l-n-md">
 			<img src="/img/a9.jpg" class="img-circle" alt="...">
