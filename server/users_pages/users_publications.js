@@ -4,7 +4,8 @@ Meteor.publish('userProfile', function(gamertagSlug) {
 		fields: {
 			"services.twitter": 1,
 			"emails": 1,
-			"gamercard": 1,
+			"gamercard": 1,	
+			"gamertagSlug": 1,
 			"xboxProfile": 1,
 			"presence": 1
 		}

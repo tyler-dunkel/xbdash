@@ -5,6 +5,7 @@
 				<div class="col">
 				{{#if Template.subscriptionsReady}}
 					{{#with user}}
+						{{> userDocHead}}
 						{{> userProfileArea}}
 					{{/with}}
 				{{else}}
@@ -154,6 +155,8 @@
 	</div>
 </template>
 
+<template name="userDocHead"></template>
+
 <template name="userProfileArea">
 	<div style="background:url('/img/user-bg.png') center center; background-repeat: repeat;">
 		<div class="wrapper-lg bg-white-opacity">
@@ -193,6 +196,8 @@
 </template>
 
 <template name="userActivity">
+	{{#with activity}}
+	{{/with}}
 	<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		<div>
 			<a class="pull-left thumb-sm avatar m-l-n-md">
