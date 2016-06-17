@@ -99,13 +99,12 @@ Template.userActivity.helpers({
 	activity: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.find({ gamertagSlug: gamertagSlug });
-		console.log(user);
-		console.log(this.userId);
+		console.log("user: " + user);
 		var userActivity = recentActivity.find({ userId: this._id });
 		return userActivity.activityList;
 	},
 	singleActivity: function () {
-		console.log(this + "1");
+		console.log(this);
 	}
 });
 
