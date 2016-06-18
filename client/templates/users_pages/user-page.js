@@ -137,7 +137,35 @@ Template.userAchievements.created = function() {
 
 Template.userAchievements.helpers({
 	achievement: function () {
-		console.log(this);
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var userAchis = userAchievements.find({ userId: user._id });
+		return userAchis;
+	},
+	getAchievementImage: function () {
+		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
+		return "https://res.cloudinary.com/xbdash/image/fetch/c_fill,w_40,h_40/" + encodeURIComponent(achievement.mediaAssets);;
+	},
+	getAchievementName: function () {
+		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
+		return achievement.name;
+	},
+	getUnlockedDate: function () {
+		return moment(this.progression).calendar();
+	},
+	getUserGamertag: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		return user.gamercard.gamertag;
+	},
+	getGameName: function () {
+		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
+		var game = xbdGames.findOne({ _id: achievement.gameId });
+		return game.name;
+	},
+	getAchievementValue: function () {
+		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
+		return achievement.value;
 	}
 });
 

@@ -59,8 +59,27 @@ Meteor.publishComposite('userAchievements', function(gamertagSlug) {
 				children: [
 					{
 						find: function(userAchievement, user) {
-							return xbdAchievements.find({ achievementId: userAchievement.achievementId });
-						}
+							return xbdAchievements.find({ _id: userAchievement.achievementId }, {
+								fields: {
+									"gameId": 1,
+									"name": 1,
+									"mediaAssets": 1,
+									"value": 1,
+
+								}
+							});
+						},
+						children: [
+							{
+								find: function(xbdAchievement, userAchievement, user) {
+									return xbdGames.find({ _id: xbdAchievement.gameId }, {
+										fields: {
+											"name": 1
+										}
+									});
+								}
+							}
+						]
 					}
 				]
 			}
