@@ -65,7 +65,6 @@ Meteor.publishComposite('userAchievements', function(gamertagSlug) {
 									"name": 1,
 									"mediaAssets": 1,
 									"value": 1,
-
 								}
 							});
 						},
@@ -75,6 +74,56 @@ Meteor.publishComposite('userAchievements', function(gamertagSlug) {
 									return xbdGames.find({ _id: xbdAchievement.gameId }, {
 										fields: {
 											"name": 1
+										}
+									});
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+});
+
+Meteor.publishComposite('userGames', function(gamertagSlug) {
+	check(gamertagSlug, String);
+	return {
+		find: function() {
+			return Meteor.users.find({ gamertagSlug: gamertagSlug });
+		},
+		children: [
+			{
+				find: function(user) {
+					return userGames.find({ userId: user._id, completed: true }, {
+						fields: { 
+							"gameId": 1,
+							"userId": 1,
+							"lastUnlock": 1,
+							"completed": 1
+						},
+						sort: { "lastUnlock": -1 },
+						limit: 5
+					});
+				},
+				children: [
+					{
+						find: function(userGame, user) {
+							return xbdGames.find({ _id: userGame.gameId }, {
+								fields: {
+									"platform": 1,
+									"name": 1
+								}
+							});
+						},
+						children: [
+							{
+								find: function(xbdGame, userGame, user) {
+									return gameDetails.findOne({ gameId: xbdGame.gameId }, {
+										fields: {
+											"gameId": 1,
+											"gameGenre": 1,
+											"gameArt": 1
 										}
 									});
 								}

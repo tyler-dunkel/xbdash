@@ -290,33 +290,28 @@
 			Latest Game Completions
 		</div>
 		<div class="streamline b-l b-info m-l-lg m-b padder-v">
-			{{#if Template.subscriptionsReady}}
-				{{#each activity}}
-				<div>
-					<a class="pull-left thumb-sm avatar m-l-n-md">
-					<img src="{{getActivityImage}}" class="img-circle" alt="{{itemText}}">
-					</a>
-					<div class="m-l-lg">
+		{{#if Template.subscriptionsReady}}
+			{{#each game}}
+			<div>
+				<a class="pull-left thumb-sm avatar m-l-n-md">
+					<img src="{{getGameImage}}" class="img-circle" alt="{{getGameName}}">
+				</a>
+				<div class="m-l-lg">
 					<div class="m-b-xs">
-						<a href class="h4">{{shortDescription}}</a>
+						<a href class="h4">{{getGameName}}</a>
 						<span class="text-muted m-l-sm pull-right m-r-sm">
-						{{getStartTime}}
+						{{getUnlockedDate}}
 						</span>
 					</div>
-					<div class="m-b">
-						<div>{{gamertag}} {{description}}</div>
-						<div class="m-t-sm">
-							<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
-							<a href class="text-muted m-xs"><i class="icon-star"></i></a>
-							<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
-						</div>
-					</div>
+					<div class="m-b m-r">
+						<div>{{getUserGamertag}} completed {{getGameName}}</div>
 					</div>
 				</div>
-				{{/each}}
-			{{else}}
-				{{> loadingTemplate}}
-			{{/if}}
+			</div>
+			{{/each}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
 		</div>
 	</div>
 </template>

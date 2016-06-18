@@ -144,7 +144,13 @@ Template.userAchievements.helpers({
 	},
 	getAchievementImage: function () {
 		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
-		return "https://res.cloudinary.com/xbdash/image/fetch/c_fill,w_40,h_40/" + encodeURIComponent(achievement.mediaAssets);;
+		var image = "https://www.xbdash.com/img/achievement-default.jpg";
+
+		if (achievement.mediaAssets) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fill,w_40,h_40/" + encodeURIComponent(achievement.mediaAssets);;
+		}
+
+		return image;
 	},
 	getAchievementName: function () {
 		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
@@ -166,6 +172,55 @@ Template.userAchievements.helpers({
 	getAchievementValue: function () {
 		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
 		return achievement.value;
+	}
+});
+
+Template.userGames.created = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	this.subscribe('userGames', gamertagSlug);
+}
+
+Template.userGames.helpers({
+	game: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var userGame = userGames.find({ userId: user._id });
+		return userGame;
+	},
+	getGameImage: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		var gameDets = gameDetails.findOne({ gameId: this.gameId });
+		console.log(gameDets);
+		var image = "/img/game-default.jpg";
+
+		if (game.platform === 'Xenon') {
+			gameDets.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BoxArt' && art.Width === 219) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fill,w_40,h_55/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		if (game.platform === 'Durango') {
+			gameDets.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fill,w_40,h_55" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+
+		return image;
+	},
+	getGameName: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		return game.name;
+	},
+	getUnlockedDate: function () {
+		return moment(this.lastUnlock).calendar();
+	},
+	getUserGamertag: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		return user.gamercard.gamertag;
 	}
 });
 
