@@ -12,6 +12,12 @@ Meteor.publish('userProfile', function(gamertagSlug) {
 	});
 });
 
+Meteor.publish('userRanks', function(gamertagSlug) {
+	check(gamertagSlug, String);
+	var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	return userLeaderboards.find({ userId: user._id });
+});
+
 Meteor.publishComposite('userActivity', function(gamertagSlug) {
 	check(gamertagSlug, String);
 	return {
@@ -53,7 +59,7 @@ Meteor.publishComposite('userAchievements', function(gamertagSlug) {
 				find: function(user) {
 					return userAchievements.find({ userId: user._id }, {
 						sort: { progression: -1 },
-						limit: 5
+						limit: 6
 					});
 				},
 				children: [
@@ -65,6 +71,7 @@ Meteor.publishComposite('userAchievements', function(gamertagSlug) {
 									"name": 1,
 									"mediaAssets": 1,
 									"value": 1,
+									"slug": 1
 								}
 							});
 						},
@@ -103,7 +110,7 @@ Meteor.publishComposite('userGames', function(gamertagSlug) {
 							"completed": 1
 						},
 						sort: { "lastUnlock": -1 },
-						limit: 5
+						limit: 7
 					});
 				},
 				children: [
@@ -112,14 +119,15 @@ Meteor.publishComposite('userGames', function(gamertagSlug) {
 							return xbdGames.find({ _id: userGame.gameId }, {
 								fields: {
 									"platform": 1,
-									"name": 1
+									"name": 1,
+									"slug": 1
 								}
 							});
 						},
 						children: [
 							{
 								find: function(xbdGame, userGame, user) {
-									return gameDetails.findOne({ gameId: xbdGame.gameId }, {
+									return gameDetails.find({ gameId: userGame.gameId }, {
 										fields: {
 											"gameId": 1,
 											"gameGenre": 1,
@@ -145,13 +153,17 @@ Meteor.publishComposite('userClips', function(gamertagSlug) {
 		children: [
 			{
 				find: function(user) {
+					console.log(user);
 					return gameClips.find({ userId: user._id }, {
 						fields: {
 							"userId": 1,
+							"titleId": 1,
 							"titleName": 1,
 							"thumbnails": 1,
 							"gameClipUris": 1
-						}
+						},
+						sort: { "datePublished": -1 },
+						limit: 6
 					});
 				}
 			}
@@ -171,10 +183,13 @@ Meteor.publishComposite('userCaptures', function(gamertagSlug) {
 					return screenShots.find({ userId: user._id }, {
 						fields: {
 							"userId": 1,
+							"titleId": 1,
 							"titleName": 1,
 							"thumbnails": 1,
 							"screenshotUris": 1
-						}
+						},
+						sort: { "datePublished": -1 },
+						limit: 6
 					});
 				}
 			}

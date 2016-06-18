@@ -4,9 +4,12 @@ Template.userDropdown.rendered = function() {
 Template.userDropdown.helpers({
     gamerImage: function () {
         var user = Meteor.user();
-        var defaultGamerImage = '/img/gamerpic-default.jpg';
+        var defaultGamerImage = "/img/gamerpic-default.jpg";
         if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
-            defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_40,h_40/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+            defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+        }
+        if (user && user.xboxProfile) {
+            defaultGamerImage =  "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
         }
         return defaultGamerImage;
     }

@@ -3,6 +3,7 @@ Meteor.publish('globalUserFields', function() {
 		fields: {
 			"xuid": 1,
 			"gamercard": 1,
+			"xboxProfile": 1,
 			"gamertagScanned": 1,
 			"emails[0].address": 1,
 			"emails[0].verified": 1,

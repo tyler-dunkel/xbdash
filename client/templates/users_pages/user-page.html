@@ -27,7 +27,7 @@
 						<div role="tabpanel" class="tab-pane active" id="tab-activity">
 							<div class="padder">
 								<div class="row m-t-md">
-									<div class="col-md-4">
+									<div class="col-sm-12 col-md-4">
 										{{#if Template.subscriptionsReady}}
 											{{#with user}}
 												{{> userActivity}}
@@ -36,7 +36,7 @@
 											{{> loadingTemplate}}
 										{{/if}}
 									</div>
-									<div class="col-md-4">
+									<div class="col-sm-12 col-md-4">
 					                    {{#if Template.subscriptionsReady}}
 											{{#with user}}
 												{{> userAchievements}}
@@ -45,7 +45,7 @@
 											{{> loadingTemplate}}
 										{{/if}}
 									</div>
-									<div class="col-md-4">
+									<div class="col-sm-12 col-md-4">
 										{{#if Template.subscriptionsReady}}
 											{{#with user}}
 												{{> userGames}}
@@ -55,8 +55,8 @@
 										{{/if}}
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-6 col-sm-12">
+								<!-- <div class="row">
+									<div class="col-sm-12 col-md-6">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
 											{{> userClips}}
@@ -65,7 +65,7 @@
 										{{> loadingTemplate}}
 									{{/if}}
 									</div>
-									<div class="col-md-6 col-sm-12">
+									<div class="col-sm-12 col-md-6">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
 											{{> userCaptures}}
@@ -74,7 +74,7 @@
 										{{> loadingTemplate}}
 									{{/if}}
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane tab-personals" id="tab-personals">
@@ -193,26 +193,34 @@
 						<!-- <a href class="btn btn-sm btn-success btn-rounded">Follow</a> -->
 					</div>
 				</div>
-				<!-- <div class="col-sm-5">
-					<div class="pull-right pull-none-xs text-center">
-						<a href class="m-b-md inline m">
-							<span class="h3 block font-bold">2k</span>
-							<small>Followers</small>
-						</a>
-						<a href class="m-b-md inline m">
-							<span class="h3 block font-bold">250</span>
-							<small>Following</small>
-						</a>
-					</div>
-				</div> -->
+				{{> userRankArea}}
 			</div>
 		</div>
 	</div>
 </template>
 
+<template name="userRankArea">
+	{{#if Template.subscriptionsReady}}
+		<div class="col-sm-5">
+			<div class="pull-right pull-none-xs text-center">
+				<a href class="m-b-md inline m">
+					<small>Daily Rank</small>
+					<span class="h3 block font-bold">{{usersDailyRank}}</span>
+				</a>
+				<a href class="m-b-md inline m">
+					<small>Overall Rank</small>
+					<span class="h3 block font-bold">{{usersOverallRank}}</span>
+				</a>
+			</div>
+		</div>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>
+
 <template name="userActivity">
-	<div class="panel panel-success">
-		<div class="panel-heading">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
 			Latest Xbox Activity
 		</div>
 		<div class="streamline b-l b-info m-l-lg m-b padder-v">
@@ -253,26 +261,26 @@
 </template> -->
 
 <template name="userAchievements">
-	<div class="panel panel-success">
-		<div class="panel-heading">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
 			Latest Achievements
 		</div>
 		<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		{{#if Template.subscriptionsReady}}
-			{{#each achievement}}
+			{{#each userAchievement}}
 			<div>
-				<a class="pull-left thumb-sm avatar m-l-n-md" href="{{pathFor 'achievement'}}">
+				<a class="pull-left thumb-sm avatar m-l-n-md" href="{{pathFor 'achievement' slug=achievementSlug}}">
 					<img src="{{getAchievementImage}}" class="img-circle" alt="{{getAchievementName}}">
 				</a>
 				<div class="m-l-lg">
 					<div class="m-b-xs">
-						<a href="{{pathFor 'achievement'}}" class="h5 font-bold">{{getAchievementName}}</a>
+						<a href="{{pathFor 'achievement' slug=achievementSlug}}" class="h5 font-bold">{{getAchievementName}}</a>
 						<span class="text-muted m-l-sm pull-right m-r-sm">
 							{{getUnlockedDate}}
 						</span>
 					</div>
 					<div class="m-b m-r">
-						<div>{{getUserGamertag}} earned a new achievement in {{getGameName}} for {{getAchievementValue}} Gamerscore.</div>
+						<div>{{getUserGamertag}} earned a new achievement in {{getGameName}} for <strong>{{getAchievementValue}} Gamerscore</strong>.</div>
 					</div>
 				</div>
 			</div>
@@ -285,26 +293,26 @@
 </template>
 
 <template name="userGames">
-	<div class="panel panel-success">
-		<div class="panel-heading">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
 			Latest Game Completions
 		</div>
 		<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		{{#if Template.subscriptionsReady}}
-			{{#each game}}
+			{{#each userGame}}
 			<div>
-				<a class="pull-left thumb-sm avatar m-l-n-md">
-					<img src="{{getGameImage}}" class="img-circle" alt="{{getGameName}}">
+				<a class="pull-left thumb-sm m-l-n-md" href="{{pathFor 'game' slug=gameSlug}}">
+					<img src="{{getGameImage}}" class="img-rounded" alt="{{getGameName}}">
 				</a>
 				<div class="m-l-lg">
-					<div class="m-b-xs">
-						<a href class="h4">{{getGameName}}</a>
+					<div class="p-t-xs m-b-xs">
+						<a href="{{pathFor 'game' slug=gameSlug}}" class="h5 font-bold">{{getGameName}}</a>
 						<span class="text-muted m-l-sm pull-right m-r-sm">
 						{{getUnlockedDate}}
 						</span>
 					</div>
 					<div class="m-b m-r">
-						<div>{{getUserGamertag}} completed {{getGameName}}</div>
+						<div>{{getUserGamertag}} completed <strong>{{getGameName}}</strong></div>
 					</div>
 				</div>
 			</div>
@@ -316,25 +324,24 @@
 	</div>
 </template>
 
-<template name="userClips">
-	<div class="panel panel-success">
-		<div class="panel-heading">
+<!-- <template name="userClips">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
 			Latest Clips
 		</div>
-		<div class="container-fluid">
-			<h1>Bootstrap 3 Lightbox using Modal</h1>
+		<div class="container-fluid clips-container">
 			<div class="row">
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/992233"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
+			{{#if Template.subscriptionsReady}}
+				{{#each clip}}
+					{{debugger}}
+					<div class="col-md-6"><a title="{{titleName}}" href="#"><img class="thumbnail img-responsive" src="{{getSmallThumbnail}}"></a></div>
+				{{/each}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
-		<div class="modal" id="myModal" role="dialog">
+		<div class="modal" id="clips-modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -342,7 +349,7 @@
 						<h3 class="modal-title"></h3>
 					</div>
 					<div class="modal-body">
-						<div id="modalCarousel" class="carousel">
+						<div id="clips-carousel" class="carousel">
 							<div class="carousel-inner"></div>
 							<a class="carousel-control left" href="#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
 							<a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -355,27 +362,26 @@
 			</div>
 		</div>
 	</div>
-</template>
+</template> -->
 
-<template name="userCaptures">
-	<div class="panel panel-success">
-		<div class="panel-heading">
+<!-- <template name="userCaptures">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
 			Latest Captures
 		</div>
-		<div class="container-fluid">
-			<h1>Bootstrap 3 Lightbox using Modal</h1>
+		<div class="container-fluid captures-container">
 			<div class="row">
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/992233"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 1" href="#"><img class="thumbnail img-responsive" src="600x350"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 2" href="#"><img class="thumbnail img-responsive" src="600x350/2255EE"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 3" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
-				<div class="col-lg-3 col-sm-6 col-xs-6"><a title="Image 4" href="#"><img class="thumbnail img-responsive" src="600x350/449955/FFF"></a></div>
+			{{#if Template.subscriptionsReady}}
+				{{#each capture}}
+					{{debugger}}
+					<div class="col-md-6"><a title="{{titleName}}" href="#"><img class="thumbnail img-responsive" src="{{getSmallThumbnail}}"></a></div>
+				{{/each}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
-		<div class="modal" id="myModal" role="dialog">
+		<div class="modal" id="captures-modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -383,7 +389,7 @@
 						<h3 class="modal-title"></h3>
 					</div>
 					<div class="modal-body">
-						<div id="modalCarousel" class="carousel">
+						<div id="captures-carousel" class="carousel">
 							<div class="carousel-inner"></div>
 							<a class="carousel-control left" href="#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
 							<a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -396,7 +402,7 @@
 			</div>
 		</div>
 	</div>
-</template>
+</template> -->
 
 <template name="userBadges">
 	<div class="panel panel-black" style="margin-bottom: 0;">
@@ -461,7 +467,7 @@
 </template>
 
 <template name="userTrophyCase">
-	<div class="panel panel-success">
+	<div class="panel panel-black">
 		<div class="panel-heading">
 			{{gamercard.gamertag}}'s Trophy Case
 		</div>
