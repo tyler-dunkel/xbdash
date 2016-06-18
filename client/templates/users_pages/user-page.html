@@ -15,7 +15,7 @@
 						<div class="nav-tabs-alt" >
 							<ul class="nav nav-tabs" role="tablist">
 								<li class="active">
-									<a data-target="#tab-activity" role="tab" data-toggle="tab">Xbox Activity</a>
+									<a data-target="#tab-activity" role="tab" data-toggle="tab">Recent Activity</a>
 								</li>
 								<li>
 									<a data-target="#tab-personals" role="tab" data-toggle="tab">Personals</a>
@@ -26,37 +26,53 @@
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="tab-activity">
 							<div class="padder">
+								<div class="row m-t-md">
+									<div class="col-md-4">
+										{{#if Template.subscriptionsReady}}
+											{{#with user}}
+												{{> userActivity}}
+											{{/with}}
+										{{else}}
+											{{> loadingTemplate}}
+										{{/if}}
+									</div>
+									<div class="col-md-4">
+					                    {{#if Template.subscriptionsReady}}
+											{{#with user}}
+												{{> userAchievements}}
+											{{/with}}
+										{{else}}
+											{{> loadingTemplate}}
+										{{/if}}
+									</div>
+									<div class="col-md-4">
+										{{#if Template.subscriptionsReady}}
+											{{#with user}}
+												{{> userGames}}
+											{{/with}}
+										{{else}}
+											{{> loadingTemplate}}
+										{{/if}}
+									</div>
+								</div>
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-6 col-sm-12">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
-											{{> userActivity}}
+											{{> userClips}}
 										{{/with}}
 									{{else}}
 										{{> loadingTemplate}}
 									{{/if}}
 									</div>
-									<div class="col-md-6 wrapper">
-					                    <div class="row">
-						                    <div class="col-md-12">
-						                    {{#if Template.subscriptionsReady}}
-												{{#with user}}
-													{{> userClips}}
-												{{/with}}
-											{{else}}
-												{{> loadingTemplate}}
-											{{/if}}
-						                    </div>
-											<div class="col-sm-12">
-											{{#if Template.subscriptionsReady}}
-												{{#with user}}
-													{{> userCaptures}}
-												{{/with}}
-											{{else}}
-												{{> loadingTemplate}}
-											{{/if}}
-											</div>
-										</div>
+									<div class="col-md-6 col-sm-12">
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> userCaptures}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
 									</div>
 								</div>
 							</div>
@@ -171,14 +187,13 @@
 							<small class="m-l">{{userMotto}}</small>
 						</div>
 						<p class="m-b">
-							<a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
-							<a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
-							<a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a>
+							<span class="h4 text-black">{{getGamerscore}}</span>
+							<!-- <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a> -->
 						</p>
-						<a href class="btn btn-sm btn-success btn-rounded">Follow</a>
+						<!-- <a href class="btn btn-sm btn-success btn-rounded">Follow</a> -->
 					</div>
 				</div>
-				<div class="col-sm-5">
+				<!-- <div class="col-sm-5">
 					<div class="pull-right pull-none-xs text-center">
 						<a href class="m-b-md inline m">
 							<span class="h3 block font-bold">2k</span>
@@ -189,63 +204,125 @@
 							<small>Following</small>
 						</a>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
 </template>
 
 <template name="userActivity">
-	<div class="streamline b-l b-info m-l-lg m-b padder-v">
-		{{#if Template.subscriptionsReady}}
-			{{#each activity}}
-				{{singleActivity}}
-			{{/each}}
-		{{else}}
-			{{> loadingTemplate}}
-		{{/if}}
-		<div>
-			<a class="pull-left thumb-sm avatar m-l-n-md">
-			<img src="/img/a9.jpg" class="img-circle" alt="...">
-			</a>
-			<div class="m-l-lg">
-			<div class="m-b-xs">
-				<a href class="h4">John smith</a>
-				<span class="text-muted m-l-sm pull-right">
-				Just now
-				</span>
-			</div>
-			<div class="m-b">
-				<div>Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
-				<div class="m-t-sm">
-					<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
-					<a href class="text-muted m-xs"><i class="icon-star"></i></a>
-					<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
-				</div>
-			</div>
-			</div>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			Latest Xbox Activity
 		</div>
-		<div>
-			<a class="pull-left thumb-sm avatar m-l-n-md">
-				<img src="/img/a6.jpg" class="img-circle" alt="...">
-			</a>
-			<div class="m-l-lg m-b-lg">
-			<div class="m-b-xs">
-				<a href class="h4">Jessica</a>
-				<span class="text-muted m-l-sm pull-right">
-				3h ago
-				</span>
-			</div>
-			<div class="m-b">
-				<div class="m-b">Cecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
-				<img src="/img/c5.jpg" class="b b-a wrapper-xs bg-white img-responsive">
-				<div class="m-t-sm">
-					<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
-					<a href class="text-muted m-xs"><i class="icon-star"></i></a>
-					<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
+		<div class="streamline b-l b-info m-l-lg m-b padder-v">
+			{{#if Template.subscriptionsReady}}
+				{{#each activity}}
+				<div>
+					<div class="m-l-lg">
+					<div class="m-b-xs">
+						<a href class="h4">{{shortDescription}}</a>
+						<span class="text-muted m-l-sm pull-right m-r-sm">
+						{{getStartTime}}
+						</span>
+					</div>
+					<div class="m-b">
+						<div>{{gamertag}} {{description}}</div>
+						<hr />
+					</div>
+					</div>
 				</div>
-			</div>
-			</div>
+				{{/each}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
+		</div>
+	</div>
+</template>
+
+<!-- <template name="activityImage">
+	{{#if Template.subscriptionsReady}}
+		{{#with getActivityImage}}
+			<a class="pull-left thumb-sm avatar m-l-n-md">
+				<img src="{{gameImage}}" class="img-circle" alt="">
+			</a>
+		{{/with}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template> -->
+
+<template name="userAchievements">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			Latest Achievements
+		</div>
+		<div class="streamline b-l b-info m-l-lg m-b padder-v">
+			{{#if Template.subscriptionsReady}}
+				{{achievement}}
+				<!-- {{#each achievement}}
+				<div>
+					<a class="pull-left thumb-sm avatar m-l-n-md">
+					<img src="{{getActivityImage}}" class="img-circle" alt="{{itemText}}">
+					</a>
+					<div class="m-l-lg">
+					<div class="m-b-xs">
+						<a href class="h4">{{shortDescription}}</a>
+						<span class="text-muted m-l-sm pull-right m-r-sm">
+						{{getStartTime}}
+						</span>
+					</div>
+					<div class="m-b">
+						<div>{{gamertag}} {{description}}</div>
+						<div class="m-t-sm">
+							<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
+							<a href class="text-muted m-xs"><i class="icon-star"></i></a>
+							<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
+						</div>
+					</div>
+					</div>
+				</div>
+				{{/each}} -->
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="userGames">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			Latest Game Completions
+		</div>
+		<div class="streamline b-l b-info m-l-lg m-b padder-v">
+			{{#if Template.subscriptionsReady}}
+				{{#each activity}}
+				<div>
+					<a class="pull-left thumb-sm avatar m-l-n-md">
+					<img src="{{getActivityImage}}" class="img-circle" alt="{{itemText}}">
+					</a>
+					<div class="m-l-lg">
+					<div class="m-b-xs">
+						<a href class="h4">{{shortDescription}}</a>
+						<span class="text-muted m-l-sm pull-right m-r-sm">
+						{{getStartTime}}
+						</span>
+					</div>
+					<div class="m-b">
+						<div>{{gamertag}} {{description}}</div>
+						<div class="m-t-sm">
+							<a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
+							<a href class="text-muted m-xs"><i class="icon-star"></i></a>
+							<a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
+						</div>
+					</div>
+					</div>
+				</div>
+				{{/each}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 		</div>
 	</div>
 </template>

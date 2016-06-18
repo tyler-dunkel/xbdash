@@ -87,6 +87,13 @@ Template.userProfileArea.helpers({
 		if (user && user.gamercard) {
 			return user.gamercard.motto;
 		}
+	},
+	getGamerscore: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		if (user && user.gamercard) {
+			return user.gamercard.gamerscore;
+		}
 	}
 });
 
@@ -98,12 +105,38 @@ Template.userActivity.created = function() {
 Template.userActivity.helpers({
 	activity: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.find({ gamertagSlug: gamertagSlug });
-		console.log("user: " + user);
-		var userActivity = recentActivity.find({ userId: this._id });
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var userActivity = recentActivity.findOne({ userId: user._id });
 		return userActivity.activityList;
 	},
-	singleActivity: function () {
+	getActivityImage: function () {
+		return "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_40,h_40/" + encodeURIComponent(this.contentImageUri);
+	},
+	getStartTime: function () {
+		return moment(this.startTime).calendar();
+	}
+});
+
+// Template.activityImage.created = function() {
+// 	this.subscribe('gameDetails', this.data.titleId);
+// }
+
+// Template.activityImage.helpers({
+// 	getActivityImage: function () {
+// 		var game = gameDetails.findOne({ gameId: this.titleId });
+// 		console.log(game);
+// 	},
+// 	gameImage: function() {
+// 	}
+// });
+
+Template.userAchievements.created = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	this.subscribe('userAchievements', gamertagSlug);
+}
+
+Template.userAchievements.helpers({
+	achievement: function () {
 		console.log(this);
 	}
 });

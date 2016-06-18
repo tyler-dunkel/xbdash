@@ -33,6 +33,41 @@ Meteor.publishComposite('userActivity', function(gamertagSlug) {
 	}
 });
 
+// Meteor.publish('gameDetails', function(titleId) {
+// 	return gameDetails.find({ gameId: titleId }, {
+// 		fields: {
+// 			"gameId": 1,
+// 			"gameArt": 1
+// 		}
+// 	});
+// });
+
+Meteor.publishComposite('userAchievements', function(gamertagSlug) {
+	check(gamertagSlug, String);
+	return {
+		find: function() {
+			return Meteor.users.find({ gamertagSlug: gamertagSlug });
+		},
+		children: [
+			{
+				find: function(user) {
+					return userAchievements.find({ userId: user._id }, {
+						sort: { progression: -1 },
+						limit: 5
+					});
+				},
+				children: [
+					{
+						find: function(userAchievement, user) {
+							return xbdAchievements.find({ achievementId: userAchievement.achievementId });
+						}
+					}
+				]
+			}
+		]
+	}
+});
+
 Meteor.publishComposite('userClips', function(gamertagSlug) {
 	check(gamertagSlug, String);
 	return {
