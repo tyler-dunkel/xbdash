@@ -135,7 +135,7 @@
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane tab-2" id="tab-2">
-							<div class="wrapper-md b-a">
+							<div class="wrapper-md">
 							{{#if Template.subscriptionsReady}}
 								{{#if chkUserTwitter}}
 									{{#with user}}
@@ -178,9 +178,9 @@
 		<div class="wrapper-lg bg-white-opacity">
 			<div class="row m-t">
 				<div class="col-sm-7">
-					<a href class="thumb-lg pull-left m-r">
+					<div class="thumb-lg pull-left m-r">
 						<img src="{{userGamerPic}}" class="img-circle">
-					</a>
+					</div>
 					<div class="clear m-b">
 						<div class="m-b m-t-sm">
 							<span class="h3 text-black">{{userGamertag}}</span>
@@ -203,11 +203,11 @@
 	{{#if Template.subscriptionsReady}}
 		<div class="col-sm-5">
 			<div class="pull-right pull-none-xs text-center">
-				<a href class="m-b-md inline m">
+				<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
 					<small>Daily Rank</small>
 					<span class="h3 block font-bold">{{usersDailyRank}}</span>
 				</a>
-				<a href class="m-b-md inline m">
+				<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
 					<small>Overall Rank</small>
 					<span class="h3 block font-bold">{{usersOverallRank}}</span>
 				</a>
