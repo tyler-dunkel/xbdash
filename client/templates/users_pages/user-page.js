@@ -69,10 +69,14 @@ Template.userProfileArea.helpers({
 	userGamerPic: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		if (user && user.xboxProfile) {
-			return "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
+		var image = "/img/xbdash_greenicon.png";
+		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + user.gamercard.gamerpicLargeSslImagePath;
 		}
-		return "/img/xbdash_greenicon.png";
+		if (user && user.xboxProfile) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
+		}
+		return image;
 	},
 	userGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
@@ -133,7 +137,11 @@ Template.userActivity.helpers({
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
 		var userActivity = recentActivity.findOne({ userId: user._id });
-		return userActivity.activityList;
+		if (userActivity.activityList) {
+			return userActivity.activityList;
+		} else {
+			return [];
+		}
 	},
 	getActivityImage: function () {
 		return "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_40,h_40/" + encodeURIComponent(this.contentImageUri);
