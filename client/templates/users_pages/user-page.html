@@ -86,7 +86,7 @@
 								{{else}}
 									{{> loadingTemplate}}
 								{{/if}}
-								<div class="row">
+								<!-- <div class="row">
 									<div class="col-md-6 wrapper">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
@@ -105,7 +105,7 @@
 										{{> loadingTemplate}}
 									{{/if}}
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -267,6 +267,7 @@
 		</div>
 		<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		{{#if Template.subscriptionsReady}}
+		{{#if chkUserAchievements}}
 			{{#each userAchievement}}
 			<div>
 				<a class="pull-left thumb-sm avatar m-l-n-md" href="{{pathFor 'achievement' slug=achievementSlug}}">
@@ -286,6 +287,15 @@
 			</div>
 			{{/each}}
 		{{else}}
+			<div>
+				<div class="m-l-lg">
+					<div class="m-b-xs">
+						<h5 class="h5 font-bold">{{getUserGamertag}} has no achievements available.</h5>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+		{{else}}
 			{{> loadingTemplate}}
 		{{/if}}
 		</div>
@@ -299,6 +309,7 @@
 		</div>
 		<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		{{#if Template.subscriptionsReady}}
+		{{#if chkUserGames}}
 			{{#each userGame}}
 			<div>
 				<a class="pull-left thumb-sm m-l-n-md" href="{{pathFor 'game' slug=gameSlug}}">
@@ -317,6 +328,15 @@
 				</div>
 			</div>
 			{{/each}}
+		{{else}}
+			<div>
+				<div class="m-l-lg">
+					<div class="m-b-xs">
+						<h5 class="h5 font-bold">{{getUserGamertag}} has no completed games.</h5>
+					</div>
+				</div>
+			</div>
+		{{/if}}
 		{{else}}
 			{{> loadingTemplate}}
 		{{/if}}
@@ -405,40 +425,46 @@
 </template> -->
 
 <template name="userBadges">
-	<div class="panel panel-black" style="margin-bottom: 0;">
-		<div class="panel-heading text-center">
-			<h3 class="m-n padder-t text-white h4">{{user}}'s Badges</h3>
+	<div class="panel panel-black m-t-md" style="margin-bottom: 0;">
+		<div class="panel-heading text-center bg-black text-white">
+			{{getUserGamertag}}'s Badge Collection
 		</div>
 	</div>
-	<div class="row text-center">
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">text</div>
-		<div class="col-md-1 wrapper-sm">See More</div>
+	<div class="panel hbox hbox-auto-xs no-border">
+		<div class="col">
+		{{#if Template.subscriptionsReady}}
+		{{#with user}}
+			{{#with badge}}
+				{{#if chkFiveGSBadge}}
+					<div class="col-md-1 wrapper-sm"><img src="/img/badges/five_gs.png" /></div>
+					{{#if chkTenGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/ten_gs.png" /></div>{{/if}}
+					{{#if chkTwentyGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/twenty_gs.png" /></div>{{/if}}
+					{{#if chkFiftyGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/fifty_gs.png" /></div>{{/if}}
+					{{#if chkOneHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_hundred_gs.png" /></div>{{/if}}
+					{{#if chkTwoFiftyHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/two_fifty_hundred_gs.png" /></div>{{/if}}
+					{{#if chkSevenFiftyHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/seven_fifty_hundred_gs.png" /></div>{{/if}}
+					{{#if chkNineHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/nine_hundred_gs.png" /></div>{{/if}}
+					{{#if chkTwoMillionGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/two_million_gs.png" /></div>{{/if}}
+					{{#if chkOneGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_game.png" /></div>{{/if}}
+					{{#if chkTenGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/ten_game.png" /></div>{{/if}}
+					{{#if chkOneHundredGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_hundred_game.png" /></div>{{/if}}
+					{{#if chkFiveHundredGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/five_hundred_game.png" /></div>{{/if}}
+					{{#if chkOneThousandGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_thousand_game.png" /></div>{{/if}}
+					{{#if chkSolutionExpertBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/solution_expert.png" /></div>{{/if}}
+					{{#if chkEagleScoutBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/eagle_scout.png" /></div>{{/if}}
+				{{else}}
+					<div class="col-md-12 wrapper-sm">{{getUserGamertag}} has no badges.</div>
+				{{/if}}
+			{{/with}}
+		{{/with}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
+		</div>
 	</div>
 </template>
 
-<template name="userWishlist">
+<!-- <template name="userWishlist">
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			{{gamercard.gamertag}}'s Wishlist
@@ -464,9 +490,9 @@
 			</a>
 		</div>
 	</div>
-</template>
+</template> -->
 
-<template name="userTrophyCase">
+<!-- <template name="userTrophyCase">
 	<div class="panel panel-black">
 		<div class="panel-heading">
 			{{gamercard.gamertag}}'s Trophy Case
@@ -522,7 +548,7 @@
 			</li>
 		</ul>
 	</div>
-</template>
+</template> -->
 
 <template name="xbdAnnouncements">
 	<div class="m-b-sm text-md">Announcements</div>
