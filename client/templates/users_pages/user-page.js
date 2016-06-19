@@ -236,7 +236,7 @@ Template.userGames.helpers({
 		if (game.platform === 'Durango') {
 			gameDets.gameArt.forEach(function(art) {
 				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fill,w_40,h_55" + encodeURIComponent(art.Url);
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fill,w_40,h_55/" + encodeURIComponent(art.Url);
 				}
 			});
 		}
