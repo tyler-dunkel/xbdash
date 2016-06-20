@@ -327,20 +327,19 @@ Template.userClips.helpers({
 Template.userClips.events({
 	'click .clips-container .row .large': function(e) {
 		// var item = $('#clips-modal .modal-body');
-		console.log(e);
-		console.log(e.currentTarget);
+		// console.log(e);
+		// console.log(e.currentTarget);
 
-		var videoPoster = $('#clips-modal video').attr('poster');
-		console.log(videoPoster);
-		var videoSource = $('#clips-modal source').attr('src');
-		console.log(videoSource);
-		var image = $(e.currentTarget).clone('src');
-		console.log(image);
-		var video = $(e.currentTarget).clone('data-video');
-		console.log(video);
+		var image = $(e.currentTarget).attr('src');
+		var video = $(e.currentTarget).attr('data-video');
 
-		videoPoster.empty().append(image);
-		videoSource.empty().append(video);
+		// $('#clips-modal video').attr('poster').appendTo(image);
+		// $('#clips-modal source').attr('src').appendTo(video);
+
+		$('#clips-modal .modal-body').empty().append('<video poster="' + image + '" data-setup="{&quot;controls&quot;: true,&quot;preload&quot;: &quot;auto&quot;,&quot;autoplay&quot;: false,&quot;playbackRates&quot;: [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;" controls><source src="' + video + '" type="video/mp4"></video>');
+
+		// videoPoster.empty().append(image);
+		// videoSource.empty().append(video)
 
 		$('#clips-modal').modal('show');
 	}
@@ -446,7 +445,6 @@ Template.userCaptures.events({
 	'click .captures-container .row .large': function(e) {
 		var modalTitle = $('#captures-modal .modal-title');
 		var itemTitle = $(e.target).parent('a').attr('title');
-		console.log(itemTitle);
 		modalTitle.empty().append(itemTitle);
 		
 		var modalBody = $('#captures-modal .modal-body');
