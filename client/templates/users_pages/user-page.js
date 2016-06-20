@@ -282,6 +282,10 @@ Template.userGames.helpers({
 Template.userClips.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	this.subscribe('userClips', gamertagSlug);
+	this.counter = 0;
+}
+
+Template.userClips.rendered = function() {
 }
 
 Template.userClips.helpers({
@@ -326,40 +330,69 @@ Template.userClips.helpers({
 
 Template.userClips.events({
 	'click .clips-container .row .large': function(e) {
-		// var item = $('#clips-modal .modal-body');
-		// console.log(e);
-		// console.log(e.currentTarget);
+		$('.clips-container .row .large').each(function(index) {
+			$(this).attr('data-slide', String(index + 1));
+		});
 
 		var image = $(e.currentTarget).attr('src');
 		var video = $(e.currentTarget).attr('data-video');
-
-		// $('#clips-modal video').attr('poster').appendTo(image);
-		// $('#clips-modal source').attr('src').appendTo(video);
-
-		$('#clips-modal .modal-body').empty().append('<video poster="' + image + '" data-setup="{&quot;controls&quot;: true,&quot;preload&quot;: &quot;auto&quot;,&quot;autoplay&quot;: false,&quot;playbackRates&quot;: [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;" controls><source src="' + video + '" type="video/mp4"></video>');
-
-		// videoPoster.empty().append(image);
-		// videoSource.empty().append(video)
+		var dataSlide = $(e.currentTarget).attr('data-slide');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" data-setup="{&quot;controls&quot;: true,&quot;preload&quot;: &quot;auto&quot;,&quot;autoplay&quot;: false,&quot;playbackRates&quot;: [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
 
 		$('#clips-modal').modal('show');
+	},
+	'click #clips-modal .close': function() {
+		console.log('im closed');
+		$('#clips-modal .modal-body .carousel-inner').empty();
+	},
+	'click #clips-modal [data-dismiss="modal"]': function() {
+		console.log('im closed');
+		$('#clips-modal .modal-body .carousel-inner').empty();
+	},
+	'click .carousel-control.left': function() {
+		var index = $('.vjs-tech').attr('data-slide');
+		if (index === '1') {
+			return;
+		}
+		var nextIndex = String(index - 1);
+		$('#clips-modal .modal-body .carousel-inner').empty();
+		var nextSlideSel = '[data-slide="' + nextIndex + '"]';
+		var image = $(nextSlideSel).attr('src');
+		var video = $(nextSlideSel).attr('data-video');
+		var dataSlide = $(nextSlideSel).attr('data-slide');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" data-setup="{&quot;controls&quot;: true,&quot;preload&quot;: &quot;auto&quot;,&quot;autoplay&quot;: false,&quot;playbackRates&quot;: [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+	},
+	'click .carousel-control.right': function() {
+		var index = $('.vjs-tech').attr('data-slide');
+		if (index === '6') {
+			return;
+		}
+		var nextIndex = parseInt(index) + 1;
+		$('#clips-modal .modal-body .carousel-inner').empty();
+		var nextSlideSel = '[data-slide="' + nextIndex + '"]';
+		var image = $(nextSlideSel).attr('src');
+		var video = $(nextSlideSel).attr('data-video');
+		var dataSlide = $(nextSlideSel).attr('data-slide');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" data-setup="{&quot;controls&quot;: true,&quot;preload&quot;: &quot;auto&quot;,&quot;autoplay&quot;: false,&quot;playbackRates&quot;: [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+	},
+	'load .clips-container .row .large:last-child': function() {
+		// $('.clips-container .row .large').each(function(index) {
+		// 	$(this).attr('data-slide', String(index + 1));
+		// 	// var item = $('<div class="item"></div>');
+		// 	// var title = $(this).parent('a').attr("title");
+
+		// 	// item.attr("title", title);
+		// 	// var $itemLog = $(this).html();
+		// 	// console.log($itemLog);
+		// 	// $(this).clone().appendTo(item);
+		// 	// console.log(item);
+		// 	// item.appendTo('#clips-carousel .carousel-inner'); 
+
+		// 	// if ( index == 0 ){
+		// 	// 	item.addClass('active');
+		// 	// }
+		// });
 	}
-	// 'load .clips-container .row .large:last-child': function() {
-	// 	$('.clips-container .row .large').each(function(index) {
-	// 		console.log(this);
-	// 		var item = $('<div class="item"></div>');
-	// 		var title = $(this).parent('a').attr("title");
-
-	// 		item.attr("title", title);
-	// 		var $itemLog = $(this).html();
-	// 		console.log($itemLog);
-	// 		$(this).clone().appendTo(item);
-	// 		console.log(item);
-	// 		item.appendTo('#clips-carousel .carousel-inner'); 
-
-	// 		if ( index == 0 ){
-	// 			item.addClass('active');
-	// 		}
-	// 	});
 
 	// 	$('#clips-carousel').carousel({ interval: false });
 
