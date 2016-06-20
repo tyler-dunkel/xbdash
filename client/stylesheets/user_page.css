@@ -1,7 +1,14 @@
 .achievements-row .thumbnail { margin-bottom: 10px; }
 
-.clips-container .modal-dialog,
-.captures-container .modal-dialog {}
+#clips-modal .modal-dialog,
+#captures-modal .modal-dialog {
+	width: 756px;
+}
+
+#clips-modal .modal-body,
+#captures-modal .modal-body {
+	padding: 0;
+}
 
 .clips-container .thumbnail,
 .captures-container .thumbnail {

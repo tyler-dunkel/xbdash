@@ -55,7 +55,7 @@
 										{{/if}}
 									</div>
 								</div>
-								<!-- <div class="row">
+								<div class="row">
 									<div class="col-sm-12 col-md-6">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
@@ -74,7 +74,7 @@
 										{{> loadingTemplate}}
 									{{/if}}
 									</div>
-								</div> -->
+								</div>
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane tab-personals" id="tab-personals">
@@ -344,85 +344,106 @@
 	</div>
 </template>
 
-<!-- <template name="userClips">
+<template name="userClips">
 	<div class="panel">
 		<div class="panel-heading bg-black text-white">
 			Latest Clips
 		</div>
-		<div class="container-fluid clips-container">
-			<div class="row">
-			{{#if Template.subscriptionsReady}}
-				{{#each clip}}
-					{{debugger}}
-					<div class="col-md-6"><a title="{{titleName}}" href="#"><img class="thumbnail img-responsive" src="{{getSmallThumbnail}}"></a></div>
-				{{/each}}
-			{{else}}
-				{{> loadingTemplate}}
-			{{/if}}
+		{{#if Template.subscriptionsReady}}
+			{{#if chkClips}}
+			<div class="container-fluid clips-container m-b-md">
+				<div class="row">
+					{{#each clip}}
+						<div class="col-md-6 m-t-md"><a title="{{titleName}}" href="#"><img class="large img-responsive" src="{{getLargeThumbnail}}" data-video="{{getClipUri}}"></a></div>
+					{{/each}}
+				</div>
 			</div>
-		</div>
-		<div class="modal" id="clips-modal" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button class="close" type="button" data-dismiss="modal">×</button>
-						<h3 class="modal-title"></h3>
-					</div>
-					<div class="modal-body">
-						<div id="clips-carousel" class="carousel">
-							<div class="carousel-inner"></div>
-							<a class="carousel-control left" href="#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-							<a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+			<div class="modal" id="clips-modal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button class="close" type="button" data-dismiss="modal">×</button>
+							<h3 class="modal-title"></h3>
 						</div>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default" data-dismiss="modal">Close</button>
+						<div class="modal-body">
+							<video poster="" data-setup="{&quot;controls&quot;: true,&quot;preload&quot;: &quot;auto&quot;,&quot;autoplay&quot;: false,&quot;playbackRates&quot;: [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;">
+								<source src="" type="video/mp4">
+							</video>
+							<!-- <div id="clips-carousel" class="carousel">
+								<div class="carousel-inner"></div>
+								<a class="carousel-control left" href="#clips-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+								<a class="carousel-control right" href="#clips-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+							</div> -->
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			{{else}}
+			<div class="container-fluid clips-container m-b-md">
+				<div class="row">
+					<div class="col-md-12 m-t-md">
+						{{getUserGamertag}} has no clips.
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
 	</div>
-</template> -->
+</template>
 
-<!-- <template name="userCaptures">
+<template name="userCaptures">
 	<div class="panel">
 		<div class="panel-heading bg-black text-white">
 			Latest Captures
 		</div>
-		<div class="container-fluid captures-container">
-			<div class="row">
-			{{#if Template.subscriptionsReady}}
-				{{#each capture}}
-					{{debugger}}
-					<div class="col-md-6"><a title="{{titleName}}" href="#"><img class="thumbnail img-responsive" src="{{getSmallThumbnail}}"></a></div>
-				{{/each}}
-			{{else}}
-				{{> loadingTemplate}}
-			{{/if}}
+		{{#if Template.subscriptionsReady}}
+			{{#if chkCaptures}}
+			<div class="container-fluid captures-container m-b-md">
+				<div class="row">
+					{{#each capture}}
+						<div class="col-md-6 m-t-md"><a title="{{titleName}}" href="#"><img class="large img-responsive" src="{{getLargeThumbnail}}"></a></div>
+					{{/each}}
+				</div>
 			</div>
-		</div>
-		<div class="modal" id="captures-modal" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button class="close" type="button" data-dismiss="modal">×</button>
-						<h3 class="modal-title"></h3>
-					</div>
-					<div class="modal-body">
-						<div id="captures-carousel" class="carousel">
-							<div class="carousel-inner"></div>
-							<a class="carousel-control left" href="#modaCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-							<a class="carousel-control right" href="#modalCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+			<div class="modal" id="captures-modal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button class="close" type="button" data-dismiss="modal">×</button>
+							<h3 class="modal-title"></h3>
 						</div>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default" data-dismiss="modal">Close</button>
+						<div class="modal-body">
+							<!-- <div id="captures-carousel" class="carousel">
+								<div class="carousel-inner"></div>
+								<a class="carousel-control left" href="#captures-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+								<a class="carousel-control right" href="#captures-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+							</div> -->
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			{{else}}
+			<div class="container-fluid captures-container m-b-md">
+				<div class="row">
+					<div class="col-md-12 m-t-md">
+						{{getUserGamertag}} has no screen captures.
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
 	</div>
-</template> -->
+</template>
 
 <template name="userBadges">
 	<div class="panel panel-black m-t-md" style="margin-bottom: 0;">

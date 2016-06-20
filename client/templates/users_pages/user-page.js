@@ -279,10 +279,101 @@ Template.userGames.helpers({
 	}
 });
 
-// Template.userClips.created = function() {
-// 	var gamertagSlug = Router.current().params.gamertagSlug;
-// 	this.subscribe('userClips', gamertagSlug);
-// }
+Template.userClips.created = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	this.subscribe('userClips', gamertagSlug);
+}
+
+Template.userClips.helpers({
+	chkClips: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var gameClip = gameClips.find({ userId: user._id });
+		var gameClipCount = gameClip.count();
+		if (gameClipCount > 0) return true;
+		return false;
+	},
+	clip: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var gameClip = gameClips.find({ userId: user._id });
+		return gameClip;
+	},
+	getUserGamertag: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		return user.gamercard.gamertag;
+	},
+	getLargeThumbnail: function () {
+		var imageUri;
+		this.thumbnails.forEach(function(thumbs) {
+			if (thumbs.thumbnailType === "Large") {
+				imageUri = thumbs.uri;
+			}
+		});
+		return imageUri;
+	},
+	getClipUri: function () {
+		var clipUri;
+		this.gameClipUris.forEach(function(clips) {
+			if (clips.uriType === "Download") {
+				clipUri = clips.uri;
+			}
+		});
+		return clipUri;
+	}
+});
+
+Template.userClips.events({
+	'click .clips-container .row .large': function(e) {
+		// var item = $('#clips-modal .modal-body');
+		console.log(e);
+		console.log(e.currentTarget);
+
+		var videoPoster = $('#clips-modal video').attr('poster');
+		console.log(videoPoster);
+		var videoSource = $('#clips-modal source').attr('src');
+		console.log(videoSource);
+		var image = $(e.currentTarget).clone('src');
+		console.log(image);
+		var video = $(e.currentTarget).clone('data-video');
+		console.log(video);
+
+		videoPoster.empty().append(image);
+		videoSource.empty().append(video);
+
+		$('#clips-modal').modal('show');
+	}
+	// 'load .clips-container .row .large:last-child': function() {
+	// 	$('.clips-container .row .large').each(function(index) {
+	// 		console.log(this);
+	// 		var item = $('<div class="item"></div>');
+	// 		var title = $(this).parent('a').attr("title");
+
+	// 		item.attr("title", title);
+	// 		var $itemLog = $(this).html();
+	// 		console.log($itemLog);
+	// 		$(this).clone().appendTo(item);
+	// 		console.log(item);
+	// 		item.appendTo('#clips-carousel .carousel-inner'); 
+
+	// 		if ( index == 0 ){
+	// 			item.addClass('active');
+	// 		}
+	// 	});
+
+	// 	$('#clips-carousel').carousel({ interval: false });
+
+	// 	$('#clips-modal .modal-header .modal-title').html($('.large.img-responsive').find('.active').attr("title"));
+	// },
+	// 'click .clips-container .row .large': function() {
+	// 	console.log('clicked image');
+	// 	var idx = $(this).parents('div').index();
+	// 	var id = parseInt(idx);
+	// 	$('#clips-modal').modal('show');
+	// 	$('#clips-carousel').carousel(id);
+	// }
+});
 
 // Template.userClips.rendered = function() {
 // 	$('.clips-container .row .thumbnail').on('load', function() {})
@@ -315,97 +406,83 @@ Template.userGames.helpers({
 // 	});
 // }
 
-// Template.userClips.helpers({
-// 	clip: function () {
-// 		var gamertagSlug = Router.current().params.gamertagSlug;
-// 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-// 		var gameClip = gameClips.find({ userId: user._id });
-// 		return gameClip;
-// 	},
-// 	debugger: function () {
-// 		console.log(this);
-// 	},
-// 	getSmallThumbnail: function () {
-// 		this.thumbnails.forEach(function(thumbs) {
-// 			if (thumbs.thumbnailType === "Small") {
-// 				return thumbs.uri;
-// 				$.cloudinary.uploader.upload(thumbs.uri, {
-// 					format: jpg,
-// 					folder: userClips} , smallThumbUrl)
-// 				var request = new XMLHttpRequest();
-// 				request.open('GET', thumbs.uri, true);
+Template.userCaptures.created = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	this.subscribe('userCaptures', gamertagSlug);
+}
 
+Template.userCaptures.helpers({
+	chkCaptures: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var imageCapture = screenShots.find({ userId: user._id });
+		var imageCount = imageCapture.count();
+		if (imageCount > 0) return true;
+		return false;
+	},
+	capture: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var imageCapture = screenShots.find({ userId: user._id });
+		return imageCapture;
+	},
+	getUserGamertag: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		return user.gamercard.gamertag;
+	},
+	getLargeThumbnail: function () {
+		var imageUri;
+		this.thumbnails.forEach(function(thumbs) {
+			if (thumbs.thumbnailType === "Large") {
+				imageUri = thumbs.uri;
+			}
+		});
+		return imageUri;
+	}
+});
 
-// 			}
-// 		});
-// 	}
-// });
+Template.userCaptures.events({
+	'click .captures-container .row .large': function(e) {
+		var modalTitle = $('#captures-modal .modal-title');
+		var itemTitle = $(e.target).parent('a').attr('title');
+		console.log(itemTitle);
+		modalTitle.empty().append(itemTitle);
+		
+		var modalBody = $('#captures-modal .modal-body');
+		var image = $(e.currentTarget).clone();
+		modalBody.empty().append(image);
+		
+		$('#captures-modal').modal('show');
+	}
+	// 'load .captures-container .row .large:last-child': function() {
+	// 	$('.captures-container .row .large').each(function(index) {
+	// 		var item = $('<div class="item"></div>');
+	// 		var itemDiv = $(this).closest('div');
+	// 		var title = $(this).parent('a').attr("title");
 
-// Template.userCaptures.created = function() {
-// 	var gamertagSlug = Router.current().params.gamertagSlug;
-// 	this.subscribe('userCaptures', gamertagSlug);
-// }
+	// 		item.attr("title", title);
+	// 		$(itemDiv.html()).appendTo(item);
+	// 		item.appendTo('#captures-carousel .carousel-inner'); 
 
-// Template.userCaptures.rendered = function() {
-// 	$('.captures-container .row .thumbnail').on('load', function() {})
-// 	.each(function(i) {
-// 		if(this.complete) {
-// 			var item = $('<div class="item"></div>');
-// 			var itemDiv = $(this).parents('div');
-// 			var title = $(this).parent('a').attr("title");
+	// 		if ( index == 0 ){
+	// 			item.addClass('active');
+	// 		}
+	// 	});
 
-// 			item.attr("title", title);
-// 				$(itemDiv.html()).appendTo(item);
-// 				item.appendTo('.carousel-inner'); 
-// 			if ( i == 0 ){
-// 				item.addClass('active');
-// 			}
-// 		}
-// 	});
+	// 	$('#captures-carousel').carousel({interval:false});
 
-// 	$('#captures-carousel').carousel({interval:false});
-
-// 	$('#captures-carousel').on('slid.bs.carousel', function() {
-// 		$('.modal-title').html($(this).find('.active').attr("title"));
-// 	})
-
-// 	$('.captures-container .row .thumbnail').click(function() {
-// 	    var idx = $(this).parents('div').index();
-// 	  	var id = parseInt(idx);
-// 	  	$('#captures-modal').modal('show');
-// 	    $('#captures-carousel').carousel(id);  	
-// 	});
-// }
-
-// Template.userCaptures.helpers({
-// 	capture: function () {
-// 		var gamertagSlug = Router.current().params.gamertagSlug;
-// 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-// 		var imageCapture = screenShots.find({ userId: user._id });
-// 		return imageCapture;
-// 	},
-// 	debugger: function () {
-// 		console.log(this);
-// 	},
-// 	getSmallThumbnail: function () {
-// 		this.thumbnails.forEach(function(thumbs) {
-// 			if (thumbs.thumbnailType === "Small") {
-// 				console.log(thumbs.uri);
-// 				var request = new XMLHttpRequest();
-// 				var b64Response = btoa(thumbs.uri);
-// 				console.log('data:image/png;base64,' + b64Response);
-// 				return 'data:image/png;base64,' + b64Response;
-// 				// console.log("http://res.cloudinary.com/xbdash/image/upload/user_captures/" + thumbs.uri);
-// 				// return "http://res.cloudinary.com/xbdash/image/upload/user_captures/" + encodeURIComponent(thumbs.uri);
-// 			}
-// 		});
-// 	}
-// });
-
-// Template.userCaptures.created = function() {
-// 	var gamertagSlug = Router.current().params.gamertagSlug;
-// 	this.subscribe('userCaptures', gamertagSlug);
-// }
+	// 	$('#captures-carousel').on('slid.bs.carousel', function() {
+	// 		$('.modal-title').html($(this).find('.active').attr("title"));
+	// 	});
+	// },
+	// 'click .captures-container .row .large': function() {
+	// 	var idx = $(this).closest('div').index();
+	// 	var id = parseInt(idx);
+	// 	$('#captures-modal').modal('show');
+	// 	$('#captures-carousel').carousel(id);
+	// }
+});
 
 Template.userBadges.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
@@ -513,17 +590,46 @@ Template.userBadges.helpers({
 // 		if (user && user.services) {
 // 			return user.services.twitter.screenName;
 // 		}
-// 		return '@xbboxd'
+// 		return '@xboxdash'
 // 	},
 // 	getTweets: function () {
 // 		Meteor.twitterText.extractMentions('@juliancwirko #MeteorJS lorem ipsum')
 
-// 		// var gamertagSlug = Router.current().params.gamertagSlug;
-// 		// var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-// 		// if (user && user.services) {
-// 		// 	console.log(user.services);
-// 		// 	var twitterScreenName = user.services.twitter.screenName;
-// 			// return Meteor.twitterText.extract('@xboxdash');
-// 		// }
+// 		HTTP.call( 'GET', 'http://jsonplaceholder.typicode.com/posts', {
+//   params: {
+//     "id": 5
+//   }
+// }, function( error, response ) {
+//   if ( error ) {
+//     console.log( error );
+//   } else {
+//     console.log( response );
+    
+//      This will return the HTTP response object that looks something like this:
+//      {
+//        content: "String of content...",
+//        data: [{
+//          "body": "The body of the post with the ID 5."
+//          "id": 5,
+//          "title": "The title of the post with the ID 5.",
+//          "userId": 1
+//        }],
+//        headers: {  Object containing HTTP response headers }
+//        statusCode: 200
+//      }
+    
+//   }
+// });
+
+// 		https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=xboxdash&count=3
+
+
+// 		var gamertagSlug = Router.current().params.gamertagSlug;
+// 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+// 		if (user && user.services) {
+// 			console.log(user.services);
+// 			var twitterScreenName = user.services.twitter.screenName;
+// 			return Meteor.twitterText.extract('@xboxdash');
+// 		}
 // 	}
 // });
