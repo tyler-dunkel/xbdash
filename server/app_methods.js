@@ -11,26 +11,11 @@ Meteor.methods({
 		});
 
 		T.get('statuses/user_timeline', { screen_name: screenName, count: 3 }, function(err, data, response) {
-			console.log("data: " + data);
-			console.log('fire this first');
 			fut.return({
 				err: err,
 				result: data
 			});
 		});
-
-		// var getTweet = Meteor.wrapAsync(T.get());
-
-		// var tweets = getTweet('statuses/user_timeline', { screen_name: screenName, count: 3 });
-		// console.log('logging the tweets');
-		// console.log(tweets);
-
-		// var tweetsAsync = Meteor.wrapAsync(
-		// 	T.get('statuses/user_timeline', { screen_name: screenName, count: 3 }, function(err, data, response) {
-		// 		console.log("data: " + data);
-		// 		console.log('fire this first');
-		// 	})
-		// );
 
 		return fut.wait();
 	}

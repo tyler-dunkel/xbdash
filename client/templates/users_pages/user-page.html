@@ -403,7 +403,7 @@
 			<div class="container-fluid captures-container m-b-md">
 				<div class="row">
 					{{#each capture}}
-						<div class="col-md-6 m-t-md"><a title="{{titleName}}" href="#"><img class="large img-responsive" src="{{getLargeThumbnail}}"></a></div>
+						<div class="col-md-6 m-t-md captures-container"><a title="{{titleName}}" href="#"><img class="large img-responsive" src="{{getLargeThumbnail}}"></a></div>
 					{{/each}}
 				</div>
 			</div>
@@ -415,11 +415,11 @@
 							<h3 class="modal-title"></h3>
 						</div>
 						<div class="modal-body">
-							<!-- <div id="captures-carousel" class="carousel">
+							<div id="captures-carousel" class="carousel">
 								<div class="carousel-inner"></div>
 								<a class="carousel-control left" href="#captures-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
 								<a class="carousel-control right" href="#captures-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-							</div> -->
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-default" data-dismiss="modal">Close</button>
@@ -595,14 +595,13 @@
 <template name="xbdTweets">
 	{{#if Template.subscriptionsReady}}
 		<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
-		{{userTweets}}
 		<ul class="list-group">
-			<!-- {{#each singleTweet}}
+			{{#each userTweet}}
 			<li class="list-group-item">
-				<p>{{result.text}}</p>
-				<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> {{result.user.created_at}}</small>
+				<p>{{this.text}}</p>
+				<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> {{tweetDate}}</small>
 			</li>
-			{{/each}} -->
+			{{/each}}
 		</ul>
 		<div class="m-t-md text-center">
 			<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-primary padder-md m-b">More Tweets</a>
