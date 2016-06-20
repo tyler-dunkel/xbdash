@@ -614,53 +614,42 @@ Template.userBadges.helpers({
 // 	this.subscribe('xbdAnnouncements', gamertagSlug);
 // }
 
-// Template.xbdTweets.helpers({
-// 	getTwitterScreenName: function () {
-// 		var gamertagSlug = Router.current().params.gamertagSlug;
-// 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-// 		if (user && user.services) {
-// 			return user.services.twitter.screenName;
-// 		}
-// 		return '@xboxdash'
-// 	},
-// 	getTweets: function () {
-// 		Meteor.twitterText.extractMentions('@juliancwirko #MeteorJS lorem ipsum')
+Template.xbdTweets.created = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	this.subscribe('userProfile', gamertagSlug);
+}
 
-// 		HTTP.call( 'GET', 'http://jsonplaceholder.typicode.com/posts', {
-//   params: {
-//     "id": 5
-//   }
-// }, function( error, response ) {
-//   if ( error ) {
-//     console.log( error );
-//   } else {
-//     console.log( response );
-    
-//      This will return the HTTP response object that looks something like this:
-//      {
-//        content: "String of content...",
-//        data: [{
-//          "body": "The body of the post with the ID 5."
-//          "id": 5,
-//          "title": "The title of the post with the ID 5.",
-//          "userId": 1
-//        }],
-//        headers: {  Object containing HTTP response headers }
-//        statusCode: 200
-//      }
-    
-//   }
-// });
+Template.xbdTweets.rendered = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	var screenName;
+	if (user && user.services.twitter) {
+		screenName = user.services.twitter.screenName;
+	} else {
+		screenName = 'xboxdash';
+	}
+}
 
-// 		https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=xboxdash&count=3
+Meteor.xbdTweets.events({
+	'load .twitter-box': function () {
+		Meteor.call('getTweets', screenName, function(err, result) {
+			console.log(result);
+			return Session.set('userTweets', result);
+		});
+	}
+})
 
-
-// 		var gamertagSlug = Router.current().params.gamertagSlug;
-// 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-// 		if (user && user.services) {
-// 			console.log(user.services);
-// 			var twitterScreenName = user.services.twitter.screenName;
-// 			return Meteor.twitterText.extract('@xboxdash');
-// 		}
-// 	}
-// });
+Template.xbdTweets.helpers({
+	getTwitterScreenName: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var screenName;
+		if (user && user.services.twitter) {
+			return user.services.twitter.screenName;
+		}
+		return 'xboxdash';
+	},
+	userTweets: function () {
+		return Session.get('userTweets');
+	}
+});

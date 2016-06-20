@@ -593,19 +593,23 @@
 </template>
 
 <template name="xbdTweets">
-	<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/{{getTwitterScreenName}}" class="text-success" target="_blank">{{result.user}}</a></div>
-	{{getTweets}}
-	<ul class="list-group">
-		{{#each singleTweet}}
-		<li class="list-group-item">
-			<p>{{result.text}}</p>
-			<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> {{result.user.created_at}}</small>
-		</li>
-		{{/each}}
-	</ul>
-	<div class="m-t-md text-center">
-		<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-primary padder-md m-b">More Tweets</a>
-	</div>
+	{{#if Template.subscriptionsReady}}
+		<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
+		{{userTweets}}
+		<ul class="list-group">
+			<!-- {{#each singleTweet}}
+			<li class="list-group-item">
+				<p>{{result.text}}</p>
+				<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> {{result.user.created_at}}</small>
+			</li>
+			{{/each}} -->
+		</ul>
+		<div class="m-t-md text-center">
+			<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-primary padder-md m-b">More Tweets</a>
+		</div>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
 </template>
 
 <template name="xbdBroadcasts">

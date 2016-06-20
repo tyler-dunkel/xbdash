@@ -1,3 +1,19 @@
+Meteor.methods({
+	getTweets: function(screenName) {
+		var T = new Twit({
+			consumer_key: Meteor.settings.services.twitterConsumerKey,
+			consumer_secret: Meteor.settings.services.twitterConsumerSecret,
+			access_token: Meteor.settings.services.twitterAccessToken,
+			access_token_secret: Meteor.settings.services.twitterAccessTokenSecret
+		});
+
+		T.get('statuses/user_timeline', { screen_name: screenName, count: 3 }, function(err, data, response) {
+			console.log(data);
+			return data;
+		});
+	}
+});
+
 // Meteor.methods({
 //     sendWelcomeEmail: function (userId) {
 // 	    var userEmail;
