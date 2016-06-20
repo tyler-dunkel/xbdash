@@ -1,5 +1,8 @@
+Future = Npm.require('fibers/future');
+
 Meteor.methods({
 	getTweets: function(screenName) {
+		var fut = new Future();
 		var T = new Twit({
 			consumer_key: Meteor.settings.services.twitterConsumerKey,
 			consumer_secret: Meteor.settings.services.twitterConsumerSecret,
@@ -8,11 +11,39 @@ Meteor.methods({
 		});
 
 		T.get('statuses/user_timeline', { screen_name: screenName, count: 3 }, function(err, data, response) {
-			console.log(data);
-			return data;
+			console.log("data: " + data);
+			console.log('fire this first');
+			fut.return({
+				err: err,
+				result: data
+			});
 		});
+
+		// var getTweet = Meteor.wrapAsync(T.get());
+
+		// var tweets = getTweet('statuses/user_timeline', { screen_name: screenName, count: 3 });
+		// console.log('logging the tweets');
+		// console.log(tweets);
+
+		// var tweetsAsync = Meteor.wrapAsync(
+		// 	T.get('statuses/user_timeline', { screen_name: screenName, count: 3 }, function(err, data, response) {
+		// 		console.log("data: " + data);
+		// 		console.log('fire this first');
+		// 	})
+		// );
+
+		return fut.wait();
 	}
 });
+
+
+// Meteor.methods({
+// 	getCommentsWrapAsync: function() {
+// 		var convertAsyncToSync = Meteor.wrapAsync( HTTP.get ),
+// 		resultOfAsyncToSync = convertAsyncToSync( 'http://jsonplaceholder.typicode.com/comments', {} );
+// 		return resultOfAsyncToSync;
+// 	}
+// });
 
 // Meteor.methods({
 //     sendWelcomeEmail: function (userId) {

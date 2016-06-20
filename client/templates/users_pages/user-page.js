@@ -617,27 +617,25 @@ Template.userBadges.helpers({
 Template.xbdTweets.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	this.subscribe('userProfile', gamertagSlug);
-}
 
-Template.xbdTweets.rendered = function() {
-	var gamertagSlug = Router.current().params.gamertagSlug;
 	var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	var self = this;
 	var screenName;
+
 	if (user && user.services.twitter) {
 		screenName = user.services.twitter.screenName;
 	} else {
 		screenName = 'xboxdash';
 	}
-}
 
-Meteor.xbdTweets.events({
-	'load .twitter-box': function () {
-		Meteor.call('getTweets', screenName, function(err, result) {
-			console.log(result);
-			return Session.set('userTweets', result);
-		});
-	}
-})
+	self.tweetText = new ReactiveVar();
+
+	Meteor.call('getTweets', screenName, function(err, result) {
+		if (err) console.log(err);
+		console.log(result);
+		self.tweetText.set(result);
+	});
+}
 
 Template.xbdTweets.helpers({
 	getTwitterScreenName: function () {
@@ -650,6 +648,6 @@ Template.xbdTweets.helpers({
 		return 'xboxdash';
 	},
 	userTweets: function () {
-		return Session.get('userTweets');
+		return Template.instance().tweetText.get();
 	}
 });
