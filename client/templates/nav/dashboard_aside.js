@@ -30,6 +30,15 @@ Template.asideHeader.helpers({
 	}
 });
 
+Template.asideHeader.events({
+	'click .profile-link': function(e) {
+		e.preventDefault();
+		var user = Meteor.user();
+		//console.log('clicked it');
+		Router.go('userPage', {gamertagSlug: user.gamertagSlug});
+	}
+});
+
 // var maxGamerscore = 0;
 // var maxGamerscoreDependency = new Tracker.Dependency;
 

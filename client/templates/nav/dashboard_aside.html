@@ -56,7 +56,9 @@
 					{{> loadingTemplate}}
 				{{else}}
 					{{#if chkGamerStatus}}
+					<a href="/users" class='profile-link'>
 					<img src="{{gamerImage}}" class="img-full" alt="{{currentUser.gamercard.gamertag}}">
+					</a>
 					{{else}}
 					<img src="/img/xbdash_whiteicon.png" class="img-full" alt="{{currentUser.username}}" />
 					{{/if}}
@@ -70,7 +72,9 @@
 				{{else}}
 					{{#if chkGamerStatus}}
 					<span class="block m-t-sm">
-						<strong class="font-bold text-lt">{{currentUser.gamercard.gamertag}}</strong> 
+						<a href="/users" class='profile-link'>
+							<strong class="font-bold text-lt">{{currentUser.gamercard.gamertag}}</strong> 
+						</a>
 					</span>
 					<span class="text-muted text-xs block">{{currentUser.gamercard.motto}}</span>
 					{{else}}

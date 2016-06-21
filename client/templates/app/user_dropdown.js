@@ -24,5 +24,10 @@ Template.userDropdown.events({
             }
             Router.go('logIn');
         });
+    },
+    'click .profile-button': function(e) {
+        e.preventDefault();
+        var user = Meteor.user();
+        Router.go('userPage', {gamertagSlug: user.gamertagSlug});
     }
 });

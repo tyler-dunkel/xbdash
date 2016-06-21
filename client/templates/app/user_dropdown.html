@@ -21,6 +21,11 @@
 					{{/if}}
 				</a>
 				<ul class="dropdown-menu animated">
+					{{#if chkGamerStatus}} 
+						<li>
+							<a href="/users" class="profile-button">My Profile</a>
+						</li>
+					{{/if}}
 					<li>
 						<a href="{{pathFor 'settingsPage'}}">Settings</a>
 					</li>
