@@ -86,7 +86,7 @@
 								{{else}}
 									{{> loadingTemplate}}
 								{{/if}}
-								<!-- <div class="row">
+								<div class="row">
 									<div class="col-md-6 wrapper">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
@@ -105,7 +105,7 @@
 										{{> loadingTemplate}}
 									{{/if}}
 									</div>
-								</div> -->
+								</div>
 							</div>
 						</div>
 					</div>
@@ -114,10 +114,10 @@
 					<div class="nav-tabs-alt" >
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="active">
-								<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-bullhorn text-md text-muted wrapper-sm"></i></a>
+								<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-twitter text-md text-muted wrapper-sm"></i></a>
 							</li>
 							<li>
-								<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-twitter text-md text-muted wrapper-sm"></i></a>
+								<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-bullhorn text-md text-muted wrapper-sm"></i></a>
 							</li>
 							<li>
 								<a data-target="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-twitch text-md text-muted wrapper-sm"></i></a>
@@ -128,7 +128,13 @@
 						<div role="tabpanel" class="tab-pane active" id="tab-1">
 							<div class="wrapper-md">
 							{{#if Template.subscriptionsReady}}
-								{{> xbdAnnouncements}}
+								{{#if chkUserTwitter}}
+									{{#with user}}
+										{{> xbdTweets screenName=this.services.twitter.screenName}}
+									{{/with}}
+								{{else}}
+									{{> xbdTweets screenName=xboxdash}}
+								{{/if}}
 							{{else}}
 								{{> loadingTemplate}}
 							{{/if}}
@@ -137,13 +143,7 @@
 						<div role="tabpanel" class="tab-pane tab-2" id="tab-2">
 							<div class="wrapper-md">
 							{{#if Template.subscriptionsReady}}
-								{{#if chkUserTwitter}}
-									{{#with user}}
-										{{> xbdTweets screenName=this.services.twitter.screenName}}
-									{{/with}}
-								{{else}}
-									{{> xbdTweets screenName=xboxdash}}
-								{{/if}}
+								{{> xbdAnnouncements}}
 							{{else}}
 								{{> loadingTemplate}}
 							{{/if}}
@@ -444,7 +444,7 @@
 
 <template name="userBadges">
 	<div class="panel panel-black m-t-md" style="margin-bottom: 0;">
-		<div class="panel-heading text-center bg-black text-white">
+		<div class="panel-heading bg-black text-white">
 			{{getUserGamertag}}'s Badge Collection
 		</div>
 	</div>
@@ -460,14 +460,14 @@
 					{{#if chkFiftyGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/fifty_gs.png" /></div>{{/if}}
 					{{#if chkOneHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_hundred_gs.png" /></div>{{/if}}
 					{{#if chkTwoFiftyHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/two_fifty_hundred_gs.png" /></div>{{/if}}
+					{{#if chkFiveHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/two_fifty_hundred_gs.png" /></div>{{/if}}
 					{{#if chkSevenFiftyHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/seven_fifty_hundred_gs.png" /></div>{{/if}}
 					{{#if chkNineHundredGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/nine_hundred_gs.png" /></div>{{/if}}
-					{{#if chkTwoMillionGSBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/two_million_gs.png" /></div>{{/if}}
 					{{#if chkOneGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_game.png" /></div>{{/if}}
-					{{#if chkTenGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/ten_game.png" /></div>{{/if}}
-					{{#if chkOneHundredGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_hundred_game.png" /></div>{{/if}}
-					{{#if chkFiveHundredGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/five_hundred_game.png" /></div>{{/if}}
-					{{#if chkOneThousandGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_thousand_game.png" /></div>{{/if}}
+					{{#if chkTenGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/ten_games.png" /></div>{{/if}}
+					{{#if chkOneHundredGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_hundred_games.png" /></div>{{/if}}
+					{{#if chkFiveHundredGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/five_hundred_games.png" /></div>{{/if}}
+					{{#if chkOneThousandGameBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/one_thousand_games.png" /></div>{{/if}}
 					{{#if chkSolutionExpertBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/solution_expert.png" /></div>{{/if}}
 					{{#if chkEagleScoutBadge}}<div class="col-md-1 wrapper-sm"><img src="/img/badges/eagle_scout.png" /></div>{{/if}}
 				{{else}}
@@ -478,6 +478,21 @@
 		{{else}}
 			{{> loadingTemplate}}
 		{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="userWishlist">
+	<div class="panel panel-black m-b-md" style="margin-bottom: 0;">
+		<div class="panel-heading bg-black text-white">
+			Wishlist
+		</div>
+	</div>
+	<div class="panel hbox hbox-auto-xs no-border">
+		<div class="col">
+			<div class="col-md-12 wrapper-sm">
+				Feature coming soon!
+			</div>
 		</div>
 	</div>
 </template>
@@ -509,6 +524,21 @@
 		</div>
 	</div>
 </template> -->
+
+<template name="userTrophyCase">
+	<div class="panel panel-black m-b-md" style="margin-bottom: 0;">
+		<div class="panel-heading bg-black text-white">
+			Trophy Case
+		</div>
+	</div>
+	<div class="panel hbox hbox-auto-xs no-border">
+		<div class="col">
+			<div class="col-md-12 wrapper-sm">
+				Feature coming soon!
+			</div>
+		</div>
+	</div>
+</template>
 
 <!-- <template name="userTrophyCase">
 	<div class="panel panel-black">
@@ -569,7 +599,11 @@
 </template> -->
 
 <template name="xbdAnnouncements">
-	<div class="m-b-sm text-md">Announcements</div>
+	<div class="m-b-sm text-md text-center">Announcements coming soon!</div>
+</template>
+
+<!-- <template name="xbdAnnouncements">
+	<div class="m-b-sm text-md text-center">Announcements</div>
 	<div class="m-b-sm">
 		{{#each singleAnnouncement}}
 		<article class="media">
@@ -590,11 +624,11 @@
 	<div class="m-t-md text-center">
 		<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
 	</div>
-</template>
+</template> -->
 
 <template name="xbdTweets">
 	{{#if Template.subscriptionsReady}}
-		<div class="m-b-sm text-md">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
+		<div class="m-b-sm text-md text-center">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
 		<ul class="list-group">
 			{{#each userTweet}}
 			<li class="list-group-item">
@@ -604,7 +638,7 @@
 			{{/each}}
 		</ul>
 		<div class="m-t-md text-center">
-			<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-primary padder-md m-b">More Tweets</a>
+			<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-primary padder-md m-b" target="_blank">More Tweets</a>
 		</div>
 	{{else}}
 		{{> loadingTemplate}}
@@ -612,7 +646,11 @@
 </template>
 
 <template name="xbdBroadcasts">
-	<div class="m-b-sm text-md">Latest Broadcasts - <a href="https://twitter.com/{{twitchName}}" class="text-success" target="_blank">{{twitchName}}</a></div>
+	<div class="m-b-sm text-md text-center">Twitch Hub coming soon!</div>
+</template>
+
+<!-- <template name="xbdBroadcasts">
+	<div class="m-b-sm text-md">Latest Broadcasts - <a href="https://twitch.com/{{twitchName}}" class="text-success" target="_blank">{{twitchName}}</a></div>
 	{{#each singleBroadcast}}
 	<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
 		<a href="XXX">
@@ -630,4 +668,4 @@
 	<div class="text-center">
 		<a href="https://www.twitch.tv/{{twitchName}}" class="btn btn-sm btn-primary padder-md m-b">More Videos</a>
 	</div>
-</template>
+</template> -->

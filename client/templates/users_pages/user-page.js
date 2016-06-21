@@ -504,6 +504,10 @@ Template.userBadges.helpers({
 		if (this.twoFiftyHundredGS) return true;
 		return false;
 	},
+	chkFiveHundredGSBadge: function () {
+		if (this.fiveHundredGS) return true;
+		return false;
+	},
 	chkSevenFiftyHundredGSBadge: function () {
 		if (this.sevenFiftyHundredGS) return true;
 		return false;
