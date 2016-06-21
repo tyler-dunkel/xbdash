@@ -636,7 +636,7 @@ Template.xbdTweets.helpers({
 	getTweetImage: function() {
 		var tweets = Template.instance().tweetText.get();
 		if (this.entities && this.entities.media && this.entities.media.length > 0) {
-			return "<img src='" + this.entities.media[0].media_url_https + "'>";
+			return "<img class='img-responsive' src='" + this.entities.media[0].media_url_https + "'>";
 		}
 	}
 });

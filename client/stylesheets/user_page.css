@@ -1,5 +1,7 @@
 .achievements-row .thumbnail { margin-bottom: 10px; }
 
+.tweet-profile-image { width: 30px; height: 30px; }
+
 #clips-modal .modal-dialog,
 #captures-modal .modal-dialog {
 	width: 756px;
