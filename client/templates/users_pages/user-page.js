@@ -605,5 +605,28 @@ Template.xbdTweets.helpers({
 			return moment(this.created_at).fromNow();
 		}
 		return '';
+	},
+	getTweetText: function() {
+		console.log(this);
+		var tweets = Template.instance().tweetText.get();
+		var tweetText = this.text;
+		var self = this;
+		var richTextTweet = '';
+		if (this.entities && this.entities.urls && this.entities.urls.length > 0) {
+			console.log('returning rich text');
+			this.entities.urls.forEach(function(url) {
+				var startIdx = url.indices[0];
+				var endIdx = url.indices[1];
+				var link = tweetText.slice(startIdx, endIdx);
+				var aTag = '<a href="' + link + '">' + link + '</a>';
+				richTextTweet = '<div>' + tweetText.slice(0, startIdx) + aTag + tweetText.slice(endIdx) + '</div>';
+			});
+			return richTextTweet;
+		} else {
+			console.log('returning text');
+
+			console.log($('.list-group-item'));
+			return this.text;
+		} 
 	}
 });

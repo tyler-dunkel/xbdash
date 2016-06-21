@@ -598,7 +598,8 @@
 		<ul class="list-group">
 			{{#each userTweet}}
 			<li class="list-group-item">
-				<p>{{this.text}}</p>
+				<img src="{{this.user.profile_image_url}}">
+				<p class='tweet-text' data-id="{{this.id_str}}">{{{getTweetText}}}</p>
 				<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> {{tweetDate}}</small>
 			</li>
 			{{/each}}
