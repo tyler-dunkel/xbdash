@@ -598,8 +598,9 @@
 		<ul class="list-group">
 			{{#each userTweet}}
 			<li class="list-group-item">
-				<img src="{{this.user.profile_image_url}}">
+				<img src="{{this.user.profile_image_url}}"> <strong> <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">{{this.user.screen_name}}</a> </strong>
 				<p class='tweet-text' data-id="{{this.id_str}}">{{{getTweetText}}}</p>
+				{{{getTweetImage}}}
 				<small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> {{tweetDate}}</small>
 			</li>
 			{{/each}}

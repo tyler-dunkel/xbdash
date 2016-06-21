@@ -618,7 +618,7 @@ Template.xbdTweets.helpers({
 				var startIdx = url.indices[0];
 				var endIdx = url.indices[1];
 				var link = tweetText.slice(startIdx, endIdx);
-				var aTag = '<a href="' + link + '">' + link + '</a>';
+				var aTag = '<a class="twitter-box text-success" href="' + link + '">' + link + '</a>';
 				richTextTweet = '<div>' + tweetText.slice(0, startIdx) + aTag + tweetText.slice(endIdx) + '</div>';
 			});
 			return richTextTweet;
@@ -628,5 +628,11 @@ Template.xbdTweets.helpers({
 			console.log($('.list-group-item'));
 			return this.text;
 		} 
+	},
+	getTweetImage: function() {
+		var tweets = Template.instance().tweetText.get();
+		if (this.entities && this.entities.media && this.entities.media.length > 0) {
+			return "<img src='" + this.entities.media[0].media_url_https + "'>";
+		}
 	}
 });
