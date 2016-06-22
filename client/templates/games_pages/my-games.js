@@ -5,7 +5,7 @@ Template.myGamesPage.created = function() {
 
 	var myGamesPageDescription = "Review help and frequently asked questions.";
 	var myGamesPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var myGamesPageTitle = "My Games | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var myGamesPageTitle = "My Games | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var myGamesPageUrl = window.location.href;
 
 	var myGamesPageMeta = [

@@ -2,6 +2,7 @@ Meteor.publish('userProfile', function(gamertagSlug) {
 	check(gamertagSlug, String);
 	return Meteor.users.find({ gamertagSlug: gamertagSlug }, {
 		fields: {
+			"createdAt": 1,
 			"services.twitter": 1,
 			"emails": 1,
 			"gamercard": 1,	
@@ -155,6 +156,7 @@ Meteor.publishComposite('userClips', function(gamertagSlug) {
 				find: function(user) {
 					console.log(user);
 					return gameClips.find({ userId: user._id }, {
+						sort: { "gameClipUris.0.expiration": -1 },
 						fields: {
 							"userId": 1,
 							"titleId": 1,

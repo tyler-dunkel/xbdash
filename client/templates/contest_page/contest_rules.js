@@ -3,7 +3,7 @@ Template.contestRules.created = function() {
 
 	var contestRulesPageDescription = "Review our contest rules.";
 	var contestRulesPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var contestRulesPageTitle = "Contest Rules | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var contestRulesPageTitle = "Contest Rules | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var contestRulesPageUrl = window.location.href;
 
 	var contestRulesPageMeta = [

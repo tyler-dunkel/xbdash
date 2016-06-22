@@ -1,3 +1,7 @@
+.fa.h4 { font-size: 18px; }
+
+.activity-image { background-color: #000000; }
+
 .achievements-row .thumbnail { margin-bottom: 10px; }
 
 .slick-slider { margin: 0; }
@@ -19,8 +23,8 @@
     outline: none;
 }
 
-.slick-new-prev { left: 10px; z-index: 10; }
-.slick-new-next { right: 10px; z-index: 10; }
+.slick-new-prev { left: 0; z-index: 10; }
+.slick-new-next { right: 0; z-index: 10; }
 
 .slick-new-prev, .slick-new-next { font-size: 2em; }
 

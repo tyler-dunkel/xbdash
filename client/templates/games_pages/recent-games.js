@@ -5,7 +5,7 @@ Template.recentGamesPage.created = function() {
 
 	var recentGamesPageDescription = "See the latest award-winning video games, all new franchises, and your favorite blockbusters.";
 	var recentGamesPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var recentGamesPageTitle = "Recently Released Games | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var recentGamesPageTitle = "Recently Released Games | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var recentGamesPageUrl = window.location.href;
 
 	var recentGamesPageMeta = [
