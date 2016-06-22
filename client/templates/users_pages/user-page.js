@@ -481,26 +481,28 @@ Template.userBadges.helpers({
 });
 
 Template.specialtyBadges.rendered = function() {
-	$('.specialty-badges').slick({
-		"arrows": true,
-		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-arrow-circle-left text-primary" aria-hidden="true"></i></button>',
-		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-arrow-circle-right text-primary" aria-hidden="true"></i></button>',
-		"draggable": true,
-		"focusOnSelect": true,
-		"edgeFriction": 0.20,
-		"infinite": false,
-		"rows": 1,
-		"slidesPerRow": 2,
-		"slidesToShow": 2,
-		"swipeToSlide": true
+	Meteor.autorun(function() {
+	  	$('.specialty-badges').slick({
+			"arrows": true,
+			"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+			"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+			"focusOnSelect": true,
+			"edgeFriction": 0.20,
+			"infinite": false,
+			"mobileFirst": true,
+			"rows": 1,
+			"slidesPerRow": 2,
+			"slidesToShow": 2,
+			"swipeToSlide": true
+		});
 	});
-};
+}
 
 Template.gameCompletionBadges.rendered = function() {
 	$('.game-badges').slick({
 		"arrows": true,
-		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-arrow-circle-left text-primary" aria-hidden="true"></i></button>',
-		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-arrow-circle-right text-primary" aria-hidden="true"></i></button>',
+		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
 		"draggable": true,
 		"focusOnSelect": true,
 		"edgeFriction": 0.20,
@@ -515,8 +517,8 @@ Template.gameCompletionBadges.rendered = function() {
 Template.gamerscoreBadges.rendered = function() {
 	$('.gamerscore-badges').slick({
 		"arrows": true,
-		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-arrow-circle-left text-primary" aria-hidden="true"></i></button>',
-		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-arrow-circle-right text-primary" aria-hidden="true"></i></button>',
+		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
 		"draggable": true,
 		"focusOnSelect": true,
 		"edgeFriction": 0.20,

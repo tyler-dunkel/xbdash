@@ -19,10 +19,10 @@
     outline: none;
 }
 
-.slick-new-prev { left: 10px; z-index: 10  }
-.slick-new-next { right: 10px; z-index: 10  }
+.slick-new-prev { left: 10px; z-index: 10; }
+.slick-new-next { right: 10px; z-index: 10; }
 
-.slick-new-prev, .slick-new-next { font-size: 1.4em; }
+.slick-new-prev, .slick-new-next { font-size: 2em; }
 
 .tweet-profile-image { width: 30px; height: 30px; }
 

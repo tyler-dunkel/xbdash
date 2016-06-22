@@ -24,7 +24,7 @@
 						</div>
 					</div>
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane tab-personals" id="tab-personals">
+						<div role="tabpanel" class="tab-pane active" id="tab-activity">
 							<div class="padder">
 								<div class="row m-t-md">
 									<div class="col-sm-12 col-md-4">
@@ -77,11 +77,11 @@
 								</div>
 							</div>
 						</div>
-						<div role="tabpanel" class="tab-pane active" id="tab-activity">
+						<div role="tabpanel" class="tab-pane tab-personals" id="tab-personals">
 							<div class="padder container-fluid">
 								{{#if Template.subscriptionsReady}}
 									{{#with user}}
-										{{> userBadges }}
+										{{> userBadges}}
 									{{/with}}
 								{{else}}
 									{{> loadingTemplate}}
@@ -457,8 +457,10 @@
 							{{> specialtyBadges}}
 						{{/with}}{{/with}}
 					{{else}}
-						<div class="col-md-12">
-							<p class="h3 text-center">No badges available</p>
+						<div class="col">
+							<div class="col-md-12 wrapper-sm">
+								No badges available.
+							</div>
 						</div>
 					{{/if}}	
 				{{else}}
@@ -479,8 +481,10 @@
 							{{> gameCompletionBadges}}
 						{{/with}}{{/with}}
 					{{else}}
-						<div class="col-md-12">
-							No badges available
+						<div class="col">
+							<div class="col-md-12 wrapper-sm">
+								No badges available.
+							</div>
 						</div>
 					{{/if}}	
 				{{else}}
@@ -503,8 +507,10 @@
 							{{> gamerscoreBadges}}
 						{{/with}}{{/with}}
 					{{else}}
-						<div class="col-md-12">
-							No badges available
+						<div class="col">
+							<div class="col-md-12 wrapper-sm">
+								No badges available.
+							</div>
 						</div>
 					{{/if}}
 				{{else}}
@@ -526,9 +532,9 @@
 		</div>
 		<div class="wrapper-md">
 			{{#if eagleScout}}
-				<img src="/img/badges/specialty/eagle_scout.png" class="img-responsive" />
+				<img src="/img/badges/specialty/eagle_scout.png" class="last-image img-responsive" />
 			{{else}}
-				<img src="/img/badges/unmerited/eagle_scout.png" class="img-responsive" />
+				<img src="/img/badges/unmerited/eagle_scout.png" class="last-image img-responsive" />
 			{{/if}}
 		</div>
 	</div>
@@ -566,9 +572,9 @@
 		</div>
 		<div class="col-md-3 wrapper-md">
 			{{#if oneThousandGame}}
-				<img src="/img/badges/games/1000_games.png" class="img-responsive" />
+				<img src="/img/badges/games/1000_games.png" class="last-image img-responsive" />
 			{{else}}
-				<img src="/img/badges/unmerited/1000_games.png" class="img-responsive" />
+				<img src="/img/badges/unmerited/1000_games.png" class="last-image img-responsive" />
 			{{/if}}
 		</div>
 	</div>
@@ -627,9 +633,9 @@
 		</div>
 		<div class="col-md-2 wrapper-md">
 			{{#if nineHundredGS}}
-				<img src="/img/badges/gamerscore/999k_gamerscore.png" class="img-responsive" />
+				<img src="/img/badges/gamerscore/999k_gamerscore.png" class="last-image img-responsive" />
 			{{else}}
-				<img src="/img/badges/unmerited/999k_gamerscore.png" class="img-responsive" />
+				<img src="/img/badges/unmerited/999k_gamerscore.png" class="last-image img-responsive" />
 			{{/if}}
 		</div>
 	</div>
