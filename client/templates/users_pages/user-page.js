@@ -435,11 +435,9 @@ Template.userCaptures.events({
 		$('#captures-modal').modal('show');
 	},
 	'click #captures-modal .close': function() {
-		console.log('im closed');
 		$('#captures-modal .modal-body .carousel-inner').empty();
 	},
 	'click #captures-modal [data-dismiss="modal"]': function() {
-		console.log('im closed');
 		$('#captures-modal .modal-body .carousel-inner').empty();
 	},
 	'click .carousel-control.left': function() {
@@ -479,76 +477,56 @@ Template.userBadges.helpers({
 	},
 	badge: function () {
 		return xbdBadges.findOne({ userId: this._id });
-	},
-	chkFiveGSBadge: function () {
-		if (this.fiveGS) return true;
-		return false;
-	},
-	chkTenGSBadge: function () {
-		if (this.tenGS) return true;
-		return false;
-	},
-	chkTwentyGSBadge: function () {
-		if (this.twentyGS) return true;
-		return false;
-	},
-	chkFiftyGSBadge: function () {
-		if (this.fiftyGS) return true;
-		return false;
-	},
-	chkOneHundredGSBadge: function () {
-		if (this.oneHundredGS) return true;
-		return false;
-	},
-	chkTwoFiftyHundredGSBadge: function () {
-		if (this.twoFiftyHundredGS) return true;
-		return false;
-	},
-	chkFiveHundredGSBadge: function () {
-		if (this.fiveHundredGS) return true;
-		return false;
-	},
-	chkSevenFiftyHundredGSBadge: function () {
-		if (this.sevenFiftyHundredGS) return true;
-		return false;
-	},
-	chkNineHundredGSBadge: function () {
-		if (this.nineHundredGS) return true;
-		return false;
-	},
-	chkTwoMillionGSBadge: function () {
-		if (this.twoMillionGS) return true;
-		return false;
-	},
-	chkOneGameBadge: function () {
-		if (this.oneGame) return true;
-		return false;
-	},
-	chkTenGameBadge: function () {
-		if (this.tenGame) return true;
-		return false;
-	},
-	chkOneHundredGameBadge: function () {
-		if (this.oneHundredGame) return true;
-		return false;
-	},
-	chkFiveHundredGameBadge: function () {
-		if (this.fiveHundredGame) return true;
-		return false;
-	},
-	chkOneThousandGameBadge: function () {
-		if (this.oneThousandGame) return true;
-		return false;
-	},
-	chkSolutionExpertBadge: function () {
-		if (this.solutionExpert) return true;
-		return false;
-	},
-	chkEagleScoutBadge: function () {
-		if (this.eagleScout) return true;
-		return false;
 	}
 });
+
+Template.specialtyBadges.rendered = function() {
+	$('.specialty-badges').slick({
+		"arrows": true,
+		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-arrow-circle-left text-primary" aria-hidden="true"></i></button>',
+		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-arrow-circle-right text-primary" aria-hidden="true"></i></button>',
+		"draggable": true,
+		"focusOnSelect": true,
+		"edgeFriction": 0.20,
+		"infinite": false,
+		"rows": 1,
+		"slidesPerRow": 2,
+		"slidesToShow": 2,
+		"swipeToSlide": true
+	});
+};
+
+Template.gameCompletionBadges.rendered = function() {
+	$('.game-badges').slick({
+		"arrows": true,
+		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-arrow-circle-left text-primary" aria-hidden="true"></i></button>',
+		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-arrow-circle-right text-primary" aria-hidden="true"></i></button>',
+		"draggable": true,
+		"focusOnSelect": true,
+		"edgeFriction": 0.20,
+		"infinite": false,
+		"rows": 1,
+		"slidesPerRow": 4,
+		"slidesToShow": 4,
+		"swipeToSlide": true
+	});
+};
+
+Template.gamerscoreBadges.rendered = function() {
+	$('.gamerscore-badges').slick({
+		"arrows": true,
+		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-arrow-circle-left text-primary" aria-hidden="true"></i></button>',
+		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-arrow-circle-right text-primary" aria-hidden="true"></i></button>',
+		"draggable": true,
+		"focusOnSelect": true,
+		"edgeFriction": 0.20,
+		"infinite": false,
+		"rows": 1,
+		"slidesPerRow": 6,
+		"slidesToShow": 6,
+		"swipeToSlide": true
+	});
+};
 
 // Template.userWishlist.created = function() {
 // 	var gamertagSlug = Router.current().params.gamertagSlug;
@@ -611,13 +589,11 @@ Template.xbdTweets.helpers({
 		return '';
 	},
 	getTweetText: function() {
-		console.log(this);
 		var tweets = Template.instance().tweetText.get();
 		var tweetText = this.text;
 		var self = this;
 		var richTextTweet = '';
 		if (this.entities && this.entities.urls && this.entities.urls.length > 0) {
-			console.log('returning rich text');
 			this.entities.urls.forEach(function(url) {
 				var startIdx = url.indices[0];
 				var endIdx = url.indices[1];
@@ -627,9 +603,6 @@ Template.xbdTweets.helpers({
 			});
 			return richTextTweet;
 		} else {
-			console.log('returning text');
-
-			console.log($('.list-group-item'));
 			return this.text;
 		} 
 	},

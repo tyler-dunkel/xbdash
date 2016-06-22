@@ -1,5 +1,29 @@
 .achievements-row .thumbnail { margin-bottom: 10px; }
 
+.slick-slider { margin: 0; }
+
+.slick-new-prev, .slick-new-next {
+    position: absolute;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 0;
+    font-size: 0;
+    cursor: pointer;
+    background: transparent;
+    color: #138013;
+    top: 50%;
+    margin-top: -10px;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.slick-new-prev { left: 10px; z-index: 10  }
+.slick-new-next { right: 10px; z-index: 10  }
+
+.slick-new-prev, .slick-new-next { font-size: 1.4em; }
+
 .tweet-profile-image { width: 30px; height: 30px; }
 
 #clips-modal .modal-dialog,
