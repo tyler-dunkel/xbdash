@@ -1,0 +1,75 @@
+<template name="xbdAnnouncements">
+	<div class="m-b-sm text-md text-center">Announcements coming soon!</div>
+</template>
+
+<!-- <template name="xbdAnnouncements">
+	<div class="m-b-sm text-md text-center">Announcements</div>
+	<div class="m-b-sm">
+		{{#each singleAnnouncement}}
+		<article class="media">
+			<div class="pull-left">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+				</span>
+			</div>
+			<div class="media-body">                        
+				<a href class="h4">{{getAnnouncementTitle}}</a>
+				<small class="block m-t-xs">{{getAnnouncementText}}</small>
+				<em class="text-xs">Posted on <span class="text-danger">{{getDate}}</span></em>
+			</div>
+		</article>
+		<div class="line pull-in"></div>
+		{{/each}}
+	</div>
+	<div class="m-t-md text-center">
+		<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
+	</div>
+</template> -->
+
+<template name="xbdTweets">
+	{{#if Template.subscriptionsReady}}
+		<div class="m-b-sm text-md text-center">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
+		<ul class="list-group">
+			{{#each userTweet}}
+			<li class="list-group-item">
+				<div class="m-b-xs m-t-xs">
+					<img src="{{this.user.profile_image_url}}" class="tweet-profile-image m-r-sm" /><strong><a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">{{this.user.screen_name}}</a></strong>
+				</div>
+				<p class='tweet-text' data-id="{{this.id_str}}">{{{getTweetText}}}</p>
+				{{{getTweetImage}}}
+				<small class="block m-b-xs m-t-xs text-muted"><i class="fa fa-fw fa-clock-o"></i> {{tweetDate}}</small>
+			</li>
+			{{/each}}
+		</ul>
+		<div class="m-t-md text-center">
+			<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-success padder-md m-b" target="_blank">More Tweets</a>
+		</div>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>
+
+<template name="xbdBroadcasts">
+	<div class="m-b-sm text-md text-center">Twitch Hub coming soon!</div>
+</template>
+
+<!-- <template name="xbdBroadcasts">
+	<div class="m-b-sm text-md">Latest Broadcasts - <a href="https://twitch.com/{{twitchName}}" class="text-success" target="_blank">{{twitchName}}</a></div>
+	{{#each singleBroadcast}}
+	<div class="item m-l-n-xxs m-r-n-xxs m-b-md">
+		<a href="XXX">
+			<div class="center text-center w-full" style="margin-top:-60px">
+			</div>
+			<div class="bottom wrapper bg-gd-dk text-white">            
+				<div>Restaurant</div>
+				<div>9:00 am - 12:00 pm</div>
+				<div class="text-primary">Watch Now</div>
+			</div>
+			<img src="/img/c0.jpg" class="img-full">
+		</a>
+	</div>
+	{{/each}}
+	<div class="text-center">
+		<a href="https://www.twitch.tv/{{twitchName}}" class="btn btn-sm btn-primary padder-md m-b">More Videos</a>
+	</div>
+</template> -->

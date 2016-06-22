@@ -1,0 +1,236 @@
+<template name="userActivity">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
+			Latest Xbox Activity
+		</div>
+		<div class="streamline b-l b-info m-l-lg m-b padder-v">
+		{{#if Template.subscriptionsReady}}
+		{{#if chkUserActivity}}
+			{{#each activity}}
+			<div>
+				<div class="pull-left thumb-sm m-l-n-md">
+					<img src="{{this.contentImageUri}}" class="img-rounded activity-image" alt="{{this.contentTitle}}">
+				</div>
+				<div class="m-l-lg">
+					<div class="p-t-xs m-b-xs">
+						<span class="h5 font-bold">{{shortDescription}}</span>
+						<span class="text-muted m-l-sm pull-right m-r-sm">
+						{{getStartTime}}
+						</span>
+					</div>
+					<div class="m-b m-r">
+						<div>{{gamertag}} {{description}}</div>
+						<hr />
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		{{else}}
+			<div>
+				<div class="m-l-lg">
+					<div class="m-b-xs">
+						<h5 class="h5 font-bold">No activity available.</h5>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
+		</div>
+	</div>
+</template>
+
+<!-- <template name="activityImage">
+	{{#if Template.subscriptionsReady}}
+		{{#with getActivityImage}}
+			<a class="pull-left thumb-sm avatar m-l-n-md">
+				<img src="{{gameImage}}" class="img-circle" alt="">
+			</a>
+		{{/with}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template> -->
+
+<template name="userAchievements">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
+			Latest Achievements
+		</div>
+		<div class="streamline b-l b-info m-l-lg m-b padder-v">
+		{{#if Template.subscriptionsReady}}
+		{{#if chkUserAchievements}}
+			{{#each userAchievement}}
+			<div>
+				<a class="pull-left thumb-sm avatar m-l-n-md" href="{{pathFor 'achievement' slug=achievementSlug}}">
+					<img src="{{getAchievementImage}}" class="img-circle" alt="{{getAchievementName}}">
+				</a>
+				<div class="m-l-lg">
+					<div class="m-b-xs">
+						<a href="{{pathFor 'achievement' slug=achievementSlug}}" class="h5 font-bold">{{getAchievementName}}</a>
+						<span class="text-muted m-l-sm pull-right m-r-sm">
+							{{getUnlockedDate}}
+						</span>
+					</div>
+					<div class="m-b m-r">
+						<div>{{getUserGamertag}} earned a new achievement in {{getGameName}} for <strong>{{getAchievementValue}} Gamerscore</strong>.</div>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		{{else}}
+			<div>
+				<div class="m-l-lg">
+					<div class="m-b-xs">
+						<h5 class="h5 font-bold">No achievements available.</h5>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="userGames">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
+			Latest Game Completions
+		</div>
+		<div class="streamline b-l b-info m-l-lg m-b padder-v">
+		{{#if Template.subscriptionsReady}}
+		{{#if chkUserGames}}
+			{{#each userGame}}
+			<div>
+				<a class="pull-left thumb-sm m-l-n-md" href="{{pathFor 'game' slug=gameSlug}}">
+					<img src="{{getGameImage}}" class="img-rounded" alt="{{getGameName}}">
+				</a>
+				<div class="m-l-lg">
+					<div class="p-t-xs m-b-xs">
+						<a href="{{pathFor 'game' slug=gameSlug}}" class="h5 font-bold">{{getGameName}}</a>
+						<span class="text-muted m-l-sm pull-right m-r-sm">
+						{{getUnlockedDate}}
+						</span>
+					</div>
+					<div class="m-b m-r">
+						<div>{{getUserGamertag}} completed <strong>{{getGameName}}</strong></div>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		{{else}}
+			<div>
+				<div class="m-l-lg">
+					<div class="m-b-xs">
+						<h5 class="h5 font-bold">No completed games available.</h5>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="userClips">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
+			Latest Clips
+		</div>
+		{{#if Template.subscriptionsReady}}
+			{{#if chkClips}}
+			<div class="container-fluid clips-container m-b-md">
+				<div class="row">
+					{{#each clip}}
+						<div class="col-md-6 m-t-md clip-container" data-slide><a title="{{titleName}}" href="#"><img class="large img-responsive" src="{{getLargeThumbnail}}" data-video="{{getClipUri}}"></a></div>
+					{{/each}}
+				</div>
+			</div>
+			<div class="modal" id="clips-modal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button class="close" type="button" data-dismiss="modal">×</button>
+							<h3 class="modal-title"></h3>
+						</div>
+						<div class="modal-body">
+							<div id="clips-carousel" class="carousel">
+								<div class="carousel-inner"></div>
+								<a class="carousel-control left" href="#clips-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+								<a class="carousel-control right" href="#clips-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{else}}
+			<div class="container-fluid captures-container m-b-md">
+				<div class="row">
+					<div class="col-md-12 m-t-md font-bold">
+						No clips available.
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="userCaptures">
+	<div class="panel">
+		<div class="panel-heading bg-black text-white">
+			Latest Captures
+		</div>
+		{{#if Template.subscriptionsReady}}
+			{{#if chkCaptures}}
+			<div class="container-fluid captures-container m-b-md">
+				<div class="row">
+					{{#each capture}}
+						<div class="col-md-6 m-t-md captures-container"><a title="{{titleName}}" href="#"><img class="large img-responsive" src="{{getLargeThumbnail}}"></a></div>
+					{{/each}}
+				</div>
+			</div>
+			<div class="modal" id="captures-modal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button class="close" type="button" data-dismiss="modal">×</button>
+							<h3 class="modal-title"></h3>
+						</div>
+						<div class="modal-body">
+							<div id="captures-carousel" class="carousel">
+								<div class="carousel-inner"></div>
+								<a class="carousel-control left" href="#captures-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+								<a class="carousel-control right" href="#captures-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{else}}
+			<div class="container-fluid captures-container m-b-md">
+				<div class="row">
+					<div class="col-md-12 m-t-md font-bold">
+						No screen captures available.
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{else}}
+			{{> loadingTemplate}}
+		{{/if}}
+	</div>
+</template>
