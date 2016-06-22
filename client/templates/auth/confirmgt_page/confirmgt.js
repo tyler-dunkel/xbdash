@@ -18,7 +18,7 @@ Template.confirmGt.created = function() {
 
 	var confirmGtPageDescription = "Confirm your gamertag to start scanning your history.";
 	var confirmGtPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var confirmGtPageTitle = "Confirm Your Gamertag | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var confirmGtPageTitle = "Confirm Your Gamertag | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var confirmGtPageUrl = window.location.href;
 
 	var confirmGtPageMeta = [

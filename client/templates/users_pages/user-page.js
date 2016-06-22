@@ -112,7 +112,7 @@ Template.userDocHead.created = function() {
 	if (user && user.gamercard) {
 		var userProfilePageDescription = user.gamercard.gamertag + " | Gamerscore: " + user.gamercard.gamerscore + " | " + user.gamercard.motto;
 		var userProfilePageImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + user.gamercard.gamerpicLargeSslImagePath;
-		var userProfilePageTitle = user.gamercard.gamertag + " | XBdash - The Personalized Dashboard for Xbox® Gamers";
+		var userProfilePageTitle = user.gamercard.gamertag + " | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 		var userProfilePageUrl = window.location.href;
 
 		var userProfilePageMeta = [
@@ -233,7 +233,7 @@ Template.userActivity.helpers({
 	chkUserActivity: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var count = recentActivity.findOne({ userId: user._id }).count();
+		var count = recentActivity.find({ userId: user._id }).count();
 		if (count > 0) return true;
 		return false;
 	},
@@ -401,8 +401,7 @@ Template.userClips.helpers({
 	clip: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var gameClip = gameClips.find({ userId: user._id });
-		return gameClip;
+		return gameClips.find({ userId: user._id }, { sort: { "gameClipUris.0.expiration": -1 } });
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;

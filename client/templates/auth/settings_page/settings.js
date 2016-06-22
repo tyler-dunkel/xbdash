@@ -3,7 +3,7 @@ Template.settingsApp.created = function() {
 
 	var settingsPageDescription = "Change your settings and save.";
 	var settingsPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var settingsPageTitle = "Your Settings | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var settingsPageTitle = "Your Settings | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var settingsPageUrl = window.location.href;
 
 	var settingsPageMeta = [

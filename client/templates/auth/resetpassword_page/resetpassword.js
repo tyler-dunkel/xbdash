@@ -5,7 +5,7 @@ Template.resetPassword.created = function() {
 
 	var resetPasswordPageDescription = "Please enter your new password and confirm to reset.";
 	var resetPasswordPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var resetPasswordPageTitle = "Reset Password | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var resetPasswordPageTitle = "Reset Password | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var resetPasswordPageUrl = window.location.href;
 
 	var resetPasswordPageMeta = [

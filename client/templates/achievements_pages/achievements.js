@@ -3,7 +3,7 @@ Template.achievementsPage.created = function() {
 
 	var achievementsPageDescription = "Find the most difficult achievements and collaborate with other gamers for achievement solutions.";
 	var achievementsPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var achievementsPageTitle = "Achievements | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var achievementsPageTitle = "Achievements | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var achievementsPageUrl = window.location.href;
 
 	var achievementsPageMeta = [

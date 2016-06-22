@@ -3,7 +3,7 @@ Template.helpPage.created = function() {
 
 	var helpPageDescription = "Review help and frequently asked questions.";
 	var helpPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var helpPageTitle = "Help & FAQs | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var helpPageTitle = "Help & FAQs | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var helpPageUrl = window.location.href;
 
 	var helpPageMeta = [

@@ -24,7 +24,7 @@ Template.confirmEmail.created = function() {
 
 	var confirmEmailPageDescription = "Confirm your email to unlock your dashboard.";
 	var confirmEmailPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var confirmEmailPageTitle = "Confirm Your Email | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var confirmEmailPageTitle = "Confirm Your Email | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var confirmEmailPageUrl = window.location.href;
 
 	var confirmEmailPageMeta = [

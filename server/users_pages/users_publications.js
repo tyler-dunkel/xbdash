@@ -156,6 +156,7 @@ Meteor.publishComposite('userClips', function(gamertagSlug) {
 				find: function(user) {
 					console.log(user);
 					return gameClips.find({ userId: user._id }, {
+						sort: { "gameClipUris.0.expiration": -1 },
 						fields: {
 							"userId": 1,
 							"titleId": 1,

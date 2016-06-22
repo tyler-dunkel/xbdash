@@ -3,7 +3,7 @@ Template.termsConditions.created = function() {
 
 	var termsConditionsPageDescription = "Review our terms and conditions.";
 	var termsConditionsPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var termsConditionsPageTitle = "Terms & Conditions | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var termsConditionsPageTitle = "Terms & Conditions | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var termsConditionsPageUrl = window.location.href;
 
 	var termsConditionsPageMeta = [
