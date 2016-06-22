@@ -15,9 +15,7 @@ Template.userProfilePage.helpers({
 
 Template.userProfilePage.events({
 	"click .personal-tab": function() {
-		console.log('fired');
 		Meteor.setTimeout(function() {
-			console.log('ran');
 		  	$('.specialty-badges').slick({
 				"arrows": true,
 				"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
@@ -29,7 +27,15 @@ Template.userProfilePage.events({
 				"rows": 1,
 				"slidesPerRow": 2,
 				"slidesToShow": 2,
-				"swipeToSlide": true
+				"swipeToSlide": true,
+				responsive: [
+				{
+					breakpoint: 768,
+					settings: {
+						infinite: true
+					}
+				}
+				]
 			});
 			$('.game-badges').slick({
 				"arrows": true,
@@ -39,10 +45,29 @@ Template.userProfilePage.events({
 				"focusOnSelect": true,
 				"edgeFriction": 0.20,
 				"infinite": false,
+				"mobileFirst": true,
 				"rows": 1,
 				"slidesPerRow": 4,
 				"slidesToShow": 4,
-				"swipeToSlide": true
+				"swipeToSlide": true,
+				"responsive": [
+				{
+					breakpoint: 1024,
+					settings: {
+						"slidesPerRow": 3,
+						"slidesToShow": 3,
+						infinite: true
+					}
+				},
+				{
+					breakpoint: 768,
+					settings: {
+						"slidesPerRow": 2,
+						"slidesToShow": 2,
+						infinite: true
+					}
+				}
+				]
 			});
 			$('.gamerscore-badges').slick({
 				"arrows": true,
@@ -52,12 +77,31 @@ Template.userProfilePage.events({
 				"focusOnSelect": true,
 				"edgeFriction": 0.20,
 				"infinite": false,
+				"mobileFirst": true,
 				"rows": 1,
 				"slidesPerRow": 6,
 				"slidesToShow": 6,
-				"swipeToSlide": true
+				"swipeToSlide": true,
+				"responsive": [
+				{
+					breakpoint: 1024,
+					settings: {
+						"slidesPerRow": 3,
+						"slidesToShow": 3,
+						infinite: true
+					}
+				},
+				{
+					breakpoint: 768,
+					settings: {
+						"slidesPerRow": 2,
+						"slidesToShow": 2,
+						infinite: true
+					}
+				}
+				]
 			});
-		}, 10);
+		}, 5);
 	}
 });
 
@@ -114,37 +158,42 @@ Template.userDocHead.created = function() {
 }
 
 Template.userProfileArea.helpers({
-	userGamerPic: function () {
+	user: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	},
+	userGamerPic: function () {
 		var image = "/img/xbdash_greenicon.png";
-		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
-			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+		if (this && this.gamercard && this.gamercard.gamerpicLargeSslImagePath) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.gamercard.gamerpicLargeSslImagePath);
 		}
-		if (user && user.xboxProfile) {
-			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
+		if (this && this.xboxProfile) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.xboxProfile.gameDisplayPicRaw);
 		}
 		return image;
 	},
 	userGamertag: function () {
-		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		if (user && user.gamercard) {
-			return user.gamercard.gamertag;
+		if (this && this.gamercard) {
+			return this.gamercard.gamertag;
 		}
 	},
 	userMotto: function () {
-		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		if (user && user.gamercard) {
-			return user.gamercard.motto;
+		if (this && this.gamercard) {
+			return this.gamercard.motto;
 		}
 	},
+	createdAtDate: function () {
+		return moment(this.createdAt).format('MMMM YYYY');
+	},	
 	getGamerscore: function () {
-		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		if (user && user.gamercard) {
-			return user.gamercard.gamerscore;
+		if (this && this.gamercard) {
+			return this.gamercard.gamerscore;
+		}
+	},
+	getBio: function () {
+		if (this && this.gamercard) {
+			console.log(this.gamercard.bio);
+			return this.gamercard.bio;
 		}
 	}
 });
@@ -155,19 +204,19 @@ Template.userRankArea.created = function() {
 }
 
 Template.userRankArea.helpers({
-	usersDailyRank: function() {
+	chkUser: function() {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var userLb = userLeaderboards.findOne({ userId: user._id });
+		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	},
+	usersDailyRank: function() {
+		var userLb = userLeaderboards.findOne({ userId: this._id });
 		if (userLb && userLb.dailyRank && userLb.dailyRank.rank > 0) {
 			return userLb.dailyRank.rank;
 		}
 		return '---';
 	},
 	usersOverallRank: function() {
-		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var userLb = userLeaderboards.findOne({ userId: user._id });
+		var userLb = userLeaderboards.findOne({ userId: this._id });
 		if (userLb && userLb.overallRank > 0) {
 			return userLb.overallRank;
 		}
@@ -181,6 +230,13 @@ Template.userActivity.created = function() {
 }
 
 Template.userActivity.helpers({
+	chkUserActivity: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var count = recentActivity.findOne({ userId: user._id }).count();
+		if (count > 0) return true;
+		return false;
+	},
 	activity: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
@@ -190,9 +246,6 @@ Template.userActivity.helpers({
 		} else {
 			return [];
 		}
-	},
-	getActivityImage: function () {
-		return "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_40,h_40/" + encodeURIComponent(this.contentImageUri);
 	},
 	getStartTime: function () {
 		return moment(this.startTime).calendar();
@@ -527,81 +580,6 @@ Template.userBadges.helpers({
 		return xbdBadges.findOne({ userId: this._id });
 	}
 });
-
-// Template.specialtyBadges.rendered = function() {
-// 	// Meteor.autorun(function() {
-// 	// 	Meteor.setTimeout(function() {
-// 	// 		console.log('ran');
-// 	// 	  	$('.specialty-badges').slick({
-// 	// 			"arrows": true,
-// 	// 			"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
-// 	// 			"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
-// 	// 			"focusOnSelect": true,
-// 	// 			"edgeFriction": 0.20,
-// 	// 			"infinite": false,
-// 	// 			"mobileFirst": true,
-// 	// 			"rows": 1,
-// 	// 			"slidesPerRow": 2,
-// 	// 			"slidesToShow": 2,
-// 	// 			"swipeToSlide": true
-// 	// 		});
-// 	// 	  }, 500);
-// 	// });
-// }
-
-// Template.specialtyBadges.events({
-// 	"click .personal-tab": function() {
-// 		console.log('fired');
-// 		// Meteor.setTimeout(function() {
-// 		// 	console.log('ran');
-// 		//   	$('.specialty-badges').slick({
-// 		// 		"arrows": true,
-// 		// 		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
-// 		// 		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
-// 		// 		"focusOnSelect": true,
-// 		// 		"edgeFriction": 0.20,
-// 		// 		"infinite": false,
-// 		// 		"mobileFirst": true,
-// 		// 		"rows": 1,
-// 		// 		"slidesPerRow": 2,
-// 		// 		"slidesToShow": 2,
-// 		// 		"swipeToSlide": true
-// 		// 	});
-// 		// }, 100);
-// 	}
-// });
-
-// Template.gameCompletionBadges.rendered = function() {
-// 	$('.game-badges').slick({
-// 		"arrows": true,
-// 		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
-// 		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
-// 		"draggable": true,
-// 		"focusOnSelect": true,
-// 		"edgeFriction": 0.20,
-// 		"infinite": false,
-// 		"rows": 1,
-// 		"slidesPerRow": 4,
-// 		"slidesToShow": 4,
-// 		"swipeToSlide": true
-// 	});
-// };
-
-// Template.gamerscoreBadges.rendered = function() {
-// 	$('.gamerscore-badges').slick({
-// 		"arrows": true,
-// 		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
-// 		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
-// 		"draggable": true,
-// 		"focusOnSelect": true,
-// 		"edgeFriction": 0.20,
-// 		"infinite": false,
-// 		"rows": 1,
-// 		"slidesPerRow": 6,
-// 		"slidesToShow": 6,
-// 		"swipeToSlide": true
-// 	});
-// };
 
 // Template.userWishlist.created = function() {
 // 	var gamertagSlug = Router.current().params.gamertagSlug;

@@ -2,6 +2,7 @@ Meteor.publish('userProfile', function(gamertagSlug) {
 	check(gamertagSlug, String);
 	return Meteor.users.find({ gamertagSlug: gamertagSlug }, {
 		fields: {
+			"createdAt": 1,
 			"services.twitter": 1,
 			"emails": 1,
 			"gamercard": 1,	

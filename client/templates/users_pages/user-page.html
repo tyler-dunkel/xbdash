@@ -177,21 +177,34 @@
 	<div style="background:url('/img/user-bg.png') center center; background-repeat: repeat;">
 		<div class="wrapper-lg bg-white-opacity">
 			<div class="row m-t">
-				<div class="col-sm-7">
+				<div class="col-md-7">
+				{{#if user}}
+					{{#with user}}
 					<div class="thumb-lg pull-left m-r">
 						<img src="{{userGamerPic}}" class="img-circle">
 					</div>
 					<div class="clear m-b">
-						<div class="m-b m-t-sm">
-							<span class="h3 text-black">{{userGamertag}}</span>
-							<small class="m-l">{{userMotto}}</small>
+						<div class="m-b-xs m-t-sm">
+							<span class="h3 text-black"><strong>{{userGamertag}}</strong></span> <small class="m-l">{{userMotto}}</small>
 						</div>
-						<p class="m-b">
-							<span class="h4 text-black">{{getGamerscore}}</span>
-							<!-- <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a> -->
-						</p>
-						<!-- <a href class="btn btn-sm btn-success btn-rounded">Follow</a> -->
+						<div class="m-b-xs">
+							<span class="h5 text-black">Member Since: {{createdAtDate}}</span>
+						</div>
+						<div class="m-b-xs text-primary">
+							<i class="fa fa-trophy h4 m-r-xs" aria-hidden="true"></i> <span class="h4 text-black">{{getGamerscore}}</span>
+						</div>
 					</div>
+					{{/with}}
+				{{else}}
+					<div class="thumb-lg pull-left m-r">
+						<img src="https://www.xbdash.com/img/xbdash_greenicon.png" class="img-circle">
+					</div>
+					<div class="clear">
+						<div class="m-b-lg m-t-lg">
+							<span class="h3 text-black"><strong>User not found</strong></span>
+						</div>
+					</div>
+				{{/if}}
 				</div>
 				{{> userRankArea}}
 			</div>
@@ -201,6 +214,7 @@
 
 <template name="userRankArea">
 	{{#if Template.subscriptionsReady}}
+		{{#if chkUser}}
 		<div class="col-sm-5">
 			<div class="pull-right pull-none-xs text-center">
 				<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
@@ -213,6 +227,7 @@
 				</a>
 			</div>
 		</div>
+		{{/if}}
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
@@ -225,22 +240,35 @@
 		</div>
 		<div class="streamline b-l b-info m-l-lg m-b padder-v">
 		{{#if Template.subscriptionsReady}}
+		{{#if chkUserActivity}}
 			{{#each activity}}
 			<div>
-				<div class="m-l-sm">
-					<div class="m-b-xs">
-						<a href class="h4">{{shortDescription}}</a>
+				<div class="pull-left thumb-sm m-l-n-md">
+					<img src="{{this.contentImageUri}}" class="img-rounded activity-image" alt="{{this.contentTitle}}">
+				</div>
+				<div class="m-l-lg">
+					<div class="p-t-xs m-b-xs">
+						<span class="h5 font-bold">{{shortDescription}}</span>
 						<span class="text-muted m-l-sm pull-right m-r-sm">
 						{{getStartTime}}
 						</span>
 					</div>
-					<div class="m-b">
+					<div class="m-b m-r">
 						<div>{{gamertag}} {{description}}</div>
 						<hr />
 					</div>
 				</div>
 			</div>
 			{{/each}}
+		{{else}}
+			<div>
+				<div class="m-l-lg">
+					<div class="m-b-xs">
+						<h5 class="h5 font-bold">No activity available.</h5>
+					</div>
+				</div>
+			</div>
+		{{/if}}
 		{{else}}
 			{{> loadingTemplate}}
 		{{/if}}
@@ -290,7 +318,7 @@
 			<div>
 				<div class="m-l-lg">
 					<div class="m-b-xs">
-						<h5 class="h5 font-bold">{{getUserGamertag}} has no achievements available.</h5>
+						<h5 class="h5 font-bold">No achievements available.</h5>
 					</div>
 				</div>
 			</div>
@@ -332,7 +360,7 @@
 			<div>
 				<div class="m-l-lg">
 					<div class="m-b-xs">
-						<h5 class="h5 font-bold">{{getUserGamertag}} has no completed games.</h5>
+						<h5 class="h5 font-bold">No completed games available.</h5>
 					</div>
 				</div>
 			</div>
@@ -379,10 +407,10 @@
 				</div>
 			</div>
 			{{else}}
-			<div class="container-fluid clips-container m-b-md">
+			<div class="container-fluid captures-container m-b-md">
 				<div class="row">
-					<div class="col-md-12 m-t-md">
-						{{getUserGamertag}} has no clips.
+					<div class="col-md-12 m-t-md font-bold">
+						No clips available.
 					</div>
 				</div>
 			</div>
@@ -430,8 +458,8 @@
 			{{else}}
 			<div class="container-fluid captures-container m-b-md">
 				<div class="row">
-					<div class="col-md-12 m-t-md">
-						{{getUserGamertag}} has no screen captures.
+					<div class="col-md-12 m-t-md font-bold">
+						No screen captures available.
 					</div>
 				</div>
 			</div>
@@ -457,9 +485,11 @@
 							{{> specialtyBadges}}
 						{{/with}}{{/with}}
 					{{else}}
-						<div class="col">
-							<div class="col-md-12 wrapper-sm">
-								No badges available.
+						<div class="container-fluid captures-container m-b-md">
+							<div class="row">
+								<div class="col-md-12 m-t-md font-bold">
+									No badges available.
+								</div>
 							</div>
 						</div>
 					{{/if}}	
@@ -481,9 +511,11 @@
 							{{> gameCompletionBadges}}
 						{{/with}}{{/with}}
 					{{else}}
-						<div class="col">
-							<div class="col-md-12 wrapper-sm">
-								No badges available.
+						<div class="container-fluid captures-container m-b-md">
+							<div class="row">
+								<div class="col-md-12 m-t-md font-bold">
+									No badges available.
+								</div>
 							</div>
 						</div>
 					{{/if}}	
@@ -495,7 +527,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-black m-t-md" style="margin-bottom: 0;">
+			<div class="panel panel-black" style="margin-bottom: 0;">
 				<div class="panel-heading bg-black text-white">
 					Gamerscore Badges
 				</div>
@@ -507,9 +539,11 @@
 							{{> gamerscoreBadges}}
 						{{/with}}{{/with}}
 					{{else}}
-						<div class="col">
-							<div class="col-md-12 wrapper-sm">
-								No badges available.
+						<div class="container-fluid captures-container m-b-md">
+							<div class="row">
+								<div class="col-md-12 m-t-md font-bold">
+									No badges available.
+								</div>
 							</div>
 						</div>
 					{{/if}}
@@ -648,9 +682,11 @@
 		</div>
 	</div>
 	<div class="panel hbox hbox-auto-xs no-border">
-		<div class="col">
-			<div class="col-md-12 wrapper-sm">
-				Feature coming soon!
+		<div class="container-fluid captures-container m-b-md">
+			<div class="row">
+				<div class="col-md-12 m-t-md font-bold">
+					Feature coming soon!
+				</div>
 			</div>
 		</div>
 	</div>
@@ -691,9 +727,11 @@
 		</div>
 	</div>
 	<div class="panel hbox hbox-auto-xs no-border">
-		<div class="col">
-			<div class="col-md-12 wrapper-sm">
-				Feature coming soon!
+		<div class="container-fluid captures-container m-b-md">
+			<div class="row">
+				<div class="col-md-12 m-t-md font-bold">
+					Feature coming soon!
+				</div>
 			</div>
 		</div>
 	</div>
