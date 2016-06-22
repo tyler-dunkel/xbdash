@@ -13,6 +13,54 @@ Template.userProfilePage.helpers({
 	}
 });
 
+Template.userProfilePage.events({
+	"click .personal-tab": function() {
+		console.log('fired');
+		Meteor.setTimeout(function() {
+			console.log('ran');
+		  	$('.specialty-badges').slick({
+				"arrows": true,
+				"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+				"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+				"focusOnSelect": true,
+				"edgeFriction": 0.20,
+				"infinite": false,
+				"mobileFirst": true,
+				"rows": 1,
+				"slidesPerRow": 2,
+				"slidesToShow": 2,
+				"swipeToSlide": true
+			});
+			$('.game-badges').slick({
+				"arrows": true,
+				"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+				"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+				"draggable": true,
+				"focusOnSelect": true,
+				"edgeFriction": 0.20,
+				"infinite": false,
+				"rows": 1,
+				"slidesPerRow": 4,
+				"slidesToShow": 4,
+				"swipeToSlide": true
+			});
+			$('.gamerscore-badges').slick({
+				"arrows": true,
+				"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+				"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+				"draggable": true,
+				"focusOnSelect": true,
+				"edgeFriction": 0.20,
+				"infinite": false,
+				"rows": 1,
+				"slidesPerRow": 6,
+				"slidesToShow": 6,
+				"swipeToSlide": true
+			});
+		}, 10);
+	}
+});
+
 Template.userDocHead.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
@@ -480,55 +528,80 @@ Template.userBadges.helpers({
 	}
 });
 
-Template.specialtyBadges.rendered = function() {
-	Meteor.autorun(function() {
-	  	$('.specialty-badges').slick({
-			"arrows": true,
-			"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
-			"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
-			"focusOnSelect": true,
-			"edgeFriction": 0.20,
-			"infinite": false,
-			"mobileFirst": true,
-			"rows": 1,
-			"slidesPerRow": 2,
-			"slidesToShow": 2,
-			"swipeToSlide": true
-		});
-	});
-}
+// Template.specialtyBadges.rendered = function() {
+// 	// Meteor.autorun(function() {
+// 	// 	Meteor.setTimeout(function() {
+// 	// 		console.log('ran');
+// 	// 	  	$('.specialty-badges').slick({
+// 	// 			"arrows": true,
+// 	// 			"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+// 	// 			"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+// 	// 			"focusOnSelect": true,
+// 	// 			"edgeFriction": 0.20,
+// 	// 			"infinite": false,
+// 	// 			"mobileFirst": true,
+// 	// 			"rows": 1,
+// 	// 			"slidesPerRow": 2,
+// 	// 			"slidesToShow": 2,
+// 	// 			"swipeToSlide": true
+// 	// 		});
+// 	// 	  }, 500);
+// 	// });
+// }
 
-Template.gameCompletionBadges.rendered = function() {
-	$('.game-badges').slick({
-		"arrows": true,
-		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
-		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
-		"draggable": true,
-		"focusOnSelect": true,
-		"edgeFriction": 0.20,
-		"infinite": false,
-		"rows": 1,
-		"slidesPerRow": 4,
-		"slidesToShow": 4,
-		"swipeToSlide": true
-	});
-};
+// Template.specialtyBadges.events({
+// 	"click .personal-tab": function() {
+// 		console.log('fired');
+// 		// Meteor.setTimeout(function() {
+// 		// 	console.log('ran');
+// 		//   	$('.specialty-badges').slick({
+// 		// 		"arrows": true,
+// 		// 		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+// 		// 		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+// 		// 		"focusOnSelect": true,
+// 		// 		"edgeFriction": 0.20,
+// 		// 		"infinite": false,
+// 		// 		"mobileFirst": true,
+// 		// 		"rows": 1,
+// 		// 		"slidesPerRow": 2,
+// 		// 		"slidesToShow": 2,
+// 		// 		"swipeToSlide": true
+// 		// 	});
+// 		// }, 100);
+// 	}
+// });
 
-Template.gamerscoreBadges.rendered = function() {
-	$('.gamerscore-badges').slick({
-		"arrows": true,
-		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
-		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
-		"draggable": true,
-		"focusOnSelect": true,
-		"edgeFriction": 0.20,
-		"infinite": false,
-		"rows": 1,
-		"slidesPerRow": 6,
-		"slidesToShow": 6,
-		"swipeToSlide": true
-	});
-};
+// Template.gameCompletionBadges.rendered = function() {
+// 	$('.game-badges').slick({
+// 		"arrows": true,
+// 		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+// 		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+// 		"draggable": true,
+// 		"focusOnSelect": true,
+// 		"edgeFriction": 0.20,
+// 		"infinite": false,
+// 		"rows": 1,
+// 		"slidesPerRow": 4,
+// 		"slidesToShow": 4,
+// 		"swipeToSlide": true
+// 	});
+// };
+
+// Template.gamerscoreBadges.rendered = function() {
+// 	$('.gamerscore-badges').slick({
+// 		"arrows": true,
+// 		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+// 		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+// 		"draggable": true,
+// 		"focusOnSelect": true,
+// 		"edgeFriction": 0.20,
+// 		"infinite": false,
+// 		"rows": 1,
+// 		"slidesPerRow": 6,
+// 		"slidesToShow": 6,
+// 		"swipeToSlide": true
+// 	});
+// };
 
 // Template.userWishlist.created = function() {
 // 	var gamertagSlug = Router.current().params.gamertagSlug;
