@@ -1,3 +1,42 @@
+Future = Npm.require('fibers/future');
+
+Meteor.methods({
+	getTweets: function(screenName) {
+		var fut = new Future();
+		var T = new Twit({
+			consumer_key: Meteor.settings.services.twitterConsumerKey,
+			consumer_secret: Meteor.settings.services.twitterConsumerSecret,
+			access_token: Meteor.settings.services.twitterAccessToken,
+			access_token_secret: Meteor.settings.services.twitterAccessTokenSecret
+		});
+
+		T.get('statuses/user_timeline', { screen_name: screenName, count: 3 }, function(err, data, response) {
+			fut.return({
+				err: err,
+				result: data
+			});
+		});
+
+		return fut.wait();
+	},
+	notificationRead: function(_id) {
+		console.log('fired');
+		var readAt = new Date();
+		console.log(_id);
+		console.log(readAt);
+		Notifications.update({_id: _id}, {$set: {read: true, readAt: readAt}});
+	}
+});
+
+
+// Meteor.methods({
+// 	getCommentsWrapAsync: function() {
+// 		var convertAsyncToSync = Meteor.wrapAsync( HTTP.get ),
+// 		resultOfAsyncToSync = convertAsyncToSync( 'http://jsonplaceholder.typicode.com/comments', {} );
+// 		return resultOfAsyncToSync;
+// 	}
+// });
+
 // Meteor.methods({
 //     sendWelcomeEmail: function (userId) {
 // 	    var userEmail;

@@ -1,9 +1,9 @@
 Template.dashboard.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var dashboardPageDescription = "Review your achievements per day, gamerscore per day, and your game genre distribution.";
+	var dashboardPageDescription = "Review your achievements per day, gamerscore per day, and your game genre distribution. Compete to be a leader in gamerscore and achievement collection.";
 	var dashboardPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var dashboardPageTitle = "Your Dashboard | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var dashboardPageTitle = "Your Dashboard | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var dashboardPageUrl = window.location.href;
 
 	var dashboardPageMeta = [

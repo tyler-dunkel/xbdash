@@ -3,7 +3,7 @@ Template.contestPage.created = function() {
 
 	var contestPageDescription = "Participate in this month's contest. Win games, accessories, and more!";
 	var contestPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var contestPageTitle = "Contests | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var contestPageTitle = "Contests | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var contestPageUrl = window.location.href;
 
 	var contestPageMeta = [

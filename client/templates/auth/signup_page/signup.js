@@ -16,7 +16,7 @@ Template.signUp.created = function() {
 
 	var signUpPageDescription = "Sign up for XBdash and unlock your personalized dashboard.";
 	var signUpPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var signUpPageTitle = "Sign Up For Free | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var signUpPageTitle = "Sign Up For Free | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var signUpPageUrl = window.location.href;
 
 	var signUpPageMeta = [

@@ -18,7 +18,7 @@ Template.leaderboardTemplate.created = function() {
 
 	var leaderboardPageDescription = "Review your daily rank by gamerscore, the top all-time users by gamerscore, the top users by completed achievements, and the top users by completed games.";
 	var leaderboardPageImage = "https://www.xbdash.com/img/leaderboards-share.jpg";
-	var leaderboardPageTitle = "See Today's Top Leaders | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var leaderboardPageTitle = "See Today's Top Leaders | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var leaderboardPageUrl = window.location.href;
 
 	var leaderboardPageMeta = [
@@ -222,6 +222,14 @@ Template.leaderboardTemplate.helpers({
 			default:
 				return user.gamercard.gamerscore;
 		}
+	}
+});
+
+Template.leaderboardTemplate.events({
+	'click .profile-link': function(e) {
+		e.preventDefault();
+		var user = Meteor.users.findOne({_id: this.userId});
+		Router.go('userPage', {gamertagSlug: user.gamertagSlug});
 	}
 });
 

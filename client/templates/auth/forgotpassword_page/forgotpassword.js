@@ -3,7 +3,7 @@ Template.forgotPasswordApp.created = function() {
 
 	var forgotPasswordPageDescription = "Enter your email to to receive instructions on resetting your password.";
 	var forgotPasswordPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var forgotPasswordPageTitle = "Forgot Password | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var forgotPasswordPageTitle = "Forgot Password | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var forgotPasswordPageUrl = window.location.href;
 
 	var forgotPasswordPageMeta = [

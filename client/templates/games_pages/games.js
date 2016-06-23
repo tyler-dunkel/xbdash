@@ -3,7 +3,7 @@ Template.gamesPage.created = function() {
 
 	var gamesPageDescription = "Find award-winning video games, new franchises, and your favorite blockbusters.";
 	var gamesPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var gamesPageTitle = "Games | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var gamesPageTitle = "Games | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var gamesPageUrl = window.location.href;
 
 	var gamesPageMeta = [

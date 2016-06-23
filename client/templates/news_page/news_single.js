@@ -52,7 +52,6 @@ Template.newsSinglePage.rendered = function() {
 }
 
 Template.newsSinglePageDocHead.created = function() {
-	var slug = Router.current().params.slug;
 	var newsSinglePageDescription = $(this.data.content).text();
 	newsSinglePageDescription = newsSinglePageDescription.substr(0,152) + '...';
 	var image = this.data.content.match(/<img[^>]*>/);

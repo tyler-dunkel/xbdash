@@ -1,48 +1,48 @@
 <template name="leaderboardsPage">
-  {{> leaderboardsApp}}
+	{{> leaderboardsApp}}
 </template>
 
 <template name="leaderboardsApp">
-  <div id="content" class="app-content" role="main">
-    <div class="app-content-body">
-      <div class="hbox hbox-auto-xs hbox-auto-sm leaderboards-page">
-        <div class="col">
-          <div class="bg-light lter b-b wrapper-md">
-            <div class="row">
-              <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">Leaderboards</h1>
-                <small class="text-muted">How do you rank?</small>
-              </div>
-              {{#if chkGamerStatus}}
-              <div class="col-sm-6 text-right hidden-xs user-rank-area">
-                <div class="inline m-l m-r text-left">
-                  {{> userDailyRank}}
-                </div>
-                <div class="inline text-left">
-                  {{> userOverallRank}}
-                </div>
-              </div>
-              {{/if}}
-            </div>
-          </div>
-          <div class="wrapper-md">
-            <div class="row row-sm">
-              <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                {{> leaderboardTemplate boardType="dailyRank"}}
-              </div>
-              <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                {{> leaderboardTemplate boardType="overallRank"}}
-              </div>
-              <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                {{> leaderboardTemplate boardType="completedAchievements"}}
-              </div>
-              <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
-                {{> leaderboardTemplate boardType="completedGames"}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body">
+			<div class="hbox hbox-auto-xs hbox-auto-sm leaderboards-page">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Leaderboards</h1>
+								<small class="text-muted">How do you rank?</small>
+							</div>
+							{{#if chkGamerStatus}}
+							<div class="col-sm-6 text-right hidden-xs user-rank-area">
+								<div class="inline m-l m-r text-left">
+									{{> userDailyRank}}
+								</div>
+								<div class="inline text-left">
+									{{> userOverallRank}}
+								</div>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<div class="wrapper-md">
+						<div class="row row-sm">
+							<div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
+								{{> leaderboardTemplate boardType="dailyRank"}}
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
+								{{> leaderboardTemplate boardType="overallRank"}}
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
+								{{> leaderboardTemplate boardType="completedAchievements"}}
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-4 col-sm-6">
+								{{> leaderboardTemplate boardType="completedGames"}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

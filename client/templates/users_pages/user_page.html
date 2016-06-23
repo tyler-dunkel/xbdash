@@ -1,0 +1,234 @@
+<template name="userProfilePage">
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{> userDocHead}}
+						{{> userProfileArea}}
+					{{/with}}
+				{{else}}
+					{{> loadingTemplate}}
+				{{/if}}
+					<div class="bg-white b-b">
+						<div class="nav-tabs-alt" >
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="active">
+									<a data-target="#tab-activity" role="tab" data-toggle="tab">Recent Activity</a>
+								</li>
+								<li>
+									<a class="personal-tab" data-target="#tab-personals" role="tab" data-toggle="tab">Personals</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="tab-activity">
+							<div class="padder">
+								<div class="row m-t-md">
+									<div class="col-sm-12 col-md-4">
+										{{#if Template.subscriptionsReady}}
+											{{#with user}}
+												{{> userActivity}}
+											{{/with}}
+										{{else}}
+											{{> loadingTemplate}}
+										{{/if}}
+									</div>
+									<div class="col-sm-12 col-md-4">
+										{{#if Template.subscriptionsReady}}
+											{{#with user}}
+												{{> userAchievements}}
+											{{/with}}
+										{{else}}
+											{{> loadingTemplate}}
+										{{/if}}
+									</div>
+									<div class="col-sm-12 col-md-4">
+										{{#if Template.subscriptionsReady}}
+											{{#with user}}
+												{{> userGames}}
+											{{/with}}
+										{{else}}
+											{{> loadingTemplate}}
+										{{/if}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-6">
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> userClips}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
+									</div>
+									<div class="col-sm-12 col-md-6">
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> userCaptures}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-personals" id="tab-personals">
+							<div class="padder container-fluid">
+								{{#if Template.subscriptionsReady}}
+									{{#with user}}
+										{{> userBadges}}
+									{{/with}}
+								{{else}}
+									{{> loadingTemplate}}
+								{{/if}}
+								<div class="row">
+									<div class="col-md-6 wrapper">
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> userWishlist}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
+									</div>
+									<div class="col-md-6 wrapper">
+									{{#if Template.subscriptionsReady}}
+										{{#with user}}
+											{{> userTrophyCase}}
+										{{/with}}
+									{{else}}
+										{{> loadingTemplate}}
+									{{/if}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col w-lg bg-white lter b-l bg-auto no-border-xs">
+					<div class="nav-tabs-alt" >
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="active">
+								<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-twitter text-md text-muted wrapper-sm"></i></a>
+							</li>
+							<li>
+								<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-bullhorn text-md text-muted wrapper-sm"></i></a>
+							</li>
+							<li>
+								<a data-target="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-twitch text-md text-muted wrapper-sm"></i></a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="tab-1">
+							<div class="wrapper-md">
+							{{#if Template.subscriptionsReady}}
+								{{#if chkUserTwitter}}
+									{{#with user}}
+										{{> xbdTweets screenName=this.services.twitter.screenName}}
+									{{/with}}
+								{{else}}
+									{{> xbdTweets screenName=xboxdash}}
+								{{/if}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-2" id="tab-2">
+							<div class="wrapper-md">
+							{{#if Template.subscriptionsReady}}
+								{{> xbdAnnouncements}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-3" id="tab-3">
+							<div class="wrapper-md">
+							{{#if Template.subscriptionsReady}}
+								{{#if chkUserTwitter}}
+									{{#with user}}
+										{{> xbdBroadcasts screenName=this.services.twitch.screenName}}
+									{{/with}}
+								{{else}}
+									{{> xbdBroadcasts screenName=xboxdash}}
+								{{/if}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="userDocHead"></template>
+
+<template name="userProfileArea">
+	<div style="background:url('/img/user-bg.png') center center; background-repeat: repeat;">
+		<div class="wrapper-lg bg-white-opacity">
+			<div class="row m-t">
+				<div class="col-md-7">
+				{{#if user}}
+					{{#with user}}
+					<div class="thumb-lg pull-left m-r">
+						<img src="{{userGamerPic}}" class="img-circle">
+					</div>
+					<div class="clear m-b">
+						<div class="m-b-xs m-t-sm">
+							<span class="h3 text-black"><strong>{{userGamertag}}</strong></span> <small class="m-l">{{userMotto}}</small>
+						</div>
+						<div class="m-b-xs">
+							<span class="h5 text-black">Member Since: {{createdAtDate}}</span>
+						</div>
+						<div class="m-b-xs text-primary">
+							<i class="fa fa-trophy h4 m-r-xs" aria-hidden="true"></i> <span class="h4 text-black">{{getGamerscore}}</span>
+						</div>
+					</div>
+					{{/with}}
+				{{else}}
+					<div class="thumb-lg pull-left m-r">
+						<img src="https://www.xbdash.com/img/xbdash_greenicon.png" class="img-circle">
+					</div>
+					<div class="clear">
+						<div class="m-b-lg m-t-lg">
+							<span class="h3 text-black"><strong>User not found</strong></span>
+						</div>
+					</div>
+				{{/if}}
+				</div>
+				{{> userRankArea}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="userRankArea">
+	{{#if Template.subscriptionsReady}}
+		{{#if chkUser}}
+		<div class="col-sm-5">
+			<div class="pull-right pull-none-xs text-center">
+				<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
+					<small>Daily Rank</small>
+					<span class="h3 block font-bold">{{usersDailyRank}}</span>
+				</a>
+				<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
+					<small>Overall Rank</small>
+					<span class="h3 block font-bold">{{usersOverallRank}}</span>
+				</a>
+			</div>
+		</div>
+		{{/if}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>

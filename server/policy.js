@@ -13,6 +13,7 @@ var trusted = [
 	'*.mxpnl.com',
 	'*.polygon.com',
 	'*.ritetag.com',
+	'*.twimg.com',
 	'*.soundcloud.com',
 	'*.twitter.com',
 	'*.vox-cdn.com',

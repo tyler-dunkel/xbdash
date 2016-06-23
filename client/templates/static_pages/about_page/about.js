@@ -3,9 +3,9 @@ var newsLimit = new ReactiveVar();
 Template.aboutUs.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var aboutUsPageDescription = "Manage achievements. Complete games. See results. XBdash is a personalized dashboard for Xbox® Gamers. Manage achievements. Complete games. See results.";
+	var aboutUsPageDescription = "Manage achievements, complete games, and compete to be a leader. XBdash is the personalized dashboard for Xbox® One and Xbox® 360 Gamers.";
 	var aboutUsPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var aboutUsPageTitle = "XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var aboutUsPageTitle = "XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var aboutUsPageUrl = window.location.href;
 
 	var aboutUsPageMeta = [
@@ -29,7 +29,7 @@ Template.aboutUs.created = function() {
 		{ "name": "twitter:image:src", "content": aboutUsPageImage },
 		{ "name": "twitter:site", "content": "@xboxdash" }
 	];
-
+	
 	var linkInfo = [
 		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
 		{ "rel": "canonical", "href": aboutUsPageUrl },

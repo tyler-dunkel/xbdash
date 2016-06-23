@@ -5,7 +5,7 @@ Template.newsPage.created = function() {
 
 	var newsPageDescription = "Read the latest in Xbox & XBdash news.";
 	var newsPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var newsPageTitle = "News | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var newsPageTitle = "News | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var newsPageUrl = window.location.href;
 
 	var newsPageMeta = [

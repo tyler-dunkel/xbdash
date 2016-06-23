@@ -3,7 +3,7 @@ Template.privacyPolicy.created = function() {
 
 	var privacyPolicyPageDescription = "Review our privacy policy.";
 	var privacyPolicyPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var privacyPolicyPageTitle = "Privacy Policy | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var privacyPolicyPageTitle = "Privacy Policy | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var privacyPolicyPageUrl = window.location.href;
 
 	var privacyPolicyPageMeta = [

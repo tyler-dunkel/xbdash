@@ -1,6 +1,19 @@
 <template name="searchBar">
 	<form class="form-horizontal navbar-search" role="search">
-		<div class="col-sm-2 col-md-2 col-lg-4 col-xl-5 input-container">
+		<div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 input-container">
+			<div class="input-group">
+				<input type="text" class="form-control input-sm bg-black no-border padder" placeholder="search games and achievements">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-sm bg-black"><i class="fa fa-search"></i></button>
+				</span>
+			</div>
+		</div>
+	</form>
+</template>
+
+<template name="searchBarAbout">
+	<form class="form-horizontal navbar-search" role="search">
+		<div class="col-sm-1 col-md-3 col-lg-4 col-xl-5 input-container">
 			<div class="input-group">
 				<input type="text" class="form-control input-sm bg-black no-border padder" placeholder="search games and achievements">
 				<span class="input-group-btn">

@@ -1,8 +1,14 @@
+.notifications-dropdown .unread { background-color: #FDE3A7; }
+
 .navbar-auth {
 	margin: -10px -15px 0 0;
 }
 .navbar-auth2 {
 	margin: -10px 10px 0 0;
+}
+.notifications-dropdown {
+	left: inherit;
+	right: 0;
 }
 /*#layout-background .navbar-auth {
 	margin-top: 0;

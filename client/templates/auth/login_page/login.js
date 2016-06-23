@@ -3,7 +3,7 @@ Template.logIn.created = function() {
 
 	var logInPageDescription = "Log in to your account.";
 	var logInPageImage = "https://www.xbdash.com/img/share-default.jpg";
-	var logInPageTitle = "Log In | XBdash - The Personalized Dashboard for Xbox® Gamers";
+	var logInPageTitle = "Log In | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	var logInPageUrl = window.location.href;
 
 	var logInPageMeta = [

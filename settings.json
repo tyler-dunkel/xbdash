@@ -2,7 +2,10 @@
 	"services": {
 		"facebookSecret": "5d426e68a123871b8f051262b0f86f7b",
 		"twitterConsumerKey": "UVos5UTOWCXMAUGDzvEcyHqAZ",
-		"twitterSecret": "9TDyJr6AK3BcONuagMN7eeBD5xWHON41UD5HxkIoymUtxvz3Dh",
+		"twitterConsumerSecret": "9TDyJr6AK3BcONuagMN7eeBD5xWHON41UD5HxkIoymUtxvz3Dh",
+		"twitterAccessToken": "2970264183-LlU6N60DMahIJAlQwjvQQwiwYWdqfllRVu0ktJs",
+		"twitterAccessTokenSecret": "CA2lzK4rogmut02EX6b3MswSO3Vdv4s3ODlMDvXxcavRe",
+		"twitterSecret": "CA2lzK4rogmut02EX6b3MswSO3Vdv4s3ODlMDvXxcavRe",
 		"mailgunKey": "df465a69eb0c9422baa065c1f45e728e",
 		"cloudinaryKey": "951726464735847",
 		"cloudinarySecret": "S2ZBSps6yEKPC5vaJgIS4Fx3WhI"
