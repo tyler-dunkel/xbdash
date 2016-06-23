@@ -41,18 +41,6 @@
 	</div>
 </template>
 
-<!-- <template name="activityImage">
-	{{#if Template.subscriptionsReady}}
-		{{#with getActivityImage}}
-			<a class="pull-left thumb-sm avatar m-l-n-md">
-				<img src="{{gameImage}}" class="img-circle" alt="">
-			</a>
-		{{/with}}
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}}
-</template> -->
-
 <template name="userAchievements">
 	<div class="panel">
 		<div class="panel-heading bg-black text-white">
@@ -196,7 +184,7 @@
 			<div class="container-fluid captures-container m-b-md">
 				<div class="row">
 					{{#each capture}}
-						<div class="col-md-6 m-t-md captures-container"><a title="{{titleName}}" href="#"><img class="large img-responsive" src="{{getLargeThumbnail}}"></a></div>
+						<div class="col-md-6 m-t-md captures-container"><a title="{{titleName}}" href="#"><img class="user-capture large img-responsive" src="{{getLargeThumbnail}}"></a></div>
 					{{/each}}
 				</div>
 			</div>

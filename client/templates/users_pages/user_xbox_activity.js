@@ -26,19 +26,6 @@ Template.userActivity.helpers({
 	}
 });
 
-// Template.activityImage.created = function() {
-// 	this.subscribe('gameDetails', this.data.titleId);
-// }
-
-// Template.activityImage.helpers({
-// 	getActivityImage: function () {
-// 		var game = gameDetails.findOne({ gameId: this.titleId });
-// 		console.log(game);
-// 	},
-// 	gameImage: function() {
-// 	}
-// });
-
 Template.userAchievements.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	this.subscribe('userAchievements', gamertagSlug);
@@ -161,6 +148,15 @@ Template.userClips.created = function() {
 }
 
 Template.userClips.rendered = function() {
+	$('body').click(function(e) {
+		if ($(e.target).parents('.clip-container').size() || $(e.target).hasClass('modal-content') || $(e.target).parents(".modal-content").size()) {
+			console.log('inside');
+		} else {
+			console.log('empty it');
+			$('#clips-modal').modal('hide');	
+			$('#clips-modal .modal-body .carousel-inner').empty();
+		}
+	});
 }
 
 Template.userClips.helpers({
@@ -175,7 +171,7 @@ Template.userClips.helpers({
 	clip: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return gameClips.find({ userId: user._id }, { sort: { "gameClipUris.0.expiration": -1 } });
+		return gameClips.find({ userId: user._id }, { sort: { "gameClipUris.expiration": -1 } });
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
@@ -214,7 +210,7 @@ Template.userClips.events({
 		var video = $(e.currentTarget).attr('data-video');
 		var dataSlide = $(e.currentTarget).attr('data-slide');
 
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" data-setup="{&quot;controls&quot;: true,&quot;preload&quot;: &quot;auto&quot;,&quot;autoplay&quot;: false,&quot;playbackRates&quot;: [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video data-slide="' + dataSlide + '" autoplay " preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
 
 		$('#clips-modal').modal('show');
 	},
@@ -235,7 +231,7 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" data-setup="{"controls": true,"preload": "auto","autoplay": false,"playbackRates": [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video data-slide="' + dataSlide + '" autoplay preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
 	},
 	'click .carousel-control.right': function() {
 		var index = $('.vjs-tech').attr('data-slide');
@@ -248,7 +244,7 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" data-setup="{"controls": true,"preload": "auto","autoplay": false,"playbackRates": [0.5, 1, 1.5, 2] }" preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video data-slide="' + dataSlide + '" autoplay preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
 	}
 });
 
@@ -256,9 +252,6 @@ Template.userCaptures.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	this.subscribe('userCaptures', gamertagSlug);
 	this.counter = 0;
-}
-
-Template.userCaptures.rendered = function() {
 }
 
 Template.userCaptures.helpers({
@@ -315,21 +308,28 @@ Template.userCaptures.events({
 		$('#captures-modal .modal-body .carousel-inner').empty();
 	},
 	'click .carousel-control.left': function() {
-		var index = $('.#captures-modal .modal-body .carousel-inner').attr('data-slide');
+		var index = $('.carousel-inner img').attr('data-slide');
 		if (index === '1') {
 			return;
 		}
 		var nextIndex = String(index - 1);
 		$('#captures-modal .modal-body .carousel-inner').empty();
 		var nextSlideSel = '[data-slide="' + nextIndex + '"]';
+		console.log($(nextSlideSel));
+		var dataSlide = $(nextSlideSel).attr('data-slide');
+		var image = $(nextSlideSel).attr('src');
+		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-slide="' + dataSlide + '" />');
 	},
 	'click .carousel-control.right': function() {
-		var index = $('.#captures-modal .modal-body .carousel-inner').attr('data-slide');
+		var index = $('.carousel-inner img').attr('data-slide');
 		if (index === '6') {
 			return;
 		}
 		var nextIndex = parseInt(index) + 1;
 		$('#captures-modal .modal-body .carousel-inner').empty();
 		var nextSlideSel = '[data-slide="' + nextIndex + '"]';
+		var dataSlide = $(nextSlideSel).attr('data-slide');
+		var image = $(nextSlideSel).attr('src');
+		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-slide="' + dataSlide + '" />');
 	}
 });
