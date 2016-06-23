@@ -11,7 +11,7 @@
 					<span class="visible-xs-inline">Notifications</span>
 					<span class="badge badge-sm up bg-danger pull-right-xs">{{notificationCount}}</span>
 				</a>
-				<div class="dropdown-menu w-xl animated notifications-dropdown">
+				<div class="dropdown-menu w-xxl animated notifications-dropdown">
 					<div class="panel bg-white">
 						<div class="panel-heading b-light bg-light">
 							<strong>You have <span>{{notificationCount}}</span> notifications</strong>
@@ -19,8 +19,8 @@
 						<div class="list-group">
 							{{#each notifications}}
 								<a href class="{{unread}} notification-link list-group-item">
-									<span class="pull-left m-r thumb-sm">
-										<img src="img/a0.jpg" alt="..." class="img-circle">
+									<span class="pull-left m-r">
+										<i class="fa fa-exclamation-circle fa-2x text-primary" aria-hidden="true"></i>
 									</span>
 									<span class="clear block m-b-none">
 										{{this.message}}<br>
@@ -28,10 +28,6 @@
 									</span>
 								</a>
 							{{/each}}
-						</div>
-						<div class="panel-footer text-sm">
-							<a href class="pull-right"><i class="fa fa-cog"></i></a>
-							<a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
 						</div>
 					</div>
 				</div>
@@ -56,7 +52,7 @@
 				<ul class="dropdown-menu animated">
 					{{#if chkGamerStatus}} 
 						<li>
-							<a href="/users" class="profile-button">My Profile</a>
+							<a href="/users" class="profile-button hvr-shadow-radial">My Profile</a>
 						</li>
 					{{/if}}
 					<li>

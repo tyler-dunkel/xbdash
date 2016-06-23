@@ -20,7 +20,10 @@ Meteor.methods({
 		return fut.wait();
 	},
 	notificationRead: function(_id) {
+		console.log('fired');
 		var readAt = new Date();
+		console.log(_id);
+		console.log(readAt);
 		Notifications.update({_id: _id}, {$set: {read: true, readAt: readAt}});
 	}
 });

@@ -56,8 +56,9 @@ Template.userDropdown.events({
     'mouseenter .unread': function(e) {
         console.log('hovered over it');
         console.log(this);
+        var self = this;
         Meteor.setTimeout(function() {
-            Meteor.call('notificationRead', this._id, function(err) {
+            Meteor.call('notificationRead', self._id, function(err) {
             });
         }, 10000);
     },

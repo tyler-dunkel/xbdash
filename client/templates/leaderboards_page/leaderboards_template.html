@@ -24,22 +24,22 @@
 			<ul class="list-group alt">
 				{{#if checkForLB}}
 				{{#each rank}}
-				<li class="list-group-item">
-					<div class="media">
-						<span class="pull-left m-t-sm">{{getUserRank}}</span>
-						<span class="pull-left thumb-sm">
-							<img src="{{getUserImage}}" alt="{{getUser}}" />
-						</span>
-						<div class="pull-right text-success m-t-sm">
-							{{getUserRankValue}}
+				<a href="/users">
+					<li class="list-group-item hvr-glow">
+						<div class="media">
+							<span class="pull-left m-t-sm">{{getUserRank}}</span>
+							<span class="pull-left thumb-sm">
+								<img src="{{getUserImage}}" alt="{{getUser}}" />
+							</span>
+							<div class="pull-right text-success m-t-sm">
+								{{getUserRankValue}}
+							</div>
+							<div class="media-body">
+								<div class="text-ellipsis-inline">{{getUser}}</div>
+							</div>
 						</div>
-						<div class="media-body">
-							<a class="profile-link" href="/users">
-							<div class="text-ellipsis-inline">{{getUser}}</div>
-							</a>
-						</div>
-					</div>
-				</li>
+					</li>
+				</a>
 				{{/each}}
 				{{else}}
 				<li class="list-group-item">
