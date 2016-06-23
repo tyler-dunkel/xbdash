@@ -291,13 +291,13 @@ Template.userCaptures.events({
 		$('#captures-modal .modal-body .carousel-inner').empty();
 
 		$('.captures-container .row .large').each(function(index) {
-			$(this).attr('data-slide', String(index + 1));
+			$(this).attr('data-cap-slide', String(index + 1));
 		});
 
 		var image = $(e.currentTarget).attr('src');
-		var dataSlide = $(e.currentTarget).attr('data-slide');
+		var dataSlide = $(e.currentTarget).attr('data-cap-slide');
 
-		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-slide="' + dataSlide + '" />');
+		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-cap-slide="' + dataSlide + '" />');
 
 		$('#captures-modal').modal('show');
 	},
@@ -308,28 +308,28 @@ Template.userCaptures.events({
 		$('#captures-modal .modal-body .carousel-inner').empty();
 	},
 	'click .carousel-control.left': function() {
-		var index = $('.carousel-inner img').attr('data-slide');
+		var index = $('.carousel-inner img').attr('data-cap-slide');
 		if (index === '1') {
 			return;
 		}
 		var nextIndex = String(index - 1);
 		$('#captures-modal .modal-body .carousel-inner').empty();
-		var nextSlideSel = '[data-slide="' + nextIndex + '"]';
+		var nextSlideSel = '[data-cap-slide="' + nextIndex + '"]';
 		console.log($(nextSlideSel));
-		var dataSlide = $(nextSlideSel).attr('data-slide');
+		var dataSlide = $(nextSlideSel).attr('data-cap-slide');
 		var image = $(nextSlideSel).attr('src');
-		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-slide="' + dataSlide + '" />');
+		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-cap-slide="' + dataSlide + '" />');
 	},
 	'click .carousel-control.right': function() {
-		var index = $('.carousel-inner img').attr('data-slide');
+		var index = $('.carousel-inner img').attr('data-cap-slide');
 		if (index === '6') {
 			return;
 		}
 		var nextIndex = parseInt(index) + 1;
 		$('#captures-modal .modal-body .carousel-inner').empty();
-		var nextSlideSel = '[data-slide="' + nextIndex + '"]';
-		var dataSlide = $(nextSlideSel).attr('data-slide');
+		var nextSlideSel = '[data-cap-slide="' + nextIndex + '"]';
+		var dataSlide = $(nextSlideSel).attr('data-cap-slide');
 		var image = $(nextSlideSel).attr('src');
-		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-slide="' + dataSlide + '" />');
+		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-cap-slide="' + dataSlide + '" />');
 	}
 });
