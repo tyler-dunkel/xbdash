@@ -235,7 +235,10 @@ Template.userClips.events({
 	},
 	'click .carousel-control.right': function() {
 		var index = $('.vjs-tech').attr('data-slide');
-		if (index === '6') {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var clips = gameClips.find({ userId: user._id }});
+		if (index === String(clips.count() - 1)) {
 			return;
 		}
 		var nextIndex = parseInt(index) + 1;
@@ -322,7 +325,10 @@ Template.userCaptures.events({
 	},
 	'click .carousel-control.right': function() {
 		var index = $('.carousel-inner img').attr('data-cap-slide');
-		if (index === '6') {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var imageCapture = screenShots.find({ userId: user._id });
+		if (index === String(imageCapture.count() - 1)) {
 			return;
 		}
 		var nextIndex = parseInt(index) + 1;
