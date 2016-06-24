@@ -140,6 +140,37 @@
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }
+.user-rank-area .spinner-rect {
+  margin: 0 auto;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+}
+.user-rank-area .spinner-rect > div {
+  background-color: #000000;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+.user-rank-area .spinner-rect .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+.user-rank-area .spinner-rect .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+.user-rank-area .spinner-rect .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+.user-rank-area .spinner-rect .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
 .user-dropdown-loading {
   height: 25%;
   padding-right: 15%;
