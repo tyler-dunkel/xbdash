@@ -2,7 +2,7 @@ Template.userProfilePage.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
 	this.autorun(function() {
-		var slug = Router.current().params.gamertagSlug;
+		var gamertagSlug = Router.current().params.gamertagSlug;
 		Meteor.subscribe('userProfile', gamertagSlug);
 	});
 }

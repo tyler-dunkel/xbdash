@@ -155,7 +155,17 @@ Meteor.publishComposite('userClips', function(gamertagSlug) {
 			{
 				find: function(user) {
 					var currentTime = moment().format();
-					return gameClips.find({ userId: user._id, 'gameClipUris.expiration': {$gte: currentTime} }, {
+					return gameClips.find({ 
+							userId: user._id,
+							gameClipUris: {
+								$elemMatch: {
+									uriType: "Download",
+									expiration: {
+										$gte: currentTime
+									}
+								}
+							}
+						}, {
 						sort: { "gameClipUris.0.expiration": -1 },
 						fields: {
 							"userId": 1,

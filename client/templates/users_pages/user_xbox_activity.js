@@ -150,10 +150,8 @@ Template.userClips.created = function() {
 Template.userClips.rendered = function() {
 	$('body').click(function(e) {
 		if ($(e.target).parents('.clip-container').size() || $(e.target).hasClass('modal-content') || $(e.target).parents(".modal-content").size()) {
-			console.log('inside');
 		} else {
-			console.log('empty it');
-			$('#clips-modal').modal('hide');	
+			$('#clips-modal').modal('hide');
 			$('#clips-modal .modal-body .carousel-inner').empty();
 		}
 	});
@@ -210,7 +208,7 @@ Template.userClips.events({
 		var video = $(e.currentTarget).attr('data-video');
 		var dataSlide = $(e.currentTarget).attr('data-slide');
 
-		$('#clips-modal .modal-body .carousel-inner').append('<video data-slide="' + dataSlide + '" autoplay " preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
 
 		$('#clips-modal').modal('show');
 	},
@@ -221,7 +219,7 @@ Template.userClips.events({
 		$('#clips-modal .modal-body .carousel-inner').empty();
 	},
 	'click .carousel-control.left': function() {
-		var index = $('.vjs-tech').attr('data-slide');
+		var index = $('.xbd-tech').attr('data-slide');
 		if (index === '1') {
 			return;
 		}
@@ -231,14 +229,14 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video data-slide="' + dataSlide + '" autoplay preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
 	},
 	'click .carousel-control.right': function() {
-		var index = $('.vjs-tech').attr('data-slide');
+		var index = $('.xbd-tech').attr('data-slide');
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var clips = gameClips.find({ userId: user._id }});
-		if (index === String(clips.count() - 1)) {
+		var clips = gameClips.find({ userId: user._id });
+		if (index === String(clips.count())) {
 			return;
 		}
 		var nextIndex = parseInt(index) + 1;
@@ -247,7 +245,7 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video data-slide="' + dataSlide + '" autoplay preload="auto" id="video_display_html5_api" class="vjs-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
 	}
 });
 
@@ -318,9 +316,8 @@ Template.userCaptures.events({
 		var nextIndex = String(index - 1);
 		$('#captures-modal .modal-body .carousel-inner').empty();
 		var nextSlideSel = '[data-cap-slide="' + nextIndex + '"]';
-		console.log($(nextSlideSel));
-		var dataSlide = $(nextSlideSel).attr('data-cap-slide');
 		var image = $(nextSlideSel).attr('src');
+		var dataSlide = $(nextSlideSel).attr('data-cap-slide');
 		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-cap-slide="' + dataSlide + '" />');
 	},
 	'click .carousel-control.right': function() {
@@ -328,14 +325,14 @@ Template.userCaptures.events({
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
 		var imageCapture = screenShots.find({ userId: user._id });
-		if (index === String(imageCapture.count() - 1)) {
+		if (index === String(imageCapture.count())) {
 			return;
 		}
 		var nextIndex = parseInt(index) + 1;
 		$('#captures-modal .modal-body .carousel-inner').empty();
 		var nextSlideSel = '[data-cap-slide="' + nextIndex + '"]';
-		var dataSlide = $(nextSlideSel).attr('data-cap-slide');
 		var image = $(nextSlideSel).attr('src');
+		var dataSlide = $(nextSlideSel).attr('data-cap-slide');
 		$('#captures-modal .modal-body .carousel-inner').append('<img src="' + image + '" data-cap-slide="' + dataSlide + '" />');
 	}
 });

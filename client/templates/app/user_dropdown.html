@@ -9,7 +9,9 @@
 				<a href="#" data-toggle="dropdown" class="dropdown-toggle">
 					<i class="icon-bell fa-fw"></i>
 					<span class="visible-xs-inline">Notifications</span>
+					{{#if notificationChk}}
 					<span class="badge badge-sm up bg-danger pull-right-xs">{{notificationCount}}</span>
+					{{/if}}
 				</a>
 				<div class="dropdown-menu w-xxl animated notifications-dropdown">
 					<div class="panel bg-white">
