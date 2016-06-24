@@ -213,22 +213,24 @@
 </template>
 
 <template name="userRankArea">
-	{{#if Template.subscriptionsReady}}
-		{{#if chkUser}}
-		<div class="col-sm-5">
-			<div class="pull-right pull-none-xs text-center">
-				<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
-					<small>Daily Rank</small>
-					<span class="h3 block font-bold">{{usersDailyRank}}</span>
-				</a>
-				<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
-					<small>Overall Rank</small>
-					<span class="h3 block font-bold">{{usersOverallRank}}</span>
-				</a>
-			</div>
-		</div>
+	<div class="col-sm-5 user-rank-area">
+		<div class="pull-right pull-none-xs text-center">
+		{{#if Template.subscriptionsReady}}
+			{{#if chkUser}}
+			<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
+				<small>Daily Rank</small>
+				<span class="h3 block font-bold">{{usersDailyRank}}</span>
+			</a>
+			<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
+				<small>Overall Rank</small>
+				<span class="h3 block font-bold">{{usersOverallRank}}</span>
+			</a>
+			{{/if}}
+		{{else}}
+			<span class="m-b-md inline m text-black">
+				{{> loadingTemplateRect}}
+			</span>
 		{{/if}}
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}}
+		</div>
+	</div>
 </template>
