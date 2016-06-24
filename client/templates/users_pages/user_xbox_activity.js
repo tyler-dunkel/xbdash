@@ -178,11 +178,11 @@ Template.userClips.helpers({
 		var validClips = [];
 		clips.forEach(function(clip) {
 			if (clip.savedByUser) {
-				if (clip.gameClipUris[2].expiration > currentTime) {
+				if (moment().isBefore(clip.gameClipUris[2].expiration)) {
 					validClips.push(clip);
 				}
 			} else {
-				if (clip.gameClipUris[0].expiration > currentTime) {
+				if (moment().isBefore(clip.gameClipUris[0].expiration)) {
 					validClips.push(clip);
 				}
 			}
