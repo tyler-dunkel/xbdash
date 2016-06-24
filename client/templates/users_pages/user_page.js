@@ -1,9 +1,10 @@
 Template.userProfilePage.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
-	var gamertagSlug = Router.current().params.gamertagSlug;
-
-	this.subscribe('userProfile', gamertagSlug);
+	this.autorun(function() {
+		var slug = Router.current().params.gamertagSlug;
+		Meteor.subscribe('userProfile', gamertagSlug);
+	});
 }
 
 Template.userProfilePage.helpers({
