@@ -205,7 +205,7 @@ Template.userRankArea.created = function() {
 }
 
 Template.userRankArea.helpers({
-	chkUser: function() {
+	user: function() {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
 	},

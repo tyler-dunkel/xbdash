@@ -216,6 +216,7 @@
 	<div class="col-sm-5 user-rank-area">
 		<div class="pull-right pull-none-xs text-center">
 		{{#if Template.subscriptionsReady}}
+			{{#if user}}
 			{{#with user}}
 			<a href="{{pathFor 'leaderboardsPage'}}" class="m-b-md inline m text-black">
 				<small>Daily Rank</small>
@@ -226,6 +227,7 @@
 				<span class="h3 block font-bold">{{usersOverallRank}}</span>
 			</a>
 			{{/with}}
+			{{/if}}
 		{{else}}
 			<span class="m-b-md inline m text-black">
 				{{> loadingTemplateRect}}
