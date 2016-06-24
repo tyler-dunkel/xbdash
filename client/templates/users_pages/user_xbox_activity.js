@@ -190,6 +190,7 @@ Template.userClips.helpers({
 		this.gameClipUris.forEach(function(clips) {
 			if (clips.uriType === "Download") {
 				clipUri = clips.uri;
+				clipUri = clipUri.replace("http", "https");
 			}
 		});
 		return clipUri;
@@ -280,6 +281,7 @@ Template.userCaptures.helpers({
 		this.thumbnails.forEach(function(thumbs) {
 			if (thumbs.thumbnailType === "Large") {
 				imageUri = thumbs.uri;
+				imageUri = imageUri.replace("http", "https");
 			}
 		});
 		return imageUri;
