@@ -98,7 +98,7 @@ Template.contestApp.helpers({
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
-		var getImage = "https://www.xbdash.com/img/contests/contest-banner.jpg";
+		var getImage = "https://www.xbdash.com/img/contests/new-contest-banner.jpg";
 
 		return {
 			title: "I just entered to win a FREE #Xbox Game in the #XBdash Launch #Contest! #gaming #gamer",
