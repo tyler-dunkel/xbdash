@@ -21,11 +21,6 @@ Template.userActivity.helpers({
 			return [];
 		}
 	},
-	getActivityImage: function () {
-		var imageUri = this.contentImageUri;
-		imageUri = imageUri.replace("http", "https");
-		return imageUri;
-	},
 	getStartTime: function () {
 		return moment(this.startTime).calendar();
 	}
