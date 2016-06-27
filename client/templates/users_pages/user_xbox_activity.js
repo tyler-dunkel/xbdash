@@ -78,7 +78,14 @@ Template.userAchievements.helpers({
 	},
 	getAchievementValue: function () {
 		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
-		return achievement.value;
+		if (achievement && achievement.value) {
+			if (typeof achievement.value === 'number') {
+				return achievement.value;
+			} else {
+				return 'N/A';
+			}
+		}
+		return 'N/A';
 	}
 });
 
