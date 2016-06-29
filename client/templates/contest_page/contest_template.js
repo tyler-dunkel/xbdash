@@ -58,6 +58,36 @@ Template.contestApp.created = function() {
 		}
 		self.referralToken.set(res);
 	});
+
+	var contestObj = {
+		_id: 'fewevewerew5fwf',
+		rules: [
+			'only valid emails will count as a contest entry',
+			'must be over 18',
+			'us citizens only'
+		],
+		prizes: [
+			{
+				title: 'engraved controller',
+				imageUrl: 'www.google.com',
+				isPremium: false,
+				optionalLink: 'www.yahoo.com'
+			}
+		],
+		contestToken: 'xbdDirect',
+		entries: [],
+		startDate: moment('2016-07-01 00:00:00').format('MMMM Do YYYY, h:mm:ss a'),
+		endDate: moment('2016-07-31 23:59:59').format('MMMM Do YYYY, h:mm:ss a'),
+		awardDate: moment('2016-08-01 12:00:00').format('MMMM Do YYYY, h:mm:ss a'),
+		title: 'july controller contest',
+		description: 'yada yada yada'
+	}
+
+	Meteor.subscribe(contestObj);
+
+	console.log(this);
+
+	// this.subscribe(contestObj);
 }
 
 Template.contestApp.rendered = function() {
@@ -118,4 +148,21 @@ Template.contestApp.events({
 		var contestToken = Template.instance().contestToken;
 		Router.go('signUp', {}, { query: 'referraltoken=' + contestToken });
 	}
+});
+
+Template.prizeArea.created = function () {
+	var prizeCounter = 0;
+};
+
+Template.prizeArea.helpers({
+	getPlace: function() {
+		for (var i in this.prizes) {
+			if (this.prizes[i] === '0') return 'First';
+			if (this.prizes[i] === '1') return 'Second';
+			if (this.prizes[i] === '2') return 'Third';
+		}
+	}
+});
+
+Template.contestRulesArea.helpers({
 });

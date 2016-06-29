@@ -15,77 +15,64 @@
 					<div class="wrapper-md">
 						<div class="row">
 							<div class="col-xl-12">
-								<h1 class="h1 text-center m-t-md m-b-md">June 2016 Launch Contest</h1>
-								<p class="h4 text-center m-b-lg">In celebration of officially coming out of beta, we're featuring a double-prize contest. Hereafter, each month we'll feature a new giveaway!</p>
+							{{#if Template.subscriptionsReady}}
+								<h1 class="h1 text-center m-t-md m-b-md">{{this.title}}</h1>
+								<p class="h4 text-center m-b-lg">{{this.description}}</p>
+							{{else}}
+								<h1 class="h1 text-center m-t-md m-b-md">Welcome to XBdash</h1>
+								<p class="h4 text-center m-b-lg">Sign up for your chance to win this month's prize!</p>
+							{{/if}}
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-6 col-md-3 m-t-sm m-b-md text-center">
-								<p class="h5 m-b-sm">First Place Winner:</p>
-								<h2 class="h3">Overwatch - Origins Edition</h2>
-								<div>
-									<a href="/games/overwatch-origins-edition">
-										<img src="/img/contests/overwatch-xbone.png" class="img-responsive grid" />
-									</a>
-								</div>
-							</div>
-							<div class="col-xs-6 col-md-3 m-t-sm m-b-md text-center">
-								<p class="h5 m-b-sm">Second Place Winner:</p>
-								<h2 class="h3">Fallout 4</h2>
-								<div>
-									<a href="/games/fallout-4">
-										<img src="/img/contests/fallout4-xbone.png" class="img-responsive grid" />
-									</a>
-								</div>
-							</div>
+							{{> prizeArea}}
 							<div class="col-xs-12 col-md-6">
 								<div class="well">
 									<p class="h3 align-left">Rules</p>
 									{{#if currentUser}}
-									<ul class="align-left contest-rules">
-										<li><strong><em>Get an extra entry</em></strong> into this month's contest for each friend you invite that signs up through your link below.</li>
-										<li>Only <strong><em>verified emails qualify</em></strong> as an entry to this contest.</li>
-										<li>1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.</li>
-										<li>1 second place winner will receive a copy of Fallout 4 in original packaging.</li>
-									</ul>
-									<form class="m-t-xxl m-b-xxl">
-										<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
-										<div class="m-t-sm text-center">
-											{{> shareit contestData}}
-										</div>
-										<div class="input-group m-b-lg">
-											<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
-											<span class="input-group-btn">
-												<button class="btn btn-default" type="button" id="copy-button"
-												data-toggle="tooltip" data-placement="button"
-												title="Copy to Clipboard">
-												Copy
-												</button>
-											</span>
-										</div>
-									</form>
+										{{> contestRulesArea}}
+										<form class="m-t-xxl m-b-xxl">
+											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
+											<div class="m-t-sm text-center">
+												{{> shareit contestData}}
+											</div>
+											<div class="input-group m-b-lg">
+												<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="button" id="copy-button"
+													data-toggle="tooltip" data-placement="button"
+													title="Copy to Clipboard">
+													Copy
+													</button>
+												</span>
+											</div>
+										</form>
 									{{else}}
-									<ul class="align-left contest-rules">
-										<li>Signing up below gains entry into the contest.</li>
-										<li>Only <strong><em>verified emails qualify</em></strong> as an entry to this contest.</li>
-										<li>1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.</li>
-										<li>1 second place winner will receive a copy of Fallout 4 in original packaging.</li>
-									</ul>
-									<form class="m-t-xxl m-b-xxl">
-										<h3 class="h4 text-center m-b-sm"><strong>Sign up for a chance to win the June 2016 launch contest!</strong></h3>
-										<div class="text-center block">
-											<a class="referral-signup btn b-2x btn-lg btn-success btn-rounded text-lg font-bold m-t-sm m-b-lg" href="#">Sign Up for FREE</a>
-										</div>
-									</form>
+										<ul class="align-left contest-rules">
+											<li>Signing up below gains entry into the contest.</li>
+											<li>Only <strong><em>verified emails qualify</em></strong> as an entry to this contest.</li>
+											<li>1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.</li>
+											<li>1 second place winner will receive a copy of Fallout 4 in original packaging.</li>
+										</ul>
+										<form class="m-t-xxl m-b-xxl">
+											<h3 class="h4 text-center m-b-sm"><strong>Sign up for a chance to win the June 2016 launch contest!</strong></h3>
+											<div class="text-center block">
+												<a class="referral-signup btn b-2x btn-lg btn-success btn-rounded text-lg font-bold m-t-sm m-b-lg" href="#">Sign Up for FREE</a>
+											</div>
+										</form>
 									{{/if}}
 									<div class="row m-b-md text-center">
-										<div class="col-sm-6">
-											<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:<br />
-											<span>June 30, 2016 11:59 pm EST</span>
+										<div class="col-md-4 col-sm-6">
+											<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Starts:<br />
+											<span>{{this.startDate}}</span>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-md-4 col-sm-6">
+											<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:<br />
+											<span>{{this.endDate}}</span>
+										</div>
+										<div class="col-md-4 col-sm-12">
 											<i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:<br />
-											<span>July 1, 2016 9:00 am EST</span>
+											<span>{{this.awardDate}}</span>
 										</div>
 									</div>
 									<div class="row">
@@ -103,4 +90,34 @@
 			</div>
 		</div>
 	</div>
+</template>
+
+<template name="prizeArea">
+	{{#if Template.subscriptionsReady}}
+		{{#with this.prizes}}
+		<div class="col-xs-6 col-md-3 m-t-sm m-b-md text-center">
+			<p class="h5 m-b-sm">{{getPlace}} Place Winner:</p>
+			<h2 class="h3">{{this.title}}</h2>
+			<div>
+				<a href="{{this.optionalLink}}">
+					<img src="{{this.imageUrl}}" class="img-responsive grid" />
+				</a>
+			</div>
+		</div>
+		{{/with}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>
+
+<template name="contestRulesArea">
+	<ul class="align-left contest-rules">
+	{{#if Template.subscriptionsReady}}
+		{{#each this.rules}}
+		<li>{{this}}</li>
+		{{/each}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+	</ul>
 </template>
