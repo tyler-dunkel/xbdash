@@ -228,8 +228,20 @@ Meteor.publishComposite('userWishlist', function(gamertagSlug) {
 		children: [
 			{
 				find: function(user) {
-					return Wishlists.find({ userId: user._id });
-				}
+					return userWishlist.find({ userId: user._id });
+				},
+				children: [
+					{
+						find: function(wishList) {
+							if (wishList.type === 'game') {
+								return xbdGame.find({_id: wishList.relationId});
+							} 
+							if (wishList.type === 'achievement') {
+								return xbdAchievements.find({_id: wishList.relationId});
+							}
+						}
+					}
+				]
 			}
 		]
 	}
@@ -245,7 +257,19 @@ Meteor.publishComposite('userTrophyCase', function(gamertagSlug) {
 			{
 				find: function(user) {
 					return trophyCase.find({ userId: user._id });
-				}
+				},
+				children: [
+					{
+						find: function(wishList) {
+							if (wishList.type === 'game') {
+								return xbdGame.find({_id: wishList.relationId});
+							} 
+							if (wishList.type === 'achievement') {
+								return xbdAchievements.find({_id: wishList.relationId});
+							}
+						}
+					}
+				]
 			}
 		]
 	}

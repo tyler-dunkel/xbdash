@@ -102,6 +102,23 @@ Template.achievementsSinglePage.helpers({
 	},
 });
 
+Template.achievementsSinglePage.events({
+	'click .trophy-case-button': function(e) {
+		var achievement = xbdAchievements.findOne({_id: this._id});
+		Meteor.call('addTrophyCase', 'achievement', achievement, function(err, res) {
+			console.log(err);
+			console.log(res);
+		});
+	},
+	'click .wish-list-button': function(e) {
+		var achievement = xbdAchievements.findOne({_id: this._id});
+		Meteor.call('addWishlist', 'achievement', achievement, function(err, res) {
+			console.log(err);
+			console.log(res);
+		});
+	}
+});
+
 Template.achievementSingleDocHead.created = function() {
 	var game = xbdGames.findOne({ _id: this.data.gameId });
 	var achievementSingleDescription = this.data.description;

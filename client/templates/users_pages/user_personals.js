@@ -18,12 +18,12 @@ Template.userBadges.helpers({
 	}
 });
 
-// Template.userWishlist.created = function() {
-// 	var gamertagSlug = Router.current().params.gamertagSlug;
-// 	this.subscribe('userWishlist', gamertagSlug);
-// }
+Template.userWishlist.created = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	this.subscribe('userWishlist', gamertagSlug);
+}
 
-// Template.userTrophyCase.created = function() {
-// 	var gamertagSlug = Router.current().params.gamertagSlug;
-// 	this.subscribe('userTrophyCase', gamertagSlug);
-// }
+Template.userTrophyCase.created = function() {
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	this.subscribe('userTrophyCase', gamertagSlug);
+}

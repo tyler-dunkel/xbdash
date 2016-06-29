@@ -8,6 +8,14 @@
 						<div class="row">
 							<div class="col-lg-9 col-xs-7">
 								<h1 class="font-thin h3 text-black m-b-xs">{{gameName}}</h1>
+								{{#if chkGamerStatus}}
+									{{#if chkUserForGame}}
+										{{#if chkIfCompleted}}
+											<button class="trophy-case-button">add to case</button>
+										{{/if}}
+									{{/if}}
+								<button class="wish-list-button">add to wishlist</button>
+								{{/if}}
 								<small class="text-muted">
 									Publisher: {{gamePublisherName}}
 								</small>

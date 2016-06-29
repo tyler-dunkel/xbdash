@@ -90,6 +90,23 @@ Template.gamesSinglePage.helpers({
 	}
 });
 
+Template.gamesSinglePage.events({
+	'click .trophy-case-button': function(e) {
+		var game = xbdGames.findOne({_id: this.gameId});
+		Meteor.call('addTrophyCase', 'game', game, function(err, res) {
+			console.log(err);
+			console.log(res);
+		});
+	},
+	'click .wish-list-button': function(e) {
+		var game = xbdGames.findOne({_id: this.gameId});
+		Meteor.call('addWishlist', 'game', game, function(err, res) {
+			console.log(err);
+			console.log(res);
+		});
+	}
+});
+
 Template.userGamerscoreInfo.created = function() {
 	var slug = Router.current().params.slug;
 	this.subscribe('singleGame', slug);
