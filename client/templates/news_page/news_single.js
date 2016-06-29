@@ -137,7 +137,7 @@ Template.newsSinglePageShareButtons.helpers({
 		if (image) {
 			if (this.source === 'xbdash') {
 				getImage = image[0].match(/src="(.+?)"/)[1];
-				getImage = 'https://www.xbdash.com' + encodeURIComponent(getImage);
+				getImage = encodeURIComponent(getImage);
 			} else {
 				getImage = image[0].match(/src="(.+?)"/)[1];
 				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
