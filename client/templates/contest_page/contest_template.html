@@ -1,10 +1,14 @@
 <template name="contestPage">
-	{{#with contest}}
-		{{> contestApp}}
-	{{/with}}
+	{{#if Template.subscriptionsReady}}
+		{{#with contest}}
+			{{> referralContest}}
+		{{/with}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
 </template>
 
-<template name="contestApp">
+<template name="referralContest">
 	<div id="content" class="app-content contest-page" role="main">
 		<div class="app-content-body">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
@@ -25,6 +29,7 @@
 							{{> prizeArea}}
 							<div class="col-xs-12 col-md-6">
 								<div class="well">
+								{{#if Template.subscriptionsReady}}
 									<p class="h3 align-left">Rules</p>
 									{{#if currentUser}}
 										{{> contestRulesArea}}
@@ -80,6 +85,9 @@
 										</div>
 									</div>
 								</div>
+								{{else}}
+									{{> loadingTemplate}}
+								{{/if}}
 							</div>
 						</div>
 					</div>
@@ -108,13 +116,13 @@
 </template>
 
 <template name="contestRulesArea">
-	<ul class="align-left contest-rules">
 	{{#if Template.subscriptionsReady}}
+	<ul class="align-left contest-rules">
 		{{#each this.rules}}
 		<li>{{this}}</li>
 		{{/each}}
+	</ul>
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
-	</ul>
 </template>

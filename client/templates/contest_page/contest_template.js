@@ -1,32 +1,32 @@
-contestObj = {
-	_id: 'fewevewerew5fwf',
-	rules: [
-		'only valid emails will count as a contest entry',
-		'must be over 18',
-		'us citizens only'
-	],
-	prizes: [
-		{
-			title: 'engraved controller',
-			imageUrl: 'www.google.com',
-			isPremium: false,
-			optionalLink: 'www.yahoo.com'
-		},
-		{
-			title: 'new game',
-			imageUrl: 'www.google.com',
-			isPremium: false,
-			optionalLink: 'www.yahoo.com'
-		}
-	],
-	contestToken: 'xbdDirect',
-	entries: [],
-	startDate: moment('2016-07-01 00:00:00').format('MMMM Do YYYY, h:mm:ss a'),
-	endDate: moment('2016-07-31 23:59:59').format('MMMM Do YYYY, h:mm:ss a'),
-	awardDate: moment('2016-08-01 12:00:00').format('MMMM Do YYYY, h:mm:ss a'),
-	title: 'july controller contest',
-	description: 'yada yada yada'
-}
+// contestObj = {
+// 	_id: 'fewevewerew5fwf',
+// 	rules: [
+// 		'only valid emails will count as a contest entry',
+// 		'must be over 18',
+// 		'us citizens only'
+// 	],
+// 	prizes: [
+// 		{
+// 			title: 'engraved controller',
+// 			imageUrl: 'www.google.com',
+// 			isPremium: false,
+// 			optionalLink: 'www.yahoo.com'
+// 		},
+// 		{
+// 			title: 'new game',
+// 			imageUrl: 'www.google.com',
+// 			isPremium: false,
+// 			optionalLink: 'www.yahoo.com'
+// 		}
+// 	],
+// 	contestToken: 'xbdDirect',
+// 	entries: [],
+// 	startDate: moment('2016-07-01 00:00:00').format('MMMM Do YYYY, h:mm:ss a'),
+// 	endDate: moment('2016-07-31 23:59:59').format('MMMM Do YYYY, h:mm:ss a'),
+// 	awardDate: moment('2016-08-01 12:00:00').format('MMMM Do YYYY, h:mm:ss a'),
+// 	title: 'july controller contest',
+// 	description: 'yada yada yada'
+// }
 
 Template.contestPage.created = function() {
 	DocHead.removeDocHeadAddedTags();
@@ -76,16 +76,16 @@ Template.contestPage.created = function() {
 		DocHead.addLink(linkInfo[i]);;
 	}
 
-	// this.subscribe('monthlyContests');
+	this.subscribe('monthlyContests');
 }
 
 Template.contestPage.helpers({
 	contest: function () {
-		return contestObj;
+		return this.contest;
 	}
 });
 
-Template.contestApp.created = function() {
+Template.referralContest.created = function() {
 	var self = this;
 	this.contestToken = 'xbdDirect';
 	self.referralToken = new ReactiveVar('');
@@ -96,11 +96,9 @@ Template.contestApp.created = function() {
 		}
 		self.referralToken.set(res);
 	});
-
-	console.log(contestObj);
 }
 
-Template.contestApp.rendered = function() {
+Template.referralContest.rendered = function() {
 	$('#copy-button').tooltip();
 	$('#copy-button').bind('click', function() {
 		var input = document.querySelector('#copy-input');
@@ -125,7 +123,7 @@ Template.contestApp.rendered = function() {
 	});
 }
 
-Template.contestApp.helpers({
+Template.referralContest.helpers({
 	'referralUrl': function() {
 		var referralToken = Template.instance().referralToken.get();
 		if (referralToken === '') {
@@ -152,7 +150,7 @@ Template.contestApp.helpers({
 	}
 });
 
-Template.contestApp.events({
+Template.referralContest.events({
 	'click .referral-signup': function(e) {
 		e.preventDefault();
 		var contestToken = Template.instance().contestToken;
