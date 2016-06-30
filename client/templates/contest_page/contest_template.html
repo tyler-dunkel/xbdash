@@ -1,10 +1,7 @@
 <template name="contestPage">
-	{{> contestApp}}
-	<!-- {{#if Template.subscriptionsReady}}
+	{{#with contest}}
 		{{> contestApp}}
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}} -->
+	{{/with}}
 </template>
 
 <template name="contestApp">
@@ -94,17 +91,17 @@
 
 <template name="prizeArea">
 	{{#if Template.subscriptionsReady}}
-		{{#with this.prizes}}
+		{{#each prizes}}
 		<div class="col-xs-6 col-md-3 m-t-sm m-b-md text-center">
-			<p class="h5 m-b-sm">{{getPlace}} Place Winner:</p>
+			<p class="h5 m-b-sm">{{getPlace @index}} Place Winner:</p>
 			<h2 class="h3">{{this.title}}</h2>
 			<div>
-				<a href="{{this.optionalLink}}">
+				<a href="#">
 					<img src="{{this.imageUrl}}" class="img-responsive grid" />
 				</a>
 			</div>
 		</div>
-		{{/with}}
+		{{/each}}
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}

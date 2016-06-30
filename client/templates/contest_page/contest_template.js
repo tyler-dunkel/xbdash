@@ -1,3 +1,33 @@
+contestObj = {
+	_id: 'fewevewerew5fwf',
+	rules: [
+		'only valid emails will count as a contest entry',
+		'must be over 18',
+		'us citizens only'
+	],
+	prizes: [
+		{
+			title: 'engraved controller',
+			imageUrl: 'www.google.com',
+			isPremium: false,
+			optionalLink: 'www.yahoo.com'
+		},
+		{
+			title: 'new game',
+			imageUrl: 'www.google.com',
+			isPremium: false,
+			optionalLink: 'www.yahoo.com'
+		}
+	],
+	contestToken: 'xbdDirect',
+	entries: [],
+	startDate: moment('2016-07-01 00:00:00').format('MMMM Do YYYY, h:mm:ss a'),
+	endDate: moment('2016-07-31 23:59:59').format('MMMM Do YYYY, h:mm:ss a'),
+	awardDate: moment('2016-08-01 12:00:00').format('MMMM Do YYYY, h:mm:ss a'),
+	title: 'july controller contest',
+	description: 'yada yada yada'
+}
+
 Template.contestPage.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
@@ -45,7 +75,15 @@ Template.contestPage.created = function() {
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
 	}
+
+	// this.subscribe('monthlyContests');
 }
+
+Template.contestPage.helpers({
+	contest: function () {
+		return contestObj;
+	}
+});
 
 Template.contestApp.created = function() {
 	var self = this;
@@ -59,35 +97,7 @@ Template.contestApp.created = function() {
 		self.referralToken.set(res);
 	});
 
-	var contestObj = {
-		_id: 'fewevewerew5fwf',
-		rules: [
-			'only valid emails will count as a contest entry',
-			'must be over 18',
-			'us citizens only'
-		],
-		prizes: [
-			{
-				title: 'engraved controller',
-				imageUrl: 'www.google.com',
-				isPremium: false,
-				optionalLink: 'www.yahoo.com'
-			}
-		],
-		contestToken: 'xbdDirect',
-		entries: [],
-		startDate: moment('2016-07-01 00:00:00').format('MMMM Do YYYY, h:mm:ss a'),
-		endDate: moment('2016-07-31 23:59:59').format('MMMM Do YYYY, h:mm:ss a'),
-		awardDate: moment('2016-08-01 12:00:00').format('MMMM Do YYYY, h:mm:ss a'),
-		title: 'july controller contest',
-		description: 'yada yada yada'
-	}
-
-	Meteor.subscribe(contestObj);
-
-	console.log(this);
-
-	// this.subscribe(contestObj);
+	console.log(contestObj);
 }
 
 Template.contestApp.rendered = function() {
@@ -155,14 +165,9 @@ Template.prizeArea.created = function () {
 };
 
 Template.prizeArea.helpers({
-	getPlace: function() {
-		for (var i in this.prizes) {
-			if (this.prizes[i] === '0') return 'First';
-			if (this.prizes[i] === '1') return 'Second';
-			if (this.prizes[i] === '2') return 'Third';
-		}
+	getPlace: function(index) {
+		if (index === 0) return 'First';
+		if (index === 1) return 'Second';
+		if (index === 2) return 'Third';
 	}
-});
-
-Template.contestRulesArea.helpers({
 });
