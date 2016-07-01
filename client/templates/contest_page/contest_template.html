@@ -26,13 +26,37 @@
 							</div>
 						</div>
 						<div class="row">
-							{{> prizeArea}}
-							<div class="col-xs-12 col-md-6">
+						{{#if Template.subscriptionsReady}}
+							{{#each prizes}}
+							<div class="{{#if this.prizes.count=1}}col-md-6 col-xs-12{{else}}{{#if this.prizes.count=2}}col-md-6 col-xs-6{{else}}{{#if this.prizes.count=3}}col-md-4  col-xs-12{{/if}}{{/if}}{{/if}} m-t-sm m-b-md text-center">
+								<p class="h5 m-b-sm">{{getPlace @index}} Place Winner:</p>
+								<h2 class="h3">{{this.title}}</h2>
+								<div>
+									<a href="#">
+										<img src="{{this.imageUrl}}" class="img-responsive grid" />
+									</a>
+								</div>
+							</div>
+							{{/each}}
+						{{else}}
+							<div class="col-xs-12 m-t-sm m-b-md text-center">
+								{{> loadingTemplate}}
+							</div>
+						{{/if}}
+							<div class="{{#if this.prizes.count=1}}col-md-6 col-xs-12{{else}}{{#if this.prizes.count=2}}col-md-6 col-xs-6{{else}}{{#if this.prizes.count=3}}col-md-4  col-xs-12{{/if}}{{/if}}{{/if}}">
 								<div class="well">
 								{{#if Template.subscriptionsReady}}
 									<p class="h3 align-left">Rules</p>
 									{{#if currentUser}}
-										{{> contestRulesArea}}
+										{{#if Template.subscriptionsReady}}
+										<ul class="align-left contest-rules">
+											{{#each this.rules}}
+											<li>{{{this}}}</li>
+											{{/each}}
+										</ul>
+										{{else}}
+											{{> loadingTemplate}}
+										{{/if}}
 										<form class="m-t-xxl m-b-xxl">
 											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
 											<div class="m-t-sm text-center">
@@ -64,17 +88,17 @@
 										</form>
 									{{/if}}
 									<div class="row m-b-md text-center">
-										<div class="col-md-4 col-sm-6">
-											<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Starts:<br />
-											<span>{{this.startDate}}</span>
+										<div class="col-md-6 col-xs-6 m-b-lg">
+											<h4><i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Starts:</h4>
+											<span class="h4">{{getStartDate}}</span>
 										</div>
-										<div class="col-md-4 col-sm-6">
-											<i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:<br />
-											<span>{{this.endDate}}</span>
+										<div class="col-md-6 col-xs-6 m-b-lg">
+											<h4><i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:</h4>
+											<span class="h4">{{getEndDate}}</span>
 										</div>
-										<div class="col-md-4 col-sm-12">
-											<i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:<br />
-											<span>{{this.awardDate}}</span>
+										<div class="col-md-12 col-xs-12 m-b-lg">
+											<h4><i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:</h4>
+											<span class="h4">{{getAwardDate}}</span>
 										</div>
 									</div>
 									<div class="row">
@@ -84,10 +108,10 @@
 											</p>
 										</div>
 									</div>
-								</div>
 								{{else}}
 									{{> loadingTemplate}}
 								{{/if}}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -97,10 +121,10 @@
 	</div>
 </template>
 
-<template name="prizeArea">
+<!-- <template name="prizeArea">
 	{{#if Template.subscriptionsReady}}
 		{{#each prizes}}
-		<div class="col-xs-6 col-md-3 m-t-sm m-b-md text-center">
+		<div class="{{#if prizes.count=1}}col-md-6 col-xs-12{{else}}{{#if prizes.count=2}}col-md-6 col-xs-6{{else}}{{#if prizes.count=3}}col-md-4  col-xs-12{{/if}}{{/if}}{{/if}} m-t-sm m-b-md text-center">
 			<p class="h5 m-b-sm">{{getPlace @index}} Place Winner:</p>
 			<h2 class="h3">{{this.title}}</h2>
 			<div>
@@ -113,16 +137,16 @@
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
-</template>
+</template> -->
 
-<template name="contestRulesArea">
+<!-- <template name="contestRulesArea">
 	{{#if Template.subscriptionsReady}}
 	<ul class="align-left contest-rules">
 		{{#each this.rules}}
-		<li>{{this}}</li>
+		<li>{{{this}}}</li>
 		{{/each}}
 	</ul>
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
-</template>
+</template> -->

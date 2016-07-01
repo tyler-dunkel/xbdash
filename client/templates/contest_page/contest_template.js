@@ -1,31 +1,37 @@
 // contestObj = {
-// 	_id: 'fewevewerew5fwf',
-// 	rules: [
-// 		'only valid emails will count as a contest entry',
-// 		'must be over 18',
-// 		'us citizens only'
+// 	"_id": "DM3nM6u9gApc7NB7S",
+// 	"status": "active",
+// 	"rules": [
+// 		"<strong><em>Get an extra entry</em></strong> into this month's contest for each friend you invite that signs up through your link below.",
+// 		"Only <strong><em>verified emails qualify</em></strong> as an entry to this contest.",
+// 		"1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.",
+// 		"1 second place winner will receive a copy of Fallout 4 in original packaging."
 // 	],
-// 	prizes: [
+// 	"prizes": [
 // 		{
-// 			title: 'engraved controller',
-// 			imageUrl: 'www.google.com',
-// 			isPremium: false,
-// 			optionalLink: 'www.yahoo.com'
-// 		},
-// 		{
-// 			title: 'new game',
-// 			imageUrl: 'www.google.com',
-// 			isPremium: false,
-// 			optionalLink: 'www.yahoo.com'
+// 			"title": "Overwatch - Origins Edition",
+// 			"imageUrl": "https://www.xbdash.com/img/contests/overwatch-xbone.png",
+// 			"isPremium": false
 // 		}
 // 	],
-// 	contestToken: 'xbdDirect',
-// 	entries: [],
-// 	startDate: moment('2016-07-01 00:00:00').format('MMMM Do YYYY, h:mm:ss a'),
-// 	endDate: moment('2016-07-31 23:59:59').format('MMMM Do YYYY, h:mm:ss a'),
-// 	awardDate: moment('2016-08-01 12:00:00').format('MMMM Do YYYY, h:mm:ss a'),
-// 	title: 'july controller contest',
-// 	description: 'yada yada yada'
+// 	"contestToken": "xbdDirect",
+// 	"entries": [ 
+// 		{
+// 			"userId": "numKGua7JywHbnPBS",
+// 			"referralToken": "pciniXj",
+// 			"referralCount": 0
+// 		},
+// 		{
+// 			"userId": "numKGua7JywHbnPBf",
+// 			"referralToken": "pciniXj",
+// 			"referralCount": 0
+// 		}
+// 	],
+// 	"startDate": ISODate("2016-07-01T00:00:00Z"),
+// 	"endDate": ISODate("2016-07-31T23:59:59Z"),
+// 	"awardDate": ISODate("2016-08-01T12:00:00Z"),
+// 	"title": "july controller contest",
+// 	"description": "yada yada yada"
 // }
 
 Template.contestPage.created = function() {
@@ -76,19 +82,23 @@ Template.contestPage.created = function() {
 		DocHead.addLink(linkInfo[i]);;
 	}
 
-	this.subscribe('monthlyContests');
+	this.autorun(function() {
+		Meteor.subscribe('xbdContestsPub');
+	});
 }
 
 Template.contestPage.helpers({
 	contest: function () {
-		return this.contest;
+		return xbdContests.findOne({ "status": "active" });
 	}
 });
 
 Template.referralContest.created = function() {
-	var self = this;
-	this.contestToken = 'xbdDirect';
+	var self = this; 
 	self.referralToken = new ReactiveVar('');
+
+	console.log("contest token" + this.contestToken);
+	console.log("contest token" + self.referralToken);
 
 	Meteor.call('checkReferralToken', function(err, res) {
 		if (err) {
@@ -124,7 +134,12 @@ Template.referralContest.rendered = function() {
 }
 
 Template.referralContest.helpers({
-	'referralUrl': function() {
+	getPlace: function(index) {
+		if (index === 0) return 'First';
+		if (index === 1) return 'Second';
+		if (index === 2) return 'Third';
+	},
+	referralUrl: function() {
 		var referralToken = Template.instance().referralToken.get();
 		if (referralToken === '') {
 			return 'Generating your token please wait';
@@ -133,6 +148,15 @@ Template.referralContest.helpers({
 		} else {
 			return 'https://www.xbdash.com/signup?referraltoken=' + referralToken;
 		}
+	},
+	getStartDate: function() {
+		return moment(this.startDate).format('MMMM Do YYYY, h:mm a');
+	},
+	getEndDate: function() {
+		return moment(this.endDate).format('MMMM Do YYYY, h:mm a');
+	},
+	getAwardDate: function() {
+		return moment(this.awardDate).format('MMMM Do YYYY, h:mm a');
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
@@ -153,19 +177,18 @@ Template.referralContest.helpers({
 Template.referralContest.events({
 	'click .referral-signup': function(e) {
 		e.preventDefault();
-		var contestToken = Template.instance().contestToken;
-		Router.go('signUp', {}, { query: 'referraltoken=' + contestToken });
+		Router.go('signUp', {}, { query: 'referraltoken=' + this.contestToken });
 	}
 });
 
-Template.prizeArea.created = function () {
-	var prizeCounter = 0;
-};
+// Template.prizeArea.created = function () {
+// 	var prizeCounter = 0;
+// };
 
-Template.prizeArea.helpers({
-	getPlace: function(index) {
-		if (index === 0) return 'First';
-		if (index === 1) return 'Second';
-		if (index === 2) return 'Third';
-	}
-});
+// Template.prizeArea.helpers({
+// 	getPlace: function(index) {
+// 		if (index === 0) return 'First';
+// 		if (index === 1) return 'Second';
+// 		if (index === 2) return 'Third';
+// 	}
+// });
