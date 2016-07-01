@@ -109,7 +109,7 @@ Template.referralContest.helpers({
 		return;
 	},
 	rulesClasses: function() {
-		var prizeCount = Template.parentDate().prizes.length;
+		var prizeCount = this.prizes.length;
 		if (prizeCount === 1) {
 			return 'col-md-6 col-xs-12';
 		}
@@ -122,9 +122,9 @@ Template.referralContest.helpers({
 		return;
 	},
 	getPlace: function(index) {
-		if (index === 0) return 'First';
-		if (index === 1) return 'Second';
-		if (index === 2) return 'Third';
+		if (index === 0) return 'Grand Prize';
+		if (index === 1) return 'Second Place Prize';
+		if (index === 2) return 'Third Place Prize';
 	},
 	referralUrl: function() {
 		var referralToken = Template.instance().referralToken.get();

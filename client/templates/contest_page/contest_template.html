@@ -16,17 +16,15 @@
 					<div class="wrapper-md">
 						<div class="row">
 							<div class="col-xl-12">
-								<h1 class="h1 text-center m-t-md m-b-md">{{this.title}}</h1>
-								<p class="h4 text-center m-b-lg">{{this.description}}</p>
-								<h1 class="h1 text-center m-t-md m-b-md">Welcome to XBdash</h1>
-								<p class="h4 text-center m-b-lg">Sign up for your chance to win this month's prize!</p>
+								<h1 class="h1 text-left m-t-md m-b-md">{{{this.title}}}</h1>
+								<p class="h4 text-left m-b-lg">{{{this.description}}}</p>
 							</div>
 						</div>
 						<div class="row">
 							{{#each prizes}}
 							<div class="{{prizeClasses}} m-t-sm m-b-md text-center">
-								<p class="h5 m-b-sm">{{getPlace @index}} Place Winner:</p>
-								<h2 class="h3">{{title}}</h2>
+								<p class="h5">{{getPlace @index}}</p>
+								<h3 class="m-t-sm m-b-sm">{{{title}}}</h3>
 								<div>
 									<a href="#">
 										<img src="{{imageUrl}}" class="img-responsive grid" />
@@ -36,13 +34,13 @@
 							{{/each}}
 							<div class="{{rulesClasses}}">
 								<div class="well">
-									<p class="h3 align-left">Rules</p>
-									<ul class="align-left contest-rules">
-										{{#each this.rules}}
-										<li>{{{this}}}</li>
-										{{/each}}
-									</ul>
+									<h2 class="h3 m-t-sm align-left">Rules</h2>
 									{{#if currentUser}}
+										<ul class="align-left contest-rules">
+											{{#each this.rules}}
+											<li>{{{this}}}</li>
+											{{/each}}
+										</ul>
 										<form class="m-t-xxl m-b-xxl">
 											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
 											<div class="m-t-sm text-center">
@@ -60,6 +58,12 @@
 											</div>
 										</form>
 									{{else}}
+										<ul class="align-left contest-rules">
+											<li>Signing up below gains entry into the contest.</li>
+											{{#each this.rules}}
+											<li>{{{this}}}</li>
+											{{/each}}
+										</ul>
 										<form class="m-t-xxl m-b-xxl">
 											<h3 class="h4 text-center m-b-sm"><strong>Sign up for a chance to win the June 2016 launch contest!</strong></h3>
 											<div class="text-center block">
