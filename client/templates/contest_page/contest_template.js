@@ -60,7 +60,6 @@ Template.contestPage.helpers({
 Template.referralContest.created = function() {
 	var self = this;
 	self.referralToken = new ReactiveVar('');
-	self.prizeCount = new ReactiveVar('');
 
 	Meteor.call('checkReferralToken', function(err, res) {
 		if (err) {
@@ -68,8 +67,6 @@ Template.referralContest.created = function() {
 		}
 		self.referralToken.set(res);
 	});
-
-	self.prizeCount.set(this.data.prizes.length);
 }
 
 Template.referralContest.rendered = function() {
@@ -99,7 +96,7 @@ Template.referralContest.rendered = function() {
 
 Template.referralContest.helpers({
 	prizeClasses: function() {
-		var prizeCount = Template.instance().prizeCount.get();
+		var prizeCount = Template.parentData().prizes.length;
 		if (prizeCount === 1) {
 			return 'col-md-6 col-xs-12';
 		}
@@ -112,7 +109,7 @@ Template.referralContest.helpers({
 		return;
 	},
 	rulesClasses: function() {
-		var prizeCount = Template.instance().prizeCount.get();
+		var prizeCount = Template.parentDate().prizes.length;
 		if (prizeCount === 1) {
 			return 'col-md-6 col-xs-12';
 		}
