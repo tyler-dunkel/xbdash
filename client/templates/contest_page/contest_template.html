@@ -28,35 +28,30 @@
 						<div class="row">
 						{{#if Template.subscriptionsReady}}
 							{{#each prizes}}
-							<div class="{{#if this.prizes.count=1}}col-md-6 col-xs-12{{else}}{{#if this.prizes.count=2}}col-md-6 col-xs-6{{else}}{{#if this.prizes.count=3}}col-md-4  col-xs-12{{/if}}{{/if}}{{/if}} m-t-sm m-b-md text-center">
+							<div class="{{prizeClasses}} m-t-sm m-b-md text-center">
 								<p class="h5 m-b-sm">{{getPlace @index}} Place Winner:</p>
-								<h2 class="h3">{{this.title}}</h2>
+								<h2 class="h3">{{title}}</h2>
 								<div>
 									<a href="#">
-										<img src="{{this.imageUrl}}" class="img-responsive grid" />
+										<img src="{{imageUrl}}" class="img-responsive grid" />
 									</a>
 								</div>
 							</div>
 							{{/each}}
 						{{else}}
-							<div class="col-xs-12 m-t-sm m-b-md text-center">
+							<div class="col-md-6 m-t-sm m-b-md text-center">
 								{{> loadingTemplate}}
 							</div>
 						{{/if}}
-							<div class="{{#if this.prizes.count=1}}col-md-6 col-xs-12{{else}}{{#if this.prizes.count=2}}col-md-6 col-xs-6{{else}}{{#if this.prizes.count=3}}col-md-4  col-xs-12{{/if}}{{/if}}{{/if}}">
+							<div class="{{rulesClasses}}">
 								<div class="well">
-								{{#if Template.subscriptionsReady}}
 									<p class="h3 align-left">Rules</p>
 									{{#if currentUser}}
-										{{#if Template.subscriptionsReady}}
 										<ul class="align-left contest-rules">
 											{{#each this.rules}}
 											<li>{{{this}}}</li>
 											{{/each}}
 										</ul>
-										{{else}}
-											{{> loadingTemplate}}
-										{{/if}}
 										<form class="m-t-xxl m-b-xxl">
 											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
 											<div class="m-t-sm text-center">
@@ -76,9 +71,9 @@
 									{{else}}
 										<ul class="align-left contest-rules">
 											<li>Signing up below gains entry into the contest.</li>
-											<li>Only <strong><em>verified emails qualify</em></strong> as an entry to this contest.</li>
-											<li>1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.</li>
-											<li>1 second place winner will receive a copy of Fallout 4 in original packaging.</li>
+											{{#each this.rules}}
+											<li>{{{this}}}</li>
+											{{/each}}
 										</ul>
 										<form class="m-t-xxl m-b-xxl">
 											<h3 class="h4 text-center m-b-sm"><strong>Sign up for a chance to win the June 2016 launch contest!</strong></h3>
@@ -108,9 +103,6 @@
 											</p>
 										</div>
 									</div>
-								{{else}}
-									{{> loadingTemplate}}
-								{{/if}}
 								</div>
 							</div>
 						</div>

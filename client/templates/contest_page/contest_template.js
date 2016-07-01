@@ -1,39 +1,3 @@
-// contestObj = {
-// 	"_id": "DM3nM6u9gApc7NB7S",
-// 	"status": "active",
-// 	"rules": [
-// 		"<strong><em>Get an extra entry</em></strong> into this month's contest for each friend you invite that signs up through your link below.",
-// 		"Only <strong><em>verified emails qualify</em></strong> as an entry to this contest.",
-// 		"1 first place winner will receive a copy of Overwatch: Origins Edition in original packaging.",
-// 		"1 second place winner will receive a copy of Fallout 4 in original packaging."
-// 	],
-// 	"prizes": [
-// 		{
-// 			"title": "Overwatch - Origins Edition",
-// 			"imageUrl": "https://www.xbdash.com/img/contests/overwatch-xbone.png",
-// 			"isPremium": false
-// 		}
-// 	],
-// 	"contestToken": "xbdDirect",
-// 	"entries": [ 
-// 		{
-// 			"userId": "numKGua7JywHbnPBS",
-// 			"referralToken": "pciniXj",
-// 			"referralCount": 0
-// 		},
-// 		{
-// 			"userId": "numKGua7JywHbnPBf",
-// 			"referralToken": "pciniXj",
-// 			"referralCount": 0
-// 		}
-// 	],
-// 	"startDate": ISODate("2016-07-01T00:00:00Z"),
-// 	"endDate": ISODate("2016-07-31T23:59:59Z"),
-// 	"awardDate": ISODate("2016-08-01T12:00:00Z"),
-// 	"title": "july controller contest",
-// 	"description": "yada yada yada"
-// }
-
 Template.contestPage.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
@@ -94,11 +58,9 @@ Template.contestPage.helpers({
 });
 
 Template.referralContest.created = function() {
-	var self = this; 
+	var self = this;
 	self.referralToken = new ReactiveVar('');
-
-	console.log("contest token" + this.contestToken);
-	console.log("contest token" + self.referralToken);
+	self.prizeCount = new ReactiveVar('');
 
 	Meteor.call('checkReferralToken', function(err, res) {
 		if (err) {
@@ -106,6 +68,8 @@ Template.referralContest.created = function() {
 		}
 		self.referralToken.set(res);
 	});
+
+	self.prizeCount.set(this.data.prizes.length);
 }
 
 Template.referralContest.rendered = function() {
@@ -134,6 +98,32 @@ Template.referralContest.rendered = function() {
 }
 
 Template.referralContest.helpers({
+	prizeClasses: function() {
+		var prizeCount = Template.instance().prizeCount.get();
+		if (prizeCount === 1) {
+			return 'col-md-6 col-xs-12';
+		}
+		if (prizeCount === 2) {
+			return 'col-md-3 col-xs-6';
+		}
+		if (prizeCount === 3) {
+			return 'col-md-4 col-xs-12';
+		}
+		return;
+	},
+	rulesClasses: function() {
+		var prizeCount = Template.instance().prizeCount.get();
+		if (prizeCount === 1) {
+			return 'col-md-6 col-xs-12';
+		}
+		if (prizeCount === 2) {
+			return 'col-md-6 col-xs-12';
+		}
+		if (prizeCount === 3) {
+			return 'col-md-12 col-xs-12';
+		}
+		return;
+	},
 	getPlace: function(index) {
 		if (index === 0) return 'First';
 		if (index === 1) return 'Second';
@@ -180,15 +170,3 @@ Template.referralContest.events({
 		Router.go('signUp', {}, { query: 'referraltoken=' + this.contestToken });
 	}
 });
-
-// Template.prizeArea.created = function () {
-// 	var prizeCounter = 0;
-// };
-
-// Template.prizeArea.helpers({
-// 	getPlace: function(index) {
-// 		if (index === 0) return 'First';
-// 		if (index === 1) return 'Second';
-// 		if (index === 2) return 'Third';
-// 	}
-// });
