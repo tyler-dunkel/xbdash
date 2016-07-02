@@ -155,28 +155,22 @@ Meteor.publishComposite('userClips', function(gamertagSlug) {
 			{
 				find: function(user) {
 					var currentTime = moment().format();
-					return gameClips.find({ 
-							userId: user._id,
-							gameClipUris: {
-								$elemMatch: {
-									uriType: "Download",
-									expiration: {
-										$gte: currentTime
-									}
-								}
-							}
+					var clips = gameClips.find({ 
+							"userId": user._id
 						}, {
-						sort: { "gameClipUris.0.expiration": -1 },
+						sort: { "datePublished": -1 },
 						fields: {
+							"datePublished": -1,
 							"userId": 1,
 							"titleId": 1,
 							"titleName": 1,
 							"thumbnails": 1,
 							"gameClipUris": 1
 						},
-						sort: { "datePublished": -1 },
 						limit: 6
 					});
+					console.log(clips.fetch());
+					return clips;
 				}
 			}
 		]

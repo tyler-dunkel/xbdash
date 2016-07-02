@@ -15,6 +15,16 @@ Template.achievementsSinglePage.helpers({
 	game: function() {
 		return xbdGames.findOne({ _id: this.gameId });
 	},
+	getValue: function() {
+		if (this && this.value) {
+			if (typeof this.value === 'number') {
+				return this.value;
+			} else {
+				return 'N/A';
+			}
+		}
+		return 'N/A';
+	},
 	achievementImage: function () {
 		var image = "https://www.xbdash.com/img/achievement-default.jpg";
 		if (this.mediaAssets) {

@@ -45,11 +45,20 @@ Template.contestPage.created = function() {
 	for(var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
 	}
+
+	this.autorun(function() {
+		Meteor.subscribe('xbdContestsPub');
+	});
 }
 
-Template.contestApp.created = function() {
+Template.contestPage.helpers({
+	contest: function () {
+		return xbdContests.findOne({ "status": "active" });
+	}
+});
+
+Template.referralContest.created = function() {
 	var self = this;
-	this.contestToken = 'xbdDirect';
 	self.referralToken = new ReactiveVar('');
 
 	Meteor.call('checkReferralToken', function(err, res) {
@@ -60,7 +69,7 @@ Template.contestApp.created = function() {
 	});
 }
 
-Template.contestApp.rendered = function() {
+Template.referralContest.rendered = function() {
 	$('#copy-button').tooltip();
 	$('#copy-button').bind('click', function() {
 		var input = document.querySelector('#copy-input');
@@ -85,8 +94,39 @@ Template.contestApp.rendered = function() {
 	});
 }
 
-Template.contestApp.helpers({
-	'referralUrl': function() {
+Template.referralContest.helpers({
+	prizeClasses: function() {
+		var prizeCount = Template.parentData().prizes.length;
+		if (prizeCount === 1) {
+			return 'col-md-6 col-xs-12';
+		}
+		if (prizeCount === 2) {
+			return 'col-md-3 col-xs-6';
+		}
+		if (prizeCount === 3) {
+			return 'col-md-4 col-xs-12';
+		}
+		return;
+	},
+	rulesClasses: function() {
+		var prizeCount = this.prizes.length;
+		if (prizeCount === 1) {
+			return 'col-md-6 col-xs-12';
+		}
+		if (prizeCount === 2) {
+			return 'col-md-6 col-xs-12';
+		}
+		if (prizeCount === 3) {
+			return 'col-md-12 col-xs-12';
+		}
+		return;
+	},
+	getPlace: function(index) {
+		if (index === 0) return 'Grand Prize';
+		if (index === 1) return 'Second Place Prize';
+		if (index === 2) return 'Third Place Prize';
+	},
+	referralUrl: function() {
 		var referralToken = Template.instance().referralToken.get();
 		if (referralToken === '') {
 			return 'Generating your token please wait';
@@ -95,6 +135,15 @@ Template.contestApp.helpers({
 		} else {
 			return 'https://www.xbdash.com/signup?referraltoken=' + referralToken;
 		}
+	},
+	getStartDate: function() {
+		return moment(this.startDate).format('MMMM Do YYYY, h:mm a');
+	},
+	getEndDate: function() {
+		return moment(this.endDate).format('MMMM Do YYYY, h:mm a');
+	},
+	getAwardDate: function() {
+		return moment(this.awardDate).format('MMMM Do YYYY, h:mm a');
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
@@ -112,10 +161,9 @@ Template.contestApp.helpers({
 	}
 });
 
-Template.contestApp.events({
+Template.referralContest.events({
 	'click .referral-signup': function(e) {
 		e.preventDefault();
-		var contestToken = Template.instance().contestToken;
-		Router.go('signUp', {}, { query: 'referraltoken=' + contestToken });
+		Router.go('signUp', {}, { query: 'referraltoken=' + this.contestToken });
 	}
 });

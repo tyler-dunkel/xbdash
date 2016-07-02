@@ -12,7 +12,7 @@ Template.xbdTweets.created = function() {
 	var self = this;
 	var screenName;
 
-	if (user && user.services.twitter) {
+	if (user && user.services && user.services.twitter) {
 		screenName = user.services.twitter.screenName;
 	} else {
 		screenName = 'xboxdash';
@@ -31,7 +31,7 @@ Template.xbdTweets.helpers({
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
 		var screenName;
-		if (user && user.services.twitter) {
+		if (user && user.services && user.services.twitter) {
 			return user.services.twitter.screenName;
 		}
 		return 'xboxdash';

@@ -78,7 +78,14 @@ Template.userAchievements.helpers({
 	},
 	getAchievementValue: function () {
 		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
-		return achievement.value;
+		if (achievement && achievement.value) {
+			if (typeof achievement.value === 'number') {
+				return achievement.value;
+			} else {
+				return 'N/A';
+			}
+		}
+		return 'N/A';
 	}
 });
 
@@ -169,7 +176,25 @@ Template.userClips.helpers({
 	clip: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return gameClips.find({ userId: user._id }, { sort: { "gameClipUris.expiration": -1 } });
+		var currentTime = moment().utc().format();
+		var clips = gameClips.find({
+					userId: user._id
+				}, {
+					sort: { "datePublished": -1 }
+				}).fetch();
+		var validClips = [];
+		clips.forEach(function(clip) {
+			if (clip.savedByUser) {
+				if (moment().isBefore(clip.gameClipUris[2].expiration)) {
+					validClips.push(clip);
+				}
+			} else {
+				if (moment().isBefore(clip.gameClipUris[0].expiration)) {
+					validClips.push(clip);
+				}
+			}
+		});
+		return validClips;
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
@@ -181,6 +206,7 @@ Template.userClips.helpers({
 		this.thumbnails.forEach(function(thumbs) {
 			if (thumbs.thumbnailType === "Large") {
 				imageUri = thumbs.uri;
+				imageUri = imageUri.replace("http", "https");
 			}
 		});
 		return imageUri;
@@ -190,6 +216,7 @@ Template.userClips.helpers({
 		this.gameClipUris.forEach(function(clips) {
 			if (clips.uriType === "Download") {
 				clipUri = clips.uri;
+				clipUri = clipUri.replace("http", "https");
 			}
 		});
 		return clipUri;
@@ -233,10 +260,9 @@ Template.userClips.events({
 	},
 	'click .carousel-control.right': function() {
 		var index = $('.xbd-tech').attr('data-slide');
-		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var clips = gameClips.find({ userId: user._id });
-		if (index === String(clips.count())) {
+		var clipCount = $('.clip-container').length;
+		console.log(clipCount);
+		if (index === String(clipCount)) {
 			return;
 		}
 		var nextIndex = parseInt(index) + 1;
@@ -280,6 +306,7 @@ Template.userCaptures.helpers({
 		this.thumbnails.forEach(function(thumbs) {
 			if (thumbs.thumbnailType === "Large") {
 				imageUri = thumbs.uri;
+				imageUri = imageUri.replace("http", "https");
 			}
 		});
 		return imageUri;
