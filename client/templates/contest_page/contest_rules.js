@@ -1,4 +1,4 @@
-Template.contestRules.created = function() {
+Template.xboxControllerContestRules.created = function() {
 	DocHead.removeDocHeadAddedTags();
 
 	var contestRulesPageDescription = "Review our contest rules.";
