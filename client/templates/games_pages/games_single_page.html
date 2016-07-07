@@ -21,10 +21,13 @@
 													<button class="trophy-case-button">add to case</button>
 												{{/if}}
 											{{/if}}
-											{{#if chkUserForWishlist}}
-												<button class="remove-from-wish-list">remove from wishlist</button>
-											{{else}}
-												<button class="add-to-wish-list">add to wishlist</button>
+											{{#if chkIfCompleted}}
+												{{else}}
+													{{#if chkUserWishlist}}
+														<button class="remove-from-wish-list">remove from wishlist</button>
+													{{else}}
+													<button class="add-to-wish-list">add to wishlist</button>
+												{{/if}}
 											{{/if}}
 										{{/if}}
 										<small class="text-muted">Platform: {{gamePlatform}}</small>

@@ -2,7 +2,9 @@
 Template.gamesSinglePageNew.created = function() {
 	DocHead.removeDocHeadAddedTags();
 	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('singleGame', slug);
+	this.subscribe('userWishlist', gamertagSlug);
 }
 
 Template.gamesSinglePageNew.helpers({
@@ -64,16 +66,18 @@ Template.gamesSinglePageNew.helpers({
 		if (userGame && userGame.count() > 0) return true;
 		return false; 
 	},
-	chkUserForWishlist: function () {
-		var userId = Meteor.userId();
-		var userWish = userWishlist.findOne({ userId: userId, _id: this.gameId });
-		if (userWish && userWish.count() > 0) return true;
-		return false;
+	chkUserWishlist: function() {
+		var wishlistCount = userWishlists.find({userId: Meteor.userId(), relationId: this.gameId}).count();
+		if (wishlistCount > 0) {
+			return true;
+		}
 	},
 	chkIfCompleted: function () {
 		var userId = Meteor.userId();
 		var userGame = userGames.findOne({ gameId: this.gameId, userId: userId });
-		return userGame.completed;
+		if (userGame) {
+			return userGame.completed;
+		}
 	},
 	dateFormat: function () {
 		return moment(this.gameReleaseDate).format('l');
@@ -96,7 +100,7 @@ Template.gamesSinglePageNew.events({
 				if (res.status === 'warning') {
 					swal({
 						title: res.title,
-						html: Blaze.toHTML(Template.userWishlist),
+						html: Blaze.toHTML(Template.confirmWishlist),
 						type: res.status,
 						customClass: 'user-wishlist',
 						confirmButtonText: 'Swap',
@@ -116,6 +120,7 @@ Template.gamesSinglePageNew.events({
 		});
 	},
 	'click .remove-from-wish-list': function(e) {
+		var self = this;
 		var game = xbdGames.findOne({ _id: this.gameId });
 		Meteor.call('removeFromWishlist', 'game', game, function(err, res) {
 			if (err) return;
@@ -197,20 +202,15 @@ Template.gamesSingleDocHead.created = function() {
 	}
 }
 
-Template.gameSingleUserWishlist.created = function() {
-	var gamertagSlug = Meteor.user().gamertagSlug;
-	this.subscribe('userWishlist', gamertagSlug);
-}
-
-Template.gameSingleUserWishlist.helpers({
-	user: function () {
-		var gamertagSlug = Meteor.user().gamertagSlug;
-		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-	},
-	wish: function () {
-		return userWishlist.find({ userId: this._id });
-	}
-});
+// Template.gameSingleUserWishlist.helpers({
+// 	user: function () {
+// 		var gamertagSlug = Meteor.user().gamertagSlug;
+// 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+// 	},
+// 	wish: function () {
+// 		return userWishlist.find({ userId: this._id });
+// 	}
+// });
 
 Template.userGamerscoreInfoNew.created = function() {
 }

@@ -1,0 +1,55 @@
+<template name="confirmWishlist">
+	<p>test</p>
+		{{#with user}}
+		<div class="panel panel-black">
+			<div class="panel-heading bg-black text-white">
+				{{#if user}}
+					{{this.gamercard.gamertag}}'s Wishlist
+				{{else}}
+					Wishlist
+				{{/if}}
+			</div>
+			<div class="hbox">
+				<div class="col">
+					<ul class="list-group alt m-b-none">
+						{{#each wish}}
+						{{#if isGame}}
+							<li class="wishlist-item list-group-item">
+								<div class="media">
+									<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
+									<div class="pull-right text-success m-t-sm">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="media-body">
+										<div><a href="">{{gameName}}</a></div>
+									</div>
+								</div>
+							</li>
+						{{else}}
+							<li class="list-group-item">
+								<div class="media">
+									<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
+									<div class="pull-right text-success m-t-sm">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="media-body">
+										<div><a href="">{{acheivementName}}</a></div>
+										<small class="text-muted">about 2 minutes ago</small>
+									</div>
+								</div>
+							</li>
+						{{/if}}
+						{{/each}}
+						<!-- <li class="list-group-item">
+							<div class="media">
+								<div class="media-body">
+									<div>No trophies saved.</div>
+								</div>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+		{{/with}}
+</template>
