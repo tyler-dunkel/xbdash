@@ -25,68 +25,79 @@ Meteor.methods({
 	},
 	addToWishlist: function(type, doc) {
 		var user = Meteor.user();
-		var wishlistCount = userWishlist.find({userId: user._id}).count();
+		var wishlistCount = userWishlist.find({ userId: user._id}).count();
 		if (wishlistCount >= 10) {
-			return {status: 'confirm', error: null};
+			return { status: 'warning', title: 'Wishlist is full!', error: null };
 		}
 		if (type && type === 'game') {
-			if (userWishlist.find({userId: user._id, relationId: doc._id}).count() > 0) {
-				return {status: 'error', error: 'game already in your wishlist'};
+			if (userWishlist.find({ userId: user._id, relationId: doc._id }).count() > 0) {
+				return { status: 'error', title: 'Oops!', reason: 'Game is already in your wishlist.' };
 			}
-			userWishlist.insert({userId: user._id, type: 'game', relationId: doc._id});
-			return {status: 'ok', error: null};
+			userWishlist.insert({ userId: user._id, type: 'game', relationId: doc._id });
+			return { status: 'success', title: 'Added!', reason: 'Game has been added to your wishlist.' };
 		}
 		if (type && type === 'achievement') {
-			if (userWishlist.find({userId: user._id, relationId: doc._id}).count() > 0) {
-				return {status: 'error', error: 'acheivement already in your wishlist'};
+			if (userWishlist.find({ userId: user._id, relationId: doc._id }).count() > 0) {
+				return { status: 'error', title: 'Oops!', reason: 'Achievement is already in your wishlist.' };
 			}
-			userWishlist.insert({userId: user._id, relationId: doc._id});
-			return {status: 'ok', error: null};
+			userWishlist.insert({ userId: user._id, type: 'achievement', relationId: doc._id });
+			return { status: 'success', title: 'Added!', reason: 'Achievement has been added to your wishlist.' };
+		}
+	},
+	removeFromWishlist: function(type, doc) {
+		var user = Meteor.user();
+		if (type && type === 'game') {
+			userWishlist.remove({ userId: user._id, type: 'game', relationId: doc._id });
+			return { status: 'success', title: 'Removed!', reason: 'Game has been removed from wishlist!' };
+		}
+		if (type && type === 'achievement') {
+			userWishlist.remove({ userId: user._id, type: type, relationId: doc._id });
+			return { status: 'success', title: 'Removed!', reason: 'Achievement has been removed from wishlist!' };
 		}
 	},
 	confirmAddToWishlist: function(type, doc, removeDocId) {
 		var user = Meteor.user();
-		userWishlist.remove({userId: user._id, relationId: removeDocId});
+		userWishlist.remove({ userId: user._id, relationId: removeDocId});
 		if (type && type === 'game') {
-			userWishlist.insert({userId: user._id, type: 'game', relationId: doc._id});
-			return {status: 'ok', error: null};
+			userWishlist.insert({ userId: user._id, type: 'game', relationId: doc._id });
+			return { status: 'success', error: null };
 		}
 		if (type && type === 'achievement') {
-			userWishlist.insert({userId: user._id, relationId: doc._id});
-			return {status: 'ok', error: null};
+			userWishlist.insert({ userId: user._id, type: type, relationId: doc._id });
+			return { status: 'success', error: null };
 		}
 	},
 	addToTrophyCase: function(type, doc) {
 		var user = Meteor.user();
-		var trophyCaseCount = trophyCase.find({userId: user._id}).count();
-		if (trophyCaseCountt >= 10) {
-			return {status: 'confirm', error: null};
+		var trophyCaseCount = trophyCase.find({ userId: user._id}).count();
+		if (trophyCaseCount >= 10) {
+			return { status: 'confirm', error: null };
 		}
 		if (type && type === 'game') {
-			if (trophyCase.find({userId: user._id, relationId: doc._id}).count() > 0) {
-				return {status: 'error', error: 'game already in your trophy case'};
+			if (trophyCase.find({ userId: user._id, relationId: doc._id }).count() > 0) {
+				return { status: 'error', error: 'game already in your trophy case'};
 			}
-			trophyCase.insert({userId: user._id, type: 'game', relationId: doc._id});
-			return {status: 'ok', error: null};
+			trophyCase.insert({ userId: user._id, type: 'game', relationId: doc._id });
+			return { status: 'success', error: null };
 		}
 		if (type && type === 'achievement') {
-			if (trophyCase.find({userId: user._id, relationId: doc._id}).count() > 0) {
-				return {status: 'error', error: 'acheivement already in your trophy case'};
+			if (trophyCase.find({ userId: user._id, relationId: doc._id }).count() > 0) {
+				return { status: 'error', error: 'acheivement already in your trophy case'};
 			}
-			trophyCase.insert({userId: user._id, relationId: doc._id});
-			return {status: 'ok', error: null};
+			trophyCase.insert({ userId: user._id, type: type, relationId: doc._id });
+			return { status: 'success', error: null };
 		}
 	},
 	confirmAddToTrophyCase: function(type, doc, removeDocId) {
 		var user = Meteor.user();
-		trophyCase.remove({userId: user._id, relationId: removeDocId});
+		trophyCase.remove({ userId: user._id, relationId: removeDocId});
 		if (type && type === 'game') {
-			trophyCase.insert({userId: user._id, type: 'game', relationId: doc._id});
-			return {status: 'ok', error: null};
+			trophyCase.insert({ userId: user._id, type: 'game', relationId: doc._id });
+			return { status: 'success', error: null };
 		}
 		if (type && type === 'achievement') {
-			trophyCase.insert({userId: user._id, relationId: doc._id});
-			return {status: 'ok', error: null};
+			trophyCase.insert({ userId: user._id, type: type, relationId: doc._id });
+			return { status: 'success', error: null };
 		}
 	}
 });

@@ -30,17 +30,15 @@
 							</div>
 							{{#if chkGamerStatus}}
 								<button class="wish-list-button">add to wishlist</button>
-							{{#if chkUserForAchievement}}
-							{{#if isUnlocked}}
-								<button class="trophy-case-button">add to case</button>
-								<button class="wish-list-button">add to wishlist</button>
+								{{#if chkUserForAchievement}}
+									{{#if isUnlocked}}
+										<button class="trophy-case-button">add to case</button>
+									{{/if}}
+									<div class="share-bar">
+										<h4 class="text-black h4">Share Your Completed Achievement</h4>
+										{{> achievementShareButtons}}
+									</div>
 								{{/if}}
-								<div class="share-bar">
-									<h4 class="text-black h4">Share Your Completed Achievement</h4>
-									{{> achievementShareButtons}}
-								</div>
-							{{/if}}
-							{{/if}}
 							{{/if}}
 							<p class="h5 text-left">
 								<h4 style="text-decoration: underline;">Description:</h4>

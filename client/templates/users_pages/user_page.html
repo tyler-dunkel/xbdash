@@ -98,9 +98,7 @@
 									</div>
 									<div class="col-md-6 wrapper">
 									{{#if Template.subscriptionsReady}}
-										{{#with user}}
-											{{> userTrophyCase}}
-										{{/with}}
+										{{> userTrophyCase}}
 									{{else}}
 										{{> loadingTemplate}}
 									{{/if}}

@@ -23,6 +23,18 @@ Template.userWishlist.created = function() {
 	this.subscribe('userWishlist', gamertagSlug);
 }
 
+Template.userWishlist.helpers({
+	getUserGamertag: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		return user.gamercard.gamertag;
+	},
+	user: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	}
+});
+
 Template.userTrophyCase.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	this.subscribe('userTrophyCase', gamertagSlug);

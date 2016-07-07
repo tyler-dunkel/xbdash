@@ -64,6 +64,12 @@ Template.gamesSinglePageNew.helpers({
 		if (userGame && userGame.count() > 0) return true;
 		return false; 
 	},
+	chkUserForWishlist: function () {
+		var userId = Meteor.userId();
+		var userWish = userWishlist.findOne({ userId: userId, _id: this.gameId });
+		if (userWish && userWish.count() > 0) return true;
+		return false;
+	},
 	chkIfCompleted: function () {
 		var userId = Meteor.userId();
 		var userGame = userGames.findOne({ gameId: this.gameId, userId: userId });
@@ -71,6 +77,57 @@ Template.gamesSinglePageNew.helpers({
 	},
 	dateFormat: function () {
 		return moment(this.gameReleaseDate).format('l');
+	}
+});
+
+Template.gamesSinglePageNew.events({
+	'click .trophy-case-button': function(e) {
+		var game = xbdGames.findOne({_id: this.gameId});
+		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
+			console.log(err);
+			console.log(res);
+		});
+	},
+	'click .add-to-wish-list': function(e) {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('addToWishlist', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					swal({
+						title: res.title,
+						html: Blaze.toHTML(Template.userWishlist),
+						type: res.status,
+						customClass: 'user-wishlist',
+						confirmButtonText: 'Swap',
+						confirmButtonColor: '#138013',
+						width: 600
+					});
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-wish-list': function(e) {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('removeFromWishlist', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
 	}
 });
 
@@ -139,6 +196,21 @@ Template.gamesSingleDocHead.created = function() {
 		DocHead.addLink(linkInfo[i]);;
 	}
 }
+
+Template.gameSingleUserWishlist.created = function() {
+	var gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('userWishlist', gamertagSlug);
+}
+
+Template.gameSingleUserWishlist.helpers({
+	user: function () {
+		var gamertagSlug = Meteor.user().gamertagSlug;
+		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	},
+	wish: function () {
+		return userWishlist.find({ userId: this._id });
+	}
+});
 
 Template.userGamerscoreInfoNew.created = function() {
 }
@@ -255,6 +327,25 @@ Template.gamesSinglePageAchievementNew.helpers({
 			trophyClass = "trophy";
 		}
 		return trophyClass;
+	}
+});
+
+Template.gamesSinglePageAchievementNew.events({
+	"click .achievement-next": function(event) {
+		var button = $(event.currentTarget);
+		if (button.hasClass('disabled')) {
+			return;
+		}
+		var currentCount = Template.instance().achievementShowNext.get();
+		Template.instance().achievementShowNext.set(currentCount + 7);
+	},
+	"click .achievement-previous": function(event) {
+		var button = $(event.currentTarget);
+		if (button.hasClass('disabled')) {
+			return;
+		}
+		var currentCount = Template.instance().achievementShowNext.get();
+		Template.instance().achievementShowNext.set(currentCount - 7);
 	}
 });
 

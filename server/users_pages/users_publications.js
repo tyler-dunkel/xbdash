@@ -232,12 +232,12 @@ Meteor.publishComposite('userWishlist', function(gamertagSlug) {
 				},
 				children: [
 					{
-						find: function(wishList) {
-							if (wishList.type === 'game') {
-								return xbdGame.find({_id: wishList.relationId});
+						find: function(wishlist) {
+							if (wishlist.type === 'game') {
+								return xbdGame.find({_id: wishlist.relationId});
 							} 
-							if (wishList.type === 'achievement') {
-								return xbdAchievements.find({_id: wishList.relationId});
+							if (wishlist.type === 'achievement') {
+								return xbdAchievements.find({_id: wishlist.relationId});
 							}
 						}
 					}
@@ -260,12 +260,12 @@ Meteor.publishComposite('userTrophyCase', function(gamertagSlug) {
 				},
 				children: [
 					{
-						find: function(wishList) {
-							if (wishList.type === 'game') {
-								return xbdGame.find({_id: wishList.relationId});
+						find: function(trophy) {
+							if (trophy.type === 'game') {
+								return xbdGame.find({ _id: trophy.relationId });
 							} 
-							if (wishList.type === 'achievement') {
-								return xbdAchievements.find({_id: wishList.relationId});
+							if (trophy.type === 'achievement') {
+								return xbdAchievements.find({ _id: trophy.relationId });
 							}
 						}
 					}

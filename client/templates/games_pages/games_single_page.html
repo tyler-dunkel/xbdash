@@ -15,6 +15,18 @@
 									</a>
 									<div class="clear m-t-xxxl">
 										<h1 class="font-thin h3 text-black m-b-xs line-clamp-3">{{gameName}}</h1>
+										{{#if chkGamerStatus}}
+											{{#if chkUserForGame}}
+												{{#if chkIfCompleted}}
+													<button class="trophy-case-button">add to case</button>
+												{{/if}}
+											{{/if}}
+											{{#if chkUserForWishlist}}
+												<button class="remove-from-wish-list">remove from wishlist</button>
+											{{else}}
+												<button class="add-to-wish-list">add to wishlist</button>
+											{{/if}}
+										{{/if}}
 										<small class="text-muted">Platform: {{gamePlatform}}</small>
 									</div>
 								</div>
