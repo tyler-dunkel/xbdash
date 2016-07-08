@@ -1,4 +1,28 @@
-<template name="confirmWishlist">
+<template name="rightConfirmShelf">
+	<div class="menu-wrap">
+		<div class="menu">
+			<div><span class="h4">Editing Wishlist</span></div>
+			<div class="icon-list">
+			{{#if Template.subscriptionsReady}}
+				{{#each wish}}
+					{{debug}}
+					{{#if isGame}}
+						<a href="#" class="swap-item"><img src="" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>{{gameName}}</span></a>
+					{{else}}
+						<a href="#" class="swap-item"><img src="" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>{{gameName}}</span></a>
+					{{/if}}
+				{{/each}}
+			{{/if}}
+			</div>
+			<button class="submit-swap">swap'em</button>
+		</div>
+		<button class="close-button" id="menu-close-button">Close Menu</button>
+	</div>
+</template>
+
+
+
+<!-- <template name="rightConfirmShelf">
 	<p>test</p>
 		{{#with user}}
 		<div class="panel panel-black">
@@ -40,16 +64,16 @@
 							</li>
 						{{/if}}
 						{{/each}}
-						<!-- <li class="list-group-item">
+						<li class="list-group-item">
 							<div class="media">
 								<div class="media-body">
 									<div>No trophies saved.</div>
 								</div>
 							</div>
-						</li> -->
+						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		{{/with}}
-</template>
+</template> -->

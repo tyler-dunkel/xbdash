@@ -1,5 +1,4 @@
 <template name="gamesSinglePageNew">
-	{{> wishListMenu}}
 	<div id="content" class="app-content single-games-page" role="main">
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
@@ -31,6 +30,7 @@
 													<button class="" id="menu-open-button">add to wishlist (id)</button>
 												{{/if}}
 											{{/if}}
+											{{> rightConfirmShelf}}
 										{{/if}}
 										<small class="text-muted">Platform: {{gamePlatform}}</small>
 									</div>
@@ -131,21 +131,6 @@
 </template>
 
 <template name="gamesSingleDocHead"></template>
-
-<template name="wishListMenu">
-	<div class="menu-wrap">
-		<div class="menu">
-			<div><span class="h4">Editing Wishlist</span></div>
-			<div class="icon-list">
-				<a href="#"><img src="{{getWishImage}}" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>Favorites</span></a>
-				<a href="#"><img src="{{getWishImage}}" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>Alerts</span></a>
-				<a href="#"><img src="{{getWishImage}}" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>Messages</span></a>
-				<a href="#"><img src="{{getWishImage}}" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>Comments</span></a>
-			</div>
-		</div>
-		<button class="close-button" id="menu-close-button">Close Menu</button>
-	</div>
-</template>
 
 <template name="userGamerscoreInfoNew">
     <h4 class="text-black h4 m-b-sm">Your Progress</h4>

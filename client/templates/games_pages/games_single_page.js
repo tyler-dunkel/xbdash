@@ -98,15 +98,7 @@ Template.gamesSinglePageNew.events({
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
-					swal({
-						title: res.title,
-						html: Blaze.toHTML(Template.confirmWishlist),
-						type: res.status,
-						customClass: 'user-wishlist',
-						confirmButtonText: 'Swap',
-						confirmButtonColor: '#138013',
-						width: 600
-					});
+					$('.app-header-fixed').addClass('show-menu');
 					return;
 				} else {
 					swal({
