@@ -84,50 +84,6 @@ Template.gamesSinglePageNew.helpers({
 	}
 });
 
-Template.gamesSinglePageNew.events({
-	'click .trophy-case-button': function(e) {
-		var game = xbdGames.findOne({_id: this.gameId});
-		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
-			console.log(err);
-			console.log(res);
-		});
-	},
-	'click .add-to-wish-list': function(e) {
-		var game = xbdGames.findOne({ _id: this.gameId });
-		Meteor.call('addToWishlist', 'game', game, function(err, res) {
-			if (err) return;
-			if (res) {
-				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('show-menu');
-					return;
-				} else {
-					swal({
-						title: res.title,
-						text: res.reason,
-						type: res.status
-					});
-					return;
-				}
-			}
-		});
-	},
-	'click .remove-from-wish-list': function(e) {
-		var self = this;
-		var game = xbdGames.findOne({ _id: this.gameId });
-		Meteor.call('removeFromWishlist', 'game', game, function(err, res) {
-			if (err) return;
-			if (res) {
-				swal({
-					title: res.title,
-					text: res.reason,
-					type: res.status
-				});
-				return;
-			}
-		});
-	}
-});
-
 Template.gamesSingleDocHead.created = function() {
 	var slug = Router.current().params.slug;
 	var game = xbdGames.findOne({ slug: slug });
@@ -392,5 +348,72 @@ Template.gameShareButtons.helpers({
 	},
 	getHashTags: function() {
 		return 'xbox,xbdash,gamerscore';
+	}
+});
+
+Template.wishlistArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleGame', slug);
+	this.subscribe('userWishlist', gamertagSlug);
+}
+
+Template.wishlistArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userGame = userGames.findOne({ gameId: this.gameId, userId: userId });
+		if (userGame) {
+			return userGame.completed;
+		}
+	},
+	chkUserWishlist: function() {
+		var wishlistCount = userWishlists.find({userId: Meteor.userId(), relationId: this.gameId}).count();
+		if (wishlistCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.wishlistArea.events({
+	'click .trophy-case-button': function(e) {
+		var game = xbdGames.findOne({_id: this.gameId});
+		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
+			console.log(err);
+			console.log(res);
+		});
+	},
+	'click .add-to-wish-list': function(e) {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('addToWishlist', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-menu');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-wish-list': function(e) {
+		var self = this;
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('removeFromWishlist', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
 	}
 });

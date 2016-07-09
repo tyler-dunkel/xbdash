@@ -21,16 +21,6 @@
 													<button class="trophy-case-button">add to case</button>
 												{{/if}}
 											{{/if}}
-											{{#if chkIfCompleted}}
-											{{else}}
-												{{#if chkUserWishlist}}
-													<button class="remove-from-wish-list">remove from wishlist</button>
-												{{else}}
-													<button class="add-to-wish-list" id="">add to wishlist (class)</button>
-													<button class="" id="menu-open-button">add to wishlist (id)</button>
-												{{/if}}
-											{{/if}}
-											{{> rightConfirmShelf}}
 										{{/if}}
 										<small class="text-muted">Platform: {{gamePlatform}}</small>
 									</div>
@@ -60,8 +50,18 @@
 							</div>
 						</div>
 					</div>
+					{{#if chkGamerStatus}}
+					<div class="bg-white b-b text-center hidden-lg hidden-md hidden-sm visible-xs-block">
+						{{> wishlistArea}}
+					</div>
+					{{/if}}
 					<div class="bg-white b-b">
-						<ul class="nav nav-tabs" role="tablist">
+						<ul class="nav nav-tabs inline" role="tablist">
+							{{#if chkGamerStatus}}
+							<li class="pull-left visible-lg visible-md visible-sm hidden-xs">
+								{{> wishlistArea}}
+							</li>
+							{{/if}}
 							<li role="achievements" class="active"><a href="#game-achievements" aria-controls="game-achievements" role="tab" data-toggle="tab">Achievements</a></li>
 							<li role="info"><a href="#game-info" aria-controls="game-info" role="tab" data-toggle="tab">Info</a></li>
 							{{#if chkUserForGame}}
@@ -250,4 +250,17 @@
 			</li>
 		</ul>
 	</div>
+</template>
+
+<template name="wishlistArea">
+	{{#if chkIfCompleted}}
+	{{else}}
+		{{#if chkUserWishlist}}
+			<button class="padder-as btn btn-success remove-from-wish-list">remove from wishlist</button>
+		{{else}}
+			<button class="padder-as btn btn-success add-to-wish-list" id="">add to wishlist (class)</button>
+			<button class="padder-as btn btn-success" id="menu-open-button">add to wishlist (id)</button>
+		{{/if}}
+	{{/if}}
+	{{> rightConfirmShelf}}
 </template>

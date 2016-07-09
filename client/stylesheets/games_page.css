@@ -2,6 +2,7 @@
 .single-games-page .thumb-xxl { width: 170px; }
 .single-games-page .padder-vv-xbd { padding: 39px 20px; }
 .single-games-page .padder-vv-ixbd { margin-top: 70px; padding: 0; }
+.single-games-page .padder-as { padding: 10px 15px 9px; border-radius: 0 }
 .single-games-page .nav-tabs { border-bottom: 2px solid #DDD; }
 .single-games-page .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
 .single-games-page .nav-tabs > li > a { border: none; color: #666; padding: 10px 20px; margin-right: 0; }
@@ -18,10 +19,11 @@
 .single-games-page .games-page-news .list-group-item .clear .title-wrap-news { margin: 0 0 10px; font-size: 18px; font-weight: bold; }
 .single-games-page .games-page-news .list-group-item .clear small { font-size: 12px; }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.single-games-page .m-t-xxxl { margin-top: 0; padding-top: 0; }
+	.single-games-page h3, .single-games-page .h3 { font-size: 22px; }
 	.single-games-page .padder-vv-xbd { padding: 10px 20px; }
-	.single-games-page .padder-vv-ixbd { margin-top: 0; padding: 15px 0 0; }
+	.single-games-page .padder-vv-ixbd { margin-top: 0; padding: 5px 0 0; }
 }
 
 @media (max-width: 500px) {

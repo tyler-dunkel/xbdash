@@ -1,26 +1,47 @@
 <template name="rightConfirmShelf">
 	<div class="menu-wrap">
-		<div class="menu">
-			<div><span class="h4">Editing Wishlist</span></div>
-			<div class="icon-list">
-			{{#if Template.subscriptionsReady}}
-				{{#each wish}}
-					{{debug}}
-					{{#if isGame}}
-						<a href="#" class="swap-item"><img src="" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>{{gameName}}</span></a>
-					{{else}}
-						<a href="#" class="swap-item"><img src="" alt="{{wishName}}" style="width: 32px; height: 32px;" /><span>{{gameName}}</span></a>
-					{{/if}}
-				{{/each}}
-			{{/if}}
+		<div class="table-responsive">
+			<table class="table table-striped b-t b-light">
+				<thead>
+					<tr>
+						<th style="width:20px;"></th>
+						<th class="h4">Editing Wishlist</th>
+					</tr>
+				</thead>
+				<tbody>
+				{{#if Template.subscriptionsReady}}
+					{{#each wish}}
+						{{debug}}
+						{{#if isGame}}
+							<tr>
+								<td class="text-center">
+									<label class="i-checks m-b-none">
+										<input type="checkbox"><i></i>
+									</label>
+								</td>
+								<td><img src="" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{gameName}}</span></td>
+							</tr>
+						{{else}}
+							<tr>
+								<td class="text-center">
+									<label class="i-checks m-b-none">
+										<input type="checkbox"><i></i>
+									</label>
+								</td>
+								<td><img src="" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{gameName}}</span></td>
+							</tr>
+						{{/if}}
+					{{/each}}
+				{{/if}}
+				</tbody>
+				<button class="btn btn-warning submit-swap">swap'em</button>
+			</table>
+			<div class="text-center">
+				<button class="close-button" id="menu-close-button">Close Menu</button>
 			</div>
-			<button class="submit-swap">swap'em</button>
 		</div>
-		<button class="close-button" id="menu-close-button">Close Menu</button>
 	</div>
 </template>
-
-
 
 <!-- <template name="rightConfirmShelf">
 	<p>test</p>
