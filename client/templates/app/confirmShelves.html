@@ -1,11 +1,11 @@
-<template name="rightConfirmShelf">
+<template name="wishlistConfirmShelf">
 	<div class="menu-wrap">
 		<div class="table-responsive">
 			<table class="table table-striped b-t b-light">
 				<thead>
 					<tr>
 						<th style="width:20px;"></th>
-						<th class="h4">Editing Wishlist</th>
+						<th class="h4">Your wishlist is full! would you like to swap one?</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -16,19 +16,19 @@
 							<tr>
 								<td class="text-center">
 									<label class="i-checks m-b-none">
-										<input type="checkbox"><i></i>
+										<input class="swap-item" type="checkbox"><i></i>
 									</label>
 								</td>
-								<td><img src="" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{gameName}}</span></td>
+								<td><img src="{{gameImage}}" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{gameName}}</span></td>
 							</tr>
 						{{else}}
 							<tr>
 								<td class="text-center">
 									<label class="i-checks m-b-none">
-										<input type="checkbox"><i></i>
+										<input class="swap-item" type="checkbox"><i></i>
 									</label>
 								</td>
-								<td><img src="" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{gameName}}</span></td>
+								<td><img src="{{achievementImage}}" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{achievementName}}</span></td>
 							</tr>
 						{{/if}}
 					{{/each}}
@@ -43,7 +43,7 @@
 	</div>
 </template>
 
-<!-- <template name="rightConfirmShelf">
+<!-- <template name="wishlistConfirmShelf">
 	<p>test</p>
 		{{#with user}}
 		<div class="panel panel-black">

@@ -29,7 +29,12 @@
 								<strong>{{getValue}}</strong> Gamerscore
 							</div>
 							{{#if chkGamerStatus}}
-								<button class="wish-list-button">add to wishlist</button>
+								{{> wishlistConfirmShelf}}
+								{{#if chkUserWishlist}}
+									<button class="remove-from-wish-list">remove from wishlist</button>
+								{{else}}
+									<button class="wish-list-button">add to wishlist</button>
+								{{/if}}
 								{{#if chkUserForAchievement}}
 									{{#if isUnlocked}}
 										<button class="trophy-case-button">add to case</button>

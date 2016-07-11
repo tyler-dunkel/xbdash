@@ -22,39 +22,6 @@ Meteor.methods({
 	notificationRead: function(_id) {
 		var readAt = new Date();
 		Notifications.update({_id: _id}, {$set: {read: true, readAt: readAt}});
-	},
-	addToTrophyCase: function(type, doc) {
-		var user = Meteor.user();
-		var trophyCaseCount = trophyCase.find({ userId: user._id}).count();
-		if (trophyCaseCount >= 10) {
-			return { status: 'confirm', error: null };
-		}
-		if (type && type === 'game') {
-			if (trophyCase.find({ userId: user._id, relationId: doc._id }).count() > 0) {
-				return { status: 'error', error: 'game already in your trophy case'};
-			}
-			trophyCase.insert({ userId: user._id, type: 'game', relationId: doc._id });
-			return { status: 'success', error: null };
-		}
-		if (type && type === 'achievement') {
-			if (trophyCase.find({ userId: user._id, relationId: doc._id }).count() > 0) {
-				return { status: 'error', error: 'acheivement already in your trophy case'};
-			}
-			trophyCase.insert({ userId: user._id, type: type, relationId: doc._id });
-			return { status: 'success', error: null };
-		}
-	},
-	confirmAddToTrophyCase: function(type, doc, removeDocId) {
-		var user = Meteor.user();
-		trophyCase.remove({ userId: user._id, relationId: removeDocId});
-		if (type && type === 'game') {
-			trophyCase.insert({ userId: user._id, type: 'game', relationId: doc._id });
-			return { status: 'success', error: null };
-		}
-		if (type && type === 'achievement') {
-			trophyCase.insert({ userId: user._id, type: type, relationId: doc._id });
-			return { status: 'success', error: null };
-		}
 	}
 });
 

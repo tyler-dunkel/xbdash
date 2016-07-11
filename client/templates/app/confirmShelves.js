@@ -1,36 +1,27 @@
-Template.rightConfirmShelf.created = function() {
+Template.wishlistConfirmShelf.created = function() {
 	this.removeId = ReactiveVar('');
-	this.type = ReactiveVar('');
+	this.type = ReactiveVar(Router.current().route.getName());
 	this.isOpen = false;
 	var gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('userWishlist', gamertagSlug);
 }
 
 
-Template.rightConfirmShelf.rendered = function() {
+Template.wishlistConfirmShelf.rendered = function() {
 	var self = this;
 	$('#menu-open-button').on('click', function(e) {
 		$('.app-header-fixed').toggleClass('show-menu');
-		// if (self.isOpen) {
-		// 	$('.app-header-fixed').removeClass('show-menu');
-		// } else {
-		// 	$('.app-header-fixed').addClass('show-menu');
-		// }
-		// self.isOpen = !self.isOpen;
 	});
 
 	$('.app-content').on('click',function(e) {
-		console.log('fired app content click');
 		var	target = e.target;
-		console.log($(e.target).closest('.menu-wrap').length);
 		if( $('.app-header-fixed').hasClass('show-menu') && target !== $('#menu-open-button' )[0] && !$(e.target).closest('.menu-wrap').length) {
 			$('.app-header-fixed').toggleClass('show-menu');
-			// self.isOpen = !self.isOpen;
 		}
 	});
 }
 
-Template.rightConfirmShelf.helpers({
+Template.wishlistConfirmShelf.helpers({
 	user: function() {
 		return Meteor.user();
 	},
@@ -40,9 +31,9 @@ Template.rightConfirmShelf.helpers({
 		return wishes;
 	},
 	debug: function() {
-		console.log(this);
 	},
 	isGame: function() {
+		console.log(this.type);
 		if (this.type === 'game') {
 			return true;
 		}
@@ -55,37 +46,74 @@ Template.rightConfirmShelf.helpers({
 			return 'N/A';
 		}
 	},
+	gameImage: function() {
+		var game = xbdGames.findOne({ _id: this.relationId }),
+			gameDetail = gameDetails.findOne({gameId: this.relationId});
+			image = "https://www.xbdash.com/img/game-default.jpg";
+
+		if (game.platform === 'Xenon') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BoxArt' && art.Width === 219) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/h_628,c_scale/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		if (game.platform === 'Durango') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+
+		return image;
+	},
+	acheivementImage: function() {
+	},
 	achievementName: function() {
+		console.log('this helper');
 		var achievement = xbdAchievements.findOne({_id: this.relationId});
 		if (achievement) {
-			return acheivement.name;
+			return achievement.name;
 		} else {
 			return 'N/A';
 		}
 	}
 });
 
-Template.rightConfirmShelf.events({
+Template.wishlistConfirmShelf.events({
 	"click .swap-item": function(e) {
-		console.log(this);
+		console.log('fired');
 		$(e.currentTarget).addClass('acitve');
+		console.log(this);
 		Template.instance().removeId.set(this.relationId);
-		Template.instance().type.set(this.type);
 	},
 	"click .submit-swap": function(e) {
+		//console.log('fired');
 		var tempInstance = Template.instance(),
-			doc = xbdGames.findOne({_id: Template.instance().data.gameId}),
+			doc,
 			removeId = tempInstance.removeId.get(),
 			type = tempInstance.type.get();
+
+		console.log(removeId);
 		if (removeId === '') {
 			return;
 		}
-		console.log(tempInstance);
-		//console.log(doc);
+		console.log('running swap');
+		if (type === 'achievement') {
+			doc = xbdAchievements.findOne({_id: tempInstance.data._id});
+		} else {
+			doc = xbdGames.findOne({_id: tempInstance.data.gameId});
+		}
+		console.log(doc);
 		Meteor.call('confirmAddToWishlist', type, doc, removeId, function(err, res) {
 			tempInstance.removeId.set('');
-			console.log(err);
-			console.log(res);
+			$('.app-header-fixed').toggleClass('show-menu');
+			swal({
+				title: res.title,
+				text: res.reason,
+				type: res.status
+			});
 		});
 	},
 	"click #menu-close-button": function() {

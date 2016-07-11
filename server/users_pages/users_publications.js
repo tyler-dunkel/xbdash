@@ -240,6 +240,13 @@ Meteor.publishComposite('userWishlist', function(gamertagSlug) {
 								return xbdAchievements.find({_id: wishlist.relationId});
 							}
 						}
+					},
+					{
+						find: function(wishlist) {
+							if (wishlist.type === 'game') {
+								return gameDetails.find({ gameId: wishlist.relationId });
+							}
+						}
 					}
 				]
 			}
@@ -266,6 +273,13 @@ Meteor.publishComposite('userTrophyCase', function(gamertagSlug) {
 							} 
 							if (trophy.type === 'achievement') {
 								return xbdAchievements.find({ _id: trophy.relationId });
+							}
+						}					
+					},
+					{
+						find: function(trophy) {
+							if (trophy.type === 'game') {
+								return gameDetails.find({ gameId: trophy.relationId });
 							}
 						}
 					}

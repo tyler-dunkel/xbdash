@@ -5,6 +5,7 @@ Template.gamesSinglePageNew.created = function() {
 		gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('singleGame', slug);
 	this.subscribe('userWishlist', gamertagSlug);
+	this.subscribe('userTrophyCase', gamertagSlug);
 }
 
 Template.gamesSinglePageNew.helpers({
@@ -81,6 +82,28 @@ Template.gamesSinglePageNew.helpers({
 	},
 	dateFormat: function () {
 		return moment(this.gameReleaseDate).format('l');
+	}
+});
+
+Template.gamesSinglePageNew.events({
+	'click .trophy-case-button': function(e) {
+		console.log(this);
+		var game = xbdGames.findOne({_id: this.gameId});
+		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-menu');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
 	}
 });
 
@@ -375,14 +398,8 @@ Template.wishlistArea.helpers({
 });
 
 Template.wishlistArea.events({
-	'click .trophy-case-button': function(e) {
-		var game = xbdGames.findOne({_id: this.gameId});
-		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
-			console.log(err);
-			console.log(res);
-		});
-	},
 	'click .add-to-wish-list': function(e) {
+		console.log(this);
 		var game = xbdGames.findOne({ _id: this.gameId });
 		Meteor.call('addToWishlist', 'game', game, function(err, res) {
 			if (err) return;
