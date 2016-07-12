@@ -4,3 +4,10 @@
 	width: auto;
 	margin: 0;
 }
+
+.wishlist-popup .btn-default:hover,
+.wishlist-popup .btn-default:focus,
+.trophy-case-popup .btn-default:hover,
+.trophy-case-popup .btn-default:focus {
+	background-position: 0 -50px;
+}

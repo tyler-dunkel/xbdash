@@ -19,7 +19,6 @@
 .single-games-page .games-page-news .list-group-item .clear { display: block; padding: 15px; }
 .single-games-page .games-page-news .list-group-item .clear .title-wrap-news { margin: 0 0 10px; font-size: 18px; font-weight: bold; }
 .single-games-page .games-page-news .list-group-item .clear small { font-size: 12px; }
-.single-games-page .wishlist-popup .btn-default:hover, .single-games-page .wishlist-popup .btn-default:focus { background-position: 0 -50px; }
 
 @media (max-width: 767px) {
 	.single-games-page .m-t-xxxl { margin-top: 0; padding-top: 0; }
