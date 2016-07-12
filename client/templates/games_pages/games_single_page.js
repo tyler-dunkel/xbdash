@@ -68,7 +68,7 @@ Template.gamesSinglePageNew.helpers({
 		return false; 
 	},
 	chkUserWishlist: function() {
-		var wishlistCount = userWishlists.find({userId: Meteor.userId(), relationId: this.gameId}).count();
+		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
 		if (wishlistCount > 0) {
 			return true;
 		}
@@ -88,7 +88,7 @@ Template.gamesSinglePageNew.helpers({
 Template.gamesSinglePageNew.events({
 	'click .trophy-case-button': function(e) {
 		console.log(this);
-		var game = xbdGames.findOne({_id: this.gameId});
+		var game = xbdGames.findOne({_id: this.gameId });
 		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
 			if (res) {
 				if (res.status === 'warning') {
@@ -390,7 +390,7 @@ Template.wishlistArea.helpers({
 		}
 	},
 	chkUserWishlist: function() {
-		var wishlistCount = userWishlists.find({userId: Meteor.userId(), relationId: this.gameId}).count();
+		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
 		if (wishlistCount > 0) {
 			return true;
 		}
@@ -405,7 +405,7 @@ Template.wishlistArea.events({
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('show-menu');
+					$('.app-header-fixed').addClass('wishlist-popup');
 					return;
 				} else {
 					swal({
@@ -422,6 +422,67 @@ Template.wishlistArea.events({
 		var self = this;
 		var game = xbdGames.findOne({ _id: this.gameId });
 		Meteor.call('removeFromWishlist', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
+	}
+});
+
+Template.trophyCaseArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleGame', slug);
+	this.subscribe('userTrophyCase', gamertagSlug);
+}
+
+Template.trophyCaseArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userGame = userGames.findOne({ gameId: this.gameId, userId: userId });
+		if (userGame) {
+			return userGame.completed;
+		}
+	},
+	chkUserTrophyCase: function() {
+		var wishlistCount = userTrophyCase.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
+		if (wishlistCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.trophyCaseArea.events({
+	'click .add-to-trophy-case': function(e) {
+		console.log(this);
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('trophy-case-popup');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-trophy-case': function(e) {
+		var self = this;
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('removeFromTrophyCase', 'game', game, function(err, res) {
 			if (err) return;
 			if (res) {
 				swal({

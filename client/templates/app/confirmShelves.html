@@ -1,100 +1,53 @@
-<template name="wishlistConfirmShelf">
-	<div class="menu-wrap">
-		<div class="table-responsive">
-			<table class="table table-striped b-t b-light">
-				<thead>
-					<tr>
-						<th style="width:20px;"></th>
-						<th class="h4">Your wishlist is full! would you like to swap one?</th>
-					</tr>
-				</thead>
-				<tbody>
-				{{#if Template.subscriptionsReady}}
-					{{#each wish}}
-						{{debug}}
-						{{#if isGame}}
-							<tr>
-								<td class="text-center">
-									<label class="i-checks m-b-none">
-										<input class="swap-item" type="checkbox"><i></i>
-									</label>
-								</td>
-								<td><img src="{{gameImage}}" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{gameName}}</span></td>
-							</tr>
-						{{else}}
-							<tr>
-								<td class="text-center">
-									<label class="i-checks m-b-none">
-										<input class="swap-item" type="checkbox"><i></i>
-									</label>
-								</td>
-								<td><img src="{{achievementImage}}" alt="{{wishName}}" style="width: 32px; height: 32px; margin-bottom: 5px;" /><span>{{achievementName}}</span></td>
-							</tr>
-						{{/if}}
-					{{/each}}
-				{{/if}}
-				</tbody>
-				<button class="btn btn-warning submit-swap">swap'em</button>
-			</table>
-			<div class="text-center">
-				<button class="close-button" id="menu-close-button">Close Menu</button>
-			</div>
+<template name="wishlistPopup">
+	<div class="wishlist-popup">
+		<h4 class="h4 m-t-sm m-b-xs">Your wishlist is full!</h4>
+		<p class="m-b-md">Please swap a game or achievement.</p>
+		<div class="btn-group-inline m-b-sm">
+			{{#if Template.subscriptionsReady}}
+				{{#each wish}}
+					{{debug}}
+					{{#if isGame}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{gameImage}}" alt="{{gameName}}" class="pull-left" style="max-width: auto; height: 32px;" />
+							<div style="margin: 5px;">{{gameName}}</div>
+						</a>
+					{{else}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{achievementImage}}" alt="{{achievementName}}" class="pull-left" style="max-width: auto; height: 32px;" />
+							<div style="margin: 5px;">{{achievementName}}</div>
+						</a>
+					{{/if}}
+				{{/each}}
+			{{/if}}
+			<button class="btn btn-success btn-block m-t-md m-b-md submit-swap">Swap'em</button>
 		</div>
+		<button class="close-button" id="menu-close-button">Close Menu</button>
 	</div>
 </template>
 
-<!-- <template name="wishlistConfirmShelf">
-	<p>test</p>
-		{{#with user}}
-		<div class="panel panel-black">
-			<div class="panel-heading bg-black text-white">
-				{{#if user}}
-					{{this.gamercard.gamertag}}'s Wishlist
-				{{else}}
-					Wishlist
-				{{/if}}
-			</div>
-			<div class="hbox">
-				<div class="col">
-					<ul class="list-group alt m-b-none">
-						{{#each wish}}
-						{{#if isGame}}
-							<li class="wishlist-item list-group-item">
-								<div class="media">
-									<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
-									<div class="pull-right text-success m-t-sm">
-										<i class="fa fa-circle"></i>
-									</div>
-									<div class="media-body">
-										<div><a href="">{{gameName}}</a></div>
-									</div>
-								</div>
-							</li>
-						{{else}}
-							<li class="list-group-item">
-								<div class="media">
-									<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
-									<div class="pull-right text-success m-t-sm">
-										<i class="fa fa-circle"></i>
-									</div>
-									<div class="media-body">
-										<div><a href="">{{acheivementName}}</a></div>
-										<small class="text-muted">about 2 minutes ago</small>
-									</div>
-								</div>
-							</li>
-						{{/if}}
-						{{/each}}
-						<li class="list-group-item">
-							<div class="media">
-								<div class="media-body">
-									<div>No trophies saved.</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
+<template name="trophyCasePopup">
+	<div class="trophy-case-popup">
+		<h4 class="h4 m-t-sm m-b-xs">Your trophy case is full!</h4>
+		<p class="m-b-md">Please swap a game or achievement.</p>
+		<div class="btn-group-inline m-b-sm">
+			{{#if Template.subscriptionsReady}}
+				{{#each trophy}}
+					{{debug}}
+					{{#if isGame}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{gameImage}}" alt="{{gameName}}" class="pull-left" style="max-width: auto; height: 32px;" />
+							<div style="margin: 5px;">{{gameName}}</div>
+						</a>
+					{{else}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{achievementImage}}" alt="{{achievementName}}" class="pull-left" style="max-width: auto; height: 32px;" />
+							<div style="margin: 5px;">{{achievementName}}</div>
+						</a>
+					{{/if}}
+				{{/each}}
+			{{/if}}
+			<button class="btn btn-success btn-block m-t-md m-b-md submit-swap">Swap'em</button>
 		</div>
-		{{/with}}
-</template> -->
+		<button class="close-button" id="menu-close-button">Close Menu</button>
+	</div>
+</template>

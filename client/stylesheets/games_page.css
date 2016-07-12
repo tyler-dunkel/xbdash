@@ -2,7 +2,8 @@
 .single-games-page .thumb-xxl { width: 170px; }
 .single-games-page .padder-vv-xbd { padding: 39px 20px; }
 .single-games-page .padder-vv-ixbd { margin-top: 70px; padding: 0; }
-.single-games-page .padder-as { padding: 10px 15px 9px; border-radius: 0 }
+.single-games-page .padder-as { padding: 7px 15px; border-radius: 0; }
+.single-games-page .padder-t { padding-bottom: 10px; padding-top: 10px; }
 .single-games-page .nav-tabs { border-bottom: 2px solid #DDD; }
 .single-games-page .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
 .single-games-page .nav-tabs > li > a { border: none; color: #666; padding: 10px 20px; margin-right: 0; }
@@ -18,6 +19,7 @@
 .single-games-page .games-page-news .list-group-item .clear { display: block; padding: 15px; }
 .single-games-page .games-page-news .list-group-item .clear .title-wrap-news { margin: 0 0 10px; font-size: 18px; font-weight: bold; }
 .single-games-page .games-page-news .list-group-item .clear small { font-size: 12px; }
+.single-games-page .wishlist-popup .btn-default:hover, .single-games-page .wishlist-popup .btn-default:focus { background-position: 0 -50px; }
 
 @media (max-width: 767px) {
 	.single-games-page .m-t-xxxl { margin-top: 0; padding-top: 0; }
