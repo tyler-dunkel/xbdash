@@ -28,7 +28,6 @@ Template.wishlistPopup.helpers({
 	},
 	wish: function() {
 		var wishes = userWishlists.find({ userId: Meteor.userId() });
-		console.log(wishes.fetch());
 		return wishes;
 	},
 	debug: function() {
@@ -78,11 +77,12 @@ Template.wishlistPopup.helpers({
 			return 'N/A';
 		}
 	},
-	acheivementImage: function() {
+	achievementImage: function() {
+		console.log('fired for it');
 		var image = "https://www.xbdash.com/img/achievement-default.jpg";
 		var achievement = xbdAchievements.findOne({ _id: this.relationId });
 		if (achievement && achievement.mediaAssets) {
-			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(this.mediaAssets);
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(achievement.mediaAssets);
 		}
 		return image;
 	}
@@ -213,6 +213,13 @@ Template.trophyCasePopup.helpers({
 		}
 	},
 	acheivementImage: function() {
+		console.log('fired for it');
+		var image = "https://www.xbdash.com/img/achievement-default.jpg";
+		var achievement = xbdAchievements.findOne({ _id: this.relationId });
+		if (achievement && achievement.mediaAssets) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(achievement.mediaAssets);
+		}
+		return image;
 	}
 });
 
