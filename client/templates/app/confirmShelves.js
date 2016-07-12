@@ -79,6 +79,12 @@ Template.wishlistPopup.helpers({
 		}
 	},
 	acheivementImage: function() {
+		var image = "https://www.xbdash.com/img/achievement-default.jpg";
+		var achievement = xbdAchievements.findOne({ _id: this.relationId });
+		if (achievement && achievement.mediaAssets) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_1366,h_768/" + encodeURIComponent(this.mediaAssets);
+		}
+		return image;
 	}
 });
 
