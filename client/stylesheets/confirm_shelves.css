@@ -11,3 +11,12 @@
 .trophy-case-popup .btn-default:focus {
 	background-position: 0 -50px;
 }
+
+.wishlist-popup .name-truncate,
+.trophy-case-popup .name-truncate {
+	width: 220px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-left: 10px;
+}

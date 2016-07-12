@@ -29,11 +29,13 @@
 								<strong>{{getValue}}</strong> Gamerscore
 							</div>
 							{{#if chkGamerStatus}}
+								<div class="bg-white b-b text-center padder-t">
 								{{> achievementWishlistArea}}
 								{{#if chkUserForAchievement}}
-									<div class="bg-white b-b text-center padder-t">
-										{{> achievementTrophyCaseArea}}
-									</div>
+									{{> achievementTrophyCaseArea}}
+								{{/if}}
+								</div>
+								{{#if chkUserForAchievement}}
 									<div class="share-bar">
 										<h4 class="text-black h4">Share Your Completed Achievement</h4>
 										{{> achievementShareButtons}}
@@ -120,7 +122,7 @@
 	{{#if chkIfCompleted}}
 	{{else}}
 		{{#if chkUserWishlist}}
-			<button class="padder-as btn btn-success remove-from-wish-list">Remove from Wishlist</button>
+			<button class="padder-as btn btn-danger remove-from-wish-list">Remove from Wishlist</button>
 		{{else}}
 			<button class="padder-as btn btn-success add-to-wish-list" id="">Add to Wishlist</button>
 			{{> wishlistPopup}}
@@ -131,7 +133,7 @@
 <template name="achievementTrophyCaseArea">
 	{{#if chkIfCompleted}}
 		{{#if chkUserTrophyCase}}
-			<button class="padder-as btn btn-success remove-from-trophy-case">Remove from Trophy Case</button>
+			<button class="padder-as btn btn-danger remove-from-trophy-case">Remove from Trophy Case</button>
 		{{else}}
 			{{> trophyCasePopup}}
 			<button class="padder-as btn btn-success add-to-trophy-case" id="">Add to Trophy Case</button>
