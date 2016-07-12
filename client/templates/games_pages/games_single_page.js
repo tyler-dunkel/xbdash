@@ -406,7 +406,7 @@ Template.wishlistArea.events({
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('wishlist-popup');
+					$('.app-header-fixed').addClass('show-wishlist');
 					return;
 				} else {
 					swal({
@@ -467,7 +467,7 @@ Template.trophyCaseArea.events({
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('trophy-case-popup');
+					$('.app-header-fixed').addClass('show-trophy-case');
 					return;
 				} else {
 					swal({

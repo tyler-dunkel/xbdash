@@ -105,7 +105,8 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 }
 
 /* Shown menu */
-.show-menu .wishlist-popup, .show-menu .trophy-case-popup {
+.show-wishlist .wishlist-popup,
+.show-trophy-case .trophy-case-popup {
 	-webkit-transform: translate3d(0,5%,0);
 	transform: translate3d(0,5%,0);
 }

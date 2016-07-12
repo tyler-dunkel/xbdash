@@ -1,5 +1,5 @@
 <template name="achievementsSinglePage">
-	<div id="content" class="app-content" role="main">
+	<div id="content" class="app-content single-achievements-page" role="main">
 		<div class="app-content-body">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
@@ -31,7 +31,9 @@
 							{{#if chkGamerStatus}}
 								{{> achievementWishlistArea}}
 								{{#if chkUserForAchievement}}
-									{{> achievementTrophyCaseArea}}
+									<div class="bg-white b-b text-center padder-t">
+										{{> achievementTrophyCaseArea}}
+									</div>
 									<div class="share-bar">
 										<h4 class="text-black h4">Share Your Completed Achievement</h4>
 										{{> achievementShareButtons}}
