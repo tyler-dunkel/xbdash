@@ -1,8 +1,16 @@
 
-// Template.xbdAnnouncements.created = function() {
-// 	var gamertagSlug = Router.current().params.gamertagSlug;
-// 	this.subscribe('xbdAnnouncements', gamertagSlug);
-// }
+Template.xbdAnnouncements.created = function() {
+	this.subscribe('xbdAnnouncements');
+}
+
+Template.xbdAnnouncements.helpers({
+	announcements: function() {
+		return xbdAnnouncements.find({}, {sort: {createdAt: -1}, limit: 5});
+	},
+	getDate: function() {
+		return moment(this.createdAt).format('MMMM YYYY');
+	}
+});
 
 Template.xbdTweets.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;

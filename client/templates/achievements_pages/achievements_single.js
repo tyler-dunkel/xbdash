@@ -226,13 +226,13 @@ Template.achievementWishlistArea.helpers({
 });
 
 Template.achievementWishlistArea.events({
-	'click .wish-list-button': function(e) {
+	'click .add-to-wish-list': function(e) {
 		var achievement = xbdAchievements.findOne({ _id: this._id });
 		Meteor.call('addToWishlist', 'achievement', achievement, function(err, res) {
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('wishlist-popup');
+					$('.app-header-fixed').addClass('show-wishlist');
 					return;
 				} else {
 					swal({
@@ -295,7 +295,7 @@ Template.achievementTrophyCaseArea.events({
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('trophy-case-popup');
+					$('.app-header-fixed').addClass('show-trophy-case');
 					return;
 				} else {
 					swal({

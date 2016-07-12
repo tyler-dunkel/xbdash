@@ -15,7 +15,8 @@ Template.wishlistPopup.rendered = function() {
 
 	$('.app-content').on('click',function(e) {
 		var	target = e.target;
-		if( $('.app-header-fixed').hasClass('show-wishlist') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.menu-wrap').length) {
+		if( $('.app-header-fixed').hasClass('show-wishlist') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.wishlist-popup').length) {
+			console.log('fired to hide');
 			$('.app-header-fixed').toggleClass('show-wishlist');
 		}
 	});
@@ -142,7 +143,7 @@ Template.trophyCasePopup.rendered = function() {
 
 	$('.app-content').on('click',function(e) {
 		var	target = e.target;
-		if( $('.app-header-fixed').hasClass('show-trophy-case') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.menu-wrap').length) {
+		if( $('.app-header-fixed').hasClass('show-trophy-case') && target !== $('.add-to-trophy-case' )[0] && !$(e.target).closest('.trophy-case-popup').length) {
 			$('.app-header-fixed').toggleClass('show-trophy-case');
 		}
 	});

@@ -1,8 +1,8 @@
-<template name="xbdAnnouncements">
+<!-- <template name="xbdAnnouncements">
 	<div class="m-b-sm text-md text-center">Announcements coming soon!</div>
 </template>
-
-<!-- <template name="xbdAnnouncements">
+ -->
+<template name="xbdAnnouncements">
 	<div class="m-b-sm text-md text-center">Announcements</div>
 	<div class="m-b-sm">
 		{{#each singleAnnouncement}}
@@ -13,8 +13,8 @@
 				</span>
 			</div>
 			<div class="media-body">						
-				<a href class="h4">{{getAnnouncementTitle}}</a>
-				<small class="block m-t-xs">{{getAnnouncementText}}</small>
+				<a href class="h4">{{this.title}}</a>
+				<small class="block m-t-xs">{{this.summary}}</small>
 				<em class="text-xs">Posted on <span class="text-danger">{{getDate}}</span></em>
 			</div>
 		</article>
@@ -24,7 +24,7 @@
 	<div class="m-t-md text-center">
 		<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
 	</div>
-</template> -->
+</template>
 
 <template name="xbdTweets">
 	{{#if Template.subscriptionsReady}}
