@@ -1,0 +1,6 @@
+.wishlist-popup img,
+.trophy-case-popup img {
+	max-height: 32px;
+	width: auto;
+	margin: 0;
+}

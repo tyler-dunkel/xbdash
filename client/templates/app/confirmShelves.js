@@ -86,8 +86,8 @@ Template.wishlistPopup.events({
 	"click .swap-item": function(e) {
 		e.preventDefault();
 		console.log('fired');
-		$('.swap-item').removeClass('active');
-		$(e.currentTarget).addClass('active');
+		$('.swap-item').removeClass('active btn-success');
+		$(e.currentTarget).addClass('active btn-success');
 		console.log(this);
 		Template.instance().removeId.set(this.relationId);
 	},
@@ -214,8 +214,8 @@ Template.trophyCasePopup.events({
 	"click .swap-item": function(e) {
 		e.preventDefault();
 		console.log('fired');
-		$('.swap-item').removeClass('active');
-		$(e.currentTarget).addClass('active');
+		$('.swap-item').removeClass('active btn-success');
+		$(e.currentTarget).addClass('active btn-success');
 		console.log(this);
 		Template.instance().removeId.set(this.relationId);
 	},
