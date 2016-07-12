@@ -200,14 +200,14 @@ Template.achievementShareButtons.helpers({
 	}
 });
 
-Template.wishlistArea.created = function() {
+Template.achievementWishlistArea.created = function() {
 	var slug = Router.current().params.slug;
 		gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('singleAchievement', slug);
 	this.subscribe('userWishlist', gamertagSlug);
 }
 
-Template.wishlistArea.helpers({
+Template.achievementWishlistArea.helpers({
 	chkIfCompleted: function () {
 		var userId = Meteor.userId();
 		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId, progressState: true });
@@ -225,7 +225,7 @@ Template.wishlistArea.helpers({
 	}
 });
 
-Template.wishlistArea.events({
+Template.achievementWishlistArea.events({
 	'click .wish-list-button': function(e) {
 		var achievement = xbdAchievements.findOne({ _id: this._id });
 		Meteor.call('addToWishlist', 'achievement', achievement, function(err, res) {
@@ -262,14 +262,14 @@ Template.wishlistArea.events({
 	}
 });
 
-Template.trophyCaseArea.created = function() {
+Template.achievementTrophyCaseArea.created = function() {
 	var slug = Router.current().params.slug;
 		gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('singleAchievement', slug);
 	this.subscribe('userTrophyCase', gamertagSlug);
 }
 
-Template.trophyCaseArea.helpers({
+Template.achievementTrophyCaseArea.helpers({
 	chkIfCompleted: function () {
 		var userId = Meteor.userId();
 		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId, progressState: true });
@@ -280,14 +280,14 @@ Template.trophyCaseArea.helpers({
 		return false; 
 	},
 	chkUserTrophyCase: function() {
-		var trophyCaseCount = userTrophyCase.find({ userId: Meteor.userId(), relationId: this._id }).count();
+		var trophyCaseCount = trophyCase.find({ userId: Meteor.userId(), relationId: this._id }).count();
 		if (trophyCaseCount > 0) {
 			return true;
 		}
 	}
 });
 
-Template.trophyCaseArea.events({
+Template.achievementTrophyCaseArea.events({
 	'click .add-to-trophy-case': function(e) {
 		console.log(this);
 		var achievement = xbdAchievements.findOne({ _id: this._id });

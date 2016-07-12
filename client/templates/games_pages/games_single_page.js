@@ -452,7 +452,7 @@ Template.trophyCaseArea.helpers({
 		}
 	},
 	chkUserTrophyCase: function() {
-		var trophyCaseCount = userTrophyCase.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
+		var trophyCaseCount = trophyCase.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
 		if (trophyCaseCount > 0) {
 			return true;
 		}
