@@ -9,14 +9,14 @@ Template.wishlistPopup.created = function() {
 
 Template.wishlistPopup.rendered = function() {
 	var self = this;
-	$('.add-to-wish-list').on('click', function(e) {
-		$('.app-header-fixed').toggleClass('show-menu');
-	});
+	// $('.add-to-wish-list').on('click', function(e) {
+	// 	$('.app-header-fixed').toggleClass('wishlist-popup');
+	// });
 
 	$('.app-content').on('click',function(e) {
 		var	target = e.target;
-		if( $('.app-header-fixed').hasClass('show-menu') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.menu-wrap').length) {
-			$('.app-header-fixed').toggleClass('show-menu');
+		if( $('.app-header-fixed').hasClass('wishlist-popup') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.menu-wrap').length) {
+			$('.app-header-fixed').toggleClass('wishlist-popup');
 		}
 	});
 }
@@ -109,7 +109,7 @@ Template.wishlistPopup.events({
 		console.log(doc);
 		Meteor.call('confirmAddToWishlist', type, doc, removeId, function(err, res) {
 			tempInstance.removeId.set('');
-			$('.app-header-fixed').toggleClass('show-menu');
+			$('.app-header-fixed').toggleClass('wishlist-popup');
 			swal({
 				title: res.title,
 				text: res.reason,
@@ -121,7 +121,7 @@ Template.wishlistPopup.events({
 		console.log('fired close');
 		var tempInstance = Template.instance();
 
-		$('.app-header-fixed').toggleClass('show-menu');
+		$('.app-header-fixed').toggleClass('wishlist-popup');
 	}
 });
 
@@ -136,14 +136,14 @@ Template.trophyCasePopup.created = function() {
 
 Template.trophyCasePopup.rendered = function() {
 	var self = this;
-	$('.add-to-wish-list').on('click', function(e) {
-		$('.app-header-fixed').toggleClass('show-menu');
-	});
+	// $('.add-to-wish-list').on('click', function(e) {
+	// 	$('.app-header-fixed').toggleClass('trophy-case-popup');
+	// });
 
 	$('.app-content').on('click',function(e) {
 		var	target = e.target;
-		if( $('.app-header-fixed').hasClass('show-menu') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.menu-wrap').length) {
-			$('.app-header-fixed').toggleClass('show-menu');
+		if( $('.app-header-fixed').hasClass('trophy-case-popup') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.menu-wrap').length) {
+			$('.app-header-fixed').toggleClass('trophy-case-popup');
 		}
 	});
 }
@@ -236,7 +236,7 @@ Template.trophyCasePopup.events({
 		console.log(doc);
 		Meteor.call('confirmAddToTrophyCase', type, doc, removeId, function(err, res) {
 			tempInstance.removeId.set('');
-			$('.app-header-fixed').toggleClass('show-menu');
+			$('.app-header-fixed').toggleClass('trophy-case-popup');
 			swal({
 				title: res.title,
 				text: res.reason,
@@ -248,6 +248,6 @@ Template.trophyCasePopup.events({
 		console.log('fired close');
 		var tempInstance = Template.instance();
 
-		$('.app-header-fixed').toggleClass('show-menu');
+		$('.app-header-fixed').toggleClass('trophy-case-popup');
 	}
 });

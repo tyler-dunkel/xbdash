@@ -232,7 +232,7 @@ Template.achievementWishlistArea.events({
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('show-menu');
+					$('.app-header-fixed').addClass('wishlist-popup');
 					return;
 				} else {
 					swal({
