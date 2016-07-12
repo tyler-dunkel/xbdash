@@ -1,10 +1,8 @@
 Template.achievementsSinglePage.created = function() {
 	DocHead.removeDocHeadAddedTags();
-
 	var self = this,
 		slug = Router.current().params.slug,
 		gamertagSlug = Meteor.user().gamertagSlug;
-
 	this.subscribe('singleAchievement', slug);
 	this.subscribe('userWishlist', gamertagSlug);
 	this.subscribe('userTrophyCase', gamertagSlug);
@@ -112,56 +110,6 @@ Template.achievementsSinglePage.helpers({
 			trophyClass = "unlock";
 		}
 		return trophyClass;
-	},
-	chkUserWishlist: function() {
-		var wishlistCount = userWishlists.find({userId: Meteor.userId(), relationId: this._id}).count();
-		if (wishlistCount > 0) {
-			return true;
-		}
-	}
-});
-
-Template.achievementsSinglePage.events({
-	'click .wish-list-button': function(e) {
-		var achievement = xbdAchievements.findOne({_id: this._id});
-		Meteor.call('addToWishlist', 'achievement', achievement, function(err, res) {
-			if (err) return;
-			if (res) {
-				if (res.status === 'warning') {
-					$('.app-header-fixed').addClass('show-menu');
-					return;
-				} else {
-					swal({
-						title: res.title,
-						text: res.reason,
-						type: res.status
-					});
-					return;
-				}
-			}
-		});
-	},
-	'click .remove-from-wish-list': function(e) {
-		var self = this;
-		var achievement = xbdAchievements.findOne({_id: this._id});
-		Meteor.call('removeFromWishlist', 'achievement', achievement, function(err, res) {
-			if (err) return;
-			if (res) {
-				swal({
-					title: res.title,
-					text: res.reason,
-					type: res.status
-				});
-				return;
-			}
-		});
-	},
-	'click .trophy-case-button': function(e) {
-		var achievement = xbdAchievements.findOne({_id: this._id});
-		Meteor.call('addToTrophyCase', 'achievement', achievement, function(err, res) {
-			console.log(err);
-			console.log(res);
-		});
 	}
 });
 
@@ -249,5 +197,130 @@ Template.achievementShareButtons.helpers({
 	},
 	getHashTags: function() {
 		return 'xbox,xbdash,gamerscore';
+	}
+});
+
+Template.wishlistArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleAchievement', slug);
+	this.subscribe('userWishlist', gamertagSlug);
+}
+
+Template.wishlistArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId, progressState: true });
+		if (userAchievement && userAchievement.count() > 0) {
+			console.log('achievement unlocked');
+			return true;
+		}
+		return false; 
+	},
+	chkUserWishlist: function() {
+		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this._id }).count();
+		if (wishlistCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.wishlistArea.events({
+	'click .wish-list-button': function(e) {
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('addToWishlist', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-menu');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-wish-list': function(e) {
+		var self = this;
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('removeFromWishlist', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
+	}
+});
+
+Template.trophyCaseArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleAchievement', slug);
+	this.subscribe('userTrophyCase', gamertagSlug);
+}
+
+Template.trophyCaseArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId, progressState: true });
+		if (userAchievement && userAchievement.count() > 0) {
+			console.log('achievement unlocked');
+			return true;
+		}
+		return false; 
+	},
+	chkUserTrophyCase: function() {
+		var trophyCaseCount = userTrophyCase.find({ userId: Meteor.userId(), relationId: this._id }).count();
+		if (trophyCaseCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.trophyCaseArea.events({
+	'click .add-to-trophy-case': function(e) {
+		console.log(this);
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('addToTrophyCase', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('trophy-case-popup');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-trophy-case': function(e) {
+		var self = this;
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('removeFromTrophyCase', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
 	}
 });

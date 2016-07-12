@@ -29,16 +29,9 @@
 								<strong>{{getValue}}</strong> Gamerscore
 							</div>
 							{{#if chkGamerStatus}}
-								{{> wishlistConfirmShelf}}
-								{{#if chkUserWishlist}}
-									<button class="remove-from-wish-list">remove from wishlist</button>
-								{{else}}
-									<button class="wish-list-button">add to wishlist</button>
-								{{/if}}
+								{{> wishlistArea}}
 								{{#if chkUserForAchievement}}
-									{{#if isUnlocked}}
-										<button class="trophy-case-button">add to case</button>
-									{{/if}}
+									{{> trophyCaseArea}}
 									<div class="share-bar">
 										<h4 class="text-black h4">Share Your Completed Achievement</h4>
 										{{> achievementShareButtons}}
@@ -50,9 +43,9 @@
 								{{description}}
 							</p>
 							<div class="xbd-left-sidebar-ad">
-								<a href="/contests">
-									<img src="/img/ads/xbdash-ads-300x250.jpg" class="left300250" />
-									<img src="/img/ads/xbdash-ads-250x250.jpg" class="left250250" />
+								<a href="https://www.xbdash.com/contests">
+									<img src="https://www.xbdash.com/img/ads/xbdash-ads-300x250.jpg" class="left300250" />
+									<img src="https://www.xbdash.com/img/ads/xbdash-ads-250x250.jpg" class="left250250" />
 								</a>
 							</div>
 						</div>
@@ -119,4 +112,28 @@
 			</li>
 		</ul>
 	</div>
+</template>
+
+<template name="wishlistArea">
+	{{#if chkIfCompleted}}
+	{{else}}
+		{{#if chkUserWishlist}}
+			<button class="padder-as btn btn-success remove-from-wish-list">Remove from Wishlist</button>
+		{{else}}
+			<button class="padder-as btn btn-success add-to-wish-list" id="">Add to Wishlist</button>
+		{{/if}}
+	{{/if}}
+	{{> wishlistPopup}}
+</template>
+
+<template name="trophyCaseArea">
+	{{#if chkIfCompleted}}
+	{{else}}
+		{{#if chkUserTrophyCase}}
+			<button class="padder-as btn btn-success remove-from-trophy-case">Remove from Trophy Case</button>
+		{{else}}
+			<button class="padder-as btn btn-success add-to-trophy-case" id="">Add to Trophy Case</button>
+		{{/if}}
+	{{/if}}
+	{{> trophyCasePopup}}
 </template>

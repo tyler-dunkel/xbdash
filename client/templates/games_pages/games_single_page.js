@@ -1,7 +1,8 @@
 
 Template.gamesSinglePageNew.created = function() {
 	DocHead.removeDocHeadAddedTags();
-	var slug = Router.current().params.slug;
+	var self = this,
+		slug = Router.current().params.slug,
 		gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('singleGame', slug);
 	this.subscribe('userWishlist', gamertagSlug);
@@ -451,8 +452,8 @@ Template.trophyCaseArea.helpers({
 		}
 	},
 	chkUserTrophyCase: function() {
-		var wishlistCount = userTrophyCase.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
-		if (wishlistCount > 0) {
+		var trophyCaseCount = userTrophyCase.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
+		if (trophyCaseCount > 0) {
 			return true;
 		}
 	}
