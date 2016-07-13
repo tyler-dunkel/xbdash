@@ -4,38 +4,43 @@ Template.userBadges.created = function() {
 }
 
 Template.userBadges.helpers({
-	getUserGamertag: function () {
-		var gamertagSlug = Router.current().params.gamertagSlug;
-		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
-	},
 	user: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
 	},
 	badge: function () {
 		return xbdBadges.findOne({ userId: this._id });
-	}
-});
-
-Template.userWishlist.created = function() {
-	var gamertagSlug = Router.current().params.gamertagSlug;
-	this.subscribe('userWishlist', gamertagSlug);
-}
-
-Template.userWishlist.helpers({
-	getUserGamertag: function () {
+	},
+	wishes: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		return userWishlists.find({ userId: user._id });
 	},
-	user: function () {
+	trophies: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		return trophyCase.find({ userId: user._id });
 	}
 });
 
-Template.userTrophyCase.created = function() {
-	var gamertagSlug = Router.current().params.gamertagSlug;
-	this.subscribe('userTrophyCase', gamertagSlug);
-}
+// Template.userWishlist.created = function() {
+// 	var gamertagSlug = Router.current().params.gamertagSlug;
+// 	this.subscribe('userWishlist', gamertagSlug);
+// }
+
+// Template.userWishlist.helpers({
+// 	getUserGamertag: function () {
+// 		var gamertagSlug = Router.current().params.gamertagSlug;
+// 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+// 		return user.gamercard.gamertag;
+// 	},
+// 	user: function () {
+// 		var gamertagSlug = Router.current().params.gamertagSlug;
+// 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+// 	}
+// });
+
+// Template.userTrophyCase.created = function() {
+// 	var gamertagSlug = Router.current().params.gamertagSlug;
+// 	this.subscribe('userTrophyCase', gamertagSlug);
+// }

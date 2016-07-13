@@ -1,83 +1,167 @@
 <template name="userBadges">
 	<div class="row">
 		<div class="col-md-4 col-sm-12">
-			<div class="panel panel-black m-t-md" style="margin-bottom: 0;">
+			<div class="panel panel-black m-t-md m-b-none">
 				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Specialty Badges
+					{{/with}}
+				{{else}}
 					Specialty Badges
+				{{/if}}
 				</div>
 			</div>
 			<div class="panel hbox hbox-auto-xs no-border">
-				{{#if Template.subscriptionsReady}}
-					{{#if user}}
-						{{#with user}}{{#with badge}}
-							{{> specialtyBadges}}
-						{{/with}}{{/with}}
-					{{else}}
-						<div class="container-fluid captures-container m-b-md">
-							<div class="row">
-								<div class="col-md-12 m-t-md font-bold">
-									No badges available.
-								</div>
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with badge}}
+						{{> specialtyBadges}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								No badges available.
 							</div>
 						</div>
-					{{/if}}	
-				{{else}}
-					{{> loadingTemplate}}
-				{{/if}}
+					</div>
+				{{/if}}	
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
 		<div class="col-md-8 col-sm-12">
-			<div class="panel panel-black m-t-md" style="margin-bottom: 0;">
+			<div class="panel panel-black m-t-md m-b-none">
 				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Game Completion Badges
+					{{/with}}
+				{{else}}
 					Game Completion Badges
+				{{/if}}
 				</div>
 			</div>
 			<div class="panel hbox hbox-auto-xs no-border">
-				{{#if Template.subscriptionsReady}}
-					{{#if user}}
-						{{#with user}}{{#with badge}}
-							{{> gameCompletionBadges}}
-						{{/with}}{{/with}}
-					{{else}}
-						<div class="container-fluid captures-container m-b-md">
-							<div class="row">
-								<div class="col-md-12 m-t-md font-bold">
-									No badges available.
-								</div>
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with badge}}
+						{{> gameCompletionBadges}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								No badges available.
 							</div>
 						</div>
-					{{/if}}	
-				{{else}}
-					{{> loadingTemplate}}
-				{{/if}}
+					</div>
+				{{/if}}	
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-black" style="margin-bottom: 0;">
+			<div class="panel panel-black m-b-none">
 				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Gamerscore Badges
+					{{/with}}
+				{{else}}
 					Gamerscore Badges
+				{{/if}}
 				</div>
 			</div>
 			<div class="panel hbox hbox-auto-xs no-border">
-				{{#if Template.subscriptionsReady}}
-					{{#if user}}
-						{{#with user}}{{#with badge}}
-							{{> gamerscoreBadges}}
-						{{/with}}{{/with}}
-					{{else}}
-						<div class="container-fluid captures-container m-b-md">
-							<div class="row">
-								<div class="col-md-12 m-t-md font-bold">
-									No badges available.
-								</div>
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with badge}}
+						{{> gamerscoreBadges}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								No badges available.
 							</div>
 						</div>
-					{{/if}}
-				{{else}}
-					{{> loadingTemplate}}
+					</div>
 				{{/if}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-black m-b-none">
+				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Wishlist
+					{{/with}}
+				{{else}}
+					Wishlist
+				{{/if}}
+				</div>
+			</div>
+			<div class="panel hbox hbox-auto-xs no-border">
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with wishes}}
+						{{> userWishlist}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								Wishlist is empty.
+							</div>
+						</div>
+					</div>
+				{{/if}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-black m-b-none">
+				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Wishlist
+					{{/with}}
+				{{else}}
+					Wishlist
+				{{/if}}
+				</div>
+			</div>
+			<div class="panel hbox hbox-auto-xs no-border">
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with trophies}}
+						{{> userTrophyCase}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								Trophy case is empty.
+							</div>
+						</div>
+					</div>
+				{{/if}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
 	</div>
@@ -203,24 +287,49 @@
 	</div>
 </template>
 
-<!-- <template name="userWishlist">
-	<div class="panel panel-black m-b-md" style="margin-bottom: 0;">
-		<div class="panel-heading bg-black text-white">
-			Wishlist
-		</div>
-	</div>
-	<div class="panel hbox hbox-auto-xs no-border">
-		<div class="container-fluid captures-container m-b-md">
-			<div class="row">
-				<div class="col-md-12 m-t-md font-bold">
-					Feature coming soon!
-				</div>
-			</div>
-		</div>
-	</div>
-</template> -->
-
 <template name="userWishlist">
+	<div class="col">
+		<ul class="list-group alt m-b-none">
+			{{#each wish}}
+			<li class="list-group-item">
+				<div class="media">
+					<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
+					<div class="pull-right text-success m-t-sm">
+						<i class="fa fa-circle"></i>
+					</div>
+					<div class="media-body">
+						<div><a href="">Chris Fox</a></div>
+						<small class="text-muted">about 2 minutes ago</small>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="userTrophyCase">
+	<div class="col">
+		<ul class="list-group alt m-b-none">
+			{{#each trophy}}
+			<li class="list-group-item">
+				<div class="media">
+					<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
+					<div class="pull-right text-success m-t-sm">
+						<i class="fa fa-circle"></i>
+					</div>
+					<div class="media-body">
+						<div><a href="">Chris Fox</a></div>
+						<small class="text-muted">about 2 minutes ago</small>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<!-- <template name="userWishlist">
 	{{#if Template.subscriptionsReady}}
 		{{#with user}}
 		<div class="panel panel-black">
@@ -268,26 +377,9 @@
 		</div>
 		{{/with}}
 	{{/if}}
-</template>
-
-<!-- <template name="userTrophyCase">
-	<div class="panel panel-black m-b-md" style="margin-bottom: 0;">
-		<div class="panel-heading bg-black text-white">
-			Trophy Case
-		</div>
-	</div>
-	<div class="panel hbox hbox-auto-xs no-border">
-		<div class="container-fluid captures-container m-b-md">
-			<div class="row">
-				<div class="col-md-12 m-t-md font-bold">
-					Feature coming soon!
-				</div>
-			</div>
-		</div>
-	</div>
 </template> -->
 
-<template name="userTrophyCase">
+<!-- <template name="userTrophyCase">
 	{{#if Template.subscriptionsReady}}
 	<div class="panel panel-black">
 		<div class="panel-heading bg-black text-white">
@@ -335,4 +427,4 @@
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
-</template>
+</template> -->
