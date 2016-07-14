@@ -35,10 +35,8 @@
 					<div class="m-b-sm text-md text-center">Your Wishlist</div>
 					<ul class="list-group no-bg no-borders pull-in">
 					{{#if Template.subscriptionsReady}}
-						{{#if user}}
-							{{#with user}}{{#with wishes}}
-								{{> userWishlist}}
-							{{/with}}{{/with}}
+						{{#if userHasWishlist}}
+							{{> userWishlist}}
 						{{else}}
 							<div class="container-fluid captures-container m-b-md">
 								<div class="row">
@@ -59,10 +57,8 @@
 					<div class="m-b-sm text-md text-center">Your Trophy Case</div>
 					<ul class="list-group no-bg no-borders pull-in">
 					{{#if Template.subscriptionsReady}}
-						{{#if user}}
-							{{#with user}}{{#with wishes}}
+						{{#if userHasTrophyCase}}
 								{{> userTrophyCase}}
-							{{/with}}{{/with}}
 						{{else}}
 							<div class="container-fluid captures-container m-b-md">
 								<div class="row">
