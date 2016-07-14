@@ -1,6 +1,8 @@
 Template.userBadges.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	this.subscribe('userBadges', gamertagSlug);
+	this.subscribe('userWishlist', gamertagSlug);
+	this.subscribe('userTrophyCase', gamertagSlug);
 }
 
 Template.userBadges.helpers({

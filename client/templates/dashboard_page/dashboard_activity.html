@@ -1,41 +1,83 @@
 <template name="recentActivityColumn">
 	<div class="col w-xxl bg-white-only b-l bg-auto no-border-xs">
-		<!-- <div class="nav-tabs-alt" >
+		<div class="nav-tabs-alt" >
 			<ul class="nav nav-tabs" role="tablist">
 				<li class="active">
-					<a data-target="#tab-1" role="tab" data-toggle="tab">Recent Activity</a>
+					<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-history text-md wrapper-sm"></i></a>
 				</li>
 				<li>
-					<a data-target="#tab-2" role="tab" data-toggle="tab">Wishlist</a>
+					<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-heart text-md wrapper-sm"></i></a>
 				</li>
 				<li>
-					<a data-target="#tab-3" role="tab" data-toggle="tab">Trophy Case</a>
+					<a data-target="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-trophy text-md wrapper-sm"></i></a>
 				</li>
 			</ul>
 		</div>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="tab-1">
-				<div class="wrapper-md">
+				<div class="wrapper-md activity-column">
+					<div class="m-b-sm text-md text-center"><a href="{{pathFor 'myGames'}}">Recent Activity</a></div>
+					<ul class="list-group no-bg no-borders pull-in">
+					{{#if Template.subscriptionsReady}}
+						{{#each gamesList}}
+							{{> recentActivityLine}}
+						{{/each}}
+					{{else}}
+						{{#each gamesList}}
+							{{> recentActivityLoading}}
+						{{/each}}
+					{{/if}}
+					</ul>
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane tab-2" id="tab-2">
-				<div class="wrapper-md">
+				<div class="wrapper-md wishlist-column">
+					<div class="m-b-sm text-md text-center">Your Wishlist</div>
+					<ul class="list-group no-bg no-borders pull-in">
+					{{#if Template.subscriptionsReady}}
+						{{#if user}}
+							{{#with user}}{{#with wishes}}
+								{{> userWishlist}}
+							{{/with}}{{/with}}
+						{{else}}
+							<div class="container-fluid captures-container m-b-md">
+								<div class="row">
+									<div class="col-md-12 m-t-md font-bold">
+										Wishlist is empty.
+									</div>
+								</div>
+							</div>
+						{{/if}}
+					{{else}}
+						{{> loadingTemplate}}
+					{{/if}}
+					</ul>
 				</div>
 			</div>
-		</div> -->
-		<div class="wrapper-md activity-column">
-			<div class="m-b text-md"><a href="{{pathFor 'myGames'}}">Recent Activity</a></div>
-			<ul class="list-group no-bg no-borders pull-in">
-			{{#if Template.subscriptionsReady}}
-				{{#each gamesList}}
-					{{> recentActivityLine}}
-				{{/each}}
-			{{else}}
-				{{#each gamesList}}
-					{{> recentActivityLoading}}
-				{{/each}}
-			{{/if}}
-			</ul>
+			<div role="tabpanel" class="tab-pane tab-3" id="tab-3">
+				<div class="wrapper-md wishlist-column">
+					<div class="m-b-sm text-md text-center">Your Trophy Case</div>
+					<ul class="list-group no-bg no-borders pull-in">
+					{{#if Template.subscriptionsReady}}
+						{{#if user}}
+							{{#with user}}{{#with wishes}}
+								{{> userTrophyCase}}
+							{{/with}}{{/with}}
+						{{else}}
+							<div class="container-fluid captures-container m-b-md">
+								<div class="row">
+									<div class="col-md-12 m-t-md font-bold">
+										Trophy case is empty.
+									</div>
+								</div>
+							</div>
+						{{/if}}
+					{{else}}
+						{{> loadingTemplate}}
+					{{/if}}
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

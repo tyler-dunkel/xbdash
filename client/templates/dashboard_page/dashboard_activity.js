@@ -1,5 +1,10 @@
 Template.recentActivityColumn.created = function() {
+    var userId = Meteor.userId();
+    var user = Meteor.users.findOne({ _id: userId });
+
     this.subscribe('dashboardRecentActivity');
+    this.subscribe('userWishlist', user.gamertagSlug);
+    this.subscribe('userTrophyCase', user.gamertagSlug);
 }
 
 Template.recentActivityColumn.helpers({
@@ -7,6 +12,18 @@ Template.recentActivityColumn.helpers({
         var userId = Meteor.userId();
         var gameList = userGames.find({ userId: userId }, { sort: { lastUnlock: -1 }, limit: 10 });
         return gameList;
+    },
+    user: function () {
+        var userId = Meteor.userId();
+        return Meteor.users.findOne({ _id: userId });
+    },
+    wishes: function () {
+        var userId = Meteor.userId();
+        return userWishlists.find({ userId: userId });
+    },
+    trophies: function () {
+        var userId = Meteor.userId();
+        return trophyCase.find({ userId: userId });
     }
 });
 

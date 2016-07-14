@@ -414,7 +414,7 @@ a.list-group-item.hover {
 }
 
 .nav-tabs-alt .nav-tabs > li.active > a {
-	border-bottom-color: #23b7e5 !important;
+	border-bottom-color: #138013 !important;
 }
 
 .tab-container {
@@ -4076,6 +4076,10 @@ a.text-#000000:hover {
 
 .text-black {
 	color: #000;
+}
+
+.text-gray {
+	color: #363f44;
 }
 
 .text-muted {

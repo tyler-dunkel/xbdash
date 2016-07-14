@@ -116,7 +116,11 @@
 			{{#if Template.subscriptionsReady}}
 				{{#if user}}
 					{{#with user}}{{#with wishes}}
+					<div class="col">
+						<ul class="list-group alt m-b-none">
 						{{> userWishlist}}
+						</ul>
+					</div>
 					{{/with}}{{/with}}
 				{{else}}
 					<div class="container-fluid captures-container m-b-md">
@@ -137,10 +141,10 @@
 				<div class="panel-heading bg-black text-white">
 				{{#if Template.subscriptionsReady}}
 					{{#with user}}
-						{{gamercard.gamertag}}'s Wishlist
+						{{gamercard.gamertag}}'s Trophy Case
 					{{/with}}
 				{{else}}
-					Wishlist
+					Trophy Case
 				{{/if}}
 				</div>
 			</div>
@@ -148,7 +152,11 @@
 			{{#if Template.subscriptionsReady}}
 				{{#if user}}
 					{{#with user}}{{#with trophies}}
+					<div class="col">
+						<ul class="list-group alt m-b-none">
 						{{> userTrophyCase}}
+						</ul>
+					</div>
 					{{/with}}{{/with}}
 				{{else}}
 					<div class="container-fluid captures-container m-b-md">
@@ -288,45 +296,37 @@
 </template>
 
 <template name="userWishlist">
-	<div class="col">
-		<ul class="list-group alt m-b-none">
-			{{#each wish}}
-			<li class="list-group-item">
-				<div class="media">
-					<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
-					<div class="pull-right text-success m-t-sm">
-						<i class="fa fa-circle"></i>
-					</div>
-					<div class="media-body">
-						<div><a href="">Chris Fox</a></div>
-						<small class="text-muted">about 2 minutes ago</small>
-					</div>
-				</div>
-			</li>
-			{{/each}}
-		</ul>
-	</div>
+	{{#each wish}}
+	<li class="list-group-item">
+		<div class="media">
+			<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
+			<div class="pull-right text-success m-t-sm">
+				<i class="fa fa-circle"></i>
+			</div>
+			<div class="media-body">
+				<div><a href="">Chris Fox</a></div>
+				<small class="text-muted">about 2 minutes ago</small>
+			</div>
+		</div>
+	</li>
+	{{/each}}
 </template>
 
 <template name="userTrophyCase">
-	<div class="col">
-		<ul class="list-group alt m-b-none">
-			{{#each trophy}}
-			<li class="list-group-item">
-				<div class="media">
-					<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
-					<div class="pull-right text-success m-t-sm">
-						<i class="fa fa-circle"></i>
-					</div>
-					<div class="media-body">
-						<div><a href="">Chris Fox</a></div>
-						<small class="text-muted">about 2 minutes ago</small>
-					</div>
-				</div>
-			</li>
-			{{/each}}
-		</ul>
-	</div>
+	{{#each trophy}}
+	<li class="list-group-item">
+		<div class="media">
+			<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
+			<div class="pull-right text-success m-t-sm">
+				<i class="fa fa-circle"></i>
+			</div>
+			<div class="media-body">
+				<div><a href="">Chris Fox</a></div>
+				<small class="text-muted">about 2 minutes ago</small>
+			</div>
+		</div>
+	</li>
+	{{/each}}
 </template>
 
 <!-- <template name="userWishlist">

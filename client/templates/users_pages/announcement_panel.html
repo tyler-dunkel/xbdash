@@ -1,7 +1,26 @@
-<!-- <template name="xbdAnnouncements">
-	<div class="m-b-sm text-md text-center">Announcements coming soon!</div>
+<template name="xbdTweets">
+	{{#if Template.subscriptionsReady}}
+		<div class="m-b-sm text-md text-center">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
+		<ul class="list-group">
+			{{#each userTweet}}
+			<li class="list-group-item">
+				<div class="m-b-xs m-t-xs">
+					<img src="{{this.user.profile_image_url}}" class="tweet-profile-image m-r-sm" /><strong><a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">{{this.user.screen_name}}</a></strong>
+				</div>
+				<p class='tweet-text' data-id="{{this.id_str}}">{{{getTweetText}}}</p>
+				{{{getTweetImage}}}
+				<small class="block m-b-xs m-t-xs text-muted"><i class="fa fa-fw fa-clock-o"></i> {{tweetDate}}</small>
+			</li>
+			{{/each}}
+		</ul>
+		<div class="m-t-md text-center">
+			<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-success padder-md m-b" target="_blank">More Tweets</a>
+		</div>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
 </template>
- -->
+
 <template name="xbdAnnouncements">
 	<div class="m-b-sm text-md text-center">Announcements</div>
 	<div class="m-b-sm">
@@ -24,29 +43,6 @@
 	<div class="m-t-md text-center">
 		<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
 	</div>
-</template>
-
-<template name="xbdTweets">
-	{{#if Template.subscriptionsReady}}
-		<div class="m-b-sm text-md text-center">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
-		<ul class="list-group">
-			{{#each userTweet}}
-			<li class="list-group-item">
-				<div class="m-b-xs m-t-xs">
-					<img src="{{this.user.profile_image_url}}" class="tweet-profile-image m-r-sm" /><strong><a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">{{this.user.screen_name}}</a></strong>
-				</div>
-				<p class='tweet-text' data-id="{{this.id_str}}">{{{getTweetText}}}</p>
-				{{{getTweetImage}}}
-				<small class="block m-b-xs m-t-xs text-muted"><i class="fa fa-fw fa-clock-o"></i> {{tweetDate}}</small>
-			</li>
-			{{/each}}
-		</ul>
-		<div class="m-t-md text-center">
-			<a href="https://twitter.com/{{getTwitterScreenName}}" class="btn btn-sm btn-success padder-md m-b" target="_blank">More Tweets</a>
-		</div>
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}}
 </template>
 
 <template name="xbdBroadcasts">
