@@ -8,7 +8,7 @@ Template.xbdAnnouncements.helpers({
 		return xbdAnnouncements.find({}, {sort: {createdAt: -1}, limit: 5});
 	},
 	getDate: function() {
-		return moment(this.createdAt).format('MMMM YYYY');
+		return moment(this.createdAt).format('dddd, MMMM Do YYYY, h:mm a');
 	}
 });
 
