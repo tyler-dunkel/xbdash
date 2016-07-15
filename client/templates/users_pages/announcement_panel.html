@@ -24,15 +24,15 @@
 <template name="xbdAnnouncements">
 	<div class="m-b-sm text-md text-center">Announcements</div>
 	<div class="m-b-sm">
-		{{#each singleAnnouncement}}
+		{{#each announcements}}
 		<article class="media">
 			<div class="pull-left">
 				<span class="fa-stack fa-lg">
-					<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+					<img src="{{this.image}}" class="img-responsive" />
 				</span>
 			</div>
 			<div class="media-body">						
-				<a href class="h4">{{this.title}}</a>
+				<a href="{{this.link}}" class="h4">{{this.title}}</a>
 				<small class="block m-t-xs">{{this.summary}}</small>
 				<em class="text-xs">Posted on <span class="text-danger">{{getDate}}</span></em>
 			</div>
