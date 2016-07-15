@@ -49,3 +49,10 @@
 .captures-container .carousel-control.left, .captures-container .carousel-control.right {
 	background-image: none;
 }
+
+.user-page .nav-tabs > li > a { color: #666; }
+
+.user-page .nav-tabs > li.active > a,
+.user-page .nav-tabs > li > a:hover {
+    color: #138013 !important;
+}

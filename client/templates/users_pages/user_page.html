@@ -1,5 +1,5 @@
 <template name="userProfilePage">
-	<div id="content" class="app-content" role="main">
+	<div id="content" class="app-content user-page" role="main">
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
@@ -81,12 +81,12 @@
 							<div class="padder container-fluid">
 								{{#if Template.subscriptionsReady}}
 									{{#with user}}
-										{{> userBadges}}
+										{{> userPersonal}}
 									{{/with}}
 								{{else}}
 									{{> loadingTemplate}}
 								{{/if}}
-								<div class="row">
+								<!-- <div class="row">
 									<div class="col-md-6 wrapper">
 									{{#if Template.subscriptionsReady}}
 										{{#with user}}
@@ -98,14 +98,12 @@
 									</div>
 									<div class="col-md-6 wrapper">
 									{{#if Template.subscriptionsReady}}
-										{{#with user}}
-											{{> userTrophyCase}}
-										{{/with}}
+										{{> userTrophyCase}}
 									{{else}}
 										{{> loadingTemplate}}
 									{{/if}}
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -114,13 +112,13 @@
 					<div class="nav-tabs-alt" >
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="active">
-								<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-twitter text-md text-muted wrapper-sm"></i></a>
+								<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-twitter text-md wrapper-sm"></i></a>
 							</li>
 							<li>
-								<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-bullhorn text-md text-muted wrapper-sm"></i></a>
+								<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-bullhorn text-md wrapper-sm"></i></a>
 							</li>
 							<li>
-								<a data-target="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-twitch text-md text-muted wrapper-sm"></i></a>
+								<a data-target="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-twitch text-md wrapper-sm"></i></a>
 							</li>
 						</ul>
 					</div>

@@ -1,0 +1,22 @@
+.wishlist-popup img,
+.trophy-case-popup img {
+	max-height: 32px;
+	width: auto;
+	margin: 0;
+}
+
+.wishlist-popup .btn-default:hover,
+.wishlist-popup .btn-default:focus,
+.trophy-case-popup .btn-default:hover,
+.trophy-case-popup .btn-default:focus {
+	background-position: 0 -50px;
+}
+
+.wishlist-popup .name-truncate,
+.trophy-case-popup .name-truncate {
+	width: 220px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-left: 10px;
+}

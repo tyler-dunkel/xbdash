@@ -1,8 +1,15 @@
 
 Template.gamesSinglePageNew.created = function() {
 	DocHead.removeDocHeadAddedTags();
-	var slug = Router.current().params.slug;
+	var self = this,
+		slug = Router.current().params.slug,
+		gamertagSlug;
 	this.subscribe('singleGame', slug);
+	if (Meteor.user()) {
+		gamertagSlug = Meteor.user().gamertagSlug;
+		this.subscribe('userWishlist', gamertagSlug);
+		this.subscribe('userTrophyCase', gamertagSlug);
+	}
 }
 
 Template.gamesSinglePageNew.helpers({
@@ -64,13 +71,43 @@ Template.gamesSinglePageNew.helpers({
 		if (userGame && userGame.count() > 0) return true;
 		return false; 
 	},
+	chkUserWishlist: function() {
+		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
+		if (wishlistCount > 0) {
+			return true;
+		}
+	},
 	chkIfCompleted: function () {
 		var userId = Meteor.userId();
 		var userGame = userGames.findOne({ gameId: this.gameId, userId: userId });
-		return userGame.completed;
+		if (userGame) {
+			return userGame.completed;
+		}
 	},
 	dateFormat: function () {
 		return moment(this.gameReleaseDate).format('l');
+	}
+});
+
+Template.gamesSinglePageNew.events({
+	'click .trophy-case-button': function(e) {
+		console.log(this);
+		var game = xbdGames.findOne({_id: this.gameId });
+		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-menu');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
 	}
 });
 
@@ -139,6 +176,16 @@ Template.gamesSingleDocHead.created = function() {
 		DocHead.addLink(linkInfo[i]);;
 	}
 }
+
+// Template.gameSingleUserWishlist.helpers({
+// 	user: function () {
+// 		var gamertagSlug = Meteor.user().gamertagSlug;
+// 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+// 	},
+// 	wish: function () {
+// 		return userWishlist.find({ userId: this._id });
+// 	}
+// });
 
 Template.userGamerscoreInfoNew.created = function() {
 }
@@ -258,6 +305,25 @@ Template.gamesSinglePageAchievementNew.helpers({
 	}
 });
 
+Template.gamesSinglePageAchievementNew.events({
+	"click .achievement-next": function(event) {
+		var button = $(event.currentTarget);
+		if (button.hasClass('disabled')) {
+			return;
+		}
+		var currentCount = Template.instance().achievementShowNext.get();
+		Template.instance().achievementShowNext.set(currentCount + 7);
+	},
+	"click .achievement-previous": function(event) {
+		var button = $(event.currentTarget);
+		if (button.hasClass('disabled')) {
+			return;
+		}
+		var currentCount = Template.instance().achievementShowNext.get();
+		Template.instance().achievementShowNext.set(currentCount - 7);
+	}
+});
+
 Template.amznSmartAd.rendered = function() {
 	$(document).ready(function() {
 		var container = document.getElementById("amzn-smart-ad");
@@ -309,5 +375,127 @@ Template.gameShareButtons.helpers({
 	},
 	getHashTags: function() {
 		return 'xbox,xbdash,gamerscore';
+	}
+});
+
+Template.wishlistArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleGame', slug);
+	this.subscribe('userWishlist', gamertagSlug);
+}
+
+Template.wishlistArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userGame = userGames.findOne({ gameId: this.gameId, userId: userId });
+		if (userGame) {
+			return userGame.completed;
+		}
+	},
+	chkUserWishlist: function() {
+		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
+		if (wishlistCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.wishlistArea.events({
+	'click .add-to-wish-list': function(e) {
+		console.log(this);
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('addToWishlist', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-wishlist');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-wish-list': function(e) {
+		var self = this;
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('removeFromWishlist', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
+	}
+});
+
+Template.trophyCaseArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleGame', slug);
+	this.subscribe('userTrophyCase', gamertagSlug);
+}
+
+Template.trophyCaseArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userGame = userGames.findOne({ gameId: this.gameId, userId: userId });
+		if (userGame) {
+			return userGame.completed;
+		}
+	},
+	chkUserTrophyCase: function() {
+		var trophyCaseCount = trophyCase.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
+		if (trophyCaseCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.trophyCaseArea.events({
+	'click .add-to-trophy-case': function(e) {
+		console.log(this);
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('addToTrophyCase', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-trophy-case');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-trophy-case': function(e) {
+		var self = this;
+		var game = xbdGames.findOne({ _id: this.gameId });
+		Meteor.call('removeFromTrophyCase', 'game', game, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
 	}
 });

@@ -1,31 +1,3 @@
-<template name="xbdAnnouncements">
-	<div class="m-b-sm text-md text-center">Announcements coming soon!</div>
-</template>
-
-<!-- <template name="xbdAnnouncements">
-	<div class="m-b-sm text-md text-center">Announcements</div>
-	<div class="m-b-sm">
-		{{#each singleAnnouncement}}
-		<article class="media">
-			<div class="pull-left">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-				</span>
-			</div>
-			<div class="media-body">						
-				<a href class="h4">{{getAnnouncementTitle}}</a>
-				<small class="block m-t-xs">{{getAnnouncementText}}</small>
-				<em class="text-xs">Posted on <span class="text-danger">{{getDate}}</span></em>
-			</div>
-		</article>
-		<div class="line pull-in"></div>
-		{{/each}}
-	</div>
-	<div class="m-t-md text-center">
-		<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
-	</div>
-</template> -->
-
 <template name="xbdTweets">
 	{{#if Template.subscriptionsReady}}
 		<div class="m-b-sm text-md text-center">Latest Tweets - <a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">@{{getTwitterScreenName}}</a></div>
@@ -47,6 +19,30 @@
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
+</template>
+
+<template name="xbdAnnouncements">
+	<div class="m-b-sm text-md text-center">Announcements</div>
+	<div class="m-b-sm">
+		{{#each announcements}}
+		<article class="media">
+			<div class="pull-left">
+				<span class="fa-stack fa-lg">
+					<img src="{{this.image}}" class="img-responsive" />
+				</span>
+			</div>
+			<div class="media-body">						
+				<a href="{{this.link}}" class="h4">{{this.title}}</a>
+				<small class="block m-t-xs">{{this.summary}}</small>
+				<em class="text-xs">Posted on <span class="text-danger">{{getDate}}</span></em>
+			</div>
+		</article>
+		<div class="line pull-in"></div>
+		{{/each}}
+	</div>
+	<div class="m-t-md text-center">
+		<a href class="btn btn-sm btn-primary padder-md m-b">More Announcements</a>
+	</div>
 </template>
 
 <template name="xbdBroadcasts">

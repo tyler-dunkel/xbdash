@@ -1,10 +1,14 @@
 Template.achievementsSinglePage.created = function() {
 	DocHead.removeDocHeadAddedTags();
-
-	var self = this;
-	var slug = Router.current().params.slug;
-
+	var self = this,
+		slug = Router.current().params.slug,
+		gamertagSlug;
 	this.subscribe('singleAchievement', slug);
+	if (Meteor.user()) {
+		gamertagSlug = Meteor.user().gamertagSlug;
+		this.subscribe('userWishlist', gamertagSlug);
+		this.subscribe('userTrophyCase', gamertagSlug);
+	}
 }
 
 Template.achievementsSinglePage.helpers({
@@ -109,7 +113,7 @@ Template.achievementsSinglePage.helpers({
 			trophyClass = "unlock";
 		}
 		return trophyClass;
-	},
+	}
 });
 
 Template.achievementSingleDocHead.created = function() {
@@ -196,5 +200,130 @@ Template.achievementShareButtons.helpers({
 	},
 	getHashTags: function() {
 		return 'xbox,xbdash,gamerscore';
+	}
+});
+
+Template.achievementWishlistArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleAchievement', slug);
+	this.subscribe('userWishlist', gamertagSlug);
+}
+
+Template.achievementWishlistArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId, progressState: true });
+		if (userAchievement && userAchievement.count() > 0) {
+			console.log('achievement unlocked');
+			return true;
+		}
+		return false; 
+	},
+	chkUserWishlist: function() {
+		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this._id }).count();
+		if (wishlistCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.achievementWishlistArea.events({
+	'click .add-to-wish-list': function(e) {
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('addToWishlist', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-wishlist');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-wish-list': function(e) {
+		var self = this;
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('removeFromWishlist', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
+	}
+});
+
+Template.achievementTrophyCaseArea.created = function() {
+	var slug = Router.current().params.slug;
+		gamertagSlug = Meteor.user().gamertagSlug;
+	this.subscribe('singleAchievement', slug);
+	this.subscribe('userTrophyCase', gamertagSlug);
+}
+
+Template.achievementTrophyCaseArea.helpers({
+	chkIfCompleted: function () {
+		var userId = Meteor.userId();
+		var userAchievement = userAchievements.find({ achievementId: this._id, userId: userId, progressState: true });
+		if (userAchievement && userAchievement.count() > 0) {
+			console.log('achievement unlocked');
+			return true;
+		}
+		return false; 
+	},
+	chkUserTrophyCase: function() {
+		var trophyCaseCount = trophyCase.find({ userId: Meteor.userId(), relationId: this._id }).count();
+		if (trophyCaseCount > 0) {
+			return true;
+		}
+	}
+});
+
+Template.achievementTrophyCaseArea.events({
+	'click .add-to-trophy-case': function(e) {
+		console.log(this);
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('addToTrophyCase', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				if (res.status === 'warning') {
+					$('.app-header-fixed').addClass('show-trophy-case');
+					return;
+				} else {
+					swal({
+						title: res.title,
+						text: res.reason,
+						type: res.status
+					});
+					return;
+				}
+			}
+		});
+	},
+	'click .remove-from-trophy-case': function(e) {
+		var self = this;
+		var achievement = xbdAchievements.findOne({ _id: this._id });
+		Meteor.call('removeFromTrophyCase', 'achievement', achievement, function(err, res) {
+			if (err) return;
+			if (res) {
+				swal({
+					title: res.title,
+					text: res.reason,
+					type: res.status
+				});
+				return;
+			}
+		});
 	}
 });

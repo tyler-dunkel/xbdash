@@ -14,8 +14,14 @@
 										<img src="{{gamesImage}}" class="img-full">
 									</a>
 									<div class="clear m-t-xxxl">
-										<h1 class="font-thin h3 text-black m-b-xs line-clamp-3">{{gameName}}</h1>
+										<h1 class="font-thin h3 text-black m-b-sm line-clamp-3">{{gameName}}</h1>
 										<small class="text-muted">Platform: {{gamePlatform}}</small>
+										{{#if chkGamerStatus}}
+										<div class="m-t-sm m-b-sm visible-lg visible-md visible-sm hidden-xs">
+											{{> wishlistArea}}
+											{{> trophyCaseArea}}
+										</div>
+										{{/if}}
 									</div>
 								</div>
 								<div class="{{#if chkCompleted}}col-sm-6 hidden-md col-lg-3 col-xl-4{{else}}col-sm-5 hidden-md col-lg-3 col-xl-3{{/if}}">
@@ -43,8 +49,14 @@
 							</div>
 						</div>
 					</div>
+					{{#if chkGamerStatus}}
+					<div class="bg-white b-b text-center padder-t hidden-lg hidden-md hidden-sm visible-xs-block">
+						{{> wishlistArea}}
+						{{> trophyCaseArea}}
+					</div>
+					{{/if}}
 					<div class="bg-white b-b">
-						<ul class="nav nav-tabs" role="tablist">
+						<ul class="nav nav-tabs inline" role="tablist">
 							<li role="achievements" class="active"><a href="#game-achievements" aria-controls="game-achievements" role="tab" data-toggle="tab">Achievements</a></li>
 							<li role="info"><a href="#game-info" aria-controls="game-info" role="tab" data-toggle="tab">Info</a></li>
 							{{#if chkUserForGame}}
@@ -141,7 +153,7 @@
 					<div class="row no-gutter">
 						<div class="col-xs-2 col-sm-4 col-md-2 col-lg-2 col-xl-2">
 							{{#if chkProgress}}
-							<div class="block padder-t trophy-class text-center bg-success" style="min-height: 96px;">
+							<div class="block trophy-class text-center bg-success" style="min-height: 96px;">
 								<div class="wrapper-xs">
 									<span class="text-white font-thin font-bold h4 block">
 										<i class="fa fa-trophy"></i><br />
@@ -150,7 +162,7 @@
 								</div>
 							</div>
 							{{else}}
-							<div class="block padder-t trophy-class text-center bg-danger" style="min-height: 96px;">
+							<div class="block trophy-class text-center bg-danger" style="min-height: 96px;">
 								<div class="wrapper-xs">
 									<span class="text-white font-thin font-bold h4 block">
 										<i class="fa fa-lock"></i><br />
@@ -165,7 +177,7 @@
 						</div>
 						<div class="col-xs-7 col-sm-6 col-md-9 col-lg-7 col-xl-7 achievement-description" style="min-height: 96px;">
 							<div class="m-l-md">
-								<div class="padder-t achievement-name achievement-name-ellipsis line-clamp-1">
+								<div class="achievement-name achievement-name-ellipsis line-clamp-1">
 									{{this.name}}
 									<label class="label bg-{{achievementClass}} m-l-sm text-ellipsis-inline hidden-sm">
 										<i class="fa fa-{{trophyClass}}"></i><span class="hidden-xs hidden-sm hidden-md"> {{achievementClass}}</span>
@@ -175,7 +187,7 @@
 							</div>
 						</div>
 						<div class="col-xs-1 col-sm-2 col-md-1 col-lg-1 col-xl-1 achievement-button" style="max-height: 96px;">
-							<div class="block padder-t text-center" style="padding: 38px 0 37px;">
+							<div class="block text-center" style="padding: 38px 0 37px;">
 								<span class="text-black font-thin font-bold h4 block">
 									<i class="fa fa-play"></i>
 								</span>
@@ -233,4 +245,27 @@
 			</li>
 		</ul>
 	</div>
+</template>
+
+<template name="wishlistArea">
+	{{#if chkIfCompleted}}
+	{{else}}
+		{{#if chkUserWishlist}}
+			<button class="padder-as btn btn-success remove-from-wish-list">Remove from Wishlist</button>
+		{{else}}
+			<button class="padder-as btn btn-success add-to-wish-list" id="">Add to Wishlist</button>
+			{{> wishlistPopup}}
+		{{/if}}
+	{{/if}}
+</template>
+
+<template name="trophyCaseArea">
+	{{#if chkIfCompleted}}
+		{{#if chkUserTrophyCase}}
+			<button class="padder-as btn btn-success remove-from-trophy-case">Remove from Trophy Case</button>
+		{{else}}
+			<button class="padder-as btn btn-success add-to-trophy-case" id="">Add to Trophy Case</button>
+			{{> trophyCasePopup}}
+		{{/if}}
+	{{/if}}
 </template>

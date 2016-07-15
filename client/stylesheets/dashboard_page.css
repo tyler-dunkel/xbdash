@@ -1,0 +1,40 @@
+.dashboard-page .nav-tabs > li > a { color: #666; }
+
+.dashboard-page .nav-tabs > li.active > a,
+.dashboard-page .nav-tabs > li > a:hover {
+    color: #138013 !important;
+}
+
+.wishlist-li .thumb-sm,
+.trophy-case-li .thumb-sm {
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+	padding: 0;
+	margin-right: 10px;
+}
+
+.wishlist-li .thumb-sm img,
+.trophy-case-li .thumb-sm img {
+	width: 40px;
+	padding: 0 5px;
+}
+
+.wishlist-li .btn-icon,
+.trophy-case-li .btn-icon {
+	width: 40px;
+	height: 40px;
+}
+
+.wishlist-li .btn-icon i,
+.trophy-case-li .btn-icon i {
+	line-height: 40px;
+}
+
+.wishlist-li .name-truncate,
+.trophy-case-li .name-truncate {
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

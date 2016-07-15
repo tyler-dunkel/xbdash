@@ -1,324 +1,240 @@
-<template name="userBadges">
+<template name="userPersonal">
 	<div class="row">
 		<div class="col-md-4 col-sm-12">
-			<div class="panel panel-black m-t-md" style="margin-bottom: 0;">
+			<div class="panel panel-black m-t-md m-b-none">
 				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Specialty Badges
+					{{/with}}
+				{{else}}
 					Specialty Badges
+				{{/if}}
 				</div>
 			</div>
 			<div class="panel hbox hbox-auto-xs no-border">
-				{{#if Template.subscriptionsReady}}
-					{{#if user}}
-						{{#with user}}{{#with badge}}
-							{{> specialtyBadges}}
-						{{/with}}{{/with}}
-					{{else}}
-						<div class="container-fluid captures-container m-b-md">
-							<div class="row">
-								<div class="col-md-12 m-t-md font-bold">
-									No badges available.
-								</div>
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with badge}}
+						{{> specialtyBadges}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								No badges available.
 							</div>
 						</div>
-					{{/if}}	
-				{{else}}
-					{{> loadingTemplate}}
-				{{/if}}
+					</div>
+				{{/if}}	
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
 		<div class="col-md-8 col-sm-12">
-			<div class="panel panel-black m-t-md" style="margin-bottom: 0;">
+			<div class="panel panel-black m-t-md m-b-none">
 				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Game Completion Badges
+					{{/with}}
+				{{else}}
 					Game Completion Badges
+				{{/if}}
 				</div>
 			</div>
 			<div class="panel hbox hbox-auto-xs no-border">
-				{{#if Template.subscriptionsReady}}
-					{{#if user}}
-						{{#with user}}{{#with badge}}
-							{{> gameCompletionBadges}}
-						{{/with}}{{/with}}
-					{{else}}
-						<div class="container-fluid captures-container m-b-md">
-							<div class="row">
-								<div class="col-md-12 m-t-md font-bold">
-									No badges available.
-								</div>
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with badge}}
+						{{> gameCompletionBadges}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								No badges available.
 							</div>
 						</div>
-					{{/if}}	
-				{{else}}
-					{{> loadingTemplate}}
-				{{/if}}
+					</div>
+				{{/if}}	
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-black" style="margin-bottom: 0;">
+			<div class="panel panel-black m-b-none">
 				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Gamerscore Badges
+					{{/with}}
+				{{else}}
 					Gamerscore Badges
+				{{/if}}
 				</div>
 			</div>
 			<div class="panel hbox hbox-auto-xs no-border">
-				{{#if Template.subscriptionsReady}}
-					{{#if user}}
-						{{#with user}}{{#with badge}}
-							{{> gamerscoreBadges}}
-						{{/with}}{{/with}}
-					{{else}}
-						<div class="container-fluid captures-container m-b-md">
-							<div class="row">
-								<div class="col-md-12 m-t-md font-bold">
-									No badges available.
-								</div>
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					{{#with user}}{{#with badge}}
+						{{> gamerscoreBadges}}
+					{{/with}}{{/with}}
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								No badges available.
 							</div>
 						</div>
-					{{/if}}
-				{{else}}
-					{{> loadingTemplate}}
+					</div>
 				{{/if}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
 	</div>
-</template>
-
-<template name="specialtyBadges">
-	<div class="specialty-badges">
-		<div class="wrapper-md">
-			{{#if solutionExpert}}
-				<img src="/img/badges/specialty/solutions_expert.png" alt="You have contributed to more than a 100 achievement solutions." title="You have contributed to more than a 100 achievement solutions." class="img-responsive" />
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-black m-b-none">
+				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Wishlist
+					{{/with}}
+				{{else}}
+					Wishlist
+				{{/if}}
+				</div>
+			</div>
+			<div class="panel hbox hbox-auto-xs no-border">
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					<div class="col">
+						<ul class="list-group alt m-b-none">
+						{{> userWishlist}}
+						</ul>
+					</div>
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								Wishlist is empty.
+							</div>
+						</div>
+					</div>
+				{{/if}}
 			{{else}}
-				<img src="/img/badges/unmerited/solutions_expert.png" alt="You have contributed to more than a 100 achievement solutions." title="You have contributed to more than a 100 achievement solutions." class="img-responsive" />
+				{{> loadingTemplate}}
 			{{/if}}
+			</div>
 		</div>
-		<div class="wrapper-md">
-			{{#if eagleScout}}
-				<img src="/img/badges/specialty/eagle_scout.png" alt="You have unlocked all available badges." title="You have unlocked all available badges." class="last-image img-responsive" />
+		<div class="col-md-6">
+			<div class="panel panel-black m-b-none">
+				<div class="panel-heading bg-black text-white">
+				{{#if Template.subscriptionsReady}}
+					{{#with user}}
+						{{gamercard.gamertag}}'s Trophy Case
+					{{/with}}
+				{{else}}
+					Trophy Case
+				{{/if}}
+				</div>
+			</div>
+			<div class="panel hbox hbox-auto-xs no-border">
+			{{#if Template.subscriptionsReady}}
+				{{#if user}}
+					<div class="col">
+						<ul class="list-group alt m-b-none">
+						{{> userTrophyCase}}
+						</ul>
+					</div>
+				{{else}}
+					<div class="container-fluid captures-container m-b-md">
+						<div class="row">
+							<div class="col-md-12 m-t-md font-bold">
+								Trophy case is empty.
+							</div>
+						</div>
+					</div>
+				{{/if}}
 			{{else}}
-				<img src="/img/badges/unmerited/eagle_scout.png" alt="You have unlocked all available badges." title="You have unlocked all available badges." class="last-image img-responsive" />
+				{{> loadingTemplate}}
 			{{/if}}
-		</div>
-	</div>
-</template>
-
-<template name="gameCompletionBadges">
-	<div class="game-badges">
-		<div class="col-md-3 wrapper-md">
-			{{#if oneGame}}
-				<img src="/img/badges/games/1_game.png" alt="You have completed 1 game." title="You have completed 1 game." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/1_game.png" alt="You have completed 1 game." title="You have completed 1 game." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-3 wrapper-md">
-			{{#if tenGame}}
-				<img src="/img/badges/games/10_games.png" alt="You have completed 10 games." title="You have completed 10 games." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/10_games.png" alt="You have completed 10 games." title="You have completed 10 games." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-3 wrapper-md">
-			{{#if oneHundredGame}}
-				<img src="/img/badges/games/100_games.png" alt="You have completed 100 games." title="You have completed 100 games." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/100_games.png" alt="You have completed 100 games." title="You have completed 100 games." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-3 wrapper-md">
-			{{#if fiveHundredGame}}
-				<img src="/img/badges/games/500_games.png" alt="You have completed 500 games." title="You have completed 500 games." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/500_games.png" alt="You have completed 500 games." title="You have completed 500 games." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-3 wrapper-md">
-			{{#if oneThousandGame}}
-				<img src="/img/badges/games/1000_games.png" alt="You have completed 1000 games." title="You have completed 1000 games." class="last-image img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/1000_games.png" alt="You have completed 1000 games." title="You have completed 1000 games." class="last-image img-responsive" />
-			{{/if}}
-		</div>
-	</div>
-</template>
-
-<template name="gamerscoreBadges">
-	<div class="gamerscore-badges">
-		<div class="col-md-2 wrapper-md">
-			{{#if fiveGS}}
-				<img src="/img/badges/gamerscore/5k_gamerscore.png" alt="You have reached 5,000 gamerscore." title="You have reached 5,000 gamerscore." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/5k_gamerscore.png" alt="You have reached 5,000 gamerscore." title="You have reached 5,000 gamerscore." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-2 wrapper-md">
-			{{#if tenGS}}
-				<img src="/img/badges/gamerscore/10k_gamerscore.png" alt="You have reached 10,000 gamerscore." title="You have reached 10,000 gamerscore." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/10k_gamerscore.png" alt="You have reached 10,000 gamerscore." title="You have reached 10,000 gamerscore." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-2 wrapper-md">
-			{{#if twentyGS}}
-				<img src="/img/badges/gamerscore/20k_gamerscore.png" alt="You have reached 20,000 gamerscore." title="You have reached 20,000 gamerscore." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/20k_gamerscore.png" alt="You have reached 20,000 gamerscore." title="You have reached 20,000 gamerscore." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-2 wrapper-md">
-			{{#if fiftyGS}}
-				<img src="/img/badges/gamerscore/50k_gamerscore.png" alt="You have reached 50,000 gamerscore." title="You have reached 50,000 gamerscore." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/50k_gamerscore.png" alt="You have reached 50,000 gamerscore." title="You have reached 50,000 gamerscore." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-2 wrapper-md">
-			{{#if oneHundredGS}}
-				<img src="/img/badges/gamerscore/100k_gamerscore.png" alt="You have reached 100,000 gamerscore." title="You have reached 100,000 gamerscore." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/100k_gamerscore.png" alt="You have reached 100,000 gamerscore." title="You have reached 100,000 gamerscore." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-2 wrapper-md">
-			{{#if twoFiftyHundredGS}}
-				<img src="/img/badges/gamerscore/250k_gamerscore.png" alt="You have reached 250,000 gamerscore." title="You have reached 250,000 gamerscore." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/250k_gamerscore.png" alt="You have reached 250,000 gamerscore." title="You have reached 250,000 gamerscore." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-2 wrapper-md">
-			{{#if sevenFiftyHundredGS}}
-				<img src="/img/badges/gamerscore/750k_gamerscore.png" alt="You have reached 750,000 gamerscore." title="You have reached 750,000 gamerscore." class="img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/750k_gamerscore.png" alt="You have reached 750,000 gamerscore." title="You have reached 750,000 gamerscore." class="img-responsive" />
-			{{/if}}
-		</div>
-		<div class="col-md-2 wrapper-md">
-			{{#if nineHundredGS}}
-				<img src="/img/badges/gamerscore/999k_gamerscore.png" alt="You have reached 999,999 gamerscore." title="You have reached 999,999 gamerscore." class="last-image img-responsive" />
-			{{else}}
-				<img src="/img/badges/unmerited/999k_gamerscore.png" alt="You have reached 999,999 gamerscore." title="You have reached 999,999 gamerscore." class="last-image img-responsive" />
-			{{/if}}
+			</div>
 		</div>
 	</div>
 </template>
 
 <template name="userWishlist">
-	<div class="panel panel-black m-b-md" style="margin-bottom: 0;">
-		<div class="panel-heading bg-black text-white">
-			Wishlist
-		</div>
-	</div>
-	<div class="panel hbox hbox-auto-xs no-border">
-		<div class="container-fluid captures-container m-b-md">
-			<div class="row">
-				<div class="col-md-12 m-t-md font-bold">
-					Feature coming soon!
+	{{#each wishes}}
+	<li class="list-group-item wishlist-li">
+		{{#if isGame}}
+			<div class="media">
+				<span class="pull-left thumb-sm"><img src="{{gameImage}}" alt="{{gameName}}" /></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-wishlist"></i>
+					{{/if}}
+				</div>
+				<div class="media-body">
+					<div class="font-bold name-truncate">{{gameName}}</div> 
+					<div>Game</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		{{else}}
+			<div class="media">
+				<span class="pull-left thumb-sm" style="background: url({{achievementImage}}) no-repeat scroll center center / cover;"></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-wishlist"></i>
+					{{/if}}
+				</div>
+				<div class="media-body">
+					<div class="font-bold name-truncate">{{achievementName}}</div>
+					<div>Achievement</div>
+				</div>
+			</div>
+		{{/if}}
+	</li>
+	{{/each}}
 </template>
-
-<!-- <template name="userWishlist">
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			{{gamercard.gamertag}}'s Wishlist
-		</div>
-		<div class="list-group bg-white">
-			<a href class="list-group-item">
-				<i class="fa fa-fw fa-envelope"></i> Inbox
-			</a>
-			<a href class="list-group-item">
-				<i class="fa fa-fw fa-eye"></i> Profile visits
-			</a>
-			<a href class="list-group-item">
-				<i class="fa fa-fw fa-phone"></i> Call
-			</a>
-			<a href class="list-group-item">
-				<i class="fa fa-fw fa-comments-o"></i> Messages
-			</a>
-			<a href class="list-group-item">
-				<i class="fa fa-fw fa-bookmark"></i> Bookmarks
-			</a>
-			<a href class="list-group-item">
-				<i class="fa fa-fw fa-bell"></i> Notifications
-			</a>
-		</div>
-	</div>
-</template> -->
 
 <template name="userTrophyCase">
-	<div class="panel panel-black m-b-md" style="margin-bottom: 0;">
-		<div class="panel-heading bg-black text-white">
-			Trophy Case
-		</div>
-	</div>
-	<div class="panel hbox hbox-auto-xs no-border">
-		<div class="container-fluid captures-container m-b-md">
-			<div class="row">
-				<div class="col-md-12 m-t-md font-bold">
-					Feature coming soon!
+	{{#each trophies}}
+	<li class="list-group-item trophy-case-li">
+		{{#if isGame}}
+			<div class="media">
+				<span class="pull-left thumb-sm"><img src="{{gameImage}}" alt="{{gameName}}" /></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-trophy-case"></i>
+					{{/if}}
+				</div>
+				<div class="media-body">
+					<div class="font-bold name-truncate">{{gameName}}</div> 
+					<div>Game</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		{{else}}
+			<div class="media">
+				<span class="pull-left thumb-sm" style="background: url({{achievementImage}}) no-repeat scroll center center / cover;"></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-trophy-case"></i>
+					{{/if}}
+				</div>
+				<div class="media-body">
+					<div class="font-bold name-truncate">{{achievementName}}</div>
+					<div>Achievement</div>
+				</div>
+			</div>
+		{{/if}}
+	</li>
+	{{/each}}
 </template>
-
-<!-- <template name="userTrophyCase">
-	<div class="panel panel-black">
-		<div class="panel-heading">
-			{{gamercard.gamertag}}'s Trophy Case
-		</div>
-		<ul class="list-group alt">
-			<li class="list-group-item">
-				<div class="media">
-					<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
-					<div class="pull-right text-success m-t-sm">
-						<i class="fa fa-circle"></i>
-					</div>
-					<div class="media-body">
-						<div><a href>Chris Fox</a></div>
-						<small class="text-muted">about 2 minutes ago</small>
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="media">
-					<span class="pull-left thumb-sm"><img src="/img/a2.jpg" alt="..." class="img-circle"></span>
-					<div class="pull-right text-muted m-t-sm">
-						<i class="fa fa-circle"></i>
-					</div>
-					<div class="media-body">
-						<div><a href>Amanda Conlan</a></div>
-						<small class="text-muted">about 2 hours ago</small>
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="media">
-					<span class="pull-left thumb-sm"><img src="/img/a3.jpg" alt="..." class="img-circle"></span>
-					<div class="pull-right text-warning m-t-sm">
-						<i class="fa fa-circle"></i>
-					</div>
-					<div class="media-body">
-						<div><a href>Dan Doorack</a></div>
-						<small class="text-muted">3 days ago</small>
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="media">
-					<span class="pull-left thumb-sm"><img src="/img/a4.jpg" alt="..." class="img-circle"></span>
-					<div class="pull-right text-danger m-t-sm">
-						<i class="fa fa-circle"></i>
-					</div>
-					<div class="media-body">
-						<div><a href>Lauren Taylor</a></div>
-						<small class="text-muted">about 2 minutes ago</small>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
-</template> -->

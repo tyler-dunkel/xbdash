@@ -1,0 +1,53 @@
+<template name="wishlistPopup">
+	<div class="wishlist-popup">
+		<h4 class="h4 m-t-sm m-b-xs">Your wishlist is full!</h4>
+		<p class="m-b-md">Please swap a game or achievement.</p>
+		<div class="btn-group-inline m-b-sm">
+			{{#if Template.subscriptionsReady}}
+				{{#each wish}}
+					{{debug}}
+					{{#if isGame}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{gameImage}}" alt="{{gameName}}" class="pull-left" />
+							<div class="name-truncate" style="margin: 5px;">{{gameName}}</div>
+						</a>
+					{{else}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{achievementImage}}" alt="{{achievementName}}" class="pull-left" />
+							<div class="name-truncate" style="margin: 5px;">{{achievementName}}</div>
+						</a>
+					{{/if}}
+				{{/each}}
+			{{/if}}
+			<button class="btn btn-success btn-block m-t-md m-b-md submit-swap">Swap'em</button>
+		</div>
+		<button class="close-button" id="menu-close-button">Close Menu</button>
+	</div>
+</template>
+
+<template name="trophyCasePopup">
+	<div class="trophy-case-popup">
+		<h4 class="h4 m-t-sm m-b-xs">Your trophy case is full!</h4>
+		<p class="m-b-md">Please swap a game or achievement.</p>
+		<div class="btn-group-inline m-b-sm">
+			{{#if Template.subscriptionsReady}}
+				{{#each trophy}}
+					{{debug}}
+					{{#if isGame}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{gameImage}}" alt="{{gameName}}" class="pull-left" />
+							<div class="name-truncate" style="margin: 5px;">{{gameName}}</div>
+						</a>
+					{{else}}
+						<a class="btn btn-default btn-block m-n swap-item">
+							<img src="{{achievementImage}}" alt="{{achievementName}}" class="pull-left" />
+							<div class="name-truncate" style="margin: 5px;">{{achievementName}}</div>
+						</a>
+					{{/if}}
+				{{/each}}
+			{{/if}}
+			<button class="btn btn-success btn-block m-t-md m-b-md submit-swap">Swap'em</button>
+		</div>
+		<button class="close-button" id="menu-close-button">Close Menu</button>
+	</div>
+</template>
