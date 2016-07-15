@@ -3,10 +3,13 @@ Template.gamesSinglePageNew.created = function() {
 	DocHead.removeDocHeadAddedTags();
 	var self = this,
 		slug = Router.current().params.slug,
+		gamertagSlug;
+	if (Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
+		this.subscribe('userWishlist', gamertagSlug);
+		this.subscribe('userTrophyCase', gamertagSlug);
+	}
 	this.subscribe('singleGame', slug);
-	this.subscribe('userWishlist', gamertagSlug);
-	this.subscribe('userTrophyCase', gamertagSlug);
 }
 
 Template.gamesSinglePageNew.helpers({
@@ -69,9 +72,11 @@ Template.gamesSinglePageNew.helpers({
 		return false; 
 	},
 	chkUserWishlist: function() {
-		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
-		if (wishlistCount > 0) {
-			return true;
+		if (Meteor.user()) {
+			var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this.gameId }).count();
+			if (wishlistCount > 0) {
+				return true;
+			}
 		}
 	},
 	chkIfCompleted: function () {

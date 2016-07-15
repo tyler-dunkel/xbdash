@@ -15,7 +15,7 @@ Template.userPersonal.helpers({
 
 Template.userWishlist.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '') {
+	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
 	}
 	this.subscribe('userWishlist', gamertagSlug);
@@ -24,7 +24,7 @@ Template.userWishlist.created = function() {
 Template.userWishlist.helpers({
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		if (!gamertagSlug || gamertagSlug === '') {
+		if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
@@ -38,7 +38,7 @@ Template.userWishlist.helpers({
 	},
 	user: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		if (!gamertagSlug || gamertagSlug === '') {
+		if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
@@ -50,7 +50,7 @@ Template.userWishlist.helpers({
 	},
 	wishes: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		if (!gamertagSlug || gamertagSlug === '') {
+		if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
@@ -149,7 +149,7 @@ Template.userWishlist.events({
 
 Template.userTrophyCase.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '') {
+	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
 	}
 	this.subscribe('userTrophyCase', gamertagSlug);
@@ -158,7 +158,7 @@ Template.userTrophyCase.created = function() {
 Template.userTrophyCase.helpers({
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		if (!gamertagSlug || gamertagSlug === '') {
+		if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
@@ -166,7 +166,7 @@ Template.userTrophyCase.helpers({
 	},
 	user: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		if (!gamertagSlug || gamertagSlug === '') {
+		if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
@@ -178,7 +178,7 @@ Template.userTrophyCase.helpers({
 	},
 	trophies: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
-		if (!gamertagSlug || gamertagSlug === '') {
+		if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
