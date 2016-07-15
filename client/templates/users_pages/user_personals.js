@@ -1,5 +1,10 @@
 Template.userPersonal.created = function() {
-	var gamertagSlug = Router.current().params.gamertagSlug;
+	var gamertagSlug;
+	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+		gamertagSlug = Meteor.user().gamertagSlug;
+	} else {
+		gamertagSlug = Router.current().params.gamertagSlug;
+	}
 	this.subscribe('userBadges', gamertagSlug);
 }
 
@@ -14,9 +19,11 @@ Template.userPersonal.helpers({
 });
 
 Template.userWishlist.created = function() {
-	var gamertagSlug = Router.current().params.gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '') {
+	var gamertagSlug;
+	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
+	} else {
+		gamertagSlug = Router.current().params.gamertagSlug;
 	}
 	this.subscribe('userWishlist', gamertagSlug);
 }
@@ -120,7 +127,7 @@ Template.userWishlist.events({
 			Router.go('achievement', {slug: achievement.slug});
 		}
 	},
-	'click .remove-from-wish-list': function(e) {
+	'click .remove-from-wishlist': function(e) {
 		var self = this,
 			doc;
 		if (this.type === 'game') {
@@ -148,9 +155,11 @@ Template.userWishlist.events({
 });
 
 Template.userTrophyCase.created = function() {
-	var gamertagSlug = Router.current().params.gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '') {
+	var gamertagSlug;
+	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
+	} else {
+		gamertagSlug = Router.current().params.gamertagSlug;
 	}
 	this.subscribe('userTrophyCase', gamertagSlug);
 }

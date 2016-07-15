@@ -3,10 +3,13 @@ Template.gamesSinglePageNew.created = function() {
 	DocHead.removeDocHeadAddedTags();
 	var self = this,
 		slug = Router.current().params.slug,
-		gamertagSlug = Meteor.user().gamertagSlug;
+		gamertagSlug;
 	this.subscribe('singleGame', slug);
-	this.subscribe('userWishlist', gamertagSlug);
-	this.subscribe('userTrophyCase', gamertagSlug);
+	if (Meteor.user()) {
+		gamertagSlug = Meteor.user().gamertagSlug;
+		this.subscribe('userWishlist', gamertagSlug);
+		this.subscribe('userTrophyCase', gamertagSlug);
+	}
 }
 
 Template.gamesSinglePageNew.helpers({
