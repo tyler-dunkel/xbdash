@@ -147,10 +147,10 @@ Template.referralContest.helpers({
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
-		var getImage = "https://www.xbdash.com/img/contests/new-contest-banner.jpg";
+		var getImage = "https://www.xbdash.com/img/contests/july-contest-banner.jpg";
 
 		return {
-			title: "I just entered to win a FREE #Xbox Game in the #XBdash Launch #Contest! #gaming #gamer",
+			title: "I just entered to win a FREE engraved #Xbox controller in the #XBdash July #Contest! #gaming #gamer",
 			description: 'Manage your Xbox achievements and work together with other Xbox® gamers to unlock them and complete games together.',
 			image: function () {
 				return getImage;
