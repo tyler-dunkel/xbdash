@@ -1,9 +1,7 @@
 Template.userPersonal.created = function() {
-	var gamertagSlug;
+	var gamertagSlug = Router.current().params.gamertagSlug;
 	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
 	}
 	this.subscribe('userBadges', gamertagSlug);
 }
@@ -19,11 +17,9 @@ Template.userPersonal.helpers({
 });
 
 Template.userWishlist.created = function() {
-	var gamertagSlug;
+	var gamertagSlug = Router.current().params.gamertagSlug;
 	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
 	}
 	this.subscribe('userWishlist', gamertagSlug);
 }
@@ -117,13 +113,17 @@ Template.userWishlist.helpers({
 });
 
 Template.userWishlist.events({
-	"click .list-group-item": function() {
+	"click .list-group-item": function(e) {
+		var game,
+			achievement,
+			target = e.target;
+
 		if (this.type === 'game') {
-			var game = xbdGames.findOne({_id: this.relationId});
+			game = xbdGames.findOne({_id: this.relationId});
 			console.log(game.slug);
 			Router.go('game', {slug: game.slug});
 		} else {
-			var achievement = xbdAchievements.findOne({_id: this.relationId});
+			achievement = xbdAchievements.findOne({_id: this.relationId});
 			Router.go('achievement', {slug: achievement.slug});
 		}
 	},
@@ -155,12 +155,10 @@ Template.userWishlist.events({
 });
 
 Template.userTrophyCase.created = function() {
-	var gamertagSlug;
+	var gamertagSlug = Router.current().params.gamertagSlug;
 	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
 		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
-	}
+	} 
 	this.subscribe('userTrophyCase', gamertagSlug);
 }
 
