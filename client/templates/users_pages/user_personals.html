@@ -173,31 +173,31 @@
 
 <template name="userWishlist">
 	{{#each wishes}}
-	<li class="list-group-item">
+	<li class="list-group-item wishlist-li">
 		{{#if isGame}}
 			<div class="media">
-				<span class="pull-left thumb-sm"><img src="{{gameImage}}" alt="..." class="img-circle"></span>
-				<div class="pull-right text-success m-t-sm">
-					<i class="fa fa-circle"></i>
+				<span class="pull-left thumb-sm"><img src="{{gameImage}}" alt="{{gameName}}" /></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-trophy-case"></i>
+					{{/if}}
 				</div>
 				<div class="media-body">
-					<div>{{gameName}}</div>
-					{{#if currentUserEntry}}
-						<button class="remove-from-trophy-case">remove me</button>
-					{{/if}}
+					<div class="font-bold name-truncate">{{gameName}}</div> 
+					<div>Game</div>
 				</div>
 			</div>
 		{{else}}
 			<div class="media">
-				<span class="pull-left thumb-sm"><img src="{{achievementImage}}" alt="..." class="img-circle"></span>
-				<div class="pull-right text-success m-t-sm">
-					<i class="fa fa-circle"></i>
+				<span class="pull-left thumb-sm" style="background: url({{achievementImage}}) no-repeat scroll center center / cover;"></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-wishlist"></i>
+					{{/if}}
 				</div>
 				<div class="media-body">
-					<div>{{achievementName}}</div>
-					{{#if currentUserEntry}}
-						<button class="remove-from-trophy-case">remove me</button>
-					{{/if}}
+					<div class="font-bold name-truncate">{{achievementName}}</div>
+					<div>Achievement</div>
 				</div>
 			</div>
 		{{/if}}
@@ -207,134 +207,34 @@
 
 <template name="userTrophyCase">
 	{{#each trophies}}
-	<li class="list-group-item">
+	<li class="list-group-item trophy-case-li">
 		{{#if isGame}}
 			<div class="media">
-				<span class="pull-left thumb-sm"><img src="{{gameImage}}" alt="..." class="img-circle"></span>
-				<div class="pull-right text-success m-t-sm">
-					<i class="fa fa-circle"></i>
+				<span class="pull-left thumb-sm"><img src="{{gameImage}}" alt="{{gameName}}" /></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-trophy-case"></i>
+					{{/if}}
 				</div>
 				<div class="media-body">
-					<div>{{gameName}}</div> 
-					{{#if currentUserEntry}}
-						<button class="remove-from-trophy-case">remove me</button>
-					{{/if}}
+					<div class="font-bold name-truncate">{{gameName}}</div> 
+					<div>Game</div>
 				</div>
 			</div>
 		{{else}}
 			<div class="media">
-				<span class="pull-left thumb-sm"><img src="{{achievementImage}}" alt="..." class="img-circle"></span>
-				<div class="pull-right text-success m-t-sm">
-					<i class="fa fa-circle"></i>
+				<span class="pull-left thumb-sm" style="background: url({{achievementImage}}) no-repeat scroll center center / cover;"></span>
+				<div class="pull-right btn btn-icon btn-sm">
+					{{#if currentUserEntry}}
+						<i class="fa fa-times-circle text-danger remove-from-trophy-case"></i>
+					{{/if}}
 				</div>
 				<div class="media-body">
-					<div>{{achievementName}}</div>
-					{{#if currentUserEntry}}
-						<button class="remove-from-trophy-case">remove me</button>
-					{{/if}}
+					<div class="font-bold name-truncate">{{achievementName}}</div>
+					<div>Achievement</div>
 				</div>
 			</div>
 		{{/if}}
 	</li>
 	{{/each}}
 </template>
-
-<!-- <template name="userWishlist">
-	{{#if Template.subscriptionsReady}}
-		{{#with user}}
-		<div class="panel panel-black">
-			<div class="panel-heading bg-black text-white">
-				{{#if user}}
-					{{getUserGamertag}}'s Wishlist
-				{{else}}
-					Wishlist
-				{{/if}}
-			</div>
-			<div class="hbox">
-				<div class="col">
-					<ul class="list-group alt m-b-none">
-					{{#if Template.subscriptionsReady}}
-						{{#if chkTrophyCase}}
-							{{#each wish}}
-							<li class="list-group-item">
-								<div class="media">
-									<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
-									<div class="pull-right text-success m-t-sm">
-										<i class="fa fa-circle"></i>
-									</div>
-									<div class="media-body">
-										<div><a href="">Chris Fox</a></div>
-										<small class="text-muted">about 2 minutes ago</small>
-									</div>
-								</div>
-							</li>
-							{{/each}}
-						{{else}}
-							<li class="list-group-item">
-								<div class="media">
-									<div class="media-body">
-										<div>No trophies saved.</div>
-									</div>
-								</div>
-							</li>
-						{{/if}}
-					{{else}}
-						{{> loadingTemplate}}
-					{{/if}}
-					</ul>
-				</div>
-			</div>
-		</div>
-		{{/with}}
-	{{/if}}
-</template> -->
-
-<!-- <template name="userTrophyCase">
-	{{#if Template.subscriptionsReady}}
-	<div class="panel panel-black">
-		<div class="panel-heading bg-black text-white">
-			{{#if user}}
-				{{gamercard.gamertag}}'s Trophy Case
-			{{else}}
-				Trophy Case
-			{{/if}}
-		</div>
-		<div class="hbox">
-			<div class="col">
-				<ul class="list-group alt m-b-none">
-				{{#if Template.subscriptionsReady}}
-					{{#if chkTrophyCase}}
-						{{#each trophy}}
-						<li class="list-group-item">
-							<div class="media">
-								<span class="pull-left thumb-sm"><img src="/img/a1.jpg" alt="..." class="img-circle"></span>
-								<div class="pull-right text-success m-t-sm">
-									<i class="fa fa-circle"></i>
-								</div>
-								<div class="media-body">
-									<div><a href="">Chris Fox</a></div>
-									<small class="text-muted">about 2 minutes ago</small>
-								</div>
-							</div>
-						</li>
-						{{/each}}
-					{{else}}
-						<li class="list-group-item">
-							<div class="media">
-								<div class="media-body">
-									<div>No trophies saved.</div>
-								</div>
-							</div>
-						</li>
-					{{/if}}
-				{{else}}
-					{{> loadingTemplate}}
-				{{/if}}
-				</ul>
-			</div>
-		</div>
-	</div>
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}}
-</template> -->
