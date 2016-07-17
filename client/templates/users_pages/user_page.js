@@ -1,12 +1,13 @@
 Template.userProfilePage.created = function() {
 	DocHead.removeDocHeadAddedTags();
-	var gamertagSlug;
+
 	this.autorun(function() {
-		if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
-			gamertagSlug = Meteor.user().gamertagSlug;
-		} else {
-			gamertagSlug = Router.current().params.gamertagSlug;
-		}
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		// if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+		// 	gamertagSlug = Meteor.user().gamertagSlug;
+		// } else {
+		// 	gamertagSlug = Router.current().params.gamertagSlug;
+		// }
 		Meteor.subscribe('userProfile', gamertagSlug);
 	});
 }
@@ -204,12 +205,12 @@ Template.userProfileArea.helpers({
 });
 
 Template.userRankArea.created = function() {
-	var gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
-		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
-	}
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	// if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+	// 	gamertagSlug = Meteor.user().gamertagSlug;
+	// } else {
+	// 	gamertagSlug = Router.current().params.gamertagSlug;
+	// }
 	this.subscribe('userRanks', gamertagSlug);
 }
 

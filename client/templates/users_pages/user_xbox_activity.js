@@ -1,10 +1,10 @@
 Template.userActivity.created = function() {
-	var gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
-		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
-	}
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	// if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+	// 	gamertagSlug = Meteor.user().gamertagSlug;
+	// } else {
+	// 	gamertagSlug = Router.current().params.gamertagSlug;
+	// }
 	this.subscribe('userActivity', gamertagSlug);
 }
 
@@ -32,12 +32,12 @@ Template.userActivity.helpers({
 });
 
 Template.userAchievements.created = function() {
-	var gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
-		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
-	}
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	// if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+	// 	gamertagSlug = Meteor.user().gamertagSlug;
+	// } else {
+	// 	gamertagSlug = Router.current().params.gamertagSlug;
+	// }
 	this.subscribe('userAchievements', gamertagSlug);
 }
 
@@ -100,12 +100,12 @@ Template.userAchievements.helpers({
 });
 
 Template.userGames.created = function() {
-	var gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
-		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
-	}
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	// if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+	// 	gamertagSlug = Meteor.user().gamertagSlug;
+	// } else {
+	// 	gamertagSlug = Router.current().params.gamertagSlug;
+	// }
 	this.subscribe('userGames', gamertagSlug);
 }
 
@@ -164,12 +164,12 @@ Template.userGames.helpers({
 });
 
 Template.userClips.created = function() {
-	var gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
-		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
-	}
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	// if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+	// 	gamertagSlug = Meteor.user().gamertagSlug;
+	// } else {
+	// 	gamertagSlug = Router.current().params.gamertagSlug;
+	// }
 	this.subscribe('userClips', gamertagSlug);
 	this.counter = 0;
 }
@@ -296,12 +296,12 @@ Template.userClips.events({
 });
 
 Template.userCaptures.created = function() {
-	var gamertagSlug;
-	if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
-		gamertagSlug = Meteor.user().gamertagSlug;
-	} else {
-		gamertagSlug = Router.current().params.gamertagSlug;
-	}
+	var gamertagSlug = Router.current().params.gamertagSlug;
+	// if (!gamertagSlug || gamertagSlug === '' && Meteor.user()) {
+	// 	gamertagSlug = Meteor.user().gamertagSlug;
+	// } else {
+	// 	gamertagSlug = Router.current().params.gamertagSlug;
+	// }
 	this.subscribe('userCaptures', gamertagSlug);
 	this.counter = 0;
 }
