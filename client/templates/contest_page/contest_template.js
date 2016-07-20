@@ -133,7 +133,7 @@ Template.referralContest.helpers({
 		} else if (referralToken === 'error') {
 			return 'There was an error generating your share url.';
 		} else {
-			return 'https://www.xbdash.com/signup?referraltoken=' + referralToken;
+			return 'https://www.xbdash.com/contests?referraltoken=' + referralToken;
 		}
 	},
 	getStartDate: function() {
@@ -156,7 +156,7 @@ Template.referralContest.helpers({
 				return getImage;
 			},
 			author: 'xboxdash',
-			url: 'https://www.xbdash.com/signup?referraltoken=' + referralToken
+			url: 'https://www.xbdash.com/contests?referraltoken=' + referralToken
 		}
 	}
 });
@@ -164,6 +164,11 @@ Template.referralContest.helpers({
 Template.referralContest.events({
 	'click .referral-signup': function(e) {
 		e.preventDefault();
-		Router.go('signUp', {}, { query: 'referraltoken=' + this.contestToken });
+		var referralToken = Router.current().params.query.referraltoken;
+		if (referralToken) {
+			Router.go('signUp', {}, { query: 'referraltoken=' + referralToken });
+		} else {
+			Router.go('signUp', {}, { query: 'referraltoken=' + this.contestToken });
+		}
 	}
 });
