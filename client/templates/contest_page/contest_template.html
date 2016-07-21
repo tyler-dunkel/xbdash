@@ -42,11 +42,8 @@
 											{{/each}}
 										</ul>
 										<form class="m-t-xxl m-b-xxl">
-											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
-											<div class="m-t-sm text-center">
-												{{> shareit contestData}}
-											</div>
-											<div class="input-group m-b-lg">
+											<h3 class="h3 text-center"><strong>Share this link with friends and get more entries!</strong></h3>
+											<div class="input-group m-t-sm m-b-sm">
 												<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
 												<span class="input-group-btn">
 													<button class="btn btn-default" type="button" id="copy-button"
@@ -55,6 +52,9 @@
 													Copy
 													</button>
 												</span>
+											</div>
+											<div class="text-center">
+												{{> shareit contestData}}
 											</div>
 										</form>
 									{{else}}
