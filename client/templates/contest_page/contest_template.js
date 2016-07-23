@@ -61,7 +61,7 @@ Template.referralContest.created = function() {
 	var self = this;
 	self.referralToken = new ReactiveVar('');
 
-	Meteor.call('checkReferralToken', function(err, res) {
+	Meteor.call('checkReferralToken', this.contestToken, function(err, res) {
 		if (err) {
 			self.referralToken.set('error');
 		}
