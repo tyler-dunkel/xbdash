@@ -2,6 +2,10 @@ Meteor.methods({
 	checkReferralToken: function(contestId) {
 		var user = Meteor.user();
 		if (!user) return;
+		var contest = xbdContests.findOne({_id: contestId});
+		if (contest.status !== 'acive') {
+			return;
+		}
 		//var referralToken = xbdContests.findOne({ status: 'active', entries: { $elemMatch: { userId: user._id } } }, { fields: { 'entries.$.referralToken': 1 } });
 		var referralToken = userContestEntries.findOne({status: 'active', contestId: contestId, userId: user._id });
 		if (referralToken) {
@@ -10,7 +14,7 @@ Meteor.methods({
 		} else {
 			var referralId = Random.id(7);
 			//xbdContests.update({ status: 'active' }, { $push: { entries: { userId: user._id, referralToken: referralId, referralCount: 0 } } });
-			userContestEntries.insert({status: 'active', contestToken: contestToken, userId: user._id, data: { token: referralId, referralCount: 0 }, createdAt: new Date(), type: 'referral'});
+			userContestEntries.insert({status: 'active', contestToken: contestToken, userId: user._id, data: { token: referralId, referralCount: 0 }, createdAt: new Date(), contestType: 'referral', type: 'referral'});
 			return referralId;
 		}
 	},
@@ -24,7 +28,7 @@ Meteor.methods({
 			//user was referred from contest page, give the signed up user a token and count
 			var userToken = Random.id(7);
 			//xbdContests.update({ status: 'active' }, { $push: { entries: { userId: user._id, referralToken: userToken, referralCount: 1 } } });
-			userContestEntries.insert({status: 'active', contestToken: token, userId: user._id, data: {token: userToken, referralCount: 1}, createdAt: new Date(), type: 'referral'});
+			userContestEntries.insert({status: 'active', contestToken: token, userId: user._id, data: {token: userToken, referralCount: 1}, createdAt: new Date(), contestType: 'referral', type: 'signup'});
 		} else if (checkForUserToken) {
 			console.log('token belonged to user');
 			//user was referred by another user. give that user a count increment

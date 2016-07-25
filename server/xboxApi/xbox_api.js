@@ -37,7 +37,7 @@ Meteor.methods({
 		Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'building' } });
 
 		var buildUserProfileJob = new Job(xbdJobsCollection, 'buildUserProfileJob', { userId: userId })
-		.priority('normal')
+		.priority('critical')
 		.save(function (err, result) {
 			if (err) return;
 			if (!err && result) {
