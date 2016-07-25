@@ -10,6 +10,9 @@ Meteor.publishComposite('xbdContestsPub', function() {
 					if (user) {
 						return userContestEntries.findOne({status: 'active', contestToken: contest.contestToken, userId: this.userId});
 					}
+				},
+				find: function(contest) {
+					return userContestEntries.find({status: 'active', contestToken: contest.contestToken}, {sort: {'data.value': -1}, limit: 10});
 				}
 			}
 		]
