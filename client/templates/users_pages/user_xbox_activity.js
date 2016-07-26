@@ -27,7 +27,7 @@ Template.userActivity.helpers({
 		}
 	},
 	getStartTime: function () {
-		return moment(this.startTime).calendar();
+		return moment().utc(this.startTime).calendar();
 	}
 });
 
@@ -74,7 +74,7 @@ Template.userAchievements.helpers({
 		return achievement.name;
 	},
 	getUnlockedDate: function () {
-		return moment(this.progression).calendar();
+		return moment().utc(this.progression).calendar();
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
@@ -154,7 +154,7 @@ Template.userGames.helpers({
 		return game.name;
 	},
 	getUnlockedDate: function () {
-		return moment(this.lastUnlock).calendar();
+		return moment().utc(this.lastUnlock).calendar();
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
@@ -196,7 +196,6 @@ Template.userClips.helpers({
 	clip: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var currentTime = moment().utc().format();
 		var clips = gameClips.find({
 					userId: user._id
 				}, {
@@ -205,11 +204,11 @@ Template.userClips.helpers({
 		var validClips = [];
 		clips.forEach(function(clip) {
 			if (clip.savedByUser) {
-				if (moment().isBefore(clip.gameClipUris[2].expiration)) {
+				if (moment().utc().isBefore(clip.gameClipUris[2].expiration)) {
 					validClips.push(clip);
 				}
 			} else {
-				if (moment().isBefore(clip.gameClipUris[0].expiration)) {
+				if (moment().utc().isBefore(clip.gameClipUris[0].expiration)) {
 					validClips.push(clip);
 				}
 			}

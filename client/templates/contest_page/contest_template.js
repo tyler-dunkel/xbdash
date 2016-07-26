@@ -137,13 +137,13 @@ Template.referralContest.helpers({
 		}
 	},
 	getStartDate: function() {
-		return moment(this.startDate).format('MMMM Do YYYY, h:mm a');
+		return moment().utc(this.startDate).format('MMMM Do YYYY, h:mm a');
 	},
 	getEndDate: function() {
-		return moment(this.endDate).format('MMMM Do YYYY, h:mm a');
+		return moment().utc(this.endDate).format('MMMM Do YYYY, h:mm a');
 	},
 	getAwardDate: function() {
-		return moment(this.awardDate).format('MMMM Do YYYY, h:mm a');
+		return moment().utc(this.awardDate).format('MMMM Do YYYY, h:mm a');
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
