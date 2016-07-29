@@ -14,7 +14,6 @@ var trusted = [
 	'*.googlesyndication.com',
 	'*.doubleclick.net',
 	'*.g.doubleclick.net',
-	'googleads.g.doubleclick.net',
 	'*.polygon.com',
 	'*.sbnation.com',
 	'*.ritetag.com',

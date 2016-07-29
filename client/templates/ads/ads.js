@@ -9,7 +9,7 @@ Template.googleAdsMedium.rendered = function() {
 		}
 	});
 };
-
+ 
 Template.googleAdsResponsiveRight.rendered = function() {
 	$.getScript("//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", function() {
 		var ads, adsbygoogle;
