@@ -1,47 +1,47 @@
 .xbd-top-banner-ad {
-	width: 300px;
-	height: 250px;
+	width: 300px !important;
+	height: 250px !important;
 	background-color: #fff;
 	margin: 0 auto 20px;
 }
 .xbd-right-banner-ad {
-	width: 300px;
-	height: 600px;
+	width: 300px !important;
+	height: 600px !important;
 	background-color: #fff;
 	margin: 0 auto;
 }
 .xbd-right-sidebar-ad {
-	width: 300px;
-	height: 250px;
+	width: 300px !important;
+	height: 250px !important;
 	background-color: #fff;
 	margin: 0 auto 20px;
 }
 .xbd-left-sidebar-ad {
-	width: 300px;
-	height: 250px;
+	width: 300px !important;
+	height: 250px !important;
 	background-color: #fff;
 	margin: 30px auto;
 }
 @media (max-width: 767px) {
 	/*.xbd-top-banner-ad {
-		width: 250px;
-		height: 250px;
+		width: 250px !important;
+		height: 250px !important;
 		background-color: #fff;
 		margin: 5px auto 20px;
 	}*/
 	.xbd-right-banner-ad {
-		width: 300px;
-		height: 250px;
+		width: 300px !important;
+		height: 250px !important;
 		margin: 0 auto 15px;
 	}
 	.xbd-right-sidebar-ad {
-		width: 300px;
-		height: 250px;
+		width: 300px !important;
+		height: 250px !important;
 		margin: 10px auto 25px;
 	}
 	.xbd-left-sidebar-ad {
-		width: 300px;
-		height: 250px;
+		width: 300px !important;
+		height: 250px !important;
 		margin: 15px auto;
 	}
 	.xbd-top-banner-ad, .xbd-top-banner-ad .top300 { display: block; }
@@ -55,10 +55,10 @@
 }
 @media (max-width: 991px) {
 	.xbd-right-banner-ad {
-		width: 300px;
-		height: 250px;
+		width: 300px !important;
+		height: 250px !important;
 		background-color: #fff;
-		margin: 5px auto 20px;
+		margin: 5px auto 90px;
 	}
 	.xbd-right-banner-ad .right300600 { display: none !important; }
 	.xbd-right-banner-ad .right160600 { display: none !important; }
@@ -79,8 +79,8 @@
 }
 @media (min-width: 992px) {
 	.xbd-right-banner-ad {
-		width: 160px;
-		height: 600px;
+		width: 160px !important;
+		height: 600px !important;
 		background-color: #fff;
 		margin: 0 auto 15px;
 	}
@@ -94,8 +94,8 @@
 @media (min-width: 1200px) {
 	.xbd-right-sidebar-ad,
 	.xbd-left-sidebar-ad {
-		width: 250px;
-		height: 250px;
+		width: 250px !important;
+		height: 250px !important;
 	}
 	.xbd-right-sidebar-ad .rightside300250 { display: none; }
 	.xbd-right-sidebar-ad .rightside250250 { display: block; }
@@ -104,8 +104,8 @@
 }
 @media (min-width: 1268px) and (max-width: 1400px) {
 	.xbd-right-banner-ad {
-		width: 160px;
-		height: 600px;
+		width: 160px !important;
+		height: 600px !important;
 	}
 	.xbd-right-banner-ad .right300600 { display: none; }
 	.xbd-right-banner-ad .right160600 { display: block; }
@@ -113,12 +113,12 @@
 }
 @media (min-width: 1575px) {
 	.xbd-right-banner-ad {
-		width: 300px;
-		height: 600px;
+		width: 300px !important;
+		height: 600px !important;
 	}
 	.xbd-left-sidebar-ad {
-		width: 300px;
-		height: 250px;
+		width: 300px !important;
+		height: 250px !important;
 	}
 	.xbd-right-banner-ad .right300600 { display: block !important; }
 	.xbd-right-banner-ad .right160600 { display: none !important; }
