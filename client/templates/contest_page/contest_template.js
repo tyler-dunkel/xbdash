@@ -136,11 +136,21 @@ Template.referralContest.helpers({
 			return 'https://www.xbdash.com/contests?referraltoken=' + referralToken;
 		}
 	},
+	getLocalStartDate: function() {
+		var startDate = this.startDate;
+		return moment(startDate).utc().local().format('MMMM Do YYYY, h:mm a');
+	},
 	getStartDate: function() {
-		return moment().utc(this.startDate).format('MMMM Do YYYY, h:mm a');
+		var startDate = this.startDate;
+		return moment(startDate).utc().format('MMMM Do YYYY, h:mm a');
+	},
+	getLocalEndDate: function() {
+		var endDate = this.endDate;
+		return moment(endDate).utc().local().format('MMMM Do YYYY, h:mm a');
 	},
 	getEndDate: function() {
-		return moment().utc(this.endDate).format('MMMM Do YYYY, h:mm a');
+		var endDate = this.endDate;
+		return moment(endDate).utc().format('MMMM Do YYYY, h:mm a');
 	},
 	getAwardDate: function() {
 		return moment().utc(this.awardDate).format('MMMM Do YYYY, h:mm a');

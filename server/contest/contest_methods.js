@@ -2,8 +2,8 @@ Meteor.methods({
 	checkReferralToken: function(contestId) {
 		var user = Meteor.user();
 		if (!user) return;
-		var contest = xbdContests.findOne({_id: contestId});
-		if (contest.status !== 'acive') {
+		var contest = xbdContests.findOne({ _id: contestId });
+		if (contest.status !== 'active') {
 			return;
 		}
 		//var referralToken = xbdContests.findOne({ status: 'active', entries: { $elemMatch: { userId: user._id } } }, { fields: { 'entries.$.referralToken': 1 } });
