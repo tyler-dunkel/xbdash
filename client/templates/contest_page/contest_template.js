@@ -60,8 +60,9 @@ Template.contestPage.helpers({
 Template.referralContest.created = function() {
 	var self = this;
 	self.referralToken = new ReactiveVar('');
-
-	Meteor.call('checkReferralToken', this.contestToken, function(err, res) {
+	console.log(this);
+	console.log(this.data);
+	Meteor.call('checkReferralToken', this.data.contestToken, function(err, res) {
 		if (err) {
 			self.referralToken.set('error');
 		}
@@ -109,7 +110,7 @@ Template.referralContest.helpers({
 		return;
 	},
 	rulesClasses: function() {
-		var prizeCount = this.prizes.length;
+		var prizeCount = this.prizes ? this.prizes.length : 0;
 		if (prizeCount === 1) {
 			return 'col-md-6 col-xs-12';
 		}
