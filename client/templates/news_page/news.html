@@ -7,14 +7,14 @@
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
-					<div class="bg-light lter b-b wrapper-md">
+					{{#if chkGamerStatus}}
+					<div class="bg-light lter b-b wrapper-md hidden-xs">
 						<div class="row">
-							<div class="col-sm-6 col-xs-12">
-								<h1 class="m-n font-thin h3 text-black">Latest News</h1>
-								<small class="text-muted">Read the latest in Xbox&reg; achievements, search solutions</small>
+							<div class="col-sm-8 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Welcome back, {{userGamertag}}!</h1>
+								<small class="text-muted">Latest Updates</small>
 							</div>
-							{{#if chkGamerStatus}}
-							<div class="col-sm-6 text-right hidden-xs user-rank-area">
+							<div class="col-sm-4 text-right hidden-xs user-rank-area">
 								<div class="inline m-l m-r text-left">
 									{{> userDailyRank}}
 								</div>
@@ -22,20 +22,20 @@
 									{{> userOverallRank}}
 								</div>
 							</div>
-							{{/if}}
 						</div>
 					</div>
+					{{/if}}
 					<div class="wrapper-md">
 						<div class="row">
 							{{> featuredNewsSection}}
 						</div>
 						<div class="row">
 							<div class="col-lg-8 col-md-12">
-								<!-- <h3 class="m-b-sm font-thin h3 text-black">News from XBdash</h3> -->
+								<h3 class="m-b-md font-thin h3 text-black">News</h3>
 								{{> newsSection}}
 							</div>
 							<div class="col-lg-4 hidden-md hidden-sm hidden-xs trending-column">
-								<h2 class="m-b-sm font-thin h3 text-black">Trending News</h2>
+								<h3 class="m-b-md font-thin h3 text-black">Trending News</h3>
 								{{> mostSharedNews limit=5}}
 							</div>
 						</div>
@@ -54,20 +54,21 @@
 					<span class="text-lt">New Announcements</span>
 				</div>
 				{{#if newAnnouncement}}
-					{{> todaysFeaturedAnnouncements}}
+					{{> todaysFeaturedAnnouncements}} 
 				{{else}}
-					<div class="text-center wrapper m-b-sm">
-						<div class="clearfix">
-							<a class="pull-left thumb-lg img-thumbnail b-3x m-r" style="" href="#">
-								<img src="/img/news-default.jpg" alt="No New Announcements">
-							</a>
-							<div class="clear text-left">
-								<div class="h3 m-t-xs m-b-xs">
-									<p style="margin-bottom: 44%;">No Recent Announcements</p>
-								</div>
+				<div class="item m-l-n-xxs m-r-n-xxs">
+					<div class="bottom wrapper w-full text-black clearfix">
+						<a class="pull-left thumb-sm b-3x m-r" href="">
+							<img src="/img/xbdash_greenicon.png" alt="No recent announcements.">
+						</a>
+						<div class="clear text-left">
+							<div class="text-lt m-b-sm title-wrap-news">
+								<p>No recent announcements.</p>
 							</div>
 						</div>
 					</div>
+					<img src="/img/announcements-bg.jpg" alt="No recent announcements." class="img-full">
+				</div>
 				{{/if}}
 			</div>
 		</div>
@@ -79,12 +80,12 @@
 				{{#if newNews}}
 					{{> todaysFeaturedNews}}
 				{{else}}
-					<div class="item m-l-n-xxs m-r-n-xxs">
-						<div class="bottom wrapper bg-gd-dk text-white">            
-							<div class="text-lt m-b-sm title-wrap-news">No Featured News</div>
-						</div>
-						<img src="/img/news-default.jpg" class="img-full">
+				<div class="item m-l-n-xxs m-r-n-xxs">
+					<div class="bottom wrapper bg-gd-dk w-full text-white">            
+						<div class="text-lt m-b-sm title-wrap-news">No featured news.</div>
 					</div>
+					<img src="/img/news-default.jpg" alt="No featured news." class="img-full">
+				</div>
 				{{/if}}
 			</div>
 		</div>
@@ -96,12 +97,12 @@
 				{{#if newClip}}
 					{{> todaysFeaturedClip}}
 				{{else}}
-					<div class="item m-l-n-xxs m-r-n-xxs">
-						<div class="bottom wrapper bg-gd-dk text-white">            
-							<div class="m-b-sm">No new clips.</div>
-						</div>
-						<img src="/img/news-default.jpg" class="user-clip large img-full">
+				<div class="item m-l-n-xxs m-r-n-xxs">
+					<div class="bottom wrapper bg-gd-dk w-full text-white">            
+						<div class="m-b-sm">No new clips.</div>
 					</div>
+					<img src="/img/news-default.jpg" alt="No new clips." class="user-clip large img-full">
+				</div>
 				{{/if}}
 			</div>
 		</div>
@@ -113,12 +114,12 @@
 				{{#if newCapture}}
 					{{> todaysFeaturedCapture}}
 				{{else}}
-					<div class="item m-l-n-xxs m-r-n-xxs">
-						<div class="bottom wrapper bg-gd-dk text-white">            
-							<div class="m-b-sm">No new captures.</div>
-						</div>
-						<img src="/img/news-default.jpg" class="user-capture large img-full">
+				<div class="item m-l-n-xxs m-r-n-xxs">
+					<div class="bottom wrapper bg-gd-dk w-full text-white">            
+						<div class="m-b-sm">No new captures.</div>
 					</div>
+					<img src="/img/news-default.jpg" alt="No new captures." class="user-capture large img-full">
+				</div>
 				{{/if}}
 			</div>
 		</div>
@@ -126,16 +127,19 @@
 </template>
 
 <template name="todaysFeaturedAnnouncements">
-	<div class="text-center wrapper m-b-sm">
-		<div class="clearfix">
-			<a class="pull-left thumb-lg img-thumbnail b-3x m-r" style="" href="">
-				<img src="/img/news-default.jpg" alt="No New Announcements">
+	<div class="item m-l-n-xxs m-r-n-xxs">
+		<div class="bottom wrapper bg-gd-dk text-white clearfix">
+			<a class="pull-left thumb-sm b-3x m-r" href="">
+				<img src="{{getAnnouncementImage}}" alt="New Announcement">
 			</a>
 			<div class="clear text-left">
-				<div style="min-height: 183px;" class="h3 m-t-xs m-b-xs"><p style="">Breaking News: Major Nelson does it again! Text here. Text here. Text here.</p><a href="#" class="btn btn-primary">Read more</a>
+				<div class="h3 m-t-xs m-b-xs">
+					<p>{{announcementText}}</p>
+					<a class="btn btn-primary btn-sm" href="#">Read more</a>
 				</div>
 			</div>
 		</div>
+		<img src="/img/announcements-bg.jpg" alt="New Announcements" class="img-full">
 	</div>
 </template>
 
@@ -145,7 +149,7 @@
 			<div class="text-lt m-b-sm title-wrap-news">{{title}}</div>
 			<a href="{{pathFor 'article'}}" class="btn btn-primary btn-sm">Read Now</a>
 		</div>
-		<img src="{{getImage}}" class="img-full">
+		<img src="{{getImage}}" alt="{{title}}" class="img-full">
 	</div>
 </template>
 
@@ -155,7 +159,7 @@
 			<div class="m-b-sm">Clip from {{titleName}}</div>
 			<a title="View Now" href="#" class="btn btn-primary btn-sm">View Now</a>
 		</div>
-		<img src="{{getLargeThumbnail}}" data-video="{{getClipUri}}" class="user-clip large img-full">
+		<img src="{{getLargeThumbnail}}" alt="{{titleName}}" data-video="{{getClipUri}}" class="user-clip large img-full">
 	</div>
 </template>
 
@@ -165,8 +169,26 @@
 			<div class="m-b-sm">Capture from {{titleName}}</div>
 			<a title="View Now" href="#" class="btn btn-primary btn-sm">View Now</a>
 		</div>
-		<img src="{{getLargeThumbnail}}" class="user-capture large img-full">
+		<img src="{{getLargeThumbnail}}" alt="{{titleName}}" class="user-capture large img-full">
 	</div>
+</template>
+
+<template name="newsSection">
+	{{#if Template.subscriptionsReady}}
+	<div class="blog-post news-section">
+		<div class="list-group list-group-lg list-group-sp">
+		{{#each latestNews}}
+			{{> newsTemplate}}
+		{{/each}}
+		</div>
+		<div style="display:block;">&nbsp;</div>
+	</div>
+	{{#if hasMoreResults}}
+		<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+	{{/if}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
 </template>
 
 <!-- <div class="row no-gutter">
@@ -175,13 +197,13 @@
 			<div class="panel-heading no-border bg-primary">          
 				<span class="text-lt">New Announcements</span>
 			</div>
-			<div style="" class="text-center wrapper m-b-sm">
+			<div class="text-center wrapper m-b-sm">
 				<div class="clearfix">
-					<a class="pull-left thumb-lg img-thumbnail b-3x m-r" style="" href="">
+					<a class="pull-left thumb-lg img-thumbnail b-3x m-r" href="">
 						<img src="img/a2.jpg" alt="...">
 					</a>
 					<div class="clear text-left">
-						<div style="min-height: 183px;" class="h3 m-t-xs m-b-xs"><p style="">Breaking News: Major Nelson does it again! Text here. Text here. Text here.</p><a href="#" class="btn btn-primary">Read more</a>
+						<div style="min-height: 183px;" class="h3 m-t-xs m-b-xs"><p>Breaking News: Major Nelson does it again! Text here. Text here. Text here.</p><a href="#" class="btn btn-primary">Read more</a>
 						</div>
 					</div>
 				</div>
@@ -230,20 +252,3 @@
 	</div>
 </div>
  -->
-<template name="newsSection">
-	{{#if Template.subscriptionsReady}}
-	<div class="blog-post news-section">
-		<div class="list-group list-group-lg list-group-sp">
-		{{#each latestNews}}
-			{{> newsTemplate}}
-		{{/each}}
-		</div>
-		<div style="display:block;">&nbsp;</div>
-	</div>
-	{{#if hasMoreResults}}
-		<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
-	{{/if}}
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}}
-</template>

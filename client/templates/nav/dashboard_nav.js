@@ -42,6 +42,12 @@ Template.dashboardNav.helpers({
 });
 
 Template.dashboardNav.events({
+	// 'click li a.home-link': function(e) {
+	// 	e.preventDefault();
+	// 	var user = Meteor.user();
+	// 	Router.go('newsPage');
+	// 	document.location.reload(true);
+	// },
 	'click li.disabled.no-user': function (e) {
 		e.preventDefault();
 		sweetAlert({

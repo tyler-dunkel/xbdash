@@ -49,7 +49,18 @@ Template.newsPage.created = function() {
 	}
 }
 
-Template.featuredNewSection.rendered = function() {
+Template.newsApp.helpers({
+	userGamertag: function() {
+		var user = Meteor.user();
+		if (user && user.gamercard) {
+			return user.gamercard.gamertag;
+		} else {
+			return user.username;
+		}
+	}
+});
+
+Template.featuredNewsSection.rendered = function() {
 	$('.featured-news').slick({
 		"arrows": true,
 		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
@@ -76,7 +87,7 @@ Template.featuredNewSection.rendered = function() {
 			breakpoint: 768,
 			settings: {
 				"slidesPerRow": 2,
-				"slidesToShow": 2,
+				"slidesToShow": 1,
 				infinite: true
 			}
 		}

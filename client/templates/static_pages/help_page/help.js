@@ -94,3 +94,21 @@ Template.helpPage.events({
 		});
 	}
 });
+
+Template.helpApp.helpers({
+	utcTime: function() {
+		return moment().utc().format('MMMM Do YYYY, h:mm a');
+	},
+	easternTime: function() {
+		return moment().utcOffset(-4).format('MMMM Do YYYY, h:mm a');
+	},
+	centralTime: function() {
+		return moment().utcOffset(-5).format('MMMM Do YYYY, h:mm a');
+	},
+	mountainTime: function() {
+		return moment().utcOffset(-6).format('MMMM Do YYYY, h:mm a');
+	},
+	pacificTime: function() {
+		return moment().utcOffset(-7).format('MMMM Do YYYY, h:mm a');
+	}
+});
