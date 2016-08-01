@@ -7,24 +7,26 @@
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
-					{{#if chkGamerStatus}}
 					<div class="bg-light lter b-b wrapper-md hidden-xs">
 						<div class="row">
 							<div class="col-sm-8 col-xs-12">
-								<h1 class="m-n font-thin h3 text-black">Welcome back, {{userGamertag}}!</h1>
+								{{#if chkGamerStatus}}
+									<h1 class="m-n font-thin h3 text-black">Welcome back, {{userGamertag}}!</h1>
+								{{/if}}	
 								<small class="text-muted">Latest Updates</small>
 							</div>
-							<div class="col-sm-4 text-right hidden-xs user-rank-area">
-								<div class="inline m-l m-r text-left">
-									{{> userDailyRank}}
+							{{#if chkGamerStatus}}
+								<div class="col-sm-4 text-right hidden-xs user-rank-area">
+									<div class="inline m-l m-r text-left">
+										{{> userDailyRank}}
+									</div>
+									<div class="inline text-left">
+										{{> userOverallRank}}
+									</div>
 								</div>
-								<div class="inline text-left">
-									{{> userOverallRank}}
-								</div>
-							</div>
+							{{/if}}
 						</div>
 					</div>
-					{{/if}}
 					<div class="wrapper-md">
 						<div class="row">
 							{{> featuredNewsSection}}
