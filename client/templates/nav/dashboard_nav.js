@@ -1,12 +1,8 @@
 Template.dashboardNav.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();
-		console.log("autorun for dashboard nav ran");
 		if (user && user.gamertagScanned && user.gamertagScanned.status !== 'false') {
-			console.log("autorun for dashboard nav returned / href");
-			$('li a.dashboard-link').attr("href", "/");
 		} else {
-			console.log("autorun for dashboard nav returned # href");
 			$('li a.dashboard-link').attr("href", "#");
 		}
 	});

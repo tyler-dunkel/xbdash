@@ -124,7 +124,11 @@ Template.newsSection.helpers({
 	hasMoreResults: function() {
 		var newsLimitCurrent = newsLimit.get();
 		var xbdNewsCount = xbdNews.find({}).count();
-		return ! (xbdNewsCount < newsLimitCurrent);
+		if (xbdNewsCount < newsLimitCurrent) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 });
 

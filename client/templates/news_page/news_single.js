@@ -47,7 +47,7 @@ Template.newsSinglePage.rendered = function() {
 			}, function() {
 				Router.go('signUp');
 			});
-		}, 300000);
+		}, 120000);
 	}
 }
 
@@ -71,11 +71,12 @@ Template.newsSinglePageDocHead.created = function() {
 	var newsSinglePageTitle = this.data.title + " | XBdash";
 	var newsSinglePageUrl = window.location.href;
 	var newsSinglePageUpdatedTime = this.data.updated.toISOString();
+	var newSinglePageAuthor;
 	
 	if (this.data.source === 'xbdash') {
-		var newsSinglePageAuthor = this.data.author;
+		newsSinglePageAuthor = this.data.author;
 	} else {
-		var newsSinglePageAuthor = this.data.author + ' of POLYGON';
+		newsSinglePageAuthor = this.data.author + ' of POLYGON';
 	}
 
 	var newsSinglePageDocHeadMeta = [
