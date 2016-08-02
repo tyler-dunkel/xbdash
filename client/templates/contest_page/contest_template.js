@@ -60,8 +60,6 @@ Template.contestPage.helpers({
 Template.referralContest.created = function() {
 	var self = this;
 	self.referralToken = new ReactiveVar('');
-	console.log(this);
-	console.log(this.data);
 	Meteor.call('checkReferralToken', this.data.contestToken, function(err, res) {
 		if (err) {
 			self.referralToken.set('error');
@@ -141,16 +139,16 @@ Template.referralContest.helpers({
 		return moment(this.startDate).local().format('MMMM Do YYYY, h:mm a');
 	},
 	getStartDate: function() {
-		return moment().utc(this.startDate).format('MMMM Do YYYY, h:mm a');
+		return moment.utc(this.startDate).format('MMMM Do YYYY, h:mm a');
 	},
 	getLocalEndDate: function() {
 		return moment(this.endDate).local().format('MMMM Do YYYY, h:mm a');
 	},
 	getEndDate: function() {
-		return moment().utc(this.endDate).format('MMMM Do YYYY, h:mm a');
+		return moment.utc(this.endDate).format('MMMM Do YYYY, h:mm a');
 	},
 	getAwardDate: function() {
-		return moment().utc(this.awardDate).format('MMMM Do YYYY, h:mm a');
+		return moment.utc(this.awardDate).format('MMMM Do YYYY, h:mm a');
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();

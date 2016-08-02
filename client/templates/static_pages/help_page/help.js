@@ -97,7 +97,7 @@ Template.helpPage.events({
 
 Template.helpApp.helpers({
 	utcTime: function() {
-		return moment().utc().format('MMMM Do YYYY, h:mm a');
+		return moment.utc().format('MMMM Do YYYY, h:mm a');
 	},
 	easternTime: function() {
 		return moment().utcOffset(-4).format('MMMM Do YYYY, h:mm a');
