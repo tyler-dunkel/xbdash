@@ -11,8 +11,8 @@ Meteor.startup(function() {
 	Meteor.setInterval(function() {
 		xbdContests.find({ status: 'active'}).forEach(function(contest) {
 			if (contest.endDate > moment().utc().toDate()) {
-				// xbdContests.update({_id: contest._id }, { $set: { status: 'choosing-winner' } });
-				// userContestEntries.update({contestToken: contest.contestToken}, { $set: { status: 'choosing-winner' } });
+				xbdContests.update({_id: contest._id }, { $set: { status: 'choosing-winner' } });
+				userContestEntries.update({contestToken: contest.contestToken}, { $set: { status: 'choosing-winner' } });
 				var chooseContestWinner = new Job(xbdJobsCollection, 'chooseContestWinner', { contestToken: contest.contestToken })
 					.priority('high')
 					.save(function (err, result) {
