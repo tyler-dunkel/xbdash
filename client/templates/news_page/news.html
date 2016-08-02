@@ -12,7 +12,9 @@
 							<div class="col-sm-8 col-xs-12">
 								{{#if chkGamerStatus}}
 									<h1 class="m-n font-thin h3 text-black">Welcome back, {{userGamertag}}!</h1>
-								{{/if}}	
+								{{else}}
+									<h1 class="m-n font-thin h3 text-black">Welcome to XBdash!</h1>
+								{{/if}}
 								<small class="text-muted">Latest Updates</small>
 							</div>
 							{{#if chkGamerStatus}}
@@ -27,10 +29,10 @@
 							{{/if}}
 						</div>
 					</div>
+					<div class="p-t-md">
+						{{> featuredNewsSection}}
+					</div>
 					<div class="wrapper-md">
-						<!-- <div class="row">
-							{{> featuredNewsSection}}
-						</div> -->
 						<div class="row">
 							<div class="col-lg-8 col-md-12">
 								<h3 class="m-b-md font-thin h3 text-black">News</h3>
@@ -51,7 +53,7 @@
 <template name="featuredNewsSection">
 	<div class="featured-news row no-gutter">
 		<div class="col-md-3 col-sm-6">
-			<div class="panel b-a">
+			<div class="panel b-a m-n">
 				<div class="panel-heading no-border bg-primary">          
 					<span class="text-lt">New Announcements</span>
 				</div>
@@ -59,15 +61,8 @@
 					{{> todaysFeaturedAnnouncements}} 
 				{{else}}
 				<div class="item m-l-n-xxs m-r-n-xxs">
-					<div class="bottom wrapper w-full text-black clearfix">
-						<a class="pull-left thumb-sm b-3x m-r" href="">
-							<img src="/img/xbdash_greenicon.png" alt="No recent announcements.">
-						</a>
-						<div class="clear text-left">
-							<div class="text-lt m-b-sm title-wrap-news">
-								<p>No recent announcements.</p>
-							</div>
-						</div>
+					<div class="bottom wrapper bg-gd-dk w-full text-black">            
+						<div class="text-lt m-b-sm title-wrap-news">No recent announcements.</div>
 					</div>
 					<img src="/img/announcements-bg.jpg" alt="No recent announcements." class="img-full">
 				</div>
@@ -75,7 +70,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6">
-			<div class="panel b-a">
+			<div class="panel b-a m-n">
 				<div class="panel-heading no-border bg-primary">          
 					<span class="text-lt">Today's Featured News</span>
 				</div>
@@ -92,7 +87,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6">
-			<div class="panel b-a">
+			<div class="panel b-a m-n">
 				<div class="panel-heading no-border bg-primary">          
 					<span class="text-lt">Today's Featured Clip</span>
 				</div>
@@ -101,7 +96,7 @@
 				{{else}}
 				<div class="item m-l-n-xxs m-r-n-xxs">
 					<div class="bottom wrapper bg-gd-dk w-full text-white">            
-						<div class="m-b-sm">No new clips.</div>
+						<div class="text-lt m-b-sm title-wrap-news">No new clips.</div>
 					</div>
 					<img src="/img/news-default.jpg" alt="No new clips." class="user-clip large img-full">
 				</div>
@@ -109,7 +104,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6">
-			<div class="panel b-a">
+			<div class="panel b-a m-n">
 				<div class="panel-heading no-border bg-primary">          
 					<span class="text-lt">Today's Featured Capture</span>
 				</div>
@@ -118,7 +113,7 @@
 				{{else}}
 				<div class="item m-l-n-xxs m-r-n-xxs">
 					<div class="bottom wrapper bg-gd-dk w-full text-white">            
-						<div class="m-b-sm">No new captures.</div>
+						<div class="text-lt m-b-sm title-wrap-news">No new captures.</div>
 					</div>
 					<img src="/img/news-default.jpg" alt="No new captures." class="user-capture large img-full">
 				</div>
@@ -195,7 +190,7 @@
 
 <!-- <div class="row no-gutter">
 	<div class="col-md-3 col-sm-6">
-		<div class="panel b-a">
+		<div class="panel b-a m-n">
 			<div class="panel-heading no-border bg-primary">          
 				<span class="text-lt">New Announcements</span>
 			</div>
@@ -213,7 +208,7 @@
 		</div>
 	</div>
 	<div class="col-md-3 col-sm-6">
-		<div class="panel b-a">
+		<div class="panel b-a m-n">
 			<div class="panel-heading no-border bg-primary">          
 				<span class="text-lt">Today's Featured News</span>
 			</div>
@@ -227,7 +222,7 @@
 		</div>
 	</div>
 	<div class="col-md-3 col-sm-6">
-		<div class="panel b-a">
+		<div class="panel b-a m-n">
 			<div class="panel-heading no-border bg-primary">          
 				<span class="text-lt">Today's Featured Clip</span>
 			</div>
@@ -240,7 +235,7 @@
 		</div>
 	</div>
 	<div class="col-md-3 col-sm-6">
-		<div class="panel b-a">
+		<div class="panel b-a m-n">
 			<div class="panel-heading no-border bg-primary">          
 				<span class="text-lt">Today's Featured Capture</span>
 			</div>

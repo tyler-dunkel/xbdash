@@ -11,7 +11,7 @@ Meteor.methods({
 			return referralToken.data.token;
 		} else {
 			var referralId = Random.id(7);		
-			userContestEntries.insert({status: 'active', contestToken: contestToken, userId: user._id, data: { token: referralId, value: 0 }, createdAt: new Date(), contestType: 'referral', entryType: 'referral'});
+			userContestEntries.insert({ status: 'active', contestToken: contestToken, userId: user._id, data: { token: referralId, value: 0 }, createdAt: new Date(), contestType: 'referral', entryType: 'referral' });
 			return referralId;
 		}
 	},
@@ -26,12 +26,12 @@ Meteor.methods({
 			//user was referred from contest page, give the signed up user a token and count
 			userToken = Random.id(7);
 			//xbdContests.update({ status: 'active' }, { $push: { entries: { userId: user._id, referralToken: userToken, referralCount: 1 } } });
-			userContestEntries.insert({status: 'active', contestToken: token, userId: user._id, data: {token: userToken, value: 1}, createdAt: new Date(), contestType: 'referral', entryType: 'signup'});
+			userContestEntries.insert({ status: 'active', contestToken: token, userId: user._id, data: { token: userToken, value: 1 }, createdAt: new Date(), contestType: 'referral', entryType: 'signup' });
 		} else if (checkForUserToken) {
 			userToken = Random.id(7);
 			//user was referred by another user. give that user a count increment
 			//userContest.update({ status: 'active', entries: { $elemMatch: { referralToken: token } } }, { $inc: { 'entries.$.referralCount': 1 } });
-			userContestEntries.insert({status: 'active', contestToken: checkForUserToken.contestToken, userId: user._id, data: {token: userToken, value: 1}, createdAt: new Date(), contestType: 'referral', entryType: 'referral'});
+			userContestEntries.insert({ status: 'active', contestToken: checkForUserToken.contestToken, userId: user._id, data: { token: userToken, value: 1 }, createdAt: new Date(), contestType: 'referral', entryType: 'referral' });
 			userContestEntries.update({status: 'active', 'data.token': token}, {$inc: { 'data.value': 1 }});
 		} else {
 			//token invalid. just return;
