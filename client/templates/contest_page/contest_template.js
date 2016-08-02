@@ -154,7 +154,7 @@ Template.referralContest.helpers({
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
-		var getImage = "https://www.xbdash.com/img/contests/july-contest-banner.jpg";
+		var getImage = "https://www.xbdash.com/img/contests/august-contest-banner.jpg";
 
 		return {
 			title: "I entered to win TWO 12-Month #Xbox LIVE Gold Memberships in the August Referral Contest! #gamergirl #gamerguy #twitch",
