@@ -171,38 +171,6 @@ Template.achievementSingleDocHead.created = function() {
 	}
 }
 
-Template.achievementShareButtons.helpers({
-	getUrl: function () {
-		var slug = Router.current().params.slug;
-		return window.location.href;
-	},
-	getTitle: function() {
-		var getGame = xbdGames.findOne({ _id: this.gameId });
-		return 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' GS!';
-	},
-	getShortDescription: function () {
-		var achievementDescription = this.description;
-		achievementDescription = this.name + " achievement is worth " + this.value + " GamerScore. " + achievementDescription.substr(0,62) + '...';
-		return achievementDescription;
-	},
-	getShareImage: function () {
-		var achievementImage  = 'https://www.xbdash.com/img/achievement-default.jpg';
-		var getGame = xbdGames.findOne({ _id: this.gameId });
-
-		if (getGame.platform === "Xenon") {
-			achievementImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
-		}
-		if (getGame.platform === "Durango") {
-			achievementImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
-		}
-
-		return achievementImage;
-	},
-	getHashTags: function() {
-		return 'xbox,xbdash,gamerscore';
-	}
-});
-
 Template.achievementWishlistArea.created = function() {
 	var slug = Router.current().params.slug;
 		gamertagSlug = Meteor.user().gamertagSlug;
@@ -327,3 +295,41 @@ Template.achievementTrophyCaseArea.events({
 		});
 	}
 });
+
+Template.achievementShareButtons.helpers({
+	getUrl: function () {
+		var slug = Router.current().params.slug;
+		return window.location.href;
+	},
+	getTitle: function() {
+		var getGame = xbdGames.findOne({ _id: this.gameId });
+		return 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' GS!';
+	},
+	getShortDescription: function () {
+		var achievementDescription = this.description;
+		achievementDescription = this.name + " achievement is worth " + this.value + " GamerScore. " + achievementDescription.substr(0,62) + '...';
+		return achievementDescription;
+	},
+	getShareImage: function () {
+		var achievementImage  = 'https://www.xbdash.com/img/achievement-default.jpg';
+		var getGame = xbdGames.findOne({ _id: this.gameId });
+
+		if (getGame.platform === "Xenon") {
+			achievementImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
+		}
+		if (getGame.platform === "Durango") {
+			achievementImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
+		}
+
+		return achievementImage;
+	},
+	getHashTags: function() {
+		return 'xbox,xbdash,gamerscore';
+	}
+});
+
+Template.achievementPercentageArea.rendered = function() {
+	$(document).ready(function() {
+		$('.glyphicon-info-sign').tooltip();
+	});
+}

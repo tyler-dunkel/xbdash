@@ -60,8 +60,9 @@ Template.contestPage.helpers({
 Template.referralContest.created = function() {
 	var self = this;
 	self.referralToken = new ReactiveVar('');
-
-	Meteor.call('checkReferralToken', function(err, res) {
+	console.log(this);
+	console.log(this.data);
+	Meteor.call('checkReferralToken', this.data.contestToken, function(err, res) {
 		if (err) {
 			self.referralToken.set('error');
 		}
@@ -109,7 +110,7 @@ Template.referralContest.helpers({
 		return;
 	},
 	rulesClasses: function() {
-		var prizeCount = this.prizes.length;
+		var prizeCount = this.prizes ? this.prizes.length : 0;
 		if (prizeCount === 1) {
 			return 'col-md-6 col-xs-12';
 		}
@@ -136,21 +137,27 @@ Template.referralContest.helpers({
 			return 'https://www.xbdash.com/contests?referraltoken=' + referralToken;
 		}
 	},
+	getLocalStartDate: function() {
+		return moment(this.startDate).local().format('MMMM Do YYYY, h:mm a');
+	},
 	getStartDate: function() {
-		return moment(this.startDate).format('MMMM Do YYYY, h:mm a');
+		return moment().utc(this.startDate).format('MMMM Do YYYY, h:mm a');
+	},
+	getLocalEndDate: function() {
+		return moment(this.endDate).local().format('MMMM Do YYYY, h:mm a');
 	},
 	getEndDate: function() {
-		return moment(this.endDate).format('MMMM Do YYYY, h:mm a');
+		return moment().utc(this.endDate).format('MMMM Do YYYY, h:mm a');
 	},
 	getAwardDate: function() {
-		return moment(this.awardDate).format('MMMM Do YYYY, h:mm a');
+		return moment().utc(this.awardDate).format('MMMM Do YYYY, h:mm a');
 	},
 	contestData: function () {
 		var referralToken = Template.instance().referralToken.get();
 		var getImage = "https://www.xbdash.com/img/contests/july-contest-banner.jpg";
 
 		return {
-			title: "I entered to win a FREE engraved #Xbox controller in the #XBdash July #Contest! #gaming #gamer #destiny #halo5",
+			title: "I entered to win TWO 12-Month #Xbox LIVE Gold Memberships in the August Referral Contest! #gamergirl #gamerguy #twitch",
 			description: 'Manage your Xbox achievements and work together with other Xbox® gamers to unlock them and complete games together.',
 			image: function () {
 				return getImage;

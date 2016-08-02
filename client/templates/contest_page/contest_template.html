@@ -17,7 +17,7 @@
 						<div class="row">
 							<div class="col-xl-8 col-xl-offset-2 m-b-lg">
 								<h1 class="h1 text-center m-t-md m-b-lg">{{{this.title}}}</h1>
-								<p class="h4 text-left m-b-lg">{{{this.description}}}</p>
+								<p class="h3 text-left m-b-lg">{{{this.description}}}</p>
 							</div>
 						</div>
 						<div class="row">
@@ -26,9 +26,9 @@
 								<p class="h5">{{getPlace @index}}</p>
 								<h3 class="m-t-sm m-b-sm">{{{title}}}</h3>
 								<div>
-									<a href="#">
+									<!-- <a href="#"> -->
 										<img src="{{imageUrl}}" class="img-responsive grid" />
-									</a>
+									<!-- </a> -->
 								</div>
 							</div>
 							{{/each}}
@@ -43,9 +43,6 @@
 										</ul>
 										<form class="m-t-xxl m-b-xxl">
 											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
-											<div class="m-t-sm text-center">
-												{{> shareit contestData}}
-											</div>
 											<div class="input-group m-b-lg">
 												<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
 												<span class="input-group-btn">
@@ -55,6 +52,9 @@
 													Copy
 													</button>
 												</span>
+											</div>
+											<div class="m-t-sm text-center">
+												{{> shareit contestData}}
 											</div>
 										</form>
 									{{else}}
@@ -74,11 +74,13 @@
 									<div class="row m-b-md text-center">
 										<div class="col-md-6 col-xs-6 m-b-lg">
 											<h4><i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Starts:</h4>
-											<span class="h4">{{getStartDate}}</span>
+											<span class="h5 block m-b-xs">Your Time: <b>{{getLocalStartDate}}</b></span>
+											<span class="h5 block">(UTC: {{getStartDate}})</span>
 										</div>
 										<div class="col-md-6 col-xs-6 m-b-lg">
 											<h4><i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:</h4>
-											<span class="h4">{{getEndDate}}</span>
+											<span class="h5 block m-b-xs">Your Time: <b>{{getLocalEndDate}}</b></span>
+											<span class="h5 block">(UTC: {{getEndDate}})</span>
 										</div>
 										<div class="col-md-12 col-xs-12 m-b-lg">
 											<h4><i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:</h4>
@@ -103,6 +105,14 @@
 							</div>
 						</div>
 						<div class="row">
+							<div class="col-xl-4 col-md-6 col-xs-12">
+								<img src="/img/contests/winners/winners-072016.jpg" class="img-responsive" />
+								<p class="text-left wrapper">
+									<span class="h4 font-bold text-left">July 2016</span><br /><br />
+									<strong>Grand Prize:</strong> Custom Designed Xbox One Controller<br />
+									(via the Xbox® Design Lab, courtesy of XBdash)
+								</p>
+							</div>
 							<div class="col-xl-4 col-md-6 col-xs-12">
 								<img src="/img/contests/winners/winners-062016.jpg" class="img-responsive" />
 								<p class="text-left wrapper">

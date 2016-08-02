@@ -23,11 +23,11 @@
 .trending-column .clear {
 	display: inline-block;
 }
-.trending-column h3 {
+/*.trending-column h3 {
 	font-size: 18px;
 	margin-top: 10px;
 	font-weight: bold;
-}
+}*/
 .trending-column .list-group-item {
 	padding: 15px;
 }
