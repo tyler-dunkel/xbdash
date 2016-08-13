@@ -155,7 +155,7 @@ Template.referralContest.helpers({
 		var getImage = "https://www.xbdash.com/img/contests/august-contest-banner.jpg";
 
 		return {
-			title: "I entered to win TWO 12-Month #Xbox LIVE Gold Memberships in the August Referral Contest! #gamergirl #gamerguy #twitch",
+			title: "I entered to win two 12-Month Xbox LIVE Gold Memberships in the August Contest! #gamergirl #twitch",
 			description: 'Manage your Xbox achievements and work together with other Xbox® gamers to unlock them and complete games together.',
 			image: function () {
 				return getImage;
