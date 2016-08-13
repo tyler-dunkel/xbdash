@@ -1,8 +1,8 @@
-Template.contestLeaderboardTemplate.created = function() {
-	this.autorun(function() {
-		Meteor.subscribe('xbdContestsPub');
-	});
-};
+// Template.contestLeaderboardTemplate.created = function() {
+// 	this.autorun(function() {
+// 		Meteor.subscribe('xbdContestsPub');
+// 	});
+// };
 
 Template.contestLeaderboardTemplate.helpers({
 	// checkCurrentUserForLB: function() {
@@ -27,7 +27,9 @@ Template.contestLeaderboardTemplate.helpers({
 	},
 	getUser: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
-		return user.gamercard.gamertag;
+		if (user && user.gamercard) {
+			return user.gamercard.gamertag;
+		}
 	},
 	getUserImage: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
