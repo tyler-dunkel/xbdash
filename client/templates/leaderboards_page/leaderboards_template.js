@@ -228,8 +228,8 @@ Template.leaderboardTemplate.helpers({
 Template.leaderboardTemplate.events({
 	'click .profile-link': function(e) {
 		e.preventDefault();
-		var user = Meteor.users.findOne({_id: this.userId});
-		Router.go('userPage', {gamertagSlug: user.gamertagSlug});
+		var user = Meteor.users.findOne({ _id: this.userId });
+		Router.go('userPage', { gamertagSlug: user.gamertagSlug });
 	}
 });
 

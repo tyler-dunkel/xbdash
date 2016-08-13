@@ -1,0 +1,65 @@
+<template name="contestLeaderboardTemplate">
+	{{#if Template.subscriptionsReady}}
+		<div class="panel panel-black" style="margin-bottom: 0;">
+			<div class="panel-heading text-center">
+				<h3 class="m-n padder-t text-white h4">Contest Standings</h3>
+			</div>
+		</div>
+		<!--
+		{{#if chkGamerStatus}}
+		{{#if checkCurrentUserForLB}}
+			{{> currentUserContestLeaderboard}}
+		{{/if}}
+		{{/if}}
+		-->
+		<div class="panel {{#if chkGamerStatus}}panel-success{{else}}panel-black{{/if}}">
+			<ul class="list-group alt">
+				{{#if checkForLB}}
+				{{#each rank}}
+				<a class="profile-link" href="/users">
+					<li class="list-group-item hvr-glow">
+						<div class="media">
+							<span class="pull-left thumb-sm">
+								<img src="{{getUserImage}}" alt="{{getUser}}" />
+							</span>
+							<div class="pull-right text-success m-t-xs">
+								{{getUserReferralCount}}
+							</div>
+							<div class="media-body">
+								<div class="text-ellipsis-inline m-t-xs">{{getUser}}</div>
+							</div>
+						</div>
+					</li>
+				</a>
+				{{/each}}
+				{{else}}
+				<li class="list-group-item">
+					<div class="padder-v text-center">
+						<div class="text-md">Currently collecting data...</div>
+					</div>
+				</li>
+				{{/if}}
+			</ul>
+		</div>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>
+
+<template name="currentUserContestLeaderboard">
+	<div class="panel panel-success" style="margin-bottom: 0;">
+		<div class="panel-heading current-user">
+			<div class="media">
+				<span class="pull-left thumb-sm">
+					<img src="{{getCurrentUserImage}}" alt="{{getCurrentUser}}" />
+				</span>
+				<div class="pull-right text-success m-t-xs">
+					{{getCurrentUserReferralCount}}
+				</div>
+				<div class="media-body">
+					<div class="text-ellipsis-inline m-t-xs">{{getCurrentUser}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
