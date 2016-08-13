@@ -1,9 +1,3 @@
-// Template.contestLeaderboardTemplate.created = function() {
-// 	this.autorun(function() {
-// 		Meteor.subscribe('xbdContestsPub');
-// 	});
-// };
-
 Template.contestLeaderboardTemplate.helpers({
 	// checkCurrentUserForLB: function() {
 	// 	var user = Meteor.user();
@@ -24,6 +18,11 @@ Template.contestLeaderboardTemplate.helpers({
 				'status': 'active',
 				'data.value': { $gte: 1 }
 			});
+	},
+	chkCurrentUser: function() {
+		var user = Meteor.user();
+		if (user._id == this.userId) return true;
+		return false;
 	},
 	getUser: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });

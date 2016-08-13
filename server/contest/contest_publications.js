@@ -16,7 +16,7 @@ Meteor.publishComposite('xbdContestsPub', function() {
 				},
 				children: [
 					{
-						find: function(contest, entry) {
+						find: function(entry, contest) {
 							return Meteor.users.find({ _id: entry.userId }, {
 								fields: {
 									"gamercard.gamertag": 1,

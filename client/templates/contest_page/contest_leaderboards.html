@@ -22,12 +22,12 @@
 		{{/if}}
 		{{/if}}
 		-->
-		<div class="panel {{#if chkGamerStatus}}panel-success{{else}}panel-black{{/if}}">
+		<div class="panel panel-black">
 			<ul class="list-group alt">
 				{{#if checkForLB}}
 				{{#each contestEntry}}
 				<a class="profile-link" href="/users">
-					<li class="list-group-item hvr-glow">
+					<li class="list-group-item hvr-glow {{#if chkCurrentUser}}current-user{{/if}}">
 						<div class="media">
 							<span class="pull-left thumb-sm">
 								<img src="{{getUserImage}}" alt="{{getUser}}" />
