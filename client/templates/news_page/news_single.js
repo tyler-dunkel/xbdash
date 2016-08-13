@@ -30,12 +30,12 @@ Template.newsSinglePage.helpers({
 });
 
 Template.newsSinglePage.rendered = function() {
-	var user = Meteor.user();
-	if (!user) {
+	var userLogged = Meteor.loggingIn();
+	if (!user && !userLogged) {
 		setTimeout(function() {
 			sweetAlert({
-				title: 'Get Your Free Account',
-				html: 'Sign up and confirm your Gamertag to unlock your <em>personal</em> dashboard!',
+				title: 'Win a Year of Xbox® Live Gold!',
+				html: 'Enter the August Referral Contest!<br />Verified member with the <strong>most referrals</strong> by August 31, 2016 wins! See contest rules.',
 				customClass: 'sign-up-modal',
 				allowOutsideClick: false,
 				showCancelButton: true,
@@ -43,9 +43,9 @@ Template.newsSinglePage.rendered = function() {
 				cancelButtonText: 'Not Right Now',
 				confirmButtonColor: '#138013',
 				confirmButtonClass: 'btn-success',
-				width: 600
+				width: 480
 			}, function() {
-				Router.go('signUp');
+				Router.go('contestPage');
 			});
 		}, 120000);
 	}
@@ -150,3 +150,11 @@ Template.newsSinglePageShareButtons.helpers({
 		return getImage;
 	}
 });
+
+Template.newsBannerArea.rendered = function() {
+	$('#banner-affix').affix({
+		offset: {
+			top: 110
+		}
+	});
+}
