@@ -1,55 +1,44 @@
+Template.contestLeaderboardTemplate.created = function() {
+	this.autorun(function() {
+		Meteor.subscribe('xbdContestsPub');
+	});
+};
+
 Template.contestLeaderboardTemplate.helpers({
-	checkCurrentUserForLB: function() {
-		var user = Meteor.user();
-		var count = userContestEntries.find({ 'userId': user._id, 'data.value': { $gte: 1 } }).count();
-		console.log('checkForLB ' + count);
-		if (count > 0) return true;
-		return false;
-	},
-	defaultContestBoardText: function() {
-		return "Waiting for user referrals";
-	},
+	// checkCurrentUserForLB: function() {
+	// 	var user = Meteor.user();
+	// 	var count = userContestEntries.find({ 'userId': user._id, 'data.value': { $gte: 1 } }).count();
+	// 	if (count > 0) return true;
+	// 	return false;
+	// },
+	// defaultContestBoardText: function() {
+	// 	return "Waiting for user referrals";
+	// },
 	checkForLB: function() {
 		var count = userContestEntries.find({ 'status': 'active', 'data.value': { $gte: 1 } }).count();
-		console.log('checkForLB 2 ' + count);
 		if (count > 0) return true;
 		return false;
 	},
-	rank: function() {
-		var entry = userContestEntries.find({
+	contestEntry: function() {
+		return userContestEntries.find({
 				'status': 'active',
 				'data.value': { $gte: 1 }
-			}, {
-				sort: { 'data.value': -1 },
-				limit: 10
 			});
-		return entry;
 	},
 	getUser: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
-		console.log('entry user ' + user);
-		if (user && user.gamercard) {
-			return user.gamercard.gamertag;
-		}
+		return user.gamercard.gamertag;
 	},
 	getUserImage: function() {
-		var entryUser = userContestEntries.findOne({ 'userId': this.userId });
-		var user = Meteor.users.findOne({ _id: entryUser.userId });
-		console.log('entry2 user ' + user);
+		var user = Meteor.users.findOne({ _id: this.userId });
 		var defaultGamerImage = '/img/gamerpic-default.jpg';
-		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath && (user.gamercard.gamerpicLargeSslImagePath !== '')) {
+		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
 			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
 		}
 		return defaultGamerImage;
 	},
 	getUserReferralCount: function() {
-		var entry = userContestEntries.findOne({ 'userId': this.userId });
-		console.log('user referral count ' + entry);
-		if (entry && entry.data) {
-			console.log('user referral count2 ' + entry.data.value);
-			return entry.data.value;
-		}
-		return '--';
+		return this.data.value;
 	}
 });
 

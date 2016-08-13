@@ -9,13 +9,23 @@
 		{{#if chkGamerStatus}}
 		{{#if checkCurrentUserForLB}}
 			{{> currentUserContestLeaderboard}}
+		{{else}}
+			<div class="panel panel-success" style="margin-bottom: 0;">
+				<div class="panel-heading current-user">
+					<div class="padder-d text-center">
+						<div class="text-md text-black">
+							{{{defaultContestBoardText}}}
+						</div>
+					</div>
+				</div>
+			</div>
 		{{/if}}
 		{{/if}}
 		-->
 		<div class="panel {{#if chkGamerStatus}}panel-success{{else}}panel-black{{/if}}">
 			<ul class="list-group alt">
 				{{#if checkForLB}}
-				{{#each rank}}
+				{{#each contestEntry}}
 				<a class="profile-link" href="/users">
 					<li class="list-group-item hvr-glow">
 						<div class="media">
@@ -46,6 +56,7 @@
 	{{/if}}
 </template>
 
+<!--
 <template name="currentUserContestLeaderboard">
 	<div class="panel panel-success" style="margin-bottom: 0;">
 		<div class="panel-heading current-user">
@@ -63,3 +74,4 @@
 		</div>
 	</div>
 </template>
+-->

@@ -150,7 +150,7 @@ Template.referralContest.helpers({
 	getAwardDate: function() {
 		return moment.utc(this.awardDate).format('MMMM Do YYYY, h:mm a');
 	},
-	contestData: function () {
+	contestData: function() {
 		var referralToken = Template.instance().referralToken.get();
 		var getImage = "https://www.xbdash.com/img/contests/august-contest-banner.jpg";
 
