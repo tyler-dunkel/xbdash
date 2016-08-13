@@ -37,7 +37,8 @@
 
 @media (max-width: 768px) {
 	#clips-modal .modal-dialog,
-	#captures-modal .modal-dialog {
+	#captures-modal .modal-dialog,
+	#captures-modal .modal-dialog img {
 		width: 100%;
 	}
 	.video-js {
