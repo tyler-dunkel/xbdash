@@ -1,9 +1,10 @@
 .sweet-alert h2 {
-	line-height: 54px;
+	line-height: 72px;
+	font-size: 28px;
+	font-weight: bold;
 }
-.sweet-alert p {
-	font-size: 16px;
-	line-height: inherit;
+.sweet-alert .sweet-content {
+	font-size: 20px;
 }
 .sweet-alert hr {
 	margin: 5px 0;
@@ -27,21 +28,17 @@
 @media screen and (max-width: 1000px) {
 	.sweet-alert {
 		max-width: 100%;
-		left: 50%;
+		left: 0 !important;
+		margin-left: 0 !important;
 		top: 38%;
 	}
 }
 
 @media screen and (max-width: 767px) {
 	.sweet-alert {
-		left: 0%;
 		top: 30%;
 	}
-	.sweet-alert h2 {
-		line-height: 36px;
-		font-size: 24px;
-	}
 	.sweet-content {
-		padding: 20px;
+		padding: 20px 40px;
 	}
 }

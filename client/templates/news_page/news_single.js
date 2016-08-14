@@ -30,11 +30,12 @@ Template.newsSinglePage.helpers({
 });
 
 Template.newsSinglePage.rendered = function() {
+	var user = Meteor.user();
 	var userLogged = Meteor.loggingIn();
 	if (!user && !userLogged) {
 		setTimeout(function() {
 			sweetAlert({
-				title: 'Win a Year of Xbox® Live Gold!',
+				title: 'Win a Year of XboxÂ® Live Gold!',
 				html: 'Enter the August Referral Contest!<br />Verified member with the <strong>most referrals</strong> by August 31, 2016 wins! See contest rules.',
 				customClass: 'sign-up-modal',
 				allowOutsideClick: false,
