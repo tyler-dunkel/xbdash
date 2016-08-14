@@ -3,3 +3,4 @@
 .contest-page .well .h3 { min-height: auto; padding-bottom: 15px; }
 .contest-page .well .contest-rules { font-size: 15px; }
 .contest-page .well .contest-rules li { margin-bottom: 10px; }
+.contest-page .current-user { background: #d6e9c6; color: #222222; border-radius: 0 !important; }
