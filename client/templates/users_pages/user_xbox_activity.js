@@ -254,8 +254,7 @@ Template.userClips.events({
 		var video = $(e.currentTarget).attr('data-video');
 		var dataSlide = $(e.currentTarget).attr('data-slide');
 
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
-
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" width="754" height="424" data-setup="{ \'aspectRatio\':\'377:212\', \'playbackRates\': [1, 1.5, 2] }" class="video-js vjs-default-skin vjs-big-play-centered" controls style="width:100%;height:424px;"><source src="' + video + '" type="video/mp4"></video>');
 		$('#clips-modal').modal('show');
 	},
 	'click #clips-modal .close': function() {
@@ -265,7 +264,7 @@ Template.userClips.events({
 		$('#clips-modal .modal-body .carousel-inner').empty();
 	},
 	'click .carousel-control.left': function() {
-		var index = $('.xbd-tech').attr('data-slide');
+		var index = $('.video-js').attr('data-slide');
 		if (index === '1') {
 			return;
 		}
@@ -275,10 +274,10 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" width="754" height="424" data-setup="{ \'aspectRatio\':\'377:212\', \'playbackRates\': [1, 1.5, 2] }" class="video-js vjs-default-skin vjs-big-play-centered" controls style="width:100%;height:424px;"><source src="' + video + '" type="video/mp4"></video>');
 	},
 	'click .carousel-control.right': function() {
-		var index = $('.xbd-tech').attr('data-slide');
+		var index = $('.video-js').attr('data-slide');
 		var clipCount = $('.clip-container').length;
 		console.log(clipCount);
 		if (index === String(clipCount)) {
@@ -290,7 +289,7 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" width="754" height="424" data-setup="{ \'aspectRatio\':\'377:212\', \'playbackRates\': [1, 1.5, 2] }" class="video-js vjs-default-skin vjs-big-play-centered" controls style="width:100%;height:424px;"><source src="' + video + '" type="video/mp4"></video>');
 	}
 });
 
