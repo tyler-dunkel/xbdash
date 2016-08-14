@@ -5,23 +5,6 @@
 				<h3 class="m-n padder-t text-white h4">Contest Standings</h3>
 			</div>
 		</div>
-		<!--
-		{{#if chkGamerStatus}}
-		{{#if checkCurrentUserForLB}}
-			{{> currentUserContestLeaderboard}}
-		{{else}}
-			<div class="panel panel-success" style="margin-bottom: 0;">
-				<div class="panel-heading current-user">
-					<div class="padder-d text-center">
-						<div class="text-md text-black">
-							{{{defaultContestBoardText}}}
-						</div>
-					</div>
-				</div>
-			</div>
-		{{/if}}
-		{{/if}}
-		-->
 		<div class="panel panel-black">
 			<ul class="list-group alt">
 				{{#if checkForLB}}
@@ -55,6 +38,24 @@
 		{{> loadingTemplate}}
 	{{/if}}
 </template>
+
+<!--
+{{#if chkGamerStatus}}
+{{#if checkCurrentUserForLB}}
+	{{> currentUserContestLeaderboard}}
+{{else}}
+	<div class="panel panel-success" style="margin-bottom: 0;">
+		<div class="panel-heading current-user">
+			<div class="padder-d text-center">
+				<div class="text-md text-black">
+					{{{defaultContestBoardText}}}
+				</div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{/if}}
+-->
 
 <!--
 <template name="currentUserContestLeaderboard">
