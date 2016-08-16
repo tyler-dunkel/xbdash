@@ -13,14 +13,12 @@ Template.userPersonal.helpers({
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var userGamertag;
-		if (user && user.gamercard) {
-			userGamertag = user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
 		}
-		if (user && user.xboxProfile) {
-			userGamertag = user.xboxProfile.gamertag;
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
 		}
-		return userGamertag;
 	},
 	user: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
@@ -49,14 +47,12 @@ Template.userWishlist.helpers({
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var userGamertag;
-		if (user && user.gamercard) {
-			userGamertag = user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
 		}
-		if (user && user.xboxProfile) {
-			userGamertag = user.xboxProfile.gamertag;
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
 		}
-		return userGamertag;
 	},
 	isGame: function() {
 		console.log(this.type);
