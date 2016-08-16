@@ -178,10 +178,10 @@ Template.leaderboardTemplate.helpers({
 	},
 	getUserGamertag: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
-		if (user && user.gamercard) {
+		if (user && user.gamercard && user.gamercard.gamertag) {
 			return user.gamercard.gamertag;
 		}
-		if (user && user.xboxProfile) {
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
 			return user.xboxProfile.gamertag;
 		}
 	},
@@ -253,10 +253,10 @@ Template.currentUserLeaderboard.created = function() {
 Template.currentUserLeaderboard.helpers({
 	getCurrentUser: function() {
 		var user = Meteor.user();
-		if (user && user.gamercard) {
+		if (user && user.gamercard && user.gamercard.gamertag) {
 			return user.gamercard.gamertag;
 		}
-		if (user && user.xboxProfile) {
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
 			return user.xboxProfile.gamertag;
 		}
 	},

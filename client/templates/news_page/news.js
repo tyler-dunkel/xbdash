@@ -53,10 +53,10 @@ Template.newsApp.helpers({
 	userGamertag: function() {
 		var user = Meteor.user();
 		var userGamertag = user.username;
-		if (user && user.gamercard) {
+		if (user && user.gamercard && user.gamercard.gamertag) {
 			userGamertag = user.gamercard.gamertag;
 		}
-		if (user && user.xboxProfile) {
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
 			userGamertag = user.xboxProfile.gamertag;
 		}
 		return userGamertag;

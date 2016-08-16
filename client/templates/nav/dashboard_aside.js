@@ -13,13 +13,12 @@ Template.asideHeader.helpers({
 	getUser: function() {
 		var user = Meteor.user();
 		var userGamertag;
-		if (user && user.gamercard) {
-			userGamertag = user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
 		}
-		if (user && user.xboxProfile) {
-			userGamertag = user.xboxProfile.gamertag;
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
 		}
-		return userGamertag;
 	},
 	chkGamerMotto: function () {
 		var user = Meteor.user();
