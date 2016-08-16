@@ -78,8 +78,18 @@ Template.userAchievements.helpers({
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	},
 	getGameName: function () {
 		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
@@ -158,8 +168,18 @@ Template.userGames.helpers({
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	}
 });
 
@@ -217,8 +237,18 @@ Template.userClips.helpers({
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	},
 	getLargeThumbnail: function () {
 		var imageUri;
@@ -321,8 +351,18 @@ Template.userCaptures.helpers({
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	},
 	getLargeThumbnail: function () {
 		var imageUri;

@@ -25,16 +25,24 @@ Template.contestLeaderboardTemplate.helpers({
 		return false;
 	},
 	getUser: function() {
+		var userGamertag;
 		var user = Meteor.users.findOne({ _id: this.userId });
 		if (user && user.gamercard) {
-			return user.gamercard.gamertag;
+			userGamertag = user.gamercard.gamertag;
 		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	},
 	getUserImage: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
 		var defaultGamerImage = '/img/gamerpic-default.jpg';
 		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath && (user.gamercard.gamerpicLargeSslImagePath !== '')) {
 			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gameDisplayPicRaw && (user.xboxProfile.gameDisplayPicRaw !== '')) {
+			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
 		}
 		return defaultGamerImage;
 	},

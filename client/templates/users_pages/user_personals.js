@@ -7,8 +7,26 @@ Template.userPersonal.created = function() {
 }
 
 Template.userPersonal.helpers({
+	userGamertag: function () {
+		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
+		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
+	},
 	user: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
 	},
 	badge: function () {
@@ -31,7 +49,14 @@ Template.userWishlist.helpers({
 			gamertagSlug = Meteor.user().gamertagSlug;
 		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	},
 	isGame: function() {
 		console.log(this.type);

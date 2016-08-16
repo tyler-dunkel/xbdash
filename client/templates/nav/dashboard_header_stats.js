@@ -41,8 +41,15 @@ Template.dashboardHeaderStats.helpers({
     },
     currentGamerscore: function () {
         var user = Meteor.user();
+        var currentGamerscore;
         if (Template.instance().subscriptionsReady()) {
-            return numberFormatter(user.gamercard.gamerscore);
+            if (user && user.gamercard) {
+                currentGamerscore = user.gamercard.gamerscore;
+            }
+            if (user && user.xboxProfile) {
+                currentGamerscore = user.xboxProfile.gamerscore;
+            }
+            return numberFormatter(currentGamerscore);
         }
     }
 });
