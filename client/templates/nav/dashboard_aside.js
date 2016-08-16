@@ -10,6 +10,24 @@ Template.asideHeader.helpers({
 		}
 		return defaultGamerImage;
 	},
+	getUser: function() {
+		var user = Meteor.user();
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
+	},
+	chkGamerMotto: function () {
+		var user = Meteor.user();
+		if (user && user.gamercard && user.gamercard.motto) {
+			return true;
+		}
+		return false;
+	},
 	chkGamerFalse: function () {
 		var user = Meteor.user();
 		if (user && user.gamertagScanned) {

@@ -52,11 +52,14 @@ Template.newsPage.created = function() {
 Template.newsApp.helpers({
 	userGamertag: function() {
 		var user = Meteor.user();
+		var userGamertag = user.username;
 		if (user && user.gamercard) {
-			return user.gamercard.gamertag;
-		} else {
-			return user.username;
+			userGamertag = user.gamercard.gamertag;
 		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	}
 });
 

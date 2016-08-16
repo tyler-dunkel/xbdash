@@ -41,6 +41,9 @@ Template.contestLeaderboardTemplate.helpers({
 		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath && (user.gamercard.gamerpicLargeSslImagePath !== '')) {
 			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
 		}
+		if (user && user.xboxProfile && user.xboxProfile.gameDisplayPicRaw && (user.xboxProfile.gameDisplayPicRaw !== '')) {
+			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
+		}
 		return defaultGamerImage;
 	},
 	getUserReferralCount: function() {
