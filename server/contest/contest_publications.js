@@ -24,8 +24,8 @@ Meteor.publishComposite('xbdContestsPub', function() {
 									"gamercard.gamerpicLargeSslImagePath": 1,
 									"gamertagSlug": 1,
 									"xboxProfile.gamertag": 1,
-+									"xboxProfile.gamerscore": 1,
-+									"xboxProfile.gameDisplayPicRaw": 1
+									"xboxProfile.gamerscore": 1,
+									"xboxProfile.gameDisplayPicRaw": 1
 								}
 							});
 						}
