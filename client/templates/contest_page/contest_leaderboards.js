@@ -25,10 +25,15 @@ Template.contestLeaderboardTemplate.helpers({
 		return false;
 	},
 	getUser: function() {
+		var userGamertag;
 		var user = Meteor.users.findOne({ _id: this.userId });
 		if (user && user.gamercard) {
-			return user.gamercard.gamertag;
+			userGamertag = user.gamercard.gamertag;
 		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
 	},
 	getUserImage: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });

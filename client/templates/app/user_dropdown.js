@@ -14,6 +14,17 @@ Template.userDropdown.helpers({
 		}
 		return defaultGamerImage;
 	},
+	getUser: function() {
+		var user = Meteor.user();
+		var userGamertag;
+		if (user && user.gamercard) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
+	},
 	notificationChk: function() {
 		var count = Notifications.find({userId: Meteor.user()._id, read: false}).count();
 		if (count > 0) return true;

@@ -10,5 +10,5 @@
 // });
 // 
 Meteor.publish('userNotifications', function() {
-	return Notifications.find({userId: this.userId, read: false});
+	return Notifications.find({ userId: this.userId, read: false });
 });

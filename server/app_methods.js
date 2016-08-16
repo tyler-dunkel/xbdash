@@ -21,7 +21,7 @@ Meteor.methods({
 	},
 	notificationRead: function(_id) {
 		var readAt = new Date();
-		Notifications.update({_id: _id}, {$set: {read: true, readAt: readAt}});
+		Notifications.update({ _id: _id }, { $set: { read: true, readAt: readAt } });
 	}
 });
 
