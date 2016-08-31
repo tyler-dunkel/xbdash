@@ -34,13 +34,13 @@
 							{{/each}}
 							<div class="{{rulesClasses}}">
 								<div class="well">
-									<h2 class="h3 m-t-sm align-left">Rules</h2>
+									<h2 class="h3 m-t-sm align-left">How it works:</h2>
 									{{#if currentUser}}
-										<ul class="align-left contest-rules">
+										<ol class="align-left contest-rules">
 											{{#each this.rules}}
 											<li>{{{this}}}</li>
 											{{/each}}
-										</ul>
+										</ol>
 										<form class="m-t-xxl m-b-xxl">
 											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
 											<div class="input-group m-b-lg">

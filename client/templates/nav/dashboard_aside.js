@@ -5,7 +5,7 @@ Template.asideHeader.helpers({
 		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
 			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
 		}
-		if (user && user.xboxProfile) {
+		if (user && user.xboxProfile && user.gamercard.gameDisplayPicRaw) {
 			defaultGamerImage =  "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
 		}
 		return defaultGamerImage;
@@ -14,11 +14,12 @@ Template.asideHeader.helpers({
 		var user = Meteor.user();
 		var userGamertag;
 		if (user && user.gamercard && user.gamercard.gamertag) {
-			return user.gamercard.gamertag;
+			userGamertag = user.gamercard.gamertag;
 		}
 		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
-			return user.xboxProfile.gamertag;
+			userGamertag = user.xboxProfile.gamertag;
 		}
+		return userGamertag;
 	},
 	chkGamerMotto: function () {
 		var user = Meteor.user();

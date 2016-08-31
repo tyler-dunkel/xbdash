@@ -118,12 +118,12 @@ Template.userDocHead.created = function() {
 	
 	userProfilePageImage = "/img/gamerpic-default.jpg";
 
-	if (user && user.gamercard) {
+	if (user && user.gamercard && user.gamercard.gamertag) {
 		userProfilePageDescription = user.gamercard.gamertag + " | Gamerscore: " + user.gamercard.gamerscore + " | " + user.gamercard.motto;
 		userProfilePageImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + user.gamercard.gamerpicLargeSslImagePath;
 		userProfilePageTitle = user.gamercard.gamertag + " | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
 	}
-	if (user && user.xboxProfile) {
+	if (user && user.xboxProfile && user.xboxProfile.gamertag) {
 		userProfilePageDescription = user.xboxProfile.gamertag + " | Gamerscore: " + user.xboxProfile.gamerscore + " | Manage achievements. Complete games. See results.";
 		userProfilePageImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + user.xboxProfile.gameDisplayPicRaw;
 		userProfilePageTitle = user.xboxProfile.gamertag + " | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
@@ -182,18 +182,23 @@ Template.userProfileArea.helpers({
 		if (this && this.gamercard && this.gamercard.gamerpicLargeSslImagePath) {
 			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.gamercard.gamerpicLargeSslImagePath);
 		}
-		if (this && this.xboxProfile) {
+		if (this && this.xboxProfile && this.xboxProfile.gamerpicLargeSslImagePath) {
 			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.xboxProfile.gameDisplayPicRaw);
 		}
 		return image;
 	},
 	userGamertag: function () {
-		if (this && this.gamercard) {
-			return this.gamercard.gamertag;
+		var gamertag = this.username;
+		if (this && this.gamercard && this.gamercard.gamertag) {
+			gamertag = this.gamercard.gamertag;
 		}
+		if (this && this.xboxProfile && this.xboxProfile.gamertag) {
+			gamertag = this.xboxProfile.gamertag;
+		}
+		return gamertag;
 	},
 	userMotto: function () {
-		if (this && this.gamercard) {
+		if (this && this.gamercard && this.gamercard.motto) {
 			return this.gamercard.motto;
 		}
 	},
@@ -201,13 +206,17 @@ Template.userProfileArea.helpers({
 		return moment(this.createdAt).format('MMMM YYYY');
 	},	
 	getGamerscore: function () {
-		if (this && this.gamercard) {
-			return this.gamercard.gamerscore;
+		var userGamerscore = 0;
+		if (this && this.gamercard && this.gamercard.gamerscore) {
+			userGamerscore = this.gamercard.gamerscore;
 		}
+		if (this && this.xboxProfile && this.xboxProfile.gamerscore) {
+			userGamerscore = this.xboxProfile.gamerscore;
+		}
+		return userGamerscore;
 	},
 	getBio: function () {
-		if (this && this.gamercard) {
-			console.log(this.gamercard.bio);
+		if (this && this.gamercard && this.gamercard.bio) {
 			return this.gamercard.bio;
 		}
 	}
