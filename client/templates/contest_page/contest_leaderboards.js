@@ -17,6 +17,11 @@ Template.contestLeaderboardTemplate.helpers({
 		return userContestEntries.find({
 				'status': 'active',
 				'data.value': { $gte: 1 }
+			}, {
+				sort: {
+					'data.value': -1
+				},
+				limit: 10
 			});
 	},
 	chkCurrentUser: function() {
@@ -26,13 +31,14 @@ Template.contestLeaderboardTemplate.helpers({
 	},
 	getUser: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
-		var userGamertag;
+		var gamertag = user.username;
 		if (user && user.gamercard && user.gamercard.gamertag) {
-			return user.gamercard.gamertag;
+			gamertag = user.gamercard.gamertag;
 		}
 		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
-			return user.xboxProfile.gamertag;
+			gamertag = user.xboxProfile.gamertag;
 		}
+		return gamertag;
 	},
 	getUserImage: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });

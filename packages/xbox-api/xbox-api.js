@@ -169,5 +169,14 @@ xboxApiObject.dirtyUpdateUserStats = function(userId) {
 			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
 			return;
 		}
+		if (user.xboxProfile.gamerscore < result.data.gamerscore) {
+			console.log('the gamerscore on record is lower than on the api');
+			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'updating' } });
+			Meteor.users.update({ _id: user._id }, { $set: { gamercard: result.data }});
+			xboxApiPrivate._dirtyCheckXboxOneGames(user);
+			xboxApiPrivate._dirtyCheckXbox360Games(user);
+			Meteor.users.update({ _id: userId }, { $set: { 'gamertagScanned.status': 'true', 'gamertagScanned.lastUpdate': new Date() } });
+			return;
+		}
 	}
 }
