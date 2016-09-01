@@ -34,13 +34,64 @@
 					</div> -->
 					<div class="wrapper-md">
 						<div class="row">
-							<div class="col-lg-8 col-md-12">
-								<h3 class="m-b-md font-thin h3 text-black">News</h3>
+							<div class="col-md-12">
 								{{> newsSection}}
 							</div>
-							<div class="col-lg-4 hidden-md hidden-sm hidden-xs trending-column">
-								<h3 class="m-b-md font-thin h3 text-black">Trending News</h3>
-								{{> mostSharedNews limit=5}}
+						</div>
+					</div>
+				</div>
+				<div class="col w-xxl bg-white lter b-l bg-auto no-border-xs">
+					<div class="nav-tabs-alt" >
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="active">
+								<a data-target="#tab-1" role="tab" data-toggle="tab"><i class="fa fa-twitter text-md wrapper-sm"></i></a>
+							</li>
+							<li>
+								<a data-target="#tab-2" role="tab" data-toggle="tab"><i class="fa fa-bullhorn text-md wrapper-sm"></i></a>
+							</li>
+							<li>
+								<a data-target="#tab-3" role="tab" data-toggle="tab"><i class="fa fa-youtube text-md wrapper-sm"></i></a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="tab-1">
+							<div class="wrapper-md">
+							{{#if Template.subscriptionsReady}}
+								{{#if chkUserTwitter}}
+									{{#with user}}
+										{{> xbdTweets screenName=this.services.twitter.screenName}}
+									{{/with}}
+								{{else}}
+									{{> xbdTweets screenName=xboxdash}}
+								{{/if}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-2" id="tab-2">
+							<div class="wrapper-md">
+							{{#if Template.subscriptionsReady}}
+								{{> xbdAnnouncements}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane tab-3" id="tab-3">
+							<div class="wrapper-md">
+							{{#if Template.subscriptionsReady}}
+								{{#if chkUserTwitter}}
+									{{#with user}}
+										{{> xbdBroadcasts screenName=this.services.twitch.screenName}}
+									{{/with}}
+								{{else}}
+									{{> xbdBroadcasts screenName=xboxdash}}
+								{{/if}}
+							{{else}}
+								{{> loadingTemplate}}
+							{{/if}}
 							</div>
 						</div>
 					</div>
