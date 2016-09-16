@@ -333,3 +333,19 @@ Template.achievementPercentageArea.rendered = function() {
 		$('.glyphicon-info-sign').tooltip();
 	});
 }
+
+Template.youtubeGuides.onCreated(function() {
+	this.videoIdLoaded = new ReactiveVar("Loading");
+});
+
+var youtubeApiCredentials = "AIzaSyA20FWsXdsgOVfTB53ck4-YNRETroa5xiw";
+var game = "mvp halo 3 achievement guide" //used for prototyping
+Template.youtubeGuides.helpers({
+	getGuideVideo() {
+		$.get("https://www.googleapis.com/youtube/v3/search", { part:"snippet", maxResults:"1", order:"relevance", q:game, key:youtubeApiCredentials}, function(data){
+					videoApiId = data.items[0].id.videoId;
+					console.log(data.items[0].id.videoId);
+					return "http://www.youtube.com/watch?v="+videoApiId;
+		});
+	}
+});

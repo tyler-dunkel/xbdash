@@ -73,6 +73,9 @@
 							</div>
 						</div>
 						<div class="row">
+							{{> youtubeGuides}}
+						</div>
+						<div class="row">
 							<div class="col-xs-12">
 								<div class="comment-section">
 								    {{> commentsBox id=this._id boxTemplate="achievementCommentBox"}}
@@ -145,4 +148,8 @@
 
 <template name="achievementPercentageArea">
 	Users who have this <a href="#" class="glyphicon glyphicon-info-sign" data-toggle="achievementToolTip" data-placement="top" title="vs users who have this game"></a>
+</template>
+
+<template name="youtubeGuides">
+	<iframe id="ytplayer" type="text/html" width="425" height="300" src={{getGuideVideo}} frameborder="0"></iframe>
 </template>
