@@ -338,7 +338,7 @@ Template.youtubeGuides.onCreated(function () {
 	var youtubeApiCredentials = "AIzaSyA20FWsXdsgOVfTB53ck4-YNRETroa5xiw";
 	var game = xbdGames.findOne({ _id: this.data.gameId });
 	var achievementTitle = this.data.name;
-	var queryString = achievementTitle + " " + game.name + " achievement guide";
+	var queryString = achievementTitle + " " + game.name + " achievement";
 	self.videoGuideUrl = new ReactiveVar("Loading");
 	console.log(game.name);
 	console.log(queryString);
