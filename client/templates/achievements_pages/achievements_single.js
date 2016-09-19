@@ -1,4 +1,4 @@
-Template.achievementsSinglePage.created = function() {
+Template.achievementsSinglePage.created = function () {
 	DocHead.removeDocHeadAddedTags();
 	var self = this,
 		slug = Router.current().params.slug,
@@ -16,10 +16,10 @@ Template.achievementsSinglePage.helpers({
 		var slug = Router.current().params.slug;
 		return xbdAchievements.findOne({ slug: slug });
 	},
-	game: function() {
+	game: function () {
 		return xbdGames.findOne({ _id: this.gameId });
 	},
-	getValue: function() {
+	getValue: function () {
 		if (this && this.value) {
 			if (typeof this.value === 'number') {
 				return this.value;
@@ -49,7 +49,7 @@ Template.achievementsSinglePage.helpers({
 			console.log('achievement checked');
 			return true;
 		}
-		return false; 
+		return false;
 	},
 	isUnlocked: function () {
 		var userId = Meteor.userId();
@@ -58,19 +58,18 @@ Template.achievementsSinglePage.helpers({
 			console.log('achievement unlocked');
 			return true;
 		}
-		return false; 
+		return false;
 	},
 	achievementData: function () {
-		var getImage  = 'https://www.xbdash.com/img/achievement-default.jpg';
+		var getImage = 'https://www.xbdash.com/img/achievement-default.jpg';
 		var getGame = xbdGames.findOne({ _id: this.gameId });
-
 		if (getGame.platform === "Xenon") {
 			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
 		}
 		if (getGame.platform === "Durango") {
 			getImage = this.mediaAssets;
 		}
-		
+
 		return {
 			title: 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' Gamerscore! #xbox #xboxdash #xbdash',
 			description: this.description,
@@ -116,15 +115,15 @@ Template.achievementsSinglePage.helpers({
 	}
 });
 
-Template.achievementSingleDocHead.created = function() {
+Template.achievementSingleDocHead.created = function () {
 	var game = xbdGames.findOne({ _id: this.data.gameId });
 	var achievementSingleDescription = this.data.description;
 	achievementSingleDescription = this.data.name + " achievement is worth " + this.data.value + " GamerScore. " + this.data.description;
-	
+
 	if (this.data.mediaAssets) {
 		var achievementSingleImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.data.mediaAssets;
 	} else {
-		var achievementSingleImage  = 'https://www.xbdash.com/img/achievement-default.jpg';
+		var achievementSingleImage = 'https://www.xbdash.com/img/achievement-default.jpg';
 	}
 
 	var achievementSingleTitle = this.data.name + " Achievement Solutions & Details - " + game.name + " | XBdash";
@@ -154,26 +153,26 @@ Template.achievementSingleDocHead.created = function() {
 	var linkInfo = [
 		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
 		{ "rel": "canonical", "href": achievementSingleUrl },
-		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
-		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
-		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144", "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114", "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72", "type": "image/png" },
 		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
 	];
 
 	DocHead.setTitle(achievementSingleTitle);
-	
-	for(var i = 0; i < achievementSingleDocHeadMeta.length; i++) {
+
+	for (var i = 0; i < achievementSingleDocHeadMeta.length; i++) {
 		DocHead.addMeta(achievementSingleDocHeadMeta[i]);;
 	}
 
-	for(var i = 0; i < linkInfo.length; i++) {
+	for (var i = 0; i < linkInfo.length; i++) {
 		DocHead.addLink(linkInfo[i]);;
 	}
 }
 
-Template.achievementWishlistArea.created = function() {
+Template.achievementWishlistArea.created = function () {
 	var slug = Router.current().params.slug;
-		gamertagSlug = Meteor.user().gamertagSlug;
+	gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('singleAchievement', slug);
 	this.subscribe('userWishlist', gamertagSlug);
 }
@@ -186,9 +185,9 @@ Template.achievementWishlistArea.helpers({
 			console.log('achievement unlocked');
 			return true;
 		}
-		return false; 
+		return false;
 	},
-	chkUserWishlist: function() {
+	chkUserWishlist: function () {
 		var wishlistCount = userWishlists.find({ userId: Meteor.userId(), relationId: this._id }).count();
 		if (wishlistCount > 0) {
 			return true;
@@ -197,9 +196,9 @@ Template.achievementWishlistArea.helpers({
 });
 
 Template.achievementWishlistArea.events({
-	'click .add-to-wish-list': function(e) {
+	'click .add-to-wish-list': function (e) {
 		var achievement = xbdAchievements.findOne({ _id: this._id });
-		Meteor.call('addToWishlist', 'achievement', achievement, function(err, res) {
+		Meteor.call('addToWishlist', 'achievement', achievement, function (err, res) {
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
@@ -216,10 +215,10 @@ Template.achievementWishlistArea.events({
 			}
 		});
 	},
-	'click .remove-from-wish-list': function(e) {
+	'click .remove-from-wish-list': function (e) {
 		var self = this;
 		var achievement = xbdAchievements.findOne({ _id: this._id });
-		Meteor.call('removeFromWishlist', 'achievement', achievement, function(err, res) {
+		Meteor.call('removeFromWishlist', 'achievement', achievement, function (err, res) {
 			if (err) return;
 			if (res) {
 				swal({
@@ -233,9 +232,9 @@ Template.achievementWishlistArea.events({
 	}
 });
 
-Template.achievementTrophyCaseArea.created = function() {
+Template.achievementTrophyCaseArea.created = function () {
 	var slug = Router.current().params.slug;
-		gamertagSlug = Meteor.user().gamertagSlug;
+	gamertagSlug = Meteor.user().gamertagSlug;
 	this.subscribe('singleAchievement', slug);
 	this.subscribe('userTrophyCase', gamertagSlug);
 }
@@ -248,9 +247,9 @@ Template.achievementTrophyCaseArea.helpers({
 			console.log('achievement unlocked');
 			return true;
 		}
-		return false; 
+		return false;
 	},
-	chkUserTrophyCase: function() {
+	chkUserTrophyCase: function () {
 		var trophyCaseCount = trophyCase.find({ userId: Meteor.userId(), relationId: this._id }).count();
 		if (trophyCaseCount > 0) {
 			return true;
@@ -259,10 +258,10 @@ Template.achievementTrophyCaseArea.helpers({
 });
 
 Template.achievementTrophyCaseArea.events({
-	'click .add-to-trophy-case': function(e) {
+	'click .add-to-trophy-case': function (e) {
 		console.log(this);
 		var achievement = xbdAchievements.findOne({ _id: this._id });
-		Meteor.call('addToTrophyCase', 'achievement', achievement, function(err, res) {
+		Meteor.call('addToTrophyCase', 'achievement', achievement, function (err, res) {
 			if (err) return;
 			if (res) {
 				if (res.status === 'warning') {
@@ -279,10 +278,10 @@ Template.achievementTrophyCaseArea.events({
 			}
 		});
 	},
-	'click .remove-from-trophy-case': function(e) {
+	'click .remove-from-trophy-case': function (e) {
 		var self = this;
 		var achievement = xbdAchievements.findOne({ _id: this._id });
-		Meteor.call('removeFromTrophyCase', 'achievement', achievement, function(err, res) {
+		Meteor.call('removeFromTrophyCase', 'achievement', achievement, function (err, res) {
 			if (err) return;
 			if (res) {
 				swal({
@@ -301,17 +300,17 @@ Template.achievementShareButtons.helpers({
 		var slug = Router.current().params.slug;
 		return window.location.href;
 	},
-	getTitle: function() {
+	getTitle: function () {
 		var getGame = xbdGames.findOne({ _id: this.gameId });
 		return 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' GS!';
 	},
 	getShortDescription: function () {
 		var achievementDescription = this.description;
-		achievementDescription = this.name + " achievement is worth " + this.value + " GamerScore. " + achievementDescription.substr(0,62) + '...';
+		achievementDescription = this.name + " achievement is worth " + this.value + " GamerScore. " + achievementDescription.substr(0, 62) + '...';
 		return achievementDescription;
 	},
 	getShareImage: function () {
-		var achievementImage  = 'https://www.xbdash.com/img/achievement-default.jpg';
+		var achievementImage = 'https://www.xbdash.com/img/achievement-default.jpg';
 		var getGame = xbdGames.findOne({ _id: this.gameId });
 
 		if (getGame.platform === "Xenon") {
@@ -323,29 +322,34 @@ Template.achievementShareButtons.helpers({
 
 		return achievementImage;
 	},
-	getHashTags: function() {
+	getHashTags: function () {
 		return 'xbox,xbdash,gamerscore';
 	}
 });
 
-Template.achievementPercentageArea.rendered = function() {
-	$(document).ready(function() {
+Template.achievementPercentageArea.rendered = function () {
+	$(document).ready(function () {
 		$('.glyphicon-info-sign').tooltip();
 	});
 }
 
-Template.youtubeGuides.onCreated(function() {
-	this.videoIdLoaded = new ReactiveVar("Loading");
+Template.youtubeGuides.onCreated(function () {
+	var self = this;
+	var youtubeApiCredentials = "AIzaSyA20FWsXdsgOVfTB53ck4-YNRETroa5xiw";
+	var game = xbdGames.findOne({ _id: this.data.gameId });
+	var achievementTitle = this.data.name;
+	var queryString = achievementTitle + " " + game.name + " achievement guide";
+	self.videoGuideUrl = new ReactiveVar("Loading");
+	console.log(game.name);
+	console.log(queryString);
+	$.get("https://www.googleapis.com/youtube/v3/search", { part: "snippet", maxResults: "1", order: "relevance", q: queryString, key: youtubeApiCredentials }, function (data) {
+		self.videoGuideUrl.set("http://www.youtube.com/v/" + data.items[0].id.videoId);
+	});
 });
 
-var youtubeApiCredentials = "AIzaSyA20FWsXdsgOVfTB53ck4-YNRETroa5xiw";
 var game = "mvp halo 3 achievement guide" //used for prototyping
 Template.youtubeGuides.helpers({
-	getGuideVideo() {
-		$.get("https://www.googleapis.com/youtube/v3/search", { part:"snippet", maxResults:"1", order:"relevance", q:game, key:youtubeApiCredentials}, function(data){
-					videoApiId = data.items[0].id.videoId;
-					console.log(data.items[0].id.videoId);
-					return "http://www.youtube.com/watch?v="+videoApiId;
-		});
+	getVideoGuide() {
+		return Template.instance().videoGuideUrl.get();
 	}
 });
