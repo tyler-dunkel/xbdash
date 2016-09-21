@@ -1,0 +1,157 @@
+<template name="timeAttackContestTemplate">
+	{{#with contest}}
+	<div id="content" class="app-content contest-page" role="main">
+		<div class="app-content-body">
+			<div class="wrapper-md">
+				<div class="hbox hbox-auto-xs hbox-auto-sm">
+					<div class="row">
+						<div class="col-md-9">
+							<div class="col-md-12" style="background: url('/img/patterns/contests-pattern.png') repeat;">
+								<div class="row">
+									<div class="col-lg-6 col-sm-7">
+										<div class="clear">
+											<h1 class="m-t-xl m-b-lg padder text-white text-center-xs">{{{this.title}}}</h1>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-5">
+										<div class="m-t-md m-b-md pull-none-xs text-center">
+											<h4 class="m-t-md m-b-sm font-bold text-white">
+												Registration Open: {{this.registrationOpen}}
+											</h4>
+											<hr style="margin: 10px 0;">
+											<h4 class="m-t-sm m-b-md font-bold text-white">
+												Registration Closed: {{this.registrationClosed}}
+											</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="well m-t-md m-b-md">
+									<div>
+									{{#each prizes}}
+										<div class="m-b-md">
+											{{#if imageUrl}}
+											<div class="block m-b-md">
+												<img src="{{imageUrl}}" class="img-responsive grid" />
+											</div>
+											{{/if}}
+											<p class="h5 font-bold m-b-sm">{{getPlace @index}}</p>
+											<h4 class="m-b-sm">{{{title}}}</h4>
+										</div>
+									{{/each}}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-8">
+								<h4 class="m-t-md m-b-sm font-bold">Contest Details</h4>
+								<p class="m-b-lg">
+									{{{this.description}}}
+								</p>
+								<h4 class="m-t-none m-b-sm font-bold">How to Participate</h4>
+								{{#if currentUser}}
+									<ol class="align-left contest-rules m-b-lg">
+										{{#each this.rules}}
+										<li>{{{this}}}</li>
+										{{/each}}
+									</ol>
+								{{else}}
+									<ol class="align-left contest-rules m-b-lg">
+										<li>Signing up below gains entry into this contest.</li>
+										{{#each this.rules}}
+										<li>{{{this}}}</li>
+										{{/each}}
+									</ol>
+								{{/if}}
+								<h4 class="m-t-none m-b-sm font-bold">Prize Details</h4>
+								<p class="m-b-sm" style="font-size: 90%;">
+									{{{this.prizeDetails}}}
+								</p>
+								<p class="m-b-lg" style="font-size: 90%;">
+									XBdash (GameDash, LLC) is not affiliated with the contest(s), it's developer(s), or publisher(s). <a href="{{pathFor 'timeAttackContestRules'}}" class="text-u-l">Read official rules.</a>
+								</p>
+								<div class="well m-t-md m-b-md">
+									<h4 class="m-n text-center"><span class="font-bold">{{countEntries}}</span> Xbox&reg; players have entered</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="well">
+										<h4 class="m-t-none m-b-sm"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Contest Starts:</h4>
+										<span class="h5 block m-b-xs">Your Time: <b>{{getLocalStartDate}}</b></span>
+										<span class="h5 block">(UTC: {{getStartDate}})</span>
+									</div>
+									<div class="well">
+										<h4 class="m-t-none m-b-sm"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Contest Ends:</h4>
+										<span class="h5 block m-b-xs">Your Time: <b>{{getLocalEndDate}}</b></span>
+										<span class="h5 block">(UTC: {{getEndDate}})</span>
+									</div>
+									<div class="well">
+										{{#if currentUser}}
+											{{#if currentUserEntered}}
+											<form>
+												<div class="row">
+													<div class="col-md-12">
+														<h3 class="h4 text-center font-bold">You are participating in this contest!</h3>
+													</div>
+												</div>
+											</form>
+											{{else}}
+											<form>
+												<div class="row">
+													<div class="col-md-12">
+														<h3 class="h4 text-center font-bold m-b-sm">Price to Enter:<br />{{contestPrice}}</h3>
+														<div class="text-center block">
+															<a class="btn btn-lg btn-success btn-rounded text-lg font-bold" href="#">Enter Contest</a>
+														</div>
+													</div>
+												</div>
+											</form>
+											{{/if}}
+										{{else}}
+											<form>
+												<div class="row">
+													<div class="col-md-12">
+														<h3 class="h4 text-center font-bold m-b-sm">Sign up and enter this contest!</h3>
+														<div class="text-center block">
+															<a class="referral-signup btn btn-lg btn-success btn-rounded text-lg font-bold" href="#">Sign Up for FREE</a>
+														</div>
+													</div>
+												</div>
+											</form>
+										{{/if}}
+									</div>
+									<div class="well">
+										<h4 class="m-t-none m-b-sm"><i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:</h4>
+										<span class="h5 block m-b-xs">Your Time: <b>{{getLocalAwardDate}}</b></span>
+										<span class="h5 block">(UTC: {{getAwardDate}})</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrapper-md">
+				<div class="hbox hbox-auto-xs hbox-auto-sm">
+					<div class="row">
+						<div class="col-md-6 m-b-xl">
+							{{> contestLeaderboardTemplate}}
+						</div>
+						<div class="col-md-6 m-b-xl">
+							<div class="panel panel-black" style="margin-bottom: 0;">
+								<div class="panel-heading text-center">
+									<h3 class="m-n padder-t text-white h4">Trending News</h3>
+								</div>
+							</div>
+							{{> mostSharedNews limit=3}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{/with}}
+</template>
