@@ -84,6 +84,11 @@
 		height: 600px;
 		margin: 0 auto 15px;
 	}
+	.news-page .xbd-right-banner-ad {
+		width: 300px;
+		height: 600px;
+		margin: 0 auto 15px;
+	}
 	.xbd-right-banner-ad .right300600 { display: block; }
 	.xbd-right-banner-ad .right160600 { display: none; }
 	.xbd-right-banner-ad .right300250 { display: none; }
