@@ -69,4 +69,4 @@
 		});
 		return this;
 	};
-})(jQuery);
+})();
