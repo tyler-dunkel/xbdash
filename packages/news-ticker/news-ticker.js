@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 	$.fn.newsticker = function(opts) {
 		// default configuration
 		var config = $.extend({}, {
@@ -16,7 +16,7 @@
 			startPos = 0,
 			stop = false;
 
-			function init(){
+			function init() {
 				var customizedHeight = parseInt($item.eq(0).css('height').split('px')[0]),
 				lineHeight = parseInt($newsticker.css('lineHeight').split('px')[0]);
 				$newsticker.css('height', config.height); //set customized height
@@ -27,7 +27,7 @@
 				move();
 			};
 
-			function suspend(){
+			function suspend() {
 				$newsticker.on('mouseover mouseout', function(e) {
 					if (e.type == 'mouseover') {
 						stop = true;
@@ -37,8 +37,8 @@
 				}); 
 			};
 
-			function move(){
-				if($.isFunction(config.move)){
+			function move() {
+				if($.isFunction(config.move)) {
 					config.move.call(this);
 				}
 				else{
