@@ -1,4 +1,5 @@
-;(function($) {
+;(function($, window, jQuery) {
+	var $ = window.jQuery;
 	$.fn.newsticker = function(opts) {
 		// default configuration
 		var config = $.extend({}, {
