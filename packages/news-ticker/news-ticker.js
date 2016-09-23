@@ -1,5 +1,4 @@
-;(function($, window, jQuery) {
-	var $ = window.jQuery;
+;(function($) {
 	$.fn.newsticker = function(opts) {
 		// default configuration
 		var config = $.extend({}, {
@@ -70,4 +69,4 @@
 		});
 		return this;
 	};
-})();
+})(jQuery);

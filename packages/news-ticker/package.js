@@ -1,8 +1,8 @@
 Package.describe({
   name: 'xbdash:news-ticker',
-  version: '1.0.11',
+  version: '1.0.0',
   // Brief, one-line summary of the package.
-  summary: '',
+  summary: 'XBdash News Ticker Script',
   // URL to the Git repository containing the source code for this package.
   git: '',
   // By default, Meteor will default to using README.md for documentation.
@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.use('ecmascript');
-  api.addFiles('news-ticker.js');
+  api.addFiles(['news-ticker.js'], ['client']);
 });
 
 Package.onTest(function(api) {
