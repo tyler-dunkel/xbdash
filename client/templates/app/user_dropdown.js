@@ -14,14 +14,12 @@ Template.userDropdown.helpers({
 		}
 		return defaultGamerImage;
 	},
-	getUser: function() {
-		var user = Meteor.user();
-		if (user && user.gamercard && user.gamercard.gamertag) {
-			return user.gamercard.gamertag;
-		}
-		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
-			return user.xboxProfile.gamertag;
-		}
+	creditsAvailable: function () {
+		// var user = Meteor.user();
+		return false;
+	},
+	getCredits: function () {
+		return '5';
 	},
 	notificationChk: function() {
 		var count = Notifications.find({userId: Meteor.user()._id, read: false}).count();

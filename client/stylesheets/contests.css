@@ -1,6 +1,78 @@
-.contest-page .h3 { min-height: 72px; }
+/*.contest-page .h3 { min-height: 72px; }*/
 .contest-page .well { padding: 20px; }
 .contest-page .well .h3 { min-height: auto; padding-bottom: 15px; }
 .contest-page .well .contest-rules { font-size: 15px; }
 .contest-page .well .contest-rules li { margin-bottom: 10px; }
 .contest-page .current-user { background: #d6e9c6; color: #222222; border-radius: 0 !important; }
+.contest-page .panel { margin-bottom: 0; }
+.contest-page .panel.m-b-sm { margin-bottom: 15px; }
+.contest-page .bottom { width: 100%; }
+.contest-page .row0 {
+	margin-top: 0;
+	margin-bottom: 1vw;
+}
+.contest-page .row1 {
+	margin-top: 1vw;
+	margin-bottom: 1vw;
+}
+.contest-page .row.m-t-md {
+	margin-top: 20px;
+}
+.contest-page .row .m-l-smx {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+.contest-page .referral-contests div:nth-child(n+5),
+.contest-page .completion-contests div:nth-child(n+5),
+.contest-page .time-attack-contests div:nth-child(n+5),
+.contest-page .curated-contests div:nth-child(n+5) {
+	display: none;
+}
+.contest-page .referral-contests div:nth-child(n+5).slick-active,
+.contest-page .completion-contests div:nth-child(n+5).slick-active,
+.contest-page .time-attack-contests div:nth-child(n+5).slick-active,
+.contest-page .curated-contests div:nth-child(n+5).slick-active {
+	display: block;
+}
+.contest-page .trophy-class {
+	width: 100%;
+	height: 96px;
+	padding: 30px 0 0;
+}
+.contest-page .achievement-img {
+	display: inline-block !important;
+	max-width: 58px;
+	height: 96px;
+	margin: 0;
+	border: 0;
+	background-position: center center;
+	background-size: cover;
+}
+/*.contest-page .col-sm-6 { width: 50%; }*/
+.contest-page .achievement-li,
+.contest-page .achievement-button {
+	padding: 10px 0;
+	line-height: 20px;
+}
+.contest-page #hasMoreResults .spinner-rect { margin: 0 auto; }
+.contest-page hr { margin: 10px 0; border-top: 1px solid #efefef; }
+.contest-page .contest-prizes {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.contest-page .hide-content {
+	overflow: hidden;
+	line-height: 1em;
+	height: 13em;
+}
+.contest-page .show-content {
+	line-height: 1em;
+	height: auto;
+}
+.contest-page .show-more {
+	padding: 10px 0;
+	text-align: center;
+}
+@media (max-width: 768px) {
+	/*.contest-page .col-xs-12 { width: 100%; }*/
+}

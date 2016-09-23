@@ -3,6 +3,7 @@
 		<div class="aside-wrap">
 			<div class="navi-wrap">
 				{{> asideHeader}}
+
 				{{> dashboardNav}}
 			</div>
 		</div>
@@ -20,7 +21,7 @@
 				{{else}}
 					{{#if chkGamerStatus}}
 					<a href="/users" class="profile-link hvr-shadow-radial">
-						<img src="{{gamerImage}}" class="img-full" alt="{{getUser}}">
+						<img src="{{gamerImage}}" class="img-full" alt="{{currentUser.gamercard.gamertag}}">
 					</a>
 					{{else}}
 					<img src="/img/xbdash_whiteicon.png" class="img-full" alt="{{currentUser.username}}" />
@@ -36,11 +37,18 @@
 					{{#if chkGamerStatus}}
 					<span class="block m-t-sm">
 						<a href="/users" class='profile-link'>
-							<strong class="font-bold text-lt">{{getUser}}</strong> 
+							<strong class="font-bold text-lt">{{currentUser.gamercard.gamertag}}</strong> 
 						</a>
 					</span>
-					{{#if chkGamerMotto}}
 					<span class="text-muted text-xs block">{{currentUser.gamercard.motto}}</span>
+					{{#if creditsAvailable}}
+					<span class="block m-t-sm">
+						<a href="{{pathFor 'transactionsHistoryPage'}}">Credits Available: <strong class="h4 m-l-xs font-bold text-lt text-u-l">{{getCredits}}</strong></a>
+					</span>
+					{{else}}
+					<span class="block m-t-sm">
+						<a href="{{pathFor 'buyCredits'}}">Add Credits</a>
+					</span>
 					{{/if}}
 					{{else}}
 						{{#if chkGamerFalse}}

@@ -67,7 +67,7 @@
 
 .user-page .carousel-inner { max-width: 754px; text-align: left; }
 
-.user-page .carousel-inner .video-js .vjs-control-bar {
+.user-page .carousel-inner .video-js .vjs-control-bar { 
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
