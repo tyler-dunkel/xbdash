@@ -12,7 +12,7 @@ Template.asideHeader.helpers({
 	},
 	creditsAvailable: function () {
 		// var user = Meteor.user();
-		return true;
+		return false;
 	},
 	getCredits: function () {
 		return '5';

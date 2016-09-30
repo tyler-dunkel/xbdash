@@ -57,13 +57,17 @@
 						<a href="/users" class="profile-button">My Profile</a>
 					</li>
 					{{#if creditsAvailable}}
+					<!--
 					<li>
 						<a href="{{pathFor 'transactionsHistoryPage'}}">Credits Available: <strong class="m-l-xs font-bold text-u-l">{{getCredits}}</strong></a>
 					</li>
+					-->
 					{{else}}
+					<!--
 					<li>
 						<a href="{{pathFor 'buyCredits'}}">Add Credits</a>
 					</li>
+					-->
 					{{/if}}
 					<li>
 						<a href="{{pathFor 'settingsPage'}}">Settings</a>

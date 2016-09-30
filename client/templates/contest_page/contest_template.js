@@ -97,7 +97,7 @@ Template.referralContest.helpers({
 	prizeClasses: function() {
 		var prizeCount = Template.parentData().prizes.length;
 		if (prizeCount === 1) {
-			return 'col-md-6 col-xs-12';
+			return 'col-md-4 col-xs-12';
 		}
 		if (prizeCount === 2) {
 			return 'col-md-3 col-xs-6';
@@ -110,7 +110,7 @@ Template.referralContest.helpers({
 	rulesClasses: function() {
 		var prizeCount = this.prizes ? this.prizes.length : 0;
 		if (prizeCount === 1) {
-			return 'col-md-6 col-xs-12';
+			return 'col-md-8 col-xs-12';
 		}
 		if (prizeCount === 2) {
 			return 'col-md-6 col-xs-12';
@@ -152,10 +152,10 @@ Template.referralContest.helpers({
 	},
 	contestData: function() {
 		var referralToken = Template.instance().referralToken.get();
-		var getImage = "https://www.xbdash.com/img/contests/august-contest-banner.jpg";
+		var getImage = "https://www.xbdash.com/img/contests/september-contest-banner.jpg";
 
 		return {
-			title: "I entered to win two 12-Month Xbox LIVE Gold Memberships in the August Contest! #gamergirl #twitch",
+			title: "I entered to win a custom engraved Xbox® One Controller courtesy of XBdash! #gamergirl #twitch",
 			description: 'Manage your Xbox achievements and work together with other Xbox® gamers to unlock them and complete games together.',
 			image: function () {
 				return getImage;

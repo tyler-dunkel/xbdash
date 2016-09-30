@@ -31,14 +31,13 @@ Template.contestLeaderboardTemplate.helpers({
 	},
 	getUser: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
-		var gamertag = user.username;
 		if (user && user.gamercard && user.gamercard.gamertag) {
-			gamertag = user.gamercard.gamertag;
+			return user.gamercard.gamertag;
 		}
 		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
-			gamertag = user.xboxProfile.gamertag;
+			return user.xboxProfile.gamertag;
 		}
-		return gamertag;
+		return 'Anonymous XBdash Member';
 	},
 	getUserImage: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
