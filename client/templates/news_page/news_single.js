@@ -152,8 +152,8 @@ Template.newsSinglePageShareButtons.helpers({
 	}
 });
 
-Template.newsBannerArea.rendered = function() {
-	$('#banner-affix').affix({
+Template.googleAdsResponsiveRight.rendered = function() {
+	$('#xbd-right-banner-ad').affix({
 		offset: {
 			top: 110
 		}

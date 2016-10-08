@@ -155,11 +155,7 @@ Template.referralContest.helpers({
 		var getImage = "https://www.xbdash.com/img/contests/september-contest-banner.jpg";
 
 		return {
-<<<<<<< HEAD
-			title: "I entered to win a FREE engraved #Xbox controller in the #XBdash July #Contest! #gaming #gamer #destiny #halo5",
-=======
 			title: "I entered to win a custom engraved Xbox® One Controller courtesy of XBdash! #gamergirl #twitch",
->>>>>>> master
 			description: 'Manage your Xbox achievements and work together with other Xbox® gamers to unlock them and complete games together.',
 			image: function () {
 				return getImage;
