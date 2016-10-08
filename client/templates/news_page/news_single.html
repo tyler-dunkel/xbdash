@@ -17,10 +17,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="wrapper-md visible-xl-block col-xl-2 hidden-lg hidden-md hidden-sm hidden-xs trending-column">
-						<h2 class="m-b-sm font-thin h3 text-black">Trending</h2>
-						{{> mostSharedNews limit=7}}
-					</div>
 					<div class="wrapper-md col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
 						{{> googleAdsMedium}} 
 						<div class="blog-post news">
@@ -34,8 +30,13 @@
 							</div>
 						</div>
 					</div>
+<<<<<<< HEAD
 					<div class="wrapper-md col-xl-3 col-lg-5 col-md-4 col-sm-12 col-xs-12">
 						{{> googleAdsResponsiveRight}} 
+=======
+					<div class="wrapper-md col-xl-3 col-lg-2 col-md-4 col-sm-12 col-xs-12">
+						{{> newsBannerArea}}
+>>>>>>> master
 					</div>
 					<div class="shareDiv">
 						{{> newsSinglePageShareButtons}}
@@ -75,3 +76,20 @@
 		</ul>
 	</div>
 </template>
+
+<template name="newsBannerArea">
+	<div class="xbd-right-banner-ad" id="banner-affix">
+		<a href="/contests">
+			<img src="/img/ads/xbdash-ads-300x600.jpg" class="right300600" />
+			<img src="/img/ads/xbdash-ads-160x600.jpg" class="right160600" />
+			<img src="/img/ads/xbdash-ads-300x250.jpg" class="right300250" />
+		</a>
+	</div>
+</template>
+
+<!--
+<div class="wrapper-md visible-xl-block col-xl-2 hidden-lg hidden-md hidden-sm hidden-xs trending-column">
+	<h2 class="m-b-sm font-thin h3 text-black">Trending</h2>
+	{{> mostSharedNews limit=7}}
+</div>
+-->

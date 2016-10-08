@@ -49,6 +49,55 @@ Template.newsPage.created = function() {
 	}
 }
 
+Template.newsApp.helpers({
+	userGamertag: function() {
+		var user = Meteor.user();
+		var userGamertag = user.username;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			userGamertag = user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			userGamertag = user.xboxProfile.gamertag;
+		}
+		return userGamertag;
+	}
+});
+
+Template.featuredNewsSection.rendered = function() {
+	$('.featured-news').slick({
+		"arrows": true,
+		"prevArrow": '<button type="button" class="slick-new-prev"><i class="fa fa-caret-left text-primary" aria-hidden="true"></i></button>',
+		"nextArrow": '<button type="button" class="slick-new-next"><i class="fa fa-caret-right text-primary" aria-hidden="true"></i></button>',
+		"draggable": true,
+		"focusOnSelect": true,
+		"edgeFriction": 0.20,
+		"infinite": false,
+		"mobileFirst": true,
+		"rows": 1,
+		"slidesPerRow": 4,
+		"slidesToShow": 4,
+		"swipeToSlide": true,
+		"responsive": [
+		{
+			breakpoint: 1024,
+			settings: {
+				"slidesPerRow": 3,
+				"slidesToShow": 3,
+				infinite: true
+			}
+		},
+		{
+			breakpoint: 768,
+			settings: {
+				"slidesPerRow": 2,
+				"slidesToShow": 1,
+				infinite: true
+			}
+		}
+		]
+	});
+}
+
 Template.newsSection.created = function() {
 	newsLimit.set(9);
 	
@@ -78,7 +127,11 @@ Template.newsSection.helpers({
 	hasMoreResults: function() {
 		var newsLimitCurrent = newsLimit.get();
 		var xbdNewsCount = xbdNews.find({}).count();
-		return ! (xbdNewsCount < newsLimitCurrent);
+		if (xbdNewsCount < newsLimitCurrent) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 });
 

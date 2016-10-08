@@ -23,7 +23,11 @@ Meteor.startup(function () {
                         HTTP.get(url, function (err, result) {
                             if (result.statusCode === 200) {
                                 var respJson = JSON.parse(result.content);
-                                shareCount = respJson[0].total_count;
+                                if (respJson && respJson[0] && respJson[0].total_count) {
+                                    shareCount= respJson[0].total_count;
+                                } else {
+                                    shareCount = 0;
+                                }
                             }
                         });
                         xbdNews.upsert({ slug: i.slug }, { $set: { shareCount: shareCount } });

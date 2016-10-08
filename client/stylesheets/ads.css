@@ -1,4 +1,8 @@
+.affix-top,.affix{
+	position: static;
+}
 .xbd-top-banner-ad {
+<<<<<<< HEAD
 	width: 300px !important;
 	height: 250px !important;
 	background-color: #fff;
@@ -20,13 +24,37 @@
 	width: 300px !important;
 	height: 250px !important;
 	background-color: #fff;
+=======
+	width: 300px;
+	height: 250px
+	margin: 0 auto 20px;
+}
+.xbd-right-banner-ad {
+	width: 300px;
+	height: 600px
+	margin: 0 auto;
+}
+.xbd-right-sidebar-ad {
+	width: 300px;
+	height: 250px
+	margin: 0 auto 20px;
+}
+.xbd-left-sidebar-ad {
+	width: 300px;
+	height: 250px
+>>>>>>> master
 	margin: 30px auto;
 }
 @media (max-width: 767px) {
 	/*.xbd-top-banner-ad {
+<<<<<<< HEAD
 		width: 250px !important;
 		height: 250px !important;
 		background-color: #fff;
+=======
+		width: 250px;
+		height: 250px;
+>>>>>>> master
 		margin: 5px auto 20px;
 	}*/
 	.xbd-right-banner-ad {
@@ -55,14 +83,24 @@
 }
 @media (max-width: 991px) {
 	.xbd-right-banner-ad {
+<<<<<<< HEAD
 		width: 300px !important;
 		height: 250px !important;
 		background-color: #fff;
 		margin: 5px auto 90px;
+=======
+		width: 300px;
+		height: 250px;
+		margin: 5px auto 100px;
+>>>>>>> master
 	}
 	.xbd-right-banner-ad .right300600 { display: none !important; }
 	.xbd-right-banner-ad .right160600 { display: none !important; }
 	.xbd-right-banner-ad .right300250 { display: block !important; }
+	#banner-affix.affix {
+		top: 0;
+		width: 300px;
+	}
 }
 @media (min-width: 768px) {
 	.xbd-top-banner-ad {
@@ -79,16 +117,36 @@
 }
 @media (min-width: 992px) {
 	.xbd-right-banner-ad {
+<<<<<<< HEAD
 		width: 160px !important;
 		height: 600px !important;
 		background-color: #fff;
+=======
+		width: 160px;
+		height: 600px;
+>>>>>>> master
 		margin: 0 auto 15px;
 	}
-	.xbd-right-banner-ad .right300600 { display: none; }
-	.xbd-right-banner-ad .right160600 { display: block; }
+	.news-page .xbd-right-banner-ad {
+		width: 300px;
+		height: 600px;
+		margin: 0 auto 15px;
+	}
+	.xbd-right-banner-ad .right300600 { display: block; }
+	.xbd-right-banner-ad .right160600 { display: none; }
 	.xbd-right-banner-ad .right300250 { display: none; }
 	.xbd-left-sidebar-ad {
 		margin: 20px auto;
+	}
+	#banner-affix.affix-top {
+		position: static;
+		margin-top: 0;
+		width: 300px;
+	}
+	#banner-affix.affix {
+		position: fixed;
+		top: 70px;
+		width: 160px;
 	}
 }
 @media (min-width: 1200px) {
@@ -110,6 +168,11 @@
 	.xbd-right-banner-ad .right300600 { display: none; }
 	.xbd-right-banner-ad .right160600 { display: block; }
 	.xbd-right-banner-ad .right300250 { display: none; }
+	#banner-affix.affix-top {
+		position: static;
+		margin-top: 0;
+		width: 160px;
+	}
 }
 @media (min-width: 1575px) {
 	.xbd-right-banner-ad {

@@ -1,22 +1,9 @@
 <template name="mainLayout">
 	<div class="app app-header-fixed">
 	{{> searchOverlay}}
-	{{#if checkHome}}
-		{{#if currentUser}}
-			{{> dashboardHeader}}
-			{{> dashboardAside}}
-		{{/if}}
-	{{else}}
-		{{> dashboardHeader}}
-		{{> dashboardAside}}
-	{{/if}}
+	{{> dashboardHeader}}
+	{{> dashboardAside}}
 		{{> yield}}
-	{{#if checkHome}}
-		{{#if currentUser}}
-			{{> dashboardFooter}}
-		{{/if}}
-	{{else}}
-		{{> dashboardFooter}}
-	{{/if}}
+	{{> dashboardFooter}}
 	</div>
 </template>

@@ -10,42 +10,6 @@
 	</aside>
 </template>
 
-<template name="asideStats">
-	{{#if chkGamerStatus}}
-	<div class="wrapper m-t xbdwrap">
-		<div class="text-center">
-			<h5>User Completion Summary</h5>
-		</div>
-		<div class="text-center-folded">
-			<span class="pull-right pull-none-folded">{{achievementsCompleted}}</span>
-			<span class="hidden-folded">Achievements</span>
-		</div>
-		<div class="text-center-folded">
-			<span class="pull-right pull-none-folded">{{gamesCompleted}}</span>
-			<span class="hidden-folded">Games</span>
-		</div>
-		<div class="text-center-folded">
-			<span class="pull-right pull-none-folded">{{currentGamerscore}}</span>
-			<span class="hidden-folded">Gamerscore</span>
-		</div>
-	</div>
-	{{else}}
-	<div class="wrapper m-t xbdwrap">
-		<div class="text-center">
-			<h5>XBdash Tracked Data</h5>
-		</div>
-		<div class="text-center-folded">
-			<span class="pull-right pull-none-folded">{{totalAchievements}}</span>
-			<span class="hidden-folded">Achievements</span>
-		</div>
-		<div class="text-center-folded">
-			<span class="pull-right pull-none-folded">{{totalGames}}</span>
-			<span class="hidden-folded">Games</span>
-		</div>
-	</div>
-	{{/if}}
-</template>
-
 <template name="asideHeader">
 	{{#if currentUser}}
 	<div class="clearfix hidden-xs text-center show" id="aside-user">
@@ -77,6 +41,19 @@
 						</a>
 					</span>
 					<span class="text-muted text-xs block">{{currentUser.gamercard.motto}}</span>
+					{{#if creditsAvailable}}
+					<!--
+					<span class="block m-t-sm">
+						<a href="{{pathFor 'transactionsHistoryPage'}}">Credits Available: <strong class="h4 m-l-xs font-bold text-lt text-u-l">{{getCredits}}</strong></a>
+					</span>
+					-->
+					{{else}}
+					<!--
+					<span class="block m-t-sm">
+						<a href="{{pathFor 'buyCredits'}}">Add Credits</a>
+					</span>
+					-->
+					{{/if}}
 					{{else}}
 						{{#if chkGamerFalse}}
 						<span class="block m-t-sm">
@@ -115,3 +92,39 @@
 	</div>
 	{{/if}}
 </template>
+
+<!-- <template name="asideStats">
+	{{#if chkGamerStatus}}
+	<div class="wrapper m-t xbdwrap">
+		<div class="text-center">
+			<h5>User Completion Summary</h5>
+		</div>
+		<div class="text-center-folded">
+			<span class="pull-right pull-none-folded">{{achievementsCompleted}}</span>
+			<span class="hidden-folded">Achievements</span>
+		</div>
+		<div class="text-center-folded">
+			<span class="pull-right pull-none-folded">{{gamesCompleted}}</span>
+			<span class="hidden-folded">Games</span>
+		</div>
+		<div class="text-center-folded">
+			<span class="pull-right pull-none-folded">{{currentGamerscore}}</span>
+			<span class="hidden-folded">Gamerscore</span>
+		</div>
+	</div>
+	{{else}}
+	<div class="wrapper m-t xbdwrap">
+		<div class="text-center">
+			<h5>XBdash Tracked Data</h5>
+		</div>
+		<div class="text-center-folded">
+			<span class="pull-right pull-none-folded">{{totalAchievements}}</span>
+			<span class="hidden-folded">Achievements</span>
+		</div>
+		<div class="text-center-folded">
+			<span class="pull-right pull-none-folded">{{totalGames}}</span>
+			<span class="hidden-folded">Games</span>
+		</div>
+	</div>
+	{{/if}}
+</template> -->

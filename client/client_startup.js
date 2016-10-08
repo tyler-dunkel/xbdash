@@ -42,7 +42,9 @@ Meteor.startup(function() {
 		publishUserFields: { 
 			"gamercard.gamertag": 1,
 			"gamercard.gamerscore": 1,
-			"gamercard.gamerpicLargeSslImagePath": 1
+			"gamercard.gamerpicLargeSslImagePath": 1,
+			"xboxProfile.gamertag": 1,
+			"xboxProfile.gameDisplayPicRaw": 1
 		},
 		replies: true,
 		anonymous: false

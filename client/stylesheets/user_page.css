@@ -7,20 +7,20 @@
 .slick-slider { margin: 0; }
 
 .slick-new-prev, .slick-new-next {
-    position: absolute;
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    line-height: 0;
-    font-size: 0;
-    cursor: pointer;
-    background: transparent;
-    color: #138013;
-    top: 50%;
-    margin-top: -10px;
-    padding: 0;
-    border: none;
-    outline: none;
+	position: absolute;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	line-height: 0;
+	font-size: 0;
+	cursor: pointer;
+	background: transparent;
+	color: #138013;
+	top: 50%;
+	margin-top: -10px;
+	padding: 0;
+	border: none;
+	outline: none;
 }
 
 .slick-new-prev { left: 0; z-index: 10; }
@@ -32,7 +32,18 @@
 
 #clips-modal .modal-dialog,
 #captures-modal .modal-dialog {
-	width: 756px;
+	width: 754px;
+}
+
+@media (max-width: 768px) {
+	#clips-modal .modal-dialog,
+	#captures-modal .modal-dialog,
+	#captures-modal .modal-dialog img {
+		width: 100%;
+	}
+	.video-js {
+		height: 100% !important;
+	}
 }
 
 #clips-modal .modal-body,
@@ -45,14 +56,80 @@
 	margin-bottom:6px;
 }
 
+#clips-carousel .carousel-control {
+	bottom: 40px;
+}
+
 .clips-container .carousel-control.left, .clips-container .carousel-control.right,
 .captures-container .carousel-control.left, .captures-container .carousel-control.right {
 	background-image: none;
+}
+
+.user-page .carousel-inner { max-width: 754px; text-align: left; }
+
+.user-page .carousel-inner .video-js .vjs-control-bar { 
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.user-page .carousel-inner .video-js {
+	font-size: 12px;
+	color: #fff;
+}
+
+.user-page .carousel-inner .vjs-default-skin .vjs-big-play-button {
+	font-size: 3em;
+	line-height: 1.5em;
+	height: 1.5em;
+	width: 3em;
+	border: 0.06666em solid #fff;
+	border-radius: 0.3em;
+	left: 0.5em;
+	top: 0.5em;
+
+/*	@if $center-big-play-button {
+		left: 50%;
+		top: 50%;
+		margin-left: -(3em / 2);
+		margin-top: -(1.5em / 2);   
+	} @else {*/
+
+/*	}*/
+}
+
+.user-page .carousel-inner .video-js .vjs-control-bar,
+.user-page .carousel-inner .video-js .vjs-big-play-button,
+.user-page .carousel-inner .video-js .vjs-menu-button .vjs-menu-content {
+	background-color: #2B333F;
+	background-color: rgba(#2B333F, 0.7);
+}
+
+.user-page .carousel-inner .video-js .vjs-slider {
+	background-color: 43, 51, 63;
+	background-color: rgba(43, 51, 63, 0.5);
+}
+
+.user-page .carousel-inner .video-js .vjs-volume-level,
+.user-page .carousel-inner .video-js .vjs-play-progress,
+.user-page .carousel-inner .video-js .vjs-slider-bar {
+	background: #fff;
+}
+
+.user-page .carousel-inner .video-js .vjs-load-progress {
+	background: ligthen(43, 51, 63, 25%);
+	background: rgba(43, 51, 63, 0.5);
+}
+
+.user-page .carousel-inner .video-js .vjs-load-progress div {
+	background: ligthen(43, 51, 63, 50%);
+	background: rgba(43, 51, 63, 0.75);
 }
 
 .user-page .nav-tabs > li > a { color: #666; }
 
 .user-page .nav-tabs > li.active > a,
 .user-page .nav-tabs > li > a:hover {
-    color: #138013 !important;
+	color: #138013 !important;
 }

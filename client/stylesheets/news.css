@@ -23,11 +23,11 @@
 .trending-column .clear {
 	display: inline-block;
 }
-.trending-column h3 {
+/*.trending-column h3 {
 	font-size: 18px;
 	margin-top: 10px;
 	font-weight: bold;
-}
+}*/
 .trending-column .list-group-item {
 	padding: 15px;
 }
@@ -75,4 +75,36 @@
 	.news-section small {
 		line-height: 24px;
 	}
+}
+
+.news-page .newsticker {
+	color: #402726;
+	cursor: default;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 15.6px;
+	height: 40px;
+	position: relative;
+	overflow: hidden;
+}
+
+.news-page .newsticker .newsticker-list {
+	position: absolute;
+	top: 8px;
+	height: 40px;
+	overflow: hidden;
+	padding-left: 15px;
+}
+
+.news-page .newsticker .newsticker-list .newsticker-item {
+	height: 40px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.news-page .hide-bullets {
+	list-style:none;
+	margin-left: -40px;
+	margin-top:20px;
 }

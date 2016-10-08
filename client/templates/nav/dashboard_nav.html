@@ -4,8 +4,14 @@
 			<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
 				<span>Navigation</span>
 			</li>
+			<li>
+				<a class="home-link" href="{{pathFor 'home'}}">
+					<i class="glyphicon glyphicon-fire icon"></i>
+					<span class="font-bold">Home</span>
+				</a>
+			</li>
 			<li class="{{isDashboardEnabled}} {{dashboardPopover}}">
-				<a class="dashboard-link" href="{{pathFor 'home'}}">
+				<a class="dashboard-link" href="{{pathFor 'dashboardPage'}}">
 					<img src="/img/xbdash_whiteicon.png" alt="{{appName}}" title="{{appName}}" class="glyphicon-list xbd" style="" />
 					<span class="font-bold">Dashboard</span>
 				</a>
@@ -29,12 +35,6 @@
 				</a>
 			</li>
 			<li class="line dk"></li>
-			<li>
-				<a href="{{pathFor 'newsPage'}}">
-					<i class="glyphicon glyphicon-fire icon"></i>
-					<span class="font-bold">News</span>
-				</a>
-			</li>
 			<li class="contest-modal-trigger">
 				<a href="{{pathFor 'contestPage'}}">
 					<i class="fa fa-gift"></i>

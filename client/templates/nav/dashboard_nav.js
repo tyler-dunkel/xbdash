@@ -1,12 +1,8 @@
 Template.dashboardNav.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();
-		console.log("autorun for dashboard nav ran");
 		if (user && user.gamertagScanned && user.gamertagScanned.status !== 'false') {
-			console.log("autorun for dashboard nav returned / href");
-			$('li a.dashboard-link').attr("href", "/");
 		} else {
-			console.log("autorun for dashboard nav returned # href");
 			$('li a.dashboard-link').attr("href", "#");
 		}
 	});
@@ -42,6 +38,12 @@ Template.dashboardNav.helpers({
 });
 
 Template.dashboardNav.events({
+	// 'click li a.home-link': function(e) {
+	// 	e.preventDefault();
+	// 	var user = Meteor.user();
+	// 	Router.go('newsPage');
+	// 	document.location.reload(true);
+	// },
 	'click li.disabled.no-user': function (e) {
 		e.preventDefault();
 		sweetAlert({

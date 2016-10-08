@@ -22,7 +22,10 @@ Meteor.publishComposite('dailyRanks', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}
@@ -51,7 +54,10 @@ Meteor.publishComposite('overallRanks', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}
@@ -82,7 +88,10 @@ Meteor.publishComposite('completedAchievements', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}
@@ -113,7 +122,10 @@ Meteor.publishComposite('completedGames', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}
@@ -144,7 +156,10 @@ Meteor.publishComposite('commonAchievements', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}
@@ -175,7 +190,10 @@ Meteor.publishComposite('rareAchievements', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}
@@ -206,7 +224,10 @@ Meteor.publishComposite('epicAchievements', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}
@@ -237,7 +258,10 @@ Meteor.publishComposite('legendaryAchievements', function() {
 							"gamercard.gamertag": 1,
 							"gamercard.gamerscore": 1,
 							"gamercard.gamerpicLargeSslImagePath": 1,
-							"gamertagSlug": 1
+							"gamertagSlug": 1,
+							"xboxProfile.gamertag": 1,
+							"xboxProfile.gamerscore": 1,
+							"xboxProfile.gameDisplayPicRaw": 1
 						}
 					});
 				}

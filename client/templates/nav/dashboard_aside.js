@@ -5,10 +5,17 @@ Template.asideHeader.helpers({
 		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
 			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
 		}
-		if (user && user.xboxProfile) {
+		if (user && user.xboxProfile && user.xboxProfile.gameDisplayPicRaw) {
 			defaultGamerImage =  "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
 		}
 		return defaultGamerImage;
+	},
+	creditsAvailable: function () {
+		// var user = Meteor.user();
+		return false;
+	},
+	getCredits: function () {
+		return '5';
 	},
 	chkGamerFalse: function () {
 		var user = Meteor.user();

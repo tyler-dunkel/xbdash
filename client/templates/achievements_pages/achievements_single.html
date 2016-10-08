@@ -63,7 +63,9 @@
 							</div>
 							<div class="col-sm-6 col-xs-12 text-center">
 								<div class="inline m-r m-l">
-									<div class="m-b-xs">Users That Have This</div>
+									<div class="m-b-xs">
+										{{> achievementPercentageArea}}
+									</div>
 									<div class="h3 text-success font-bold">
 										{{userPercentage}}%
 									</div>
@@ -94,6 +96,29 @@
 
 <template name="achievementSingleDocHead"></template>
 
+<template name="achievementWishlistArea">
+	{{#if chkIfCompleted}}
+	{{else}}
+		{{#if chkUserWishlist}}
+			<button class="padder-as btn btn-danger remove-from-wish-list">Remove from Wishlist</button>
+		{{else}}
+			<button class="padder-as btn btn-success add-to-wish-list" id="">Add to Wishlist</button>
+			{{> wishlistPopup}}
+		{{/if}}
+	{{/if}}
+</template>
+
+<template name="achievementTrophyCaseArea">
+	{{#if chkIfCompleted}}
+		{{#if chkUserTrophyCase}}
+			<button class="padder-as btn btn-danger remove-from-trophy-case">Remove from Trophy Case</button>
+		{{else}}
+			<button class="padder-as btn btn-success add-to-trophy-case" id="">Add to Trophy Case</button>
+			{{> trophyCasePopup}}
+		{{/if}}
+	{{/if}}
+</template>
+
 <template name="achievementShareButtons">
 	<div class="share-buttons">
 		<ul class="rrssb-buttons rrssb3 clearfix">
@@ -118,25 +143,6 @@
 	</div>
 </template>
 
-<template name="achievementWishlistArea">
-	{{#if chkIfCompleted}}
-	{{else}}
-		{{#if chkUserWishlist}}
-			<button class="padder-as btn btn-danger remove-from-wish-list">Remove from Wishlist</button>
-		{{else}}
-			<button class="padder-as btn btn-success add-to-wish-list" id="">Add to Wishlist</button>
-			{{> wishlistPopup}}
-		{{/if}}
-	{{/if}}
-</template>
-
-<template name="achievementTrophyCaseArea">
-	{{#if chkIfCompleted}}
-		{{#if chkUserTrophyCase}}
-			<button class="padder-as btn btn-danger remove-from-trophy-case">Remove from Trophy Case</button>
-		{{else}}
-			<button class="padder-as btn btn-success add-to-trophy-case" id="">Add to Trophy Case</button>
-			{{> trophyCasePopup}}
-		{{/if}}
-	{{/if}}
+<template name="achievementPercentageArea">
+	Users who have this <a href="#" class="glyphicon glyphicon-info-sign" data-toggle="achievementToolTip" data-placement="top" title="vs users who have this game"></a>
 </template>

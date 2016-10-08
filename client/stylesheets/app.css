@@ -1,5 +1,5 @@
 /* 
-
+XBdash.com
 */
 
 html {
@@ -2900,6 +2900,7 @@ fieldset[disabled] .i-checks input + i:before {
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	z-index: 1;
 }
 
 .item .center {
@@ -5077,10 +5078,6 @@ ul.signin > li.active {
 	margin-bottom: 20px;
 }
 
-.p-b-md {
-	padding-bottom: 5px;
-}
-
 .m-b-lg {
 	margin-bottom: 30px;
 }
@@ -5123,6 +5120,14 @@ ul.signin > li.active {
 
 .m-b-n-xxl {
 	margin-bottom: -50px;
+}
+
+.p-t-md {
+	padding-top: 20px;
+}
+
+.p-b-md {
+	padding-bottom: 5px;
 }
 
 .avatar {
@@ -6245,7 +6250,7 @@ polyline{opacity: .3; stroke: black; stroke-width: 2px; fill: none;}
 		padding-top: 15px;
 		padding-bottom: 5px;
 	}
-	.achievements-list .col-sm-6 {
+	.single-games-page .achievements-list .col-sm-6 {
 		width: 49%;
 	}
 }

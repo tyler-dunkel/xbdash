@@ -51,15 +51,28 @@
 					<span class="hidden-sm hidden-md">{{currentUser.username}}</span> <b class="caret"></b>
 					{{/if}}
 				</a>
-				<ul class="dropdown-menu animated">
-					{{#if chkGamerStatus}} 
-						<li>
-							<a href="/users" class="profile-button hvr-shadow-radial">My Profile</a>
-						</li>
+				<ul class="dropdown-menu pull-right animated">
+				{{#if chkGamerStatus}} 
+					<li>
+						<a href="/users" class="profile-button">My Profile</a>
+					</li>
+					{{#if creditsAvailable}}
+					<!--
+					<li>
+						<a href="{{pathFor 'transactionsHistoryPage'}}">Credits Available: <strong class="m-l-xs font-bold text-u-l">{{getCredits}}</strong></a>
+					</li>
+					-->
+					{{else}}
+					<!--
+					<li>
+						<a href="{{pathFor 'buyCredits'}}">Add Credits</a>
+					</li>
+					-->
 					{{/if}}
 					<li>
 						<a href="{{pathFor 'settingsPage'}}">Settings</a>
 					</li>
+				{{/if}}
 					<li>
 						<a href="{{pathFor 'helpPage'}}">Help</a>
 					</li>

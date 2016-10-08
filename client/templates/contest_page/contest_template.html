@@ -17,33 +17,38 @@
 						<div class="row">
 							<div class="col-xl-8 col-xl-offset-2 m-b-lg">
 								<h1 class="h1 text-center m-t-md m-b-lg">{{{this.title}}}</h1>
-								<p class="h4 text-left m-b-lg">{{{this.description}}}</p>
+								<p class="h3 text-left m-b-lg">{{{this.description}}}</p>
 							</div>
 						</div>
 						<div class="row">
 							{{#each prizes}}
 							<div class="{{prizeClasses}} m-t-sm m-b-md text-center">
 								<p class="h5">{{getPlace @index}}</p>
-								<h3 class="m-t-sm m-b-sm">{{{title}}}</h3>
+								<h4 class="m-t-sm m-b-sm">{{{title}}}</h4>
 								<div>
-									<a href="#">
+									<!-- <a href="#"> -->
 										<img src="{{imageUrl}}" class="img-responsive grid" />
-									</a>
+									<!-- </a> -->
 								</div>
 							</div>
 							{{/each}}
 							<div class="{{rulesClasses}}">
 								<div class="well">
-									<h2 class="h3 m-t-sm align-left">Rules</h2>
+									<h2 class="h3 m-t-sm align-left">How it works:</h2>
 									{{#if currentUser}}
-										<ul class="align-left contest-rules">
+										<ol class="align-left contest-rules">
 											{{#each this.rules}}
 											<li>{{{this}}}</li>
 											{{/each}}
-										</ul>
+										</ol>
 										<form class="m-t-xxl m-b-xxl">
+<<<<<<< HEAD
 											<h3 class="h3 text-center"><strong>Share this link with friends and get more entries!</strong></h3>
 											<div class="input-group m-t-sm m-b-sm">
+=======
+											<h3 class="h4 text-center m-b-sm"><strong>Share this link with friends and get more entries!</strong></h3>
+											<div class="input-group m-b-lg">
+>>>>>>> master
 												<input type="text" class="form-control" value="{{referralUrl}}" placeholder="Your Referral URL - Share to get more entries!" id="copy-input">
 												<span class="input-group-btn">
 													<button class="btn btn-default" type="button" id="copy-button"
@@ -53,7 +58,11 @@
 													</button>
 												</span>
 											</div>
+<<<<<<< HEAD
 											<div class="text-center">
+=======
+											<div class="m-t-sm text-center">
+>>>>>>> master
 												{{> shareit contestData}}
 											</div>
 										</form>
@@ -65,7 +74,7 @@
 											{{/each}}
 										</ul>
 										<form class="m-t-xxl m-b-xxl">
-											<h3 class="h4 text-center m-b-sm"><strong>Sign up for a chance to win the June 2016 launch contest!</strong></h3>
+											<h3 class="h4 text-center m-b-sm"><strong>Sign up for a chance to win the September 2016 referral contest!</strong></h3>
 											<div class="text-center block">
 												<a class="referral-signup btn b-2x btn-lg btn-success btn-rounded text-lg font-bold m-t-sm m-b-lg" href="#">Sign Up for FREE</a>
 											</div>
@@ -74,11 +83,13 @@
 									<div class="row m-b-md text-center">
 										<div class="col-md-6 col-xs-6 m-b-lg">
 											<h4><i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Starts:</h4>
-											<span class="h4">{{getStartDate}}</span>
+											<span class="h5 block m-b-xs">Your Time: <b>{{getLocalStartDate}}</b></span>
+											<span class="h5 block">(UTC: {{getStartDate}})</span>
 										</div>
 										<div class="col-md-6 col-xs-6 m-b-lg">
 											<h4><i class="fa fa-calendar"></i>&nbsp;&nbsp;Giveaway Ends:</h4>
-											<span class="h4">{{getEndDate}}</span>
+											<span class="h5 block m-b-xs">Your Time: <b>{{getLocalEndDate}}</b></span>
+											<span class="h5 block">(UTC: {{getEndDate}})</span>
 										</div>
 										<div class="col-md-12 col-xs-12 m-b-lg">
 											<h4><i class="fa fa-trophy"></i>&nbsp;&nbsp;Prize Awarded:</h4>
@@ -88,7 +99,7 @@
 									<div class="row">
 										<div class="col-xs-12 text-center">
 											<p style="font-size: 75%;">
-												XBdash (GameDash, LLC) is not affiliated with the giveaway(s), it's developer(s), or publisher(s). <a href="{{pathFor 'contestRules'}}" class="text-u-l">Read official rules.</a>
+												XBdash (GameDash, LLC) is in no way affiliated, sponsored, endorsed, or administered by Microsoft&reg;, Xbox&reg;, or any of Microsoft Corporation's Trademarks, Assets, and Brands. <a href="{{pathFor 'contestRules'}}" class="text-u-l">Read official rules.</a>
 											</p>
 										</div>
 									</div>
@@ -103,13 +114,41 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-xl-4 col-md-6 col-xs-12">
+							<div class="col-md-6 col-xs-12">
+								<img src="/img/contests/winners/winners-082016.jpg" class="img-responsive" />
+								<p class="text-left wrapper">
+									<span class="h4 font-bold text-left">August 2016</span><br /><br />
+									<strong>First Place Prize:</strong> Two 12-Month Xbox LIVE Gold Memberships (2 Years)<br />
+									<strong>Second Place Prize:</strong> One 12-Month Xbox LIVE Gold Membership (1 Year)<br />
+									<strong>Third Place Prize:</strong> One 3-Month Xbox LIVE Gold Membership
+								</p>
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<img src="/img/contests/winners/winners-072016.jpg" class="img-responsive" />
+								<p class="text-left wrapper">
+									<span class="h4 font-bold text-left">July 2016</span><br /><br />
+									<strong>Grand Prize:</strong> Custom Designed Xbox One Controller<br />
+									(via the Xbox® Design Lab, courtesy of XBdash)
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-xs-12">
 								<img src="/img/contests/winners/winners-062016.jpg" class="img-responsive" />
 								<p class="text-left wrapper">
 									<span class="h4 font-bold text-left">June 2016</span><br /><br />
 									<strong>Grand Prize:</strong> Overwatch - Origins Edition for Xbox&reg; One<br />
 									<strong>Second Place Prize:</strong> Fallout 4 for Xbox&reg; One
 								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col w-xxl">
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-sm-12">
+								{{> contestLeaderboardTemplate}}
 							</div>
 						</div>
 					</div>

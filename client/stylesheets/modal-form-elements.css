@@ -1,0 +1,94 @@
+.form-box input[type="text"], 
+.form-box input[type="password"], 
+.form-box textarea, 
+.form-box textarea.form-control {
+	height: 44px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 44px;
+    color: #888;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+.form-box textarea, 
+.form-box textarea.form-control {
+	height: 90px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	line-height: 30px;
+}
+
+.form-box input[type="text"]:focus, 
+.form-box input[type="password"]:focus, 
+.form-box textarea:focus, 
+.form-box textarea.form-control:focus {
+	outline: 0;
+	background: #fff;
+    border: 1px solid #ccc;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+
+.form-box input[type="text"]:-moz-placeholder,
+.form-box input[type="password"]:-moz-placeholder, 
+.form-box textarea:-moz-placeholder,
+.form-box textarea.form-control:-moz-placeholder { color: #888; }
+
+.form-box input[type="text"]:-ms-input-placeholder,
+.form-box input[type="password"]:-ms-input-placeholder, 
+.form-box textarea:-ms-input-placeholder,
+.form-box textarea.form-control:-ms-input-placeholder { color: #888; }
+
+.form-box input[type="text"]::-webkit-input-placeholder,
+.form-box input[type="password"]::-webkit-input-placeholder, 
+.form-box textarea::-webkit-input-placeholder,
+.form-box textarea.form-control::-webkit-input-placeholder { color: #888; }
+
+.form-box label { font-weight: 300; }
+
+.form-box button.btn {
+	min-width: 105px;
+	height: 40px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 40px;
+    color: #fff;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+.form-box button.btn:hover { opacity: 0.6; color: #fff; }
+.form-box button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+
+.form-box button.btn:focus,
+.form-box button.btn:active:focus,
+.form-box button.btn.active:focus { outline: 0; opacity: 0.6; color: #fff; }
+
+.form-box button.btn.btn-next,
+.form-box button.btn.btn-next:focus,
+.form-box button.btn.btn-next:active:focus,
+.form-box button.btn.btn-next.active:focus { background: #f35b3f; }
+
+.form-box button.btn.btn-submit,
+.form-box button.btn.btn-submit:focus,
+.form-box button.btn.btn-submit:active:focus,
+.form-box button.btn.btn-submit.active:focus { background: #f35b3f; }
+
+.form-box button.btn.btn-previous,
+.form-box button.btn.btn-previous:focus,
+.form-box button.btn.btn-previous:active:focus,
+.form-box button.btn.btn-previous.active:focus { background: #bbb; }

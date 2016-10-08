@@ -176,15 +176,23 @@ Template.leaderboardTemplate.helpers({
 				});
 		}
 	},
-	getUser: function() {
+	getUserGamertag: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
-		return user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
+		}
 	},
 	getUserImage: function() {
 		var user = Meteor.users.findOne({ _id: this.userId });
 		var defaultGamerImage = '/img/gamerpic-default.jpg';
 		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath && (user.gamercard.gamerpicLargeSslImagePath !== '')) {
 			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gameDisplayPicRaw && (user.xboxProfile.gameDisplayPicRaw !== '')) {
+			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
 		}
 		return defaultGamerImage;
 	},
@@ -220,7 +228,12 @@ Template.leaderboardTemplate.helpers({
 				return this.completedGames.count;
 				break;
 			default:
-				return user.gamercard.gamerscore;
+				if (user && user.gamercard) {
+					return user.gamercard.gamerscore;
+				}
+				if (user && user.xboxProfile) {
+					return user.xboxProfile.gamerscore;
+				}
 		}
 	}
 });
@@ -228,8 +241,8 @@ Template.leaderboardTemplate.helpers({
 Template.leaderboardTemplate.events({
 	'click .profile-link': function(e) {
 		e.preventDefault();
-		var user = Meteor.users.findOne({_id: this.userId});
-		Router.go('userPage', {gamertagSlug: user.gamertagSlug});
+		var user = Meteor.users.findOne({ _id: this.userId });
+		Router.go('userPage', { gamertagSlug: user.gamertagSlug });
 	}
 });
 
@@ -240,13 +253,21 @@ Template.currentUserLeaderboard.created = function() {
 Template.currentUserLeaderboard.helpers({
 	getCurrentUser: function() {
 		var user = Meteor.user();
-		return user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
+		}
 	},
 	getCurrentUserImage: function() {
 		var user = Meteor.user();
 		var defaultGamerImage = '/img/gamerpic-default.jpg';
-		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
+		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath && (user.gamercard.gamerpicLargeSslImagePath !== '')) {
 			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gameDisplayPicRaw && (user.xboxProfile.gameDisplayPicRaw !== '')) {
+			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_64,h_64/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
 		}
 		return defaultGamerImage;
 	},
@@ -283,7 +304,12 @@ Template.currentUserLeaderboard.helpers({
 				return userLb.completedGames.count;
 				break;
 			default:
-				return user.gamercard.gamerscore;
+				if (user && user.gamercard) {
+					return user.gamercard.gamerscore;
+				}
+				if (user && user.xboxProfile) {
+					return user.xboxProfile.gamerscore;
+				}
 		}
 	}
 });

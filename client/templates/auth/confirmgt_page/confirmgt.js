@@ -122,14 +122,14 @@ Template.confirmGtForm.events({
 							if (result) {
 								Router.go('home');
 								sweetAlert({
-									title: 'Staying Engaged on XBdash',
-									html: Blaze.toHTML(Template.welcomeOverlay),
+									title: 'Gamertag Scan in Progress',
+									text: 'When scanning is complete, your Dashboard page will populate and you will receive an email with a summary of your initial scanned data.',
 									customClass: 'welcome-overlay',
 									allowOutsideClick: false,
 									allowEscapeKey: false,
 									confirmButtonText: 'Let\'s Go!',
 									confirmButtonColor: '#138013',
-									width: 1000
+									width: 600
 								});
 							}
 						});

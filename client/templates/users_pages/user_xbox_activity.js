@@ -27,7 +27,7 @@ Template.userActivity.helpers({
 		}
 	},
 	getStartTime: function () {
-		return moment(this.startTime).calendar();
+		return moment.utc(this.startTime).calendar();
 	}
 });
 
@@ -74,12 +74,20 @@ Template.userAchievements.helpers({
 		return achievement.name;
 	},
 	getUnlockedDate: function () {
-		return moment(this.progression).calendar();
+		return moment.utc(this.progression).calendar();
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
+		}
 	},
 	getGameName: function () {
 		var achievement = xbdAchievements.findOne({ _id: this.achievementId });
@@ -154,12 +162,20 @@ Template.userGames.helpers({
 		return game.name;
 	},
 	getUnlockedDate: function () {
-		return moment(this.lastUnlock).calendar();
+		return moment.utc(this.lastUnlock).calendar();
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
+		}
 	}
 });
 
@@ -196,7 +212,6 @@ Template.userClips.helpers({
 	clip: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		var currentTime = moment().utc().format();
 		var clips = gameClips.find({
 					userId: user._id
 				}, {
@@ -205,11 +220,11 @@ Template.userClips.helpers({
 		var validClips = [];
 		clips.forEach(function(clip) {
 			if (clip.savedByUser) {
-				if (moment().isBefore(clip.gameClipUris[2].expiration)) {
+				if (moment.utc().isBefore(clip.gameClipUris[2].expiration)) {
 					validClips.push(clip);
 				}
 			} else {
-				if (moment().isBefore(clip.gameClipUris[0].expiration)) {
+				if (moment.utc().isBefore(clip.gameClipUris[0].expiration)) {
 					validClips.push(clip);
 				}
 			}
@@ -218,8 +233,16 @@ Template.userClips.helpers({
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
+		}
 	},
 	getLargeThumbnail: function () {
 		var imageUri;
@@ -255,8 +278,7 @@ Template.userClips.events({
 		var video = $(e.currentTarget).attr('data-video');
 		var dataSlide = $(e.currentTarget).attr('data-slide');
 
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
-
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" width="754" height="424" data-setup="{ \'aspectRatio\':\'377:212\', \'playbackRates\': [1, 1.5, 2] }" class="video-js vjs-default-skin vjs-big-play-centered" controls style="width:100%;height:424px;"><source src="' + video + '" type="video/mp4"></video>');
 		$('#clips-modal').modal('show');
 	},
 	'click #clips-modal .close': function() {
@@ -266,7 +288,7 @@ Template.userClips.events({
 		$('#clips-modal .modal-body .carousel-inner').empty();
 	},
 	'click .carousel-control.left': function() {
-		var index = $('.xbd-tech').attr('data-slide');
+		var index = $('.video-js').attr('data-slide');
 		if (index === '1') {
 			return;
 		}
@@ -276,10 +298,10 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" width="754" height="424" data-setup="{ \'aspectRatio\':\'377:212\', \'playbackRates\': [1, 1.5, 2] }" class="video-js vjs-default-skin vjs-big-play-centered" controls style="width:100%;height:424px;"><source src="' + video + '" type="video/mp4"></video>');
 	},
 	'click .carousel-control.right': function() {
-		var index = $('.xbd-tech').attr('data-slide');
+		var index = $('.video-js').attr('data-slide');
 		var clipCount = $('.clip-container').length;
 		console.log(clipCount);
 		if (index === String(clipCount)) {
@@ -291,7 +313,7 @@ Template.userClips.events({
 		var image = $(nextSlideSel).attr('src');
 		var video = $(nextSlideSel).attr('data-video');
 		var dataSlide = $(nextSlideSel).attr('data-slide');
-		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay preload="auto" class="xbd-tech" style="width:100%;"><source src="' + video + '" type="video/mp4"></video>');
+		$('#clips-modal .modal-body .carousel-inner').append('<video poster="' + image + '" data-slide="' + dataSlide + '" autoplay " preload="auto" width="754" height="424" data-setup="{ \'aspectRatio\':\'377:212\', \'playbackRates\': [1, 1.5, 2] }" class="video-js vjs-default-skin vjs-big-play-centered" controls style="width:100%;height:424px;"><source src="' + video + '" type="video/mp4"></video>');
 	}
 });
 
@@ -323,8 +345,16 @@ Template.userCaptures.helpers({
 	},
 	getUserGamertag: function () {
 		var gamertagSlug = Router.current().params.gamertagSlug;
+		if (!gamertagSlug || gamertagSlug === '') {
+			gamertagSlug = Meteor.user().gamertagSlug;
+		}
 		var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-		return user.gamercard.gamertag;
+		if (user && user.gamercard && user.gamercard.gamertag) {
+			return user.gamercard.gamertag;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+			return user.xboxProfile.gamertag;
+		}
 	},
 	getLargeThumbnail: function () {
 		var imageUri;

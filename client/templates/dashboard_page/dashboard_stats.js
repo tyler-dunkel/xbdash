@@ -80,7 +80,14 @@ Template.dashboardStatGs.created = function() {
 Template.dashboardStatGs.helpers({
 	currentGamerscore: function () {
 		var user = Meteor.user();
-		return numberFormatter(user.gamercard.gamerscore);
+		var currentGamerscore;
+		if (user && user.gamercard && user.gamercard.gamerscore) {
+			currentGamerscore = user.gamercard.gamerscore;
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gamerscore) {
+			currentGamerscore = user.xboxProfile.gamerscore;
+		}
+		return numberFormatter(currentGamerscore);
 	},
 	maxGamerscore: function () {
 		maxGamerscoreDependency.depend();
@@ -93,9 +100,17 @@ Template.dashboardStatGs.helpers({
 		maxGamerscoreDependency.depend();
 		if (maxGamerscore > 0) {
 			var user = Meteor.user();
-			var currentGamerscore = user.gamercard.gamerscore;
-			var gamerscorePercentage = Math.round(currentGamerscore / maxGamerscore * 100);
+			var currentGamerscore, gamerscorePercentage;
+			if (user && user.gamercard && user.gamercard.gamerscore) {
+				currentGamerscore = user.gamercard.gamerscore;
+				gamerscorePercentage = Math.round(currentGamerscore / maxGamerscore * 100);
+			}
+			if (user && user.xboxProfile && user.xboxProfile.gamerscore) {
+				currentGamerscore = user.xboxProfile.gamerscore;
+				gamerscorePercentage = Math.round(currentGamerscore / maxGamerscore * 100);
+			}
 			return numberFormatter(gamerscorePercentage);
+
 		}
 		return '0';
 	}

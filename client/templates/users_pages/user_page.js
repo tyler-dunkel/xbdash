@@ -114,52 +114,61 @@ Template.userProfilePage.events({
 Template.userDocHead.created = function() {
 	var gamertagSlug = Router.current().params.gamertagSlug;
 	var user = Meteor.users.findOne({ gamertagSlug: gamertagSlug });
+	var userGamertag, userGamerscore, userMotto, userProfilePageImage, userProfilePageDescription, userProfilePageTitle;
+	
+	userProfilePageImage = "/img/gamerpic-default.jpg";
 
-	if (user && user.gamercard) {
-		var userProfilePageDescription = user.gamercard.gamertag + " | Gamerscore: " + user.gamercard.gamerscore + " | " + user.gamercard.motto;
-		var userProfilePageImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + user.gamercard.gamerpicLargeSslImagePath;
-		var userProfilePageTitle = user.gamercard.gamertag + " | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
-		var userProfilePageUrl = window.location.href;
+	if (user && user.gamercard && user.gamercard.gamertag) {
+		userProfilePageDescription = user.gamercard.gamertag + " | Gamerscore: " + user.gamercard.gamerscore + " | " + user.gamercard.motto;
+		userProfilePageImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + user.gamercard.gamerpicLargeSslImagePath;
+		userProfilePageTitle = user.gamercard.gamertag + " | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
+	}
+	if (user && user.xboxProfile && user.xboxProfile.gamertag) {
+		userProfilePageDescription = user.xboxProfile.gamertag + " | Gamerscore: " + user.xboxProfile.gamerscore + " | Manage achievements. Complete games. See results.";
+		userProfilePageImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + user.xboxProfile.gameDisplayPicRaw;
+		userProfilePageTitle = user.xboxProfile.gamertag + " | XBdash - The Personalized Dashboard for Xbox® One and Xbox® 360 Gamers";
+	}
 
-		var userProfilePageMeta = [
-			{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
-			{ "charset": "utf-8" },
-			{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-			{ "name": "description", "content": userProfilePageDescription },
-			{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-			{ "property": "og:description", "content": userProfilePageDescription },
-			{ "property": "og:image", "content": userProfilePageImage },
-			{ "property": "og:locale", "content": "en_US" },
-			{ "property": "og:site_name", "content": "XBdash" },
-			{ "property": "og:title", "content": userProfilePageTitle },
-			{ "property": "og:type", "content": "website" },
-			{ "property": "og:url", "content": userProfilePageUrl },
-			{ "name": "twitter:card", "content": "summary_large_image" },
-			{ "name": "twitter:url", "content": userProfilePageUrl },
-			{ "name": "twitter:title", "content": userProfilePageTitle },
-			{ "name": "twitter:description", "content": userProfilePageDescription },
-			{ "name": "twitter:image:src", "content": userProfilePageImage },
-			{ "name": "twitter:site", "content": "@xboxdash" }
-		];
+	var userProfilePageUrl = window.location.href;
 
-		var linkInfo = [
-			{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-			{ "rel": "canonical", "href": userProfilePageUrl },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
-			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
-		];
+	var userProfilePageMeta = [
+		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+		{ "charset": "utf-8" },
+		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+		{ "name": "description", "content": userProfilePageDescription },
+		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+		{ "property": "og:description", "content": userProfilePageDescription },
+		{ "property": "og:image", "content": userProfilePageImage },
+		{ "property": "og:locale", "content": "en_US" },
+		{ "property": "og:site_name", "content": "XBdash" },
+		{ "property": "og:title", "content": userProfilePageTitle },
+		{ "property": "og:type", "content": "website" },
+		{ "property": "og:url", "content": userProfilePageUrl },
+		{ "name": "twitter:card", "content": "summary_large_image" },
+		{ "name": "twitter:url", "content": userProfilePageUrl },
+		{ "name": "twitter:title", "content": userProfilePageTitle },
+		{ "name": "twitter:description", "content": userProfilePageDescription },
+		{ "name": "twitter:image:src", "content": userProfilePageImage },
+		{ "name": "twitter:site", "content": "@xboxdash" }
+	];
 
-		DocHead.setTitle(userProfilePageTitle);
+	var linkInfo = [
+		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+		{ "rel": "canonical", "href": userProfilePageUrl },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72" , "type": "image/png" },
+		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+	];
 
-		for(var i = 0; i < userProfilePageMeta.length; i++) {
-			DocHead.addMeta(userProfilePageMeta[i]);;
-		}
+	DocHead.setTitle(userProfilePageTitle);
 
-		for(var i = 0; i < linkInfo.length; i++) {
-			DocHead.addLink(linkInfo[i]);;
-		}
+	for(var i = 0; i < userProfilePageMeta.length; i++) {
+		DocHead.addMeta(userProfilePageMeta[i]);;
+	}
+
+	for(var i = 0; i < linkInfo.length; i++) {
+		DocHead.addLink(linkInfo[i]);;
 	}
 }
 
@@ -173,18 +182,23 @@ Template.userProfileArea.helpers({
 		if (this && this.gamercard && this.gamercard.gamerpicLargeSslImagePath) {
 			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.gamercard.gamerpicLargeSslImagePath);
 		}
-		if (this && this.xboxProfile) {
+		if (this && this.xboxProfile && this.xboxProfile.gamerpicLargeSslImagePath) {
 			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.xboxProfile.gameDisplayPicRaw);
 		}
 		return image;
 	},
 	userGamertag: function () {
-		if (this && this.gamercard) {
-			return this.gamercard.gamertag;
+		var gamertag = this.username;
+		if (this && this.gamercard && this.gamercard.gamertag) {
+			gamertag = this.gamercard.gamertag;
 		}
+		if (this && this.xboxProfile && this.xboxProfile.gamertag) {
+			gamertag = this.xboxProfile.gamertag;
+		}
+		return gamertag;
 	},
 	userMotto: function () {
-		if (this && this.gamercard) {
+		if (this && this.gamercard && this.gamercard.motto) {
 			return this.gamercard.motto;
 		}
 	},
@@ -192,13 +206,17 @@ Template.userProfileArea.helpers({
 		return moment(this.createdAt).format('MMMM YYYY');
 	},	
 	getGamerscore: function () {
-		if (this && this.gamercard) {
-			return this.gamercard.gamerscore;
+		var userGamerscore = 0;
+		if (this && this.gamercard && this.gamercard.gamerscore) {
+			userGamerscore = this.gamercard.gamerscore;
 		}
+		if (this && this.xboxProfile && this.xboxProfile.gamerscore) {
+			userGamerscore = this.xboxProfile.gamerscore;
+		}
+		return userGamerscore;
 	},
 	getBio: function () {
-		if (this && this.gamercard) {
-			console.log(this.gamercard.bio);
+		if (this && this.gamercard && this.gamercard.bio) {
 			return this.gamercard.bio;
 		}
 	}

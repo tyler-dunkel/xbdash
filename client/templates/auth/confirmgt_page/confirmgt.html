@@ -6,7 +6,7 @@
 
 <template name="confirmGtForm">
 	<div id="signup" class="signup">
-		<div class="container well w-xxxl w-auto-xs" >
+		<div class="container well w-xxxl w-auto-xs">
 			<div class="m-b-md">
 				<form name="form" class="validate" id="gamertagform">
 					<h2 class="text-dark text-center">Confirm Your Gamertag</h2>
@@ -32,7 +32,16 @@
 				</form>
 			</div>
 		</div>
-		<div class="container well w-xxxl w-auto-xs" >
+		<div class="container well w-xxxl w-auto-xs">
+			<div class="row padder-t text-center">
+				<ul class="list-inline m-n">
+					<li><a href="{{pathFor 'home'}}">&nbsp;&nbsp;Latest Updates&nbsp;&nbsp;</a></li>
+					<li><a href="{{pathFor 'gamesPage'}}">&nbsp;&nbsp;Games&nbsp;&nbsp;</a></li>
+					<li><a href="{{pathFor 'achievementsPage'}}">&nbsp;&nbsp;Achievements&nbsp;&nbsp;</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container well w-xxxl w-auto-xs">
 			<div class="m-b-md">
 				<form name="form" class="validate" id="socialform">
 					<h2 class="text-dark text-center">Currently Logged in as</h2>
