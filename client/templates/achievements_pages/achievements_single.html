@@ -56,6 +56,14 @@
 					</div>
 					<div class="wrapper-md col-xl-5 col-lg-5 col-md-8 col-sm-7 col-xs-12 comments-column" style="background-color: #fff;">
 						<div class="row m-b-lg">
+							<div class="col-xs-12">
+								<h2 class="h3 padder-t">YouTube Achievement Guide</h2>
+								<div class="text-center">
+									{{> youtubeGuides}}
+								</div>
+							</div>
+						</div>
+						<div class="row">
 							<div class="col-sm-6 col-xs-12 achievement-key">
 								<div class="padder-vv-{{achievementClass}} text-center">
 									<i class="fa fa-{{trophyClass}}"></i>&nbsp;&nbsp; {{achievementClass}}
@@ -145,4 +153,10 @@
 
 <template name="achievementPercentageArea">
 	Users who have this <a href="#" class="glyphicon glyphicon-info-sign" data-toggle="achievementToolTip" data-placement="top" title="vs users who have this game"></a>
+</template>
+
+<template name="youtubeGuides">
+	<div class="embed-container">
+		<iframe id="ytplayer" type="text/html" width="768" height="432" src={{getVideoGuide}} frameborder="0"></iframe>
+	</div>
 </template>
