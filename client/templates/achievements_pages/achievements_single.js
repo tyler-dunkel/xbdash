@@ -333,23 +333,28 @@ Template.achievementPercentageArea.rendered = function () {
 	});
 }
 
-Template.youtubeGuides.onCreated(function () {
+Template.youtubeGuides.created = function () {
 	var self = this;
 	var youtubeApiCredentials = "AIzaSyA20FWsXdsgOVfTB53ck4-YNRETroa5xiw";
 	var game = xbdGames.findOne({ _id: this.data.gameId });
 	var achievementTitle = this.data.name;
 	var queryString = achievementTitle + " " + game.name + " achievement";
-	self.videoGuideUrl = new ReactiveVar("Loading");
-	console.log(game.name);
-	console.log(queryString);
-	$.get("https://www.googleapis.com/youtube/v3/search", { part: "snippet", maxResults: "1", order: "relevance", q: queryString, key: youtubeApiCredentials }, function (data) {
-		self.videoGuideUrl.set("http://www.youtube.com/v/" + data.items[0].id.videoId);
-	});
-});
 
-var game = "mvp halo 3 achievement guide" //used for prototyping
+	self.videoGuideUrl = new ReactiveVar("Loading");
+
+	$.get("https://www.googleapis.com/youtube/v3/search", {
+		part: "snippet",
+		maxResults: "1",
+		order: "relevance",
+		q: queryString,
+		key: youtubeApiCredentials
+	}, function (data) {
+		self.videoGuideUrl.set("http://www.youtube.com/embed/" + data.items[0].id.videoId);
+	});
+}
+
 Template.youtubeGuides.helpers({
-	getVideoGuide() {
+	getVideoGuide: function () {
 		return Template.instance().videoGuideUrl.get();
 	}
 });
