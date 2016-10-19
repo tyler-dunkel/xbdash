@@ -1,8 +1,12 @@
 <template name="contestPage">
 	{{#if Template.subscriptionsReady}}
-		{{#with contest}}
-			{{> referralContest}}
-		{{/with}}
+		{{#if contest}}
+			{{#with contest}}
+				{{> referralContest}}
+			{{/with}}
+		{{else}}
+			{{> contestDefault}}
+		{{/if}}
 	{{else}}
 		{{> loadingTemplate}}
 	{{/if}}
@@ -98,42 +102,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="wrapper-md">
-						<div class="row">
-							<div class="col-xl-8 col-xl-offset-2 m-b-lg">
-								<h1 class="h1 text-center m-t-md m-b-md">Previous Winners</h1>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 col-xs-12">
-								<img src="/img/contests/winners/winners-082016.jpg" class="img-responsive" />
-								<p class="text-left wrapper">
-									<span class="h4 font-bold text-left">August 2016</span><br /><br />
-									<strong>First Place Prize:</strong> Two 12-Month Xbox LIVE Gold Memberships (2 Years)<br />
-									<strong>Second Place Prize:</strong> One 12-Month Xbox LIVE Gold Membership (1 Year)<br />
-									<strong>Third Place Prize:</strong> One 3-Month Xbox LIVE Gold Membership
-								</p>
-							</div>
-							<div class="col-md-6 col-xs-12">
-								<img src="/img/contests/winners/winners-072016.jpg" class="img-responsive" />
-								<p class="text-left wrapper">
-									<span class="h4 font-bold text-left">July 2016</span><br /><br />
-									<strong>Grand Prize:</strong> Custom Designed Xbox One Controller<br />
-									(via the Xbox® Design Lab, courtesy of XBdash)
-								</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 col-xs-12">
-								<img src="/img/contests/winners/winners-062016.jpg" class="img-responsive" />
-								<p class="text-left wrapper">
-									<span class="h4 font-bold text-left">June 2016</span><br /><br />
-									<strong>Grand Prize:</strong> Overwatch - Origins Edition for Xbox&reg; One<br />
-									<strong>Second Place Prize:</strong> Fallout 4 for Xbox&reg; One
-								</p>
-							</div>
-						</div>
-					</div>
+					{{> contestWinners}}
 				</div>
 				<div class="col w-xxl">
 					<div class="wrapper-md">
@@ -144,6 +113,81 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="contestDefault">
+	<div id="content" class="app-content contest-page" role="main">
+		<div class="app-content-body">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-xl-8 col-xl-offset-2 m-b-lg">
+								<h1 class="h1 text-center m-t-md m-b-lg">Contests</h1>
+								<p class="h3 text-center m-b-lg">Last month's contest has ended.<br />This month's contest will begin soon.</p>
+								{{#if currentUser}}
+								{{else}}
+								<p class="h3 text-center m-b-lg">
+
+									<a href="{{pathFor 'logIn'}}" class="btn btn-sm btn-success btn-rounded btn-link"><i class="fa fa-lock"></i> Log in</a>
+									<a href="{{pathFor 'signUp'}}" class="btn btn-sm btn-success btn-rounded m-l sign-up"><i class="fa fa-lock"></i> <strong>Sign up</strong></a>
+								</p>
+								{{/if}}
+							</div>
+						</div>
+					</div>
+					{{> contestWinners}}
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="contestWinners">
+	<div class="wrapper-md">
+		<div class="row">
+			<div class="col-xl-8 col-xl-offset-2 m-b-lg">
+				<h1 class="h1 text-center m-t-md m-b-md">Previous Winners</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-12">
+				<img src="/img/contests/winners/winners-092016.jpg" class="img-responsive" />
+				<p class="text-left wrapper">
+					<span class="h4 font-bold text-left">September 2016</span><br /><br />
+					<strong>Grand Prize:</strong> Custom Designed Xbox One Controller<br />
+					(via the Xbox® Design Lab, courtesy of XBdash)
+				</p>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				<img src="/img/contests/winners/winners-082016.jpg" class="img-responsive" />
+				<p class="text-left wrapper">
+					<span class="h4 font-bold text-left">August 2016</span><br /><br />
+					<strong>First Place Prize:</strong> Two 12-Month Xbox LIVE Gold Memberships (2 Years)<br />
+					<strong>Second Place Prize:</strong> One 12-Month Xbox LIVE Gold Membership (1 Year)<br />
+					<strong>Third Place Prize:</strong> One 3-Month Xbox LIVE Gold Membership
+				</p>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				<img src="/img/contests/winners/winners-072016.jpg" class="img-responsive" />
+				<p class="text-left wrapper">
+					<span class="h4 font-bold text-left">July 2016</span><br /><br />
+					<strong>Grand Prize:</strong> Custom Designed Xbox One Controller<br />
+					(via the Xbox® Design Lab, courtesy of XBdash)
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-xs-12">
+				<img src="/img/contests/winners/winners-062016.jpg" class="img-responsive" />
+				<p class="text-left wrapper">
+					<span class="h4 font-bold text-left">June 2016</span><br /><br />
+					<strong>Grand Prize:</strong> Overwatch - Origins Edition for Xbox&reg; One<br />
+					<strong>Second Place Prize:</strong> Fallout 4 for Xbox&reg; One
+				</p>
 			</div>
 		</div>
 	</div>
