@@ -16,7 +16,7 @@
 </template>
 
 <template name="contestAdsResponsiveRight">
-	<div class="xbd-right-banner-ad" id="banner-affix">
+	<div class="xbd-right-sidebar-ad" id="banner-affix">
 		<a href="/contests">
 			<img src="/img/ads/xbdash-ads-300x600.jpg" class="right300600" />
 			<img src="/img/ads/xbdash-ads-160x600.jpg" class="right160600" />
@@ -25,10 +25,10 @@
 	</div>
 </template>
 
-<!-- <template name="googleAdsMedium">
-	<div id="xbd-top-banner-ad" class="top300">
-		<ins class="adsbygoogle"
-			style="display:inline-block"
+<template name="googleAdsMedium">
+	<div id="gads-responsive-top">
+		<ins class="adsbygoogle xbd-top-google-banner"
+			style="display:block;"
 			data-ad-client="ca-pub-2014481178377974"
 			data-ad-slot="1463478049"
 			data-ad-format="auto"></ins>
@@ -36,24 +36,28 @@
 		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
 	</div>
-</template> -->
+</template>
 
-<!-- <template name="googleAdsMediumLeft">
-	<div class="xbd-left-sidebar-ad">
-		<a href="/contests">
-			<img src="/img/ads/xbdash-ads-300x250.jpg" class="left300250" />
-			<img src="/img/ads/xbdash-ads-250x250.jpg" class="left250250" />
-		</a>
+<template name="googleAdsResponsiveLeft">
+	<div id="gads-responsive-left">
+		<ins class="adsbygoogle xbd-left-google-banner"
+			style="display:block;height:250px;"
+			data-ad-client="ca-pub-2014481178377974"
+			data-ad-slot="1463478049"
+			data-ad-format="rectangle"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
 	</div>
-</template> -->
+</template>
  
 <template name="googleAdsResponsiveRight">
 	<div id="gads-responsive-right">
 		<ins class="adsbygoogle xbd-right-google-banner"
-			style="display:block;width:300px;height:600px;"
+			style="display:block;"
 			data-ad-client="ca-pub-2014481178377974"
 			data-ad-slot="1463478049"
-			data-ad-format="rectangle"></ins>
+			data-ad-format="auto"></ins>
 		<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>

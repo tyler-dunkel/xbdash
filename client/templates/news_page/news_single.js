@@ -151,11 +151,3 @@ Template.newsSinglePageShareButtons.helpers({
 		return getImage;
 	}
 });
-
-Template.googleAdsResponsiveRight.rendered = function() {
-	$('#xbd-right-banner-ad').affix({
-		offset: {
-			top: 110
-		}
-	});
-}

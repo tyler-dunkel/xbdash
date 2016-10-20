@@ -11,9 +11,6 @@
 		"cloudinarySecret": "S2ZBSps6yEKPC5vaJgIS4Fx3WhI"
 	},
 	"public": {
-		"analyticsSettings": {
-			"Google Analytics": {"trackingId": "UA-72492857-1"}
-		},
 		"facebookAppId": "109259765831650"
 	}
 }

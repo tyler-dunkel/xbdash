@@ -1,81 +1,70 @@
 .affix-top,.affix{
 	position: static;
 }
+.xbd-top-google-banner,,
 .xbd-top-banner-ad {
-	width: 300px;
-	height: 250px;
-	margin: 0 auto 20px;
+	display: none;
 }
-.xbd-right-google-banner,
-.xbd-right-banner-ad {
+.xbd-right-google-banner {
 	width: 300px;
 	height: 600px;
-	margin: 0 auto;
+	margin: 0 auto 15px;
 }
 .xbd-right-sidebar-ad {
 	width: 300px;
 	height: 250px;
 	margin: 0 auto 20px;
 }
+.xbd-left-google-banner {
+	display: none !important;
+}
 .xbd-left-sidebar-ad {
 	width: 300px;
 	height: 250px;
 	margin: 30px auto;
 }
-@media (max-width: 767px) {
-	/*.xbd-top-banner-ad {
-		width: 250px;
-		height: 250px !important;
-		margin: 5px auto 20px;
-	}*/
-	.xbd-right-google-banner,
-	.xbd-right-banner-ad {
-		width: 300px !important;
-		height: 250px !important;
-		margin: 0 auto 15px;
-	}
-	.xbd-right-sidebar-ad {
-		width: 300px !important;
-		height: 250px !important;
-		margin: 10px auto 25px;
-	}
-	.xbd-left-sidebar-ad {
-		width: 300px !important;
-		height: 250px !important;
-		margin: 15px auto;
-	}
-	.xbd-top-banner-ad,
-	.xbd-top-banner-ad .top300 {
-		display: block;
-		margin: 0 auto 20px;
-	}
-	.xbd-right-banner-ad .right300600 { display: none; }
-	.xbd-right-banner-ad .right160600 { display: none; }
-	.xbd-right-banner-ad .right300250 { display: block; }
-	.xbd-right-sidebar-ad .rightside300250 { display: block; }
-	.xbd-right-sidebar-ad .rightside250250 { display: none; }
-	.xbd-left-sidebar-ad .left300250 { display: block; }
-	.xbd-left-sidebar-ad .left250250 { display: none; }
-}
 @media (max-width: 991px) {
-	.xbd-right-google-banner,
-	.xbd-right-banner-ad {
+	.xbd-right-google-banner {
 		width: 300px !important;
 		height: 250px !important;
 		margin: 5px auto 100px;
 	}
-	.xbd-right-banner-ad .right300600 { display: none !important; }
-	.xbd-right-banner-ad .right160600 { display: none !important; }
-	.xbd-right-banner-ad .right300250 { display: block !important; }
+	.xbd-right-banner-ad .right300600 { display: none; }
+	.xbd-right-banner-ad .right160600 { display: none; }
+	.xbd-right-banner-ad .right300250 { display: block; }
 	#banner-affix.affix {
 		top: 0;
 		width: 300px !important;
 	}
 }
-@media (min-width: 768px) {
-	.xbd-top-banner-ad {
-		display: none;
+@media (max-width: 767px) {
+	.xbd-right-google-banner,
+	.xbd-right-sidebar-ad {
+		width: 300px !important;
+		height: 250px !important;
+		margin: 15px auto 75px;
 	}
+	.xbd-left-google-banner,
+	.xbd-left-sidebar-ad {
+		width: 300px !important;
+		margin: 15px auto;
+		display: block !important;
+	}
+	.xbd-top-google-banner,,
+	.xbd-top-banner-ad {
+		width: 300px !important;
+		height: 250px !important;
+	}
+	.xbd-top-google-banner,
+	.xbd-top-banner-ad,
+	.xbd-top-banner-ad .top300 {
+		display: block;
+		margin: 0 auto 20px;
+	}
+	.xbd-right-sidebar-ad .rightside300250 { display: block; }
+	.xbd-right-sidebar-ad .rightside250250 { display: none; }
+	.xbd-left-sidebar-ad .left300250 { display: block; }
+	.xbd-left-sidebar-ad .left250250 { display: none; }
 }
 @media (min-width: 768px) and (max-width: 1199px) {
 	.xbd-right-sidebar-ad,
@@ -85,21 +74,26 @@
 	.xbd-left-sidebar-ad .left300250 { display: none; }
 	.xbd-left-sidebar-ad .left250250 { display: none; }
 }
+@media (min-width: 768px) {
+	.xbd-top-google-banner,
+	.xbd-top-banner-ad {
+		display: none !important;
+	}
+}
 @media (min-width: 992px) {
-	.xbd-right-google-banner,
-	.xbd-right-banner-ad {
+	.xbd-right-google-banner {
 		width: 160px !important;
 		height: 600px !important;
 		margin: 0 auto 15px;
 	}
-	.news-page .xbd-right-banner-ad {
+	.xbd-right-sidebar-ad {
 		width: 300px !important;
 		height: 600px !important;
 		margin: 0 auto 15px;
 	}
-	.xbd-right-banner-ad .right300600 { display: block; }
-	.xbd-right-banner-ad .right160600 { display: none; }
-	.xbd-right-banner-ad .right300250 { display: none; }
+	.xbd-right-sidebar-ad .right300600 { display: block; }
+	.xbd-right-sidebar-ad .right160600 { display: none; }
+	.xbd-right-sidebar-ad .right300250 { display: none; }
 	.xbd-left-sidebar-ad {
 		margin: 20px auto;
 	}
@@ -114,11 +108,15 @@
 		width: 160px !important;
 	}
 }
-@media (min-width: 1200px) {
-	.xbd-right-google-banner,
-	.xbd-right-banner-ad {
+@media (min-width: 1240px) {
+	.xbd-right-google-banner {
 		width: 300px !important;
 		height: 600px !important;
+	}
+	.xbd-left-google-banner {
+		width: 300px !important;
+		margin: 30px auto !important;
+		display: block !important;
 	}
 	.xbd-right-sidebar-ad,
 	.xbd-left-sidebar-ad {
@@ -127,17 +125,17 @@
 	}
 	.xbd-right-sidebar-ad .rightside300250 { display: none; }
 	.xbd-right-sidebar-ad .rightside250250 { display: block; }
-	.xbd-left-sidebar-ad .left300250 { display: none !important; }
-	.xbd-left-sidebar-ad .left250250 { display: block !important; }
+	.xbd-left-sidebar-ad .left300250 { display: none; }
+	.xbd-left-sidebar-ad .left250250 { display: block; }
 }
 @media (min-width: 1268px) and (max-width: 1400px) {
-	.xbd-right-banner-ad {
+	.xbd-right-sidebar-ad {
 		width: 160px !important;
 		height: 600px !important;
 	}
-	.xbd-right-banner-ad .right300600 { display: none; }
-	.xbd-right-banner-ad .right160600 { display: block; }
-	.xbd-right-banner-ad .right300250 { display: none; }
+	.xbd-right-sidebar-ad .right300600 { display: none; }
+	.xbd-right-sidebar-ad .right160600 { display: block; }
+	.xbd-right-sidebar-ad .right300250 { display: none; }
 	#banner-affix.affix-top {
 		position: static;
 		margin-top: 0;
@@ -145,7 +143,7 @@
 	}
 }
 @media (min-width: 1575px) {
-	.xbd-right-banner-ad {
+	.xbd-right-sidebar-ad {
 		width: 300px !important;
 		height: 600px !important;
 	}
@@ -153,11 +151,11 @@
 		width: 300px !important;
 		height: 250px !important;
 	}
-	.xbd-right-banner-ad .right300600 { display: block !important; }
-	.xbd-right-banner-ad .right160600 { display: none !important; }
-	.xbd-right-banner-ad .right300250 { display: none !important; }
-	.xbd-left-sidebar-ad .left300250 { display: block !important; }
-	.xbd-left-sidebar-ad .left250250 { display: none !important; }
+	.xbd-right-sidebar-ad .right300600 { display: block; }
+	.xbd-right-sidebar-ad .right160600 { display: none; }
+	.xbd-right-sidebar-ad .right300250 { display: none; }
+	.xbd-left-sidebar-ad .left300250 { display: block; }
+	.xbd-left-sidebar-ad .left250250 { display: none; }
 }
 #amzn-smart-ad { margin-bottom: 10px; }
 div#amzn-native-ad-0 .amzn-native-header .amzn-native-header-text,
