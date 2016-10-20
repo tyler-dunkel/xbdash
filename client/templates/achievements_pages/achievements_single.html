@@ -55,14 +55,7 @@
 						</div>
 					</div>
 					<div class="wrapper-md col-xl-5 col-lg-5 col-md-8 col-sm-7 col-xs-12 comments-column" style="background-color: #fff;">
-						<div class="row m-b-lg">
-							<div class="col-xs-12">
-								<h2 class="h3 padder-t">YouTube Achievement Guide</h2>
-								<div class="text-center">
-									{{> youtubeGuides}}
-								</div>
-							</div>
-						</div>
+						{{> youtubeGuides}}
 						<div class="row">
 							<div class="col-sm-6 col-xs-12 achievement-key">
 								<div class="padder-vv-{{achievementClass}} text-center">
@@ -156,7 +149,16 @@
 </template>
 
 <template name="youtubeGuides">
-	<div class="embed-container">
-		<iframe id="ytplayer" width="768" height="432" src={{getVideoGuide}} frameborder="0" allowfullscreen></iframe>
+	{{#if checkForVideo}}
+	<div class="row m-b-lg">
+		<div class="col-xs-12">
+			<h2 class="h3 padder-t">YouTube Achievement Guide</h2>
+			<div class="text-center">
+				<div class="embed-container">
+					<iframe id="ytplayer" width="768" height="432" src={{getVideoGuide}} frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
 	</div>
+	{{/if}}
 </template>

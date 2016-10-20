@@ -340,7 +340,7 @@ Template.youtubeGuides.created = function () {
 	var achievementTitle = this.data.name;
 	var queryString = achievementTitle + " " + game.name + " achievement";
 
-	self.videoGuideUrl = new ReactiveVar("Loading");
+	self.videoGuideUrl = new ReactiveVar();
 
 	$.get("https://www.googleapis.com/youtube/v3/search", {
 		part: "snippet",
@@ -349,11 +349,21 @@ Template.youtubeGuides.created = function () {
 		q: queryString,
 		key: youtubeApiCredentials
 	}, function (data) {
-		self.videoGuideUrl.set("http://www.youtube.com/embed/" + data.items[0].id.videoId);
+		if (data.items[0] === undefined) {
+			self.videoGuideUrl.set(false);
+		} else {
+			self.videoGuideUrl.set("https://www.youtube.com/embed/" + data.items[0].id.videoId);
+		}
 	});
 }
 
 Template.youtubeGuides.helpers({
+	checkForVideo: function () {
+		if (Template.instance().videoGuideUrl.get() === false) {
+			return false;
+		}
+		return true;
+	},
 	getVideoGuide: function () {
 		return Template.instance().videoGuideUrl.get();
 	}
