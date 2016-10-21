@@ -76,7 +76,6 @@
 		line-height: 24px;
 	}
 }
-
 .news-page .newsticker {
 	color: #402726;
 	cursor: default;
@@ -88,7 +87,6 @@
 	position: relative;
 	overflow: hidden;
 }
-
 .news-page .newsticker .newsticker-list {
 	position: absolute;
 	top: 8px;
@@ -96,15 +94,28 @@
 	overflow: hidden;
 	padding-left: 15px;
 }
-
 .news-page .newsticker .newsticker-list .newsticker-item {
 	height: 40px;
 	overflow: hidden;
 	white-space: nowrap;
 }
-
 .news-page .hide-bullets {
 	list-style:none;
 	margin-left: -40px;
 	margin-top:20px;
+}
+.shared-news-sidebar {
+	display: block;
+	margin: 0 auto 90px;
+}
+@media (min-width: 768px) {
+	.shared-news-sidebar {
+		display: none;
+	}
+}
+@media (min-width: 1220px) {
+	.shared-news-sidebar {
+		display: block;
+		margin: 0 auto 30px;
+	}
 }
