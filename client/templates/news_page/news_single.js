@@ -7,7 +7,7 @@ Template.newsSinglePage.created = function() {
 	this.subscribe('singleNews', slug);
 }
 
-Template.newsSinglePage.helpers({
+Template.contentTemplate2.helpers({
 	article: function() {
 		var slug = Router.current().params.slug;
 		return xbdNews.findOne({ slug: slug });
@@ -29,7 +29,7 @@ Template.newsSinglePage.helpers({
 	}
 });
 
-Template.newsSinglePage.rendered = function() {
+Template.contentTemplate2.rendered = function() {
 	var user = Meteor.user();
 	var userLogged = Meteor.loggingIn();
 	if (!user && !userLogged) {
