@@ -1,7 +1,32 @@
-.affix-top,
-.affix {
-	position: static;
+.affix-top {
+	position: relative;
 }
+.affix {
+	position: relative;
+}
+@media (min-width: 768px) {
+	.affix-top {
+	}
+	.affix {
+	}
+}
+@media (min-width: 992px) {
+	.affix-top {
+		position: fixed;
+	}
+	.affix {
+		top: 70px;
+		position: fixed;
+	}
+}
+@media (min-width: 1200px) {
+	.affix {
+		width: 300px !important;
+	}
+}
+
+
+
 .xbd-top-banner-ad {
 	text-align: center;
 	margin: 0 auto 15px;
@@ -86,14 +111,10 @@
 }
 
 
-
-#gads-responsive-top {
-	display: block !important;
-}
 .xbd-top-google-banner {
-	width:300px;
-	height:250px;
-	margin:0 auto 20px;
+	height: 60px;
+	margin: 0 auto;
+	text-align: center;
 }
 .xbd-right-google-banner {
 	width: 300px;
@@ -102,13 +123,11 @@
 }
 .xbd-left-google-banner {
 	width: 300px;
-	height:250px;
+	height: 250px;
 	margin: 15px auto;
 }
 @media (min-width: 768px) {
-	#gads-responsive-top {
-		display: none !important;
-	}
+	#gads-responsive-right.affix {}
 	.xbd-right-google-banner {
 		width: 300px;
 		height: 250px;
@@ -116,21 +135,34 @@
 	}
 }
 @media (min-width: 980px) {
-	.xbd-right-google-banner {
-		width: 160px;
-		height: 600px;
-		margin: 0 auto 15px;
-	}
 	.xbd-left-google-banner {
 		width: 160px;
 		height: 600px;
 		margin: 0 auto 15px;
 	}
 }
+@media (min-width: 992px) {
+	#gads-responsive-right.affix,
+	.xbd-right-google-banner {
+		width: 160px !important;
+		height: 600px !important;
+		margin: 0 auto 15px;
+	}
+}
+@media (min-width: 1024px) {
+	.xbd-top-google-banner {
+		width: 768px;
+		height: 90px;
+		margin: 0 auto;
+		text-align: center;
+	}
+}
 @media (min-width: 1200px) {
+	#gads-responsive-right.affix,
 	.xbd-right-google-banner {
 		width: 300px !important;
-		height: 600px !important;
+		height: 250px !important;
+		display: block !important;
 		margin: 0 auto 15px;
 	}
 	.xbd-left-google-banner {

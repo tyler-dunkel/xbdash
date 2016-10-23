@@ -104,6 +104,14 @@
 	margin-left: -40px;
 	margin-top:20px;
 }
+.news-page .container {
+	width: 100%;
+	padding: 0;
+}
+.comments-box {
+	max-width: 100%;
+	padding: 1em;
+}
 .shared-news-sidebar {
 	display: block;
 	margin: 0 auto 90px;
@@ -113,9 +121,17 @@
 		display: none;
 	}
 }
-@media (min-width: 1220px) {
+@media (min-width: 992px) {
 	.shared-news-sidebar {
+		width: 160px;
 		display: block;
-		margin: 0 auto 30px;
+	}
+}
+@media (min-width: 1200px) {
+	.news-page .container {
+		width: 1080px;
+	}
+	.shared-news-sidebar {
+		width: 300px;
 	}
 }

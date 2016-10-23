@@ -75,7 +75,7 @@ Template.mostSharedNewsSidebar.helpers({
 	sharedNews: function(limit) {
 		limit = parseInt(limit);
 		var twoWeeks = moment().subtract(14, 'days').toDate();
-		var article = mostSharedNews.find({ updated: { $gte: twoWeeks }, source: "xbdash" }, { $sort: { shareCount: -1 }, limit: limit }).fetch();
+		var article = mostSharedNews.find({ updated: { $gte: twoWeeks }, source: "polygon" }, { $sort: { shareCount: -1 }, limit: limit }).fetch();
 		return article;
 	}
 });

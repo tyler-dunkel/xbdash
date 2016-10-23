@@ -1,39 +1,55 @@
 <template name="newsSinglePage">
 	{{> googlePageLevelAds}}
-	<div id="content" class="app-content" role="main">
+	<div id="content" class="app-content news-page" role="main">
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
 				<div class="col">
 				{{#if Template.subscriptionsReady}}
 					{{#with article}}
 					{{> newsSinglePageDocHead}}
-					<div class="bg-light lter b-b wrapper-md">
-						<div class="row">
-							<div class="col-md-12 col-xs-12">
-								<h1 class="h3 text-black m-b-xs">{{title}}</h1>
-								<div class="text-muted">
-									<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
-									<i class="fa fa-clock-o text-muted"></i> {{updated}}
+					<div class="wrapper-md bg-dark lter b-b">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-xs-12">
+									{{> googleAdsResponsiveTop}}
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
-						{{> googleAdsMedium}}
-						<div class="blog-post news">
-							{{{content}}}
-							<div class="m-t-md m-b-md share-bar">
-								<h4>Share This Article</h4>
-								{{> newsSinglePageShareButtons}}
-							</div>
-							<div class="comment-section">
-								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
+					<div class="wrapper-md bg-white lter b-b">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12">
+									<h1 class="h2 text-black m-b-xs">{{title}}</h1>
+									<div class="text-muted">
+										<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
+										<i class="fa fa-clock-o text-muted"></i> {{updated}}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
-						{{> googleAdsResponsiveRight}}
-						{{> mostSharedNewsSidebar limit=3}}
+					<div class="wrapper-md bg-white lter b-b">
+						<div class="container">
+							<div class="row">
+								<div class="col-xl-8 col-lg-7 col-md-9 col-xs-12">
+									<div class="blog-post news">
+										{{{content}}}
+										<div class="m-t-md m-b-md share-bar">
+											<h4>Share This Article</h4>
+											{{> newsSinglePageShareButtons}}
+										</div>
+										<div class="comment-section">
+											{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
+										</div>
+										{{> googleAdsResponsiveLeft}}
+									</div>
+								</div>
+								<div class="col-xl-4 col-lg-4 col-md-3 col-xs-12">
+									{{> googleAdsResponsiveRight}}
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="shareDiv">
 						{{> newsSinglePageShareButtons}}
