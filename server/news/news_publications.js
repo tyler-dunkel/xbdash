@@ -52,15 +52,66 @@ Meteor.publish('mostSharedNews', function(limit) {
 	self.ready();
 });
 
-Meteor.publish('singleNews', function(slug) {
-	return xbdNews.find({ slug: slug }, {
-		fields: {
-			updated: 1,
-			title: 1,
-			source: 1,
-			content: 1,
-			author: 1,
-			slug: 1
-		}
-	});
+// Meteor.publish('singleNews', function(slug) {
+// 	return xbdNews.find({ slug: slug }, {
+// 		fields: {
+// 			updated: 1,
+// 			title: 1,
+// 			source: 1,
+// 			content: 1,
+// 			author: 1,
+// 			slug: 1
+// 		}
+// 	});
+// });
+
+Meteor.publishComposite('singleNews', function(slug) {
+	return {
+		find: function() {
+			check(slug, String);
+			return xbdNews.find({ slug: slug }, {
+				fields: {
+					updated: 1,
+					title: 1,
+					source: 1,
+					content: 1,
+					author: 1,
+					slug: 1,
+					type: 1,
+					gameId: 1
+				}
+			});
+		},
+		children: [
+			{
+				find: function(newsPost) {
+					return xbdGames.find({ _id: newsPost.gameId }, {
+						fields: {
+							platform: 1,
+							name: 1,
+							slug: 1
+						}
+					});
+				}
+			},
+			{
+				find: function(newsPost) {
+					return gameDetails.find({ gameId: newsPost.gameId }, {
+						fields: {
+							gameId: 1,
+							gameName: 1,
+							gameDescription: 1,
+							gameReducedDescription: 1,
+							gameReleaseDate: 1,
+							gameGenre: 1,
+							gameArt: 1,
+							gamePublisherName: 1,
+							gameDeveloperName: 1,
+							gameAllTimeAverageRating: 1
+						}
+					});
+				}
+			}
+		]
+	}
 });

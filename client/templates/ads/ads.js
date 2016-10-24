@@ -22,9 +22,14 @@ Template.googleAdsResponsiveTop.rendered = function () {
 }
 
 Template.googleAdsResponsiveRight.rendered = function () {
-	$('#gads-responsive-right').affix({
+	$('.content-template-1 #gads-responsive-right').affix({
 		offset: {
 			top: 200
+		}
+	});
+	$('.content-template-2 #gads-responsive-right').affix({
+		offset: {
+			top: 500
 		}
 	});
 	var script = document.createElement("script");

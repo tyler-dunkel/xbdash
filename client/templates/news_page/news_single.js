@@ -7,7 +7,24 @@ Template.newsSinglePage.created = function() {
 	this.subscribe('singleNews', slug);
 }
 
-Template.contentTemplate2.helpers({
+Template.newsSinglePage.helpers({
+	type1: function() {
+		var slug = Router.current().params.slug;
+		var news = xbdNews.findOne({ slug: slug });
+		if (news.type === 'news' || type === 'spotlight') {
+			return true;
+		}
+	},
+	type2: function() {
+		var slug = Router.current().params.slug;
+		var news = xbdNews.findOne({ slug: slug });
+		if (news.type === 'reviews' || type === 'opinion') {
+			return true;
+		}
+	}
+});
+
+Template.contentTemplate1.helpers({
 	article: function() {
 		var slug = Router.current().params.slug;
 		return xbdNews.findOne({ slug: slug });
@@ -27,6 +44,67 @@ Template.contentTemplate2.helpers({
 	updated: function () {
 		return moment(this.updated).format('MMMM Do YYYY, h:mm a');
 	}
+});
+
+Template.contentTemplate1.rendered = function() {
+	var user = Meteor.user();
+	var userLogged = Meteor.loggingIn();
+	if (!user && !userLogged) {
+		setTimeout(function() {
+			sweetAlert({
+				title: 'Win a Year of Xbox® Live Gold!',
+				html: 'Enter the August Referral Contest!<br />Verified member with the <strong>most referrals</strong> by August 31, 2016 wins! See contest rules.',
+				customClass: 'sign-up-modal',
+				allowOutsideClick: false,
+				showCancelButton: true,
+				confirmButtonText: 'Sign Up for Free',
+				cancelButtonText: 'Not Right Now',
+				confirmButtonColor: '#138013',
+				confirmButtonClass: 'btn-success',
+				width: 480
+			}, function() {
+				Router.go('contestPage');
+			});
+		}, 120000);
+	}
+}
+
+Template.contentTemplate2.helpers({
+	article: function() {
+		var slug = Router.current().params.slug;
+		return xbdNews.findOne({ slug: slug });
+	},
+	sourceExists: function () {
+		if (this.source !== 'xbdash') {
+			return true;
+		}
+		return false;
+	},
+	sourceName: function () {
+		if (this.source) {
+			return 'of ' + this.source.toUpperCase();
+		}
+		return;
+	},
+	updated: function () {
+		return moment(this.updated).format('MMMM Do YYYY, h:mm a');
+	},
+	chkGame: function () {
+		var slug = Router.current().params.slug;
+		var article = xbdNews.findOne({ slug: this.slug });
+		if (article.gameId === '') {
+			return false;
+		}
+		return true;
+	},
+	game: function () {
+		var slug = Router.current().params.slug;
+		var article = xbdNews.findOne({ slug: slug });
+		if (article && article.gameId) {
+			return gameDetails.findOne({ gameId: article.gameId });
+		}
+	}
+
 });
 
 Template.contentTemplate2.rendered = function() {
@@ -123,6 +201,51 @@ Template.newsSinglePageDocHead.created = function() {
 		DocHead.addLink(linkInfo[i]);;
 	}
 }
+
+Template.newsGameInfoColumn.helpers({
+	gamesImage: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		var image = "https://www.xbdash.com/img/game-default.jpg";
+
+		if (game.platform === 'Xenon') {
+			this.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BoxArt' && art.Width === 219) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/h_628,c_scale/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		if (game.platform === 'Durango') {
+			this.gameArt.forEach(function(art) {
+				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+
+		return image;
+	},
+	gamePlatform: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		if (game.platform == 'Durango') {
+			return 'Xbox One';
+		}
+		if (game.platform == 'Xenon') {
+			return 'Xbox 360';
+		}
+		return 'Xbox';
+	},
+	gamePublisher: function () {
+		var game = gameDetails.findOne({ gameId: this.gameId });
+		return game.gamePublisherName;
+	},
+	gameDeveloper: function () {
+		var game = gameDetails.findOne({ gameId: this.gameId });
+		return game.gameDeveloperName;
+	},
+	dateFormat: function () {
+		return moment(this.gameReleaseDate).format('l');
+	}
+});
 
 Template.newsSinglePageShareButtons.helpers({
 	getUrl: function () {

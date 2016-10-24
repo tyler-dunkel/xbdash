@@ -1,119 +1,167 @@
 <template name="newsSinglePage">
 	{{> googlePageLevelAds}}
+	{{#if type1}}
+		{{> contentTemplate1}}
+	{{/if}}
+	{{#if type2}}
+		{{> contentTemplate2}}
+	{{/if}}
+</template>
+
+<template name="contentTemplate1">
 	<div id="content" class="app-content news-page" role="main">
 		<div class="app-content-body ">
 			<div class="hbox hbox-auto-xs hbox-auto-sm">
-				<div class="col">
-				{{> contentTemplate2}}
+			{{#if Template.subscriptionsReady}}
+				{{#with article}}
+				{{> newsSinglePageDocHead}}
+				<div class="col content-template-1">
+					<div class="wrapper-md bg-dark lter b-b">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-xs-12">
+									{{> googleAdsResponsiveTop}}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="wrapper-md bg-white lter b-b">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12">
+									<h1 class="h2 text-black m-b-xs">{{title}}</h1>
+									<div class="text-muted">
+										<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
+										<i class="fa fa-clock-o text-muted"></i> {{updated}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="wrapper-md bg-white lter b-b">
+						<div class="container">
+							<div class="row">
+								<div class="col-xl-8 col-lg-7 col-md-9 col-xs-12">
+									<div class="blog-post news">
+										{{{content}}}
+										<div class="m-t-md m-b-md share-bar">
+											<h4>Share This Article</h4>
+											{{> newsSinglePageShareButtons}}
+										</div>
+										<div class="comment-section">
+											{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
+										</div>
+										{{> googleAdsResponsiveLeft}}
+									</div>
+								</div>
+								<div class="col-xl-4 col-lg-4 col-md-3 col-xs-12">
+									{{> googleAdsResponsiveRight}}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="shareDiv">
+						{{> newsSinglePageShareButtons}}
+					</div>
 				</div>
+				{{/with}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
 	</div>
 </template>
 
-<template name="contentTemplate1">
-	{{#if Template.subscriptionsReady}}
-		{{#with article}}
-		{{> newsSinglePageDocHead}}
-		<div class="wrapper-md bg-dark lter b-b">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 col-xs-12">
-						{{> googleAdsResponsiveTop}}
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="wrapper-md bg-white lter b-b">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1 class="h2 text-black m-b-xs">{{title}}</h1>
-						<div class="text-muted">
-							<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
-							<i class="fa fa-clock-o text-muted"></i> {{updated}}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="wrapper-md bg-white lter b-b">
-			<div class="container">
-				<div class="row">
-					<div class="col-xl-8 col-lg-7 col-md-9 col-xs-12">
-						<div class="blog-post news">
-							{{{content}}}
-							<div class="m-t-md m-b-md share-bar">
-								<h4>Share This Article</h4>
-								{{> newsSinglePageShareButtons}}
-							</div>
-							<div class="comment-section">
-								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
-							</div>
-							{{> googleAdsResponsiveLeft}}
-						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-3 col-xs-12">
-						{{> googleAdsResponsiveRight}}
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="shareDiv">
-			{{> newsSinglePageShareButtons}}
-		</div>
-		{{/with}}
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}}
-</template>
-
 <template name="contentTemplate2">
-	{{#if Template.subscriptionsReady}}
-		{{#with article}}
-		{{> newsSinglePageDocHead}}
-		<div class="bg-dark lter b-b" style="display: block; background-position: top center; z-index: 0; top: 50px; left: 0; background-color: #413c48; height: 56.25em; width: 100%; background: url('https://cdn0.vox-cdn.com/thumbor/Fwz5sKz_omwrZFkz79yp-ZM8nvc=/0x479:1500x1323/640x360/cdn0.vox-cdn.com/uploads/chorus_image/image/51458909/nn3dsxl_lime.0.jpg') no-repeat center;">
-		</div>
-		<div class="wrapper-md lter b-b" style="background: transparent !important;">
-			<div class="containe text-center">
-				<header style="text-align: center; color: #FFF; height: 37.5em;">
-					<div class="header-container" style="position: relative;top: 50%;-webkit-transform: translateY(-50%);-ms-transform: translateY(-50%);transform: translateY(-50%);">
-						<h1 class="h2 text-black m-b-xs">{{title}}</h1>
-						<div class="text-muted">
-							<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
-							<i class="fa fa-clock-o text-muted"></i> {{updated}}
-						</div>
-					</div>
-				</header>
-				<div class="wrapper-md bg-white lter b-b">
-					<div class="col-xl-8 col-lg-7 col-md-9 col-xs-12">
-						<div class="blog-post news">
-							{{{content}}}
-							<div class="m-t-md m-b-md share-bar">
-								<h4>Share This Article</h4>
-								{{> newsSinglePageShareButtons}}
-							</div>
-							<div class="comment-section">
-								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
+	<div id="content" class="app-content news-page" role="main">
+		<div class="app-content-body">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+			{{#if Template.subscriptionsReady}}
+				{{#with article}}
+				{{> newsSinglePageDocHead}}
+				<div class="col content-template-2 article-background" style="background: url('https://cdn0.vox-cdn.com/thumbor/Fwz5sKz_omwrZFkz79yp-ZM8nvc=/0x479:1500x1323/640x360/cdn0.vox-cdn.com/uploads/chorus_image/image/51458909/nn3dsxl_lime.0.jpg') no-repeat; background-position: top center; background-size: 100%; background-attachment: fixed;">
+					<div class="wrapper-md no-bg lter b-b">
+						<div class="container text-center" style="width: 100%;">
+							<div class="header-container">
+								<div class="header-block">
+									<h1 class="h2 text-white m-b-xs">{{title}}</h1>
+									<div class="text-white">
+										<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
+										<i class="fa fa-clock-o text-muted"></i> {{updated}}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-3 col-xs-12">
-						{{> mostSharedNewsSidebar limit=3}}
+					<div class="wrapper-md bg-white lter b-b post-shadow">
+						<div class="container">
+							<div class="row">
+								<div class="col-xl-2 col-lg-2 hidden-md hidden-sm hidden-xs">
+									{{#with game}}
+										{{> newsGameInfoColumn}}
+									{{/with}}
+								</div>
+								<div class="{{#if chkGame}}col-xl-6 col-lg-5{{else}}col-xl-8 col-lg-7{{/if}} col-md-9 col-sm-12 col-xs-12">
+									<div class="blog-post news">
+										{{{content}}}
+										<div class="m-t-md m-b-md share-bar">
+											<h4>Share This Article</h4>
+											{{> newsSinglePageShareButtons}}
+										</div>
+										<div class="comment-section">
+											{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
+										</div>
+										{{> googleAdsResponsiveLeft}}
+									</div>
+								</div>
+								<div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 col-xs-12">
+									{{> googleAdsResponsiveRight}}
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
+					<div class="shareDiv">
+						{{> newsSinglePageShareButtons}}
+					</div>
+				</div>					
+				{{/with}}
+			{{else}}
+				{{> loadingTemplate}}
+			{{/if}}
 			</div>
 		</div>
-		<div class="shareDiv">
-			{{> newsSinglePageShareButtons}}
-		</div>
-		{{/with}}
-	{{else}}
-		{{> loadingTemplate}}
-	{{/if}}
+	</div>
 </template>
 
 <template name="newsSinglePageDocHead"></template>
+
+<template name="newsGameInfoColumn">
+	<div class="list-group-item clearfix">
+		<h4 class="font-bold m-t-xs m-b-xs">Game Info</h4>
+	</div>
+	<div class="list-group-item clearfix">
+		<div class="w-full">
+			<img src="{{gamesImage}}" class="w-full">
+		</div >
+	</div>
+	<div class="list-group-item clearfix">
+		<p class="m-t-xs">Platform</p>
+		<h4 class="font-bold m-t-xs m-b-xs">{{gamePlatform}}</h4>
+	</div>
+	<div class="list-group-item clearfix">
+		<p class="m-t-xs">Publisher</p>
+		<h4 class="font-bold m-t-xs m-b-xs">{{gamePublisher}}</h4>
+	</div>
+	<div class="list-group-item clearfix">
+		<p class="m-t-xs">Developer</p>
+		<h4 class="font-bold m-t-xs m-b-xs">{{gameDeveloper}}</h4>
+	</div>
+	<div class="list-group-item clearfix">
+		<p class="m-t-xs">Release Date</p>
+		<h4 class="font-bold m-t-xs m-b-xs">{{{dateFormat}}}</h4>
+	</div>
+</template>
 
 <template name="newsSinglePageShareButtons">
 	<div class="share-buttons">
