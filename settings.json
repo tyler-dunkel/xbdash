@@ -10,6 +10,9 @@
 		"cloudinaryKey": "951726464735847",
 		"cloudinarySecret": "S2ZBSps6yEKPC5vaJgIS4Fx3WhI"
 	},
+	"analyticsSettings": {
+ 		"Google Analytics": { "trackingId": "UA-72492857-1" }
+ 	},
 	"public": {
 		"facebookAppId": "109259765831650"
 	}
