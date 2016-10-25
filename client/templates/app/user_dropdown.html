@@ -1,3 +1,66 @@
+<template name="userDropdownTwo">
+	{{#if chkGamerStatus}}
+		{{#if loggingIn}}
+			{{> loadingTemplate}}
+		{{else}}
+		<ul class="nav navbar-nav pull-right navbar-auth">
+			<li class="dropdown">
+				<a href class="dropdown-toggle clear" data-toggle="dropdown">
+					<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+						{{#if chkGamerStatus}}
+		                <img src="{{gamerImage}}" class="img-full" alt="{{currentUser.gamercard.gamertag}}">
+		                {{else}}
+		                <img src="/img/gamerpic-default.jpg" class="img-full" alt="{{currentUser.username}}" />
+		                {{/if}}
+						<i class="on md b-white bottom"></i>
+					</span>
+					{{#if chkGamerStatus}}
+					<span class="hidden-sm hidden-md">{{currentUser.gamercard.gamertag}}</span> <b class="caret"></b>
+					{{else}}
+					<span class="hidden-sm hidden-md">{{currentUser.username}}</span> <b class="caret"></b>
+					{{/if}}
+				</a>
+				<ul class="dropdown-menu pull-right animated">
+				{{#if chkGamerStatus}} 
+					{{#if creditsAvailable}}
+					<!--
+					<li>
+						<a href="{{pathFor 'transactionsHistoryPage'}}">Credits Available: <strong class="m-l-xs font-bold text-u-l">{{getCredits}}</strong></a>
+					</li>
+					-->
+					{{else}}
+					<!--
+					<li>
+						<a href="{{pathFor 'buyCredits'}}">Add Credits</a>
+					</li>
+					-->
+					{{/if}}
+					<li>
+						<a href="{{pathFor 'settingsPage'}}">Settings</a>
+					</li>
+				{{/if}}
+					<li>
+						<a href="{{pathFor 'helpPage'}}">Help</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="{{pathFor 'logIn'}}" id="logout">Logout</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		{{/if}}
+	{{else}}
+	<ul class="nav navbar-nav navbar-right navbar-auth">
+		<li>
+			<div class="m-t-sm m-b-sm text-center">
+				<a href="{{pathFor 'logIn'}}" id="logout" class="btn btn-link btn-sm"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+			</div>
+		</li>
+	</ul>
+	{{/if}}
+</template>
+
 <template name="userDropdown">
 	{{#if chkGamerStatus}}
 		{{#if loggingIn}}
