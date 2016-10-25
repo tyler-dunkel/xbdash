@@ -15,6 +15,7 @@
 @media (min-width: 1200px) {
 	.affix {
 		width: 300px !important;
+		margin-left: 5px !important;
 	}
 }
 

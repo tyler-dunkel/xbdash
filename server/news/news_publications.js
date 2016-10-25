@@ -78,6 +78,7 @@ Meteor.publishComposite('singleNews', function(slug) {
 					author: 1,
 					slug: 1,
 					type: 1,
+					featuredImage: 1,
 					gameId: 1
 				}
 			});
@@ -85,7 +86,10 @@ Meteor.publishComposite('singleNews', function(slug) {
 		children: [
 			{
 				find: function(newsPost) {
-					return xbdGames.find({ _id: newsPost.gameId }, {
+					var gameIds = newsPost.gameId;
+					var totalGames = gameIds.length;
+
+					return xbdGames.find({ _id: { $in: gameIds } }, {
 						fields: {
 							platform: 1,
 							name: 1,
@@ -96,7 +100,10 @@ Meteor.publishComposite('singleNews', function(slug) {
 			},
 			{
 				find: function(newsPost) {
-					return gameDetails.find({ gameId: newsPost.gameId }, {
+					var gameIds = newsPost.gameId;
+					var totalGames = gameIds.length;
+
+					return gameDetails.find({ gameId: { $in: gameIds } }, {
 						fields: {
 							gameId: 1,
 							gameName: 1,
