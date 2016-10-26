@@ -4,9 +4,93 @@ Template.achievementsShowMorePage.created = function() {
 	this.autorun(function() {
 		var options = Router.current().params.query;
 		options.limit = achievementLimit.get();
-		Meteor.subscribe('achievementShowMore', options);
+		Meteor.subscribe('achievementShowMoreTwo', options);
 	});
 }
+
+Template.achievementsShowMoreAppTwo.created = function() {
+	this.options = Router.current().params.query,
+	validVals = ['all'];
+}
+
+Template.achievementsShowMoreAppTwo.helpers({
+	'achievementTier': function() {
+		if (Template.instance().options.tier) {
+			return Template.instance().options.tier;
+		} else {
+			return 'all';
+		}
+	}
+});
+
+Template.achievementsShowMoreSectionTwo.created = function() {
+	var limit, self = this;
+	achievementLimit.set(100);
+}
+
+Template.achievementsShowMoreSectionTwo.rendered = function() {
+	$(window).scroll(function() {
+		window.setTimeout(function() {
+			showMoreVisible();
+		}, 500);
+	});
+}
+
+Template.achievementsShowMoreSectionTwo.helpers({
+	achievementsList: function() {
+		return xbdAchievements.find({}, {
+			sort: {
+				name: 1
+			},
+			limit: achievementLimit.get()
+		}).fetch();
+	},
+	gamesImage: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+		var image = "/img/game-default.jpg";
+		if (game && game.platform === 'Xenon') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art && art.Purpose === 'BoxArt' && art.Width === 219) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		if (game && game.platform === 'Durango') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art && art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		return image;
+	},
+	gameName: function () {
+		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+		if (gameDetail && gameDetail.gameReducedName) {
+			return gameDetail.gameReducedName;
+		}
+		return 'Xbox Game';
+	},
+	chkPlatform: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		if (game && game.platform === 'Xenon') {
+			return 'thumb-md2';
+		}
+	},
+	achievementImage: function () {
+		var image = "/img/achievement-default.jpg";
+		if (this.mediaAssets) {
+			image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(this.mediaAssets);
+		}
+		return image;
+	},
+	hasMoreResults: function() {
+		var achievementLimitCurrent = achievementLimit.get();
+		var xbdAcheivementCount = xbdAchievements.find({}).count();
+		return ! (xbdAcheivementCount < achievementLimitCurrent);
+	}
+});
 
 Template.achievementsShowMoreApp.created = function() {
 	console.log('this fired');
@@ -63,14 +147,36 @@ Template.achievementsShowMoreSection.helpers({
 			limit: achievementLimit.get()
 		}).fetch();
 	},
-	hasMoreResults: function() {
-		var achievementLimitCurrent = achievementLimit.get();
-		var xbdAcheivementCount = xbdAchievements.find({}).count();
-		return ! (xbdAcheivementCount < achievementLimitCurrent);
+	gamesImage: function () {
+		var game = xbdGames.findOne({ _id: this.gameId });
+		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+		var image = "/img/game-default.jpg";
+		if (game && game.platform === 'Xenon') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art && art.Purpose === 'BoxArt' && art.Width === 219) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		if (game && game.platform === 'Durango') {
+			gameDetail.gameArt.forEach(function(art) {
+				if (art && art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
+					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
+				}
+			});
+		}
+		return image;
+	},
+	gameName: function () {
+		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
+		if (gameDetail && gameDetail.gameReducedName) {
+			return gameDetail.gameReducedName;
+		}
+		return 'Xbox Game';
 	},
 	chkPlatform: function () {
 		var game = xbdGames.findOne({ _id: this.gameId });
-		if (game.platform === 'Xenon') {
+		if (game && game.platform === 'Xenon') {
 			return 'thumb-md2';
 		}
 	},
@@ -98,29 +204,10 @@ Template.achievementsShowMoreSection.helpers({
 		}
 		return image;
 	},
-	gamesImage: function () {
-		var game = xbdGames.findOne({ _id: this.gameId });
-		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-		var image = "/img/game-default.jpg";
-		if (game.platform === 'Xenon') {
-			gameDetail.gameArt.forEach(function(art) {
-				if (art.Purpose === 'BoxArt' && art.Width === 219) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
-				}
-			});
-		}
-		if (game.platform === 'Durango') {
-			gameDetail.gameArt.forEach(function(art) {
-				if (art.Purpose === 'BrandedKeyArt' && art.Width === 584) {
-					image = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96/" + encodeURIComponent(art.Url);
-				}
-			});
-		}
-		return image;
-	},
-	gameName: function () {
-		var gameDetail = gameDetails.findOne({ gameId: this.gameId });
-		return gameDetail.gameReducedName;
+	hasMoreResults: function() {
+		var achievementLimitCurrent = achievementLimit.get();
+		var xbdAcheivementCount = xbdAchievements.find({}).count();
+		return ! (xbdAcheivementCount < achievementLimitCurrent);
 	}
 });
 

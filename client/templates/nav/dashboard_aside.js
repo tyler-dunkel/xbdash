@@ -1,3 +1,38 @@
+Template.asideHeaderTwo.helpers({
+	gamerImage: function () {
+		var user = Meteor.user();
+		var defaultGamerImage = "/img/xbdash_whiteicon.png";
+		if (user && user.gamercard && user.gamercard.gamerpicLargeSslImagePath) {
+			defaultGamerImage = "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.gamercard.gamerpicLargeSslImagePath);
+		}
+		if (user && user.xboxProfile && user.xboxProfile.gameDisplayPicRaw) {
+			defaultGamerImage =  "https://res.cloudinary.com/xbdash/image/fetch/c_fit,w_96,h_96/" + encodeURIComponent(user.xboxProfile.gameDisplayPicRaw);
+		}
+		return defaultGamerImage;
+	},
+	chkGamerFalse: function () {
+		var user = Meteor.user();
+		if (user && user.gamertagScanned) {
+			if (user.gamertagScanned.status === 'false') {
+				return true;
+			}
+		}
+		return false;
+	},
+	chkGamerBuilding: function () {
+		var user = Meteor.user();
+		if (user && user.gamertagScanned) {
+			if (user.gamertagScanned.status === 'building') {
+				return true;
+			}
+		}
+		return false;
+	}
+});
+
+Template.asideHeaderTwo.events({
+});
+
 Template.asideHeader.helpers({
 	gamerImage: function () {
 		var user = Meteor.user();

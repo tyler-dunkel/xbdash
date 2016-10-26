@@ -47,6 +47,58 @@ Template.achievementsPage.created = function() {
 	}
 }
 
+Template.achievementsPage.helpers({
+	showMore: function() {
+		var options = Router.current().params.query;
+		if (_.isEmpty(options)) {
+			return false;
+		}
+		return true;
+	}
+});
+
+Template.achievementsAppTwo.created = function() {
+	var limit = 50;
+	this.subscribe('topAchievements');
+}
+
+Template.achievementsAppTwo.rendered = function() {
+}
+
+Template.achievementsAppTwo.events({
+	"click .view-button": function(e) {
+		e.preventDefault();
+		Router.go('achievementsPage', {}, { query: 'tier=all' });
+	},
+	"click .view-arrow": function(e) {
+		e.preventDefault();
+		Router.go('achievementsPage', {}, { query: 'tier=all' });
+	},
+	"mouseover .view-more-button": function() {
+		$('.view-more-button .view-button').removeClass("inline");
+		$('.view-more-button .view-button').addClass("none");
+		$('.view-more-button .view-arrow').removeClass("none");
+		$('.view-more-button .view-arrow').addClass("inline");
+	},
+	"mouseout .view-more-button": function() {
+		$('.view-more-button .view-button').removeClass("none");
+		$('.view-more-button .view-button').addClass("inline");
+		$('.view-more-button .view-arrow').removeClass("inline");
+		$('.view-more-button .view-arrow').addClass("none");
+	}
+});
+
+Template.achievementsAppTwo.helpers({
+	mostPopularAchievements: function() {
+		var achievements = xbdAchievements.find({}, { sort: { userPercentage: -1 }, limit: 10 });
+		return achievements;
+	},
+	rarestAchievements: function() {
+		var achievements = xbdAchievements.find({}, { sort: { userPercentage: 1 }, limit: 10 });
+		return achievements;
+	}
+});
+
 Template.achievementsApp.created = function() {
 	var limit = 20;
 	this.subscribe('mostPopularAchievements');
@@ -84,16 +136,5 @@ Template.achievementsApp.helpers({
 	rarestAchievements: function() {
 		var achievements = xbdAchievements.find({}, { sort: { userPercentage: 1 }, limit: 10 });
 		return achievements;
-	}
-});
-
-Template.achievementsPage.helpers({
-	showMore: function() {
-		var options = Router.current().params.query;
-		console.log(options);
-		if (_.isEmpty(options)) {
-			return false;
-		}
-		return true;
 	}
 });

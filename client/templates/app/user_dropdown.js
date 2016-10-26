@@ -44,35 +44,25 @@ Template.userDropdownTwo.helpers({
 });
 
 Template.userDropdownTwo.events({
-    'click #logout': function(event) {
-        event.preventDefault();
-        Meteor.logout(function(error){
-            if (error) {
-                throw new Meteor.Error("Logout failed");
-            }
-            Router.go('logIn');
-        });
-    },
-    'click .profile-button': function(e) {
-        e.preventDefault();
-        var user = Meteor.user();
-        Router.go('userPage', {gamertagSlug: user.gamertagSlug});
-    },
-    'click .notification-link': function(e) {
-        e.preventDefault();
-        var user = Meteor.user();
-        Router.go('userPage', {gamertagSlug: user.gamertagSlug});
-    },
-    'mouseenter .unread': function(e) {
-        var self = this;
-        Meteor.setTimeout(function() {
-            Meteor.call('notificationRead', self._id, function(err) {
-            });
-        }, 10000);
-    },
-    'mouseleave .unread': function(e) {
-        $(e.currentTarget).removeClass('unread');
-    }
+	'click #logout': function(event) {
+		event.preventDefault();
+		Meteor.logout(function(error){
+			if (error) {
+				throw new Meteor.Error("Logout failed");
+			}
+			Router.go('logIn');
+		});
+	},
+	'mouseenter .unread': function(e) {
+		var self = this;
+		Meteor.setTimeout(function() {
+			Meteor.call('notificationRead', self._id, function(err) {
+			});
+		}, 10000);
+	},
+	'mouseleave .unread': function(e) {
+		$(e.currentTarget).removeClass('unread');
+	}
 
 });
 
@@ -122,34 +112,34 @@ Template.userDropdown.helpers({
 });
 
 Template.userDropdown.events({
-    'click #logout': function(event) {
-        event.preventDefault();
-        Meteor.logout(function(error){
-            if (error) {
-                throw new Meteor.Error("Logout failed");
-            }
-            Router.go('logIn');
-        });
-    },
-    'click .profile-button': function(e) {
-        e.preventDefault();
-        var user = Meteor.user();
-        Router.go('userPage', {gamertagSlug: user.gamertagSlug});
-    },
-    'click .notification-link': function(e) {
-        e.preventDefault();
-        var user = Meteor.user();
-        Router.go('userPage', {gamertagSlug: user.gamertagSlug});
-    },
-    'mouseenter .unread': function(e) {
-        var self = this;
-        Meteor.setTimeout(function() {
-            Meteor.call('notificationRead', self._id, function(err) {
-            });
-        }, 10000);
-    },
-    'mouseleave .unread': function(e) {
-        $(e.currentTarget).removeClass('unread');
-    }
+	'click #logout': function(event) {
+		event.preventDefault();
+		Meteor.logout(function(error){
+			if (error) {
+				throw new Meteor.Error("Logout failed");
+			}
+			Router.go('logIn');
+		});
+	},
+	'click .profile-button': function(e) {
+		e.preventDefault();
+		var user = Meteor.user();
+		Router.go('userPage', {gamertagSlug: user.gamertagSlug});
+	},
+	'click .notification-link': function(e) {
+		e.preventDefault();
+		var user = Meteor.user();
+		Router.go('userPage', {gamertagSlug: user.gamertagSlug});
+	},
+	'mouseenter .unread': function(e) {
+		var self = this;
+		Meteor.setTimeout(function() {
+			Meteor.call('notificationRead', self._id, function(err) {
+			});
+		}, 10000);
+	},
+	'mouseleave .unread': function(e) {
+		$(e.currentTarget).removeClass('unread');
+	}
 
 });

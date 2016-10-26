@@ -2,12 +2,78 @@
 	<aside id="aside" class="app-aside app-aside-fixed hidden-xs bg-black">
 		<div class="aside-wrap">
 			<div class="navi-wrap">
-				{{> asideHeader}}
+				{{> asideHeaderTwo}}
 
 				{{> dashboardNavTwo}}
 			</div>
 		</div>
 	</aside>
+</template>
+
+<template name="asideHeaderTwo">
+	{{#if currentUser}}
+	<div class="clearfix hidden-xs text-center show" id="aside-user">
+		<div class="dropdown wrapper">
+			<div>
+				<span class="thumb-lg w-auto-folded avatar m-t-sm">
+				{{#if loggingIn}}
+					{{> loadingTemplate}}
+				{{else}}
+					{{#if chkGamerStatus}}
+					<img src="{{gamerImage}}" class="img-full" alt="{{currentUser.gamercard.gamertag}}">
+					{{else}}
+					<img src="/img/xbdash_whiteicon.png" class="img-full" alt="{{currentUser.username}}" />
+					{{/if}}
+				{{/if}}
+				</span>
+			</div>
+			<div class="hidden-folded m-t-sm">
+				<span class="clear">
+				{{#if loggingIn}}
+					{{> loadingTemplate}}
+				{{else}}
+					{{#if chkGamerStatus}}
+					<span class="block m-t-sm">
+						<strong class="font-bold text-lt">{{currentUser.gamercard.gamertag}}</strong> 
+					</span>
+					<span class="text-muted text-xs block">{{currentUser.gamercard.motto}}</span>
+					{{else}}
+						{{#if chkGamerFalse}}
+						<span class="block m-t-sm">
+							<a href="{{pathFor 'confirmGt'}}" class="btn btn-link btn-md aside-signup">Confirm Gamertag</a>
+						</span>
+						{{else}}
+						<span class="block m-t-sm">
+							{{> loadingTemplateRect}}
+						</span>
+						{{/if}}
+					{{/if}}
+				{{/if}}
+				</span>
+			</div>
+		</div>
+		<div class="line dk hidden-folded"></div>
+	</div>
+	{{else}}
+	<div class="clearfix hidden-xs text-center show xbdwrap" id="aside-user">
+		<div class="wrapper">
+			<div>
+				<span class="thumb-lg w-auto-folded avatar m-t-sm">
+					<img src="/img/xbdash_whiteicon.png" class="img-full" alt="{{appName}}" />
+				</span>
+			</div>
+			<div class="hidden-folded m-t-sm">
+				<span class="clear">
+					<span class="block m-t-sm">
+						<a href="{{pathFor 'logIn'}}" class="btn btn-link btn-md aside-signup">Log in</a>
+						<a href="{{pathFor 'signUp'}}" class="btn btn-link btn-md aside-signup">Sign up</a>
+					</span>
+				</span>
+			</div>
+		</div>
+		<div class="line dk hidden-folded"></div>
+	</div>
+	{{/if}}
 </template>
 
 <template name="asideHeader">

@@ -12,7 +12,7 @@
 	},
 	"public": {
 		"analyticsSettings": {
-			"Google Analytics": { "trackingId": "UA-72492857-1" }
+			"Google Analytics": { "trackingId": "" }
 		},
 		"facebookAppId": "109259765831650"
 	}

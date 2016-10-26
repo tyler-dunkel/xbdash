@@ -201,7 +201,7 @@ Meteor.publishComposite('gamesByReleaseDate', function(options) {
 	return {
 		find: function() {
 			options = options || {};
-			var limit = typeof options.limit === 'number' ? options.limit : 12;
+			var limit = typeof options.limit === 'number' ? options.limit : 18;
 			console.log(limit);
 			return gameDetails.find({}, {
 				fields: {

@@ -1,88 +1,157 @@
-
 <template name="achievementsShowMorePage">
-    {{#if Template.subscriptionsReady}}
-        {{> achievementsShowMoreApp}}
-    {{else}}
-        {{> loadingTemplate}}
-    {{/if}}
+	{{#if Template.subscriptionsReady}}
+		{{> achievementsShowMoreAppTwo}}
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>
+
+<template name="achievementsShowMoreAppTwo">
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black"><span class="tier-name">{{achievementTier}}</span> Achievements</h1>
+								<small class="text-muted">View all achievements</small>
+							</div>
+						</div>
+					</div>
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-xs-12">
+								{{> achievementsShowMoreSectionTwo tier=achievementTier}}
+							</div>
+							<div class="wrapper-md col-lg-5 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="achievementsShowMoreSectionTwo">
+	<ul class="list-group no-bg no-borders achievements-list">
+		{{#if Template.subscriptionsReady}}
+		{{#each achievementsList}}
+		<li class="list-group-item">
+			<a href="{{pathFor 'achievement'}}">
+				<div class="row no-gutter">
+					<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 hidden-xs game-img" style="background-image: url('{{gamesImage}}'); background-size: contain; background-repeat: no-repeat;"></div>
+					<div class="col-xl-2 col-lg-2 col-md-2 hidden-sm hidden-xs">
+						<div class="block padder-sm padder-w">
+							{{gameName}}
+						</div>
+					</div>
+					<div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<div class="block text-center padder-vv-xbd">
+							<span class="text-white font-thin font-bold h4">
+								{{this.value}}
+							</span>
+						</div>
+					</div>
+					<div class="col-xl-3 hidden-lg col-md-2 col-sm-2 col-xs-2 {{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');"></div>
+					<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-6 achievement-description">
+						<div class="m-l-md">
+							<div class="padder-t game-name">{{this.name}}</div>
+							<div class="padder-d title-wrap-game">{{this.description}}</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</li>
+		{{/each}}
+		{{#if hasMoreResults}}
+		<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+		{{/if}}
+		{{else}}
+		<li class="list-group-item">
+			{{> loadingTemplate}}
+		</li>
+		{{/if}}
+	</ul>
 </template>
 
 <template name="achievementsShowMoreApp">
-    <div id="content" class="app-content" role="main">
-        <div class="app-content-body ">
-            <div class="hbox hbox-auto-xs hbox-auto-sm">
-                <div class="col">
-                    <div class="bg-light lter b-b wrapper-md">
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-12">
-                                <h1 class="m-n font-thin h3 text-black"><span class="tier-name">{{achievementTier}}</span> Achievements</h1>
-                                <small class="text-muted">These achievements have been unlocked by {{achievementPercentage}} of XBdash users!</small>
-                            </div>
-                            {{#if chkGamerStatus}}
-                            <div class="col-sm-6 text-right hidden-xs user-rank-area">
-                                <div class="inline m-l m-r text-left">
-                                    {{> userDailyRank}}
-                                </div>
-                                <div class="inline text-left">
-                                    {{> userOverallRank}}
-                                </div>
-                            </div>
-                            {{/if}}
-                        </div>
-                    </div>
-                    <div class="wrapper-md">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                {{> achievementsShowMoreSection tier=achievementTier}}
-                            </div>
-                            <div class="wrapper-md col-lg-5 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black"><span class="tier-name">{{achievementTier}}</span> Achievements</h1>
+								<small class="text-muted">These achievements have been unlocked by {{achievementPercentage}} of XBdash users!</small>
+							</div>
+							{{#if chkGamerStatus}}
+							<div class="col-sm-6 text-right hidden-xs user-rank-area">
+								<div class="inline m-l m-r text-left">
+									{{> userDailyRank}}
+								</div>
+								<div class="inline text-left">
+									{{> userOverallRank}}
+								</div>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+					<div class="wrapper-md">
+						<div class="row">
+							<div class="col-xs-12">
+								{{> achievementsShowMoreSection tier=achievementTier}}
+							</div>
+							<div class="wrapper-md col-lg-5 col-xs-12 hidden-md hidden-sm hidden-xs trending-column">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="achievementsShowMoreSection">
-    <ul class="list-group no-bg no-borders achievements-list">
-    {{#if Template.subscriptionsReady}}
-        {{#each achievementsList}}
-        <li class="list-group-item">
-            <a href="{{pathFor 'achievement'}}">
-                <div class="row no-gutter">
-                    <div class="hidden-xs col-sm-2 col-md-2 col-lg-2 col-xl-2 game-img" style="background-image: url('{{gamesImage}}'); background-size: contain; background-repeat: no-repeat;"></div>
-                    <div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-3">
-                        <div class="block padder-sm padder-w">
-                            {{gameName}}
-                        </div>
-                    </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-1">
-                        <div class="block text-center padder-vv-{{achievementClass}}">
-                            <span class="text-white font-thin font-bold h4">
-                                {{this.value}}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2 hidden-lg col-xl-2 {{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');"></div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-4 achievement-description">
-                        <div class="m-l-md">
-                            <div class="padder-t game-name">{{this.name}}</div>
-                            <div class="padder-d title-wrap-game">{{this.description}}</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        {{/each}}
-        {{#if hasMoreResults}}
-        <div id="hasMoreResults">{{> loadingTemplateRect}}</div>
-        {{/if}}
-    {{else}}
-        <li class="list-group-item">
-            {{> loadingTemplate}}
-        </li>
-    {{/if}}
-    </ul>
+	<ul class="list-group no-bg no-borders achievements-list">
+		{{#if Template.subscriptionsReady}}
+		{{#each achievementsList}}
+		<li class="list-group-item">
+			<a href="{{pathFor 'achievement'}}">
+				<div class="row no-gutter">
+					<div class="hidden-xs col-sm-2 col-md-2 col-lg-2 col-xl-2 game-img" style="background-image: url('{{gamesImage}}'); background-size: contain; background-repeat: no-repeat;"></div>
+					<div class="hidden-xs hidden-sm col-md-2 col-lg-2 col-xl-3">
+						<div class="block padder-sm padder-w">
+							{{gameName}}
+						</div>
+					</div>
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-1">
+						<div class="block text-center padder-vv-{{achievementClass}}">
+							<span class="text-white font-thin font-bold h4">
+								{{this.value}}
+							</span>
+						</div>
+					</div>
+					<div class="col-xs-2 col-sm-2 col-md-2 hidden-lg col-xl-2 {{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');"></div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-4 achievement-description">
+						<div class="m-l-md">
+							<div class="padder-t game-name">{{this.name}}</div>
+							<div class="padder-d title-wrap-game">{{this.description}}</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</li>
+		{{/each}}
+		{{#if hasMoreResults}}
+		<div id="hasMoreResults">{{> loadingTemplateRect}}</div>
+		{{/if}}
+		{{else}}
+		<li class="list-group-item">
+			{{> loadingTemplate}}
+		</li>
+		{{/if}}
+	</ul>
 </template>

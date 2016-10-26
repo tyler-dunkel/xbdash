@@ -2,8 +2,50 @@
 	{{#if genreSearch}}
 		{{> gameByGenre}}
 	{{else}}
-		{{> gamesApp}}
+		{{> gamesAppTwo}}
 	{{/if}}
+</template>
+
+<template name="gamesAppTwo">
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<!-- main -->
+				<div class="col">
+					<!-- main header -->
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Games</h1>
+								<small class="text-muted">Search our games library</small>
+							</div>
+							<div class="col-sm-6 text-right hidden-xs view-more-button">
+								<div class="view-button pull-right m-t-xs padder-v inline">
+									<a class="m-n text-u-l recent-games">View more</a>
+								</div>
+								<div class="view-arrow pull-right m-t-xs padder-v none">
+									<a class="m-n text-u-l recent-games">View more&nbsp;&nbsp;<i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="wrapper-md">
+						<div class="row">
+						{{#if Template.subscriptionsReady}}
+							{{#each gamesByReleaseDate}}
+								{{#with xbdGame}}
+									{{> gamesReleaseDateTemplate}}
+								{{/with}}
+							{{/each}}
+						{{else}}
+							{{> loadingTemplate}}
+						{{/if}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="gamesApp">

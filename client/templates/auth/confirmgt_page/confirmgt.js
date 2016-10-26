@@ -123,7 +123,7 @@ Template.confirmGtForm.events({
 								Router.go('home');
 								sweetAlert({
 									title: 'Gamertag Scan in Progress',
-									text: 'When scanning is complete, your Dashboard page will populate and you will receive an email with a summary of your initial scanned data.',
+									text: 'When scanning is complete, you can comment and engage with the community with your Gamertag.',
 									customClass: 'welcome-overlay',
 									allowOutsideClick: false,
 									allowEscapeKey: false,
