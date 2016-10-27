@@ -38,7 +38,7 @@ Template.achievementsSinglePage.helpers({
 	},
 	ifXenon: function () {
 		var gameD = xbdGames.findOne({ _id: this.gameId });
-		if (gameD.platform === 'Xenon') {
+		if (gameD && gameD.platform === 'Xenon') {
 			return 'img-x360';
 		}
 	},
@@ -63,10 +63,10 @@ Template.achievementsSinglePage.helpers({
 	achievementData: function () {
 		var getImage = 'https://www.xbdash.com/img/achievement-default.jpg';
 		var getGame = xbdGames.findOne({ _id: this.gameId });
-		if (getGame.platform === "Xenon") {
+		if (getGame && getGame.platform === "Xenon") {
 			getImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
 		}
-		if (getGame.platform === "Durango") {
+		if (getGame && getGame.platform === "Durango") {
 			getImage = this.mediaAssets;
 		}
 
@@ -126,47 +126,49 @@ Template.achievementSingleDocHead.created = function () {
 		var achievementSingleImage = 'https://www.xbdash.com/img/achievement-default.jpg';
 	}
 
-	var achievementSingleTitle = this.data.name + " Achievement Solutions & Details - " + game.name + " | XBdash";
-	var achievementSingleUrl = window.location.href;
+	if (game && game.name) {
+		var achievementSingleTitle = this.data.name + " Achievement Solutions & Details - " + game.name + " | XBdash";
+		var achievementSingleUrl = window.location.href;
 
-	var achievementSingleDocHeadMeta = [
-		{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
-		{ "charset": "utf-8" },
-		{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
-		{ "name": "description", "content": achievementSingleDescription },
-		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
-		{ "property": "og:description", "content": achievementSingleDescription },
-		{ "property": "og:image", "content": achievementSingleImage },
-		{ "property": "og:locale", "content": "en_US" },
-		{ "property": "og:site_name", "content": "XBdash" },
-		{ "property": "og:title", "content": achievementSingleTitle },
-		{ "property": "og:type", "content": "website" },
-		{ "property": "og:url", "content": achievementSingleUrl },
-		{ "name": "twitter:card", "content": "summary_large_image" },
-		{ "name": "twitter:url", "content": achievementSingleUrl },
-		{ "name": "twitter:title", "content": achievementSingleTitle },
-		{ "name": "twitter:description", "content": achievementSingleDescription },
-		{ "name": "twitter:image:src", "content": achievementSingleImage },
-		{ "name": "twitter:site", "content": "@xboxdash" }
-	];
+		var achievementSingleDocHeadMeta = [
+			{ "name": "viewport", "content": "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+			{ "charset": "utf-8" },
+			{ "http-equiv": "X-UA-Compatible", "content": "IE=edge,chrome=1" },
+			{ "name": "description", "content": achievementSingleDescription },
+			{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
+			{ "property": "og:description", "content": achievementSingleDescription },
+			{ "property": "og:image", "content": achievementSingleImage },
+			{ "property": "og:locale", "content": "en_US" },
+			{ "property": "og:site_name", "content": "XBdash" },
+			{ "property": "og:title", "content": achievementSingleTitle },
+			{ "property": "og:type", "content": "website" },
+			{ "property": "og:url", "content": achievementSingleUrl },
+			{ "name": "twitter:card", "content": "summary_large_image" },
+			{ "name": "twitter:url", "content": achievementSingleUrl },
+			{ "name": "twitter:title", "content": achievementSingleTitle },
+			{ "name": "twitter:description", "content": achievementSingleDescription },
+			{ "name": "twitter:image:src", "content": achievementSingleImage },
+			{ "name": "twitter:site", "content": "@xboxdash" }
+		];
 
-	var linkInfo = [
-		{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
-		{ "rel": "canonical", "href": achievementSingleUrl },
-		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144", "type": "image/png" },
-		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114", "type": "image/png" },
-		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72", "type": "image/png" },
-		{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
-	];
+		var linkInfo = [
+			{ "rel": "shortcut icon", "type": "image/x-icon", "href": "https://www.xbdash.com/img/favicon.ico" },
+			{ "rel": "canonical", "href": achievementSingleUrl },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "144x144", "type": "image/png" },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "114x114", "type": "image/png" },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "sizes": "72x72", "type": "image/png" },
+			{ "rel": "apple-touch-icon-precomposed", "href": "https://www.xbdash.com/img/xbdash_touch_icon_1000x1000.png", "type": "image/png" }
+		];
 
-	DocHead.setTitle(achievementSingleTitle);
+		DocHead.setTitle(achievementSingleTitle);
 
-	for (var i = 0; i < achievementSingleDocHeadMeta.length; i++) {
-		DocHead.addMeta(achievementSingleDocHeadMeta[i]);;
-	}
+		for (var i = 0; i < achievementSingleDocHeadMeta.length; i++) {
+			DocHead.addMeta(achievementSingleDocHeadMeta[i]);;
+		}
 
-	for (var i = 0; i < linkInfo.length; i++) {
-		DocHead.addLink(linkInfo[i]);;
+		for (var i = 0; i < linkInfo.length; i++) {
+			DocHead.addLink(linkInfo[i]);;
+		}
 	}
 }
 
@@ -302,7 +304,9 @@ Template.achievementShareButtons.helpers({
 	},
 	getTitle: function () {
 		var getGame = xbdGames.findOne({ _id: this.gameId });
-		return 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' GS!';
+		if (getGame && getGame.name) {
+			return 'I won the "' + this.name + '" achievement from ' + getGame.name + ' worth ' + this.value + ' GS!';
+		}
 	},
 	getShortDescription: function () {
 		var achievementDescription = this.description;
@@ -313,10 +317,10 @@ Template.achievementShareButtons.helpers({
 		var achievementImage = 'https://www.xbdash.com/img/achievement-default.jpg';
 		var getGame = xbdGames.findOne({ _id: this.gameId });
 
-		if (getGame.platform === "Xenon") {
+		if (getGame && getGame.platform === "Xenon") {
 			achievementImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
 		}
-		if (getGame.platform === "Durango") {
+		if (getGame && getGame.platform === "Durango") {
 			achievementImage = "https://res.cloudinary.com/xbdash/image/fetch/w_1200,h_628,c_pad,b_rgb:000000/" + this.mediaAssets;
 		}
 
@@ -338,7 +342,9 @@ Template.youtubeGuides.created = function () {
 	var youtubeApiCredentials = "AIzaSyA20FWsXdsgOVfTB53ck4-YNRETroa5xiw";
 	var game = xbdGames.findOne({ _id: this.data.gameId });
 	var achievementTitle = this.data.name;
-	var queryString = achievementTitle + " " + game.name + " achievement";
+	if (game && game.name) {
+		var queryString = achievementTitle + " " + game.name + " achievement";
+	}
 
 	self.videoGuideUrl = new ReactiveVar();
 

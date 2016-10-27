@@ -4472,6 +4472,10 @@ ul.signin > li.active {
 	border-left-color: #f39c12;
 }
 
+.b-l-xbd {
+	border-left-color: #138013;
+}
+
 .bg-legendary {
 	background-color: #000000;
 }
@@ -4511,7 +4515,8 @@ ul.signin > li.active {
 .achievements-list .padder-vv-legendary,
 .achievements-list .padder-vv-epic,
 .achievements-list .padder-vv-rare,
-.achievements-list .padder-vv-common {
+.achievements-list .padder-vv-common,
+.achievements-list .padder-vv-xbd {
 	color: #fff;
 	padding: 35px 0;
 }
@@ -4519,7 +4524,8 @@ ul.signin > li.active {
 .achievements-list .padder-vv-legendary .h4,
 .achievements-list .padder-vv-epic .h4,
 .achievements-list .padder-vv-rare .h4,
-.achievements-list .padder-vv-common .h4 {
+.achievements-list .padder-vv-common .h4,
+.achievements-list .padder-vv-xbd .h4 {
 	font-size: 24px;
 }
 
@@ -4590,7 +4596,9 @@ ul.signin > li.active {
 }
 
 .padder-vv-xbd {
-	padding: 0 20px;
+	color: #fff;
+	padding: 20px;
+	background-color: #138013;
 }
 
 .gamerscore-table.padder-vv-xbd {

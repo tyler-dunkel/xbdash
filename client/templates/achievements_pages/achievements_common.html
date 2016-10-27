@@ -1,3 +1,46 @@
+<template name="topAchievements">
+	{{#if Template.subscriptionsReady}}
+	<ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
+		{{#if achievementsPresent}}
+		{{#each topAchievements}}
+		<a href="{{pathFor 'achievement'}}">
+			<li class="col-md-6 col-xs-12 list-group-item clearfix b-l-3x b-l-xbd">
+				<div class="thumb-md pull-left m-r-sm">
+					<div class="{{chkPlatform}} achievement-img" style="background-image: url('{{achievementImage}}');">
+					</div>
+				</div>
+				<div class="pull-right no-border padder-vv-xbd" href="{{pathFor 'achievement'}}">
+					<i class="fa fa-trophy"></i> {{value}}
+				</div>
+				<div class="clear">
+					<div class="m-t-xs">
+						<a class="text-md text-ellipsis-inline" href="{{pathFor 'achievement'}}">{{name}}</a>
+						<a class="text-md " href="{{pathFor 'game' slug=gameSlug}}">
+							<span class="label bg-light m-l-sm text-ellipsis-inline">{{gameName}}</span>
+						</a>
+					</div>
+					<div class="text-ellipsis m-t-xs">
+						<a href="{{pathFor 'achievement'}}">
+							{{lockedDescription}}
+						</a>
+					</div>
+				</div>
+			</li>
+		</a>
+		{{/each}}
+		{{else}}
+		<li class="list-group-item clearfix b-l-3x">
+			<div class="clear">
+				Achievements are still populating.
+			</div>
+		</li>
+		{{/if}}
+	</ul>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>
+
 <template name="topCommonAchievements">
 	{{#if Template.subscriptionsReady}}
 	<div class="panel-heading bg-common">

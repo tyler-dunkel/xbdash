@@ -1,3 +1,18 @@
+Template.dashboardNavTwo.created = function() {
+}
+
+Template.dashboardNavTwo.rendered = function () {
+	$('nav.navi .nav li a').on('click', function() {
+		$('.app-aside').toggleClass('off-screen');
+	});
+}
+
+Template.dashboardNavTwo.helpers({
+});
+
+Template.dashboardNavTwo.events({
+});
+
 Template.dashboardNav.created = function() {
 	this.autorun(function() {
 		var user = Meteor.user();

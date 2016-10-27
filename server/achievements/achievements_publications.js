@@ -1,3 +1,43 @@
+Meteor.publishComposite('topAchievements', {
+	find: function() {
+		return xbdAchievements.find({}, {
+			fields: {
+				gameId: 1,
+				name: 1,
+				mediaAssets: 1,
+				description: 1,
+				lockedDescription: 1,
+				value: 1,
+				slug: 1
+			},
+			limit: 50
+		});
+	},
+	children: [
+		{
+			find: function(achievement) {
+				return xbdGames.find({ _id: achievement.gameId }, {
+					fields: {
+						platform: 1,
+						name: 1,
+						slug: 1
+					}
+				});
+			}
+		},
+		{
+			find: function(achievement) {
+				return gameDetails.find({ gameId: achievement.gameId }, {
+					fields: {
+						gameId: 1,
+						gameArt: 1
+					}
+				});
+			}
+		}
+	]
+});
+
 Meteor.publishComposite('topCommonAchievements', {
 	find: function() {
 		return xbdAchievements.find({
@@ -219,6 +259,51 @@ Meteor.publishComposite('singleAchievement', function(slug) {
 	}
 });
 
+Meteor.publishComposite('achievementShowMoreTwo', function(options) {
+	return {
+		find: function() {
+			var limit = options.limit || 25;
+
+			return xbdAchievements.find({}, {
+				fields: {
+					gameId: 1,
+					name: 1,
+					mediaAssets: 1,
+					description: 1,
+					lockedDescription: 1,
+					value: 1,
+					slug: 1
+				},
+				limit: limit
+			});
+		},
+		children: [
+			{
+				find: function(achievement) {
+					return xbdGames.find({ _id: achievement.gameId }, {
+						fields: {
+							platform: 1,
+							name: 1,
+							slug: 1
+						}
+					});
+				}
+			},
+			{
+				find: function(achievement) {
+					return gameDetails.find({ gameId: achievement.gameId }, {
+						fields: {
+							gameReducedName: 1,
+							gameId: 1,
+							gameArt: 1
+						}
+					});
+				}
+			}
+		]
+	}
+});
+
 Meteor.publishComposite('achievementShowMore', function(options) {
 	return {
 		find: function() {
@@ -267,28 +352,28 @@ Meteor.publishComposite('achievementShowMore', function(options) {
 			});
 		},
 		children: [
-		{
-			find: function(achievement) {
-				return xbdGames.find({ _id: achievement.gameId }, {
-					fields: {
-						platform: 1,
-						name: 1,
-						slug: 1
-					}
-				});
+			{
+				find: function(achievement) {
+					return xbdGames.find({ _id: achievement.gameId }, {
+						fields: {
+							platform: 1,
+							name: 1,
+							slug: 1
+						}
+					});
+				}
+			},
+			{
+				find: function(achievement) {
+					return gameDetails.find({ gameId: achievement.gameId }, {
+						fields: {
+							gameReducedName: 1,
+							gameId: 1,
+							gameArt: 1
+						}
+					});
+				}
 			}
-		},
-		{
-			find: function(achievement) {
-				return gameDetails.find({ gameId: achievement.gameId }, {
-					fields: {
-						gameReducedName: 1,
-						gameId: 1,
-						gameArt: 1
-					}
-				});
-			}
-		}
 		]
 	}
 });

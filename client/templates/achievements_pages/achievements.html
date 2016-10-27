@@ -2,8 +2,40 @@
 	{{#if showMore}}
 		{{> achievementsShowMorePage}}
 	{{else}}
-		{{> achievementsApp}}
+		{{> achievementsAppTwo}}
 	{{/if}}
+</template>
+
+<template name="achievementsAppTwo">
+	<div id="content" class="app-content" role="main">
+		<div class="app-content-body ">
+			<div class="hbox hbox-auto-xs hbox-auto-sm">
+				<div class="col">
+					<div class="bg-light lter b-b wrapper-md">
+						<div class="row">
+							<div class="col-sm-4 col-xs-12">
+								<h1 class="m-n font-thin h3 text-black">Achievements</h1>
+								<small class="text-muted">Search achievements, search solutions</small>
+							</div>
+							<div class="col-sm-5 text-right hidden-xs achievement-key">
+							</div>
+							<div class="col-sm-3 text-right hidden-xs view-more-button">
+								<div class="view-button pull-right padder-t inline">
+									<a class="m-n" href="#">View more</a>
+								</div>
+								<div class="view-arrow pull-right padder-t none">
+									<a class="m-n" href="#">View more&nbsp;&nbsp;<i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 col-xs-12 wrapper-md">
+						{{> topAchievements}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="achievementsApp">

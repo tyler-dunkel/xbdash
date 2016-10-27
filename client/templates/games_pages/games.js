@@ -57,6 +57,40 @@ Template.gamesPage.helpers({
 	}
 });
 
+Template.gamesAppTwo.created = function() {
+	this.subscribe('gamesByReleaseDate');
+}
+
+Template.gamesAppTwo.events({
+    "mouseover .view-more-button": function() {
+        $('.view-more-button .view-button').removeClass("inline");
+        $('.view-more-button .view-button').addClass("none");
+        $('.view-more-button .view-arrow').removeClass("none");
+        $('.view-more-button .view-arrow').addClass("inline");
+    },
+    "mouseout .view-more-button": function() {
+        $('.view-more-button .view-button').removeClass("none");
+        $('.view-more-button .view-button').addClass("inline");
+        $('.view-more-button .view-arrow').removeClass("inline");
+        $('.view-more-button .view-arrow').addClass("none");
+    },
+    "click .recent-games": function() {
+    	Router.go('gamesPage', {}, { query: {releaseDate: 'desc'} });
+    }
+});
+
+Template.gamesAppTwo.helpers({
+	xbdGame: function () {
+		return xbdGames.findOne({ _id: this.gameId });
+	},
+	gamesByReleaseDate: function() {
+		return gameDetails.find({}, {
+			sort: { gameReleaseDate: -1 },
+			limit: 18
+		});
+	}
+});
+
 Template.gamesApp.created = function() {
 	this.subscribe('myTopGames');
 	this.subscribe('gamesByReleaseDate');

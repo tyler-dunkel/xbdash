@@ -1,3 +1,67 @@
+<template name="dashboardNavTwo">
+	<nav ui-nav class="navi clearfix">
+		<ul class="nav">
+			<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+				<span>Navigation</span>
+			</li>
+			<li>
+				<a class="home-link" href="{{pathFor 'home'}}">
+					<i class="glyphicon glyphicon-fire icon"></i>
+					<span class="font-bold">Home</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{pathFor 'achievementsPage'}}">
+					<i class="fa fa-trophy icon"></i>
+					<span class="font-bold">Achievements</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{pathFor 'gamesPage'}}">
+					<i class="icon icon-target icon"></i>
+					<span class="font-bold">Games</span>
+				</a>
+			</li>
+			<li class="line dk"></li>
+			<li class="contest-modal-trigger">
+				<a href="{{pathFor 'contestPage'}}">
+					<i class="fa fa-gift"></i>
+					<span class="font-bold">Contests</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{pathFor 'aboutUs'}}" target="_blank">
+					<i class="fa fa-info-circle"></i>
+					<span class="font-bold">About {{appName}}</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{pathFor 'helpPage'}}">
+					<i class="icon-question icon"></i>
+					<span class="font-bold">Help</span>
+				</a>
+			</li>
+			<li>
+				<a href="https://discord.gg/7yPka2A" target="_blank">
+					<img src="/img/discord_icon.png" alt="Join the XBdash Discord Channel" title="Join the XBdash Discord Channel" class="xbd" style="" />
+					<span class="font-bold">Join Discord</span>
+				</a>
+			</li>
+			<li class="line dk"></li>
+			<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+				<div class="text-center-folded">
+					<a class="legal" href="{{pathFor 'privacyPolicy'}}" target="_blank">
+						Privacy Policy
+					</a>
+					<a class="legal pull-right pull-none-folded" href="{{pathFor 'termsConditions'}}" target="_blank">
+						Terms of Use
+					</a>
+				</div>
+			</li>
+		</ul>
+	</nav>
+</template>
+
 <template name="dashboardNav">
 	<nav ui-nav class="navi clearfix">
 		<ul class="nav">
