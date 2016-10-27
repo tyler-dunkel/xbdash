@@ -10,8 +10,16 @@ Template.googlePageLevelAds.rendered = function () {
 	var script = document.createElement("script");
 	script.async = true;
 	script.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-	// var script2 = '<script>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-2098590497386911", enable_page_level_ads: true });</script>';
 	$("#gads-page-level").append(script);
+
+	var pageAds = Session.get("pageAds");
+
+	if (pageAds === undefined || pageAds === '') {
+		var script2 = document.createElement("script");
+		$("#gads-page-level").append(script2);
+		$("#gads-page-level script:nth-child(2)").append("(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: 'ca-pub-2098590497386911', enable_page_level_ads: true });");
+		Session.set("pageAds","loaded");
+	}
 }
 
 Template.googleAdsResponsiveTop.rendered = function () {
