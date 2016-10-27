@@ -1,28 +1,49 @@
 <template name="newsSinglePage">
-	<div id="content" class="app-content" role="main">
-		<div class="app-content-body ">
-			<div class="hbox hbox-auto-xs hbox-auto-sm">
-				<div class="col">
-				{{#if Template.subscriptionsReady}}
-					{{#with article}}
+	{{> googlePageLevelAds}}
+	{{#if Template.subscriptionsReady}}
+		<div id="content" class="app-content news-page" role="main">
+			<div class="app-content-body">
+				<div class="hbox hbox-auto-xs hbox-auto-sm">
+				{{#with article}}
 					{{> newsSinglePageDocHead}}
-					<div class="bg-light lter b-b wrapper-md">
-						<div class="row">
-							<div class="col-md-12 col-xs-12">
-								<h1 class="h3 text-black m-b-xs">{{title}}</h1>
-								<div class="text-muted">
-									<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
-									<i class="fa fa-clock-o text-muted"></i> {{updated}}
-								</div>
-							</div>
+					{{> Template.dynamic template=contentTypeHelper}}
+				{{/with}}
+				</div>
+			</div>
+		</div>
+	{{else}}
+		{{> loadingTemplate}}
+	{{/if}}
+</template>
+
+<template name="contentTemplate1">
+	<div class="col content-template-1">
+		<div class="wrapper-md bg-dark lter b-b">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-xs-12">
+						{{> googleAdsResponsiveTop}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper-md bg-white lter b-b">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="h2 text-black m-b-xs">{{title}}</h1>
+						<div class="text-muted">
+							<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
+							<i class="fa fa-clock-o text-muted"></i> {{updated}}
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-6 col-lg-7 col-md-8 col-sm-12 col-xs-12">
-						<div class="xbd-top-banner-ad">
-							<a href="/contests">
-								<img src="/img/ads/xbdash-ads-300x250.jpg" class="top300" />
-							</a>
-						</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper-md bg-white lter b-b">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-8 col-lg-7 col-md-9 col-xs-12">
 						<div class="blog-post news">
 							{{{content}}}
 							<div class="m-t-md m-b-md share-bar">
@@ -32,25 +53,103 @@
 							<div class="comment-section">
 								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
 							</div>
+							{{> googleAdsResponsiveLeft}}
 						</div>
 					</div>
-					<div class="wrapper-md col-xl-3 col-lg-2 col-md-4 col-sm-12 col-xs-12">
-						{{> newsBannerArea}}
+					<div class="col-xl-4 col-lg-4 col-md-3 col-xs-12">
+						{{> googleAdsResponsiveRight}}
 					</div>
-					<div class="shareDiv">
-						{{> newsSinglePageShareButtons}}
-					</div>
-					{{/with}}
-				{{else}}
-					{{> loadingTemplate}}
-				{{/if}}
 				</div>
 			</div>
+		</div>
+		<div class="shareDiv">
+			{{> newsSinglePageShareButtons}}
 		</div>
 	</div>
 </template>
 
+<template name="contentTemplate2">
+	<div class="col content-template-2 article-background" style="background: url({{getFeaturedImage}}) no-repeat; background-position: top center; background-size: 100%; background-attachment: fixed;">
+		<div class="wrapper-md no-bg lter b-b">
+			<div class="container text-center" style="width: 100%;">
+				<div class="header-container">
+					<div class="header-block">
+						<h1 class="h2 text-white m-b-xs">{{title}}</h1>
+						<div class="text-white">
+							<i class="fa fa-user text-muted"></i> by <span class="m-r-sm">{{author}} {{#if sourceExists}}{{sourceName}}{{/if}}</span>
+							<i class="fa fa-clock-o text-muted"></i> {{updated}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper-md bg-white lter b-b post-shadow">
+			<div class="container">
+				<div class="row">
+					{{#if game}}
+					<div class="col-xl-2 col-lg-2 hidden-md hidden-sm hidden-xs">
+						{{#each game}}
+							{{> newsGameInfoColumn}}
+						{{/each}}
+					</div>
+					{{/if}}
+					<div class="{{#if game}}col-xl-6 col-lg-5{{else}}col-xl-8 col-lg-7{{/if}} col-md-9 col-sm-12 col-xs-12">
+						<div class="blog-post news">
+							{{{content}}}
+							<div class="m-t-md m-b-md share-bar">
+								<h4>Share This Article</h4>
+								{{> newsSinglePageShareButtons}}
+							</div>
+							<div class="comment-section">
+								{{> commentsBox id=this._id boxTemplate="newsCommentBox"}}
+							</div>
+							{{> googleAdsResponsiveLeft}}
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-4 col-md-3 col-sm-12 col-xs-12">
+						{{> googleAdsResponsiveRight}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="shareDiv">
+			{{> newsSinglePageShareButtons}}
+		</div>
+	</div>					
+</template>
+
 <template name="newsSinglePageDocHead"></template>
+
+<template name="newsGameInfoColumn">
+	{{#with game}}
+	<div class="m-b-lg">
+		<div class="list-group-item clearfix">
+			<h4 class="font-bold m-t-xs m-b-xs">Game Info</h4>
+		</div>
+		<div class="list-group-item clearfix">
+			<div class="w-full">
+				<img src="{{gamesImage}}" class="w-full">
+			</div >
+		</div>
+		<div class="list-group-item clearfix">
+			<p class="m-t-xs">Platform</p>
+			<h4 class="font-bold m-t-xs m-b-xs">{{gamePlatform}}</h4>
+		</div>
+		<div class="list-group-item clearfix">
+			<p class="m-t-xs">Publisher</p>
+			<h4 class="font-bold m-t-xs m-b-xs">{{gamePublisher}}</h4>
+		</div>
+		<div class="list-group-item clearfix">
+			<p class="m-t-xs">Developer</p>
+			<h4 class="font-bold m-t-xs m-b-xs">{{gameDeveloper}}</h4>
+		</div>
+		<div class="list-group-item clearfix">
+			<p class="m-t-xs">Release Date</p>
+			<h4 class="font-bold m-t-xs m-b-xs">{{{dateFormat}}}</h4>
+		</div>
+	</div>
+	{{/with}}
+</template>
 
 <template name="newsSinglePageShareButtons">
 	<div class="share-buttons">
@@ -73,16 +172,6 @@
 				</a>
 			</li>
 		</ul>
-	</div>
-</template>
-
-<template name="newsBannerArea">
-	<div class="xbd-right-banner-ad" id="banner-affix">
-		<a href="/contests">
-			<img src="/img/ads/xbdash-ads-300x600.jpg" class="right300600" />
-			<img src="/img/ads/xbdash-ads-160x600.jpg" class="right160600" />
-			<img src="/img/ads/xbdash-ads-300x250.jpg" class="right300250" />
-		</a>
 	</div>
 </template>
 

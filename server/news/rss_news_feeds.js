@@ -15,6 +15,9 @@ Meteor.startup(function () {
                         i.updated = new Date(i.updated[0]);
                         i.published = new Date(i.published[0]);
                         i.shareCount = 0;
+                        i.type = 'news';
+                        i.featuredImage = '';
+                        i.gameId = [];
                         xbdNews.insert(i);
                     } else {
                         var shareCount;

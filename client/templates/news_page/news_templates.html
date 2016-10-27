@@ -1,3 +1,9 @@
+<template name="mostSharedNews">
+	{{#each sharedNews limit}}
+		{{> newsTemplate}}
+	{{/each}}
+</template>
+
 <template name="newsTemplate">
 	<a href="{{pathFor 'article'}}" class="list-group-item clearfix">
 		<span class="pull-left thumb-news m-r">
@@ -15,8 +21,24 @@
 	</a>
 </template>
 
-<template name="mostSharedNews">
+<template name="mostSharedNewsSidebar">
+	<div class="shared-news-sidebar">
 	{{#each sharedNews limit}}
-		{{> newsTemplate}}
+		{{> newsTemplateSidebar}}
 	{{/each}}
+	</div>
+</template>
+
+<template name="newsTemplateSidebar">
+	<a href="{{pathFor 'article'}}" class="list-group-item clearfix">
+		<span class="clear">
+			<h3 class="text-lt m-t-none m-b-sm title-wrap-news">{{title}}</h3>
+			{{#if sourceExists}}<small>{{sourceName}}</small>{{/if}}
+			{{#if shareCounted}}
+			<div>
+				<i class="fa fa-share-square-o text-lt"></i> {{shareCount}}
+			</div>
+			{{/if}}
+		</span>
+	</a>
 </template>

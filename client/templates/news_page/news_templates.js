@@ -1,3 +1,17 @@
+Template.mostSharedNews.created = function() {
+	var limit = this.data.limit;
+	this.subscribe('mostSharedNews', limit);
+}
+
+Template.mostSharedNews.helpers({
+	sharedNews: function(limit) {
+		limit = parseInt(limit);
+		var twoWeeks = moment().subtract(14, 'days').toDate();
+		var article = mostSharedNews.find({ updated: { $gte: twoWeeks } }, { $sort: { shareCount: -1 }, limit: limit }).fetch();
+		return article;
+	}
+});
+
 Template.newsTemplate.rendered = function() {
 	$('.post-image-box .img-full').error(function() {
 		$(this).attr('src', '/img/news-default.jpg');
@@ -52,16 +66,48 @@ Template.newsTemplate.helpers({
 	}
 });
 
-Template.mostSharedNews.created = function() {
+Template.mostSharedNewsSidebar.created = function() {
 	var limit = this.data.limit;
 	this.subscribe('mostSharedNews', limit);
 }
 
-Template.mostSharedNews.helpers({
+Template.mostSharedNewsSidebar.helpers({
 	sharedNews: function(limit) {
 		limit = parseInt(limit);
 		var twoWeeks = moment().subtract(14, 'days').toDate();
-		var article = mostSharedNews.find({ updated: { $gte: twoWeeks } }, { $sort: { shareCount: -1 }, limit: limit }).fetch();
+		var article = mostSharedNews.find({ updated: { $gte: twoWeeks }, source: "polygon" }, { $sort: { shareCount: -1 }, limit: limit }).fetch();
 		return article;
+	}
+});
+
+Template.newsTemplateSidebar.helpers({
+	sourceExists: function () {
+		if (this.source) {
+			return true;
+		}
+		return false;
+	},
+	sourceName: function () {
+		if (this.source) {
+			return 'from ' + this.source.toUpperCase();
+		}
+		return;
+	},
+	shareCounted: function () {
+		if (this.shareCount) {
+			return true;
+		}
+		return false;
+	},
+	shareCount: function() {
+		if (this.shareCount) {
+			var shareCount = shareFormatter(this.shareCount);
+			if (this.shareCount === 1) {
+				return shareCount + ' share';
+			} else {
+				return shareCount + ' shares';
+			}
+		}
+		return '0 shares';
 	}
 });
