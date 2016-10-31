@@ -9,10 +9,6 @@ Template.wishlistPopup.created = function() {
 
 Template.wishlistPopup.rendered = function() {
 	var self = this;
-	// $('.add-to-wish-list').on('click', function(e) {
-	// 	$('.app-header-fixed').toggleClass('show-wishlist');
-	// });
-
 	$('.app-content').on('click',function(e) {
 		var	target = e.target;
 		if( $('.app-header-fixed').hasClass('show-wishlist') && target !== $('.add-to-wish-list' )[0] && !$(e.target).closest('.wishlist-popup').length) {
@@ -98,7 +94,6 @@ Template.wishlistPopup.events({
 		Template.instance().removeId.set(this.relationId);
 	},
 	"click .submit-swap": function(e) {
-		//console.log('fired');
 		var tempInstance = Template.instance(),
 			doc,
 			removeId = tempInstance.removeId.get(),
@@ -144,10 +139,6 @@ Template.trophyCasePopup.created = function() {
 
 Template.trophyCasePopup.rendered = function() {
 	var self = this;
-	// $('.add-to-wish-list').on('click', function(e) {
-	// 	$('.app-header-fixed').toggleClass('show-trophy-case');
-	// });
-
 	$('.app-content').on('click',function(e) {
 		var	target = e.target;
 		if( $('.app-header-fixed').hasClass('show-trophy-case') && target !== $('.add-to-trophy-case' )[0] && !$(e.target).closest('.trophy-case-popup').length) {

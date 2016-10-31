@@ -14,13 +14,13 @@ Template.userDropdownTwo.helpers({
 		}
 		return defaultGamerImage;
 	},
-	creditsAvailable: function () {
-		// var user = Meteor.user();
-		return false;
-	},
-	getCredits: function () {
-		return '5';
-	},
+	// creditsAvailable: function () {
+	//  var user = Meteor.user();
+	// 	return false;
+	// },
+	// getCredits: function () {
+	// 	return '5';
+	// },
 	notificationChk: function() {
 		var count = Notifications.find({userId: Meteor.user()._id, read: false}).count();
 		if (count > 0) return true;
@@ -82,13 +82,13 @@ Template.userDropdown.helpers({
 		}
 		return defaultGamerImage;
 	},
-	creditsAvailable: function () {
-		// var user = Meteor.user();
-		return false;
-	},
-	getCredits: function () {
-		return '5';
-	},
+	// creditsAvailable: function () {
+	// 	var user = Meteor.user();
+	// 	return false;
+	// },
+	// getCredits: function () {
+	// 	return '5';
+	// },
 	notificationChk: function() {
 		var count = Notifications.find({userId: Meteor.user()._id, read: false}).count();
 		if (count > 0) return true;

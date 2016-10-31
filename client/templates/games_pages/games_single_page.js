@@ -177,16 +177,6 @@ Template.gamesSingleDocHead.created = function() {
 	}
 }
 
-// Template.gameSingleUserWishlist.helpers({
-// 	user: function () {
-// 		var gamertagSlug = Meteor.user().gamertagSlug;
-// 		return Meteor.users.findOne({ gamertagSlug: gamertagSlug });
-// 	},
-// 	wish: function () {
-// 		return userWishlist.find({ userId: this._id });
-// 	}
-// });
-
 Template.userGamerscoreInfoNew.created = function() {
 }
 

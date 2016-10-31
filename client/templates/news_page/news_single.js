@@ -30,24 +30,20 @@ Template.newsSinglePage.helpers({
 Template.newsSinglePageDocHead.created = function() {
 	var newsSinglePageDescription = $(this.data.content).text();
 	newsSinglePageDescription = newsSinglePageDescription.substr(0,152) + '...';
-	var image = this.data.content.match(/<img[^>]*>/);
 	
-	if (image) {
-		if (this.data.source === 'xbdash') {
-			newsSinglePageImage = image[0].match(/src="(.+?)"/)[1];
-			newsSinglePageImage = 'https://www.xbdash.com' + newsSinglePageImage;
-		} else {
-			newsSinglePageImage = image[0].match(/src="(.+?)"/)[1];
-			newsSinglePageImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(newsSinglePageImage);
-		}
+	var image, newsSinglePageImage;
+	
+	if (this.data.shareImage && this.data.shareImage != "") {
+		newsSinglePageImage = this.data.shareImage;
 	} else {
-		newsSinglePageImage = 'https://www.xbdash.com/img/news-default.jpg';
+		image = this.data.content.match(/<img[^>]*>/);
+		newsSinglePageImage = image[0].match(/src="(.+?)"/)[1];
 	}
 
 	var newsSinglePageTitle = this.data.title + " | XBdash";
 	var newsSinglePageUrl = window.location.href;
 	var newsSinglePageUpdatedTime = this.data.updated.toISOString();
-	var newSinglePageAuthor;
+	var newsSinglePageAuthor;
 	
 	if (this.data.source === 'xbdash') {
 		newsSinglePageAuthor = this.data.author;
@@ -63,6 +59,8 @@ Template.newsSinglePageDocHead.created = function() {
 		{ "property": "fb:app_id", "content": Meteor.settings.public.facebookAppId },
 		{ "property": "og:description", "content": newsSinglePageDescription },
 		{ "property": "og:image", "content": newsSinglePageImage },
+		{ "property": "og:image:width", "content": "1200" },
+		{ "property": "og:image:height", "content": "628" },
 		{ "property": "og:locale", "content": "en_US" },
 		{ "property": "og:site_name", "content": "XBdash" },
 		{ "property": "og:title", "content": newsSinglePageTitle },

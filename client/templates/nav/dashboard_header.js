@@ -28,10 +28,10 @@ Template.dashboardHeaderTwo.events({
 		e.preventDefault();
 		
 		var $this = $(e.target);
-
-		$this.attr('ui-toggle') || ($this = $this.closest('[ui-toggle]'));
-		$this.toggleClass('active'); // toggles active class on dedent/indent
 		
+		$this.attr('ui-toggle') || ($this = $this.closest('[ui-toggle]'));
+		$this.toggleClass('active');
+
 		var $target = $($this.attr('target')) || $this;
 		
 		$target.toggleClass($this.attr('ui-toggle'));

@@ -8,6 +8,12 @@ Template.dashboardNavTwo.rendered = function () {
 }
 
 Template.dashboardNavTwo.helpers({
+	'click li a.home-link': function(e) {
+		e.preventDefault();
+		var user = Meteor.user();
+		Router.go('newsPage');
+		document.location.reload(true);
+	}
 });
 
 Template.dashboardNavTwo.events({

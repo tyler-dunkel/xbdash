@@ -21,19 +21,12 @@ Template.newsTemplate.rendered = function() {
 Template.newsTemplate.helpers({
 	getImage: function () {
 		var image = this.content.match(/<img[^>]*>/);
-
-		if (image) {
-			if (this.source === 'xbdash') {
-				return image[0].match(/src="(.+?)"/)[1];
-			} else {
-				getImage = image[0].match(/src="(.+?)"/)[1];
-				getImage = "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(getImage);
-			}
+		
+		if (this.shareImage || image) {
+			return (this.shareImage) ? this.shareImage : "https://res.cloudinary.com/xbdash/image/fetch/" + encodeURIComponent(image[0].match(/src="(.+?)"/)[1]);
 		} else {
-			getImage = '/img/news-default.jpg';
+			return '/img/news-default.jpg';
 		}
-
-		return getImage;
 	},
 	sourceExists: function () {
 		if (this.source) {

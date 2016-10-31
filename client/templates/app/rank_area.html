@@ -7,3 +7,16 @@
 	<div class="m-b-xs">Overall Rank</div>
 	<div class="h4 text-success font-bold">{{userOverallRank}}</div>
 </template>
+
+<template name="newsHtmlHolder">
+	{{#if chkGamerStatus}}
+		<div class="col-sm-4 text-right hidden-xs user-rank-area">
+			<div class="inline m-l m-r text-left">
+				{{> userDailyRank}}
+			</div>
+			<div class="inline text-left">
+				{{> userOverallRank}}
+			</div>
+		</div>
+	{{/if}}
+</template>
