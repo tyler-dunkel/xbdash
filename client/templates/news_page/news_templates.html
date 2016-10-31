@@ -1,7 +1,9 @@
 <template name="mostSharedNews">
-	{{#each sharedNews limit}}
-		{{> newsTemplate}}
-	{{/each}}
+	{{#if Template.subscriptionsReady}}
+		{{#each sharedNews limit}}
+			{{> newsTemplate}}
+		{{/each}}
+	{{/if}}
 </template>
 
 <template name="newsTemplate">

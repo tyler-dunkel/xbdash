@@ -15,7 +15,11 @@ Meteor.publish('latestNews', function(limit) {
 			source: 1,
 			content: 1,
 			author: 1,
-			slug: 1
+			slug: 1,
+			type: 1,
+			featuredImage: 1,
+			gameId: 1,
+			shareImage: 1
 		},
 		limit: limit
 	});
@@ -32,7 +36,11 @@ Meteor.publish('mostSharedNews', function(limit) {
 			source: 1,
 			content: 1,
 			slug: 1,
-			shareCount: 1
+			shareCount: 1,
+			type: 1,
+			featuredImage: 1,
+			gameId: 1,
+			shareImage: 1
 		},
 		limit: limit
 	});
@@ -79,7 +87,8 @@ Meteor.publishComposite('singleNews', function(slug) {
 					slug: 1,
 					type: 1,
 					featuredImage: 1,
-					gameId: 1
+					gameId: 1,
+					shareImage: 1
 				}
 			});
 		},
@@ -102,7 +111,7 @@ Meteor.publishComposite('singleNews', function(slug) {
 				find: function(newsPost) {
 					var gameIds = newsPost.gameId;
 					var totalGames = gameIds.length;
-
+					
 					return gameDetails.find({ gameId: { $in: gameIds } }, {
 						fields: {
 							gameId: 1,
@@ -112,8 +121,8 @@ Meteor.publishComposite('singleNews', function(slug) {
 							gameReleaseDate: 1,
 							gameGenre: 1,
 							gameArt: 1,
-							gamePublisherName: 1,
 							gameDeveloperName: 1,
+							gamePublisherName: 1,
 							gameAllTimeAverageRating: 1
 						}
 					});

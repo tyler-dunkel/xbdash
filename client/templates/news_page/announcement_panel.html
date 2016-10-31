@@ -5,7 +5,7 @@
 			{{#each userTweet}}
 			<li class="list-group-item">
 				<div class="m-b-xs m-t-xs">
-					<img src="{{this.user.profile_image_url}}" class="tweet-profile-image m-r-sm" /><strong><a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">{{this.user.screen_name}}</a></strong>
+					<img src="{{this.user.profile_image_url_https}}" class="tweet-profile-image m-r-sm" /><strong><a href="https://twitter.com/@{{getTwitterScreenName}}" class="twitter-box text-success" target="_blank">{{this.user.screen_name}}</a></strong>
 				</div>
 				<p class='tweet-text' data-id="{{this.id_str}}">{{{getTweetText}}}</p>
 				{{{getTweetImage}}}

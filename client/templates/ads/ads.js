@@ -48,7 +48,7 @@ Template.googleAdsResponsiveRight.rendered = function () {
 
 Template.googleAdsResponsiveLeft.rendered = function () {
 	var script = document.createElement("script");
-	script.type="text/javascript";
+	script.async = true;
 	script.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
 	$("#gads-responsive-left").append(script);
 
