@@ -1,9 +1,19 @@
 {
 	"name": "xbox-dash",
 	"version": "1.0.0",
-	"description": "",
+	"description": "The XBdash main application.",
+	"author": "XBdash Team <xbdash@gmail.com>",
 	"scripts": {
 		"start": "meteor --settings settings.json",
 		"deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy www.xbdash.com --settings './settings-prod.json'"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://kg187@bitbucket.org/kg187/xboxdash.git"
+	},
+	"keywords": [
+		"xbdash",
+		"xbox"
+	],
+	"license": "MIT"
 }
