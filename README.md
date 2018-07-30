@@ -1,1 +1,3 @@
-# XBDASH - A tracking and analytics platform for XBOX live achivement hunters
+# XBDASH
+
+## A tracking/analytics/contest/information site for XBOX Live achievement hunters and gamers!
