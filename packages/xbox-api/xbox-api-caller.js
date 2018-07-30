@@ -1,6 +1,6 @@
 function xboxApiCaller (url, callback) {
 	try {
-		HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : 'e9b6206816485c97bd0b0844073723988a848b3f' }}, function (error, result) {
+		HTTP.get('https://xboxapi.com/v2/' + url, {headers: { 'X-AUTH' : 'REPLACEME' }}, function (error, result) {
 			if (!error) {
 				var rateLimitRemaining = result.headers['x-ratelimit-remaining'];
 				if (rateLimitRemaining > 0) {
@@ -20,7 +20,7 @@ function xboxApiCaller (url, callback) {
 			}
 		});
 	} catch (error) {
-		// If the API responded with an error message and a payload 
+		// If the API responded with an error message and a payload
 	    if (error.response) {
 	    	var errorCode = error.response.data.code;
 	    	var errorMessage = error.response.data.message;
